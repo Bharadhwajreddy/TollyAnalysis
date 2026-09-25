@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+/*
+ * Tollywood Analysis design tokens.
+ * Warm ivory page, near-black brown ink, wine accent. Chart series colours were
+ * validated for colour-vision deficiency separation and 3:1 contrast on --surface.
+ */
+:root {
+  color-scheme: light;
+  --bg: #f7f3ec;
+  --surface: #fffdf9;
+  --surface-2: #faf6ef;
+  --ink: #231815;
+  --ink-2: #5b4b45;
+  --muted: #7d6d65;
+  --line: #e6ddd0;
+  --grid: #efe8dd;
+  --axis: #cfc4b5;
+  --wine: #7a1f3d;
+  --wine-hover: #641832;
+  --wine-soft: #f6e9ed;
+  --gold-soft: #fbf1dc;
+  --teal-soft: #e3f3f5;
+  --series-telugu: #a3284f;
+  --series-tamil: #00879e;
+  --series-malayalam: #b98200;
+  --series-other: #8a7a72;
+  --good: #1f7a3d;
+  --warn: #9a5b00;
+  --bad: #b3261e;
+  --focus: #0b6b7a;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-grid: var(--grid);
+  --color-wine: var(--wine);
+  --color-wine-hover: var(--wine-hover);
+  --color-wine-soft: var(--wine-soft);
+  --color-gold-soft: var(--gold-soft);
+  --color-teal-soft: var(--teal-soft);
+  --color-good: var(--good);
+  --color-warn: var(--warn);
+  --color-bad: var(--bad);
+  --font-sans: var(--font-dm-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: var(--font-playfair), Georgia, serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+html {
+  background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+  /* Keep focused / scrolled-to elements clear of the sticky header. */
+  scroll-padding-top: 112px;
+  scroll-padding-bottom: 72px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(35, 24, 21, 0.04);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.scroll-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (forced-colors: active) {
+  .chart-mark {
+    forced-color-adjust: none;
+  }
+}
