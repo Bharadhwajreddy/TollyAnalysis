@@ -110,7 +110,28 @@ describe("demo dataset", () => {
   it("has an emerging hero and a 3+ default roster", () => {
     const all = out.snapshots.all_time;
     expect(all.filter((s) => s.isEmerging).map((s) => s.slug)).toContain("mouli-tanuj-prasanth");
-    expect(all.filter((s) => !s.isEmerging).length).toBeGreaterThanOrEqual(35);
+    expect(all.filter((s) => !s.isEmerging).length).toBeGreaterThanOrEqual(90);
+    for (const name of ["Prabhas", "Nithiin", "Satyadev", "Sree Vishnu", "Sharwanand"]) expect(all.map((s) => s.name)).toContain(name);
+  });
+
+  it("plain metrics agree with each other", () => {
+    for (const s of out.snapshots.all_time) {
+      expect(s.metrics.films.value).toBe(s.eligibleFilmCount);
+      const hits = s.metrics.hits.value;
+      const ratio = s.metrics.overallSuccessRatio.value;
+      if (hits !== null && ratio !== null) expect(Math.round((hits / s.metrics.hits.coverage.numerator) * 1000) / 10).toBeCloseTo(ratio, 1);
+      if (s.metrics.avgRating.value !== null) expect(s.metrics.avgRating.value).toBeLessThanOrEqual(10);
+    }
+  });
+
+  it("every photo credit belongs to a roster hero and points at Wikimedia Commons", async () => {
+    const { HERO_PHOTOS } = await import("@/lib/constants/photos");
+    const slugs = new Set(INITIAL_ROSTER.map((r) => r.slug));
+    for (const [slug, c] of Object.entries(HERO_PHOTOS)) {
+      expect(slugs.has(slug)).toBe(true);
+      expect(c.page).toMatch(/^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
+      expect(c.file).toBe(`/heroes/${slug}.jpg`);
+    }
   });
 
   it("returns methodology version and coverage with each metric", () => {

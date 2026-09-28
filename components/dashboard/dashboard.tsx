@@ -2,86 +2,62 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState, type ReactNode } from "react";
 import type { HeroMetricKey } from "@/lib/calculations/engine";
-import { INDUSTRY_COLOR } from "@/lib/constants/colors";
-import {
-  BUBBLE_METRICS,
-  CADENCE_METRICS,
-  formatMetric,
-  LEADERBOARD_METRICS,
-  METRICS,
-  WINDOW_LABEL,
-} from "@/lib/constants/metrics";
+import { INDUSTRY_COLOR, INDUSTRY_ORDER } from "@/lib/constants/colors";
+import { AXIS_METRICS, axisLabel, formatMetric, LEADERBOARD_METRICS, METRICS, MIN_SAMPLE_NOTE, WINDOW_LABEL } from "@/lib/constants/metrics";
 import type { FilterWindow, Industry } from "@/lib/domain/types";
 import type { DashboardData, HeroView } from "@/lib/view-models";
+import { ParetoChart } from "@/components/charts/pareto-chart";
 import { RankedBars, type BarDatum } from "@/components/charts/ranked-bars";
-import { LabelledScatter } from "@/components/charts/labelled-scatter";
+import { useHeroActivate } from "@/components/charts/use-hero-activate";
+import { HeroAvatar } from "@/components/hero/hero-avatar";
+import { DemoBadge } from "@/components/ui/badges";
 import { ChartCard } from "@/components/ui/chart-card";
 import { MetricPicker } from "@/components/ui/metric-picker";
 import { Segmented } from "@/components/ui/segmented";
 import { Toggle } from "@/components/ui/toggle";
-import { DemoBadge } from "@/components/ui/badges";
 import { HeroTable } from "./hero-table";
-import { IndustryLegend, MetricTooltip, rankBy } from "./shared";
-import { SelectedHero } from "./selected-hero";
+import { IndustryLegend, MetricTooltip, rankable, rankBy } from "./shared";
 
 const WINDOWS: FilterWindow[] = ["all_time", "last_5_years", "last_10_films"];
-const SECTIONS = [
-  ["leaderboard", "Leaderboard"],
-  ["output", "Release output"],
-  ["audience", "Audience"],
-  ["momentum", "Momentum"],
-  ["dimensions", "Dimensions"],
-  ["table", "Table"],
-  ["selected", "Selected hero"],
-] as const;
 
 function fmtDate(iso: string | null) {
   if (!iso) return "—";
   return new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
 }
 
-export function Dashboard({ data }: { data: DashboardData }) {
+export function Dashboard({ data, children }: { data: DashboardData; children?: ReactNode }) {
   const router = useRouter();
   const [period, setPeriod] = useState<FilterWindow>("all_time");
   const [includeEmerging, setIncludeEmerging] = useState(false);
   const [search, setSearch] = useState("");
   const [hiddenIndustries, setHiddenIndustries] = useState<Set<Industry>>(new Set());
-  const [leaderMetric, setLeaderMetric] = useState<HeroMetricKey>("hpi");
+  const [leaderMetric, setLeaderMetric] = useState<HeroMetricKey>("overallSuccessRatio");
   const [leaderAll, setLeaderAll] = useState(false);
-  const [cadenceMetric, setCadenceMetric] = useState<HeroMetricKey>("peakFilms");
-  const [bubbleMetric, setBubbleMetric] = useState<HeroMetricKey>("overallSuccessRatio");
-  const [compare, setCompare] = useState<string[]>([]);
+  const [selected, setSelected] = useState<string | null>(null);
 
-  const all = data.windows[period];
-  const roster = useMemo(() => all.filter((h) => includeEmerging || !h.isEmerging), [all, includeEmerging]);
+  const open = useCallback((slug: string) => router.push(`/hero/${slug}`), [router]);
+  const activate = useHeroActivate(setSelected, open);
+
+  const roster = useMemo(() => data.windows[period].filter((h) => includeEmerging || !h.isEmerging), [data, period, includeEmerging]);
   const visible = useMemo(() => {
     const q = search.trim().toLowerCase();
     return roster.filter((h) => !hiddenIndustries.has(h.industry) && (!q || h.name.toLowerCase().includes(q)));
   }, [roster, hiddenIndustries, search]);
-
-  const [selectedRaw, setSelected] = useState<string | null>(null);
-  const byHpi = useMemo(() => rankBy(visible, "hpi"), [visible]);
-  const selected = selectedRaw && visible.some((h) => h.slug === selectedRaw) ? selectedRaw : (byHpi[0]?.slug ?? null);
   const selectedHero = visible.find((h) => h.slug === selected) ?? null;
 
-  const [userSelected, setUserSelected] = useState(false);
-  const select = useCallback((slug: string) => {
-    setSelected(slug);
-    setUserSelected(true);
-  }, []);
-  const toggleCompare = useCallback(
-    (slug: string) =>
-      setCompare((c) => (c.includes(slug) ? c.filter((s) => s !== slug) : c.length >= 4 ? c : [...c, slug])),
-    [],
-  );
-
   const industries = useMemo(() => {
-    const order: Industry[] = ["telugu", "tamil", "malayalam", "kannada", "hindi"];
     const present = new Set(roster.map((h) => h.industry));
-    return order.filter((i) => present.has(i));
+    return INDUSTRY_ORDER.filter((i) => present.has(i));
   }, [roster]);
+  const toggleIndustry = (i: Industry) =>
+    setHiddenIndustries((s) => {
+      const n = new Set(s);
+      if (n.has(i)) n.delete(i);
+      else n.add(i);
+      return n;
+    });
 
   const toBars = useCallback(
     (heroes: HeroView[], key: HeroMetricKey): BarDatum[] =>
@@ -89,8 +65,10 @@ export function Dashboard({ data }: { data: DashboardData }) {
         id: h.slug,
         label: h.name,
         value: h.m[key].v as number,
-        display: formatMetric(key, h.m[key].v, key === "releaseGap"),
+        display: formatMetric(key, h.m[key].v, METRICS[key].unit === "%" || METRICS[key].unit === " mo"),
         color: INDUSTRY_COLOR[h.industry],
+        photo: h.photo,
+        industry: h.industry,
         selected: h.slug === selected,
         lowSample: h.m[key].s === "low_sample",
         tooltip: <MetricTooltip hero={h} metric={key} />,
@@ -98,108 +76,35 @@ export function Dashboard({ data }: { data: DashboardData }) {
     [selected],
   );
 
-  // KPIs — all derived from the active filters.
-  const kpis = useMemo(() => {
-    const med = (v: number[]) => {
-      const s = [...v].sort((a, b) => a - b);
-      const m = Math.floor(s.length / 2);
-      return s.length ? (s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2) : null;
-    };
-    const ratios = visible.map((h) => h.m.overallSuccessRatio.v).filter((v): v is number => v !== null);
-    const aud = visible.map((h) => h.m.audienceIndex.v).filter((v): v is number => v !== null);
-    const top = byHpi[0];
-    return {
-      heroes: visible.length,
-      credits: visible.reduce((a, h) => a + h.eligible, 0),
-      medianRatio: med(ratios),
-      top,
-      avgAudience: aud.length ? aud.reduce((a, b) => a + b, 0) / aud.length : null,
-      highCoverage: visible.filter((h) => h.confidence === "high").length,
-    };
-  }, [visible, byHpi]);
-
+  const kpi = (key: HeroMetricKey) => rankBy(visible, key)[0] ?? null;
   const leaderRanked = rankBy(visible, leaderMetric);
-  const leaderData = toBars(leaderAll ? leaderRanked : leaderRanked.slice(0, 12), leaderMetric);
-  const cadenceRanked = rankBy(visible, cadenceMetric);
-  const audienceRanked = rankBy(visible, "audienceIndex").slice(0, 12);
-  const momentumRanked = rankBy(visible, "momentum").slice(0, 12);
-  const missing = (key: HeroMetricKey) => visible.filter((h) => h.m[key].v === null).length;
-
-  const scatterData = useMemo(() => {
-    const rankOf = new Map(byHpi.map((h, i) => [h.slug, i]));
-    return visible
-      .filter((h) => h.m.audienceIndex.v !== null && h.m.consistency.v !== null)
-      .map((h) => ({
-        id: h.slug,
-        label: h.name,
-        x: h.m.audienceIndex.v as number,
-        y: h.m.consistency.v as number,
-        size: h.m[bubbleMetric].v,
-        color: INDUSTRY_COLOR[h.industry],
-        selected: h.slug === selected,
-        priority: rankOf.get(h.slug) ?? 999,
-        tooltip: (
-          <div className="space-y-1">
-            <MetricTooltip hero={h} metric={bubbleMetric} />
-            <p className="tabular border-t border-line pt-1 text-ink-2">
-              Audience {formatMetric("audienceIndex", h.m.audienceIndex.v)} · Consistency {formatMetric("consistency", h.m.consistency.v)}
-            </p>
-          </div>
-        ),
-      }));
-  }, [visible, bubbleMetric, selected, byHpi]);
-
-  const sizeVals = scatterData.map((d) => d.size).filter((v): v is number => v !== null);
-  const sizeDomain: [number, number] = sizeVals.length ? [Math.min(...sizeVals), Math.max(...sizeVals)] : [0, 1];
-
-  const totalRoster = data.windows[period].length;
-  const countLabel = `${visible.length} of ${totalRoster} heroes`;
+  const TOP = 15;
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6">
-      {/* 1. Heading */}
+      {/* Heading */}
       <div className="pt-6 sm:pt-8">
         <h1 className="font-serif text-[28px] font-bold leading-tight tracking-tight text-ink sm:text-4xl">
-          Telugu cinema heroes, benchmarked
+          Telugu cinema heroes, compared
         </h1>
         <p className="mt-1.5 max-w-3xl text-[15px] text-ink-2">
-          Lead actors across Telugu-release feature films since 2000 — overall performance, audience reception, consistency,
-          momentum and release cadence.
+          Who delivers the most hits, how often they release, and what audiences think. Films released in Telugu since 2000.
         </p>
-        {/* 2. Status */}
         <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-muted">
           {data.mode === "demo" ? <DemoBadge /> : <span className="rounded bg-teal-soft px-2 py-0.5 font-mono text-[11px] text-[#00596a]">LIVE</span>}
-          <span>Methodology {data.methodologyName}</span>
+          <span>Updated {fmtDate(data.calculatedAt)}</span>
           <span aria-hidden>·</span>
-          <span>Calculated {fmtDate(data.calculatedAt)}</span>
-          <span aria-hidden>·</span>
-          <Link href="/methodology" className="font-medium text-wine underline-offset-2 hover:underline">
-            How scores work
-          </Link>
+          <a href="#how" className="font-medium text-wine underline-offset-2 hover:underline">How we calculate</a>
         </div>
         {data.mode === "demo" && (
           <p className="mt-2 max-w-3xl text-xs text-muted">
-            Demo mode: hero names are real, but every film, rating, outcome and reach value is synthetic placeholder data for
-            layout verification. Nothing here is a factual claim.
+            Demo data: names and photos are real, but every film and number is made up so the charts can be checked. Nothing here is a factual claim yet.
           </p>
         )}
       </div>
 
-      {/* Section anchors */}
-      <nav aria-label="Dashboard sections" className="sticky top-14 z-30 -mx-4 mt-5 border-b border-line bg-bg/95 px-4 backdrop-blur sm:-mx-6 sm:px-6">
-        <ul className="scroll-x flex gap-1 py-2 text-[13px]">
-          {SECTIONS.map(([id, label]) => (
-            <li key={id}>
-              <a href={`#${id}`} className="block whitespace-nowrap rounded-md px-2.5 py-1 font-medium text-ink-2 hover:bg-surface hover:text-ink">
-                {label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-
-      {/* 3. Filters */}
-      <div className="card mt-4 flex flex-col gap-3 p-3 sm:p-4 lg:flex-row lg:items-center lg:justify-between">
+      {/* Filters */}
+      <div className="card mt-5 flex flex-col gap-3 p-3 sm:p-4 lg:flex-row lg:items-center lg:justify-between">
         <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
           <label className="relative block">
             <span className="sr-only">Search hero by name</span>
@@ -211,231 +116,120 @@ export function Dashboard({ data }: { data: DashboardData }) {
               type="search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search hero"
+              placeholder="Search a hero"
               className="w-full rounded-md border border-line bg-surface py-1.5 pl-8 pr-3 text-sm text-ink placeholder:text-muted sm:w-52"
             />
           </label>
-          <Segmented
-            label="Period"
-            value={period}
-            onChange={setPeriod}
-            options={WINDOWS.map((w) => ({ value: w, label: WINDOW_LABEL[w] }))}
-          />
-          <Toggle checked={includeEmerging} onChange={setIncludeEmerging} label="Include emerging heroes" />
+          <Segmented label="Period" value={period} onChange={setPeriod} options={WINDOWS.map((w) => ({ value: w, label: WINDOW_LABEL[w] }))} />
+          <Toggle checked={includeEmerging} onChange={setIncludeEmerging} label="Include newcomers (1–2 films)" />
         </div>
-        <div className="flex items-center gap-3 text-xs text-muted">
-          <span className="tabular">{countLabel}</span>
-          {compare.length > 0 && (
-            <button
-              type="button"
-              onClick={() => router.push(`/compare?heroes=${compare.join(",")}`)}
-              className="rounded-md bg-wine px-3 py-1.5 text-[13px] font-semibold text-white hover:bg-wine-hover"
-            >
-              Compare {compare.length}
-            </button>
-          )}
-        </div>
+        <span className="tabular text-xs text-muted">
+          {visible.length} of {data.windows[period].length} heroes
+        </span>
       </div>
 
-      {/* 4. KPI cards */}
-      <section aria-label="Key figures" className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
-        <Kpi label="Eligible heroes" value={String(kpis.heroes)} note={includeEmerging ? "Incl. emerging" : "3+ lead films"} />
-        <Kpi label="Lead-film credits mapped" value={kpis.credits.toLocaleString("en-IN")} note="Co-lead titles count per hero" />
-        <Kpi label="Median success ratio" value={kpis.medianRatio === null ? "—" : `${Math.round(kpis.medianRatio)}%`} note="FSS ≥ 60, scored films" />
-        <Kpi
-          label="Highest HPI"
-          value={kpis.top ? formatMetric("hpi", kpis.top.m.hpi.v) : "—"}
-          note={kpis.top?.name ?? "—"}
-          accent
-        />
-        <Kpi label="Avg audience index" value={kpis.avgAudience === null ? "—" : kpis.avgAudience.toFixed(1)} note="Confidence-adjusted" />
-        <Kpi label="High evidence coverage" value={String(kpis.highCoverage)} note={`of ${kpis.heroes} heroes`} />
+      {/* Headline numbers */}
+      <section aria-label="Headline numbers" className="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
+        <Kpi label="Heroes compared" value={String(visible.length)} note={includeEmerging ? "including newcomers" : "with 3 or more films"} />
+        <KpiHero label="Best success ratio" hero={kpi("overallSuccessRatio")} metric="overallSuccessRatio" onOpen={open} />
+        <KpiHero label="Most hits" hero={kpi("hits")} metric="hits" onOpen={open} />
+        <KpiHero label="Best audience rating" hero={kpi("avgRating")} metric="avgRating" onOpen={open} />
       </section>
 
+      <p className="mt-4 rounded-lg bg-wine-soft px-3 py-2 text-[13px] text-wine">
+        <strong>Tip:</strong> tap a hero&apos;s photo or bar to highlight him in every chart. <strong>Double-tap</strong> (or double-click) to open his own page.
+      </p>
+
       <div className="mt-4 space-y-4">
-        {/* 5. Leaderboard */}
+        {/* Leaderboard */}
         <ChartCard
           id="leaderboard"
-          title={`Hero leaderboard: ${METRICS[leaderMetric].label}`}
+          title={`${METRICS[leaderMetric].label}${METRICS[leaderMetric].unit === "%" ? " (%)" : ""}`}
           subtitle={
-            METRICS[leaderMetric].higherIsBetter
-              ? `${WINDOW_LABEL[period]} · Higher is better`
-              : `${WINDOW_LABEL[period]} · Lower is better — shortest median gap between releases ranks first`
+            <>
+              {METRICS[leaderMetric].definition}{" "}
+              <strong className="font-semibold">{METRICS[leaderMetric].higherIsBetter ? "Higher is better." : "Lower is better."}</strong>
+              {METRICS[leaderMetric].minSample ? ` ${MIN_SAMPLE_NOTE(METRICS[leaderMetric].minSample!)}` : ""}
+            </>
           }
-          count={`${leaderAll ? leaderRanked.length : Math.min(12, leaderRanked.length)} of ${visible.length} heroes`}
+          count={`${leaderAll ? leaderRanked.length : Math.min(TOP, leaderRanked.length)} of ${visible.length} heroes`}
           controls={
             <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
               <MetricPicker
-                label="Leaderboard metric"
+                label="What to rank by"
                 value={leaderMetric}
                 onChange={setLeaderMetric}
-                options={LEADERBOARD_METRICS.map((k) => ({ value: k, label: METRICS[k].short === "HPI" ? "Performance Index" : METRICS[k].short }))}
+                options={LEADERBOARD_METRICS.map((k) => ({ value: k, label: METRICS[k].short }))}
               />
               <Segmented
                 label="How many heroes"
                 value={leaderAll ? "all" : "top"}
                 onChange={(v) => setLeaderAll(v === "all")}
                 options={[
-                  { value: "top", label: "Top 12" },
+                  { value: "top", label: `Top ${TOP}` },
                   { value: "all", label: "All" },
                 ]}
               />
             </div>
           }
-          legend={<IndustryLegend present={industries} hidden={hiddenIndustries} onToggle={(i) => setHiddenIndustries((s) => { const n = new Set(s); if (n.has(i)) n.delete(i); else n.add(i); return n; })} />}
-          footer={
-            <>
-              <strong className="font-semibold text-ink-2">{METRICS[leaderMetric].label}:</strong> {METRICS[leaderMetric].definition}{" "}
-              Hatched bar ends mark small samples. {missing(leaderMetric) > 0 && `${missing(leaderMetric)} hero(es) hidden for insufficient evidence. `}
-              <Link href="/methodology" className="text-wine hover:underline">Methodology</Link>
-            </>
-          }
+          legend={<IndustryLegend present={industries} hidden={hiddenIndustries} onToggle={toggleIndustry} />}
         >
           <RankedBars
-            data={leaderData}
+            data={toBars(leaderAll ? leaderRanked : leaderRanked.slice(0, TOP), leaderMetric)}
             ariaLabel={`${METRICS[leaderMetric].label} ranking`}
             domainMax={METRICS[leaderMetric].domainMax}
-            onSelect={select}
+            orientation={leaderAll && leaderRanked.length > 30 ? "horizontal" : "auto"}
+            onActivate={activate}
           />
         </ChartCard>
 
-        {/* 6. Release cadence / output */}
-        <ChartCard
-          id="output"
-          title={`Release output: ${METRICS[cadenceMetric].label}`}
-          subtitle={
-            METRICS[cadenceMetric].higherIsBetter
-              ? "Higher means more eligible lead releases"
-              : "Lower is better — fewer months between consecutive eligible releases"
-          }
-          count={`${cadenceRanked.length} of ${visible.length} heroes`}
-          controls={
-            <MetricPicker
-              label="Output metric"
-              value={cadenceMetric}
-              onChange={setCadenceMetric}
-              options={CADENCE_METRICS.map((k) => ({ value: k, label: METRICS[k].label }))}
-            />
-          }
-          footer={<>{METRICS[cadenceMetric].definition} Calculated from eligible Telugu release dates; co-lead titles count for each lead.</>}
-        >
-          <RankedBars
-            data={toBars(cadenceRanked.slice(0, leaderAll ? undefined : 15), cadenceMetric)}
-            ariaLabel={`${METRICS[cadenceMetric].label} ranking`}
-            orientation="horizontal"
-            onSelect={select}
-          />
-        </ChartCard>
-
-        {/* 7. Audience & momentum */}
+        {/* Side by side: hits & audience */}
         <div className="grid gap-4 lg:grid-cols-2">
-          <ChartCard
-            id="audience"
-            title="Audience reception leaders"
-            subtitle="Audience Reception Index · Higher is better"
-            count={`Top ${audienceRanked.length}`}
-            footer={<>{METRICS.audienceIndex.definition}</>}
-          >
-            <RankedBars data={toBars(audienceRanked, "audienceIndex")} ariaLabel="Audience Reception Index ranking" orientation="horizontal" domainMax={100} onSelect={select} />
-          </ChartCard>
-          <ChartCard
-            id="momentum"
-            title="Recent career momentum"
-            subtitle="Latest five scored titles vs career baseline · 50 = on baseline"
-            count={`Top ${momentumRanked.length}`}
-            footer={<>{METRICS.momentum.definition} Hatched = fewer than five scored recent titles.</>}
-          >
-            <RankedBars data={toBars(momentumRanked, "momentum")} ariaLabel="Recent Career Momentum ranking" orientation="horizontal" domainMax={100} onSelect={select} />
-          </ChartCard>
+          <SmallRanking title="Most hit films" metric="hits" heroes={visible} toBars={toBars} onActivate={activate} />
+          <SmallRanking title="Best audience rating (out of 10)" metric="avgRating" heroes={visible} toBars={toBars} onActivate={activate} domainMax={10} />
         </div>
 
-        {/* 8. Scatter */}
-        <ChartCard
-          id="dimensions"
-          title="Performance dimensions: Audience Reception vs Consistency"
-          subtitle="Up and to the right is better. Bubble size shows the selected metric. Dashed lines are roster medians."
-          count={`${scatterData.length} heroes`}
-          controls={
-            <div className="flex flex-col gap-1.5 md:flex-row md:items-center md:gap-3">
-              <span className="text-xs font-medium text-muted">Bubble size</span>
-              <MetricPicker
-                label="Bubble size metric"
-                value={bubbleMetric}
-                onChange={setBubbleMetric}
-                options={BUBBLE_METRICS.map((k) => ({ value: k, label: METRICS[k].short }))}
-              />
-            </div>
-          }
-          legend={<IndustryLegend present={industries} />}
-          footer={
-            <>
-              X: {METRICS.audienceIndex.definition} Y: {METRICS.consistency.definition} On small screens only the top-ranked and
-              selected heroes are labelled — tap a dot to reveal its name.
-            </>
-          }
-        >
-          <LabelledScatter
-            data={scatterData}
-            xLabel="Audience Reception Index"
-            yLabel="Consistency Index"
-            quadrantLabel="High reception · high consistency"
-            sizeDomain={sizeDomain}
-            onSelect={select}
-            ariaLabel="Scatter of Audience Reception Index against Consistency Index"
-          />
+        {/* Pareto charts */}
+        <ParetoCard id="pareto-1" heroes={visible} selected={selected} onActivate={activate} initialX="films" initialY="overallSuccessRatio" title="More films vs. more success" />
+
+        {/* Side by side: output */}
+        <div className="grid gap-4 lg:grid-cols-2">
+          <SmallRanking title="Most films in a single year" metric="peakFilms" heroes={visible} toBars={toBars} onActivate={activate} />
+          <SmallRanking title="Shortest gap between films (months)" metric="releaseGap" heroes={visible} toBars={toBars} onActivate={activate} />
+        </div>
+
+        <ParetoCard id="pareto-2" heroes={visible} selected={selected} onActivate={activate} initialX="avgRating" initialY="hits" title="Audience love vs. number of hits" />
+
+        <div className="grid gap-4 lg:grid-cols-2">
+          <SmallRanking title="Best recent success (last 5 films, %)" metric="recentSuccessRatio" heroes={visible} toBars={toBars} onActivate={activate} domainMax={100} />
+          <SmallRanking title="Most films as lead hero" metric="films" heroes={visible} toBars={toBars} onActivate={activate} />
+        </div>
+
+        {/* Table */}
+        <ChartCard id="table" title="All heroes" subtitle={`${WINDOW_LABEL[period]} · every number in one table`} count={`${visible.length} heroes`}>
+          <HeroTable heroes={visible} selected={selected} onActivate={activate} csvMeta={{ mode: data.mode, methodologyId: data.methodologyId, window: period }} />
         </ChartCard>
 
-        {/* 9. Table */}
-        <ChartCard id="table" title="All heroes" subtitle={`${WINDOW_LABEL[period]} · sortable`} count={countLabel}>
-          <HeroTable
-            heroes={visible}
-            selected={selected}
-            onSelect={select}
-            compare={compare}
-            onToggleCompare={toggleCompare}
-            csvMeta={{ mode: data.mode, methodologyId: data.methodologyId, window: period }}
-          />
-        </ChartCard>
-
-        {/* 10. Selected hero */}
-        <ChartCard id="selected" title="Selected hero" subtitle="Summary for the hero selected in any chart or table">
-          <SelectedHero
-            hero={selectedHero}
-            cohort={visible}
-            rank={selectedHero ? byHpi.findIndex((h) => h.slug === selectedHero.slug) + 1 || null : null}
-            inCompare={!!selected && compare.includes(selected)}
-            onToggleCompare={() => selected && toggleCompare(selected)}
-            compareFull={compare.length >= 4}
-          />
-        </ChartCard>
+        {children}
       </div>
 
-      {/* Sticky selection / compare tray */}
-      {selectedHero && (userSelected || compare.length > 0) && (
-        <div className="pointer-events-none sticky bottom-3 z-30 mt-4 flex justify-center lg:justify-end">
-          <div className="pointer-events-auto flex max-w-full items-center gap-3 overflow-x-auto rounded-full border border-line bg-surface/95 py-1.5 pl-4 pr-1.5 text-[13px] shadow-lg backdrop-blur">
-            <span className="whitespace-nowrap">
-              <span className="hidden text-muted sm:inline">Selected </span>
-              <a href="#selected" className="font-semibold text-wine hover:underline">{selectedHero.name}</a>
-              <span className="tabular hidden text-muted sm:inline"> · HPI {formatMetric("hpi", selectedHero.m.hpi.v)}</span>
+      {/* Selection bar */}
+      {selectedHero && (
+        <div className="pointer-events-none sticky bottom-3 z-30 mt-4 flex justify-center">
+          <div className="pointer-events-auto flex max-w-full items-center gap-3 rounded-full border border-line bg-surface/95 py-1.5 pl-1.5 pr-1.5 text-[13px] shadow-lg backdrop-blur">
+            <HeroAvatar name={selectedHero.name} photo={selectedHero.photo} industry={selectedHero.industry} size={34} />
+            <span className="min-w-0">
+              <span className="block truncate font-semibold text-ink">{selectedHero.name}</span>
+              <span className="tabular block truncate text-[11.5px] text-muted">
+                {formatMetric("films", selectedHero.m.films.v)} films · {formatMetric("hits", selectedHero.m.hits.v)} hits · {formatMetric("overallSuccessRatio", selectedHero.m.overallSuccessRatio.v)} success
+              </span>
             </span>
-            <button
-              type="button"
-              onClick={() => toggleCompare(selectedHero.slug)}
-              disabled={!compare.includes(selectedHero.slug) && compare.length >= 4}
-              className="whitespace-nowrap rounded-full border border-line px-3 py-1 font-medium text-ink hover:border-ink-2 disabled:opacity-50"
-            >
-              {compare.includes(selectedHero.slug) ? "− Compare" : "+ Compare"}
+            <Link href={`/hero/${selectedHero.slug}`} className="whitespace-nowrap rounded-full bg-wine px-3 py-1.5 font-semibold text-white hover:bg-wine-hover">
+              Open page →
+            </Link>
+            <button type="button" onClick={() => setSelected(null)} aria-label="Clear selection" className="grid h-8 w-8 place-items-center rounded-full text-muted hover:bg-surface-2">
+              ×
             </button>
-            {compare.length > 0 && (
-              <button
-                type="button"
-                onClick={() => router.push(`/compare?heroes=${compare.join(",")}`)}
-                className="whitespace-nowrap rounded-full bg-wine px-3 py-1 font-semibold text-white hover:bg-wine-hover"
-              >
-                Compare {compare.length} →
-              </button>
-            )}
           </div>
         </div>
       )}
@@ -443,12 +237,166 @@ export function Dashboard({ data }: { data: DashboardData }) {
   );
 }
 
-function Kpi({ label, value, note, accent = false }: { label: string; value: string; note: string; accent?: boolean }) {
+function SmallRanking({
+  title,
+  metric,
+  heroes,
+  toBars,
+  onActivate,
+  domainMax,
+}: {
+  title: string;
+  metric: HeroMetricKey;
+  heroes: HeroView[];
+  toBars: (h: HeroView[], k: HeroMetricKey) => BarDatum[];
+  onActivate: (id: string) => void;
+  domainMax?: number;
+}) {
+  const ranked = rankBy(heroes, metric).slice(0, 10);
   return (
-    <div className={`card p-3 sm:p-4 ${accent ? "ring-1 ring-wine/25" : ""}`}>
+    <ChartCard
+      title={title}
+      subtitle={
+        <>
+          {METRICS[metric].definition} <strong className="font-semibold">{METRICS[metric].higherIsBetter ? "Higher is better." : "Lower is better."}</strong>
+          {METRICS[metric].minSample ? ` ${MIN_SAMPLE_NOTE(METRICS[metric].minSample!)}` : ""}
+        </>
+      }
+      count="Top 10"
+    >
+      <RankedBars data={toBars(ranked, metric)} ariaLabel={title} orientation="horizontal" domainMax={domainMax} onActivate={onActivate} />
+    </ChartCard>
+  );
+}
+
+function ParetoCard({
+  id,
+  title,
+  heroes,
+  selected,
+  onActivate,
+  initialX,
+  initialY,
+}: {
+  id: string;
+  title: string;
+  heroes: HeroView[];
+  selected: string | null;
+  onActivate: (id: string) => void;
+  initialX: HeroMetricKey;
+  initialY: HeroMetricKey;
+}) {
+  const [x, setX] = useState<HeroMetricKey>(initialX);
+  const [y, setY] = useState<HeroMetricKey>(initialY);
+  const points = useMemo(() => {
+    const withBoth = heroes.filter((h) => rankable(h, x) && rankable(h, y));
+    const order = new Map(rankBy(withBoth, y).map((h, i) => [h.slug, i]));
+    return withBoth.map((h) => ({
+      id: h.slug,
+      label: h.name,
+      photo: h.photo,
+      x: h.m[x].v as number,
+      y: h.m[y].v as number,
+      color: INDUSTRY_COLOR[h.industry],
+      selected: h.slug === selected,
+      priority: order.get(h.slug) ?? 999,
+      tooltip: (
+        <div className="space-y-1.5">
+          <div className="flex items-center gap-2">
+            <HeroAvatar name={h.name} photo={h.photo} industry={h.industry} size={34} />
+            <span className="font-semibold text-ink">{h.name}</span>
+          </div>
+          <p className="tabular flex justify-between gap-3 text-ink-2"><span>{METRICS[x].label}</span><strong className="text-ink">{formatMetric(x, h.m[x].v)}</strong></p>
+          <p className="tabular flex justify-between gap-3 text-ink-2"><span>{METRICS[y].label}</span><strong className="text-ink">{formatMetric(y, h.m[y].v)}</strong></p>
+          <p className="font-medium text-wine">Double-tap to open his page</p>
+        </div>
+      ),
+    }));
+  }, [heroes, x, y, selected]);
+
+  const axisOptions = AXIS_METRICS.map((k) => ({ value: k, label: METRICS[k].label }));
+  const select = (label: string, value: HeroMetricKey, onChange: (v: HeroMetricKey) => void) => (
+    <label className="flex min-w-0 items-center gap-2 text-[13px] text-ink-2 md:w-[300px]">
+      <span className="w-12 shrink-0 font-medium">{label}</span>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value as HeroMetricKey)}
+        className="min-w-0 flex-1 rounded-md border border-line bg-surface px-2 py-1.5 text-[13px] font-medium text-ink"
+      >
+        {axisOptions.map((o) => (
+          <option key={o.value} value={o.value}>
+            {o.label}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+
+  return (
+    <ChartCard
+      id={id}
+      title={title}
+      subtitle="Each photo is a hero. The red line joins the heroes nobody beats on both at once — the best trade-off (Pareto) line."
+      count={`${points.length} heroes`}
+      controls={
+        <div className="flex flex-col gap-2 md:flex-row md:flex-wrap md:items-center">
+          {select("Across", x, setX)}
+          {select("Up", y, setY)}
+          <button
+            type="button"
+            onClick={() => {
+              setX(y);
+              setY(x);
+            }}
+            className="shrink-0 rounded-md border border-line px-3 py-1.5 text-[13px] font-medium text-ink hover:border-ink-2"
+            aria-label="Swap axes"
+          >
+            ⇄ Swap
+          </button>
+        </div>
+      }
+      footer={
+        <>
+          Across: {METRICS[x].definition} Up: {METRICS[y].definition} Names are shown for heroes on the line and the leaders; tap any photo to see who it is.
+          {[x, y].some((k) => METRICS[k].minSample) && ` Heroes with too few films to judge are left out.`}
+        </>
+      }
+    >
+      <ParetoChart
+        data={points}
+        xLabel={`${axisLabel(x)} →`}
+        yLabel={`${axisLabel(y)} →`}
+        xMax={METRICS[x].domainMax}
+        yMax={METRICS[y].domainMax}
+        xHigherIsBetter={METRICS[x].higherIsBetter}
+        yHigherIsBetter={METRICS[y].higherIsBetter}
+        onActivate={onActivate}
+        ariaLabel={`${METRICS[x].label} against ${METRICS[y].label}`}
+      />
+    </ChartCard>
+  );
+}
+
+function Kpi({ label, value, note }: { label: string; value: string; note: string }) {
+  return (
+    <div className="card p-3 sm:p-4">
       <p className="text-xs font-medium text-ink-2">{label}</p>
-      <p className={`mt-1 text-2xl font-semibold tracking-tight sm:text-[28px] ${accent ? "text-wine" : "text-ink"}`}>{value}</p>
-      <p className="mt-0.5 truncate text-xs text-muted" title={note}>{note}</p>
+      <p className="mt-1 text-2xl font-semibold tracking-tight text-ink sm:text-[28px]">{value}</p>
+      <p className="mt-0.5 truncate text-xs text-muted">{note}</p>
     </div>
+  );
+}
+
+function KpiHero({ label, hero, metric, onOpen }: { label: string; hero: HeroView | null; metric: HeroMetricKey; onOpen: (slug: string) => void }) {
+  if (!hero) return <Kpi label={label} value="—" note="not enough data" />;
+  return (
+    <button type="button" onClick={() => onOpen(hero.slug)} className="card flex items-center gap-3 p-3 text-left transition-shadow hover:shadow-md sm:p-4">
+      <HeroAvatar name={hero.name} photo={hero.photo} industry={hero.industry} size={44} />
+      <span className="min-w-0">
+        <span className="block text-xs font-medium text-ink-2">{label}</span>
+        <span className="block text-xl font-semibold tracking-tight text-wine sm:text-2xl">{formatMetric(metric, hero.m[metric].v)}</span>
+        <span className="block truncate text-xs text-muted">{hero.name}</span>
+      </span>
+    </button>
   );
 }

@@ -451,3 +451,19 @@ export const changeLog = pgTable(
   },
   (t) => [index("change_log_entity_idx").on(t.entityType, t.entityId), index("change_log_time_idx").on(t.createdAt)],
 );
+
+/* ───────────────────────── fan ranking ───────────────────────── */
+
+/** One ballot per device: the visitor's top three heroes (3, 2 and 1 points). */
+export const userRankings = pgTable(
+  "user_rankings",
+  {
+    deviceId: text("device_id").primaryKey(),
+    firstSlug: text("first_slug").notNull(),
+    secondSlug: text("second_slug").notNull(),
+    thirdSlug: text("third_slug").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [index("user_rankings_first_idx").on(t.firstSlug)],
+);

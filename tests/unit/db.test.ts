@@ -8,6 +8,7 @@ import { loadActiveMethodology, loadDataset, loadLatestSnapshots, purgeDemoFilms
 import * as schema from "@/db/schema";
 import { runEngine } from "@/lib/calculations";
 import { METHODOLOGY } from "@/lib/constants/methodology";
+import { INITIAL_ROSTER } from "@/lib/constants/roster";
 import { DEMO_AS_OF, generateDemoDataset } from "@/lib/data/demo/generate";
 
 let db: Db;
@@ -26,7 +27,7 @@ beforeAll(async () => {
 describe("database round trip (PGlite)", () => {
   it("applies migrations and seeds the roster, methodology and demo films", async () => {
     const res = await seed(db, { demo: true });
-    expect(res.people).toBe(40);
+    expect(res.people).toBe(INITIAL_ROSTER.length);
     expect(res.films).toBeGreaterThan(500);
     const active = await loadActiveMethodology(db);
     expect(active?.methodology.id).toBe(METHODOLOGY.id);
@@ -37,7 +38,7 @@ describe("database round trip (PGlite)", () => {
     const res = await seed(db, { demo: true });
     expect(res.films).toBe(0);
     const people = await db.select().from(schema.people);
-    expect(people).toHaveLength(40);
+    expect(people).toHaveLength(INITIAL_ROSTER.length);
     expect(people.map((p) => p.displayName)).not.toContain("Panja Vaisshnav Tej");
   }, 60_000);
 
@@ -59,11 +60,11 @@ describe("database round trip (PGlite)", () => {
 
   it("recalculates, persists snapshots and reads the latest set back", async () => {
     const r = await recalculate(db, "test");
-    expect(r.heroes).toBe(40);
+    expect(r.heroes).toBe(INITIAL_ROSTER.length);
     const active = await loadActiveMethodology(db);
     const latest = await loadLatestSnapshots(db, active!.rowId);
-    expect(latest.snapshots.all_time).toHaveLength(40);
-    expect(latest.snapshots.last_10_films).toHaveLength(40);
+    expect(latest.snapshots.all_time).toHaveLength(INITIAL_ROSTER.length);
+    expect(latest.snapshots.last_10_films).toHaveLength(INITIAL_ROSTER.length);
     expect(latest.snapshots.all_time[0].metrics.hpi.methodVersion).toBe(METHODOLOGY.id);
     const log = await db.select().from(schema.changeLog);
     expect(log.some((l) => l.action === "recalculated")).toBe(true);

@@ -24,7 +24,8 @@
   --series-telugu: #a3284f;
   --series-tamil: #00879e;
   --series-malayalam: #b98200;
-  --series-other: #8a7a72;
+  --series-kannada: #4a3aa7;
+  --series-other: #7d6d65;
   --good: #1f7a3d;
   --warn: #9a5b00;
   --bad: #b3261e;
@@ -57,7 +58,7 @@ html {
   background: var(--bg);
   -webkit-text-size-adjust: 100%;
   /* Keep focused / scrolled-to elements clear of the sticky header. */
-  scroll-padding-top: 112px;
+  scroll-padding-top: 72px;
   scroll-padding-bottom: 72px;
 }
 

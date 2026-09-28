@@ -20,8 +20,13 @@ import {
   calculateAudienceSuccessRatio,
   calculateConfidenceGrade,
   calculateConsistencyIndex,
+  calculateAverageRating,
+  calculateFilmCount,
   calculateFilmSuccessIndex,
   calculateFilmsPerActiveYear,
+  calculateHitCount,
+  calculateRecentSuccessRatio,
+  calculateYearsActive,
   calculateHeroPerformanceIndex,
   calculateMedianReleaseGapMonths,
   calculateOverallSuccessRatio,
@@ -52,7 +57,12 @@ export type HeroMetricKey =
   | "momentum"
   | "releaseGap"
   | "peakFilms"
-  | "filmsPerYear";
+  | "filmsPerYear"
+  | "films"
+  | "hits"
+  | "avgRating"
+  | "recentSuccessRatio"
+  | "yearsActive";
 
 export interface HeroSnapshot {
   personId: string;
@@ -189,6 +199,7 @@ export function computeHeroSnapshot(args: {
       filmSuccessScore: fm.success.score,
       audienceScore: fm.audience?.score ?? null,
       audienceConfidenceWeight: fm.audience?.confidenceWeight ?? null,
+      audienceRawRating: fm.audience?.rawRating ?? null,
       coveragePercent: fm.success.coveragePercent,
     };
   };
@@ -270,6 +281,11 @@ export function computeHeroSnapshot(args: {
       releaseGap: calculateMedianReleaseGapMonths(inWindow, m),
       peakFilms: calculatePeakFilmsInCalendarYear(inWindow, m),
       filmsPerYear: calculateFilmsPerActiveYear(inWindow, m),
+      films: calculateFilmCount(inWindow, m),
+      hits: calculateHitCount(inWindow, m),
+      avgRating: calculateAverageRating(inWindow, m),
+      recentSuccessRatio: calculateRecentSuccessRatio(inWindow, m),
+      yearsActive: calculateYearsActive(inWindow, m),
     },
     evidenceCoveragePercent,
     audienceCoveragePercent: coverage(audienceCount, inWindow.length).percent,

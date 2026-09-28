@@ -1,0 +1,642 @@
+{
+  "chiranjeevi": {
+    "file": "/heroes/chiranjeevi.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Chiranjeevi_at_ANR_Awards_2024_(cropped).jpg",
+    "author": "Bollywood Hungama",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Chiranjeevi",
+    "description": "Indian actor and philanthropist (born 1955)"
+  },
+  "mohan-babu": {
+    "file": "/heroes/mohan-babu.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Mohan_Babu_Manchu.jpg",
+    "author": "Ravikrishnam",
+    "license": "CC-BY-SA-4.0",
+    "wikiTitle": "Mohan Babu",
+    "description": "Indian actor"
+  },
+  "balakrishna": {
+    "file": "/heroes/balakrishna.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Padma_Bhushan_Award_to_Shri_Nandamuri_Balakrishna_at_the_Rashtrapati_Bhavan_(cropped).jpg",
+    "author": "President's Secretariat",
+    "license": "See file page",
+    "wikiTitle": "Nandamuri Balakrishna",
+    "description": "Indian actor, film producer, and politician (born 1960)"
+  },
+  "nagarjuna": {
+    "file": "/heroes/nagarjuna.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Nagarjuna_Akkineni_at_ANR_Awards.jpg",
+    "author": "Bollywood Hungama",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Nagarjuna (actor)",
+    "description": "Indian actor and film producer (born 1959)"
+  },
+  "venkatesh": {
+    "file": "/heroes/venkatesh.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Venkatesh_Daggubati_at_ANR_Awards.jpg",
+    "author": "Bollywood Hungama",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Venkatesh (actor)",
+    "description": "Indian actor and film producer (born 1960)"
+  },
+  "rajasekhar": {
+    "file": "/heroes/rajasekhar.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Rajashekhar_on_October_26%2C_2015_(cropped).jpg",
+    "author": "Prime Minister's Office (India)",
+    "license": "See file page",
+    "wikiTitle": "Rajasekhar (actor)",
+    "description": "Indian film actor"
+  },
+  "jagapathi-babu": {
+    "file": "/heroes/jagapathi-babu.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Jagapathi_Babu_at_62nd_Filmfare_awards_south.jpg",
+    "author": "Bollywood Hungama",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Jagapathi Babu",
+    "description": "Indian actor (born 1962)"
+  },
+  "srikanth": {
+    "file": "/heroes/srikanth.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Meka_Srikanth_CCL.jpg",
+    "author": "Bollywood Hungama",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Srikanth (Telugu actor)",
+    "description": "Indian actor (born 1968)"
+  },
+  "rajendra-prasad": {
+    "file": "/heroes/rajendra-prasad.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Rajendra_Prasad.png",
+    "author": "https://www.youtube.com/channel/UCnq8_H00sbQH6NoGJ-8ftJQ",
+    "license": "See file page",
+    "wikiTitle": "Rajendra Prasad (actor)",
+    "description": "Indian actor(born 19 July 1956)"
+  },
+  "pawan-kalyan": {
+    "file": "/heroes/pawan-kalyan.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Shri_Konidela_Pawan_Kalyan.jpg",
+    "author": "Prime Minister's Office (India)",
+    "license": "See file page",
+    "wikiTitle": "Pawan Kalyan",
+    "description": "Indian politician and actor (born 1971)"
+  },
+  "mahesh-babu": {
+    "file": "/heroes/mahesh-babu.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Mahesh_Babu_in_Spyder_(cropped).jpg",
+    "author": "http://www.princemahesh.com/ http://www.princemahesh.com/new/wp-content/gallery/spyder-stills/mahesh-babu-spyder-stills-",
+    "license": "CC-BY-SA-4.0",
+    "wikiTitle": "Mahesh Babu",
+    "description": "Indian actor and film producer (b. 1975)"
+  },
+  "prabhas": {
+    "file": "/heroes/prabhas.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Prabhas_by_Gage_Skidmore.jpg",
+    "author": "Gage Skidmore",
+    "license": "CC-BY-SA-3.0",
+    "wikiTitle": "Prabhas",
+    "description": "Indian actor (born 1979)"
+  },
+  "jr-ntr": {
+    "file": "/heroes/jr-ntr.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:NTR_Jr._(2026).jpg",
+    "author": "Wikisorter",
+    "license": "CC-BY-4.0",
+    "wikiTitle": "N. T. Rama Rao Jr.",
+    "description": "Indian actor (born 1983)"
+  },
+  "allu-arjun": {
+    "file": "/heroes/allu-arjun.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Allu_Arjun_at_Pushpa_2_The_Rule_meet.jpg",
+    "author": "Unknown",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Allu Arjun",
+    "description": "Indian actor (born 1982)"
+  },
+  "ram-charan": {
+    "file": "/heroes/ram-charan.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Ram_Charan_at_Game_Changer_trailer_launch.jpg",
+    "author": "Bollywood Hungama",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Ram Charan",
+    "description": "Indian actor and film producer (b. 1985)"
+  },
+  "ravi-teja": {
+    "file": "/heroes/ravi-teja.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Ravi_Teja_in_Dhamaka_promotions_2022_(cropped).png",
+    "author": "People Media Factory",
+    "license": "See file page",
+    "wikiTitle": "Ravi Teja",
+    "description": "Indian actor and film producer (born 1968)"
+  },
+  "gopichand": {
+    "file": "/heroes/gopichand.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Gopichand.png",
+    "author": "Fata Fut News",
+    "license": "See file page",
+    "wikiTitle": "Gopichand (actor)",
+    "description": "Indian actor"
+  },
+  "sumanth": {
+    "file": "/heroes/sumanth.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Sumanth_kumar_.jpg",
+    "author": "Gandhavadiniharika",
+    "license": "CC-BY-SA-4.0",
+    "wikiTitle": "Sumanth (actor)",
+    "description": "Indian actor (born 1975)"
+  },
+  "allari-naresh": {
+    "file": "/heroes/allari-naresh.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Allari_Naresh_at_Ugram_pressmeet.jpg",
+    "author": "SkyVideos Telugu",
+    "license": "See file page",
+    "wikiTitle": "Allari Naresh",
+    "description": "Indian actor (born 1986)"
+  },
+  "kalyan-ram": {
+    "file": "/heroes/kalyan-ram.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Kalyan_Ram.png",
+    "author": "https://www.youtube.com/channel/UCnq8_H00sbQH6NoGJ-8ftJQ",
+    "license": "See file page",
+    "wikiTitle": "Nandamuri Kalyan Ram",
+    "description": "Indian actor and film producer"
+  },
+  "manchu-manoj": {
+    "file": "/heroes/manchu-manoj.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:84",
+    "author": "Unknown",
+    "license": "See file page",
+    "wikiTitle": "Manchu Manoj",
+    "description": "Indian actor"
+  },
+  "uday-kiran": {
+    "file": "/heroes/uday-kiran.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Udaykiran.jpg",
+    "author": "Ramakrishna Reddy y from Pune, India",
+    "license": "CC-BY-2.0",
+    "wikiTitle": "Uday Kiran",
+    "description": "Indian film actor"
+  },
+  "venu-thottempudi": {
+    "file": "/heroes/venu-thottempudi.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Venu_Thottempudi.jpg",
+    "author": "author",
+    "license": "CC-BY-SA-3.0",
+    "wikiTitle": "Venu Thottempudi",
+    "description": "Indian actor"
+  },
+  "sunil": {
+    "file": "/heroes/sunil.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Sunil_Telugu_Film_Actor.jpg",
+    "author": "Samratgi",
+    "license": "CC-BY-SA-3.0",
+    "wikiTitle": "Sunil (actor)",
+    "description": "Indian actor (born 1974)"
+  },
+  "sharwanand": {
+    "file": "/heroes/sharwanand.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Sharwanand_Myneni.jpg",
+    "author": "Saibaba2012",
+    "license": "CC-BY-SA-3.0",
+    "wikiTitle": "Sharwanand",
+    "description": "Indian film actor (born 1984)"
+  },
+  "nithiin": {
+    "file": "/heroes/nithiin.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Actor_Nithiin.png",
+    "author": "Sakshi TV",
+    "license": "See file page",
+    "wikiTitle": "Nithiin",
+    "description": "Indian actor (born 1983)"
+  },
+  "siddharth": {
+    "file": "/heroes/siddharth.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:SiddharthNarayan.jpg",
+    "author": "Bollywood Hungama",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Siddharth (actor)",
+    "description": "Indian actor (born 1979)"
+  },
+  "navdeep": {
+    "file": "/heroes/navdeep.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Navdeep_Pallapollu_TeachAIDS.jpg",
+    "author": "TeachAIDS (http://TeachAIDS.org)",
+    "license": "CC-BY-SA-2.0",
+    "wikiTitle": "Navdeep",
+    "description": "Indian actor"
+  },
+  "ram-pothineni": {
+    "file": "/heroes/ram-pothineni.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:f6",
+    "author": "Unknown",
+    "license": "See file page",
+    "wikiTitle": "Ram Pothineni",
+    "description": "Indian actor (born 1988)"
+  },
+  "varun-sandesh": {
+    "file": "/heroes/varun-sandesh.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Varun_Sandesh_speech_in_Micheal_movie's_trailer_lunch_event.jpg",
+    "author": "J Media Factory on YouTube",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Varun Sandesh",
+    "description": "Indian American actor"
+  },
+  "nani": {
+    "file": "/heroes/nani.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Nani_at_an_interview_for_film_companion_(cropped).png",
+    "author": "Film Companion South",
+    "license": "See file page",
+    "wikiTitle": "Nani (actor)",
+    "description": "Indian actor and film producer (born 1984)"
+  },
+  "naga-chaitanya": {
+    "file": "/heroes/naga-chaitanya.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Naga_Chaitanya_(cropped).jpg",
+    "author": "Winman Emotions",
+    "license": "CC-BY-4.0",
+    "wikiTitle": "Naga Chaitanya",
+    "description": "Indian actor (born 1986)"
+  },
+  "nara-rohit": {
+    "file": "/heroes/nara-rohit.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Nara_Rohith.jpg",
+    "author": "Batthini Vinay Kumar Goud",
+    "license": "CC-BY-SA-4.0",
+    "wikiTitle": "Nara Rohit",
+    "description": "Indian actor and producer"
+  },
+  "rana-daggubati": {
+    "file": "/heroes/rana-daggubati.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Rana_Daggubati_by_Gage_Skidmore.jpg",
+    "author": "Gage Skidmore",
+    "license": "CC-BY-SA-3.0",
+    "wikiTitle": "Rana Daggubati",
+    "description": "Indian actor (born 1984)"
+  },
+  "adivi-sesh": {
+    "file": "/heroes/adivi-sesh.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Adivi_Sesh.png",
+    "author": "Sreeni Media",
+    "license": "See file page",
+    "wikiTitle": "Adivi Sesh",
+    "description": "Indian actor, director and screenwriter"
+  },
+  "sundeep-kishan": {
+    "file": "/heroes/sundeep-kishan.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Sundeep_Kishan_at_'Shor_in_the_City'_screening_(cropped).jpg",
+    "author": "Bollywood Hungama",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Sundeep Kishan",
+    "description": "Indian actor and producer"
+  },
+  "naga-shaurya": {
+    "file": "/heroes/naga-shaurya.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Naga_Shaurya_promoting_Krishna_Vrinda_Vihari_in_September_2022.jpg",
+    "author": "Desiplaza TV USA on YouTube",
+    "license": "See file page",
+    "wikiTitle": "Naga Shaurya",
+    "description": "Indian actor (born 1989)"
+  },
+  "aadi-saikumar": {
+    "file": "/heroes/aadi-saikumar.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Aadi-Sai-Kumar-2-682x1024.jpg",
+    "author": "Panjaa2013",
+    "license": "CC0",
+    "wikiTitle": "Aadi Saikumar",
+    "description": "Indian film actor (born 1989)"
+  },
+  "naveen-chandra": {
+    "file": "/heroes/naveen-chandra.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Actor_Naveen_Chandra.JPG",
+    "author": "MjrPraveen",
+    "license": "CC-BY-SA-3.0",
+    "wikiTitle": "Naveen Chandra",
+    "description": "Indian actor"
+  },
+  "satyadev": {
+    "file": "/heroes/satyadev.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Satya_Dev.JPG",
+    "author": "SweMora",
+    "license": "CC-BY-SA-4.0",
+    "wikiTitle": "Satyadev (actor)",
+    "description": "Indian actor (born 1988)"
+  },
+  "sudheer-babu": {
+    "file": "/heroes/sudheer-babu.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Sudheer_Babu_at_Saina_Nehwal's_wedding_reception_(cropped).jpg",
+    "author": "Bollywood Hungama",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Sudheer Babu",
+    "description": "Indian actor and former professional badminton player"
+  },
+  "sumanth-ashwin": {
+    "file": "/heroes/sumanth-ashwin.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Sumanth_Ashwin.png",
+    "author": "Mango Music",
+    "license": "See file page",
+    "wikiTitle": "Sumanth Ashwin",
+    "description": "Indian Film actor"
+  },
+  "sree-vishnu": {
+    "file": "/heroes/sree-vishnu.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Actor_Sree_Vishnu.png",
+    "author": "Madhuram Videos",
+    "license": "See file page",
+    "wikiTitle": "Sree Vishnu",
+    "description": "Indian actor"
+  },
+  "varun-tej": {
+    "file": "/heroes/varun-tej.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Varun_Tej_snapped_promoting_Operation-Valentine.jpg",
+    "author": "Bollywood Hungama",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Varun Tej",
+    "description": "Indian actor (born 1990)"
+  },
+  "sai-durgha-tej": {
+    "file": "/heroes/sai-durgha-tej.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Sai_6.jpg",
+    "author": "Eelelectric25",
+    "license": "CC-BY-SA-4.0",
+    "wikiTitle": "Sai Durgha Tej",
+    "description": "Indian actor"
+  },
+  "bellamkonda-sreenivas": {
+    "file": "/heroes/bellamkonda-sreenivas.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Bellamkonda_Sai_Srinivas_(cropped).jpg",
+    "author": "Manjur Alam Khan",
+    "license": "CC0",
+    "wikiTitle": "Bellamkonda Sreenivas",
+    "description": "Indian film actor"
+  },
+  "srinivas-avasarala": {
+    "file": "/heroes/srinivas-avasarala.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Srnivas_Avasarala_(director%2Cwriter%2C_actor).jpg",
+    "author": "విశ్వనాధ్.బి.కె.",
+    "license": "CC-BY-SA-4.0",
+    "wikiTitle": "Srinivas Avasarala",
+    "description": "Indian actor, director, screenwriter, racquetball player"
+  },
+  "vijay-deverakonda": {
+    "file": "/heroes/vijay-deverakonda.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Vijay_Devarakonda_snapped_during_Liger_promotions.jpg",
+    "author": "Bollywood Hungama",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Vijay Deverakonda",
+    "description": "Indian actor and film producer (born 1989)"
+  },
+  "akhil-akkineni": {
+    "file": "/heroes/akhil-akkineni.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Akkineni_Akhil.jpg",
+    "author": "Telugu Mirchi",
+    "license": "See file page",
+    "wikiTitle": "Akhil Akkineni",
+    "description": "Indian actor (born 1994)"
+  },
+  "santosh-sobhan": {
+    "file": "/heroes/santosh-sobhan.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Santosh_Shoban.jpg",
+    "author": "Desiplaza TV USA on YouTube",
+    "license": "See file page",
+    "wikiTitle": "Santosh Sobhan",
+    "description": "Indian actor, born 1995"
+  },
+  "vishwak-sen": {
+    "file": "/heroes/vishwak-sen.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Vishwak_Sen_(cropped)_(cropped).jpg",
+    "author": "Arif Minhaz",
+    "license": "CC-BY-SA-4.0",
+    "wikiTitle": "Vishwak Sen",
+    "description": "Indian actor, director, screenwriter (born 1995)"
+  },
+  "kiran-abbavaram": {
+    "file": "/heroes/kiran-abbavaram.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Kiran_Abbavaram.png",
+    "author": "https://www.youtube.com/channel/UCnq8_H00sbQH6NoGJ-8ftJQ",
+    "license": "See file page",
+    "wikiTitle": "Kiran Abbavaram",
+    "description": "Indian actor"
+  },
+  "teja-sajja": {
+    "file": "/heroes/teja-sajja.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:be",
+    "author": "Unknown",
+    "license": "See file page",
+    "wikiTitle": "Teja Sajja",
+    "description": "Indian actor (born 1995)"
+  },
+  "priyadarshi": {
+    "file": "/heroes/priyadarshi.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Priyadarshi.jpg",
+    "author": "Batthini Vinay Kumar Goud",
+    "license": "CC-BY-SA-4.0",
+    "wikiTitle": "Priyadarshi Pulikonda",
+    "description": "Indian actor"
+  },
+  "sri-simha": {
+    "file": "/heroes/sri-simha.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Sri_Simha.png",
+    "author": "Tollywood News Raja",
+    "license": "See file page",
+    "wikiTitle": "Sri Simha Koduri",
+    "description": "Indian actor"
+  },
+  "thiruveer": {
+    "file": "/heroes/thiruveer.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:09",
+    "author": "Unknown",
+    "license": "See file page",
+    "wikiTitle": "Thiruveer",
+    "description": "Indian film and stage actor and director"
+  },
+  "rajinikanth": {
+    "file": "/heroes/rajinikanth.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Rajinikanth_in_2019.jpg",
+    "author": "Dani Charles Silverscreen Media Inc. (https://silverscreen.in)",
+    "license": "CC-BY-SA-3.0",
+    "wikiTitle": "Rajinikanth",
+    "description": "Indian actor (born 1950)"
+  },
+  "kamal-haasan": {
+    "file": "/heroes/kamal-haasan.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Kamal_Haasan_at_2023_San_Diego_Comic-Con_International_by_Gage_Skidmore%2C_005_(cropped).jpg",
+    "author": "Gage Skidmore",
+    "license": "CC-BY-SA-2.0",
+    "wikiTitle": "Kamal Haasan",
+    "description": "Indian actor, filmmaker, and politician (born 1954)"
+  },
+  "vijay": {
+    "file": "/heroes/vijay.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:C._Joseph_Vijay_(cropped).jpg",
+    "author": "Prime Minister's Office (India)",
+    "license": "See file page",
+    "wikiTitle": "Vijay (actor)",
+    "description": "Chief Minister of Tamil Nadu since 2026"
+  },
+  "ajith-kumar": {
+    "file": "/heroes/ajith-kumar.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Shri_Ajith_Kumar_at_Rashtrapati_Bhavan_Cropped.jpg",
+    "author": "President's Secretariat",
+    "license": "See file page",
+    "wikiTitle": "Ajith Kumar",
+    "description": "Indian actor and racing driver (born 1971)"
+  },
+  "vikram": {
+    "file": "/heroes/vikram.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Vikram_at_the_%E2%80%98Kadaram_Kondan%E2%80%99_Press_Meet.jpg",
+    "author": "Sriram Narasimhan Silverscreen Media Inc. (https://silverscreen.in)",
+    "license": "CC-BY-SA-3.0",
+    "wikiTitle": "Vikram (actor)",
+    "description": "Indian actor and playback singer (born 1966)"
+  },
+  "suriya": {
+    "file": "/heroes/suriya.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Retro_audio_launch_-_Suriya.jpg",
+    "author": "Shiva CK",
+    "license": "CC-BY-SA-4.0",
+    "wikiTitle": "Suriya",
+    "description": "Indian actor and film producer (born 1975)"
+  },
+  "karthi": {
+    "file": "/heroes/karthi.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Karthi_Sivakumar_at_Nenjil_Thunivirunthal_Audio_Launch_(cropped).jpg",
+    "author": "Sriram Narasimhan Silverscreen Media Inc. (https://silverscreen.in)",
+    "license": "CC-BY-SA-3.0",
+    "wikiTitle": "Karthi",
+    "description": "Indian actor (born 1977)"
+  },
+  "vishal": {
+    "file": "/heroes/vishal.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Vishal_at_CCL_4_Launch_(cropped).jpg",
+    "author": "Bollywood Hungama",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Vishal (actor)",
+    "description": "Indian actor and film producer (born 1977)"
+  },
+  "dhanush": {
+    "file": "/heroes/dhanush.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Dhanush_at_the_%E2%80%98Asuran%E2%80%99_Success_Meet_(cropped).jpg",
+    "author": "Dani Charles Silverscreen Media Inc. (https://silverscreen.in)",
+    "license": "CC-BY-SA-3.0",
+    "wikiTitle": "Dhanush",
+    "description": "Indian actor and filmmaker (born 1983)"
+  },
+  "arya": {
+    "file": "/heroes/arya.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Arya_viewing_CCL_match%2C_India_(cropped).jpg",
+    "author": "Bollywood Hungama",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Arya (actor)",
+    "description": "Indian actor and film producer (born 1980)"
+  },
+  "vijay-sethupathi": {
+    "file": "/heroes/vijay-sethupathi.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Vijay_Sethupathi_at_the_premiere_of_Merry_Christmas_2_(cropped).jpg",
+    "author": "Bollywood Hungama",
+    "license": "See file page",
+    "wikiTitle": "Vijay Sethupathi",
+    "description": "Indian actor and film producer (born 1978)"
+  },
+  "sivakarthikeyan": {
+    "file": "/heroes/sivakarthikeyan.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Sivakarthikeyan_(cropped).jpg",
+    "author": "Dani Charles Silverscreen Media Inc. (https://silverscreen.in)",
+    "license": "CC-BY-SA-3.0",
+    "wikiTitle": "Sivakarthikeyan",
+    "description": "Indian actor and musician (born 1985)"
+  },
+  "mohanlal": {
+    "file": "/heroes/mohanlal.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Mohanlal_Viswanathan_BNC.jpg",
+    "author": "Prathyush Thomas",
+    "license": "See file page",
+    "wikiTitle": "Mohanlal",
+    "description": "Indian actor, producer, and playback singer (born 1960)"
+  },
+  "mammootty": {
+    "file": "/heroes/mammootty.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Mammootty%2C_2022.jpg",
+    "author": "Firoze Edassery",
+    "license": "CC-BY-SA-4.0",
+    "wikiTitle": "Mammootty",
+    "description": "Indian actor and film producer (born 1951)"
+  },
+  "dulquer-salmaan": {
+    "file": "/heroes/dulquer-salmaan.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Dulquer_promoting_Zoya_Factor_cropped.jpg",
+    "author": "Bollywood Hungama",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Dulquer Salmaan",
+    "description": "Indian actor, playback singer and producer (born 1983)"
+  },
+  "prithviraj": {
+    "file": "/heroes/prithviraj.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Prithviraj_at_Aiyyaa_event.jpg",
+    "author": "Bollywood Hungama",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Prithviraj Sukumaran",
+    "description": "Indian actor and filmmaker (born 1982)"
+  },
+  "fahadh-faasil": {
+    "file": "/heroes/fahadh-faasil.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Fahadh_Faasil_2019.jpg",
+    "author": "Asianet",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Fahadh Faasil",
+    "description": "Indian actor and producer (born 1982)"
+  },
+  "sudeep": {
+    "file": "/heroes/sudeep.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Sudeep_interview_TeachAIDS.jpg",
+    "author": "TeachAIDS",
+    "license": "CC-BY-SA-2.0",
+    "wikiTitle": "Sudeep",
+    "description": "Indian actor and director (born 1971)"
+  },
+  "upendra": {
+    "file": "/heroes/upendra.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Upendra_at_KLE_Society's_Law-College%2C_Bangalore_2.jpg",
+    "author": "Upendra at Youtube",
+    "license": "See file page",
+    "wikiTitle": "Upendra (actor)",
+    "description": "Indian actor and filmmaker (born 1968)"
+  },
+  "yash": {
+    "file": "/heroes/yash.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Yash_during_toxic_trailer_launch_event.jpg",
+    "author": "Reaaaan",
+    "license": "CC0",
+    "wikiTitle": "Yash (actor)",
+    "description": "Indian actor and film producer (born 1986)"
+  },
+  "rishab-shetty": {
+    "file": "/heroes/rishab-shetty.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:7e",
+    "author": "Unknown",
+    "license": "See file page",
+    "wikiTitle": "Rishab Shetty",
+    "description": "Indian actor and filmmaker (born 1983)"
+  },
+  "shah-rukh-khan": {
+    "file": "/heroes/shah-rukh-khan.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Shah_Rukh_Khan_graces_the_launch_of_the_new_Santro.jpg",
+    "author": "Bollywood Hungama",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Shah Rukh Khan",
+    "description": "Indian actor (born 1965)"
+  },
+  "hrithik-roshan": {
+    "file": "/heroes/hrithik-roshan.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Hrithik_at_Rado_launch.jpg",
+    "author": "Bollywood Hungama",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Hrithik Roshan",
+    "description": "Indian actor and film producer (born 1974)"
+  },
+  "ranbir-kapoor": {
+    "file": "/heroes/ranbir-kapoor.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Ranbir_Kapoor_snapped_at_Kalina_airport.jpg",
+    "author": "Bollywood Hungama",
+    "license": "See file page",
+    "wikiTitle": "Ranbir Kapoor",
+    "description": "Indian actor (born 1982)"
+  }
+}

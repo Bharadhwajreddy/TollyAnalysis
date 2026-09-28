@@ -1,7 +1,11 @@
 "use client";
 
+ 
 import { useState, type ReactNode } from "react";
+import { HeroAvatar } from "@/components/hero/hero-avatar";
+import type { Industry } from "@/lib/domain/types";
 import { ChartTooltip, type TooltipState } from "./chart-tooltip";
+import { AvatarClipDef, SvgAvatar } from "./svg-avatar";
 import { niceMax, ticks, useElementWidth } from "./use-width";
 
 export interface BarDatum {
@@ -10,8 +14,10 @@ export interface BarDatum {
   value: number;
   display: string;
   color: string;
+  photo: string | null;
+  industry: Industry;
   selected?: boolean;
-  /** Visual marker for small samples (hatched end + footnote). */
+  /** Visual marker for small samples (hatched end). */
   lowSample?: boolean;
   tooltip: ReactNode;
 }
@@ -19,15 +25,14 @@ export interface BarDatum {
 interface Props {
   data: BarDatum[];
   ariaLabel: string;
-  /** "auto" draws AA-style columns on wide screens and named horizontal bars on narrow ones. */
+  /** "auto" draws columns with photos on wide screens and named rows on narrow ones. */
   orientation?: "auto" | "horizontal";
   domainMax?: number;
-  onSelect?: (id: string) => void;
-  /** Minimum px per column before switching to horizontal bars. */
+  onActivate?: (id: string) => void;
   minColumnBand?: number;
 }
 
-export function RankedBars({ data, ariaLabel, orientation = "auto", domainMax, onSelect, minColumnBand = 34 }: Props) {
+export function RankedBars({ data, ariaLabel, orientation = "auto", domainMax, onActivate, minColumnBand = 44 }: Props) {
   const [ref, width] = useElementWidth<HTMLDivElement>();
   const [tip, setTip] = useState<TooltipState | null>(null);
   const max = domainMax ?? niceMax(Math.max(0, ...data.map((d) => d.value)) * 1.08);
@@ -36,13 +41,14 @@ export function RankedBars({ data, ariaLabel, orientation = "auto", domainMax, o
   return (
     <div ref={ref} className="relative w-full" onMouseLeave={() => setTip(null)}>
       {width > 0 && data.length === 0 && (
-        <p className="py-10 text-center text-sm text-muted">No heroes have enough evidence for this metric with the current filters.</p>
+        <p className="py-10 text-center text-sm text-muted">No heroes have enough data for this with the current filters.</p>
       )}
-      {width > 0 && data.length > 0 &&
+      {width > 0 &&
+        data.length > 0 &&
         (vertical ? (
-          <Columns data={data} width={width} max={max} ariaLabel={ariaLabel} onSelect={onSelect} setTip={setTip} />
+          <Columns data={data} width={width} max={max} ariaLabel={ariaLabel} onActivate={onActivate} setTip={setTip} />
         ) : (
-          <Rows data={data} max={max} ariaLabel={ariaLabel} onSelect={onSelect} setTip={setTip} containerWidth={width} />
+          <Rows data={data} max={max} ariaLabel={ariaLabel} onActivate={onActivate} setTip={setTip} containerWidth={width} />
         ))}
       {width === 0 && <div style={{ height: 320 }} aria-hidden />}
       <ChartTooltip state={tip} containerWidth={width} />
@@ -57,30 +63,37 @@ function Columns({
   width,
   max,
   ariaLabel,
-  onSelect,
+  onActivate,
   setTip,
 }: {
   data: BarDatum[];
   width: number;
   max: number;
   ariaLabel: string;
-  onSelect?: (id: string) => void;
+  onActivate?: (id: string) => void;
   setTip: SetTip;
 }) {
   const left = 36;
   const right = 8;
   const top = 22;
-  const plotH = 260;
-  const longest = Math.max(...data.map((d) => d.label.length));
-  const labelBand = Math.min(120, 18 + longest * 5.2);
-  const height = top + plotH + labelBand;
+  const plotH = 250;
   const band = (width - left - right) / data.length;
-  const barW = Math.min(28, band * 0.64);
+  const r = Math.max(11, Math.min(18, band * 0.3));
+  const longest = Math.max(...data.map((d) => d.label.length));
+  const labelBand = r * 2 + 16 + Math.min(110, 12 + longest * 5.4);
+  const height = top + plotH + labelBand;
+  const barW = Math.min(30, band * 0.62);
   const y = (v: number) => top + plotH - (Math.max(0, v) / max) * plotH;
   const tickVals = ticks(max, 4);
 
   return (
     <svg width={width} height={height} role="group" aria-label={ariaLabel} className="block overflow-visible">
+      <defs>
+        <AvatarClipDef />
+        <pattern id="hatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="4" stroke="white" strokeWidth="1.5" strokeOpacity="0.7" />
+        </pattern>
+      </defs>
       {tickVals.map((t) => (
         <g key={t}>
           <line x1={left} x2={width - right} y1={y(t)} y2={y(t)} stroke={t === 0 ? "var(--axis)" : "var(--grid)"} />
@@ -93,12 +106,13 @@ function Columns({
         const cx = left + band * i + band / 2;
         const yTop = y(d.value);
         const h = top + plotH - yTop;
-        const r = Math.min(4, h, barW / 2);
+        const rr = Math.min(4, h, barW / 2);
         const x0 = cx - barW / 2;
         const path =
           h <= 0
             ? ""
-            : `M${x0},${top + plotH} V${yTop + r} Q${x0},${yTop} ${x0 + r},${yTop} H${x0 + barW - r} Q${x0 + barW},${yTop} ${x0 + barW},${yTop + r} V${top + plotH} Z`;
+            : `M${x0},${top + plotH} V${yTop + rr} Q${x0},${yTop} ${x0 + rr},${yTop} H${x0 + barW - rr} Q${x0 + barW},${yTop} ${x0 + barW},${yTop + rr} V${top + plotH} Z`;
+        const avatarY = top + plotH + 8 + r;
         const show = (e: { currentTarget: Element }) => {
           const svg = (e.currentTarget as SVGGElement).ownerSVGElement!.getBoundingClientRect();
           const box = e.currentTarget.getBoundingClientRect();
@@ -110,16 +124,16 @@ function Columns({
             role="button"
             tabIndex={0}
             aria-pressed={d.selected ? true : undefined}
-            aria-label={`${i + 1}. ${d.label}: ${d.display}`}
+            aria-label={`${i + 1}. ${d.label}: ${d.display}. Double-tap to open profile.`}
             className="cursor-pointer outline-none [&:focus-visible>rect:first-child]:stroke-[var(--focus)] [&:focus-visible>rect:first-child]:stroke-2"
             onMouseEnter={show}
             onFocus={show}
             onBlur={() => setTip(null)}
-            onClick={() => onSelect?.(d.id)}
+            onClick={() => onActivate?.(d.id)}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
-                onSelect?.(d.id);
+                onActivate?.(d.id);
               }
             }}
           >
@@ -133,32 +147,26 @@ function Columns({
               className={d.selected ? "" : "hover:fill-[var(--surface-2)]"}
             />
             <path d={path} fill={d.color} className="chart-mark" />
-            {d.lowSample && h > 8 && (
-              <rect x={x0} y={yTop} width={barW} height={Math.min(10, h)} fill="url(#hatch)" className="chart-mark" />
-            )}
+            {d.lowSample && h > 8 && <rect x={x0} y={yTop} width={barW} height={Math.min(10, h)} fill="url(#hatch)" />}
             <text
               x={cx}
               y={yTop - 6}
               textAnchor="middle"
-              className={`tabular fill-[var(--ink)] ${band < 26 ? "text-[9px]" : "text-[11px]"} ${d.selected ? "font-bold" : "font-medium"}`}
+              className={`tabular fill-[var(--ink)] ${band < 30 ? "text-[9.5px]" : "text-[11.5px]"} ${d.selected ? "font-bold" : "font-semibold"}`}
             >
               {d.display}
             </text>
+            <SvgAvatar cx={cx} cy={avatarY} r={r} photo={d.photo} name={d.label} color={d.color} selected={d.selected} />
             <text
-              transform={`translate(${cx + 3},${top + plotH + 10}) rotate(-50)`}
+              transform={`translate(${cx + 3},${avatarY + r + 10}) rotate(-45)`}
               textAnchor="end"
-              className={`fill-[var(--ink-2)] text-[11px] ${d.selected ? "font-bold fill-[var(--wine)]" : ""}`}
+              className={`text-[11.5px] ${d.selected ? "fill-[var(--wine)] font-bold" : "fill-[var(--ink-2)]"}`}
             >
               {d.label}
             </text>
           </g>
         );
       })}
-      <defs>
-        <pattern id="hatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-          <line x1="0" y1="0" x2="0" y2="4" stroke="white" strokeWidth="1.5" strokeOpacity="0.7" />
-        </pattern>
-      </defs>
     </svg>
   );
 }
@@ -167,20 +175,20 @@ function Rows({
   data,
   max,
   ariaLabel,
-  onSelect,
+  onActivate,
   setTip,
   containerWidth,
 }: {
   data: BarDatum[];
   max: number;
   ariaLabel: string;
-  onSelect?: (id: string) => void;
+  onActivate?: (id: string) => void;
   setTip: SetTip;
   containerWidth: number;
 }) {
-  const nameCol = containerWidth < 360 ? 132 : containerWidth < 520 ? 158 : 176;
+  const nameCol = containerWidth < 360 ? 150 : containerWidth < 520 ? 162 : 196;
   return (
-    <ol aria-label={ariaLabel} className="flex flex-col gap-[3px]">
+    <ol aria-label={ariaLabel} className="flex flex-col gap-1">
       {data.map((d, i) => {
         const pct = Math.max(0, Math.min(100, (d.value / max) * 100));
         const show = (e: { currentTarget: HTMLElement }) => {
@@ -193,19 +201,22 @@ function Rows({
             <button
               type="button"
               aria-pressed={d.selected ? true : undefined}
-              aria-label={`${i + 1}. ${d.label}: ${d.display}`}
+              aria-label={`${i + 1}. ${d.label}: ${d.display}. Double-tap to open profile.`}
               onMouseEnter={show}
               onFocus={show}
               onBlur={() => setTip(null)}
-              onClick={() => onSelect?.(d.id)}
-              className={`grid w-full items-center gap-2 rounded-md px-1 py-[3px] text-left transition-colors ${
+              onClick={() => onActivate?.(d.id)}
+              className={`grid w-full items-center gap-2 rounded-lg px-1 py-1 text-left transition-colors ${
                 d.selected ? "bg-wine-soft" : "hover:bg-surface-2"
               }`}
               style={{ gridTemplateColumns: `${nameCol}px 1fr auto` }}
             >
-              <span className={`truncate text-[12.5px] sm:text-[13px] ${d.selected ? "font-bold text-wine" : "text-ink"}`} title={d.label}>
-                <span className="tabular mr-1.5 inline-block w-5 text-right text-[11px] text-muted">{i + 1}</span>
-                {d.label}
+              <span className="flex min-w-0 items-center gap-2">
+                <span className="tabular w-5 shrink-0 text-right text-[11px] text-muted">{i + 1}</span>
+                <HeroAvatar name={d.label} photo={d.photo} industry={d.industry} size={containerWidth < 520 ? 26 : 28} />
+                <span className={`line-clamp-2 text-[13px] leading-tight ${d.selected ? "font-bold text-wine" : "text-ink"}`} title={d.label}>
+                  {d.label}
+                </span>
               </span>
               <span className="relative h-[18px]">
                 <span
@@ -218,7 +229,7 @@ function Rows({
                   }}
                 />
               </span>
-              <span className={`tabular min-w-[3.2rem] text-right text-[12px] ${d.selected ? "font-bold" : "font-medium"} text-ink`}>
+              <span className={`tabular min-w-[3.4rem] text-right text-[12.5px] ${d.selected ? "font-bold" : "font-semibold"} text-ink`}>
                 {d.display}
               </span>
             </button>

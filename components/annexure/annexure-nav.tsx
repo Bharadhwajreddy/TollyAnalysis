@@ -11,6 +11,7 @@ export const ANNEXURE_SECTIONS = [
   { href: "/annexure/coverage", label: "6. Data Coverage" },
   { href: "/annexure/changelog", label: "7. Change Log" },
   { href: "/annexure/corrections", label: "8. Suggest a Correction" },
+  { href: "/annexure/photo-credits", label: "Photo credits" },
 ];
 
 export function AnnexureNav() {

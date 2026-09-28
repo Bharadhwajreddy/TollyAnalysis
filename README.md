@@ -25,17 +25,28 @@ npm run dev          # http://localhost:3000
 
 ## 2. What is in the app
 
+The home page is **one scrolling page with no tabs**: filters → headline numbers → photo leaderboard (success ratio, hits, films, audience rating, recent success, most films in a year, gap between films, overall score) → side-by-side top-10 charts → two **Pareto (best trade-off) charts** whose axes you can change → a sortable table → (optional) fans' ranking → **“How we calculate everything”** at the end.
+
+- Every bar, dot and table row shows the hero's photo (free-licensed, from Wikimedia Commons; initials when none exists).
+- **Tap** a hero to highlight him everywhere; **double-tap / double-click** to open his own page (`/hero/<name>`): key numbers with his rank, comparison against the median hero, a year-by-year chart and every film.
+- Ratios and averages only rank heroes with at least 5 judged films, so a 3-for-3 newcomer can't top the chart.
+
 | Page | What it shows |
 |---|---|
-| `/` Heroes | Filters (search, All time / Last 5 years / Last 10 films, **Include emerging heroes**), KPI cards, **named leaderboard** (9 metrics), release-output bars, audience and momentum leaders, labelled Audience-vs-Consistency scatter, sortable table with CSV export, selected-hero summary |
-| `/rankings` | Full ranked list for any metric plus top 5 for every metric |
-| `/compare` | 2–4 heroes side by side (from the table checkboxes or `?heroes=a,b`) |
-| `/trends` | Releases per year by type, average outcomes by year, one hero's trajectory |
+| `/` | The single-page dashboard described above |
+| `/hero/<slug>` | One hero's page |
+| `/compare`, `/trends`, `/rankings` | Extra views, linked from the footer and hero pages |
 | `/methodology` | Every formula, weight and threshold, plus what is deliberately excluded |
-| `/annexure/…` | 1 Methodology · 2 Hero Registry · 3–4 Hero detail & filmography · 5 Source Ledger · 6 Data Coverage · 7 Change Log · 8 Suggest a Correction |
-| `/admin` | Editorial admin (sign-in with `ADMIN_TOKEN`): corrections queue, recalculation, data console, provider status |
+| `/annexure/…` | Film-level evidence: methodology, registry, per-hero evidence, sources, coverage, change log, corrections, photo credits |
+| `/admin` | Editorial admin (sign-in with `ADMIN_TOKEN`) |
 
-Film titles and per-film evidence live only in the Annexure, never on the landing dashboard.
+### Fans' ranking (off by default)
+
+Visitors pick their top three heroes (3/2/1 points), one ballot per device (httpOnly cookie; voting again replaces the ballot). To switch it on, set `NEXT_PUBLIC_FEATURE_USER_RANKING=true` and redeploy. Votes are stored in the `user_rankings` table when `DATABASE_URL` is set; without a database they live in server memory and reset on restart.
+
+### Hero photos
+
+`npm run photos:fetch` downloads the lead portrait of each hero's English Wikipedia article **only if it is hosted on Wikimedia Commons** (free licence), saves it to `public/heroes/`, and records author, licence and file page in `lib/data/hero-photos.json` (shown on `/annexure/photo-credits`). Non-free images are skipped.
 
 ## 3. Go live with real data (Supabase)
 
@@ -127,4 +138,5 @@ Stack: Next.js 16 (App Router), TypeScript strict, Tailwind CSS 4, Drizzle ORM +
 
 - Admin sign-in uses a single `ADMIN_TOKEN` session (httpOnly signed cookie). Switching to Supabase Auth user accounts is the planned next step; RLS already blocks public writes.
 - The public correction rate limit is in-memory (per server instance). Use a shared store if you scale out.
+- 15 heroes have no free-licensed portrait yet and show initials. Adding a properly licensed photo (for example via TMDb once licensed) fixes that.
 - Heroines, directors and comedians are not built yet; the data model (`people`, `role_scope`) is ready for them.

@@ -16,7 +16,8 @@
     "db:seed": "tsx scripts/db-seed.ts",
     "db:seed:demo": "tsx scripts/db-seed.ts --demo",
     "db:recalculate": "tsx scripts/db-recalculate.ts",
-    "check": "npm run lint && npm run typecheck && npm run test && npm run build"
+    "check": "npm run lint && npm run typecheck && npm run test && npm run build",
+    "photos:fetch": "tsx scripts/fetch-hero-photos.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",

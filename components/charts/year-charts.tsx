@@ -12,6 +12,14 @@ export interface Series {
 
 const M = { top: 14, right: 12, bottom: 28, left: 36 };
 
+/** Whole-number ticks for counts (films can't be fractional). */
+function countTicks(max: number): number[] {
+  const step = Math.max(1, Math.ceil(max / 4));
+  const out: number[] = [];
+  for (let t = 0; t <= max; t += step) out.push(t);
+  return out;
+}
+
 function yearTicks(years: number[], width: number) {
   const every = width < 480 ? 5 : width < 900 ? 3 : 2;
   return years.filter((y) => y % every === 0);
@@ -33,7 +41,8 @@ export function StackedYearColumns({
   const [tip, setTip] = useState<TooltipState | null>(null);
   const plotW = Math.max(10, width - M.left - M.right);
   const plotH = height - M.top - M.bottom;
-  const max = niceMax(Math.max(1, ...rows.map((r) => series.reduce((a, s) => a + (r[s.key] ?? 0), 0))));
+  const rawMax = Math.max(1, ...rows.map((r) => series.reduce((a, s) => a + (r[s.key] ?? 0), 0)));
+  const max = rawMax <= 8 ? rawMax + 1 : niceMax(rawMax);
   const band = plotW / Math.max(1, rows.length);
   const barW = Math.min(24, band * 0.7);
   const y = (v: number) => M.top + plotH - (v / max) * plotH;
@@ -42,7 +51,7 @@ export function StackedYearColumns({
     <div ref={ref} className="relative" onMouseLeave={() => setTip(null)}>
       {width > 0 && (
         <svg width={width} height={height} role="img" aria-label={ariaLabel}>
-          {ticks(max, 4).map((t) => (
+          {countTicks(max).map((t) => (
             <g key={t}>
               <line x1={M.left} x2={width - M.right} y1={y(t)} y2={y(t)} stroke={t === 0 ? "var(--axis)" : "var(--grid)"} />
               <text x={M.left - 6} y={y(t)} dy="0.32em" textAnchor="end" className="tabular fill-[var(--muted)] text-[10px]">

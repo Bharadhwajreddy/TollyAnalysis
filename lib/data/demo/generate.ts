@@ -25,6 +25,8 @@ import { between, chance, createRng, gaussian, intBetween, pick, type Rng } from
  */
 
 export const DEMO_AS_OF = "2026-09-15";
+
+const LANG = { telugu: "te", tamil: "ta", malayalam: "ml", kannada: "kn", hindi: "hi" } as const;
 const SEED = "tollywood-analysis-demo-v1";
 
 export const DEMO_SOURCES: Source[] = [
@@ -241,16 +243,17 @@ export function generateDemoDataset(): Dataset {
     });
 
     const startYear = c.demoStartYear;
-    const activeYears = asOfYear - startYear + 1;
+    const endYear = Math.min(asOfYear, c.demoEndYear ?? asOfYear);
+    const activeYears = endYear - startYear + 1;
     const count =
       c.demoFilmCount ?? Math.max(3, Math.min(42, Math.round(activeYears * shape.cadence + gaussian(r, 0, 1.5))));
-    const lang = c.industry === "tamil" ? "ta" : c.industry === "malayalam" ? "ml" : "te";
+    const lang = LANG[c.industry];
     const dubbed = c.industry !== "telugu";
     const code = initials(c.name);
 
     // Spread release dates across the active span; allow bunching so some years hold 3+ releases.
     const dates = Array.from({ length: count }, () => {
-      const year = intBetween(r, startYear, asOfYear);
+      const year = intBetween(r, startYear, endYear);
       const maxDay = year === asOfYear ? 255 : 364;
       return isoDate(year, between(r, 0, maxDay));
     }).sort();
@@ -284,14 +287,17 @@ export function generateDemoDataset(): Dataset {
   const leadPool = INITIAL_ROSTER.filter((c) => !c.demoFilmCount);
   for (let i = 1; i <= 12; i++) {
     const a = pick(rng, leadPool);
-    const candidates = leadPool.filter((b) => b.slug !== a.slug && Math.abs(b.demoStartYear - a.demoStartYear) <= 12);
+    const end = (x: RosterCandidate) => Math.min(asOfYear - 1, x.demoEndYear ?? asOfYear - 1);
+    const candidates = leadPool.filter(
+      (b) => b.slug !== a.slug && Math.max(a.demoStartYear, b.demoStartYear) <= Math.min(end(a), end(b)),
+    );
     const b = pick(rng, candidates);
-    const year = intBetween(rng, Math.max(a.demoStartYear, b.demoStartYear), asOfYear - 1);
+    const year = intBetween(rng, Math.max(a.demoStartYear, b.demoStartYear), Math.min(end(a), end(b)));
     const id = `f-multi-${String(i).padStart(2, "0")}`;
     const bothDubbed = a.industry !== "telugu" && b.industry !== "telugu";
     const film = makeFilm(id, `Demo Multi-Hero Title M-${String(i).padStart(2, "0")}`, isoDate(year, between(rng, 0, 360)), {
       dubbed: bothDubbed,
-      lang: bothDubbed ? (a.industry === "malayalam" ? "ml" : "ta") : "te",
+      lang: bothDubbed ? LANG[a.industry] : "te",
       ott: false,
     });
     films.push(film);

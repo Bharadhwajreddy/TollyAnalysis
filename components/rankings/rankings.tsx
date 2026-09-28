@@ -73,6 +73,8 @@ export function Rankings({ data, initialMetric }: { data: DashboardData; initial
             value: h.m[metric].v as number,
             display: formatMetric(metric, h.m[metric].v, metric === "releaseGap"),
             color: INDUSTRY_COLOR[h.industry],
+            photo: h.photo,
+            industry: h.industry,
             lowSample: h.m[metric].s === "low_sample",
             tooltip: <MetricTooltip hero={h} metric={metric} />,
           }))}

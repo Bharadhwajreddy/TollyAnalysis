@@ -1,5 +1,6 @@
 import type { HeroMetricKey, HeroSnapshot } from "@/lib/calculations/engine";
 import type { MetricStatus } from "@/lib/calculations/result";
+import { heroPhoto } from "@/lib/constants/photos";
 import type { ConfidenceGrade, FilterWindow, Industry } from "@/lib/domain/types";
 
 /** Compact, serialisable metric for client components. */
@@ -15,6 +16,7 @@ export interface MetricView {
 export interface HeroView {
   slug: string;
   name: string;
+  photo: string | null;
   industry: Industry;
   isEmerging: boolean;
   careerFilms: number;
@@ -55,6 +57,7 @@ export function toHeroView(s: HeroSnapshot): HeroView {
   return {
     slug: s.slug,
     name: s.name,
+    photo: heroPhoto(s.slug),
     industry: s.industry,
     isEmerging: s.isEmerging,
     careerFilms: s.careerFilmCount,

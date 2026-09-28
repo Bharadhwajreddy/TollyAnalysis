@@ -19,6 +19,8 @@ export interface HeroFilmInput {
   filmSuccessScore: number | null;
   audienceScore: number | null;
   audienceConfidenceWeight: number | null;
+  /** Raw film-wide rating out of 10 (before Bayesian adjustment), when available. */
+  audienceRawRating?: number | null;
   coveragePercent: number;
 }
 
@@ -291,4 +293,54 @@ export function calculateConfidenceGrade(eligibleFilms: number, coveragePercent:
   if (eligibleFilms >= 5 && coveragePercent >= 50) return "medium";
   if (eligibleFilms >= 1 && coveragePercent > 0) return "low";
   return "insufficient";
+}
+
+/* ───────────── plain-language metrics (counts, averages, percentages) ───────────── */
+
+/** Number of eligible lead films in the window. */
+export function calculateFilmCount(films: HeroFilmInput[], m: MethodologyVersion): MetricResult {
+  return result(films.length, films.length, films.length, films.length < 3 ? "low_sample" : "ok", m, `${films.length} eligible lead film${films.length === 1 ? "" : "s"}.`);
+}
+
+/** Number of films that reached the success threshold (a "hit"). */
+export function calculateHitCount(films: HeroFilmInput[], m: MethodologyVersion): MetricResult {
+  const scored = films.filter(isScored);
+  const hits = scored.filter((f) => (f.filmSuccessScore ?? 0) >= m.successThreshold).length;
+  if (scored.length === 0) return result(null, 0, films.length, "insufficient", m, "No film has enough evidence to be judged.");
+  return result(hits, scored.length, films.length, scored.length < 3 ? "low_sample" : "ok", m, `${hits} hit${hits === 1 ? "" : "s"} out of ${scored.length} films with enough data.`);
+}
+
+/** Simple average of raw film-wide audience ratings (out of 10). */
+export function calculateAverageRating(films: HeroFilmInput[], m: MethodologyVersion): MetricResult {
+  const r = films.map((f) => f.audienceRawRating).filter((x): x is number => typeof x === "number");
+  const avg = mean(r);
+  if (avg === null) return result(null, 0, films.length, "insufficient", m, "No audience ratings.");
+  return result(round(avg, 1), r.length, films.length, r.length < 3 ? "low_sample" : "ok", m, `Average of ${r.length} film-wide audience ratings.`);
+}
+
+/** Share of hits among the latest N films with enough data. */
+export function calculateRecentSuccessRatio(films: HeroFilmInput[], m: MethodologyVersion): MetricResult {
+  const recent = films
+    .filter(isScored)
+    .sort((a, b) => (b.releaseDate ?? "").localeCompare(a.releaseDate ?? ""))
+    .slice(0, m.momentumWindow);
+  if (recent.length === 0) return result(null, 0, m.momentumWindow, "insufficient", m, "No recent films with enough data.");
+  const hits = recent.filter((f) => (f.filmSuccessScore ?? 0) >= m.successThreshold).length;
+  return result(
+    round((hits / recent.length) * 100, 1),
+    recent.length,
+    m.momentumWindow,
+    recent.length < m.momentumWindow ? "low_sample" : "ok",
+    m,
+    `${hits} hit${hits === 1 ? "" : "s"} in the latest ${recent.length} film${recent.length === 1 ? "" : "s"}.`,
+  );
+}
+
+/** Inclusive years between first and last eligible release. */
+export function calculateYearsActive(films: HeroFilmInput[], m: MethodologyVersion): MetricResult {
+  const years = films.filter((f) => f.releaseDate).map((f) => Number((f.releaseDate as string).slice(0, 4)));
+  if (years.length === 0) return result(null, 0, films.length, "insufficient", m, "No dated releases.");
+  const first = Math.min(...years);
+  const last = Math.max(...years);
+  return result(last - first + 1, years.length, films.length, "ok", m, `${first}–${last}.`);
 }

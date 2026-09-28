@@ -15,7 +15,7 @@ begin
     'sources','people','person_aliases','films','film_releases','film_titles','film_credits',
     'social_profiles','social_snapshots','source_claims','film_reception_snapshots',
     'film_commercial_evidence','film_legacy_assessments','methodology_versions',
-    'film_metric_snapshots','hero_metric_snapshots','correction_submissions','change_log'
+    'film_metric_snapshots','hero_metric_snapshots','correction_submissions','change_log','user_rankings'
   ] loop
     execute format('alter table public.%I enable row level security', t);
     execute format('alter table public.%I force row level security', t);
@@ -40,7 +40,8 @@ create policy public_read_methodology on public.methodology_versions for select 
 create policy public_read_film_metrics on public.film_metric_snapshots for select using (true);
 create policy public_read_hero_metrics on public.hero_metric_snapshots for select using (true);
 create policy public_read_change_log on public.change_log for select using (true);
--- correction_submissions: no public policy at all → private by default.
+-- correction_submissions and user_rankings: no public policy at all → private by default
+-- (the app aggregates fan votes server-side).
 
 -- Optional (Supabase only — needs the auth schema): allow signed-in Supabase admins (listed in app_admins) to read the queue directly.
 create table if not exists public.app_admins (user_id uuid primary key, created_at timestamptz not null default now());
