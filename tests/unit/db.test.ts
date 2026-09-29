@@ -46,7 +46,7 @@ describe("database round trip (PGlite)", () => {
     const fromDb = runEngine(await loadDataset(db, DEMO_AS_OF), METHODOLOGY);
     const inMem = runEngine(generateDemoDataset(), METHODOLOGY);
     const pick = (o: typeof fromDb, slug: string) => o.snapshots.all_time.find((s) => s.slug === slug)!;
-    for (const slug of ["nani", "suriya", "chiranjeevi", "mouli-tanuj-prasanth"]) {
+    for (const slug of ["nani", "prabhas", "chiranjeevi", "mouli-tanuj-prasanth"]) {
       const a = pick(fromDb, slug);
       const b = pick(inMem, slug);
       expect(a.eligibleFilmCount).toBe(b.eligibleFilmCount);

@@ -3,6 +3,7 @@ import { connection } from "next/server";
 import { runEngine, type EngineOutput, type HeroSnapshot } from "@/lib/calculations/engine";
 import { creditIneligibility } from "@/lib/calculations/eligibility";
 import { METHODOLOGY, type MethodologyVersion } from "@/lib/constants/methodology";
+import { INITIAL_ROSTER } from "@/lib/constants/roster";
 import { generateDemoDataset } from "@/lib/data/demo/generate";
 import type { Dataset, FilterWindow, Person } from "@/lib/domain/types";
 import { DATA_MODE } from "@/lib/env";
@@ -40,7 +41,7 @@ export async function load(): Promise<Loaded> {
     return value;
   }
   if (!cache.__taDemo) {
-    const dataset = generateDemoDataset();
+    const dataset = DATA_MODE === "real" ? (await import("@/lib/data/real/load")).buildRealDataset() : generateDemoDataset();
     const engine = runEngine(dataset, METHODOLOGY, `${dataset.asOf}T06:00:00Z`);
     cache.__taDemo = { dataset, methodology: METHODOLOGY, engine, snapshots: engine.snapshots, calculatedAt: engine.calculatedAt };
   }
@@ -65,12 +66,18 @@ export async function getMeta(): Promise<DataMeta> {
 export async function getDashboardData(): Promise<DashboardData> {
   const l = await load();
   const meta = await getMeta();
+  const people = new Map(l.dataset.people.map((p) => [p.slug, p]));
+  const roster = new Map(INITIAL_ROSTER.map((r) => [r.slug, r]));
+  const personInfo = (slug: string) => ({
+    family: people.get(slug)?.family ?? roster.get(slug)?.family ?? "other",
+    debutYear: people.get(slug)?.debutYear ?? null,
+  });
   const windows = Object.fromEntries(
     (Object.keys(l.snapshots) as FilterWindow[]).map((w) => [
       w,
       l.snapshots[w]
-        .filter((s) => DATA_MODE === "demo" || s.confidence !== "insufficient")
-        .map(toHeroView),
+        .filter((s) => DATA_MODE !== "live" || s.confidence !== "insufficient")
+        .map((s) => toHeroView(s, personInfo(s.slug))),
     ]),
   ) as DashboardData["windows"];
   return { ...meta, windows };
@@ -97,7 +104,18 @@ export interface FilmEvidenceRow {
   roleScope: string;
   coLeads: string[];
   audience: { rating: number; votes: number; adjusted: number; score: number; provider: string } | null;
-  commercial: { score: number | null; basis: string | null; confidence: string | null; disputed: boolean; reason: string };
+  commercial: {
+    score: number | null;
+    basis: string | null;
+    confidence: string | null;
+    disputed: boolean;
+    reason: string;
+    label: string | null;
+    grossCrore: number | null;
+    budgetCrore: number | null;
+    multiple: number | null;
+  };
+  details: import("@/lib/domain/types").FilmDetails | null;
   filmSuccessScore: number | null;
   indicativeScore: number | null;
   scoringStatus: string;
@@ -142,7 +160,12 @@ export async function getHeroFilms(slug: string): Promise<FilmEvidenceRow[]> {
         confidence: fm.commercial.confidence,
         disputed: fm.commercial.disputed,
         reason: fm.commercial.reason,
+        label: fm.commercial.label,
+        grossCrore: fm.commercial.grossCrore,
+        budgetCrore: fm.commercial.budgetCrore,
+        multiple: fm.commercial.multiple,
       },
+      details: f.details ?? null,
       filmSuccessScore: fm.success.score,
       indicativeScore: fm.success.indicativeScore,
       scoringStatus: fm.success.status,
@@ -268,4 +291,24 @@ export async function getTrends() {
     heroYearly[p.slug] = [...c.keys()].sort().map((y) => ({ year: y, avg: avg(m.get(y) ?? []), releases: c.get(y)! }));
   }
   return { years, heroYearly };
+}
+
+/** Appearances that were found but do not count (cameos, supporting roles, other languages…). */
+export async function getHeroExcluded(slug: string) {
+  const l = await load();
+  const person = l.dataset.people.find((p) => p.slug === slug);
+  if (!person) return [];
+  const films = new Map(l.dataset.films.map((f) => [f.id, f]));
+  return l.dataset.credits
+    .filter((c) => c.personId === person.id && c.eligibilityStatus !== "approved")
+    .map((c) => {
+      const f = films.get(c.filmId);
+      return {
+        title: f?.title ?? c.filmId,
+        year: f?.teluguRelease.releaseDate ? Number(f.teluguRelease.releaseDate.slice(0, 4)) : null,
+        reason: c.evidenceNote ?? c.roleScope,
+        article: f?.details?.wikiArticle ?? null,
+      };
+    })
+    .sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
 }

@@ -23,6 +23,6 @@ export default defineConfig({
     url: `http://localhost:${PORT}`,
     reuseExistingServer: !process.env.CI,
     timeout: 240_000,
-    env: { NEXT_PUBLIC_DATA_MODE: "demo", NEXT_TELEMETRY_DISABLED: "1" },
+    env: { NEXT_PUBLIC_DATA_MODE: "real", NEXT_TELEMETRY_DISABLED: "1" },
   },
 });

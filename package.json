@@ -17,7 +17,8 @@
     "db:seed:demo": "tsx scripts/db-seed.ts --demo",
     "db:recalculate": "tsx scripts/db-recalculate.ts",
     "check": "npm run lint && npm run typecheck && npm run test && npm run build",
-    "photos:fetch": "tsx scripts/fetch-hero-photos.ts"
+    "photos:fetch": "tsx scripts/fetch-hero-photos.ts",
+    "data:import": "tsx scripts/import-real-data.mts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
@@ -40,6 +41,7 @@
     "@types/node": "^22.20.4",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cheerio": "^1.2.0",
     "drizzle-kit": "^0.31.11",
     "eslint": "^9",
     "eslint-config-next": "16.3.6",

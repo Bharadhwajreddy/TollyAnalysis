@@ -15,6 +15,13 @@
       "when": 1790636657997,
       "tag": "0001_user_rankings",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790638765094,
+      "tag": "0002_real_data_metrics",
+      "breakpoints": true
     }
   ]
 }

@@ -11,13 +11,23 @@ import { midpointMinor, ratioMinor, relativeDifference, toMinor } from "./money"
 import { clamp, round } from "./result";
 
 export type CommercialBasis =
+  | "gross_to_budget"
   | "recovery_ratio"
   | "trade_verdict"
   | "platform_band"
   | "synthetic_demo";
 
+export type BoxOfficeLabel = "blockbuster" | "hit" | "average" | "flop";
+
 export interface CommercialScore {
   score: number | null;
+  /** Plain verdict shown to users. */
+  label: BoxOfficeLabel | null;
+  /** Worldwide gross in ₹ crore (all languages), when reported. */
+  grossCrore: number | null;
+  budgetCrore: number | null;
+  /** Worldwide gross ÷ budget, when both are reported. */
+  multiple: number | null;
   basis: CommercialBasis | null;
   confidence: ClaimConfidence | null;
   disputed: boolean;
@@ -68,12 +78,50 @@ export function reconcileAmountClaims(
  */
 export function calculateCommercialScore(film: Film, evidence: CommercialEvidence[]): CommercialScore {
   const approved = evidence.filter((e) => e.approvalStatus === "approved");
+  const amount = (type: CommercialEvidence["metricType"]) => {
+    // For dubbed titles only Telugu-version amounts count (never an all-language total).
+    const r = reconcileAmountClaims(
+      approved.filter((e) => e.metricType === type && (film.teluguRelease.releaseType !== "dubbed" || e.versionScope === "telugu_dub")),
+    );
+    return r.amount === null ? null : Number(r.amount / BigInt(10_000_000)) / 100; // paise → ₹ crore
+  };
+  const grossCrore = amount("worldwide_gross");
+  const budgetCrore = amount("production_budget");
+  const multiple = grossCrore !== null && budgetCrore ? round(grossCrore / budgetCrore, 2) : null;
+  const base = baseCommercialScore(film, evidence, multiple);
+  let label: BoxOfficeLabel | null = null;
+  if (base.basis === "gross_to_budget" && multiple !== null)
+    label = multiple >= 3 ? "blockbuster" : multiple >= 2 ? "hit" : multiple >= 1 ? "average" : "flop";
+  else if (base.basis === "trade_verdict" && base.verdict)
+    label = VERDICT_LABEL[base.verdict];
+  else if (base.score !== null)
+    label = base.score >= 85 ? "blockbuster" : base.score >= 60 ? "hit" : base.score >= 35 ? "average" : "flop";
+  const { verdict: _verdict, ...rest } = base;
+  void _verdict;
+  return { ...rest, label, grossCrore, budgetCrore, multiple };
+}
+
+type BaseScore = Omit<CommercialScore, "label" | "grossCrore" | "budgetCrore" | "multiple"> & { verdict?: TradeVerdict };
+
+const VERDICT_LABEL: Record<TradeVerdict, BoxOfficeLabel> = {
+  blockbuster: "blockbuster",
+  super_hit: "hit",
+  hit: "hit",
+  above_average: "average",
+  average: "average",
+  below_average: "average",
+  flop: "flop",
+  disaster: "flop",
+};
+
+function baseCommercialScore(film: Film, evidence: CommercialEvidence[], multiple: number | null): BaseScore {
+  const approved = evidence.filter((e) => e.approvalStatus === "approved");
   const scope = expectedVersionScope(film);
   const scoped = approved.filter((e) => e.versionScope === scope);
   const ignoredAllLanguageOnly =
     scoped.length === 0 && approved.some((e) => e.versionScope === "all_language");
 
-  const none = (reason: string): CommercialScore => ({
+  const none = (reason: string): BaseScore => ({
     score: null,
     basis: null,
     confidence: null,
@@ -109,6 +157,36 @@ export function calculateCommercialScore(film: Film, evidence: CommercialEvidenc
     };
   }
 
+  // A verdict stated by the source wins: trade verdicts account for all revenue streams.
+  const verdict = scoped
+    .filter((e) => e.metricType === "trade_verdict" && e.valueText && e.valueText in TRADE_VERDICT_SCORE)
+    .sort((a, b) => CONFIDENCE_RANK[b.confidence] - CONFIDENCE_RANK[a.confidence])[0];
+  if (verdict && verdict.confidence !== "disputed") {
+    return {
+      score: TRADE_VERDICT_SCORE[verdict.valueText as TradeVerdict],
+      basis: "trade_verdict",
+      verdict: verdict.valueText as TradeVerdict,
+      confidence: verdict.confidence,
+      disputed: false,
+      ignoredAllLanguageOnly,
+      reason: "Box-office verdict as reported by the source (not audited).",
+    };
+  }
+
+  // Worldwide gross ÷ budget (both from the film's own reported figures). A film needs
+  // about 2× its budget in gross for the producer and distributors to profit, so
+  // 2× maps to the same score (60) as a 1.0× distributor-share recovery.
+  if (multiple !== null) {
+    return {
+      score: round(recoveryRatioToScore(multiple / 2), 1),
+      basis: "gross_to_budget",
+      confidence: "low",
+      disputed: false,
+      ignoredAllLanguageOnly,
+      reason: `Reported worldwide gross is ${multiple}× the reported budget.`,
+    };
+  }
+
   const share = reconcileAmountClaims(scoped.filter((e) => e.metricType === "telugu_distributor_share"));
   const business = reconcileAmountClaims(scoped.filter((e) => e.metricType === "telugu_theatrical_business"));
   if (share.amount !== null && business.amount !== null && business.amount > BigInt(0)) {
@@ -124,20 +202,6 @@ export function calculateCommercialScore(film: Film, evidence: CommercialEvidenc
         reason: `Telugu distributor share recovered ${round(ratio * 100, 0)}% of theatrical business${disputed ? " (claims disputed — conservative value used)" : ""}.`,
       };
     }
-  }
-
-  const verdict = scoped
-    .filter((e) => e.metricType === "trade_verdict" && e.valueText && e.valueText in TRADE_VERDICT_SCORE)
-    .sort((a, b) => CONFIDENCE_RANK[b.confidence] - CONFIDENCE_RANK[a.confidence])[0];
-  if (verdict && verdict.confidence !== "disputed") {
-    return {
-      score: TRADE_VERDICT_SCORE[verdict.valueText as TradeVerdict],
-      basis: "trade_verdict",
-      confidence: verdict.confidence,
-      disputed: false,
-      ignoredAllLanguageOnly,
-      reason: "Release-time trade verdict (source-level, not audited).",
-    };
   }
 
   return none(

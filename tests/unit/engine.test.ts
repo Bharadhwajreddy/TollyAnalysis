@@ -41,6 +41,7 @@ describe("engine eligibility rules", () => {
       reception: films.map((f) => rating(f.id, 7, 5000)),
       commercial: [
         claim("dub", { metricType: "worldwide_all_language", versionScope: "all_language", amountLowMinor: "1000" }),
+        ...["co", "solo", "third", "recent"].map((id) => claim(id, { valueText: "hit" })),
       ],
     }),
     M,
@@ -77,7 +78,9 @@ describe("engine eligibility rules", () => {
     expect(out.films.get("recent")!.success.status).toBe("not_yet_final");
     const a = snap("a");
     expect(a.eligibleFilmCount).toBe(5);
-    expect(a.metrics.overallSuccessRatio.coverage.numerator).toBe(4);
+    // co, solo, third have verdicts; recent has one too but is not final yet; ott has none.
+    expect(a.metrics.overallSuccessRatio.coverage.numerator).toBe(3);
+    expect(a.metrics.hits.value).toBe(3);
   });
 
   it("windows: last 10 films and last 5 years", () => {
@@ -110,8 +113,9 @@ describe("demo dataset", () => {
   it("has an emerging hero and a 3+ default roster", () => {
     const all = out.snapshots.all_time;
     expect(all.filter((s) => s.isEmerging).map((s) => s.slug)).toContain("mouli-tanuj-prasanth");
-    expect(all.filter((s) => !s.isEmerging).length).toBeGreaterThanOrEqual(90);
+    expect(all.filter((s) => !s.isEmerging).length).toBeGreaterThanOrEqual(60);
     for (const name of ["Prabhas", "Nithiin", "Satyadev", "Sree Vishnu", "Sharwanand"]) expect(all.map((s) => s.name)).toContain(name);
+    expect(all.every((s) => s.industry === "telugu")).toBe(true);
   });
 
   it("plain metrics agree with each other", () => {

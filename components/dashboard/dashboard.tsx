@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo, useState, type ReactNode } from "react";
 import type { HeroMetricKey } from "@/lib/calculations/engine";
-import { INDUSTRY_COLOR, INDUSTRY_ORDER } from "@/lib/constants/colors";
+import { ERA_GROUPS, FAMILY_GROUPS, groupOf, type ColourBy } from "@/lib/constants/groups";
 import { AXIS_METRICS, axisLabel, formatMetric, LEADERBOARD_METRICS, METRICS, MIN_SAMPLE_NOTE, WINDOW_LABEL } from "@/lib/constants/metrics";
-import type { FilterWindow, Industry } from "@/lib/domain/types";
+import type { FilterWindow } from "@/lib/domain/types";
 import type { DashboardData, HeroView } from "@/lib/view-models";
 import { ParetoChart } from "@/components/charts/pareto-chart";
 import { RankedBars, type BarDatum } from "@/components/charts/ranked-bars";
@@ -18,7 +18,7 @@ import { MetricPicker } from "@/components/ui/metric-picker";
 import { Segmented } from "@/components/ui/segmented";
 import { Toggle } from "@/components/ui/toggle";
 import { HeroTable } from "./hero-table";
-import { IndustryLegend, MetricTooltip, rankable, rankBy } from "./shared";
+import { GroupLegend, MetricTooltip, rankable, rankBy } from "./shared";
 
 const WINDOWS: FilterWindow[] = ["all_time", "last_5_years", "last_10_films"];
 
@@ -32,7 +32,9 @@ export function Dashboard({ data, children }: { data: DashboardData; children?: 
   const [period, setPeriod] = useState<FilterWindow>("all_time");
   const [includeEmerging, setIncludeEmerging] = useState(false);
   const [search, setSearch] = useState("");
-  const [hiddenIndustries, setHiddenIndustries] = useState<Set<Industry>>(new Set());
+  const [colourBy, setColourBy] = useState<ColourBy>("era");
+  const [hiddenGroups, setHiddenGroups] = useState<Set<string>>(new Set());
+  const colorOf = useCallback((h: HeroView) => groupOf(h, colourBy).color, [colourBy]);
   const [leaderMetric, setLeaderMetric] = useState<HeroMetricKey>("overallSuccessRatio");
   const [leaderAll, setLeaderAll] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
@@ -43,21 +45,22 @@ export function Dashboard({ data, children }: { data: DashboardData; children?: 
   const roster = useMemo(() => data.windows[period].filter((h) => includeEmerging || !h.isEmerging), [data, period, includeEmerging]);
   const visible = useMemo(() => {
     const q = search.trim().toLowerCase();
-    return roster.filter((h) => !hiddenIndustries.has(h.industry) && (!q || h.name.toLowerCase().includes(q)));
-  }, [roster, hiddenIndustries, search]);
+    return roster.filter((h) => !hiddenGroups.has(groupOf(h, colourBy).key) && (!q || h.name.toLowerCase().includes(q)));
+  }, [roster, hiddenGroups, colourBy, search]);
   const selectedHero = visible.find((h) => h.slug === selected) ?? null;
 
-  const industries = useMemo(() => {
-    const present = new Set(roster.map((h) => h.industry));
-    return INDUSTRY_ORDER.filter((i) => present.has(i));
-  }, [roster]);
-  const toggleIndustry = (i: Industry) =>
-    setHiddenIndustries((s) => {
+  const groups = useMemo(() => {
+    const present = new Set(roster.map((h) => groupOf(h, colourBy).key));
+    return (colourBy === "era" ? ERA_GROUPS : FAMILY_GROUPS).filter((g) => present.has(g.key));
+  }, [roster, colourBy]);
+  const toggleGroup = (k: string) =>
+    setHiddenGroups((s) => {
       const n = new Set(s);
-      if (n.has(i)) n.delete(i);
-      else n.add(i);
+      if (n.has(k)) n.delete(k);
+      else n.add(k);
       return n;
     });
+  const hasData = (k: HeroMetricKey) => visible.some((h) => h.m[k].v !== null);
 
   const toBars = useCallback(
     (heroes: HeroView[], key: HeroMetricKey): BarDatum[] =>
@@ -66,14 +69,14 @@ export function Dashboard({ data, children }: { data: DashboardData; children?: 
         label: h.name,
         value: h.m[key].v as number,
         display: formatMetric(key, h.m[key].v, METRICS[key].unit === "%" || METRICS[key].unit === " mo"),
-        color: INDUSTRY_COLOR[h.industry],
+        color: colorOf(h),
         photo: h.photo,
         industry: h.industry,
         selected: h.slug === selected,
         lowSample: h.m[key].s === "low_sample",
-        tooltip: <MetricTooltip hero={h} metric={key} />,
+        tooltip: <MetricTooltip hero={h} metric={key} color={colorOf(h)} />,
       })),
-    [selected],
+    [selected, colorOf],
   );
 
   const kpi = (key: HeroMetricKey) => rankBy(visible, key)[0] ?? null;
@@ -88,10 +91,16 @@ export function Dashboard({ data, children }: { data: DashboardData; children?: 
           Telugu cinema heroes, compared
         </h1>
         <p className="mt-1.5 max-w-3xl text-[15px] text-ink-2">
-          Who delivers the most hits, how often they release, and what audiences think. Films released in Telugu since 2000.
+          Who delivers the most hits, the biggest box office and the most films. Telugu heroes, films released from 2000 onwards.
         </p>
         <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-muted">
-          {data.mode === "demo" ? <DemoBadge /> : <span className="rounded bg-teal-soft px-2 py-0.5 font-mono text-[11px] text-[#00596a]">LIVE</span>}
+          {data.mode === "demo" ? (
+            <DemoBadge />
+          ) : (
+            <span className="rounded border border-[#b9dcc4] bg-[#eef7f1] px-2 py-0.5 font-mono text-[11px] font-medium text-good">
+              {data.mode === "real" ? "REAL DATA · WIKIPEDIA + WIKIDATA" : "LIVE"}
+            </span>
+          )}
           <span>Updated {fmtDate(data.calculatedAt)}</span>
           <span aria-hidden>·</span>
           <a href="#how" className="font-medium text-wine underline-offset-2 hover:underline">How we calculate</a>
@@ -122,6 +131,21 @@ export function Dashboard({ data, children }: { data: DashboardData; children?: 
           </label>
           <Segmented label="Period" value={period} onChange={setPeriod} options={WINDOWS.map((w) => ({ value: w, label: WINDOW_LABEL[w] }))} />
           <Toggle checked={includeEmerging} onChange={setIncludeEmerging} label="Include newcomers (1–2 films)" />
+          <label className="flex items-center gap-2 text-[13px] font-medium text-ink-2">
+            Colour by
+            <Segmented
+              label="Colour bars by"
+              value={colourBy}
+              onChange={(v) => {
+                setColourBy(v);
+                setHiddenGroups(new Set());
+              }}
+              options={[
+                { value: "era", label: "Debut era" },
+                { value: "family", label: "Film family" },
+              ]}
+            />
+          </label>
         </div>
         <span className="tabular text-xs text-muted">
           {visible.length} of {data.windows[period].length} heroes
@@ -133,7 +157,7 @@ export function Dashboard({ data, children }: { data: DashboardData; children?: 
         <Kpi label="Heroes compared" value={String(visible.length)} note={includeEmerging ? "including newcomers" : "with 3 or more films"} />
         <KpiHero label="Best success ratio" hero={kpi("overallSuccessRatio")} metric="overallSuccessRatio" onOpen={open} />
         <KpiHero label="Most hits" hero={kpi("hits")} metric="hits" onOpen={open} />
-        <KpiHero label="Best audience rating" hero={kpi("avgRating")} metric="avgRating" onOpen={open} />
+        <KpiHero label="Biggest box-office total" hero={kpi("totalGross")} metric="totalGross" onOpen={open} />
       </section>
 
       <p className="mt-4 rounded-lg bg-wine-soft px-3 py-2 text-[13px] text-wine">
@@ -159,7 +183,7 @@ export function Dashboard({ data, children }: { data: DashboardData; children?: 
                 label="What to rank by"
                 value={leaderMetric}
                 onChange={setLeaderMetric}
-                options={LEADERBOARD_METRICS.map((k) => ({ value: k, label: METRICS[k].short }))}
+                options={LEADERBOARD_METRICS.filter(hasData).map((k) => ({ value: k, label: METRICS[k].short }))}
               />
               <Segmented
                 label="How many heroes"
@@ -172,7 +196,14 @@ export function Dashboard({ data, children }: { data: DashboardData; children?: 
               />
             </div>
           }
-          legend={<IndustryLegend present={industries} hidden={hiddenIndustries} onToggle={toggleIndustry} />}
+          legend={
+            <GroupLegend
+              groups={groups}
+              hidden={hiddenGroups}
+              onToggle={toggleGroup}
+              note={colourBy === "era" ? "Colour = when the hero got his first lead role. Tap a colour to hide it." : "Colour = film family. Tap a colour to hide it."}
+            />
+          }
         >
           <RankedBars
             data={toBars(leaderAll ? leaderRanked : leaderRanked.slice(0, TOP), leaderMetric)}
@@ -183,31 +214,40 @@ export function Dashboard({ data, children }: { data: DashboardData; children?: 
           />
         </ChartCard>
 
-        {/* Side by side: hits & audience */}
+        {/* Side by side */}
         <div className="grid gap-4 lg:grid-cols-2">
           <SmallRanking title="Most hit films" metric="hits" heroes={visible} toBars={toBars} onActivate={activate} />
-          <SmallRanking title="Best audience rating (out of 10)" metric="avgRating" heroes={visible} toBars={toBars} onActivate={activate} domainMax={10} />
+          <SmallRanking title="Total box office (₹ crore)" metric="totalGross" heroes={visible} toBars={toBars} onActivate={activate} />
         </div>
 
-        {/* Pareto charts */}
-        <ParetoCard id="pareto-1" heroes={visible} selected={selected} onActivate={activate} initialX="films" initialY="overallSuccessRatio" title="More films vs. more success" />
+        <ParetoCard id="pareto-1" heroes={visible} selected={selected} colorOf={colorOf} onActivate={activate} initialX="films" initialY="overallSuccessRatio" title="More films vs. more success" />
 
-        {/* Side by side: output */}
+        <div className="grid gap-4 lg:grid-cols-2">
+          <SmallRanking title="Most ₹100-crore films" metric="bigFilms" heroes={visible} toBars={toBars} onActivate={activate} />
+          <SmallRanking title="Biggest single film (₹ crore)" metric="topGross" heroes={visible} toBars={toBars} onActivate={activate} />
+        </div>
+
         <div className="grid gap-4 lg:grid-cols-2">
           <SmallRanking title="Most films in a single year" metric="peakFilms" heroes={visible} toBars={toBars} onActivate={activate} />
           <SmallRanking title="Shortest gap between films (months)" metric="releaseGap" heroes={visible} toBars={toBars} onActivate={activate} />
         </div>
 
-        <ParetoCard id="pareto-2" heroes={visible} selected={selected} onActivate={activate} initialX="avgRating" initialY="hits" title="Audience love vs. number of hits" />
+        <ParetoCard id="pareto-2" heroes={visible} selected={selected} colorOf={colorOf} onActivate={activate} initialX="avgGross" initialY="overallSuccessRatio" title="Bigger films vs. more hits" />
 
         <div className="grid gap-4 lg:grid-cols-2">
           <SmallRanking title="Best recent success (last 5 films, %)" metric="recentSuccessRatio" heroes={visible} toBars={toBars} onActivate={activate} domainMax={100} />
-          <SmallRanking title="Most films as lead hero" metric="films" heroes={visible} toBars={toBars} onActivate={activate} />
+          <SmallRanking title="Most blockbusters" metric="blockbusters" heroes={visible} toBars={toBars} onActivate={activate} />
+        </div>
+
+        <div className="grid gap-4 lg:grid-cols-2">
+          <SmallRanking title="Most films as lead hero (since 2000)" metric="films" heroes={visible} toBars={toBars} onActivate={activate} />
+          {hasData("xFollowers") && <SmallRanking title="X (Twitter) followers (millions)" metric="xFollowers" heroes={visible} toBars={toBars} onActivate={activate} />}
+          {hasData("avgRating") && <SmallRanking title="Best audience rating (out of 10)" metric="avgRating" heroes={visible} toBars={toBars} onActivate={activate} domainMax={10} />}
         </div>
 
         {/* Table */}
         <ChartCard id="table" title="All heroes" subtitle={`${WINDOW_LABEL[period]} · every number in one table`} count={`${visible.length} heroes`}>
-          <HeroTable heroes={visible} selected={selected} onActivate={activate} csvMeta={{ mode: data.mode, methodologyId: data.methodologyId, window: period }} />
+          <HeroTable heroes={visible} selected={selected} colorOf={colorOf} onActivate={activate} csvMeta={{ mode: data.mode, methodologyId: data.methodologyId, window: period }} />
         </ChartCard>
 
         {children}
@@ -217,7 +257,7 @@ export function Dashboard({ data, children }: { data: DashboardData; children?: 
       {selectedHero && (
         <div className="pointer-events-none sticky bottom-3 z-30 mt-4 flex justify-center">
           <div className="pointer-events-auto flex max-w-full items-center gap-3 rounded-full border border-line bg-surface/95 py-1.5 pl-1.5 pr-1.5 text-[13px] shadow-lg backdrop-blur">
-            <HeroAvatar name={selectedHero.name} photo={selectedHero.photo} industry={selectedHero.industry} size={34} />
+            <HeroAvatar name={selectedHero.name} photo={selectedHero.photo} industry={selectedHero.industry} color={colorOf(selectedHero)} size={34} />
             <span className="min-w-0">
               <span className="block truncate font-semibold text-ink">{selectedHero.name}</span>
               <span className="tabular block truncate text-[11.5px] text-muted">
@@ -253,6 +293,7 @@ function SmallRanking({
   domainMax?: number;
 }) {
   const ranked = rankBy(heroes, metric).slice(0, 10);
+  if (!ranked.length) return null;
   return (
     <ChartCard
       title={title}
@@ -274,6 +315,7 @@ function ParetoCard({
   title,
   heroes,
   selected,
+  colorOf,
   onActivate,
   initialX,
   initialY,
@@ -282,6 +324,7 @@ function ParetoCard({
   title: string;
   heroes: HeroView[];
   selected: string | null;
+  colorOf: (h: HeroView) => string;
   onActivate: (id: string) => void;
   initialX: HeroMetricKey;
   initialY: HeroMetricKey;
@@ -297,13 +340,13 @@ function ParetoCard({
       photo: h.photo,
       x: h.m[x].v as number,
       y: h.m[y].v as number,
-      color: INDUSTRY_COLOR[h.industry],
+      color: colorOf(h),
       selected: h.slug === selected,
       priority: order.get(h.slug) ?? 999,
       tooltip: (
         <div className="space-y-1.5">
           <div className="flex items-center gap-2">
-            <HeroAvatar name={h.name} photo={h.photo} industry={h.industry} size={34} />
+            <HeroAvatar name={h.name} photo={h.photo} industry={h.industry} color={colorOf(h)} size={34} />
             <span className="font-semibold text-ink">{h.name}</span>
           </div>
           <p className="tabular flex justify-between gap-3 text-ink-2"><span>{METRICS[x].label}</span><strong className="text-ink">{formatMetric(x, h.m[x].v)}</strong></p>
@@ -312,9 +355,9 @@ function ParetoCard({
         </div>
       ),
     }));
-  }, [heroes, x, y, selected]);
+  }, [heroes, x, y, selected, colorOf]);
 
-  const axisOptions = AXIS_METRICS.map((k) => ({ value: k, label: METRICS[k].label }));
+  const axisOptions = AXIS_METRICS.filter((k) => heroes.some((h) => h.m[k].v !== null)).map((k) => ({ value: k, label: METRICS[k].label }));
   const select = (label: string, value: HeroMetricKey, onChange: (v: HeroMetricKey) => void) => (
     <label className="flex min-w-0 items-center gap-2 text-[13px] text-ink-2 md:w-[300px]">
       <span className="w-12 shrink-0 font-medium">{label}</span>
@@ -388,6 +431,7 @@ function Kpi({ label, value, note }: { label: string; value: string; note: strin
 }
 
 function KpiHero({ label, hero, metric, onOpen }: { label: string; hero: HeroView | null; metric: HeroMetricKey; onOpen: (slug: string) => void }) {
+  // Ring colour here is neutral: headline tiles are independent of the colour-by setting.
   if (!hero) return <Kpi label={label} value="—" note="not enough data" />;
   return (
     <button type="button" onClick={() => onOpen(hero.slug)} className="card flex items-center gap-3 p-3 text-left transition-shadow hover:shadow-md sm:p-4">

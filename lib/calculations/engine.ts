@@ -21,15 +21,17 @@ import {
   calculateConfidenceGrade,
   calculateConsistencyIndex,
   calculateAverageRating,
+  calculateBoxOfficeHits,
+  calculateBoxOfficeSuccessRatio,
+  calculateFollowers,
+  calculateGross,
+  calculateRecentBoxOfficeRatio,
   calculateFilmCount,
   calculateFilmSuccessIndex,
   calculateFilmsPerActiveYear,
-  calculateHitCount,
-  calculateRecentSuccessRatio,
   calculateYearsActive,
   calculateHeroPerformanceIndex,
   calculateMedianReleaseGapMonths,
-  calculateOverallSuccessRatio,
   calculatePeakFilmsInCalendarYear,
   calculateRecentMomentum,
   calculateSocialReachIndex,
@@ -62,7 +64,14 @@ export type HeroMetricKey =
   | "hits"
   | "avgRating"
   | "recentSuccessRatio"
-  | "yearsActive";
+  | "yearsActive"
+  | "blockbusters"
+  | "totalGross"
+  | "topGross"
+  | "avgGross"
+  | "bigFilms"
+  | "xFollowers"
+  | "igFollowers";
 
 export interface HeroSnapshot {
   personId: string;
@@ -200,6 +209,9 @@ export function computeHeroSnapshot(args: {
       audienceScore: fm.audience?.score ?? null,
       audienceConfidenceWeight: fm.audience?.confidenceWeight ?? null,
       audienceRawRating: fm.audience?.rawRating ?? null,
+      // A run is not over until it is reconciled: recent releases get no verdict yet.
+      boxOffice: fm.success.status === "not_yet_final" ? null : fm.commercial.label,
+      grossCrore: fm.commercial.grossCrore,
       coveragePercent: fm.success.coveragePercent,
     };
   };
@@ -213,6 +225,7 @@ export function computeHeroSnapshot(args: {
   const consistency = calculateConsistencyIndex(inWindow, m);
   const momentum = calculateRecentMomentum(inWindow, career, m);
 
+  const personSocial = dataset.social.filter((x) => x.personId === person.id);
   let socialReach: MetricResult;
   let socialSnapshotAt: string | null = null;
   const synthetic = dataset.syntheticSocial.find((s) => s.personId === person.id);
@@ -272,7 +285,7 @@ export function computeHeroSnapshot(args: {
     metrics: {
       hpi,
       filmSuccess,
-      overallSuccessRatio: calculateOverallSuccessRatio(inWindow, m),
+      overallSuccessRatio: calculateBoxOfficeSuccessRatio(inWindow, m),
       audienceSuccessRatio: calculateAudienceSuccessRatio(inWindow, m),
       audienceIndex,
       consistency,
@@ -282,9 +295,16 @@ export function computeHeroSnapshot(args: {
       peakFilms: calculatePeakFilmsInCalendarYear(inWindow, m),
       filmsPerYear: calculateFilmsPerActiveYear(inWindow, m),
       films: calculateFilmCount(inWindow, m),
-      hits: calculateHitCount(inWindow, m),
+      hits: calculateBoxOfficeHits(inWindow, m),
+      blockbusters: calculateBoxOfficeHits(inWindow, m, true),
+      totalGross: calculateGross(inWindow, m, "total"),
+      topGross: calculateGross(inWindow, m, "top"),
+      avgGross: calculateGross(inWindow, m, "avg"),
+      bigFilms: calculateGross(inWindow, m, "big"),
+      xFollowers: calculateFollowers(personSocial, "x", m),
+      igFollowers: calculateFollowers(personSocial, "instagram", m),
       avgRating: calculateAverageRating(inWindow, m),
-      recentSuccessRatio: calculateRecentSuccessRatio(inWindow, m),
+      recentSuccessRatio: calculateRecentBoxOfficeRatio(inWindow, m),
       yearsActive: calculateYearsActive(inWindow, m),
     },
     evidenceCoveragePercent,

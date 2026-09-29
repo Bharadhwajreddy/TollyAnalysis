@@ -21,6 +21,10 @@ export interface HeroFilmInput {
   audienceConfidenceWeight: number | null;
   /** Raw film-wide rating out of 10 (before Bayesian adjustment), when available. */
   audienceRawRating?: number | null;
+  /** Box-office verdict (blockbuster / hit / average / flop), when known. */
+  boxOffice?: "blockbuster" | "hit" | "average" | "flop" | null;
+  /** Reported worldwide gross in ₹ crore, when known. */
+  grossCrore?: number | null;
   coveragePercent: number;
 }
 
@@ -271,8 +275,8 @@ export function calculateHeroPerformanceIndex(
     ["momentum", parts.momentum],
   ];
   const present = entries.filter((e): e is [keyof typeof w, number] => e[1] !== null);
-  if (parts.filmSuccess === null || parts.audience === null)
-    return result(null, present.length, entries.length, "insufficient", m, "Film Success and Audience indices are required.");
+  if (parts.filmSuccess === null)
+    return result(null, present.length, entries.length, "insufficient", m, "Needs at least one film with a known result.");
   const value = weightedMean(present.map(([k, v]) => ({ value: v, weight: w[k] })));
   const missing = entries.filter((e) => e[1] === null).map((e) => e[0]);
   return result(
@@ -343,4 +347,55 @@ export function calculateYearsActive(films: HeroFilmInput[], m: MethodologyVersi
   const first = Math.min(...years);
   const last = Math.max(...years);
   return result(last - first + 1, years.length, films.length, "ok", m, `${first}–${last}.`);
+}
+
+/* ───────────── box-office metrics (verdict = gross vs budget, or reported verdict) ───────────── */
+
+const isHit = (f: HeroFilmInput) => f.boxOffice === "hit" || f.boxOffice === "blockbuster";
+const judged = (films: HeroFilmInput[]) => films.filter((f) => f.boxOffice);
+
+/** Hits ÷ films with a known box-office result. */
+export function calculateBoxOfficeSuccessRatio(films: HeroFilmInput[], m: MethodologyVersion): MetricResult {
+  const j = judged(films);
+  if (!j.length) return result(null, 0, films.length, "insufficient", m, "No film has a known box-office result.");
+  const hits = j.filter(isHit).length;
+  return result(round((hits / j.length) * 100, 1), j.length, films.length, j.length < 3 ? "low_sample" : "ok", m, `${hits} hit${hits === 1 ? "" : "s"} out of ${j.length} films with a known result.`);
+}
+
+export function calculateBoxOfficeHits(films: HeroFilmInput[], m: MethodologyVersion, onlyBlockbusters = false): MetricResult {
+  const j = judged(films);
+  if (!j.length) return result(null, 0, films.length, "insufficient", m, "No film has a known box-office result.");
+  const n = j.filter((f) => (onlyBlockbusters ? f.boxOffice === "blockbuster" : isHit(f))).length;
+  return result(n, j.length, films.length, j.length < 3 ? "low_sample" : "ok", m, `${n} ${onlyBlockbusters ? "blockbuster" : "hit"}${n === 1 ? "" : "s"} among ${j.length} films with a known result.`);
+}
+
+export function calculateRecentBoxOfficeRatio(films: HeroFilmInput[], m: MethodologyVersion): MetricResult {
+  const recent = judged(films)
+    .sort((a, b) => (b.releaseDate ?? "").localeCompare(a.releaseDate ?? ""))
+    .slice(0, m.momentumWindow);
+  if (!recent.length) return result(null, 0, m.momentumWindow, "insufficient", m, "No recent film with a known result.");
+  const hits = recent.filter(isHit).length;
+  return result(round((hits / recent.length) * 100, 1), recent.length, m.momentumWindow, recent.length < m.momentumWindow ? "low_sample" : "ok", m, `${hits} hit${hits === 1 ? "" : "s"} in the latest ${recent.length} films with a known result.`);
+}
+
+/** Money metrics from reported worldwide gross (₹ crore, all languages). */
+export function calculateGross(films: HeroFilmInput[], m: MethodologyVersion, kind: "total" | "top" | "avg" | "big"): MetricResult {
+  const g = films.map((f) => f.grossCrore).filter((x): x is number => typeof x === "number" && x > 0);
+  if (!g.length) return result(null, 0, films.length, "insufficient", m, "No reported box-office gross.");
+  const value =
+    kind === "total" ? g.reduce((a, b) => a + b, 0) : kind === "top" ? Math.max(...g) : kind === "avg" ? g.reduce((a, b) => a + b, 0) / g.length : g.filter((x) => x >= 100).length;
+  const text =
+    kind === "big"
+      ? `${value} film${value === 1 ? "" : "s"} grossed ₹100 crore or more.`
+      : `Based on ${g.length} film${g.length === 1 ? "" : "s"} with a reported worldwide gross.`;
+  return result(round(value, kind === "big" ? 0 : 1), g.length, films.length, g.length < 3 && kind !== "top" ? "low_sample" : "ok", m, text);
+}
+
+/** Latest official follower count on one platform, in millions. */
+export function calculateFollowers(snapshots: SocialSnapshot[], platform: SocialSnapshot["platform"], m: MethodologyVersion): MetricResult {
+  const s = snapshots
+    .filter((x) => x.platform === platform && x.isOfficial && x.followersCount !== null)
+    .sort((a, b) => b.snapshotAt.localeCompare(a.snapshotAt))[0];
+  if (!s) return result(null, 0, 1, "insufficient", m, "No recorded follower count.");
+  return result(round((s.followersCount as number) / 1_000_000, 2), 1, 1, "ok", m, `${(s.followersCount as number).toLocaleString("en-IN")} followers as of ${s.snapshotAt.slice(0, 10)}.`);
 }

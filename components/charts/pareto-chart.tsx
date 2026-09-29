@@ -52,21 +52,28 @@ export function paretoFrontier<T extends { id: string; x: number; y: number }>(p
   return out.sort((a, b) => a.x - b.x);
 }
 
+/** A "nice" step (1, 2, 2.5 or 5 × 10^n) giving about 5–7 ticks across the span. */
+function niceStep(span: number): number {
+  const raw = Math.max(span, 1e-6) / 6;
+  const exp = 10 ** Math.floor(Math.log10(raw));
+  const f = raw / exp;
+  return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * exp;
+}
+
 function niceDomain(values: number[], cap?: number): [number, number] {
   const lo = Math.min(...values);
   const hi = Math.max(...values);
   const span = Math.max(1e-6, hi - lo);
-  const step = span > 60 ? 20 : span > 25 ? 10 : span > 10 ? 5 : span > 4 ? 2 : span > 1.5 ? 0.5 : 0.2;
-  let a = Math.floor((lo - span * 0.06) / step) * step;
+  const step = niceStep(span);
+  let a = Math.floor((lo - span * 0.05) / step) * step;
   if (lo >= 0 && a < 0) a = 0;
-  let b = Math.ceil((hi + span * 0.06) / step) * step;
+  let b = Math.ceil((hi + span * 0.05) / step) * step;
   if (cap !== undefined) b = Math.min(b, cap);
   return [a, b <= a ? a + step : b];
 }
 
 function niceTicks([a, b]: [number, number]): number[] {
-  const span = b - a;
-  const step = span > 60 ? 20 : span > 25 ? 10 : span > 10 ? 5 : span > 4 ? 2 : span > 1.5 ? 0.5 : 0.2;
+  const step = niceStep(b - a);
   const out: number[] = [];
   for (let t = Math.ceil(a / step) * step; t <= b + 1e-9; t += step) out.push(Math.round(t * 100) / 100);
   return out;

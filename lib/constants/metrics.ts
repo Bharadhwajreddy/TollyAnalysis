@@ -6,6 +6,8 @@ export interface MetricMeta {
   label: string;
   /** Short name for buttons and table headers. */
   short: string;
+  /** Shown before the number, e.g. "₹". */
+  prefix?: string;
   unit: string;
   decimals: number;
   higherIsBetter: boolean;
@@ -31,7 +33,7 @@ export const METRICS: Record<HeroMetricKey, MetricMeta> = {
     decimals: 0,
     higherIsBetter: true,
     domainMax: 100,
-    definition: "Out of every 100 films with enough data, how many were hits.",
+    definition: "Out of every 100 films with a known box-office result, how many were hits (earned at least 2× their budget, or were reported as hits).",
     minSample: 5,
   },
   hits: {
@@ -41,7 +43,7 @@ export const METRICS: Record<HeroMetricKey, MetricMeta> = {
     unit: "",
     decimals: 0,
     higherIsBetter: true,
-    definition: "How many of the hero's films were hits.",
+    definition: "How many of the hero's films were box-office hits or blockbusters.",
   },
   films: {
     key: "films",
@@ -71,7 +73,7 @@ export const METRICS: Record<HeroMetricKey, MetricMeta> = {
     decimals: 0,
     higherIsBetter: true,
     domainMax: 100,
-    definition: "Share of hits among the hero's latest five films with enough data.",
+    definition: "Share of hits among the hero's latest five films with a known box-office result.",
     minSample: 3,
   },
   peakFilms: {
@@ -109,6 +111,73 @@ export const METRICS: Record<HeroMetricKey, MetricMeta> = {
     decimals: 0,
     higherIsBetter: true,
     definition: "Years from the first to the latest counted release (from 2000).",
+  },
+  blockbusters: {
+    key: "blockbusters",
+    label: "Blockbusters",
+    short: "Blockbusters",
+    unit: "",
+    decimals: 0,
+    higherIsBetter: true,
+    definition: "Films that earned at least 3× their budget worldwide, or were reported as blockbusters.",
+  },
+  totalGross: {
+    key: "totalGross",
+    label: "Total box office",
+    short: "Total box office",
+    prefix: "₹",
+    unit: " cr",
+    decimals: 0,
+    higherIsBetter: true,
+    definition: "Worldwide gross of all his films added together, in ₹ crore (as reported; all languages).",
+  },
+  topGross: {
+    key: "topGross",
+    label: "Biggest box-office film",
+    short: "Biggest film",
+    prefix: "₹",
+    unit: " cr",
+    decimals: 0,
+    higherIsBetter: true,
+    definition: "Worldwide gross of his highest-grossing film, in ₹ crore.",
+  },
+  avgGross: {
+    key: "avgGross",
+    label: "Average box office per film",
+    short: "Avg box office",
+    prefix: "₹",
+    unit: " cr",
+    decimals: 0,
+    higherIsBetter: true,
+    definition: "Average worldwide gross of his films that have a reported gross, in ₹ crore.",
+    minSample: 3,
+  },
+  bigFilms: {
+    key: "bigFilms",
+    label: "₹100-crore films",
+    short: "₹100 cr films",
+    unit: "",
+    decimals: 0,
+    higherIsBetter: true,
+    definition: "Films that grossed ₹100 crore or more worldwide.",
+  },
+  xFollowers: {
+    key: "xFollowers",
+    label: "X (Twitter) followers",
+    short: "X followers",
+    unit: "M",
+    decimals: 1,
+    higherIsBetter: true,
+    definition: "Followers on his official X account (millions), as last recorded on Wikidata with a date.",
+  },
+  igFollowers: {
+    key: "igFollowers",
+    label: "Instagram followers",
+    short: "Instagram",
+    unit: "M",
+    decimals: 1,
+    higherIsBetter: true,
+    definition: "Followers on his official Instagram account (millions), as last recorded with a date.",
   },
   hpi: {
     key: "hpi",
@@ -187,11 +256,15 @@ export const METRICS: Record<HeroMetricKey, MetricMeta> = {
 export const LEADERBOARD_METRICS: HeroMetricKey[] = [
   "overallSuccessRatio",
   "hits",
+  "blockbusters",
+  "totalGross",
+  "topGross",
+  "bigFilms",
   "films",
-  "avgRating",
   "recentSuccessRatio",
   "peakFilms",
   "releaseGap",
+  "xFollowers",
   "hpi",
 ];
 
@@ -200,6 +273,11 @@ export const AXIS_METRICS: HeroMetricKey[] = [
   "films",
   "hits",
   "overallSuccessRatio",
+  "blockbusters",
+  "totalGross",
+  "avgGross",
+  "topGross",
+  "bigFilms",
   "avgRating",
   "recentSuccessRatio",
   "peakFilms",
@@ -215,14 +293,15 @@ export function formatMetric(key: HeroMetricKey, value: number | null | undefine
   if (value === null || value === undefined || Number.isNaN(value)) return "—";
   const m = METRICS[key];
   const n = value.toLocaleString("en-IN", { minimumFractionDigits: m.decimals, maximumFractionDigits: m.decimals });
-  return withUnit ? `${n}${m.unit}` : n;
+  return withUnit ? `${m.prefix ?? ""}${n}${m.unit}` : `${m.prefix ?? ""}${n}`;
 }
 
 /** Axis label with unit in words, e.g. "Success ratio (%)". */
 export function axisLabel(key: HeroMetricKey): string {
   const m = METRICS[key];
   const unit = m.unit.trim();
-  const unitText = unit === "%" ? "%" : unit === "/10" ? "out of 10" : unit === "/100" ? "out of 100" : unit === "mo" ? "months" : unit === "yrs" ? "years" : "";
+  const unitText =
+    unit === "%" ? "%" : unit === "/10" ? "out of 10" : unit === "/100" ? "out of 100" : unit === "mo" ? "months" : unit === "yrs" ? "years" : unit === "cr" ? "₹ crore" : unit === "M" ? "millions" : "";
   return unitText ? `${m.label} (${unitText})` : m.label;
 }
 

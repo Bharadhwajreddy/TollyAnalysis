@@ -59,6 +59,8 @@ export const commercialMetricEnum = pgEnum("commercial_metric", [
   "trade_verdict",
   "platform_outcome_band",
   "synthetic_outcome_score",
+  "worldwide_gross",
+  "production_budget",
 ]);
 export const versionScopeEnum = pgEnum("release_version_scope", ["telugu_original", "telugu_dub", "all_language", "unknown"]);
 export const legacyStatusEnum = pgEnum("legacy_status", ["none", "reappraised", "cult_favourite", "enduring_popularity", "not_reviewed"]);

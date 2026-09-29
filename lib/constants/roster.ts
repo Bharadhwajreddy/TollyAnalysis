@@ -1,8 +1,12 @@
 import type { Industry, PersonStatus } from "@/lib/domain/types";
 
+export type FilmFamily = "mega" | "nandamuri" | "akkineni" | "daggubati" | "ghattamaneni" | "manchu" | "other";
+
 export interface RosterCandidate {
   slug: string;
   name: string;
+  /** Tollywood film family, used to colour bars (like model makers on benchmark sites). */
+  family: FilmFamily;
   /** Industry of the actor's primary work; drives chart colour only. */
   industry: Industry;
   status: PersonStatus;
@@ -16,7 +20,42 @@ export interface RosterCandidate {
   demoEndYear?: number;
   /** Demo-only: exact number of synthetic films (used for emerging candidates). */
   demoFilmCount?: number;
+  /**
+   * Editorial: this actor now mostly plays supporting / villain roles, so a film only
+   * counts when he is billed first (never as "second hero").
+   */
+  strictBilling?: boolean;
 }
+
+/** Actors who moved into character roles; see `strictBilling`. */
+const STRICT_BILLING = new Set(["jagapathi-babu", "srikanth", "sivaji", "srihari", "sunil", "naveen-chandra", "priyadarshi", "srinivas-avasarala", "rajendra-prasad"]);
+
+const FAMILY: Record<string, FilmFamily> = {
+  chiranjeevi: "mega",
+  "pawan-kalyan": "mega",
+  "ram-charan": "mega",
+  "allu-arjun": "mega",
+  "allu-sirish": "mega",
+  "varun-tej": "mega",
+  "sai-durgha-tej": "mega",
+  "kalyaan-dhev": "mega",
+  balakrishna: "nandamuri",
+  "jr-ntr": "nandamuri",
+  "kalyan-ram": "nandamuri",
+  "taraka-ratna": "nandamuri",
+  nagarjuna: "akkineni",
+  "naga-chaitanya": "akkineni",
+  "akhil-akkineni": "akkineni",
+  sumanth: "akkineni",
+  sushanth: "akkineni",
+  venkatesh: "daggubati",
+  "rana-daggubati": "daggubati",
+  "mahesh-babu": "ghattamaneni",
+  "sudheer-babu": "ghattamaneni",
+  "mohan-babu": "manchu",
+  "vishnu-manchu": "manchu",
+  "manchu-manoj": "manchu",
+};
 
 const h = (
   slug: string,
@@ -29,6 +68,8 @@ const h = (
   slug,
   name,
   industry,
+  family: FAMILY[slug] ?? "other",
+  strictBilling: STRICT_BILLING.has(slug),
   status: "active",
   demoStartYear,
   wiki: Array.isArray(wiki) ? wiki : [wiki],
@@ -36,8 +77,7 @@ const h = (
 });
 
 /**
- * Master hero registry candidates, subject to lead-credit and title verification.
- * Actors from other industries qualify only through titles released in Telugu.
+ * Master hero registry: Telugu film heroes, subject to lead-credit verification.
  * Panja Vaisshnav Tej is deliberately excluded by editorial decision and must
  * not be added without a new editorial decision recorded in the change log.
  */
@@ -72,19 +112,18 @@ export const INITIAL_ROSTER: RosterCandidate[] = [
   h("sunil", "Sunil", "telugu", 2010, ["Sunil (actor)", "Sunil (Telugu actor)"]),
   h("sharwanand", "Sharwanand", "telugu", 2004, "Sharwanand"),
   h("nithiin", "Nithiin", "telugu", 2002, "Nithiin"),
-  h("siddharth", "Siddharth", "tamil", 2003, "Siddharth (actor)"),
   h("navdeep", "Navdeep", "telugu", 2004, "Navdeep"),
   h("ram-pothineni", "Ram Pothineni", "telugu", 2006, "Ram Pothineni"),
   h("varun-sandesh", "Varun Sandesh", "telugu", 2007, "Varun Sandesh"),
   h("nikhil-siddhartha", "Nikhil Siddhartha", "telugu", 2007, "Nikhil Siddhartha"),
-  h("sushanth", "Sushanth", "telugu", 2008, "Sushanth (actor)"),
+  h("sushanth", "Sushanth", "telugu", 2008, ["Sushanth", "Sushanth (actor)"]),
   h("nani", "Nani", "telugu", 2008, "Nani (actor)"),
   h("naga-chaitanya", "Naga Chaitanya", "telugu", 2009, "Naga Chaitanya"),
   h("nara-rohit", "Nara Rohit", "telugu", 2009, "Nara Rohit"),
   h("rana-daggubati", "Rana Daggubati", "telugu", 2010, "Rana Daggubati"),
   h("adivi-sesh", "Adivi Sesh", "telugu", 2010, "Adivi Sesh"),
   h("sundeep-kishan", "Sundeep Kishan", "telugu", 2010, "Sundeep Kishan"),
-  h("naga-shaurya", "Naga Shaurya", "telugu", 2011, "Naga Shaurya"),
+  h("naga-shaurya", "Naga Shaurya", "telugu", 2011, ["Naga Shaurya", "Naga Shourya"]),
   h("aadi-saikumar", "Aadi Saikumar", "telugu", 2011, ["Aadi Saikumar", "Aadi (Telugu actor)", "Aadi (actor)"]),
   h("naveen-chandra", "Naveen Chandra", "telugu", 2011, "Naveen Chandra"),
   h("siddhu-jonnalagadda", "Siddhu Jonnalagadda", "telugu", 2011, "Siddhu Jonnalagadda"),
@@ -102,7 +141,7 @@ export const INITIAL_ROSTER: RosterCandidate[] = [
   h("akhil-akkineni", "Akhil Akkineni", "telugu", 2015, "Akhil Akkineni"),
   h("santosh-sobhan", "Santosh Sobhan", "telugu", 2015, "Santosh Sobhan"),
   h("vishwak-sen", "Vishwak Sen", "telugu", 2017, "Vishwak Sen"),
-  h("karthikeya", "Karthikeya Gummakonda", "telugu", 2017, "Karthikeya Gummakonda"),
+  h("karthikeya", "Kartikeya Gummakonda", "telugu", 2017, ["Kartikeya Gummakonda", "Karthikeya Gummakonda", "Kartikeya (actor)"]),
   h("kalyaan-dhev", "Kalyaan Dhev", "telugu", 2018, "Kalyaan Dhev"),
   h("kiran-abbavaram", "Kiran Abbavaram", "telugu", 2019, "Kiran Abbavaram"),
   h("teja-sajja", "Teja Sajja", "telugu", 2019, "Teja Sajja"),
@@ -112,40 +151,12 @@ export const INITIAL_ROSTER: RosterCandidate[] = [
   h("sri-simha", "Sri Simha Koduri", "telugu", 2019, "Sri Simha Koduri"),
   h("suhas", "Suhas", "telugu", 2020, ["Suhas (actor)", "Suhas (Telugu actor)"]),
   h("thiruveer", "Thiruveer", "telugu", 2021, "Thiruveer"),
-  h("bellamkonda-ganesh", "Bellamkonda Ganesh", "telugu", 2022, "Bellamkonda Ganesh"),
+  h("bellamkonda-ganesh", "Bellamkonda Ganesh", "telugu", 2022, ["Bellamkonda Ganesh", "Ganesh Bellamkonda"]),
+  h("allu-sirish", "Allu Sirish", "telugu", 2013, "Allu Sirish"),
+  h("taraka-ratna", "Taraka Ratna", "telugu", 2002, ["Taraka Ratna", "Nandamuri Taraka Ratna"], { status: "review", demoEndYear: 2022 }),
+  h("srihari", "Srihari", "telugu", 2000, ["Srihari (actor)", "Srihari"], { status: "review", demoEndYear: 2013 }),
+  h("aadi-pinisetty", "Aadi Pinisetty", "telugu", 2006, "Aadi Pinisetty"),
   h("mouli-tanuj-prasanth", "Mouli Tanuj Prasanth", "telugu", 2025, "Mouli Tanuj Prasanth", { status: "review", demoFilmCount: 1 }),
-
-  // Tamil — through Telugu-dubbed / bilingual releases
-  h("rajinikanth", "Rajinikanth", "tamil", 2002, "Rajinikanth", { status: "living_legacy" }),
-  h("kamal-haasan", "Kamal Haasan", "tamil", 2000, "Kamal Haasan", { status: "living_legacy" }),
-  h("vijay", "Vijay", "tamil", 2004, "Vijay (actor)"),
-  h("ajith-kumar", "Ajith Kumar", "tamil", 2004, "Ajith Kumar"),
-  h("vikram", "Vikram", "tamil", 2003, "Vikram (actor)"),
-  h("suriya", "Suriya", "tamil", 2003, "Suriya"),
-  h("karthi", "Karthi", "tamil", 2007, "Karthi"),
-  h("vishal", "Vishal", "tamil", 2005, "Vishal (actor)"),
-  h("dhanush", "Dhanush", "tamil", 2010, "Dhanush"),
-  h("arya", "Arya", "tamil", 2009, "Arya (actor)"),
-  h("vijay-sethupathi", "Vijay Sethupathi", "tamil", 2016, "Vijay Sethupathi"),
-  h("sivakarthikeyan", "Sivakarthikeyan", "tamil", 2013, "Sivakarthikeyan"),
-
-  // Malayalam
-  h("mohanlal", "Mohanlal", "malayalam", 2008, "Mohanlal", { status: "living_legacy" }),
-  h("mammootty", "Mammootty", "malayalam", 2008, "Mammootty", { status: "living_legacy" }),
-  h("dulquer-salmaan", "Dulquer Salmaan", "malayalam", 2012, "Dulquer Salmaan"),
-  h("prithviraj", "Prithviraj Sukumaran", "malayalam", 2012, "Prithviraj Sukumaran"),
-  h("fahadh-faasil", "Fahadh Faasil", "malayalam", 2017, "Fahadh Faasil"),
-
-  // Kannada
-  h("sudeep", "Kichcha Sudeep", "kannada", 2012, ["Sudeep", "Kichcha Sudeep"]),
-  h("upendra", "Upendra", "kannada", 2002, "Upendra (actor)"),
-  h("yash", "Yash", "kannada", 2018, "Yash (actor)"),
-  h("rishab-shetty", "Rishab Shetty", "kannada", 2022, "Rishab Shetty"),
-
-  // Hindi
-  h("shah-rukh-khan", "Shah Rukh Khan", "hindi", 2013, "Shah Rukh Khan"),
-  h("hrithik-roshan", "Hrithik Roshan", "hindi", 2006, "Hrithik Roshan"),
-  h("ranbir-kapoor", "Ranbir Kapoor", "hindi", 2016, "Ranbir Kapoor"),
 ];
 
 /** Names that must never appear in the seed roster without a new editorial decision. */

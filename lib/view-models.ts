@@ -18,6 +18,8 @@ export interface HeroView {
   name: string;
   photo: string | null;
   industry: Industry;
+  family: string;
+  debutYear: number | null;
   isEmerging: boolean;
   careerFilms: number;
   eligible: number;
@@ -36,7 +38,7 @@ export interface HeroView {
 }
 
 export interface DataMeta {
-  mode: "demo" | "live";
+  mode: "demo" | "live" | "real";
   asOf: string;
   calculatedAt: string | null;
   methodologyId: string;
@@ -47,7 +49,7 @@ export interface DashboardData extends DataMeta {
   windows: Record<FilterWindow, HeroView[]>;
 }
 
-export function toHeroView(s: HeroSnapshot): HeroView {
+export function toHeroView(s: HeroSnapshot, person?: { family?: string; debutYear?: number | null }): HeroView {
   const m = Object.fromEntries(
     Object.entries(s.metrics).map(([k, r]) => [
       k,
@@ -59,6 +61,8 @@ export function toHeroView(s: HeroSnapshot): HeroView {
     name: s.name,
     photo: heroPhoto(s.slug),
     industry: s.industry,
+    family: person?.family ?? "other",
+    debutYear: person?.debutYear ?? s.firstYear,
     isEmerging: s.isEmerging,
     careerFilms: s.careerFilmCount,
     eligible: s.eligibleFilmCount,

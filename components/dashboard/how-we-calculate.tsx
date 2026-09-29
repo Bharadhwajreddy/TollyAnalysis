@@ -15,7 +15,7 @@ function Item({ q, children, open = false }: { q: string; children: ReactNode; o
 }
 
 /** Plain-language explanation of every number, shown at the end of the page. */
-export function HowWeCalculate({ m, mode }: { m: MethodologyVersion; mode: "demo" | "live" }) {
+export function HowWeCalculate({ m, mode }: { m: MethodologyVersion; mode: "demo" | "live" | "real" }) {
   const w = m.filmScoreWeights;
   const hw = m.heroScoreWeights;
   return (
@@ -23,6 +23,24 @@ export function HowWeCalculate({ m, mode }: { m: MethodologyVersion; mode: "demo
       <h2 id="how-title" className="font-serif text-2xl font-bold text-ink">How we calculate everything</h2>
       <p className="mt-1 text-sm text-ink-2">Every number on this page, explained in plain words. Tap a question to open it.</p>
       <div className="mt-3">
+        {mode === "real" && (
+          <Item q="Where does this data come from?" open>
+            <p>
+              <strong>Real, public sources.</strong> Each hero&apos;s films come from his Wikipedia filmography. Release dates, budgets, worldwide
+              box-office grosses and box-office verdicts come from each film&apos;s Wikipedia article. Film IDs, languages, runtimes and recorded X (Twitter)
+              follower counts come from Wikidata. Photos come from Wikimedia Commons. Every film links back to its source.
+            </p>
+            <p>
+              A film counts for a hero only if he is <strong>billed first</strong> in the film&apos;s cast list, or billed right after another hero (a
+              genuine two-hero film). Cameos, voice roles, supporting roles, other-language films and unreleased films are left out and listed on
+              each hero&apos;s page. This is automatic and may contain mistakes. Please use “Suggest a correction”.
+            </p>
+            <p>
+              Not yet available: audience ratings (needs a free TMDb key or a licensed IMDb source) and current Instagram follower counts (needs Meta&apos;s
+              official API). X follower counts are the latest dated values on Wikidata, mostly from early 2023.
+            </p>
+          </Item>
+        )}
         {mode === "demo" && (
           <Item q="Is this real data?" open>
             <p>
@@ -42,22 +60,36 @@ export function HowWeCalculate({ m, mode }: { m: MethodologyVersion; mode: "demo
           <p>Tamil, Malayalam, Kannada and Hindi heroes appear only through films that were released in Telugu.</p>
         </Item>
         <Item q="What is a “hit”?">
-          <p>Every film gets a <strong>film score out of 100</strong>, made from:</p>
+          <p>
+            A film is a <strong>hit</strong> when its worldwide gross is at least <strong>2× its budget</strong> (roughly the point where producers
+            and distributors make money). <strong>Blockbuster</strong> = 3× or more, <strong>Average</strong> = 1–2×, <strong>Flop</strong> = less than
+            1×. If the budget or gross isn&apos;t reported, we use the verdict written in the film&apos;s Wikipedia article (for example “was a
+            commercial success” or “was a box-office bomb”).
+          </p>
+          <p>Films with neither are “result unknown” and are left out of the success ratio. They are never counted as flops.</p>
+          <p>For the combined overall score, every film also gets a <strong>film score out of 100</strong>, made from:</p>
           <ul className="list-disc pl-5">
             <li>{Math.round(w.audience * 100)}% — how audiences rated it (ratings with few votes count less)</li>
             <li>{Math.round(w.commercialPlatform * 100)}% — box-office result in Telugu, or the OTT result for OTT films</li>
             <li>{Math.round(w.evidenceQuality * 100)}% — how solid the evidence is (more and better sources = higher)</li>
             <li>{Math.round(w.legacy * 100)}% — lasting popularity or cult status, when an editor has reviewed it</li>
           </ul>
-          <p>A film with a score of <strong>{m.successThreshold} or more is a hit</strong>.</p>
+          <p>Missing parts are skipped and the remaining weights are scaled up.</p>
         </Item>
         <Item q="Success ratio, hits and recent success">
           <p><strong>Hits</strong> = number of hit films. <strong>Success ratio</strong> = hits ÷ films that have enough data to judge, as a percentage.</p>
           <p><strong>Recent success</strong> = the same ratio for the latest {m.momentumWindow} films only.</p>
           <p>Films without enough data are left out of the ratio. They are never counted as flops.</p>
         </Item>
+        <Item q="Box-office money numbers">
+          <p>
+            <strong>Total box office</strong>, <strong>biggest film</strong> and <strong>₹100-crore films</strong> use the worldwide gross reported on
+            Wikipedia, in ₹ crore, across all languages. When a range is given (e.g. ₹600–650 crore), we use the lower number. Films without a reported
+            gross are simply not added.
+          </p>
+        </Item>
         <Item q="Audience rating">
-          <p>The simple average of the audience ratings (out of 10) of the hero&apos;s films. These are whole-film ratings from rating sites, not a Telugu-only rating.</p>
+          <p>The simple average of the audience ratings (out of 10) of the hero&apos;s films. Shown only once a ratings source is connected.</p>
         </Item>
         <Item q="Films, most films in a year, gap between films">
           <p><strong>Films</strong> = number of counted films. <strong>Most films in one year</strong> = the busiest calendar year.</p>
@@ -82,9 +114,11 @@ export function HowWeCalculate({ m, mode }: { m: MethodologyVersion; mode: "demo
           <p>It is the <strong>best trade-off line</strong> (also called a Pareto line). It joins the heroes nobody else beats on both axes at once. Heroes on the line are the best balance of the two things you chose.</p>
           <p>Use the “Across” and “Up” menus above each chart to change what is compared.</p>
         </Item>
-        <Item q="Where does the data come from?">
-          <p>Film details: TMDb. Ratings: licensed sources only. IMDb is never scraped. Box office: trade reports reviewed by an editor, with every claim kept. Social media: official profiles only. Critic reviews are not used.</p>
-          <p>Hero photos: Wikimedia Commons, under free licences. See photo credits.</p>
+        <Item q="Colours">
+          <p>
+            <strong>Debut era</strong> colours heroes by the year of their first lead role. <strong>Film family</strong> colours the Mega, Nandamuri,
+            Akkineni, Daggubati, Ghattamaneni and Manchu families; everyone else is grey. Tap a colour in a legend to hide that group.
+          </p>
         </Item>
       </div>
       <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm">

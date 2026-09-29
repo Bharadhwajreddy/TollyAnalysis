@@ -138,7 +138,7 @@ describe("commercial score", () => {
 
 describe("calculateFilmSuccessScore", () => {
   const audience = { score: 70, adjustedRating: 7.2, rawRating: 7.5, voteCount: 9000, confidenceWeight: 0.78, provider: "tmdb" as const };
-  const commercial = { score: 80, basis: "trade_verdict" as const, confidence: "high" as const, disputed: false, ignoredAllLanguageOnly: false, reason: "" };
+  const commercial = { score: 80, basis: "trade_verdict" as const, confidence: "high" as const, disputed: false, ignoredAllLanguageOnly: false, reason: "", label: "hit" as const, grossCrore: null, budgetCrore: null, multiple: null };
   const base = { evidenceQuality: 80, legacyStatus: "none" as const, releaseDate: "2020-01-01", asOf: AS_OF, methodology: M };
 
   it("applies the 35/35/20/10 weights", () => {

@@ -6,14 +6,19 @@ import { formatMetric, METRICS } from "@/lib/constants/metrics";
 import type { HeroView } from "@/lib/view-models";
 import { HeroAvatar } from "@/components/hero/hero-avatar";
 
-const COLUMNS: HeroMetricKey[] = [
+const ALL_COLUMNS: HeroMetricKey[] = [
   "films",
   "hits",
   "overallSuccessRatio",
+  "blockbusters",
+  "totalGross",
+  "topGross",
+  "bigFilms",
   "avgRating",
   "recentSuccessRatio",
   "peakFilms",
   "releaseGap",
+  "xFollowers",
   "hpi",
 ];
 
@@ -23,14 +28,18 @@ type SortKey = HeroMetricKey | "name";
 export function HeroTable({
   heroes,
   selected,
+  colorOf,
   onActivate,
   csvMeta,
 }: {
   heroes: HeroView[];
   selected: string | null;
+  colorOf?: (h: HeroView) => string;
   onActivate: (slug: string) => void;
   csvMeta: { mode: string; methodologyId: string; window: string };
 }) {
+  // Only show columns that have data for at least one hero.
+  const COLUMNS = ALL_COLUMNS.filter((k) => heroes.some((h) => h.m[k].v !== null));
   const [sort, setSort] = useState<{ key: SortKey; desc: boolean }>({ key: "overallSuccessRatio", desc: true });
 
   const rows = useMemo(() => {
@@ -83,7 +92,7 @@ export function HeroTable({
         </button>
       </div>
       <div className="scroll-x -mx-4 border-y border-line sm:mx-0 sm:rounded-lg sm:border">
-        <table className="w-full min-w-[900px] border-collapse text-[13px]">
+        <table className="w-full min-w-[1100px] border-collapse text-[13px]">
           <thead className="bg-surface-2">
             <tr>
               <th scope="col" className="w-10 border-b border-line px-2 py-2 text-right text-[11px] font-semibold text-ink-2">#</th>
@@ -110,7 +119,7 @@ export function HeroTable({
                   <td className="tabular px-2 py-1.5 text-right text-muted">{i + 1}</td>
                   <td className={`sticky left-0 z-[1] px-3 py-1.5 ${isSel ? "bg-wine-soft" : "bg-surface"}`}>
                     <span className="flex items-center gap-2 whitespace-nowrap font-medium text-ink">
-                      <HeroAvatar name={h.name} photo={h.photo} industry={h.industry} size={28} />
+                      <HeroAvatar name={h.name} photo={h.photo} industry={h.industry} color={colorOf?.(h)} size={28} />
                       {h.name}
                       {h.isEmerging && <span className="rounded bg-teal-soft px-1 text-[10px] font-semibold text-[#00596a]">NEW</span>}
                     </span>

@@ -9,6 +9,18 @@
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { INITIAL_ROSTER } from "@/lib/constants/roster";
 
+/** Commons files found by manual search for heroes without a Wikipedia/Wikidata portrait. */
+const EXTRA_FILES: Record<string, string> = {
+  "kalyaan-dhev": "Kalyaan_dhev.jpg",
+};
+
+function wikidataImage(slug: string): string | null {
+  if (!existsSync("lib/data/real/snapshot.json")) return null;
+  const snap = JSON.parse(readFileSync("lib/data/real/snapshot.json", "utf8")) as { heroes: { slug: string; image: string | null }[] };
+  const url = snap.heroes.find((h) => h.slug === slug)?.image;
+  return url ? decodeURIComponent(url.split("Special:FilePath/")[1] ?? "").replace(/ /g, "_") || null : null;
+}
+
 const UA = "TollywoodAnalysis/0.1 (https://github.com/Bharadhwajreddy/TollyAnalysis)";
 const OUT = "lib/data/hero-photos.json";
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -88,8 +100,32 @@ async function main() {
       await sleep(1200);
       break;
     }
+    // Fallbacks: the Wikidata image (P18), then a manually found Commons file.
+    const file = !done && !credits[hero.slug] ? (wikidataImage(hero.slug) ?? EXTRA_FILES[hero.slug] ?? null) : null;
+    if (file) {
+      const img = await get(`https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}?width=330`);
+      if (img.ok) {
+        writeFileSync(`public/heroes/${hero.slug}.jpg`, Buffer.from(await img.arrayBuffer()));
+        const raw = await (await get(`https://commons.wikimedia.org/wiki/File:${encodeURIComponent(file)}?action=raw`)).text();
+        const author = /\|\s*[Aa]uthor\s*=\s*(.+)/.exec(raw)?.[1] ?? "Unknown";
+        credits[hero.slug] = {
+          file: `/heroes/${hero.slug}.jpg`,
+          page: `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(file)}`,
+          author: stripWiki(author).slice(0, 120) || "Unknown",
+          license: parseLicense(raw),
+          wikiTitle: "Wikidata image (P18)",
+          description: "",
+        };
+        console.log(`✓ ${hero.slug} ← ${file} (fallback, ${credits[hero.slug].license})`);
+        done = true;
+        await sleep(1200);
+      }
+    }
     if (!done && !credits[hero.slug]) console.log(`· ${hero.slug}: no free portrait found (initials avatar will be used)`);
   }
+  // Drop photos of heroes no longer in the roster.
+  const slugs = new Set(INITIAL_ROSTER.map((h) => h.slug));
+  for (const k of Object.keys(credits)) if (!slugs.has(k)) delete credits[k];
   writeFileSync(OUT, JSON.stringify(credits, null, 2) + "\n");
   console.log(`Saved ${Object.keys(credits).length} credits to ${OUT}`);
 }

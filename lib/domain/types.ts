@@ -74,6 +74,11 @@ export interface Person {
   tmdbPersonId: number | null;
   wikidataId: string | null;
   imdbNameId: string | null;
+  /** Tollywood film family (for colour grouping). */
+  family?: string;
+  /** Year of first lead role (any year, including before 2000). */
+  debutYear?: number | null;
+  wikiArticle?: string | null;
 }
 
 export interface TeluguRelease {
@@ -97,6 +102,23 @@ export interface Film {
   tmdbMovieId: number | null;
   imdbTitleId: string | null;
   isDemo: boolean;
+  /** Extra facts shown on hero pages (real mode). */
+  details?: FilmDetails;
+}
+
+export interface FilmDetails {
+  wikiArticle: string | null;
+  wikidataId: string | null;
+  director: string | null;
+  music: string | null;
+  runtimeMin: number | null;
+  genres: string[];
+  languages: string[];
+  dateApproximate: boolean;
+  budgetText: string | null;
+  grossText: string | null;
+  verdictSentence: string | null;
+  billing: string | null;
 }
 
 export interface Credit {
@@ -132,7 +154,9 @@ export type CommercialMetricType =
   | "platform_top10"
   | "trade_verdict"
   | "platform_outcome_band"
-  | "synthetic_outcome_score";
+  | "synthetic_outcome_score"
+  | "worldwide_gross"
+  | "production_budget";
 
 export type VersionScope =
   | "telugu_original"
@@ -208,7 +232,7 @@ export interface ChangeLogEntry {
 }
 
 export interface Dataset {
-  mode: "demo" | "live";
+  mode: "demo" | "live" | "real";
   asOf: string;
   sources: Source[];
   people: Person[];

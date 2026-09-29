@@ -4,7 +4,7 @@ test.describe("Heroes dashboard", () => {
   test("opens on one scrolling page with photo leaderboard first and no top tabs", async ({ page }) => {
     await page.goto("/");
     await expect(page.getByRole("heading", { level: 1 })).toContainText("heroes, compared");
-    await expect(page.getByText("DEMO DATA").first()).toBeVisible();
+    await expect(page.getByText(/REAL DATA/).first()).toBeVisible();
     await expect(page.locator("header nav")).toHaveCount(0);
     const titles = await page.locator("section h2").allTextContents();
     expect(titles[0]).toContain("Success ratio");
@@ -15,11 +15,17 @@ test.describe("Heroes dashboard", () => {
     await expect(page.getByText("Panja Vaisshnav Tej")).toHaveCount(0);
   });
 
-  test("newcomer toggle reveals 1–2 film heroes", async ({ page }) => {
+  test("newcomer toggle never hides anyone already shown", async ({ page }) => {
     await page.goto("/");
-    await expect(page.locator("#table").getByText("Mouli Tanuj Prasanth")).toHaveCount(0);
+    const before = await page.locator("#table tbody tr").count();
     await page.getByRole("switch").click();
-    await expect(page.locator("#table").getByText("Mouli Tanuj Prasanth")).toBeVisible();
+    expect(await page.locator("#table tbody tr").count()).toBeGreaterThanOrEqual(before);
+  });
+
+  test("colour can switch to film families", async ({ page }) => {
+    await page.goto("/");
+    await page.getByRole("radio", { name: "Film family" }).click();
+    await expect(page.locator("#leaderboard")).toContainText("Mega family");
   });
 
   test("search filters every chart and the table", async ({ page }) => {
@@ -32,8 +38,8 @@ test.describe("Heroes dashboard", () => {
   test("Pareto axes can be changed", async ({ page }) => {
     await page.goto("/");
     const card = page.locator("#pareto-1");
-    await card.getByRole("combobox").nth(1).selectOption("avgRating");
-    await expect(card).toContainText("Average audience rating (out of 10)");
+    await card.getByRole("combobox").nth(1).selectOption("totalGross");
+    await expect(card).toContainText("Total box office (₹ crore)");
   });
 
   test("double-tapping a hero opens his page", async ({ page }) => {
@@ -47,7 +53,7 @@ test.describe("Heroes dashboard", () => {
     await row.dblclick();
     await expect(page).toHaveURL(/\/hero\//);
     await expect(page.getByRole("heading", { level: 1 })).toContainText(name);
-    await expect(page.getByRole("heading", { name: /All films/ })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Every film/ })).toBeVisible();
   });
 
   test("fan ranking stays hidden unless switched on", async ({ page, request }) => {
@@ -59,15 +65,17 @@ test.describe("Heroes dashboard", () => {
 
 test.describe("Other views", () => {
   test("compare two heroes", async ({ page }) => {
-    await page.goto("/compare?heroes=nani,suriya");
+    await page.goto("/compare?heroes=nani,prabhas");
     await expect(page.getByRole("heading", { name: "Side-by-side detail" })).toBeVisible();
-    await expect(page.locator("table")).toContainText("Suriya");
+    await expect(page.locator("table")).toContainText("Prabhas");
   });
 
-  test("annexure hero detail lists fictional demo titles", async ({ page }) => {
-    await page.goto("/annexure/heroes/nani");
-    await expect(page.getByRole("heading", { name: "Filmography and film-level evidence" })).toBeVisible();
-    await expect(page.getByText("FICTIONAL").first()).toBeVisible();
+  test("hero page shows all statistics and every film with sources", async ({ page }) => {
+    await page.goto("/hero/prabhas");
+    await expect(page.getByRole("heading", { name: "All statistics" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Every film/ })).toBeVisible();
+    await expect(page.locator("section:has(#films)")).toContainText("Baahubali 2: The Conclusion");
+    await expect(page.getByRole("link", { name: "Wikipedia" }).first()).toBeVisible();
   });
 
   test("correction form validates and submits privately", async ({ page }) => {

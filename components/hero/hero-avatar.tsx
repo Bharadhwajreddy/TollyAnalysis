@@ -19,6 +19,7 @@ export function HeroAvatar({
   industry,
   size = 32,
   ring = true,
+  color: colorProp,
   className = "",
 }: {
   name: string;
@@ -26,9 +27,11 @@ export function HeroAvatar({
   industry: Industry;
   size?: number;
   ring?: boolean;
+  /** Ring / placeholder colour; defaults to the industry colour. */
+  color?: string;
   className?: string;
 }) {
-  const color = INDUSTRY_COLOR[industry];
+  const color = colorProp ?? INDUSTRY_COLOR[industry];
   return (
     <span
       className={`relative inline-grid shrink-0 place-items-center overflow-hidden rounded-full bg-surface-2 ${className}`}

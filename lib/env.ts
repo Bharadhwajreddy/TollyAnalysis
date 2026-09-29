@@ -6,7 +6,7 @@ const flag = z
   .transform((v) => v === "true" || v === "1");
 
 const serverSchema = z.object({
-  NEXT_PUBLIC_DATA_MODE: z.enum(["demo", "live"]).default("demo"),
+  NEXT_PUBLIC_DATA_MODE: z.enum(["real", "demo", "live"]).default("real"),
   DATABASE_URL: z.string().url().optional().or(z.literal("").transform(() => undefined)),
   ADMIN_TOKEN: z.string().min(16).optional().or(z.literal("").transform(() => undefined)),
   TMDB_API_READ_TOKEN: z.string().optional(),
@@ -34,5 +34,11 @@ export function serverEnv(): ServerEnv {
   return cached;
 }
 
-/** Safe to use on the client: only the public data-mode flag. */
-export const DATA_MODE: "demo" | "live" = process.env.NEXT_PUBLIC_DATA_MODE === "live" ? "live" : "demo";
+/**
+ * Safe to use on the client: only the public data-mode flag.
+ * - real (default): Wikipedia/Wikidata snapshot bundled with the app
+ * - demo: synthetic data for layout testing
+ * - live: Postgres database
+ */
+export const DATA_MODE: "real" | "demo" | "live" =
+  process.env.NEXT_PUBLIC_DATA_MODE === "live" ? "live" : process.env.NEXT_PUBLIC_DATA_MODE === "demo" ? "demo" : "real";

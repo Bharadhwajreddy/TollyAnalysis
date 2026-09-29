@@ -3,35 +3,23 @@
 import type { HeroMetricKey } from "@/lib/calculations/engine";
 import { INDUSTRY_COLOR } from "@/lib/constants/colors";
 import { formatMetric, INDUSTRY_LABEL, METRICS } from "@/lib/constants/metrics";
+import type { Group } from "@/lib/constants/groups";
 import type { Industry } from "@/lib/domain/types";
 import type { HeroView } from "@/lib/view-models";
-import { ConfidenceBadge } from "@/components/ui/badges";
 import { HeroAvatar } from "@/components/hero/hero-avatar";
 
-/** True when a hero has a value and enough films behind it to be ranked on `key`. */
-export function rankable(h: HeroView, key: HeroMetricKey): boolean {
-  const mv = h.m[key];
-  return mv.v !== null && mv.n >= (METRICS[key].minSample ?? 0);
-}
+export { rankable, rankBy } from "@/lib/ranking";
 
-/** Rankable heroes for `key`, best first (ascending for lower-is-better metrics). */
-export function rankBy(heroes: HeroView[], key: HeroMetricKey): HeroView[] {
-  const dir = METRICS[key].higherIsBetter ? -1 : 1;
-  return heroes
-    .filter((h) => rankable(h, key))
-    .sort((a, b) => dir * ((a.m[key].v as number) - (b.m[key].v as number)) || a.name.localeCompare(b.name));
-}
-
-export function MetricTooltip({ hero, metric }: { hero: HeroView; metric: HeroMetricKey }) {
+export function MetricTooltip({ hero, metric, color }: { hero: HeroView; metric: HeroMetricKey; color?: string }) {
   const mv = hero.m[metric];
   const meta = METRICS[metric];
   return (
     <div className="space-y-1.5">
       <div className="flex items-center gap-2">
-        <HeroAvatar name={hero.name} photo={hero.photo} industry={hero.industry} size={34} />
+        <HeroAvatar name={hero.name} photo={hero.photo} industry={hero.industry} color={color} size={34} />
         <span>
           <span className="block font-semibold text-ink">{hero.name}</span>
-          <span className="text-muted">{INDUSTRY_LABEL[hero.industry]} · {hero.eligible} films</span>
+          <span className="text-muted">{hero.eligible} films since 2000{hero.debutYear ? ` · debut ${hero.debutYear}` : ""}</span>
         </span>
       </div>
       <div className="flex items-baseline justify-between gap-2">
@@ -45,7 +33,6 @@ export function MetricTooltip({ hero, metric }: { hero: HeroView; metric: HeroMe
         <span className="text-muted">
           Based on {mv.n} of {mv.d}{mv.s === "low_sample" && <span className="ml-1 font-medium text-warn">· small sample</span>}
         </span>
-        <ConfidenceBadge grade={hero.confidence} compact />
       </div>
     </div>
   );
@@ -93,6 +80,32 @@ export function IndustryLegend({
         );
       })}
       <li className="text-muted">Ring colour = hero&apos;s home industry (other-language heroes count only through films released in Telugu)</li>
+    </ul>
+  );
+}
+
+/** Clickable colour legend (tap a group to hide/show it), like the maker legend on benchmark sites. */
+export function GroupLegend({ groups, hidden, onToggle, note }: { groups: Group[]; hidden: Set<string>; onToggle: (key: string) => void; note: string }) {
+  return (
+    <ul className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-ink-2" aria-label="Colour legend">
+      {groups.map((g) => {
+        const off = hidden.has(g.key);
+        return (
+          <li key={g.key}>
+            <button
+              type="button"
+              aria-pressed={!off}
+              onClick={() => onToggle(g.key)}
+              className="inline-flex items-center gap-1.5 rounded px-1 py-0.5 hover:bg-surface-2"
+              title={`${off ? "Show" : "Hide"} ${g.label}`}
+            >
+              <span aria-hidden className="h-2.5 w-2.5 rounded-sm" style={{ background: off ? "transparent" : g.color, boxShadow: `inset 0 0 0 1.5px ${g.color}` }} />
+              <span className={off ? "line-through opacity-60" : ""}>{g.label}</span>
+            </button>
+          </li>
+        );
+      })}
+      <li className="text-muted">{note}</li>
     </ul>
   );
 }
