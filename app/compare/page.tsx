@@ -12,7 +12,7 @@ export default async function ComparePage(props: PageProps<"/compare">) {
   const initial = raw
     ? raw.split(",").map((s) => s.trim()).filter(Boolean).slice(0, 4)
     : data.windows.all_time
-        .filter((h) => !h.isEmerging && h.m.hpi.v !== null)
+        .filter((h) => !h.isEmerging && h.m.starScore.v !== null)
         .sort((a, b) => (b.m.hpi.v as number) - (a.m.hpi.v as number))
         .slice(0, 2)
         .map((h) => h.slug);

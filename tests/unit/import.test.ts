@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { classifyRole, classifyVerdict, looksUnreleased } from "@/lib/import/classify";
+import { classifyRole, looksUnreleased } from "@/lib/import/classify";
 import { croreToMinor, parseCrore } from "@/lib/import/money";
 import { firstLink, infoboxField, parseWikitables, plainText } from "@/lib/import/wikitext";
 
@@ -68,18 +68,5 @@ describe("filmography parsing", () => {
     const box = "{{Infobox film\n| name = X\n| budget = {{INR|170}} crore<ref>{{cite web|url=a|title=b}}</ref>\n| gross = ₹600 crore\n}}";
     expect(infoboxField(box, "budget")).toContain("{{INR|170}} crore");
     expect(infoboxField(box, "gross")).toBe("₹600 crore");
-  });
-});
-
-describe("verdict classification", () => {
-  it("reads box-office verdict sentences, ignoring songs", () => {
-    expect(classifyVerdict("The song became a chartbuster hit. The film was a commercial success at the box office.")?.verdict).toBe("hit");
-    expect(classifyVerdict("The film was declared a blockbuster and grossed ₹100 crore.")?.verdict).toBe("blockbuster");
-    expect(classifyVerdict("It was a box-office bomb.")?.verdict).toBe("disaster");
-    expect(classifyVerdict("The film failed at the box office.")?.verdict).toBe("flop");
-    expect(classifyVerdict("Critics praised the performances.")).toBeNull();
-    expect(classifyVerdict("We made a profit and Nijam was not a flop.")).toBeNull();
-    expect(classifyVerdict("It's a remake of Tamil blockbuster Kaadhal Kondein.")).toBeNull();
-    expect(classifyVerdict("It emerged as a box office bomb, though it became the second-highest grossing Telugu film of 2023.")?.verdict).toBe("disaster");
   });
 });

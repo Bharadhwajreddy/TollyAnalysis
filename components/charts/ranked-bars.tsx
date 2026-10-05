@@ -19,6 +19,8 @@ export interface BarDatum {
   selected?: boolean;
   /** Visual marker for small samples (hatched end). */
   lowSample?: boolean;
+  /** Competition rank label, e.g. "#1" or "#1 tie". */
+  rank?: string;
   tooltip: ReactNode;
 }
 
@@ -79,8 +81,10 @@ function Columns({
   const plotH = 250;
   const band = (width - left - right) / data.length;
   const r = Math.max(11, Math.min(18, band * 0.3));
+  // Names sit under the photo on up to two lines, then the rank.
+  const wrap = band >= 64;
   const longest = Math.max(...data.map((d) => d.label.length));
-  const labelBand = r * 2 + 16 + Math.min(110, 12 + longest * 5.4);
+  const labelBand = wrap ? r * 2 + 16 + 46 : r * 2 + 16 + Math.min(110, 12 + longest * 5.4);
   const height = top + plotH + labelBand;
   const barW = Math.min(30, band * 0.62);
   const y = (v: number) => top + plotH - (Math.max(0, v) / max) * plotH;
@@ -157,13 +161,28 @@ function Columns({
               {d.display}
             </text>
             <SvgAvatar cx={cx} cy={avatarY} r={r} photo={d.photo} name={d.label} color={d.color} selected={d.selected} />
-            <text
-              transform={`translate(${cx + 3},${avatarY + r + 10}) rotate(-45)`}
-              textAnchor="end"
-              className={`text-[11.5px] ${d.selected ? "fill-[var(--wine)] font-bold" : "fill-[var(--ink-2)]"}`}
-            >
-              {d.label}
-            </text>
+            {wrap ? (
+              <text x={cx} y={avatarY + r + 15} textAnchor="middle" className={`text-[11.5px] ${d.selected ? "fill-[var(--wine)] font-bold" : "fill-[var(--ink-2)]"}`}>
+                {splitName(d.label).map((line, li) => (
+                  <tspan key={li} x={cx} dy={li === 0 ? 0 : 14}>
+                    {line}
+                  </tspan>
+                ))}
+                {d.rank && (
+                  <tspan x={cx} dy={splitName(d.label).length === 1 ? 30 : 16} className="fill-[var(--muted)] text-[10.5px]">
+                    {d.rank}
+                  </tspan>
+                )}
+              </text>
+            ) : (
+              <text
+                transform={`translate(${cx + 3},${avatarY + r + 10}) rotate(-45)`}
+                textAnchor="end"
+                className={`text-[11.5px] ${d.selected ? "fill-[var(--wine)] font-bold" : "fill-[var(--ink-2)]"}`}
+              >
+                {d.label}
+              </text>
+            )}
           </g>
         );
       })}
@@ -212,7 +231,9 @@ function Rows({
               style={{ gridTemplateColumns: `${nameCol}px 1fr auto` }}
             >
               <span className="flex min-w-0 items-center gap-2">
-                <span className="tabular w-5 shrink-0 text-right text-[11px] text-muted">{i + 1}</span>
+                <span className="tabular w-6 shrink-0 text-right text-[11px] text-muted" title={d.rank}>
+                  {d.rank ? d.rank.replace(" tie", "=") : `#${i + 1}`}
+                </span>
                 <HeroAvatar name={d.label} photo={d.photo} industry={d.industry} size={containerWidth < 520 ? 26 : 28} />
                 <span className={`line-clamp-2 text-[13px] leading-tight ${d.selected ? "font-bold text-wine" : "text-ink"}`} title={d.label}>
                   {d.label}
@@ -238,4 +259,12 @@ function Rows({
       })}
     </ol>
   );
+}
+
+/** "Allari Naresh" → ["Allari", "Naresh"]; long names keep at most two lines. */
+function splitName(name: string): string[] {
+  const parts = name.split(" ");
+  if (parts.length === 1) return [name];
+  const half = Math.ceil(parts.length / 2);
+  return [parts.slice(0, half).join(" "), parts.slice(half).join(" ")];
 }

@@ -118,6 +118,9 @@ export interface FilmDetails {
   budgetText: string | null;
   grossText: string | null;
   verdictSentence: string | null;
+  /** Where the film's result was read: English film article, hero article, Telugu Wikipedia or trade blog. */
+  verdictSource?: "wikipedia-film" | "wikipedia-hero" | "telugu-wikipedia" | "trade-blog" | null;
+  verdictUrl?: string | null;
   billing: string | null;
 }
 

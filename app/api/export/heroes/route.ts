@@ -18,16 +18,16 @@ export async function GET(req: Request) {
   const meta = await getMeta();
   const snaps = (await getHeroSnapshots(window, includeEmerging))
     .filter((s) => !q || s.name.toLowerCase().includes(q.toLowerCase()))
-    .sort((a, b) => (b.metrics.hpi.value ?? -1) - (a.metrics.hpi.value ?? -1));
+    .sort((a, b) => (b.metrics.starScore.value ?? -1) - (a.metrics.starScore.value ?? -1));
   const header = [
-    "hero", "industry", "eligible_lead_films", "overall_success_ratio_pct", "success_ratio_coverage", "hero_performance_index",
+    "hero", "industry", "eligible_lead_films", "star_score", "hit_films", "blockbusters", "total_gross_crore", "overall_success_ratio_pct", "success_ratio_coverage", "hero_performance_index",
     "audience_index", "consistency_index", "social_reach_index", "recent_momentum", "avg_release_gap_months", "peak_films_in_year",
     "films_per_active_year", "evidence_coverage_pct", "confidence", "window", "methodology_version", "calculated_at", "data_mode", "disclaimer",
   ];
   const disclaimer = meta.mode === "demo" ? "SYNTHETIC DEMO DATA - not real-world figures" : "Editorial benchmark; see methodology and source ledger";
   const rows = snaps.map((s) =>
     [
-      s.name, s.industry, s.eligibleFilmCount, s.metrics.overallSuccessRatio.value,
+      s.name, s.industry, s.eligibleFilmCount, s.metrics.starScore.value, s.metrics.hits.value, s.metrics.blockbusters.value, s.metrics.totalGross.value, s.metrics.overallSuccessRatio.value,
       `${s.metrics.overallSuccessRatio.coverage.numerator}/${s.metrics.overallSuccessRatio.coverage.denominator}`,
       s.metrics.hpi.value, s.metrics.audienceIndex.value, s.metrics.consistency.value, s.metrics.socialReach.value, s.metrics.momentum.value,
       s.metrics.releaseGap.value, s.metrics.peakFilms.value, s.metrics.filmsPerYear.value, s.evidenceCoveragePercent, s.confidence,

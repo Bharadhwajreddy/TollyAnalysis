@@ -25,6 +25,17 @@ export interface MetricMeta {
 export const MIN_SAMPLE_NOTE = (n: number) => `Only heroes with at least ${n} films with enough data are ranked.`;
 
 export const METRICS: Record<HeroMetricKey, MetricMeta> = {
+  starScore: {
+    key: "starScore",
+    label: "Star Score",
+    short: "Star Score",
+    unit: "/100",
+    decimals: 1,
+    higherIsBetter: true,
+    domainMax: 100,
+    definition:
+      "One number out of 100 that combines every KPI: success ratio 20%, hit films 15%, total box office 15%, blockbusters 10%, recent success 10%, social media reach 10%, biggest film 5%, box office per film 5%, films as lead 10% (fans' votes join at 5% when that is switched on). Missing parts are left out, never counted as zero; box-office parts need at least 3 films with a reported gross.",
+  },
   overallSuccessRatio: {
     key: "overallSuccessRatio",
     label: "Success ratio",
@@ -177,7 +188,7 @@ export const METRICS: Record<HeroMetricKey, MetricMeta> = {
     unit: "M",
     decimals: 1,
     higherIsBetter: true,
-    definition: "Followers on his official Instagram account (millions), as last recorded with a date.",
+    definition: "Followers on his official Instagram account (millions), as reported in the press with a date. Only heroes named in that report have a value.",
   },
   hpi: {
     key: "hpi",
@@ -238,7 +249,7 @@ export const METRICS: Record<HeroMetricKey, MetricMeta> = {
     decimals: 1,
     higherIsBetter: true,
     domainMax: 100,
-    definition: "Followers on official social media profiles, turned into a score out of 100. Not a fan count.",
+    definition: "Followers on his official X and Instagram accounts added up and put on a log scale: 10 thousand = 0, 100 million = 100. Not a fan count.",
   },
   momentum: {
     key: "momentum",
@@ -254,6 +265,7 @@ export const METRICS: Record<HeroMetricKey, MetricMeta> = {
 
 /** Metrics offered on the main leaderboard, simplest first. */
 export const LEADERBOARD_METRICS: HeroMetricKey[] = [
+  "starScore",
   "overallSuccessRatio",
   "hits",
   "blockbusters",
@@ -265,11 +277,12 @@ export const LEADERBOARD_METRICS: HeroMetricKey[] = [
   "peakFilms",
   "releaseGap",
   "xFollowers",
-  "hpi",
+  "igFollowers",
 ];
 
 /** Metrics that can be put on a Pareto chart axis. */
 export const AXIS_METRICS: HeroMetricKey[] = [
+  "starScore",
   "films",
   "hits",
   "overallSuccessRatio",
@@ -284,7 +297,6 @@ export const AXIS_METRICS: HeroMetricKey[] = [
   "filmsPerYear",
   "releaseGap",
   "yearsActive",
-  "hpi",
   "consistency",
   "socialReach",
 ];

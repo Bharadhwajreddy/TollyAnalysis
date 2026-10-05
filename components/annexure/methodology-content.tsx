@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { LEGACY_SCORE, PLATFORM_BAND_SCORE, TRADE_VERDICT_SCORE, type MethodologyVersion } from "@/lib/constants/methodology";
 import { METRICS } from "@/lib/constants/metrics";
+import { STAR_PARTS } from "@/lib/calculations/star";
 
 function Section({ id, title, children }: { id: string; title: string; children: ReactNode }) {
   return (
@@ -176,7 +177,22 @@ m = minimum-vote threshold = ${m.voteThresholdM.toLocaleString("en-IN")}`}</Form
         </p>
       </Section>
 
-      <Section id="hero-index" title="Hero Performance Index">
+      <Section id="star-score" title="Star Score (the headline number)">
+        <WeightTable rows={STAR_PARTS.map((p) => [`${p.label}${p.key === "fans" ? " (only when the fans' ranking is on)" : ""}`, p.weight / 100] as [string, number])} />
+        <Formula>{`part score  = percentile rank among the heroes compared (0–100)      for counts and money
+            = blended ratio × 100, (hits + p·k) / (judged + k)        success ratio k=5, recent k=2,
+                                                                     p = pooled hit rate of all heroes
+            = social reach index (log scale, see below)               for followers
+Star Score  = Σ weight × part score / Σ weight      over parts the hero has data for
+withheld when the parts with data carry < 50% of the weight
+money parts count only with ≥ 3 films, and ≥ 25% of films, having a reported gross`}</Formula>
+        <p>
+          The Star Score combines every KPI into one number for people who want a single ranking. Missing parts are never zero: their weight
+          is shared among the parts a hero has. Each hero page shows his Star Score part by part.
+        </p>
+      </Section>
+
+      <Section id="hero-index" title="Hero Performance Index (film-quality index, secondary)">
         <WeightTable
           rows={[
             ["Film Success Index", hw.filmSuccess],

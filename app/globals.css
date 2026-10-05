@@ -30,6 +30,9 @@
   --warn: #9a5b00;
   --bad: #b3261e;
   --focus: #0b6b7a;
+  /* Dark cinema panels (hero banners, footer). */
+  --night: #241a18;
+  --night-2: #3a1d22;
 }
 
 @theme inline {
@@ -49,6 +52,8 @@
   --color-good: var(--good);
   --color-warn: var(--warn);
   --color-bad: var(--bad);
+  --color-night: var(--night);
+  --color-night-2: var(--night-2);
   --font-sans: var(--font-dm-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-serif: var(--font-playfair), Georgia, serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
@@ -83,6 +88,38 @@ body {
   border: 1px solid var(--line);
   border-radius: 12px;
   box-shadow: 0 1px 2px rgba(35, 24, 21, 0.04);
+}
+
+/* Dark "cinema" panel: deep brown with a warm wine glow. */
+.cinema {
+  background:
+    radial-gradient(120% 90% at 85% 10%, rgba(163, 40, 79, 0.45), transparent 60%),
+    radial-gradient(80% 70% at 0% 100%, rgba(216, 168, 107, 0.16), transparent 60%),
+    linear-gradient(160deg, #2b1c1a 0%, #1b1211 100%);
+  color: #f3ebe4;
+}
+
+.section-kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--wine);
+}
+
+details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+details[open] > summary .when-closed {
+  display: none;
+}
+details:not([open]) > summary .when-open {
+  display: none;
 }
 
 .eyebrow {

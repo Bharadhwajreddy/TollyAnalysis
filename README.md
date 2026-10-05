@@ -27,11 +27,11 @@ npm run dev          # http://localhost:3000
 
 ## 2. What is in the app
 
-The home page is **one scrolling page with no tabs**: filters → headline numbers → photo leaderboard (success ratio, hit films, blockbusters, total box office, biggest film, ₹100-crore films, films, recent success, most films in a year, gap between films, X followers, overall score) → side-by-side top-10 charts → two **Pareto (best trade-off) charts** whose axes you can change (films vs. success ratio; average gross vs. success ratio) → a sortable table → (optional) fans' ranking → **“How we calculate everything”** at the end.
+A short top navigation (Overview, Heroes, Rankings, Compare, Trends, Inside the data) and **one scrolling overview page**: cinema banner with the top three heroes → filters → headline numbers → photo leaderboard (**Star Score** by default; success ratio, hits, blockbusters, total box office, plus "More measures") with tie-aware ranks → top-5 lists → career atlas → "Go deeper": two **Pareto (best trade-off) charts** with changeable axes and a "find a hero" list, plus collapsible box-office, release-pace, recent-form and career-reach sections → "Every hero, every metric" table with CSV → **“How we calculate everything”** and "About this snapshot".
 
 - Bars are coloured by **debut era** or by **film family** (Mega, Nandamuri, Akkineni, Daggubati, Ghattamaneni, Manchu, other); switch with *Colour by*, and tap a legend item to hide a group.
 - Every bar, dot and table row shows the hero's photo (free-licensed, from Wikimedia Commons; initials when none exists).
-- **Tap** a hero to highlight him everywhere; **double-tap / double-click** to open his own page (`/hero/<name>`): every statistic with his rank (box office, films and pace, audience and popularity, combined scores), highlights, a results bar, a year-by-year chart, comparison against the median hero, and a large sortable table of every film (result and the sentence it came from, worldwide gross, budget, gross ÷ budget, director, music, runtime, genre, language, billing, source links), plus the appearances that were not counted and why.
+- **Tap** a hero to highlight him everywhere; **double-tap / double-click** to open his own page (`/hero/<name>`): banner with his headline numbers, the **Star Score part by part**, highlights, career milestones, results bar, year-by-year chart, comparison against the median hero, every statistic with his rank, and a large sortable table of every film (result with its source, worldwide gross, budget, gross ÷ budget, director, music, runtime, genre, language, billing) where each row opens its evidence; plus the appearances that were not counted and why. `/heroes` lists every hero as a card.
 - Ratios and averages only rank heroes with at least 5 judged films, so a 3-for-3 newcomer can't top the chart.
 
 | Page | What it shows |
@@ -56,18 +56,29 @@ Visitors pick their top three heroes (3/2/1 points), one ballot per device (http
 `npm run data:import` rebuilds `lib/data/real/snapshot.json` (cached under `.cache/import`, gitignored):
 
 1. Exports each hero's Wikipedia article and "… filmography" page via `Special:Export` (bulk, polite, no HTML scraping) and parses the film tables. TV, web series, songs, cameos, voice roles, re-releases, unreleased and non-Telugu titles are dropped.
-2. Exports every film article and reads the infobox (release date, language, director, music, runtime, budget, gross) and the box-office prose for a verdict sentence ("declared a blockbuster", "box-office bomb"…).
-3. Enriches from Wikidata SPARQL: release dates (P577), languages, genres, runtime, IMDb ids (links only), hero portraits (P18) and recorded social-media follower counts (P8687).
-4. Keeps a credit only if the hero is billed first, or second/third right after another roster hero (co-lead). Character actors use strict billing. Editorial overrides live in `lib/constants/editorial.ts`.
+2. Exports every film article and reads the infobox (release date, language, director, music, runtime, budget, gross).
+3. Enriches from Wikidata SPARQL: release dates (P577), languages, genres, runtime, IMDb ids (links only), hero portraits (P18) and follower counts (P8687, split by qualifier into X / Instagram / YouTube).
+4. Keeps a credit only if the hero is billed first, or second/third right after another roster hero (co-lead). Character actors use strict billing. Supporting, antagonist and extended-cameo parts that slip through (e.g. Allari Naresh in *Maharshi*) are removed in `lib/constants/editorial.ts`, with the reason shown on the hero page.
 
-**Box-office result per film.** A reported verdict wins. Otherwise worldwide gross ÷ budget: **Blockbuster** ≥ 3×, **Hit** 2–3×, **Average** 1–2×, **Flop** < 1×. Films without either stay *Unknown* (never counted as zero). Films released in the last 120 days are *Too recent* and not judged yet.
+**Each film's result** comes from the first source that states one (`lib/import/verdict.ts`, `lib/import/trade-blog.ts`):
 
-**Known limits of the free sources.**
+| Order | Source | Films (current snapshot) |
+|---|---|---|
+| 1 | The film's English Wikipedia article: box-office section first, then lead, then reception (plot, cast, music, awards skipped; quotes, critics, remakes, other films and speculation ignored; "was not a success" reads as a flop) | 584 |
+| 2 | The hero's English Wikipedia article ("commercial successes such as *Kithakithalu*, *Gamyam*…"; contrasting clauses read separately) | 49 |
+| 3 | The film's Telugu Wikipedia article (విజయవంతమైంది, ఫ్లాప్, negations) | 18 |
+| 4 | mtwikiblog.com yearly and per-hero "hits and flops" lists — **low confidence**, used only when Wikipedia is silent; agreed with Wikipedia on 66 of 67 overlapping films | 270 |
+| — | Worldwide gross ÷ budget when no verdict exists: ≥3× Blockbuster, 2–3× Hit, 1–2× Average, <1× Flop | 9 |
+
+Of 1,305 counted films, **925 (71%) have a result**, 16 are direct-to-OTT (no box office), 5 are too recent (released in the last 120 days) and 359 small films are "not reported" anywhere we read — they are never counted as flops. Every film row on a hero's page names its source and links to it.
+
+**Star Score.** One number out of 100 combining every KPI (`lib/calculations/star.ts`): success ratio 20%, hit films 15%, total box office 15%, blockbusters 10%, recent success 10%, social reach 10%, biggest film 5%, box office per film 5%, films as lead 10% (+ fans' votes 5% when the fans' ranking is on). Counts and money are percentile ranks among heroes; ratios are blended toward the typical hero for small samples; social reach is X + Instagram on a log scale. Missing parts are left out (weight shared out), money parts need ≥ 3 films with a reported gross, and the score is withheld below 50% weight coverage.
+
+**Known limits.**
 - Audience ratings need a free TMDb key (`FEATURE_TMDB`). IMDb is never scraped.
-- Instagram follower counts need the Meta Graph API. The snapshot has usernames only.
-- X follower counts are whatever Wikidata recorded, mostly early 2023; each shows its date.
-- About 30% of films have a reported gross. Totals are "reported on Wikipedia", not complete trade figures.
-- 8 heroes have no free-licensed portrait on Commons and show initials.
+- X followers: Wikidata, mostly Feb 2023 (32 heroes). Instagram: one dated press report (`lib/data/real/reported-social.ts`, 6 heroes) until the Meta Graph API is configured. Instagram is never scraped.
+- About 30% of films have a reported gross; totals are "as reported", not complete trade figures.
+- 8 heroes have no free-licensed portrait on Commons and show initials (Vishnu Manchu, Tarun, Sivaji, Siddhu Jonnalagadda, Anand Deverakonda, Suhas, Taraka Ratna, Srihari). A TMDb key would allow attributed profile photos.
 
 ## 4. Go live with a database (Supabase)
 

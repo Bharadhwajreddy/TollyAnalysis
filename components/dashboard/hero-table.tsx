@@ -7,6 +7,7 @@ import type { HeroView } from "@/lib/view-models";
 import { HeroAvatar } from "@/components/hero/hero-avatar";
 
 const ALL_COLUMNS: HeroMetricKey[] = [
+  "starScore",
   "films",
   "hits",
   "overallSuccessRatio",
@@ -19,8 +20,10 @@ const ALL_COLUMNS: HeroMetricKey[] = [
   "peakFilms",
   "releaseGap",
   "xFollowers",
-  "hpi",
+  "igFollowers",
 ];
+
+const PAGE = 10;
 
 type SortKey = HeroMetricKey | "name";
 
@@ -40,7 +43,8 @@ export function HeroTable({
 }) {
   // Only show columns that have data for at least one hero.
   const COLUMNS = ALL_COLUMNS.filter((k) => heroes.some((h) => h.m[k].v !== null));
-  const [sort, setSort] = useState<{ key: SortKey; desc: boolean }>({ key: "overallSuccessRatio", desc: true });
+  const [sort, setSort] = useState<{ key: SortKey; desc: boolean }>({ key: "starScore", desc: true });
+  const [showAll, setShowAll] = useState(false);
 
   const rows = useMemo(() => {
     const dir = sort.desc ? -1 : 1;
@@ -103,7 +107,7 @@ export function HeroTable({
             </tr>
           </thead>
           <tbody>
-            {rows.map((h, i) => {
+            {(showAll ? rows : rows.slice(0, PAGE)).map((h, i) => {
               const isSel = h.slug === selected;
               return (
                 <tr
@@ -139,7 +143,20 @@ export function HeroTable({
           </tbody>
         </table>
       </div>
-      <p className="mt-2 text-xs text-muted"><sup className="text-warn">*</sup> based on fewer than 3 films (or fewer than 5 for recent success). “—” means not enough data, never zero.</p>
+      <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+        <p className="text-[13px] text-ink-2">
+          Showing {showAll ? rows.length : Math.min(PAGE, rows.length)} of {rows.length} heroes. CSV includes every filtered hero.
+        </p>
+        {rows.length > PAGE && (
+          <button type="button" onClick={() => setShowAll((v) => !v)} className="rounded-md border border-line px-3 py-1.5 text-[13px] font-medium text-wine hover:border-wine">
+            {showAll ? `Show top ${PAGE}` : `Show all ${rows.length} heroes`}
+          </button>
+        )}
+      </div>
+      <p className="mt-2 text-xs text-muted">
+        Row numbers follow the sorted column and are not benchmark ranks. <sup className="text-warn">*</sup> small sample: based on fewer than 3 films
+        with a known result (fewer than 5 for recent success and the Star Score). “—” means not enough data, never zero.
+      </p>
     </div>
   );
 }

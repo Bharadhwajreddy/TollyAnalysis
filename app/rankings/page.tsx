@@ -9,8 +9,8 @@ export const metadata: Metadata = { title: "Rankings" };
 
 export default async function RankingsPage(props: PageProps<"/rankings">) {
   const sp = await props.searchParams;
-  const requested = typeof sp.metric === "string" ? sp.metric : "hpi";
-  const metric = (requested in METRICS ? requested : "hpi") as HeroMetricKey;
+  const requested = typeof sp.metric === "string" ? sp.metric : "starScore";
+  const metric = (requested in METRICS ? requested : "starScore") as HeroMetricKey;
   const data = await getDashboardData();
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6">

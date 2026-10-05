@@ -9,7 +9,7 @@ export const boolParam = z
   .transform((v) => v === "true" || v === "1");
 export const metricSchema = z
   .string()
-  .default("hpi")
+  .default("starScore")
   .refine((v): v is HeroMetricKey => v in METRICS, "Unknown metric")
   .transform((v) => v as HeroMetricKey);
 export const slugSchema = z.string().regex(/^[a-z0-9-]{1,80}$/);

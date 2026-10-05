@@ -5,11 +5,13 @@ import type {
   Credit,
   Dataset,
   Film,
+  FilmDetails,
   Person,
   SocialSnapshot,
   Source,
   TradeVerdict,
 } from "@/lib/domain/types";
+import { REPORTED_INSTAGRAM } from "./reported-social";
 import snapshot from "./snapshot.json";
 
 /**
@@ -45,7 +47,8 @@ interface SnapFilm {
   qid: string | null;
   budget: { low: number; high: number; text: string } | null;
   gross: { low: number; high: number; text: string; isShare?: boolean } | null;
-  verdict: { verdict: string; sentence: string } | null;
+  verdict: { verdict: string; sentence: string; source: NonNullable<FilmDetails["verdictSource"]>; url: string | null } | null;
+  route?: "theatrical" | "ott";
   starring: string[];
 }
 
@@ -78,6 +81,22 @@ const SOURCES: Source[] = [
     baseUrl: "https://www.wikidata.org",
     licensingNote: "Film identifiers, release dates, languages, runtimes, IMDb ids and recorded social-media follower counts. CC0.",
     reliabilityTier: 2,
+  },
+  {
+    id: "src-tewiki",
+    name: "Telugu Wikipedia",
+    type: "manual_editorial",
+    baseUrl: "https://te.wikipedia.org",
+    licensingNote: "Box-office result sentences for films the English article does not judge. Text licensed CC BY-SA 4.0.",
+    reliabilityTier: 3,
+  },
+  {
+    id: "src-trade-blog",
+    name: "MT Wiki Blog (Telugu hits and flops lists)",
+    type: "manual_editorial",
+    baseUrl: "https://www.mtwikiblog.com",
+    licensingNote: "Last-resort film verdicts from yearly and per-hero hits-and-flops lists. Used only when Wikipedia gives no result; low confidence, linked on every film.",
+    reliabilityTier: 3,
   },
   {
     id: "src-commons",
@@ -132,13 +151,13 @@ export function buildRealDataset(): Dataset {
       slug: f.key,
       title: f.title,
       originalLanguage: isTelugu ? "te" : (f.languages[0] ?? "").slice(0, 2).toLowerCase() || "xx",
-      releaseRoute: "theatrical",
+      releaseRoute: f.route === "ott" ? "ott" : "theatrical",
       featureType: "feature",
       status: date <= snap.generatedAt.slice(0, 10) ? "released" : "upcoming",
       teluguRelease: {
         releaseType: "original",
         releaseDate: date,
-        route: "theatrical",
+        route: f.route === "ott" ? "ott" : "theatrical",
         isEligibleTeluguRelease: isTelugu,
         isReRelease: false,
       },
@@ -157,6 +176,8 @@ export function buildRealDataset(): Dataset {
         budgetText: f.budget?.text ?? null,
         grossText: f.gross?.text ?? null,
         verdictSentence: f.verdict?.sentence ?? null,
+        verdictSource: f.verdict?.source ?? null,
+        verdictUrl: f.verdict?.url ?? null,
         billing: firstBilling,
       },
     });
@@ -188,7 +209,16 @@ export function buildRealDataset(): Dataset {
       commercial.push(ev({ metricType: "telugu_distributor_share", amountLowMinor: croreToMinor(f.gross.low), valueText: f.gross.text }));
       commercial.push(ev({ metricType: "telugu_theatrical_business", amountLowMinor: croreToMinor(f.budget.high), valueText: f.budget.text }));
     }
-    if (f.verdict && VERDICTS.has(f.verdict.verdict as TradeVerdict)) commercial.push(ev({ metricType: "trade_verdict", valueText: f.verdict.verdict }));
+    if (f.verdict && VERDICTS.has(f.verdict.verdict as TradeVerdict))
+      commercial.push(
+        ev({
+          metricType: "trade_verdict",
+          valueText: f.verdict.verdict,
+          sourceId: f.verdict.source === "trade-blog" ? "src-trade-blog" : f.verdict.source === "telugu-wikipedia" ? "src-tewiki" : "src-wikipedia",
+          sourceUrl: f.verdict.url ?? url,
+          confidence: f.verdict.source === "wikipedia-film" ? "medium" : "low",
+        }),
+      );
   }
 
   const credits: Credit[] = snap.credits
@@ -207,6 +237,17 @@ export function buildRealDataset(): Dataset {
   const social: SocialSnapshot[] = [];
   for (const h of snap.heroes) {
     if (!personIds.has(`p-${h.slug}`)) continue;
+    const ig = REPORTED_INSTAGRAM.followers[h.slug];
+    if (ig && !h.social.instagram?.followers)
+      social.push({
+        personId: `p-${h.slug}`,
+        platform: "instagram",
+        profileUrl: h.social.instagram?.username ? `https://www.instagram.com/${h.social.instagram.username}/` : REPORTED_INSTAGRAM.url,
+        isOfficial: true,
+        followersCount: ig,
+        snapshotAt: REPORTED_INSTAGRAM.date,
+        sourceMethod: "press_report",
+      });
     for (const [platform, v] of [
       ["x", h.social.x],
       ["instagram", h.social.instagram],

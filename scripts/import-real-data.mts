@@ -4,6 +4,11 @@
  *     film infoboxes (release date, budget, gross) and box-office prose (verdict)
  *   • Wikidata (CC0): film IDs, release dates, languages, director, runtime, IMDb id;
  *     hero photos (P18) and recorded social-media follower counts (P8687)
+ *   • Telugu Wikipedia (CC BY-SA): verdict sentences for films the English article doesn't judge
+ *   • mtwikiblog.com yearly / per-hero "hits and flops" lists: last-resort verdicts, low confidence
+ *
+ * A film's result comes from the first source that states one, in this order:
+ *   English film article → hero's English article → Telugu film article → trade blog.
  *
  * Usage: npm run data:import      (cached in .cache/, re-runs are fast)
  * Nothing is scraped from IMDb, BookMyShow or social networks.
@@ -11,7 +16,9 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { EXCLUDED_CREDITS } from "@/lib/constants/editorial";
 import { INITIAL_ROSTER } from "@/lib/constants/roster";
-import { classifyRole, classifyVerdict, looksUnreleased } from "@/lib/import/classify";
+import { classifyRole, looksUnreleased } from "@/lib/import/classify";
+import { parseFilmPost, parseTradePage, type TradeRow } from "@/lib/import/trade-blog";
+import { articleVerdict, heroProseVerdicts, teluguVerdict } from "@/lib/import/verdict";
 import { parseCrore } from "@/lib/import/money";
 import { firstLink, infoboxField, parseWikitables, plainText, splitTop } from "@/lib/import/wikitext";
 
@@ -93,6 +100,9 @@ const lit = (s: string) => `"${s.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"@e
 
 /* ───────────── helpers ───────────── */
 
+type VerdictSource = "wikipedia-film" | "wikipedia-hero" | "telugu-wikipedia" | "trade-blog";
+const wikiUrl = (title: string, host = "en.wikipedia.org") => `https://${host}/wiki/${encodeURIComponent(title.replace(/ /g, "_"))}`;
+
 function sectionHeadingBefore(text: string, offset: number): string {
   const before = text.slice(0, offset);
   const headings = [...before.matchAll(/^(={2,4})\s*([^=]+?)\s*\1\s*$/gm)];
@@ -119,11 +129,6 @@ function filmDate(raw: string | null): string | null {
   return null;
 }
 
-function boxOfficeProse(text: string): string {
-  const sec = /==+\s*(?:Box[- ]office|Box office performance|Commercial performance|Collections?|Release and reception|Reception)\s*==+([\s\S]*?)(?=\n==[^=])/i.exec(text);
-  const lead = text.split(/\n==/)[0].split("\n").filter((l) => !/^\s*[{|}]/.test(l)).join(" ");
-  return plainText(`${sec?.[1] ?? ""} ${lead}`.replace(/^=+[^=\n]+=+\s*$/gm, " "));
-}
 
 function editDistance(a: string, b: string): number {
   const dp = Array.from({ length: b.length + 1 }, (_, j) => j);
@@ -171,6 +176,206 @@ interface Credit {
   include: boolean;
   excludeReason: string | null;
   billing?: string;
+}
+
+/* ───────────── extra verdict sources ───────────── */
+
+interface FilmVerdictTarget {
+  key: string;
+  article: string | null;
+  title: string;
+  year: number;
+  releaseDate: string | null;
+  qid: string | null;
+  verdict: { verdict: string; sentence: string; source: VerdictSource; url: string | null } | null;
+  route?: "theatrical" | "ott";
+}
+
+/** Direct-to-streaming releases have no box office; they are labelled, not left "unknown". */
+const DIRECT_OTT = /direct(?:ly)?[- ]to[- ](?:OTT|streaming|digital|video)|released directly (?:on|via|through)|skipp(?:ed|ing) (?:a |its )?theatrical release|bypass(?:ed|ing) (?:a |its )?theatrical|instead of a theatrical release|world premiere on (?:\[\[)?(?:Netflix|Amazon|Prime|Aha|ZEE5|Zee5|Disney|Hotstar|Sony|ETV)/i;
+
+const TRADE_BLOG = "https://www.mtwikiblog.com";
+/** Yearly round-ups and per-hero filmography tables on the trade blog (hero slug → page). */
+const TRADE_YEAR_PAGES = [
+  ...Array.from({ length: 10 }, (_, i) => `/2021/05/${2000 + i}-Telugu-Movies-Hits-and-Flops.html`),
+  "/2015/05/telugu-movie-2015-hit-or-flop-at-box-office-budget-profit.html",
+  "/2019/01/telugu-box-office-collection-2017-budget-verdict-hit-or-flop.html",
+  "/2020/02/telugu-box-office-collection-2018.html",
+  "/p/telugu-box-office-hit-or-flop-2019.html",
+  "/p/telugu-box-office-hit-or-flop-2020.html",
+  "/p/telugu-box-office-hit-or-flop-2021.html",
+  "/p/telugu-movies-hits-and-flops-2021.html",
+  "/p/telugu-movies-hits-and-flops-2022.html",
+  "/p/telugu-movies-hits-and-flops-2023.html",
+];
+const TRADE_HERO_PAGES: Record<string, string> = {
+  "allu-arjun": "/2016/12/allu-arjun-movies-list-hits-or-flops-box-office-records.html",
+  "jr-ntr": "/2016/12/jr-ntr-movies-list-hits-flops-box-office-records.html",
+  "pawan-kalyan": "/2016/12/pawan-kalyan-movies-list-hits-flops-box-office-records.html",
+  prabhas: "/2017/10/prabhas-movies-list-hits-flops-blockbusters-box-office-records.html",
+  "ram-charan": "/2018/06/ram-charan-movies-list-hits-flops-box-office-collection-records.html",
+  "kalyan-ram": "/p/nandamuri-kalyan-ram-filmography.html",
+  "aadi-saikumar": "/p/aadi-filmography.html",
+  chiranjeevi: "/p/chiranjeevi-filmography.html",
+  "jagapathi-babu": "/p/jagapathi-babu-filmography.html",
+  karthikeya: "/p/kartikeya-gummakonda-filmography.html",
+  "mahesh-babu": "/p/mahesh-babu-filmography.html",
+  "nikhil-siddhartha": "/p/nikhil-siddharth-filmography.html",
+  nithiin: "/p/nithiin-filmography.html",
+  "ram-pothineni": "/p/ram-pothineni-filmography.html",
+  "ravi-teja": "/p/ravi-teja-filmography.html",
+  satyadev: "/p/satyadev-kancharana-filmography.html",
+  sharwanand: "/p/sharwanand-filmography.html",
+  "sundeep-kishan": "/p/sundeep-kishan-filmography.html",
+  venkatesh: "/p/venkatesh-filmography.html",
+  "vijay-deverakonda": "/p/vijay-deverakonda-filmography.html",
+};
+
+async function cachedGet(url: string, dir: string): Promise<string | null> {
+  mkdirSync(dir, { recursive: true });
+  const f = `${dir}/${url.replace(/^https?:\/\/[^/]+\//, "").replace(/[^a-zA-Z0-9.-]+/g, "_")}`;
+  if (existsSync(f)) return readFileSync(f, "utf8") || null;
+  const res = await fetchRetry(url);
+  const body = res.ok ? await res.text() : "";
+  writeFileSync(f, body);
+  await sleep(500);
+  return body || null;
+}
+
+const squashTitle = (t: string) =>
+  t
+    .toLowerCase()
+    .replace(/\[.*?\]|\(.*?\)/g, "")
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]/g, "")
+    .replace(/aa/g, "a")
+    .replace(/ee/g, "i")
+    .replace(/oo/g, "u")
+    .replace(/th/g, "t")
+    .replace(/dh/g, "d");
+
+function matchTrade(f: FilmVerdictTarget, rows: TradeRow[], sameHeroPage: boolean): TradeRow | null {
+  const k = squashTitle(f.title);
+  if (k.length < 2) return null;
+  const year = f.releaseDate ? Number(f.releaseDate.slice(0, 4)) : f.year;
+  const near = (r: TradeRow) => r.year === null || Math.abs(r.year - year) <= 1;
+  const exact = rows.filter((r) => squashTitle(r.title) === k && (near(r) || sameHeroPage));
+  if (exact.length) return exact.sort((a, b) => Math.abs((a.year ?? year) - year) - Math.abs((b.year ?? year) - year))[0];
+  if (k.length >= 8) {
+    const fuzzy = rows.filter((r) => near(r) && r.year !== null && Math.abs(squashTitle(r.title).length - k.length) <= 2 && editDistance(squashTitle(r.title), k) <= 2);
+    if (fuzzy.length === 1) return fuzzy[0];
+  }
+  return null;
+}
+
+async function fillVerdicts(
+  heroes: typeof INITIAL_ROSTER,
+  heroInfo: Record<string, { article: string; filmographyPage: string | null }>,
+  credits: Credit[],
+  films: Map<string, FilmVerdictTarget>,
+) {
+  const counted = (pred: (c: Credit) => boolean) => [...new Set(credits.filter((c) => c.include && pred(c)).map((c) => c.film))].map((k) => films.get(k)!);
+  const missing = () => counted(() => true).filter((f) => !f.verdict);
+  console.log(`Verdicts: ${counted(() => true).length - missing().length} from English film articles, ${missing().length} still missing`);
+
+  // a. The hero's own article and filmography page ("commercial successes such as …").
+  for (const h of heroes) {
+    const info = heroInfo[h.slug];
+    if (!info) continue;
+    const mine = counted((c) => c.hero === h.slug);
+    for (const title of [info.article, info.filmographyPage].filter((x): x is string => !!x)) {
+      const p = await page(title);
+      if (!p) continue;
+      for (const [key, v] of heroProseVerdicts(p.text, mine)) {
+        const f = films.get(key)!;
+        if (!f.verdict) f.verdict = { ...v, source: "wikipedia-hero", url: wikiUrl(p.title) };
+      }
+    }
+  }
+  console.log(`  after hero articles: ${missing().length} missing`);
+
+  // b. Telugu Wikipedia film articles (found through Wikidata sitelinks).
+  const needTe = missing().filter((f) => f.qid);
+  const teTitle = new Map<string, string>();
+  for (let i = 0; i < needTe.length; i += 150) {
+    const rows = await sparql(
+      `SELECT ?f ?t WHERE { VALUES ?f { ${needTe.slice(i, i + 150).map((f) => `wd:${f.qid}`).join(" ")} } ?a schema:about ?f; schema:isPartOf <https://te.wikipedia.org/>; schema:name ?t. }`,
+    );
+    for (const r of rows) teTitle.set(r.f.value.split("/").pop()!, r.t.value);
+  }
+  const tePath = `${CACHE}/tepages.json`;
+  const teCache: Record<string, string | null> = existsSync(tePath) ? JSON.parse(readFileSync(tePath, "utf8")) : {};
+  const teTodo = [...new Set(teTitle.values())].filter((t) => !(t in teCache));
+  for (let i = 0; i < teTodo.length; i += 40) {
+    const batch = teTodo.slice(i, i + 40);
+    const res = await fetchRetry("https://te.wikipedia.org/wiki/Special:Export", { method: "POST", body: new URLSearchParams({ pages: batch.join("\n"), curonly: "1", action: "submit" }) });
+    const xml = await res.text();
+    for (const t of batch) teCache[t] = null;
+    for (const m of xml.matchAll(/<page>[\s\S]*?<title>([^<]*)<\/title>[\s\S]*?<text[^>]*>([\s\S]*?)<\/text>[\s\S]*?<\/page>/g)) teCache[decodeXml(m[1])] = decodeXml(m[2]);
+    writeFileSync(tePath, JSON.stringify(teCache));
+    await sleep(1500);
+  }
+  for (const f of needTe) {
+    const t = teTitle.get(f.qid!);
+    const text = t ? teCache[t] : null;
+    const v = text ? teluguVerdict(text) : null;
+    if (v) f.verdict = { ...v, source: "telugu-wikipedia", url: wikiUrl(t!, "te.wikipedia.org") };
+  }
+  console.log(`  after Telugu Wikipedia: ${missing().length} missing`);
+
+  // c. Trade blog: per-hero tables first (most specific), then yearly round-ups, then per-film posts.
+  const dir = `${CACHE}/mtwiki/pages`;
+  for (const h of heroes) {
+    const path = TRADE_HERO_PAGES[h.slug];
+    if (!path) continue;
+    const html = await cachedGet(TRADE_BLOG + path, dir);
+    if (!html) continue;
+    const rows = parseTradePage(html);
+    for (const f of counted((c) => c.hero === h.slug)) {
+      if (f.verdict) continue;
+      const r = matchTrade(f, rows, true);
+      if (r) f.verdict = { verdict: r.verdict, sentence: `Listed as "${r.raw}" in the blog's ${h.name} filmography.`, source: "trade-blog", url: TRADE_BLOG + path };
+    }
+  }
+  const yearRows: { url: string; rows: TradeRow[] }[] = [];
+  for (const path of TRADE_YEAR_PAGES) {
+    const html = await cachedGet(TRADE_BLOG + path, dir);
+    if (!html) continue;
+    const y = Number(/(20[0-2]\d)/.exec(path.replace(/^\/20\d\d\/\d\d\//, ""))?.[1]) || null;
+    yearRows.push({ url: TRADE_BLOG + path, rows: parseTradePage(html, y) });
+  }
+  for (const f of missing()) {
+    for (const { url, rows } of yearRows) {
+      const r = matchTrade(f, rows, false);
+      if (r) {
+        f.verdict = { verdict: r.verdict, sentence: `Listed as "${r.raw}" in the blog's ${r.year ?? ""} Telugu hits-and-flops list.`.replace("  ", " "), source: "trade-blog", url };
+        break;
+      }
+    }
+  }
+  // Per-film posts ("<Film> Telugu Movie (2024) Budget, Hit or Flop…") for recent films.
+  const sitemap = await cachedGet(`${TRADE_BLOG}/sitemap.xml`, dir);
+  const postMaps = [...(sitemap ?? "").matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  const posts: string[] = [];
+  for (const u of postMaps) posts.push(...[...((await cachedGet(u, dir)) ?? "").matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]));
+  const filmPosts = posts.filter((u) => /telugu/i.test(u) && /hit|flop|budget/i.test(u));
+  for (const f of missing().filter((x) => (x.releaseDate ?? `${x.year}`) >= "2019")) {
+    const slug = f.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    if (slug.length < 3) continue;
+    const url = filmPosts.find((u) => new RegExp(`/${slug}-(?:telugu|hit|box|movie|\\d{4})`, "i").test(u));
+    if (!url) continue;
+    const html = await cachedGet(url, dir);
+    const v = html ? parseFilmPost(html) : null;
+    if (v) f.verdict = { verdict: v.verdict, sentence: `The blog's film page gives the verdict "${v.raw}".`, source: "trade-blog", url };
+  }
+  console.log(`  after trade blog: ${missing().length} missing`);
+  // d. Films still without a result: mark direct-to-OTT releases (only when nothing else applies,
+  //    since theatrical films also mention their later streaming premiere).
+  for (const f of missing()) {
+    const p = f.article ? await page(f.article) : null;
+    if (p && DIRECT_OTT.test(p.text.replace(/<ref[^>]*>[\s\S]*?<\/ref>/g, ""))) f.route = "ott";
+  }
+  console.log(`  direct-to-OTT: ${missing().filter((f) => f.route === "ott").length}`);
 }
 
 async function main() {
@@ -278,7 +483,8 @@ async function main() {
     qid: string | null;
     budget: { low: number; high: number; text: string } | null;
     gross: { low: number; high: number; text: string } | null;
-    verdict: { verdict: string; sentence: string } | null;
+    verdict: { verdict: string; sentence: string; source: VerdictSource; url: string | null } | null;
+    route?: "theatrical" | "ott";
     /** Billing order from the infobox "starring" field (link targets or names). */
     starring: string[];
   }
@@ -320,7 +526,7 @@ async function main() {
           runtimeMin: Number(/(\d{2,3})\s*min/i.exec(plainText(infoboxField(p.text, "runtime") ?? ""))?.[1]) || null,
           budget: parseCrore(infoboxField(p.text, "budget")),
           gross: parseCrore(infoboxField(p.text, "gross")),
-          verdict: classifyVerdict(boxOfficeProse(p.text)),
+          verdict: ((v) => (v ? { ...v, source: "wikipedia-film" as const, url: wikiUrl(p.title) } : null))(articleVerdict(p.text)),
           starring: starringList(infoboxField(p.text, "starring")),
         };
       }
@@ -425,10 +631,12 @@ async function main() {
     }
   }
 
+  await fillVerdicts(heroes, heroInfo, credits, films);
+
   // 6. Hero facts from Wikidata: photo, follower counts, handles, birth date.
   const heroArticles = Object.entries(heroInfo);
   const heroRows = await sparql(`
-    SELECT ?name ?p ?img ?birth ?followers ?when ?xnum ?xuser ?iguser ?ytid ?qualX ?qualIG WHERE {
+    SELECT ?name ?p ?img ?birth ?followers ?when ?xnum ?xuser ?iguser ?ytid ?qualX ?qualIG ?qualYT WHERE {
       VALUES ?name { ${heroArticles.map(([, v]) => lit(v.article)).join(" ")} }
       ?article schema:about ?p; schema:isPartOf <https://en.wikipedia.org/>; schema:name ?name.
       OPTIONAL { ?p wdt:P18 ?img }
@@ -436,7 +644,7 @@ async function main() {
       OPTIONAL { ?p wdt:P2002 ?xuser }
       OPTIONAL { ?p wdt:P2003 ?iguser }
       OPTIONAL { ?p wdt:P2397 ?ytid }
-      OPTIONAL { ?p p:P8687 ?st. ?st ps:P8687 ?followers. OPTIONAL { ?st pq:P585 ?when } OPTIONAL { ?st pq:P6552 ?qualX } OPTIONAL { ?st pq:P2003 ?qualIG } }
+      OPTIONAL { ?p p:P8687 ?st. ?st ps:P8687 ?followers. OPTIONAL { ?st pq:P585 ?when } OPTIONAL { ?st pq:P6552 ?qualX } OPTIONAL { ?st pq:P2003 ?qualIG } OPTIONAL { ?st pq:P2397 ?qualYT } }
     }`);
   const heroOut = heroes
     .filter((h) => heroInfo[h.slug])
@@ -446,8 +654,11 @@ async function main() {
         rows
           .filter((r) => r.followers && pred(r))
           .sort((a, b) => (b.when?.value ?? "").localeCompare(a.when?.value ?? ""))[0];
-      const xRow = latest((r) => !r.qualIG);
+      // P8687 statements are told apart by their qualifier: X user ID (P6552), Instagram
+      // username (P2003) or YouTube channel (P2397). Unqualified statements are ignored.
+      const xRow = latest((r) => !!r.qualX);
       const igRow = latest((r) => !!r.qualIG);
+      const ytRow = latest((r) => !!r.qualYT);
       return {
         slug: h.slug,
         name: h.name,
@@ -469,6 +680,7 @@ async function main() {
               ? { followers: null, date: null, username: rows.find((r) => r.iguser)!.iguser.value }
               : null,
           youtube: rows.find((r) => r.ytid)?.ytid.value ?? null,
+          youtubeSubscribers: ytRow ? { followers: Number(ytRow.followers.value), date: ytRow.when?.value.slice(0, 10) ?? null, channel: ytRow.qualYT.value } : null,
         },
       };
     });

@@ -8,7 +8,7 @@ import type { Industry } from "@/lib/domain/types";
 import type { HeroView } from "@/lib/view-models";
 import { HeroAvatar } from "@/components/hero/hero-avatar";
 
-export { rankable, rankBy } from "@/lib/ranking";
+export { competitionRanks, rankable, rankBy } from "@/lib/ranking";
 
 export function MetricTooltip({ hero, metric, color }: { hero: HeroView; metric: HeroMetricKey; color?: string }) {
   const mv = hero.m[metric];

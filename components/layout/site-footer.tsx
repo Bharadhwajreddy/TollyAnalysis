@@ -2,39 +2,45 @@ import Link from "next/link";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-16 border-t border-line bg-surface">
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 text-sm sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
+    <footer className="mt-16 bg-night text-[#e9dfd6]">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 text-sm sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <p className="font-serif text-base font-semibold text-ink">Tollywood Analysis</p>
-          <p className="mt-2 max-w-md text-ink-2">
-            Private beta. Transparent, configurable benchmarks of Telugu-release lead actors. Scores are editorial
-            benchmarks, not objective fact. Critic reviews are not used in v1. Hero photos: Wikimedia Commons, free licences.
+          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#d8a86b]">The careers. The context. The evidence.</p>
+          <p className="mt-3 font-serif text-[26px] font-semibold leading-tight text-white sm:text-[30px]">
+            A better conversation
+            <br />
+            starts with the numbers.
           </p>
-          <p className="mt-3 max-w-md text-xs text-muted">
-            When TMDb data is enabled: this product uses the TMDb API but is not endorsed or certified by TMDb. IMDb data
-            is used only through a licensed or permitted source; nothing is scraped.
+          <p className="mt-3 max-w-md leading-relaxed text-[#cbbdb2]">
+            Public-source records and transparent career benchmarks. Lead credits and film results are read automatically and
+            marked with their source; coverage varies and every film can be corrected. Hero photos: Wikimedia Commons, free licences.
           </p>
         </div>
         <div>
-          <p className="eyebrow mb-3">Explore</p>
-          <ul className="space-y-2 text-ink-2">
-            <li><Link className="hover:text-wine" href="/">All heroes</Link></li>
-            <li><Link className="hover:text-wine" href="/compare">Compare heroes side by side</Link></li>
-            <li><Link className="hover:text-wine" href="/trends">Year-by-year trends</Link></li>
-            <li><Link className="hover:text-wine" href="/annexure">Film-level evidence (Annexure)</Link></li>
+          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#d8a86b]">Explore</p>
+          <ul className="mt-3 space-y-2.5">
+            <li><Link className="hover:text-white" href="/heroes">All heroes</Link></li>
+            <li><Link className="hover:text-white" href="/compare">Compare heroes side by side</Link></li>
+            <li><Link className="hover:text-white" href="/trends">Year-by-year trends</Link></li>
+            <li><Link className="hover:text-white" href="/annexure">Film-level evidence (Annexure)</Link></li>
           </ul>
         </div>
         <div>
-          <p className="eyebrow mb-3">Transparency</p>
-          <ul className="space-y-2 text-ink-2">
-            <li><Link className="hover:text-wine" href="/methodology">Methodology</Link></li>
-            <li><Link className="hover:text-wine" href="/annexure/sources">Source ledger</Link></li>
-            <li><Link className="hover:text-wine" href="/annexure/coverage">Data coverage</Link></li>
-            <li><Link className="hover:text-wine" href="/annexure/corrections">Suggest a correction</Link></li>
-            <li><Link className="hover:text-wine" href="/annexure/photo-credits">Photo credits</Link></li>
-            <li><Link className="hover:text-wine" href="/terms">Terms (beta)</Link></li>
+          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#d8a86b]">Transparency</p>
+          <ul className="mt-3 space-y-2.5">
+            <li><Link className="hover:text-white" href="/methodology">Methodology</Link></li>
+            <li><Link className="hover:text-white" href="/annexure/sources">Source ledger</Link></li>
+            <li><Link className="hover:text-white" href="/annexure/coverage">Data coverage</Link></li>
+            <li><Link className="hover:text-white" href="/annexure/corrections">Suggest a correction</Link></li>
+            <li><Link className="hover:text-white" href="/annexure/photo-credits">Photo credits</Link></li>
+            <li><Link className="hover:text-white" href="/terms">Terms (beta)</Link></li>
           </ul>
         </div>
+      </div>
+      <div className="mx-auto flex max-w-7xl flex-wrap justify-between gap-2 border-t border-white/10 px-4 py-5 text-xs text-[#a8988c] sm:px-6">
+        <span>Tollywood Analysis</span>
+        <span>Telugu cinema · Lead careers since 2000</span>
+        <Link href="/annexure/photo-credits" className="hover:text-white">Photo credits ↗</Link>
       </div>
     </footer>
   );

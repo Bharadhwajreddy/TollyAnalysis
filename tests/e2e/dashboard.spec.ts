@@ -1,18 +1,21 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("Heroes dashboard", () => {
-  test("opens on one scrolling page with photo leaderboard first and no top tabs", async ({ page }) => {
+  test("opens on one scrolling page with the Star Score leaderboard first", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByRole("heading", { level: 1 })).toContainText("heroes, compared");
-    await expect(page.getByText(/REAL DATA/).first()).toBeVisible();
-    await expect(page.locator("header nav")).toHaveCount(0);
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("Compare Telugu cinema careers");
+    await expect(page.getByText(/PUBLIC-SOURCE SNAPSHOT/).first()).toBeVisible();
+    await expect(page.getByRole("navigation", { name: "Main" })).toContainText("Inside the data");
     const titles = await page.locator("section h2").allTextContents();
-    expect(titles[0]).toContain("Success ratio");
+    expect(titles.find((t) => !/Compare Telugu/.test(t))).toContain("Star Score");
     expect(titles.some((t) => t.includes("More films vs. more success"))).toBe(true);
-    expect(titles.at(-1)).toContain("How we calculate everything");
+    await expect(page.locator("#how")).toContainText("How we calculate everything");
+    await expect(page.locator("#leaderboard")).toContainText("What goes into the Star Score");
     // Photos are shown on the leaderboard.
     expect(await page.locator("#leaderboard image, #leaderboard img").count()).toBeGreaterThan(5);
-    await expect(page.getByText("Panja Vaisshnav Tej")).toHaveCount(0);
+    // Editorially excluded: never ranked or listed (only named in the note that explains the exclusion).
+    await expect(page.locator("#leaderboard")).not.toContainText("Panja Vaisshnav Tej");
+    await expect(page.locator("#table")).not.toContainText("Panja Vaisshnav Tej");
   });
 
   test("newcomer toggle never hides anyone already shown", async ({ page }) => {
@@ -53,7 +56,13 @@ test.describe("Heroes dashboard", () => {
     await row.dblclick();
     await expect(page).toHaveURL(/\/hero\//);
     await expect(page.getByRole("heading", { level: 1 })).toContainText(name);
-    await expect(page.getByRole("heading", { name: /Every film/ })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Every counted film/ })).toBeVisible();
+  });
+
+  test("more measures can be ranked", async ({ page }) => {
+    await page.goto("/");
+    await page.locator("#leaderboard select").selectOption("releaseGap");
+    await expect(page.locator("#leaderboard h2")).toContainText("gap between films");
   });
 
   test("fan ranking stays hidden unless switched on", async ({ page, request }) => {
@@ -70,12 +79,30 @@ test.describe("Other views", () => {
     await expect(page.locator("table")).toContainText("Prabhas");
   });
 
-  test("hero page shows all statistics and every film with sources", async ({ page }) => {
+  test("hero page shows the Star Score breakdown, all statistics and every film with sources", async ({ page }) => {
     await page.goto("/hero/prabhas");
-    await expect(page.getByRole("heading", { name: "All statistics" })).toBeVisible();
-    await expect(page.getByRole("heading", { name: /Every film/ })).toBeVisible();
-    await expect(page.locator("section:has(#films)")).toContainText("Baahubali 2: The Conclusion");
-    await expect(page.getByRole("link", { name: "Wikipedia" }).first()).toBeVisible();
+    await expect(page.locator("#star")).toContainText("Total box office");
+    await expect(page.getByText(/All statistics/)).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Every counted film/ })).toBeVisible();
+    await expect(page.locator("#films")).toContainText("Baahubali 2: The Conclusion");
+    await page.locator("#films").getByRole("button", { name: /Inspect film evidence/ }).first().click();
+    await expect(page.locator("#films")).toContainText("Suggest a correction");
+  });
+
+  test("each film's result names its source (Kithakithalu is a hit)", async ({ page }) => {
+    await page.goto("/hero/allari-naresh");
+    const row = page.locator("#films tr", { hasText: "Kithakithalu" }).first();
+    await expect(row).toContainText("Hit");
+    await expect(row).toContainText("via Wikipedia");
+    await expect(page.locator("#films tbody tr td:first-child a", { hasText: /^Maharshi$/ })).toHaveCount(0);
+  });
+
+  test("all heroes directory", async ({ page }) => {
+    await page.goto("/heroes");
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("All heroes");
+    await page.getByRole("link", { name: "Name" }).click();
+    await expect(page).toHaveURL(/sort=name/);
+    expect(await page.locator("main ul li a").count()).toBeGreaterThan(50);
   });
 
   test("correction form validates and submits privately", async ({ page }) => {
@@ -95,7 +122,7 @@ test.describe("Other views", () => {
 });
 
 test.describe("Responsive layout", () => {
-  for (const path of ["/", "/hero/prabhas", "/rankings", "/compare", "/trends", "/methodology", "/annexure", "/annexure/registry", "/annexure/heroes/nani", "/annexure/corrections"]) {
+  for (const path of ["/", "/heroes", "/hero/prabhas", "/hero/allari-naresh", "/rankings", "/compare", "/trends", "/methodology", "/annexure", "/annexure/registry", "/annexure/heroes/nani", "/annexure/corrections"]) {
     test(`no horizontal page overflow on ${path}`, async ({ page }) => {
       await page.goto(path);
       const [scrollW, clientW] = await page.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]);

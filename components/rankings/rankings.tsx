@@ -15,7 +15,7 @@ import { Toggle } from "@/components/ui/toggle";
 import { IndustryLegend, MetricTooltip, rankBy } from "@/components/dashboard/shared";
 
 const ALL_METRICS: HeroMetricKey[] = [
-  "hpi",
+  "starScore",
   "filmSuccess",
   "overallSuccessRatio",
   "audienceSuccessRatio",

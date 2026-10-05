@@ -1,4 +1,5 @@
 import type { HeroMetricKey, HeroSnapshot } from "@/lib/calculations/engine";
+import type { StarPart } from "@/lib/calculations/star";
 import type { MetricStatus } from "@/lib/calculations/result";
 import { heroPhoto } from "@/lib/constants/photos";
 import type { ConfidenceGrade, FilterWindow, Industry } from "@/lib/domain/types";
@@ -35,6 +36,8 @@ export interface HeroView {
   commercialCoverage: number;
   socialSnapshotAt: string | null;
   m: Record<HeroMetricKey, MetricView>;
+  /** Star Score breakdown (part scores out of 100 and their weights). */
+  star: StarPart[];
 }
 
 export interface DataMeta {
@@ -78,5 +81,6 @@ export function toHeroView(s: HeroSnapshot, person?: { family?: string; debutYea
     commercialCoverage: s.commercialCoveragePercent,
     socialSnapshotAt: s.socialSnapshotAt,
     m,
+    star: s.starParts ?? [],
   };
 }

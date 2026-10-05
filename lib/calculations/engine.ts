@@ -38,6 +38,7 @@ import {
   type HeroFilmInput,
 } from "./hero";
 import { coverage, round, type MetricResult } from "./result";
+import { applyStarScore, type StarPart } from "./star";
 
 export interface FilmMetric {
   film: Film;
@@ -71,7 +72,8 @@ export type HeroMetricKey =
   | "avgGross"
   | "bigFilms"
   | "xFollowers"
-  | "igFollowers";
+  | "igFollowers"
+  | "starScore";
 
 export interface HeroSnapshot {
   personId: string;
@@ -90,6 +92,8 @@ export interface HeroSnapshot {
   firstYear: number | null;
   lastYear: number | null;
   metrics: Record<HeroMetricKey, MetricResult>;
+  /** Breakdown of the Star Score (filled after all heroes in the window are computed). */
+  starParts?: StarPart[];
   evidenceCoveragePercent: number;
   audienceCoveragePercent: number;
   commercialCoveragePercent: number;
@@ -306,6 +310,8 @@ export function computeHeroSnapshot(args: {
       avgRating: calculateAverageRating(inWindow, m),
       recentSuccessRatio: calculateRecentBoxOfficeRatio(inWindow, m),
       yearsActive: calculateYearsActive(inWindow, m),
+      // Needs every hero in the window; set by applyStarScore in runEngine.
+      starScore: { value: null, coverage: coverage(0, 0), status: "insufficient", methodVersion: m.id, explanation: "Not calculated yet." },
     },
     evidenceCoveragePercent,
     audienceCoveragePercent: coverage(audienceCount, inWindow.length).percent,
@@ -318,7 +324,13 @@ export function computeHeroSnapshot(args: {
 }
 
 /** Runs the full pipeline: film metrics → eligible credits → hero snapshots per window. */
-export function runEngine(dataset: Dataset, m: MethodologyVersion, calculatedAt = dataset.asOf): EngineOutput {
+export function runEngine(
+  dataset: Dataset,
+  m: MethodologyVersion,
+  calculatedAt = dataset.asOf,
+  /** personId → fans' ranking points; omit while the fans' ranking is off. */
+  fanPoints?: Map<string, number>,
+): EngineOutput {
   const { films, baselineRating } = computeFilmMetrics(dataset, m);
   const filmById = new Map(dataset.films.map((f) => [f.id, f]));
 
@@ -363,6 +375,7 @@ export function runEngine(dataset: Dataset, m: MethodologyVersion, calculatedAt 
       ),
     ]),
   ) as Record<FilterWindow, HeroSnapshot[]>;
+  for (const w of windows) applyStarScore(snapshots[w], m.id, fanPoints);
 
   return { asOf: dataset.asOf, calculatedAt, methodology: m, baselineRating, films, heroFilms, snapshots };
 }

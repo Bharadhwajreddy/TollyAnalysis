@@ -23,6 +23,8 @@ export interface CommercialScore {
   score: number | null;
   /** Plain verdict shown to users. */
   label: BoxOfficeLabel | null;
+  /** The finer reported verdict ("super_hit", "disaster"…) when the label came from one. */
+  verdict?: TradeVerdict | null;
   /** Worldwide gross in ₹ crore (all languages), when reported. */
   grossCrore: number | null;
   budgetCrore: number | null;
@@ -96,12 +98,10 @@ export function calculateCommercialScore(film: Film, evidence: CommercialEvidenc
     label = VERDICT_LABEL[base.verdict];
   else if (base.score !== null)
     label = base.score >= 85 ? "blockbuster" : base.score >= 60 ? "hit" : base.score >= 35 ? "average" : "flop";
-  const { verdict: _verdict, ...rest } = base;
-  void _verdict;
-  return { ...rest, label, grossCrore, budgetCrore, multiple };
+  return { ...base, verdict: base.basis === "trade_verdict" ? (base.verdict ?? null) : null, label, grossCrore, budgetCrore, multiple };
 }
 
-type BaseScore = Omit<CommercialScore, "label" | "grossCrore" | "budgetCrore" | "multiple"> & { verdict?: TradeVerdict };
+type BaseScore = Omit<CommercialScore, "label" | "grossCrore" | "budgetCrore" | "multiple" | "verdict"> & { verdict?: TradeVerdict };
 
 const VERDICT_LABEL: Record<TradeVerdict, BoxOfficeLabel> = {
   blockbuster: "blockbuster",

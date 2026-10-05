@@ -111,6 +111,8 @@ export interface FilmEvidenceRow {
     disputed: boolean;
     reason: string;
     label: string | null;
+    /** Finer reported verdict (e.g. "super_hit") when the label came from a verdict. */
+    verdict: string | null;
     grossCrore: number | null;
     budgetCrore: number | null;
     multiple: number | null;
@@ -161,6 +163,7 @@ export async function getHeroFilms(slug: string): Promise<FilmEvidenceRow[]> {
         disputed: fm.commercial.disputed,
         reason: fm.commercial.reason,
         label: fm.commercial.label,
+        verdict: fm.commercial.verdict ?? null,
         grossCrore: fm.commercial.grossCrore,
         budgetCrore: fm.commercial.budgetCrore,
         multiple: fm.commercial.multiple,

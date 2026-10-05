@@ -14,7 +14,7 @@ export async function generateMetadata(props: PageProps<"/annexure/heroes/[slug]
   return { title: p ? `${p.displayName} · Annexure` : "Hero not found" };
 }
 
-const KEYS: HeroMetricKey[] = ["hpi", "filmSuccess", "overallSuccessRatio", "audienceIndex", "consistency", "socialReach", "momentum", "releaseGap", "peakFilms", "filmsPerYear"];
+const KEYS: HeroMetricKey[] = ["starScore", "hpi", "filmSuccess", "overallSuccessRatio", "audienceIndex", "consistency", "socialReach", "momentum", "releaseGap", "peakFilms", "filmsPerYear"];
 
 export default async function HeroDetailPage(props: PageProps<"/annexure/heroes/[slug]">) {
   const { slug } = await props.params;

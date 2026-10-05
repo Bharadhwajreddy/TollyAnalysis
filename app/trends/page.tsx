@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Trends" };
 export default async function TrendsPage() {
   const [data, trends] = await Promise.all([getDashboardData(), getTrends()]);
   const heroes = data.windows.all_time
-    .filter((h) => h.m.hpi.v !== null)
+    .filter((h) => h.m.starScore.v !== null)
     .sort((a, b) => (b.m.hpi.v as number) - (a.m.hpi.v as number))
     .map((h) => ({ slug: h.slug, name: h.name }));
   return (

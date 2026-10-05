@@ -15,10 +15,10 @@ interface Props {
 /** Benchmark-style chart card: title, direction hint, controls, chart, methodology footer. */
 export function ChartCard({ id, title, subtitle, count, controls, footer, legend, children, className = "" }: Props) {
   return (
-    <section id={id} aria-labelledby={id ? `${id}-title` : undefined} className={`card scroll-mt-28 p-4 sm:p-5 ${className}`}>
+    <section id={id} aria-labelledby={id ? `${id}-title` : undefined} className={`card scroll-mt-28 p-4 sm:p-6 ${className}`}>
       <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-1">
         <div className="min-w-0">
-          <h2 id={id ? `${id}-title` : undefined} className="text-[17px] font-semibold leading-snug text-ink sm:text-lg">
+          <h2 id={id ? `${id}-title` : undefined} className="font-serif text-[20px] font-semibold leading-snug tracking-tight text-ink sm:text-[22px]">
             {title}
           </h2>
           {subtitle && <p className="mt-0.5 text-[13px] text-ink-2">{subtitle}</p>}

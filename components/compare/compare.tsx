@@ -13,7 +13,7 @@ import { Segmented } from "@/components/ui/segmented";
 /** Validated 4-slot palette (CVD-safe adjacent separation, ≥3:1 on surface). */
 const SLOT_COLORS = ["#a3284f", "#00879e", "#b98200", "#4a3aa7"];
 const METRIC_ORDER: HeroMetricKey[] = [
-  "hpi",
+  "starScore",
   "filmSuccess",
   "overallSuccessRatio",
   "audienceIndex",

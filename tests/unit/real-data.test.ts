@@ -33,6 +33,36 @@ describe("real dataset (Wikipedia + Wikidata snapshot)", () => {
     expect(byTitle("Adipurush").commercial.label).toBe("flop");
   });
 
+  it("reads results beyond the box-office section (Kithakithalu is a hit for Allari Naresh)", () => {
+    const naresh = ds.people.find((p) => p.slug === "allari-naresh")!;
+    const rows = out.heroFilms.get(naresh.id)!.map((r) => out.films.get(r.filmId)!);
+    const kitha = rows.find((f) => f.film.title === "Kithakithalu")!;
+    expect(kitha.commercial.label).toBe("hit");
+    // Supporting roles in other stars' films are not counted as his lead films.
+    expect(rows.some((f) => f.film.title === "Maharshi")).toBe(false);
+    expect(rows.some((f) => f.film.title === "Naa Saami Ranga")).toBe(false);
+  });
+
+  it("most counted films have a result, each with its source", () => {
+    const counted = [...new Set([...out.heroFilms.values()].flat().map((r) => r.filmId))].map((id) => out.films.get(id)!);
+    const judged = counted.filter((f) => f.commercial.label !== null);
+    expect(judged.length / counted.length).toBeGreaterThan(0.65);
+    for (const f of judged.filter((x) => x.commercial.basis === "trade_verdict")) expect(f.film.details?.verdictSource).toBeTruthy();
+  });
+
+  it("uses X follower counts, not YouTube subscribers, for X", () => {
+    const mahesh = ds.social.find((s) => s.personId === "p-mahesh-babu" && s.platform === "x")!;
+    expect(mahesh.followersCount).toBeGreaterThan(10_000_000);
+  });
+
+  it("gives every hero a Star Score or a stated reason", () => {
+    for (const s of out.snapshots.all_time) {
+      const st = s.metrics.starScore;
+      if (st.value === null) expect(st.explanation).toMatch(/Not enough data/);
+      else expect(st.value).toBeGreaterThanOrEqual(0);
+    }
+  });
+
   it("every hero with films has a sensible film count", () => {
     for (const s of out.snapshots.all_time) {
       expect(s.eligibleFilmCount).toBeGreaterThan(0);
