@@ -2,6 +2,7 @@
  * Tolly Index — attention data. Daily Wikipedia page views for the last 60 days (English and
  * Telugu) for every counted film, via the MediaWiki action API (prop=pageviews, 50 titles per
  * request). The REST per-article endpoint is rate-limited from shared IPs; this is the polite path.
+ * Resumable: re-running skips titles already saved.
  *
  * Output: .cache/tolly/pageviews-60d.json  { "en:<title>" | "te:<title>": { days, views, from, to } }
  * Usage: NODE_USE_ENV_PROXY=1 npx tsx scripts/tolly/fetch-pageviews.mts
@@ -41,19 +42,21 @@ interface PageviewsResponse {
 
 async function api(lang: string, params: Record<string, string>): Promise<PageviewsResponse> {
   const url = `https://${lang}.wikipedia.org/w/api.php?${new URLSearchParams({ action: "query", format: "json", formatversion: "2", ...params })}`;
-  for (let attempt = 0; attempt < 8; attempt++) {
+  for (let attempt = 0; attempt < 20; attempt++) {
     const res = await fetch(url, { headers: { "user-agent": UA } });
     if (res.ok) return res.json();
-    const wait = Number(res.headers.get("retry-after")) || 5 * 2 ** Math.min(attempt, 4);
+    // Retry-After is sometimes 1s while the limit lasts a minute; never retry faster than 30s.
+    const wait = Math.max(30, Number(res.headers.get("retry-after")) || 0);
     console.log(`  ${res.status}, waiting ${wait}s`);
     await sleep(wait * 1000);
   }
   throw new Error(`gave up on ${url}`);
 }
 
-const out: Record<string, Views | null> = {};
+// Resumable: results are saved after every batch and skipped on the next run.
+const out: Record<string, Views | null> = existsSync(OUT) ? JSON.parse(readFileSync(OUT, "utf8")) : {};
 for (const lang of ["en", "te"] as const) {
-  const list = [...titles[lang]];
+  const list = [...titles[lang]].filter((t) => !(`${lang}:${t}` in out));
   console.log(`${lang}: ${list.length} titles`);
   for (let i = 0; i < list.length; i += 50) {
     const batch = list.slice(i, i + 50);
@@ -78,9 +81,10 @@ for (const lang of ["en", "te"] as const) {
       const vals = dates.map((d) => pv[d]).filter((v): v is number => typeof v === "number");
       out[`${lang}:${t}`] = { days: vals.length, views: vals.reduce((a, b) => a + b, 0), from: dates[0], to: dates[dates.length - 1] };
     }
+    writeFileSync(OUT, JSON.stringify(out));
     console.log(`  ${Math.min(i + 50, list.length)}/${list.length}`);
     await sleep(300);
   }
 }
-writeFileSync(OUT, JSON.stringify(out, null, 0));
+writeFileSync(OUT, JSON.stringify(out));
 console.log(`done: ${Object.values(out).filter(Boolean).length}/${Object.keys(out).length} with views`);
