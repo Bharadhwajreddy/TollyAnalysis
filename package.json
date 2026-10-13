@@ -18,7 +18,10 @@
     "db:recalculate": "tsx scripts/db-recalculate.ts",
     "check": "npm run lint && npm run typecheck && npm run test && npm run build",
     "photos:fetch": "tsx scripts/fetch-hero-photos.ts",
-    "data:import": "tsx scripts/import-real-data.mts"
+    "data:import": "tsx scripts/import-real-data.mts",
+    "tolly:imdb": "tsx scripts/tolly/imdb-ratings.mts",
+    "tolly:pageviews": "tsx scripts/tolly/fetch-pageviews.mts",
+    "tolly:compute": "tsx scripts/tolly/compute.mts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
