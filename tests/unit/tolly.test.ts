@@ -38,7 +38,8 @@ describe("Tolly Index v0", () => {
 
   it("gates films: missing data → incomplete, under 24 months → provisional", () => {
     expect(filmStatus(film("a", 2010, 7, 50), AS_OF).status).toBe("incomplete");
-    expect(filmStatus(film("a", 2010, 7, 500, null), AS_OF).missing).toContain("Wikipedia page views");
+    expect(filmStatus(film("a", 2010, 7, 500, null), AS_OF).missing).toContain("Wikipedia article (for page views)");
+    expect(filmStatus(film("a", 2010, 7, 500, 10, { telugu: null }), AS_OF).missing).toContain("original language");
     expect(filmStatus(film("a", 2010, 7, 500, 10, { dateApproximate: true }), AS_OF).status).toBe("incomplete");
     expect(filmStatus(film("a", 2025, 7, 500), AS_OF).status).toBe("provisional");
     expect(filmStatus(film("a", 2010, 7, 500), AS_OF).status).toBe("complete");
@@ -66,7 +67,7 @@ describe("Tolly Index v0", () => {
       [
         { slug: "s", name: "S", films: films.slice(0, 6).map((f) => f.key) },
         { slug: "w", name: "W", films: films.slice(6).map((f) => f.key) },
-        { slug: "t", name: "T", films: ["h0", "thin", "thin2"] },
+        { slug: "t", name: "T", films: ["h0", "h0", "thin", "thin2"] },
       ],
       rs,
     );
@@ -77,5 +78,6 @@ describe("Tolly Index v0", () => {
     expect(strong.best).toHaveLength(3);
     expect(thin.qualified).toBe(false);
     expect(thin.index).toBeNull();
+    expect(thin.films).toBe(2);
   });
 });

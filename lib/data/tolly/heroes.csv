@@ -1,0 +1,72 @@
+rank,hero,tolly_index,complete_films,films,provisional,spread,best_films,not_ranked_because
+1,Allu Arjun,72.3,19,20,1,9.9,Arya (2004) 86; Pushpa: The Rise (2021) 85.8; Ala Vaikunthapurramuloo (2020) 84.7,
+2,Mahesh Babu,72.2,26,26,0,10.5,Athadu (2005) 87.7; Pokiri (2006) 87.6; 1: Nenokkadine (2014) 87.6,
+3,Nani,70.2,27,29,1,11.4,Eega (2012) 86.9; Hi Nanna (2023) 85.7; Shyam Singha Roy (2021) 83.8,
+4,Ram Charan,69.1,12,14,2,11,Rangasthalam (2018) 88.8; RRR (2022) 87.7; Magadheera (2009) 87.1,
+5,Vijay Deverakonda,67.6,10,11,1,14,Pelli Choopulu (2016) 88.5; Arjun Reddy (2017) 86.5; Geetha Govindam (2018) 85.3,
+6,Prabhas,67.4,22,24,1,12.2,Baahubali 2: The Conclusion (2017) 89.9; Chatrapathi (2005) 84.5; Kalki 2898 AD (2024) 83.1,
+7,Pawan Kalyan,65.6,20,23,3,11.6,Kushi (2001) 86.3; Attarintiki Daredi (2013) 84.6; Badri (2000) 83.5,
+8,Adivi Sesh,65.5,7,11,0,18,Major (2022) 83.5; HIT: The Second Case (2022) 80.2; Goodachari (2018) 79.8,
+9,Chiranjeevi,64.2,16,17,1,10.9,Indra (2002) 83.9; Tagore (2003) 81.1; Sye Raa Narasimha Reddy (2019) 78.3,
+10,Jr NTR,61.9,28,29,0,14.3,Temper (2015) 84.3; Nannaku Prematho (2016) 83.2; Simhadri (2003) 82.8,
+11,Varun Tej,60,12,15,2,11.4,Fidaa (2017) 79.4; Tholi Prema (2018) 78.3; Kanche (2015) 73.3,
+12,Ravi Teja,59,49,57,3,11.8,Vikramarkudu (2006) 85.1; Kick (2009) 84.5; Khadgam (2002) 79.3,
+13,Venkatesh,58.1,31,32,1,13.3,Nuvvu Naaku Nachav (2001) 90.3; Drushyam (2014) 82.5; Seethamma Vakitlo Sirimalle Chettu (2013) 81.7,
+14,Rana Daggubati,57.8,7,8,0,14.7,Leader (2010) 75.2; Kaadan (2021) 71.5; Bheemla Nayak (2022) 67.7,
+15,Vishwak Sen,57.1,9,13,3,12.8,HIT: The First Case (2020) 82; Ee Nagaraniki Emaindhi (2018) 76.5; Ashoka Vanamlo Arjuna Kalyanam (2022) 61.2,
+16,Ram Pothineni,56.8,20,22,1,8.6,Ready (2008) 77.7; Hello Guru Prema Kosame (2018) 70.3; Nenu Sailaja (2016) 69.4,
+17,Naga Chaitanya,56.6,19,21,1,12.3,Majili (2019) 80.2; Ye Maaya Chesave (2010) 74.2; Love Story (2021) 72.6,
+18,Nikhil Siddhartha,56.5,11,19,1,13.4,Karthikeya 2 (2022) 82.1; Karthikeya (2014) 76.3; Ekkadiki Pothavu Chinnavada (2016) 68.4,
+19,Sharwanand,55.9,19,26,2,13.5,Gamyam (2008) 79.9; Prasthanam (2010) 71.2; Sreekaram (2021) 69.1,
+20,Nagarjuna,54.9,34,36,0,11,Manmadhudu (2002) 85.5; Mass (2004) 72.8; King (2008) 71.9,
+21,Suhas,54.5,8,10,2,11.2,Colour Photo (2020) 77.2; Writer Padmabhushan (2023) 65.3; Janaka Aithe Ganaka (2024) 56.6,
+22,Sree Vishnu,53.8,13,18,3,11.6,Brochevarevarura (2019) 75.8; Swag (2024) 63.1; Mental Madhilo (2017) 62.4,
+23,Siddhu Jonnalagadda,53.3,5,9,2,10.8,DJ Tillu (2022) 64.7; Tillu Square (2024) 64.3; Krishna and His Leela (2020) 49.1,
+24,Sai Durgha Tej,53.2,14,15,0,11,Virupaksha (2023) 74.1; Bro (2023) 70.3; Chitralahari (2019) 65.8,
+25,Nithiin,53.1,27,28,1,14.1,Sye (2004) 79.7; A Aa (2016) 78.1; Rang De (2021) 69.2,
+26,Bellamkonda Sreenivas,52.5,9,11,2,8.2,Rakshasudu (2019) 70.4; Jaya Janaki Nayaka (2017) 57.6; Alludu Seenu (2014) 54.3,
+27,Manchu Manoj,51.6,6,7,1,16.4,Vedam (2010) 84.2; Current Theega (2014) 50.3; Shourya (2016) 47.3,
+28,Anand Deverakonda,51.5,5,6,0,8.8,Middle Class Melodies (2020) 62.6; Pushpaka Vimanam (2021) 56; Highway (2022) 43.2,
+29,Sri Simha Koduri,50,6,6,0,12.8,Mathu Vadalara (2019) 72.1; Mathu Vadalara 2 (2024) 52.8; Thellavarithe Guruvaram (2021) 47.6,
+30,Naga Shaurya,49.4,15,18,1,10.4,Chalo (2018) 66.8; Oohalu Gusagusalade (2014) 66.7; Varudu Kaavalenu (2021) 57.2,
+31,Allu Sirish,49.4,6,7,0,5.7,Srirastu Subhamastu (2016) 54.8; Okka Kshanam (2017) 52.9; Urvasivo Rakshasivo (2022) 47.1,
+32,Balakrishna,49.3,30,35,2,12.2,Akhanda (2021) 76.7; Legend (2014) 69.1; Bhagavanth Kesari (2023) 67.9,
+33,Kalyan Ram,49.3,15,21,1,9.6,Bimbisara (2022) 67.6; Pataas (2015) 66.6; Devil: The British Secret Agent (2023) 57.4,
+34,Gopichand,49,19,21,0,7.2,Sahasam (2013) 67.6; Loukyam (2014) 56.7; Goutham Nanda (2017) 55.6,
+35,Vishnu Manchu,48.8,18,19,0,9,Dhee (2007) 71; Doosukeltha (2013) 60.6; Eedo Rakam Aado Rakam (2016) 57,
+36,Kartikeya Gummakonda,48.5,8,9,0,9.4,RX 100 (2018) 70.4; Raja Vikramarka (2021) 46.4; Guna 369 (2019) 43.7,
+37,Sushanth,48.5,6,6,0,9.8,Chi La Sow (2018) 65.1; Aatadukundam Raa (2016) 44.2; Ichata Vahanamulu Niluparadu (2021) 39.7,
+38,Sudheer Babu,48.4,16,18,0,10.6,V (2020) 74; Sammohanam (2018) 58.6; Prema Katha Chitram (2013) 56.7,
+39,Kiran Abbavaram,47.5,8,12,4,8.4,Raja Vaaru Rani Gaaru (2019) 56.7; SR Kalyanamandapam (2021) 56.3; Vinaro Bhagyamu Vishnu Katha (2023) 52.1,
+40,Satyadev,47.2,9,12,2,7.9,Uma Maheswara Ugra Roopasya (2020) 59.9; Thimmarusu (2021) 53.5; Godse (2022) 47.9,
+41,Santosh Sobhan,46.6,8,10,1,8.5,Ek Mini Katha (2021) 62.6; Anni Manchi Sakunamule (2023) 47.1; Kalyanam Kamaneeyam (2023) 43,
+42,Raj Tarun,46,17,19,2,9.9,Kumari 21F (2015) 68.4; Eedo Rakam Aado Rakam (2016) 57; Bhale Unnade (2024) 56.6,
+43,Allari Naresh,45.9,41,59,3,8.8,Gamyam (2008) 79.9; Naandhi (2021) 70; Ugram (2023) 57.2,
+44,Sundeep Kishan,45.9,17,20,1,5.7,Venkatadri Express (2013) 57.5; Michael (2023) 52.5; A1 Express (2021) 51,
+45,Mohan Babu,45.9,11,12,0,7.6,Rayalaseema Ramanna Chowdary (2000) 65.4; Raju Maharaju (2009) 43.9; Gayatri (2018) 43.9,
+46,Nara Rohit,45.2,13,20,2,5.3,Jyo Achyutananda (2016) 51.8; Appatlo Okadundevadu (2016) 50.5; Savitri (2016) 48,
+47,Aadi Saikumar,41.7,18,21,1,3.1,Tees Maar Khan (2022) 47.8; Black (2022) 43.6; CSI Sanatan (2023) 42.1,
+,Jagapathi Babu,,17,47,0,3.1,Rudrangi (2023) 44.6; Simbaa (2024) 44.3; Manoharam (2000) 43.2,only 36% of his films are complete (needs 60%)
+,Srikanth,,13,59,0,12,Khadgam (2002) 79.3; Kshemamga Velli Labamgarandi (2000) 55.4; Mahatma (2009) 50.9,only 22% of his films are complete (needs 60%)
+,Sumanth,,12,25,1,11.5,Godavari (2006) 71.4; Malli Raava (2017) 66.6; Yuvakudu (2000) 50.4,only 50% of his films are complete (needs 60%)
+,Sunil,,12,22,0,11.4,Maryada Ramanna (2010) 78.2; Paarijatha Parvam (2024) 44.7; Darja (2022) 42,only 55% of his films are complete (needs 60%)
+,Tarun,,8,20,0,12.8,Nuvve Kavali (2000) 81.3; Nuvvu Leka Nenu Lenu (2002) 52.3; Sasirekha Parinayam (2009) 48.9,only 40% of his films are complete (needs 60%)
+,Varun Sandesh,,7,26,1,15.5,Happy Days (2007) 84.7; Kotha Bangaru Lokam (2008) 58.6; Viraaji (2024) 49,only 28% of his films are complete (needs 60%)
+,Uday Kiran,,6,14,0,9.4,Manasantha Nuvve (2001) 63.2; Chitram (2000) 57; Nuvvu Nenu (2001) 56.2,only 43% of his films are complete (needs 60%)
+,Naveen Chandra,,6,22,4,8.4,Andala Rakshasi (2012) 61.8; Month of Madhu (2023) 44.2; Thaggedele (2022) 39.5,only 33% of his films are complete (needs 60%)
+,Sumanth Ashwin,,6,12,0,4.7,Kerintha (2015) 48.4; Anthaka Mundu Aa Tarvatha (2013) 43.9; Idhe Maa Katha (2021) 40.2,only 50% of his films are complete (needs 60%)
+,Priyadarshi,,5,14,3,12.8,Balagam (2023) 71.2; Mallesham (2019) 52.5; Darling (2024) 44.9,only 45% of his films are complete (needs 60%)
+,Rajasekhar,,4,23,0,7.5,PSV Garuda Vega (2017) 63.7; Villain (2003) 63.6; Kalki (2019) 55.1,only 4 complete films (needs 5)
+,Venu Thottempudi,,4,21,0,7.5,Chirunavvutho (2000) 58.5; Allare Allari (2007) 46.6; Pellam Oorelithe (2003) 41.6,only 4 complete films (needs 5)
+,Sampoornesh Babu,,4,8,0,5.5,Kobbari Matta (2019) 54.7; Hrudaya Kaleyam (2014) 52; Martin Luther King (2023) 44,only 4 complete films (needs 5)
+,Akhil Akkineni,,4,5,1,8,Hello! (2017) 77.4; Most Eligible Bachelor (2021) 69.7; Mr. Majnu (2019) 67.8,only 4 complete films (needs 5)
+,Teja Sajja,,4,6,1,14.8,Hanu-Man (2024) 84.5; Zombie Reddy (2021) 76; Adbhutham (2021) 65,only 4 complete films (needs 5)
+,Kalyaan Dhev,,3,3,0,3.3,Vijetha (2018) 42.4; Super Machi (2022) 41.2; Kinnerasani (2022) 34.9,only 3 complete films (needs 5)
+,Naveen Polishetty,,3,4,1,16.1,Agent Sai Srinivasa Athreya (2019) 82.3; Jathi Ratnalu (2021) 79.8; D for Dopidi (2013) 46.9,only 3 complete films (needs 5)
+,Srinivas Avasarala,,2,4,0,2.8,Babu Baga Busy (2017) 41.9; Amrutham Chandamamalo (2013) 36.2,only 2 complete films (needs 5)
+,Thiruveer,,1,6,3,,Pareshan (2023) 32.7,only 1 complete film (needs 5)
+,Taraka Ratna,,1,23,0,,S5 No Exit (2022) 53.4,only 1 complete film (needs 5)
+,Srihari,,1,35,0,,Nuvvostanante Nenoddantana (2005) 83.5,only 1 complete film (needs 5)
+,Rajendra Prasad,,0,0,0,,,no lead films counted since 2000
+,Sivaji,,0,44,2,,,only 0 complete films (needs 5)
+,Navdeep,,0,0,0,,,no lead films counted since 2000

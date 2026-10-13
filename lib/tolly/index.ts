@@ -40,7 +40,8 @@ export interface TollyFilmInput {
   year: number;
   releaseDate: string | null;
   dateApproximate: boolean;
-  telugu: boolean;
+  /** null when the original language is unknown (e.g. no Wikipedia article). */
+  telugu: boolean | null;
   imdbRating: number | null;
   imdbVotes: number | null;
   /** Wikipedia views over the last 60 days, English + Telugu; null when the film has no article. */
@@ -107,10 +108,11 @@ export function percentileRanks(values: Map<string, number>): Map<string, number
 
 export function filmStatus(f: TollyFilmInput, asOf: string): { status: FilmStatus; missing: string[] } {
   const missing: string[] = [];
-  if (!f.telugu) missing.push("not a Telugu-language film");
+  if (f.telugu === null) missing.push("original language");
+  else if (!f.telugu) missing.push("not a Telugu-language film");
   if (!f.releaseDate || f.dateApproximate) missing.push("exact release date");
   if (f.imdbRating === null || (f.imdbVotes ?? 0) < MIN_VOTES) missing.push(`IMDb rating with ${MIN_VOTES}+ votes`);
-  if (f.wikiViews === null) missing.push("Wikipedia page views");
+  if (f.wikiViews === null) missing.push("Wikipedia article (for page views)");
   if (missing.length) return { status: "incomplete", missing };
   if (monthsBetween(f.releaseDate as string, asOf) < MIN_AGE_MONTHS) return { status: "provisional", missing: [`${MIN_AGE_MONTHS} months since release`] };
   return { status: "complete", missing };
@@ -166,13 +168,15 @@ export function scoreHeroes(heroes: { slug: string; name: string; films: string[
   const allComplete = filmResults.filter((r) => r.status === "complete");
   const M = allComplete.length ? mean(allComplete.map((r) => r.index as number)) : 0;
   return heroes.map((h) => {
-    const rs = h.films.map((k) => byKey.get(k)).filter((r): r is TollyFilmResult => !!r);
+    // A film counts once per hero even when the filmography lists it on several rows.
+    const rs = [...new Set(h.films)].map((k) => byKey.get(k)).filter((r): r is TollyFilmResult => !!r);
     const complete = rs.filter((r) => r.status === "complete");
     const provisional = rs.filter((r) => r.status === "provisional").length;
     const judged = rs.length - provisional;
     const share = judged ? complete.length / judged : 0;
     let reason: string | null = null;
-    if (complete.length < HERO_MIN_COMPLETE) reason = `only ${complete.length} complete films (needs ${HERO_MIN_COMPLETE})`;
+    if (!rs.length) reason = "no lead films counted since 2000";
+    else if (complete.length < HERO_MIN_COMPLETE) reason = `only ${complete.length} complete film${complete.length === 1 ? "" : "s"} (needs ${HERO_MIN_COMPLETE})`;
     else if (share < HERO_MIN_SHARE) reason = `only ${Math.round(share * 100)}% of his films are complete (needs ${HERO_MIN_SHARE * 100}%)`;
     const sumC = complete.reduce((a, r) => a + (r.confidence as number), 0);
     const index = reason ? null : round((complete.reduce((a, r) => a + (r.confidence as number) * (r.index as number), 0) + HERO_PRIOR_FILMS * M) / (sumC + HERO_PRIOR_FILMS));

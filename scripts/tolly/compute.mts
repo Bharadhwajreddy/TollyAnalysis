@@ -5,7 +5,7 @@
  * Inputs (run these first):
  *   npx tsx scripts/tolly/imdb-ratings.mts                       → .cache/tolly/imdb-ours.json
  *   NODE_USE_ENV_PROXY=1 npx tsx scripts/tolly/fetch-pageviews.mts → .cache/tolly/pageviews-60d.json
- * Usage: npx tsx scripts/tolly/compute.mts [asOf=YYYY-MM-DD]
+ * Usage: npm run tolly:compute -- [asOf=YYYY-MM-DD]
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { scoreFilms, scoreHeroes, TOLLY_VERSION, v0Weights, type TollyFilmInput } from "@/lib/tolly";
@@ -38,7 +38,7 @@ for (const f of snap.films) {
     year: f.year,
     releaseDate: f.releaseDate ?? null,
     dateApproximate: !!f.dateApproximate,
-    telugu: (f.languages ?? []).includes("Telugu"),
+    telugu: f.languages?.length ? f.languages.includes("Telugu") : null,
     imdbRating: i?.rating ?? null,
     imdbVotes: i?.votes ?? null,
     wikiViews: en || te ? (en?.views ?? 0) + (te?.views ?? 0) : null,
@@ -59,6 +59,12 @@ const filmRows = films.map((r) => {
   const i = byKey.get(r.key)!;
   return { ...r, imdb: { tconst: i.tconst, rating: i.imdbRating, votes: i.imdbVotes }, wikipedia: { en: i.enViews, te: i.teViews } };
 });
+// IMDb's dataset licence is personal/non-commercial and does not allow republishing its numbers,
+// so committed files carry only our derived scores; the full table stays in the gitignored cache.
+const publicRows = filmRows.map((f) => {
+  const { imdb, ...rest } = f;
+  return { ...rest, imdb: { tconst: imdb.tconst } };
+});
 const count = (s: string) => films.filter((f) => f.status === s).length;
 const meta = {
   version: TOLLY_VERSION,
@@ -73,16 +79,19 @@ const meta = {
 };
 
 mkdirSync("lib/data/tolly", { recursive: true });
-writeFileSync("lib/data/tolly/films.json", JSON.stringify({ meta, films: filmRows }, null, 1));
-writeFileSync("lib/data/tolly/heroes.json", JSON.stringify({ meta, heroes }, null, 1));
+writeFileSync("lib/data/tolly/films.json", JSON.stringify({ meta, films: publicRows }));
+writeFileSync("lib/data/tolly/heroes.json", JSON.stringify({ meta, heroes }, null, 1) + "\n");
 const csv = (rows: (string | number | null)[][]) => rows.map((r) => r.map((v) => (v === null ? "" : /[",\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : v)).join(",")).join("\n") + "\n";
 writeFileSync(
   "lib/data/tolly/heroes.csv",
   csv([["rank", "hero", "tolly_index", "complete_films", "films", "provisional", "spread", "best_films", "not_ranked_because"], ...heroes.map((h, i) => [h.qualified ? i + 1 : null, h.name, h.index, h.complete, h.films, h.provisional, h.spread, h.best.map((b) => `${b.title} (${b.year}) ${b.index}`).join("; "), h.reason])]),
 );
-writeFileSync(
-  "lib/data/tolly/films.csv",
-  csv([["film", "year", "status", "imdb_rating", "imdb_votes", "wiki_views_60d", "rating_adj", "rating", "reach", "stay", "raw", "confidence", "tolly_index", "missing"], ...filmRows.map((f) => [f.title, f.year, f.status, f.imdb.rating, f.imdb.votes, byKey.get(f.key)!.wikiViews, f.ratingAdjusted, f.pillars.rating, f.pillars.reach, f.pillars.stay, f.raw, f.confidence, f.index, f.missing.join("; ")])]),
-);
+const filmCsv = (full: boolean) =>
+  csv([
+    ["film", "year", "status", ...(full ? ["imdb_rating", "imdb_votes"] : []), "wiki_views_60d", "rating_adj", "rating", "reach", "stay", "raw", "confidence", "tolly_index", "missing"],
+    ...filmRows.map((f) => [f.title, f.year, f.status, ...(full ? [f.imdb.rating, f.imdb.votes] : []), byKey.get(f.key)!.wikiViews, f.ratingAdjusted, f.pillars.rating, f.pillars.reach, f.pillars.stay, f.raw, f.confidence, f.index, f.missing.join("; ")]),
+  ]);
+writeFileSync("lib/data/tolly/films.csv", filmCsv(false));
+writeFileSync(".cache/tolly/films-full.csv", filmCsv(true));
 console.log(JSON.stringify(meta, null, 1));
 for (const [i, h] of heroes.entries()) console.log(`${String(i + 1).padStart(2)} ${h.name.padEnd(24)} ${h.index ?? "—"}  ${h.complete}/${h.films}${h.reason ? "  (" + h.reason + ")" : ""}`);
