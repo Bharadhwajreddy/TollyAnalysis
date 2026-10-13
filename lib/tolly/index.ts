@@ -1,50 +1,64 @@
 /**
- * Tolly Index v0 (0–100): how audiences rated a film, how many took part and whether people
- * still look it up years later. No rupee figure enters it, so inflation and ticket prices
- * cannot move it.
+ * Tolly Index v1 (0–100): how audiences rated a film, how widely it travelled and whether people
+ * still look it up today. No rupee figure enters it, so inflation and ticket prices cannot move it.
+ * Every input exists for films of every era, so a 2002 film and a 2022 film are scored the same way.
  *
- *   Rating — IMDb rating, Bayesian-shrunk toward that year's average:
- *            R' = v/(v+m)·R + m/(v+m)·C_y   (m = median votes of the year, C_y = mean rating of the year)
- *            score = (R' − 1) / 9 × 100      (absolute: a 7.5 means the same in any year)
- *   Reach  — IMDb vote count, percentile within the release year (log scale; ranks are unchanged by log)
- *   Stay   — Wikipedia page views (English + Telugu, last 60 days), percentile within the release year
- *   Voice  — not in v0 (needs the social APIs); its 30% is shared pro rata among the other three.
+ * Cohort: a film is compared with the films released within one year of it (year − 1 … year + 1).
  *
- *   raw_f = Σ w_p · pillar_p
- *   c_f   = min(1, log10(1 + votes) / 3)            evidence confidence (1 000 votes → full)
- *   TI_f  = c_f · raw_f + (1 − c_f) · mean raw of that year's complete films
- *   TI_h  = (Σ c_f · TI_f + k · M) / (Σ c_f + k),  k = 3, M = mean TI of all complete films
+ *   Rating — IMDb rating, shrunk toward the cohort's average in proportion to how few voted:
+ *            R' = v/(v+m)·R + m/(v+m)·C   (m = cohort median vote count, C = cohort mean rating)
+ *            score = (R' − 1) / 9 × 100   (absolute: a 7.5 means the same in every year)
+ *   Reach  — ⅔ × percentile of IMDb vote count + ⅓ × percentile of Wikipedia language editions,
+ *            both within the cohort
+ *   Stay   — percentile of Wikipedia page views (English + Telugu, last 60 days) within the cohort
+ *   Voice  — reserved for social-media sentiment; not in v1 (needs API keys).
  *
- * Only complete films are scored; a hero needs ≥ 5 complete films and ≥ 60 % of his
- * non-provisional films complete.
+ *   raw   = 0.50 · Rating + 0.30 · Reach + 0.20 · Stay
+ *   c     = min(1, log10(1 + votes) / 3)          evidence confidence (1,000 votes → full)
+ *   TI    = c · raw + (1 − c) · mean raw of the cohort
+ *   TI_h  = (Σ c · TI + k · M) / (Σ c + k)        k = 3, M = mean TI of all complete films
+ *   band  = ± 1.96 · spread / √(Σ c + k)
+ *
+ * Completeness gate: a film is scored only when every input above is present and checked; a hero
+ * is ranked only when HERO_MIN_COMPLETE films and HERO_MIN_SHARE of his judged films are complete.
  */
 
-export const TOLLY_VERSION = "tolly-v0";
+export const TOLLY_VERSION = "tolly-v1";
 
-/** Weights from the proposal; Voice is null in v0 and its weight is shared among the rest. */
-export const PILLAR_WEIGHTS = { rating: 35, voice: 30, reach: 20, stay: 15 } as const;
-export type Pillar = keyof typeof PILLAR_WEIGHTS;
-export const V0_PILLARS: Pillar[] = ["rating", "reach", "stay"];
+/** Proposal weights once Voice exists: Rating 35, Voice 30, Reach 20, Stay 15. */
+export const WEIGHTS_WITH_VOICE = { rating: 35, voice: 30, reach: 20, stay: 15 } as const;
+/** v1 weights, with no Voice. */
+export const WEIGHTS = { rating: 0.5, voice: 0, reach: 0.3, stay: 0.2 } as const;
+export type Pillar = keyof typeof WEIGHTS;
+export const REACH_PARTS = { votes: 2 / 3, editions: 1 / 3 } as const;
 
-export const MIN_VOTES = 100;
+export const MIN_VOTES = 10;
 export const MIN_AGE_MONTHS = 24;
+export const COHORT_YEARS = 1;
+export const FULL_CONFIDENCE_VOTES = 1000;
 export const HERO_MIN_COMPLETE = 5;
-export const HERO_MIN_SHARE = 0.6;
+export const HERO_MIN_SHARE = 0.9;
 export const HERO_PRIOR_FILMS = 3;
 
-export type FilmStatus = "complete" | "provisional" | "incomplete";
+export type FilmStatus = "complete" | "provisional" | "incomplete" | "excluded";
 
 export interface TollyFilmInput {
   key: string;
   title: string;
   year: number;
+  /** Exact release date when known. */
   releaseDate: string | null;
-  dateApproximate: boolean;
-  /** null when the original language is unknown (e.g. no Wikipedia article). */
+  /** true / false from Wikipedia, Wikidata or the filmography; null when no source says. */
   telugu: boolean | null;
+  /** Matched to an IMDb title. */
+  linked: boolean;
+  /** Release year agrees (± 1) with a second source (Wikidata or IMDb). */
+  yearConfirmed: boolean;
   imdbRating: number | null;
   imdbVotes: number | null;
-  /** Wikipedia views over the last 60 days, English + Telugu; null when the film has no article. */
+  /** Number of Wikipedia language editions with an article (0 when there is none). */
+  editions: number | null;
+  /** Wikipedia views over the last 60 days, English + Telugu (0 when neither article exists). */
   wikiViews: number | null;
 }
 
@@ -55,25 +69,33 @@ export interface TollyFilmResult {
   status: FilmStatus;
   missing: string[];
   pillars: Record<Pillar, number | null>;
-  /** Rating after Bayesian shrinkage (out of 10). */
+  /** Rating after shrinkage (out of 10). */
   ratingAdjusted: number | null;
   raw: number | null;
   confidence: number | null;
   index: number | null;
+  cohort: { films: number; medianVotes: number; meanRating: number } | null;
 }
 
 export interface TollyHeroResult {
   slug: string;
   name: string;
   films: number;
-  complete: number;
+  excluded: number;
   provisional: number;
+  complete: number;
+  /** Films at least 2 years old (the ones that must be complete). */
+  judged: number;
   qualified: boolean;
   reason: string | null;
   index: number | null;
+  /** Half-width of the 95% band around the index. */
+  band: number | null;
   best: { title: string; year: number; index: number }[];
   /** Standard deviation of his complete films' indexes (lower = more consistent). */
   spread: number | null;
+  pillars: { rating: number; reach: number; stay: number } | null;
+  missing: { title: string; year: number; missing: string[] }[];
 }
 
 export const round = (v: number, d = 1) => Math.round(v * 10 ** d) / 10 ** d;
@@ -90,77 +112,81 @@ export function monthsBetween(from: string, to: string): number {
   return (b.getUTCFullYear() - a.getUTCFullYear()) * 12 + (b.getUTCMonth() - a.getUTCMonth()) - (b.getUTCDate() < a.getUTCDate() ? 1 : 0);
 }
 
-/** Percentile rank 0–100 within a group; ties share the average rank; a lone value gets 50. */
-export function percentileRanks(values: Map<string, number>): Map<string, number> {
-  const entries = [...values.entries()].sort((a, b) => a[1] - b[1]);
-  const out = new Map<string, number>();
-  const n = entries.length;
-  let i = 0;
-  while (i < n) {
-    let j = i;
-    while (j + 1 < n && entries[j + 1][1] === entries[i][1]) j++;
-    const pct = n === 1 ? 50 : ((i + j) / 2 / (n - 1)) * 100;
-    for (let k = i; k <= j; k++) out.set(entries[k][0], pct);
-    i = j + 1;
+/** Mid-rank percentile (0–100) of `value` among `others` (the film itself excluded). */
+export function percentileOf(value: number, others: number[]): number {
+  if (!others.length) return 50;
+  let below = 0;
+  let equal = 0;
+  for (const o of others) {
+    if (o < value) below++;
+    else if (o === value) equal++;
   }
-  return out;
+  return ((below + equal / 2) / others.length) * 100;
+}
+
+/** Age check: exact date when known; otherwise the release year settles it unless it is borderline. */
+function ageStatus(f: TollyFilmInput, asOf: string): "old" | "young" | "unknown" {
+  if (f.releaseDate) return monthsBetween(f.releaseDate, asOf) >= MIN_AGE_MONTHS ? "old" : "young";
+  if (monthsBetween(`${f.year}-12-31`, asOf) >= MIN_AGE_MONTHS) return "old";
+  if (monthsBetween(`${f.year}-01-01`, asOf) < MIN_AGE_MONTHS) return "young";
+  return "unknown";
 }
 
 export function filmStatus(f: TollyFilmInput, asOf: string): { status: FilmStatus; missing: string[] } {
+  if (f.telugu === false) return { status: "excluded", missing: ["not a Telugu-language film"] };
   const missing: string[] = [];
   if (f.telugu === null) missing.push("original language");
-  else if (!f.telugu) missing.push("not a Telugu-language film");
-  if (!f.releaseDate || f.dateApproximate) missing.push("exact release date");
-  if (f.imdbRating === null || (f.imdbVotes ?? 0) < MIN_VOTES) missing.push(`IMDb rating with ${MIN_VOTES}+ votes`);
-  if (f.wikiViews === null) missing.push("Wikipedia article (for page views)");
+  if (!f.linked) missing.push("IMDb title");
+  else if (f.imdbRating === null || (f.imdbVotes ?? 0) < MIN_VOTES) missing.push(`IMDb rating with ${MIN_VOTES}+ votes`);
+  if (!f.yearConfirmed) missing.push("release year from a second source");
+  if (f.editions === null) missing.push("Wikipedia language editions");
+  if (f.wikiViews === null) missing.push("Wikipedia page views");
+  const age = ageStatus(f, asOf);
+  // A film under 2 years old never counts yet, so its gaps (often no ratings so soon) do not hold a hero back.
+  if (age === "young") return { status: "provisional", missing: [`${MIN_AGE_MONTHS} months since release`, ...missing] };
+  if (age === "unknown") missing.push("exact release date");
   if (missing.length) return { status: "incomplete", missing };
-  if (monthsBetween(f.releaseDate as string, asOf) < MIN_AGE_MONTHS) return { status: "provisional", missing: [`${MIN_AGE_MONTHS} months since release`] };
   return { status: "complete", missing };
 }
 
-export function v0Weights(): Record<Pillar, number> {
-  const total = V0_PILLARS.reduce((a, p) => a + PILLAR_WEIGHTS[p], 0);
-  return { rating: PILLAR_WEIGHTS.rating / total, voice: 0, reach: PILLAR_WEIGHTS.reach / total, stay: PILLAR_WEIGHTS.stay / total };
-}
+export const confidenceOf = (votes: number) => Math.min(1, Math.log10(1 + votes) / Math.log10(FULL_CONFIDENCE_VOTES));
 
 /**
- * Scores every film. Year statistics (m, C_y, percentiles, the year mean) use the films that are
- * complete or provisional, so a provisional film is ranked against its own year too, but it never
- * feeds a hero's index.
+ * Scores every film. Cohort statistics use complete and provisional films, so a provisional film
+ * is ranked against its own era too, but it never feeds a hero's index.
  */
 export function scoreFilms(films: TollyFilmInput[], asOf: string): TollyFilmResult[] {
-  const w = v0Weights();
-  const results = new Map<string, TollyFilmResult>();
-  const scorable: TollyFilmInput[] = [];
-  for (const f of films) {
+  const results = films.map((f): TollyFilmResult => {
     const { status, missing } = filmStatus(f, asOf);
-    results.set(f.key, { key: f.key, title: f.title, year: f.year, status, missing, pillars: { rating: null, voice: null, reach: null, stay: null }, ratingAdjusted: null, raw: null, confidence: null, index: null });
-    if (status !== "incomplete") scorable.push(f);
-  }
-  const byYear = new Map<number, TollyFilmInput[]>();
-  for (const f of scorable) byYear.set(f.year, [...(byYear.get(f.year) ?? []), f]);
+    return { key: f.key, title: f.title, year: f.year, status, missing, pillars: { rating: null, voice: null, reach: null, stay: null }, ratingAdjusted: null, raw: null, confidence: null, index: null, cohort: null };
+  });
+  const scorable = films.map((f, i) => ({ f, r: results[i] })).filter(({ r }) => r.status === "complete" || (r.status === "provisional" && r.missing.length === 1));
+  const cohortOf = (year: number) => scorable.filter(({ f }) => Math.abs(f.year - year) <= COHORT_YEARS);
 
-  for (const group of byYear.values()) {
-    const m = median(group.map((f) => f.imdbVotes as number));
-    const C = mean(group.map((f) => f.imdbRating as number));
-    const reach = percentileRanks(new Map(group.map((f) => [f.key, Math.log10(1 + (f.imdbVotes as number))])));
-    const stay = percentileRanks(new Map(group.map((f) => [f.key, Math.log10(1 + (f.wikiViews as number))])));
-    for (const f of group) {
-      const r = results.get(f.key)!;
-      const v = f.imdbVotes as number;
-      const adj = (v / (v + m)) * (f.imdbRating as number) + (m / (v + m)) * C;
-      r.ratingAdjusted = round(adj, 2);
-      r.pillars = { rating: round(((adj - 1) / 9) * 100), voice: null, reach: round(reach.get(f.key)!), stay: round(stay.get(f.key)!) };
-      r.raw = round(w.rating * r.pillars.rating! + w.reach * r.pillars.reach! + w.stay * r.pillars.stay!);
-      r.confidence = round(Math.min(1, Math.log10(1 + v) / 3), 3);
-    }
-    const yearMean = mean(group.map((f) => results.get(f.key)!.raw as number));
-    for (const f of group) {
-      const r = results.get(f.key)!;
-      r.index = round(r.confidence! * r.raw! + (1 - r.confidence!) * yearMean);
-    }
+  // Pass 1: pillars and raw score.
+  for (const { f, r } of scorable) {
+    const others = cohortOf(f.year).filter((x) => x.f !== f);
+    const cohort = [f, ...others.map((x) => x.f)];
+    const m = median(cohort.map((x) => x.imdbVotes as number));
+    const C = mean(cohort.map((x) => x.imdbRating as number));
+    const v = f.imdbVotes as number;
+    const adj = (v / (v + m)) * (f.imdbRating as number) + (m / (v + m)) * C;
+    const lv = (x: TollyFilmInput) => Math.log10(1 + (x.imdbVotes as number));
+    const reach = REACH_PARTS.votes * percentileOf(lv(f), others.map((x) => lv(x.f))) + REACH_PARTS.editions * percentileOf(f.editions as number, others.map((x) => x.f.editions as number));
+    const lw = (x: TollyFilmInput) => Math.log10(1 + (x.wikiViews as number));
+    const stay = percentileOf(lw(f), others.map((x) => lw(x.f)));
+    r.ratingAdjusted = round(adj, 2);
+    r.pillars = { rating: round(((adj - 1) / 9) * 100), voice: null, reach: round(reach), stay: round(stay) };
+    r.raw = round(WEIGHTS.rating * r.pillars.rating! + WEIGHTS.reach * r.pillars.reach! + WEIGHTS.stay * r.pillars.stay!);
+    r.confidence = round(confidenceOf(v), 3);
+    r.cohort = { films: cohort.length, medianVotes: m, meanRating: round(C, 3) };
   }
-  return films.map((f) => results.get(f.key)!);
+  // Pass 2: pull thin evidence toward the cohort's mean raw score.
+  for (const { f, r } of scorable) {
+    const cohortMean = mean(cohortOf(f.year).map((x) => x.r.raw as number));
+    r.index = round(r.confidence! * r.raw! + (1 - r.confidence!) * cohortMean);
+  }
+  return results;
 }
 
 export function scoreHeroes(heroes: { slug: string; name: string; films: string[] }[], filmResults: TollyFilmResult[]): TollyHeroResult[] {
@@ -169,21 +195,40 @@ export function scoreHeroes(heroes: { slug: string; name: string; films: string[
   const M = allComplete.length ? mean(allComplete.map((r) => r.index as number)) : 0;
   return heroes.map((h) => {
     // A film counts once per hero even when the filmography lists it on several rows.
-    const rs = [...new Set(h.films)].map((k) => byKey.get(k)).filter((r): r is TollyFilmResult => !!r);
+    const all = [...new Set(h.films)].map((k) => byKey.get(k)).filter((r): r is TollyFilmResult => !!r);
+    const excluded = all.filter((r) => r.status === "excluded").length;
+    const rs = all.filter((r) => r.status !== "excluded");
     const complete = rs.filter((r) => r.status === "complete");
     const provisional = rs.filter((r) => r.status === "provisional").length;
     const judged = rs.length - provisional;
     const share = judged ? complete.length / judged : 0;
     let reason: string | null = null;
-    if (!rs.length) reason = "no lead films counted since 2000";
+    if (!rs.length) reason = "no Telugu lead films counted since 2000";
     else if (!complete.length) reason = `no complete films (needs ${HERO_MIN_COMPLETE})`;
     else if (complete.length < HERO_MIN_COMPLETE) reason = `only ${complete.length} complete film${complete.length === 1 ? "" : "s"} (needs ${HERO_MIN_COMPLETE})`;
-    else if (share < HERO_MIN_SHARE) reason = `only ${Math.round(share * 100)}% of his films are complete (needs ${HERO_MIN_SHARE * 100}%)`;
+    else if (share < HERO_MIN_SHARE) reason = `${complete.length} of ${judged} films complete (${Math.round(share * 100)}%, needs ${HERO_MIN_SHARE * 100}%)`;
     const sumC = complete.reduce((a, r) => a + (r.confidence as number), 0);
-    const index = reason ? null : round((complete.reduce((a, r) => a + (r.confidence as number) * (r.index as number), 0) + HERO_PRIOR_FILMS * M) / (sumC + HERO_PRIOR_FILMS));
     const idx = complete.map((r) => r.index as number);
-    const spread = complete.length >= 2 ? round(Math.sqrt(mean(idx.map((x) => (x - mean(idx)) ** 2)))) : null;
-    const best = [...complete].sort((a, b) => (b.index as number) - (a.index as number)).slice(0, 3).map((r) => ({ title: r.title, year: r.year, index: r.index as number }));
-    return { slug: h.slug, name: h.name, films: rs.length, complete: complete.length, provisional, qualified: !reason, reason, index, best, spread };
+    const spread = complete.length >= 2 ? Math.sqrt(mean(idx.map((x) => (x - mean(idx)) ** 2))) : null;
+    const index = reason ? null : round((complete.reduce((a, r) => a + (r.confidence as number) * (r.index as number), 0) + HERO_PRIOR_FILMS * M) / (sumC + HERO_PRIOR_FILMS));
+    const band = index !== null && spread !== null ? round((1.96 * spread) / Math.sqrt(sumC + HERO_PRIOR_FILMS)) : null;
+    const wavg = (p: "rating" | "reach" | "stay") => round(complete.reduce((a, r) => a + (r.confidence as number) * (r.pillars[p] as number), 0) / sumC);
+    return {
+      slug: h.slug,
+      name: h.name,
+      films: all.length,
+      excluded,
+      provisional,
+      complete: complete.length,
+      judged,
+      qualified: !reason,
+      reason,
+      index,
+      band,
+      best: [...complete].sort((a, b) => (b.index as number) - (a.index as number)).slice(0, 3).map((r) => ({ title: r.title, year: r.year, index: r.index as number })),
+      spread: spread === null ? null : round(spread),
+      pillars: complete.length ? { rating: wavg("rating"), reach: wavg("reach"), stay: wavg("stay") } : null,
+      missing: rs.filter((r) => r.status === "incomplete").map((r) => ({ title: r.title, year: r.year, missing: r.missing })),
+    };
   });
 }

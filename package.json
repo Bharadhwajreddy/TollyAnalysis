@@ -21,7 +21,10 @@
     "data:import": "tsx scripts/import-real-data.mts",
     "tolly:imdb": "tsx scripts/tolly/imdb-ratings.mts",
     "tolly:pageviews": "tsx scripts/tolly/fetch-pageviews.mts",
-    "tolly:compute": "tsx scripts/tolly/compute.mts"
+    "tolly:compute": "tsx scripts/tolly/compute.mts",
+    "tolly:wikidata": "tsx scripts/tolly/wikidata.mts",
+    "tolly:cast": "tsx scripts/tolly/imdb-cast.mts",
+    "tolly:link": "tsx scripts/tolly/link-films.mts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",

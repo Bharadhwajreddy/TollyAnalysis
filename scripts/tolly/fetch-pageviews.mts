@@ -30,6 +30,12 @@ for (const f of snap.films) {
   if (f.article) titles.en.add(f.article);
   if (f.qid && teTitles[f.qid]) titles.te.add(teTitles[f.qid]);
 }
+// Articles found later by link-films.mts (films linked through Wikidata or IMDb cast lists).
+if (existsSync(".cache/tolly/films-linked.json"))
+  for (const f of JSON.parse(readFileSync(".cache/tolly/films-linked.json", "utf8")) as { en: string | null; te: string | null }[]) {
+    if (f.en) titles.en.add(f.en);
+    if (f.te) titles.te.add(f.te);
+  }
 
 interface PageviewsResponse {
   continue?: Record<string, string>;
