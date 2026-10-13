@@ -176,6 +176,7 @@ export function scoreHeroes(heroes: { slug: string; name: string; films: string[
     const share = judged ? complete.length / judged : 0;
     let reason: string | null = null;
     if (!rs.length) reason = "no lead films counted since 2000";
+    else if (!complete.length) reason = `no complete films (needs ${HERO_MIN_COMPLETE})`;
     else if (complete.length < HERO_MIN_COMPLETE) reason = `only ${complete.length} complete film${complete.length === 1 ? "" : "s"} (needs ${HERO_MIN_COMPLETE})`;
     else if (share < HERO_MIN_SHARE) reason = `only ${Math.round(share * 100)}% of his films are complete (needs ${HERO_MIN_SHARE * 100}%)`;
     const sumC = complete.reduce((a, r) => a + (r.confidence as number), 0);
