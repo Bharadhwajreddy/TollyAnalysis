@@ -38,6 +38,22 @@ const linked: {
   sitelinks: number | null;
   imdbActorRank?: Record<string, number | null>;
 }[] = read(".cache/tolly/films-linked.json");
+// Filmographies sometimes spell one film two ways ("RRR" / "RRR (film)"). Rows that resolve to the
+// same IMDb title are one film: keep the row with a Wikipedia article and merge the heroes into it.
+const alias = new Map<string, string>();
+{
+  const byTconst = new Map<string, (typeof linked)[number]>();
+  for (const l of [...linked].sort((a, b) => Number(a.key.startsWith("unlinked:")) - Number(b.key.startsWith("unlinked:")))) {
+    if (!l.tconst) continue;
+    const first = byTconst.get(l.tconst);
+    if (!first) byTconst.set(l.tconst, l);
+    else {
+      alias.set(l.key, first.key);
+      first.heroes = [...new Set([...first.heroes, ...l.heroes])];
+    }
+  }
+}
+const linkedFilms = linked.filter((l) => !alias.has(l.key)).map((l) => ({ ...l, title: l.title.replace(/&nbsp;|\u00a0/g, " ") }));
 const views: Record<string, { views: number; from: string; to: string } | null> = read(".cache/tolly/pageviews-60d.json");
 const pages: Record<string, string> = read(".cache/import/pages.json");
 const profiles: { slug: string; birthDate: string | null; birthDateBy: string | null; debutYear: number | null; debutYearBy: string | null; hasFreePhoto: boolean; imdb: string[] }[] = read(
@@ -46,7 +62,7 @@ const profiles: { slug: string; birthDate: string | null; birthDateBy: string | 
 
 let viewsFrom = "";
 let viewsTo = "";
-const inputs: (TollyFilmInput & { l: (typeof linked)[number]; enViews: number | null; teViews: number | null; critics: number[] })[] = linked.map((l) => {
+const inputs: (TollyFilmInput & { l: (typeof linked)[number]; enViews: number | null; teViews: number | null; critics: number[] })[] = linkedFilms.map((l) => {
   const lookup = (k: string | null) => (k ? views[k] : undefined);
   const en = lookup(l.en ? `en:${l.en}` : null);
   const te = lookup(l.te ? `te:${l.te}` : null);
@@ -81,7 +97,7 @@ const inputs: (TollyFilmInput & { l: (typeof linked)[number]; enViews: number | 
 const films = scoreFilms(inputs, asOf);
 const counted = snap.credits.filter((c: { include: boolean }) => c.include);
 const heroes = scoreHeroes(
-  snap.heroes.map((h: { slug: string; name: string }) => ({ slug: h.slug, name: h.name, films: counted.filter((c: { hero: string }) => c.hero === h.slug).map((c: { film: string }) => c.film) })),
+  snap.heroes.map((h: { slug: string; name: string }) => ({ slug: h.slug, name: h.name, films: counted.filter((c: { hero: string }) => c.hero === h.slug).map((c: { film: string }) => alias.get(c.film) ?? c.film) })),
   films,
 ).sort((a, b) => (b.index ?? -1) - (a.index ?? -1) || b.complete / Math.max(1, b.judged) - a.complete / Math.max(1, a.judged));
 
@@ -91,20 +107,20 @@ const pairs = films.filter((f) => f.status === "complete" && byKey.get(f.key)!.c
 const critics = { films: pairs.length, correlation: pairs.length > 2 ? Math.round(correlation(pairs.map((p) => p[0]), pairs.map((p) => p[1])) * 100) / 100 : null };
 // Second audience source (MovieLens, research licence): too thin to be an input, so a cross-check on IMDb.
 const movielens: Record<string, { votes: number; mean: number }> = existsSync(".cache/tolly/movielens-ours.json") ? read(".cache/tolly/movielens-ours.json") : {};
-const mlPairs = linked.filter((l) => l.tconst && l.imdbRating !== null && (movielens[l.tconst]?.votes ?? 0) >= 10).map((l) => [movielens[l.tconst!].mean, l.imdbRating as number]);
+const mlPairs = linkedFilms.filter((l) => l.tconst && l.imdbRating !== null && (movielens[l.tconst]?.votes ?? 0) >= 10).map((l) => [movielens[l.tconst!].mean, l.imdbRating as number]);
 const movielensCheck = {
   films: Object.keys(movielens).length,
   with10: mlPairs.length,
   correlation: mlPairs.length > 2 ? Math.round(correlation(mlPairs.map((p) => p[0]), mlPairs.map((p) => p[1])) * 100) / 100 : null,
 };
 // Lead credit vs IMDb's cast order (tested as a second check; IMDb's order does not follow billing reliably).
-const ranks = linked.flatMap((l) => Object.values(l.imdbActorRank ?? {}));
+const ranks = linkedFilms.flatMap((l) => Object.values(l.imdbActorRank ?? {}));
 const leadCheck = { credits: ranks.length, top3: ranks.filter((r) => r !== null && r <= 3).length, lower: ranks.filter((r) => r !== null && r > 3).length, notListed: ranks.filter((r) => r === null).length };
 
 const count = (s: string) => films.filter((f) => f.status === s).length;
 const tally = (k: keyof (typeof linked)[number]) => {
   const t: Record<string, number> = {};
-  for (const l of linked) {
+  for (const l of linkedFilms) {
     const v = String(l[k] ?? "missing");
     t[v] = (t[v] ?? 0) + 1;
   }
