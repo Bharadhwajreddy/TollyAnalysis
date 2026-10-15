@@ -10,7 +10,7 @@
  *   npm run tolly:pageviews   → pageviews-60d.json   (Wikipedia views, English + Telugu)
  * Usage: npm run tolly:compute -- [asOf=YYYY-MM-DD]
  */
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { correlation, criticScores } from "@/lib/tolly/critics";
 import { MIN_VOTES, scoreFilms, scoreHeroes, TOLLY_VERSION, WEIGHTS, type TollyFilmInput } from "@/lib/tolly";
 
@@ -36,6 +36,7 @@ const linked: {
   en: string | null;
   te: string | null;
   sitelinks: number | null;
+  imdbActorRank?: Record<string, number | null>;
 }[] = read(".cache/tolly/films-linked.json");
 const views: Record<string, { views: number; from: string; to: string } | null> = read(".cache/tolly/pageviews-60d.json");
 const pages: Record<string, string> = read(".cache/import/pages.json");
@@ -88,6 +89,17 @@ const heroes = scoreHeroes(
 const byKey = new Map(inputs.map((i) => [i.key, i]));
 const pairs = films.filter((f) => f.status === "complete" && byKey.get(f.key)!.critics.length).map((f) => [byKey.get(f.key)!.critics.reduce((a, b) => a + b, 0) / byKey.get(f.key)!.critics.length, f.ratingAdjusted as number]);
 const critics = { films: pairs.length, correlation: pairs.length > 2 ? Math.round(correlation(pairs.map((p) => p[0]), pairs.map((p) => p[1])) * 100) / 100 : null };
+// Second audience source (MovieLens, research licence): too thin to be an input, so a cross-check on IMDb.
+const movielens: Record<string, { votes: number; mean: number }> = existsSync(".cache/tolly/movielens-ours.json") ? read(".cache/tolly/movielens-ours.json") : {};
+const mlPairs = linked.filter((l) => l.tconst && l.imdbRating !== null && (movielens[l.tconst]?.votes ?? 0) >= 10).map((l) => [movielens[l.tconst!].mean, l.imdbRating as number]);
+const movielensCheck = {
+  films: Object.keys(movielens).length,
+  with10: mlPairs.length,
+  correlation: mlPairs.length > 2 ? Math.round(correlation(mlPairs.map((p) => p[0]), mlPairs.map((p) => p[1])) * 100) / 100 : null,
+};
+// Lead credit vs IMDb's cast order (tested as a second check; IMDb's order does not follow billing reliably).
+const ranks = linked.flatMap((l) => Object.values(l.imdbActorRank ?? {}));
+const leadCheck = { credits: ranks.length, top3: ranks.filter((r) => r !== null && r <= 3).length, lower: ranks.filter((r) => r !== null && r > 3).length, notListed: ranks.filter((r) => r === null).length };
 
 const count = (s: string) => films.filter((f) => f.status === s).length;
 const tally = (k: keyof (typeof linked)[number]) => {
@@ -115,6 +127,8 @@ const meta = {
   provenance: { imdb: tally("tconstBy"), wikidata: tally("qidBy"), releaseDate: tally("releaseDateBy"), language: tally("languageBy") },
   missing: missingTally,
   critics,
+  movielens: movielensCheck,
+  leadCheck,
 };
 
 // IMDb's dataset licence is personal/non-commercial and does not allow republishing its numbers,

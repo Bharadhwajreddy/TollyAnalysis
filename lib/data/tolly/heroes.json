@@ -1,7 +1,7 @@
 {
  "meta": {
   "version": "tolly-v1",
-  "asOf": "2026-10-13",
+  "asOf": "2026-10-15",
   "weights": {
    "rating": 0.5,
    "voice": 0,
@@ -10,27 +10,28 @@
   },
   "minVotes": 10,
   "sources": {
-   "imdb": "IMDb non-commercial datasets (title.basics, title.ratings, title.principals, title.akas), 2026-10-13",
+   "imdb": "IMDb non-commercial datasets (title.basics, title.ratings, title.principals, title.akas), 2026-10-15",
    "wikidata": "Wikidata query service (CC0): films by cast, release dates, languages, IMDb ids, language editions",
    "wikipedia": "Wikimedia page views via the MediaWiki API, English + Telugu, 2026-08-14 to 2026-10-12"
   },
   "films": {
    "total": 1305,
-   "complete": 1112,
+   "complete": 1115,
    "provisional": 85,
-   "incomplete": 92,
+   "incomplete": 89,
    "excluded": 16
   },
   "heroes": {
    "total": 71,
-   "qualified": 51
+   "qualified": 52
   },
   "provenance": {
    "imdb": {
     "wikidata": 1168,
     "imdb cast list": 73,
-    "missing": 42,
+    "missing": 35,
     "unique imdb title and year": 19,
+    "imdb indian titles (close title and year)": 7,
     "imdb cast list (close title)": 3
    },
    "wikidata": {
@@ -51,13 +52,24 @@
    }
   },
   "missing": {
-   "IMDb rating with 10+ votes": 52,
-   "IMDb title": 40,
-   "release year from a second source": 39
+   "IMDb rating with 10+ votes": 56,
+   "IMDb title": 33,
+   "release year from a second source": 34
   },
   "critics": {
    "films": 421,
    "correlation": 0.56
+  },
+  "movielens": {
+   "films": 207,
+   "with10": 61,
+   "correlation": 0.69
+  },
+  "leadCheck": {
+   "credits": 1345,
+   "top3": 1070,
+   "lower": 129,
+   "notListed": 146
   }
  },
  "heroes": [
@@ -186,10 +198,10 @@
      "index": 83.3
     }
    ],
-   "spread": 8.9,
+   "spread": 8.8,
    "pillars": {
     "rating": 64.5,
-    "reach": 79.5,
+    "reach": 79.6,
     "stay": 87
    },
    "missing": [],
@@ -238,7 +250,7 @@
    "pillars": {
     "rating": 58.2,
     "reach": 92.1,
-    "stay": 88.6
+    "stay": 88.7
    },
    "missing": [],
    "profile": {
@@ -311,7 +323,7 @@
    "judged": 10,
    "qualified": true,
    "reason": null,
-   "index": 68.3,
+   "index": 68.4,
    "band": 6.3,
    "best": [
     {
@@ -322,19 +334,19 @@
     {
      "title": "Geetha Govindam",
      "year": 2018,
-     "index": 84.9
+     "index": 85
     },
     {
      "title": "Pelli Choopulu",
      "year": 2016,
-     "index": 84.4
+     "index": 84.5
     }
    ],
    "spread": 11.5,
    "pillars": {
     "rating": 57.5,
-    "reach": 87.9,
-    "stay": 86.7
+    "reach": 88,
+    "stay": 86.8
    },
    "missing": [],
    "profile": {
@@ -378,7 +390,7 @@
      "index": 79.4
     }
    ],
-   "spread": 9.3,
+   "spread": 9.2,
    "pillars": {
     "rating": 57.2,
     "reach": 80.1,
@@ -423,14 +435,14 @@
     {
      "title": "Jalsa",
      "year": 2008,
-     "index": 82.5
+     "index": 82.6
     }
    ],
    "spread": 9.7,
    "pillars": {
     "rating": 55.2,
-    "reach": 83,
-    "stay": 79.3
+    "reach": 83.1,
+    "stay": 79.4
    },
    "missing": [],
    "profile": {
@@ -503,7 +515,7 @@
    "judged": 9,
    "qualified": true,
    "reason": null,
-   "index": 64.1,
+   "index": 64.2,
    "band": 9.7,
    "best": [
     {
@@ -519,14 +531,14 @@
     {
      "title": "Kshanam",
      "year": 2016,
-     "index": 78
+     "index": 78.1
     }
    ],
-   "spread": 16.2,
+   "spread": 16.1,
    "pillars": {
     "rating": 67.9,
-    "reach": 67.8,
-    "stay": 62.7
+    "reach": 68,
+    "stay": 62.9
    },
    "missing": [],
    "profile": {
@@ -551,7 +563,7 @@
    "judged": 31,
    "qualified": true,
    "reason": null,
-   "index": 62.3,
+   "index": 62.4,
    "band": 3.9,
    "best": [
     {
@@ -573,7 +585,7 @@
    "spread": 11.4,
    "pillars": {
     "rating": 58.4,
-    "reach": 67.1,
+    "reach": 67.2,
     "stay": 69.6
    },
    "missing": [],
@@ -621,7 +633,7 @@
    "spread": 10.4,
    "pillars": {
     "rating": 54.1,
-    "reach": 63.8,
+    "reach": 63.9,
     "stay": 77
    },
    "missing": [],
@@ -653,7 +665,7 @@
     {
      "title": "Fidaa",
      "year": 2017,
-     "index": 79.9
+     "index": 80
     },
     {
      "title": "Kanche",
@@ -663,14 +675,14 @@
     {
      "title": "Tholi Prema",
      "year": 2018,
-     "index": 74.1
+     "index": 74.2
     }
    ],
    "spread": 8.9,
    "pillars": {
     "rating": 55.9,
-    "reach": 68.2,
-    "stay": 73.6
+    "reach": 68.4,
+    "stay": 73.7
    },
    "missing": [],
    "profile": {
@@ -695,13 +707,13 @@
    "judged": 7,
    "qualified": true,
    "reason": null,
-   "index": 60.6,
+   "index": 60.7,
    "band": 7.1,
    "best": [
     {
      "title": "Leader",
      "year": 2010,
-     "index": 77
+     "index": 77.1
     },
     {
      "title": "Kaadan",
@@ -714,11 +726,11 @@
      "index": 70.4
     }
    ],
-   "spread": 11.2,
+   "spread": 11.3,
    "pillars": {
     "rating": 58.5,
-    "reach": 70.2,
-    "stay": 63.8
+    "reach": 70.3,
+    "stay": 63.9
    },
    "missing": [],
    "profile": {
@@ -743,7 +755,7 @@
    "judged": 35,
    "qualified": true,
    "reason": null,
-   "index": 59.6,
+   "index": 59.7,
    "band": 3.1,
    "best": [
     {
@@ -765,8 +777,8 @@
    "spread": 9.2,
    "pillars": {
     "rating": 53.6,
-    "reach": 66.4,
-    "stay": 67.6
+    "reach": 66.5,
+    "stay": 67.7
    },
    "missing": [
     {
@@ -821,8 +833,8 @@
    "spread": 11,
    "pillars": {
     "rating": 55.1,
-    "reach": 66,
-    "stay": 63.3
+    "reach": 66.1,
+    "stay": 63.5
    },
    "missing": [],
    "profile": {
@@ -847,30 +859,30 @@
    "judged": 20,
    "qualified": true,
    "reason": null,
-   "index": 59,
+   "index": 59.1,
    "band": 3.3,
    "best": [
     {
      "title": "Ready",
      "year": 2008,
-     "index": 78.1
+     "index": 78.2
     },
     {
      "title": "Hello Guru Prema Kosame",
      "year": 2018,
-     "index": 71.9
+     "index": 72.1
     },
     {
      "title": "Nenu Sailaja",
      "year": 2016,
-     "index": 69.7
+     "index": 69.8
     }
    ],
    "spread": 7.9,
    "pillars": {
-    "rating": 53.2,
-    "reach": 66.1,
-    "stay": 66.9
+    "rating": 53.3,
+    "reach": 66.2,
+    "stay": 67.1
    },
    "missing": [],
    "profile": {
@@ -895,18 +907,18 @@
    "judged": 21,
    "qualified": true,
    "reason": null,
-   "index": 57.9,
+   "index": 58,
    "band": 4.8,
    "best": [
     {
      "title": "Prasthanam",
      "year": 2010,
-     "index": 79.9
+     "index": 80
     },
     {
      "title": "Gamyam",
      "year": 2008,
-     "index": 77.9
+     "index": 78
     },
     {
      "title": "Run Raja Run",
@@ -917,8 +929,8 @@
    "spread": 11.2,
    "pillars": {
     "rating": 60.5,
-    "reach": 54.6,
-    "stay": 56
+    "reach": 54.8,
+    "stay": 56.2
    },
    "missing": [
     {
@@ -963,7 +975,7 @@
     {
      "title": "A Aa",
      "year": 2016,
-     "index": 78.2
+     "index": 78.3
     },
     {
      "title": "Bheeshma",
@@ -974,8 +986,8 @@
    "spread": 11.6,
    "pillars": {
     "rating": 53.6,
-    "reach": 61,
-    "stay": 59
+    "reach": 61.1,
+    "stay": 59.1
    },
    "missing": [],
    "profile": {
@@ -1011,7 +1023,7 @@
     {
      "title": "Ee Nagaraniki Emaindhi",
      "year": 2018,
-     "index": 72.8
+     "index": 72.9
     },
     {
      "title": "Ashoka Vanamlo Arjuna Kalyanam",
@@ -1022,8 +1034,8 @@
    "spread": 12.2,
    "pillars": {
     "rating": 59.8,
-    "reach": 53.2,
-    "stay": 55.4
+    "reach": 53.3,
+    "stay": 55.5
    },
    "missing": [],
    "profile": {
@@ -1048,7 +1060,7 @@
    "judged": 18,
    "qualified": true,
    "reason": null,
-   "index": 55.1,
+   "index": 55.2,
    "band": 6,
    "best": [
     {
@@ -1064,14 +1076,14 @@
     {
      "title": "Ekkadiki Pothavu Chinnavada",
      "year": 2016,
-     "index": 67.1
+     "index": 67.3
     }
    ],
    "spread": 12.5,
    "pillars": {
     "rating": 58.1,
-    "reach": 52,
-    "stay": 43.6
+    "reach": 52.2,
+    "stay": 43.7
    },
    "missing": [
     {
@@ -1127,7 +1139,7 @@
    "pillars": {
     "rating": 57.6,
     "reach": 44.1,
-    "stay": 60.3
+    "stay": 60.4
    },
    "missing": [
     {
@@ -1160,8 +1172,8 @@
    "judged": 6,
    "qualified": true,
    "reason": null,
-   "index": 54.2,
-   "band": 10.5,
+   "index": 54.3,
+   "band": 10.4,
    "best": [
     {
      "title": "Vedam",
@@ -1176,14 +1188,14 @@
     {
      "title": "Attack",
      "year": 2016,
-     "index": 49.2
+     "index": 49.3
     }
    ],
-   "spread": 15.6,
+   "spread": 15.5,
    "pillars": {
-    "rating": 56,
-    "reach": 56.6,
-    "stay": 41.4
+    "rating": 55.9,
+    "reach": 57,
+    "stay": 41.8
    },
    "missing": [],
    "profile": {
@@ -1208,8 +1220,8 @@
    "judged": 15,
    "qualified": true,
    "reason": null,
-   "index": 54.2,
-   "band": 4.3,
+   "index": 54.3,
+   "band": 4.2,
    "best": [
     {
      "title": "Virupaksha",
@@ -1224,14 +1236,14 @@
     {
      "title": "Chitralahari",
      "year": 2019,
-     "index": 63.5
+     "index": 63.6
     }
    ],
-   "spread": 8.8,
+   "spread": 8.7,
    "pillars": {
-    "rating": 53.1,
-    "reach": 52.2,
-    "stay": 58
+    "rating": 53,
+    "reach": 52.6,
+    "stay": 58.3
    },
    "missing": [
     {
@@ -1265,18 +1277,18 @@
    "judged": 15,
    "qualified": true,
    "reason": null,
-   "index": 53.6,
+   "index": 53.7,
    "band": 4.6,
    "best": [
     {
      "title": "Brochevarevarura",
      "year": 2019,
-     "index": 75.6
+     "index": 75.7
     },
     {
      "title": "Mental Madhilo",
      "year": 2017,
-     "index": 62.1
+     "index": 62.4
     },
     {
      "title": "Raja Raja Chora",
@@ -1286,9 +1298,9 @@
    ],
    "spread": 9.6,
    "pillars": {
-    "rating": 60.5,
-    "reach": 44.3,
-    "stay": 44.7
+    "rating": 60.6,
+    "reach": 44.5,
+    "stay": 45
    },
    "missing": [],
    "profile": {
@@ -1367,7 +1379,7 @@
     {
      "title": "Rakshasudu",
      "year": 2019,
-     "index": 70.8
+     "index": 70.9
     },
     {
      "title": "Alludu Seenu",
@@ -1377,14 +1389,14 @@
     {
      "title": "Jaya Janaki Nayaka",
      "year": 2017,
-     "index": 58.3
+     "index": 58.4
     }
    ],
    "spread": 8.5,
    "pillars": {
     "rating": 50.9,
-    "reach": 53,
-    "stay": 57.6
+    "reach": 53.2,
+    "stay": 57.9
    },
    "missing": [],
    "profile": {
@@ -1409,7 +1421,7 @@
    "judged": 32,
    "qualified": true,
    "reason": null,
-   "index": 53.3,
+   "index": 53.4,
    "band": 3.8,
    "best": [
     {
@@ -1430,9 +1442,9 @@
    ],
    "spread": 11,
    "pillars": {
-    "rating": 44.6,
-    "reach": 63.8,
-    "stay": 55.7
+    "rating": 44.5,
+    "reach": 63.9,
+    "stay": 55.8
    },
    "missing": [],
    "profile": {
@@ -1457,7 +1469,7 @@
    "judged": 21,
    "qualified": true,
    "reason": null,
-   "index": 53.2,
+   "index": 53.3,
    "band": 3,
    "best": [
     {
@@ -1473,14 +1485,14 @@
     {
      "title": "Golimaar",
      "year": 2010,
-     "index": 62.7
+     "index": 62.8
     }
    ],
    "spread": 7.3,
    "pillars": {
     "rating": 53.5,
-    "reach": 48.6,
-    "stay": 56.8
+    "reach": 48.7,
+    "stay": 56.9
    },
    "missing": [],
    "profile": {
@@ -1505,7 +1517,7 @@
    "judged": 5,
    "qualified": true,
    "reason": null,
-   "index": 53.1,
+   "index": 53.2,
    "band": 6.5,
    "best": [
     {
@@ -1527,8 +1539,8 @@
    "spread": 9.1,
    "pillars": {
     "rating": 57.6,
-    "reach": 32.6,
-    "stay": 62.9
+    "reach": 32.8,
+    "stay": 63
    },
    "missing": [],
    "profile": {
@@ -1572,11 +1584,11 @@
      "index": 60.2
     }
    ],
-   "spread": 8.2,
+   "spread": 8.1,
    "pillars": {
-    "rating": 50.5,
-    "reach": 60.1,
-    "stay": 42.2
+    "rating": 50.4,
+    "reach": 60.2,
+    "stay": 42.4
    },
    "missing": [
     {
@@ -1610,7 +1622,7 @@
    "judged": 20,
    "qualified": true,
    "reason": null,
-   "index": 51.6,
+   "index": 51.7,
    "band": 3.3,
    "best": [
     {
@@ -1629,11 +1641,11 @@
      "index": 56.3
     }
    ],
-   "spread": 7.3,
+   "spread": 7.2,
    "pillars": {
     "rating": 53.8,
-    "reach": 47.2,
-    "stay": 41.5
+    "reach": 47.4,
+    "stay": 41.8
    },
    "missing": [],
    "profile": {
@@ -1658,18 +1670,18 @@
    "judged": 6,
    "qualified": true,
    "reason": null,
-   "index": 51.3,
-   "band": 3.7,
+   "index": 51.4,
+   "band": 3.8,
    "best": [
     {
      "title": "Srirastu Subhamastu",
      "year": 2016,
-     "index": 55.8
+     "index": 55.9
     },
     {
      "title": "Okka Kshanam",
      "year": 2017,
-     "index": 55.1
+     "index": 55.5
     },
     {
      "title": "Urvasivo Rakshasivo",
@@ -1680,8 +1692,8 @@
    "spread": 5.5,
    "pillars": {
     "rating": 54,
-    "reach": 36.1,
-    "stay": 54.8
+    "reach": 36.3,
+    "stay": 55
    },
    "missing": [],
    "profile": {
@@ -1717,7 +1729,7 @@
     {
      "title": "Chalo",
      "year": 2018,
-     "index": 66.9
+     "index": 67.1
     },
     {
      "title": "Krishna Vrinda Vihari",
@@ -1728,8 +1740,8 @@
    "spread": 8.6,
    "pillars": {
     "rating": 55.2,
-    "reach": 41.5,
-    "stay": 44.9
+    "reach": 41.8,
+    "stay": 45.1
    },
    "missing": [
     {
@@ -1774,7 +1786,7 @@
     {
      "title": "Sammohanam",
      "year": 2018,
-     "index": 60.2
+     "index": 60.5
     },
     {
      "title": "Prema Katha Chitram",
@@ -1785,8 +1797,8 @@
    "spread": 9.3,
    "pillars": {
     "rating": 56.8,
-    "reach": 46.9,
-    "stay": 34.5
+    "reach": 47,
+    "stay": 34.8
    },
    "missing": [],
    "profile": {
@@ -1811,13 +1823,13 @@
    "judged": 6,
    "qualified": true,
    "reason": null,
-   "index": 50.9,
+   "index": 51,
    "band": 6,
    "best": [
     {
      "title": "Mathu Vadalara",
      "year": 2019,
-     "index": 67
+     "index": 67.1
     },
     {
      "title": "Mathu Vadalara 2",
@@ -1830,7 +1842,7 @@
      "index": 48.5
     }
    ],
-   "spread": 8.9,
+   "spread": 9,
    "pillars": {
     "rating": 58.9,
     "reach": 37.8,
@@ -1859,30 +1871,30 @@
    "judged": 6,
    "qualified": true,
    "reason": null,
-   "index": 50.6,
+   "index": 50.7,
    "band": 5,
    "best": [
     {
      "title": "Chi La Sow",
      "year": 2018,
-     "index": 62.5
+     "index": 62.8
     },
     {
      "title": "Current",
      "year": 2009,
-     "index": 46.3
+     "index": 46.4
     },
     {
      "title": "Aatadukundam Raa",
      "year": 2016,
-     "index": 46.2
+     "index": 46.3
     }
    ],
-   "spread": 7,
+   "spread": 7.1,
    "pillars": {
     "rating": 54,
-    "reach": 37.7,
-    "stay": 38.8
+    "reach": 38,
+    "stay": 39.1
    },
    "missing": [],
    "profile": {
@@ -1907,7 +1919,7 @@
    "judged": 24,
    "qualified": true,
    "reason": null,
-   "index": 50.4,
+   "index": 50.5,
    "band": 3.7,
    "best": [
     {
@@ -1918,7 +1930,7 @@
     {
      "title": "Malli Raava",
      "year": 2017,
-     "index": 64.5
+     "index": 64.8
     },
     {
      "title": "Yuvakudu",
@@ -1929,8 +1941,8 @@
    "spread": 8.4,
    "pillars": {
     "rating": 55.7,
-    "reach": 39.8,
-    "stay": 37.8
+    "reach": 40,
+    "stay": 38
    },
    "missing": [
     {
@@ -1963,7 +1975,7 @@
    "judged": 18,
    "qualified": true,
    "reason": null,
-   "index": 49.8,
+   "index": 49.9,
    "band": 2.4,
    "best": [
     {
@@ -1985,8 +1997,8 @@
    "spread": 5.1,
    "pillars": {
     "rating": 52.9,
-    "reach": 38.1,
-    "stay": 49.9
+    "reach": 38.4,
+    "stay": 50
    },
    "missing": [],
    "profile": {
@@ -2011,8 +2023,8 @@
    "judged": 10,
    "qualified": true,
    "reason": null,
-   "index": 49.8,
-   "band": 4.5,
+   "index": 49.9,
+   "band": 4.4,
    "best": [
     {
      "title": "Uma Maheswara Ugra Roopasya",
@@ -2033,16 +2045,15 @@
    "spread": 7.6,
    "pillars": {
     "rating": 57.2,
-    "reach": 40.6,
-    "stay": 31.1
+    "reach": 40.7,
+    "stay": 31.2
    },
    "missing": [
     {
      "title": "Letter",
      "year": 2015,
      "missing": [
-      "IMDb title",
-      "release year from a second source"
+      "IMDb rating with 10+ votes"
      ]
     }
    ],
@@ -2074,12 +2085,12 @@
     {
      "title": "Gamyam",
      "year": 2008,
-     "index": 77.9
+     "index": 78
     },
     {
      "title": "Shambo Shiva Shambo",
      "year": 2010,
-     "index": 68.9
+     "index": 69
     },
     {
      "title": "Naandhi",
@@ -2090,8 +2101,8 @@
    "spread": 7.2,
    "pillars": {
     "rating": 53.7,
-    "reach": 38.4,
-    "stay": 44.9
+    "reach": 38.5,
+    "stay": 45
    },
    "missing": [
     {
@@ -2111,6 +2122,54 @@
     "birthDate": "1982-06-30",
     "birthDateBy": "wikidata",
     "debutYear": 2002,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": true
+   }
+  },
+  {
+   "slug": "karthikeya",
+   "name": "Kartikeya Gummakonda",
+   "films": 9,
+   "excluded": 0,
+   "provisional": 0,
+   "complete": 9,
+   "judged": 9,
+   "qualified": true,
+   "reason": null,
+   "index": 49.6,
+   "band": 4.5,
+   "best": [
+    {
+     "title": "RX 100",
+     "year": 2018,
+     "index": 67.9
+    },
+    {
+     "title": "Guna 369",
+     "year": 2019,
+     "index": 48.8
+    },
+    {
+     "title": "Chaavu Kaburu Challaga",
+     "year": 2021,
+     "index": 47.5
+    }
+   ],
+   "spread": 7.6,
+   "pillars": {
+    "rating": 54.9,
+    "reach": 36.6,
+    "stay": 42.2
+   },
+   "missing": [],
+   "profile": {
+    "slug": "karthikeya",
+    "imdb": [
+     "nm8257146"
+    ],
+    "birthDate": "1992-09-21",
+    "birthDateBy": "wikidata",
+    "debutYear": 2017,
     "debutYearBy": "wikidata",
     "hasFreePhoto": true
    }
@@ -2147,8 +2206,8 @@
    "spread": 7.1,
    "pillars": {
     "rating": 45.8,
-    "reach": 54.3,
-    "stay": 38.5
+    "reach": 54.4,
+    "stay": 38.6
    },
    "missing": [],
    "profile": {
@@ -2164,49 +2223,64 @@
    }
   },
   {
-   "slug": "karthikeya",
-   "name": "Kartikeya Gummakonda",
-   "films": 9,
+   "slug": "varun-sandesh",
+   "name": "Varun Sandesh",
+   "films": 26,
    "excluded": 0,
-   "provisional": 0,
-   "complete": 9,
-   "judged": 9,
+   "provisional": 2,
+   "complete": 22,
+   "judged": 24,
    "qualified": true,
    "reason": null,
-   "index": 49.4,
-   "band": 4.4,
+   "index": 49.1,
+   "band": 4.5,
    "best": [
     {
-     "title": "RX 100",
-     "year": 2018,
-     "index": 67.7
+     "title": "Happy Days",
+     "year": 2007,
+     "index": 83.5
     },
     {
-     "title": "Guna 369",
-     "year": 2019,
-     "index": 48.5
+     "title": "Kotha Bangaru Lokam",
+     "year": 2008,
+     "index": 61.6
     },
     {
-     "title": "Chaavu Kaburu Challaga",
-     "year": 2021,
-     "index": 47.5
+     "title": "D for Dopidi",
+     "year": 2013,
+     "index": 54.1
     }
    ],
-   "spread": 7.6,
+   "spread": 9.4,
    "pillars": {
-    "rating": 54.9,
-    "reach": 36.3,
-    "stay": 42
+    "rating": 54.7,
+    "reach": 32.6,
+    "stay": 30
    },
-   "missing": [],
+   "missing": [
+    {
+     "title": "Mister 420",
+     "year": 2016,
+     "missing": [
+      "IMDb rating with 10+ votes"
+     ]
+    },
+    {
+     "title": "Marla Puli",
+     "year": 2018,
+     "missing": [
+      "IMDb rating with 10+ votes"
+     ]
+    }
+   ],
    "profile": {
-    "slug": "karthikeya",
+    "slug": "varun-sandesh",
     "imdb": [
-     "nm8257146"
+     "nm2967763"
     ],
-    "birthDate": "1992-09-21",
+    "birthDate": "1989-07-21",
     "birthDateBy": "wikidata",
-    "debutYear": 2017,
+    "debutYear": 2007,
     "debutYearBy": "wikidata",
     "hasFreePhoto": true
    }
@@ -2240,11 +2314,11 @@
      "index": 48.1
     }
    ],
-   "spread": 5.9,
+   "spread": 5.8,
    "pillars": {
     "rating": 55,
-    "reach": 30.2,
-    "stay": 39.7
+    "reach": 30.3,
+    "stay": 39.8
    },
    "missing": [],
    "profile": {
@@ -2260,54 +2334,6 @@
    }
   },
   {
-   "slug": "kiran-abbavaram",
-   "name": "Kiran Abbavaram",
-   "films": 12,
-   "excluded": 0,
-   "provisional": 4,
-   "complete": 8,
-   "judged": 8,
-   "qualified": true,
-   "reason": null,
-   "index": 48.4,
-   "band": 3.7,
-   "best": [
-    {
-     "title": "Raja Vaaru Rani Gaaru",
-     "year": 2019,
-     "index": 54.5
-    },
-    {
-     "title": "Vinaro Bhagyamu Vishnu Katha",
-     "year": 2023,
-     "index": 53.3
-    },
-    {
-     "title": "SR Kalyanamandapam",
-     "year": 2021,
-     "index": 52.5
-    }
-   ],
-   "spread": 6.1,
-   "pillars": {
-    "rating": 53.5,
-    "reach": 35.6,
-    "stay": 39.9
-   },
-   "missing": [],
-   "profile": {
-    "slug": "kiran-abbavaram",
-    "imdb": [
-     "nm10954569"
-    ],
-    "birthDate": "1992-07-15",
-    "birthDateBy": "wikidata",
-    "debutYear": 2019,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": true
-   }
-  },
-  {
    "slug": "sumanth-ashwin",
    "name": "Sumanth Ashwin",
    "films": 12,
@@ -2317,7 +2343,7 @@
    "judged": 12,
    "qualified": true,
    "reason": null,
-   "index": 48.3,
+   "index": 48.4,
    "band": 2.2,
    "best": [
     {
@@ -2338,9 +2364,9 @@
    ],
    "spread": 3.8,
    "pillars": {
-    "rating": 53.2,
-    "reach": 32.4,
-    "stay": 31.6
+    "rating": 53.1,
+    "reach": 32.5,
+    "stay": 31.8
    },
    "missing": [],
    "profile": {
@@ -2356,6 +2382,54 @@
    }
   },
   {
+   "slug": "kiran-abbavaram",
+   "name": "Kiran Abbavaram",
+   "films": 12,
+   "excluded": 0,
+   "provisional": 4,
+   "complete": 8,
+   "judged": 8,
+   "qualified": true,
+   "reason": null,
+   "index": 48.4,
+   "band": 3.7,
+   "best": [
+    {
+     "title": "Raja Vaaru Rani Gaaru",
+     "year": 2019,
+     "index": 54.8
+    },
+    {
+     "title": "Vinaro Bhagyamu Vishnu Katha",
+     "year": 2023,
+     "index": 53.3
+    },
+    {
+     "title": "SR Kalyanamandapam",
+     "year": 2021,
+     "index": 52.5
+    }
+   ],
+   "spread": 6.2,
+   "pillars": {
+    "rating": 53.5,
+    "reach": 35.6,
+    "stay": 40
+   },
+   "missing": [],
+   "profile": {
+    "slug": "kiran-abbavaram",
+    "imdb": [
+     "nm10954569"
+    ],
+    "birthDate": "1992-07-15",
+    "birthDateBy": "wikidata",
+    "debutYear": 2019,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": true
+   }
+  },
+  {
    "slug": "raj-tarun",
    "name": "Raj Tarun",
    "films": 19,
@@ -2365,7 +2439,7 @@
    "judged": 17,
    "qualified": true,
    "reason": null,
-   "index": 48,
+   "index": 48.1,
    "band": 3.7,
    "best": [
     {
@@ -2376,7 +2450,7 @@
     {
      "title": "Eedo Rakam Aado Rakam",
      "year": 2016,
-     "index": 57.8
+     "index": 57.9
     },
     {
      "title": "Cinema Choopistha Mava",
@@ -2387,8 +2461,8 @@
    "spread": 8,
    "pillars": {
     "rating": 56.2,
-    "reach": 38.9,
-    "stay": 25.5
+    "reach": 39.1,
+    "stay": 25.8
    },
    "missing": [],
    "profile": {
@@ -2413,7 +2487,7 @@
    "judged": 18,
    "qualified": true,
    "reason": null,
-   "index": 47.9,
+   "index": 48,
    "band": 2.4,
    "best": [
     {
@@ -2424,19 +2498,19 @@
     {
      "title": "Appatlo Okadundevadu",
      "year": 2016,
-     "index": 54
+     "index": 54.2
     },
     {
      "title": "Savitri",
      "year": 2016,
-     "index": 52
+     "index": 52.1
     }
    ],
-   "spread": 5.2,
+   "spread": 5.1,
    "pillars": {
-    "rating": 56.5,
-    "reach": 37,
-    "stay": 25.2
+    "rating": 56.4,
+    "reach": 37.4,
+    "stay": 25.6
    },
    "missing": [],
    "profile": {
@@ -2484,7 +2558,7 @@
    "pillars": {
     "rating": 54.6,
     "reach": 28.5,
-    "stay": 24.8
+    "stay": 24.9
    },
    "missing": [
     {
@@ -2567,8 +2641,8 @@
    "spread": 3.5,
    "pillars": {
     "rating": 53.1,
-    "reach": 30.8,
-    "stay": 22.2
+    "reach": 30.9,
+    "stay": 22.3
    },
    "missing": [
     {
@@ -2623,7 +2697,7 @@
    "qualified": true,
    "reason": null,
    "index": 45,
-   "band": 1.4,
+   "band": 1.3,
    "best": [
     {
      "title": "Prema Kavali",
@@ -2636,16 +2710,16 @@
      "index": 47.1
     },
     {
-     "title": "Tees Maar Khan",
-     "year": 2022,
+     "title": "Garam",
+     "year": 2016,
      "index": 46.7
     }
    ],
-   "spread": 3,
+   "spread": 2.9,
    "pillars": {
     "rating": 51.6,
-    "reach": 31.4,
-    "stay": 26
+    "reach": 31.6,
+    "stay": 26.2
    },
    "missing": [],
    "profile": {
@@ -2676,12 +2750,12 @@
     {
      "title": "Hello!",
      "year": 2017,
-     "index": 79.3
+     "index": 79.4
     },
     {
      "title": "Mr. Majnu",
      "year": 2019,
-     "index": 69.8
+     "index": 70
     },
     {
      "title": "Most Eligible Bachelor",
@@ -2692,7 +2766,7 @@
    "spread": 8.3,
    "pillars": {
     "rating": 55.1,
-    "reach": 77.2,
+    "reach": 77.3,
     "stay": 89.1
    },
    "missing": [],
@@ -2729,7 +2803,7 @@
     {
      "title": "Vijetha",
      "year": 2018,
-     "index": 43.5
+     "index": 43.9
     },
     {
      "title": "Kinnerasani",
@@ -2740,8 +2814,8 @@
    "spread": 2.1,
    "pillars": {
     "rating": 52.1,
-    "reach": 33.2,
-    "stay": 25.3
+    "reach": 33.5,
+    "stay": 25.6
    },
    "missing": [],
    "profile": {
@@ -2820,7 +2894,7 @@
     {
      "title": "Agent Sai Srinivasa Athreya",
      "year": 2019,
-     "index": 81.4
+     "index": 81.5
     },
     {
      "title": "Jathi Ratnalu",
@@ -2837,7 +2911,7 @@
    "pillars": {
     "rating": 68.4,
     "reach": 77.4,
-    "stay": 77
+    "stay": 77.1
    },
    "missing": [],
    "profile": {
@@ -2884,8 +2958,8 @@
    "spread": 8,
    "pillars": {
     "rating": 53.5,
-    "reach": 43.6,
-    "stay": 50.6
+    "reach": 43.7,
+    "stay": 50.7
    },
    "missing": [
     {
@@ -2913,76 +2987,6 @@
     "debutYear": 1990,
     "debutYearBy": "wikidata",
     "hasFreePhoto": false
-   }
-  },
-  {
-   "slug": "varun-sandesh",
-   "name": "Varun Sandesh",
-   "films": 26,
-   "excluded": 0,
-   "provisional": 2,
-   "complete": 21,
-   "judged": 24,
-   "qualified": false,
-   "reason": "21 of 24 films complete (88%, needs 90%)",
-   "index": null,
-   "band": null,
-   "best": [
-    {
-     "title": "Happy Days",
-     "year": 2007,
-     "index": 83.5
-    },
-    {
-     "title": "Kotha Bangaru Lokam",
-     "year": 2008,
-     "index": 61.4
-    },
-    {
-     "title": "D for Dopidi",
-     "year": 2013,
-     "index": 54.1
-    }
-   ],
-   "spread": 9.6,
-   "pillars": {
-    "rating": 55,
-    "reach": 32.9,
-    "stay": 30.3
-   },
-   "missing": [
-    {
-     "title": "Evaraina Epudaina",
-     "year": 2009,
-     "missing": [
-      "IMDb title"
-     ]
-    },
-    {
-     "title": "Mister 420",
-     "year": 2016,
-     "missing": [
-      "IMDb rating with 10+ votes"
-     ]
-    },
-    {
-     "title": "Marla Puli",
-     "year": 2018,
-     "missing": [
-      "IMDb rating with 10+ votes"
-     ]
-    }
-   ],
-   "profile": {
-    "slug": "varun-sandesh",
-    "imdb": [
-     "nm2967763"
-    ],
-    "birthDate": "1989-07-21",
-    "birthDateBy": "wikidata",
-    "debutYear": 2007,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": true
    }
   },
   {
@@ -3017,8 +3021,8 @@
    "spread": 7.1,
    "pillars": {
     "rating": 59.7,
-    "reach": 30.8,
-    "stay": 17.8
+    "reach": 30.9,
+    "stay": 17.9
    },
    "missing": [
     {
@@ -3065,7 +3069,7 @@
     {
      "title": "Kobbari Matta",
      "year": 2019,
-     "index": 55
+     "index": 55.2
     },
     {
      "title": "Hrudaya Kaleyam",
@@ -3078,11 +3082,11 @@
      "index": 47.4
     }
    ],
-   "spread": 6.9,
+   "spread": 7,
    "pillars": {
     "rating": 52.6,
-    "reach": 30.5,
-    "stay": 49.9
+    "reach": 30.6,
+    "stay": 50
    },
    "missing": [
     {
@@ -3138,7 +3142,7 @@
    "pillars": {
     "rating": 55.4,
     "reach": 32.9,
-    "stay": 27.5
+    "stay": 27.6
    },
    "missing": [
     {
@@ -3192,7 +3196,7 @@
     {
      "title": "PSV Garuda Vega",
      "year": 2017,
-     "index": 65.8
+     "index": 66.1
     },
     {
      "title": "Villain",
@@ -3205,11 +3209,11 @@
      "index": 57
     }
    ],
-   "spread": 6.6,
+   "spread": 6.7,
    "pillars": {
     "rating": 57.6,
-    "reach": 32.6,
-    "stay": 43.8
+    "reach": 32.8,
+    "stay": 43.9
    },
    "missing": [
     {
@@ -3287,8 +3291,8 @@
    "spread": 9.9,
    "pillars": {
     "rating": 53.5,
-    "reach": 33.5,
-    "stay": 24.4
+    "reach": 33.6,
+    "stay": 24.6
    },
    "missing": [
     {
@@ -3336,6 +3340,70 @@
    }
   },
   {
+   "slug": "priyadarshi",
+   "name": "Priyadarshi",
+   "films": 14,
+   "excluded": 0,
+   "provisional": 5,
+   "complete": 7,
+   "judged": 9,
+   "qualified": false,
+   "reason": "7 of 9 films complete (78%, needs 90%)",
+   "index": null,
+   "band": null,
+   "best": [
+    {
+     "title": "Balagam",
+     "year": 2023,
+     "index": 67.4
+    },
+    {
+     "title": "Mallesham",
+     "year": 2019,
+     "index": 56.3
+    },
+    {
+     "title": "Mail",
+     "year": 2021,
+     "index": 48.8
+    }
+   ],
+   "spread": 10.8,
+   "pillars": {
+    "rating": 58.1,
+    "reach": 36.6,
+    "stay": 31
+   },
+   "missing": [
+    {
+     "title": "Bommala Ramaram",
+     "year": 2016,
+     "missing": [
+      "IMDb rating with 10+ votes"
+     ]
+    },
+    {
+     "title": "Ghazi",
+     "year": 2017,
+     "missing": [
+      "IMDb title",
+      "release year from a second source"
+     ]
+    }
+   ],
+   "profile": {
+    "slug": "priyadarshi",
+    "imdb": [
+     "nm6419392"
+    ],
+    "birthDate": "1989-09-26",
+    "birthDateBy": "wikidata",
+    "debutYear": 2016,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": true
+   }
+  },
+  {
    "slug": "siddhu-jonnalagadda",
    "name": "Siddhu Jonnalagadda",
    "films": 9,
@@ -3367,8 +3435,8 @@
    "spread": 10.5,
    "pillars": {
     "rating": 58.2,
-    "reach": 56.8,
-    "stay": 41.3
+    "reach": 56.9,
+    "stay": 41.4
    },
    "missing": [
     {
@@ -3414,7 +3482,7 @@
     {
      "title": "Babu Baga Busy",
      "year": 2017,
-     "index": 46.4
+     "index": 46.6
     },
     {
      "title": "Amrutham Chandamamalo",
@@ -3422,11 +3490,11 @@
      "index": 41.2
     }
    ],
-   "spread": 2.6,
+   "spread": 2.7,
    "pillars": {
-    "rating": 48.8,
-    "reach": 39.2,
-    "stay": 30.6
+    "rating": 48.7,
+    "reach": 39.5,
+    "stay": 31
    },
    "missing": [
     {
@@ -3450,71 +3518,50 @@
    }
   },
   {
-   "slug": "priyadarshi",
-   "name": "Priyadarshi",
-   "films": 14,
+   "slug": "thiruveer",
+   "name": "Thiruveer",
+   "films": 6,
    "excluded": 0,
-   "provisional": 5,
-   "complete": 6,
-   "judged": 9,
+   "provisional": 3,
+   "complete": 2,
+   "judged": 3,
    "qualified": false,
-   "reason": "6 of 9 films complete (67%, needs 90%)",
+   "reason": "only 2 complete films (needs 5)",
    "index": null,
    "band": null,
    "best": [
     {
-     "title": "Balagam",
+     "title": "Subhalekha + Lu",
+     "year": 2018,
+     "index": 38.7
+    },
+    {
+     "title": "Pareshan",
      "year": 2023,
-     "index": 67.4
-    },
-    {
-     "title": "Mallesham",
-     "year": 2019,
-     "index": 56
-    },
-    {
-     "title": "Mail",
-     "year": 2021,
-     "index": 48.8
+     "index": 37.4
     }
    ],
-   "spread": 11.4,
+   "spread": 0.7,
    "pillars": {
-    "rating": 58.5,
-    "reach": 39.4,
-    "stay": 33.4
+    "rating": 54,
+    "reach": 13.7,
+    "stay": 7
    },
    "missing": [
     {
-     "title": "Bommala Ramaram",
+     "title": "Bommalaramaram",
      "year": 2016,
      "missing": [
       "IMDb rating with 10+ votes"
      ]
-    },
-    {
-     "title": "Ghazi",
-     "year": 2017,
-     "missing": [
-      "IMDb title",
-      "release year from a second source"
-     ]
-    },
-    {
-     "title": "Egise Tarajuvvalu",
-     "year": 2017,
-     "missing": [
-      "IMDb title",
-      "release year from a second source"
-     ]
     }
    ],
    "profile": {
-    "slug": "priyadarshi",
+    "slug": "thiruveer",
     "imdb": [
-     "nm6419392"
+     "nm5974195"
     ],
-    "birthDate": "1989-09-26",
+    "birthDate": "1988-07-23",
     "birthDateBy": "wikidata",
     "debutYear": 2016,
     "debutYearBy": "wikidata",
@@ -3547,14 +3594,14 @@
     {
      "title": "Amaravathi",
      "year": 2009,
-     "index": 49.7
+     "index": 49.9
     }
    ],
    "spread": 4.2,
    "pillars": {
     "rating": 57.2,
-    "reach": 23.1,
-    "stay": 12.9
+    "reach": 23.2,
+    "stay": 13
    },
    "missing": [
     {
@@ -3661,7 +3708,7 @@
     {
      "title": "Taj Mahal",
      "year": 2010,
-     "index": 45.5
+     "index": 45.6
     },
     {
      "title": "Seesa",
@@ -3673,7 +3720,7 @@
    "pillars": {
     "rating": 50.8,
     "reach": 15.4,
-    "stay": 16.1
+    "stay": 16.2
    },
    "missing": [
     {
@@ -3790,8 +3837,7 @@
      "title": "Lokame Kothaga",
      "year": 2011,
      "missing": [
-      "IMDb title",
-      "release year from a second source"
+      "IMDb rating with 10+ votes"
      ]
     },
     {
@@ -3812,15 +3858,14 @@
      "title": "Dasa Tirigindi",
      "year": 2013,
      "missing": [
-      "IMDb title",
-      "release year from a second source"
+      "IMDb rating with 10+ votes"
      ]
     },
     {
      "title": "Chusinodiki Chusinantha",
      "year": 2014,
      "missing": [
-      "IMDb title"
+      "IMDb rating with 10+ votes"
      ]
     },
     {
@@ -3874,7 +3919,7 @@
    ],
    "spread": 10.4,
    "pillars": {
-    "rating": 56.9,
+    "rating": 56.8,
     "reach": 22.6,
     "stay": 21.8
    },
@@ -4032,60 +4077,6 @@
     "debutYear": 1984,
     "debutYearBy": "wikidata",
     "hasFreePhoto": false
-   }
-  },
-  {
-   "slug": "thiruveer",
-   "name": "Thiruveer",
-   "films": 6,
-   "excluded": 0,
-   "provisional": 3,
-   "complete": 1,
-   "judged": 3,
-   "qualified": false,
-   "reason": "only 1 complete film (needs 5)",
-   "index": null,
-   "band": null,
-   "best": [
-    {
-     "title": "Pareshan",
-     "year": 2023,
-     "index": 37.4
-    }
-   ],
-   "spread": null,
-   "pillars": {
-    "rating": 52.7,
-    "reach": 20,
-    "stay": 11.3
-   },
-   "missing": [
-    {
-     "title": "Bommalaramaram",
-     "year": 2016,
-     "missing": [
-      "IMDb rating with 10+ votes"
-     ]
-    },
-    {
-     "title": "Subhalekha + Lu",
-     "year": 2018,
-     "missing": [
-      "IMDb title",
-      "release year from a second source"
-     ]
-    }
-   ],
-   "profile": {
-    "slug": "thiruveer",
-    "imdb": [
-     "nm5974195"
-    ],
-    "birthDate": "1988-07-23",
-    "birthDateBy": "wikidata",
-    "debutYear": 2016,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": true
    }
   },
   {

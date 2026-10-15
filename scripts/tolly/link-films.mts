@@ -21,6 +21,10 @@ const cast: {
 } = read(".cache/tolly/imdb-cast.json");
 const pages: Record<string, string> = read(".cache/import/pages.json");
 const ours: Record<string, { tconst: string; matchedBy: string }> = existsSync(".cache/tolly/imdb-ours.json") ? read(".cache/tolly/imdb-ours.json") : {};
+// Second IMDb pass (imdb-extra.mts): actor billing order, and links found among all Indian titles.
+const extra: { actors: Record<string, { ordering: number; nconst: string }[]>; links: Record<string, string> } = existsSync(".cache/tolly/imdb-extra.json")
+  ? read(".cache/tolly/imdb-extra.json")
+  : { actors: {}, links: {} };
 const teTitles: Record<string, string> = existsSync(".cache/import/tewiki-titles.json") ? read(".cache/import/tewiki-titles.json") : {};
 
 async function* rows(file: string) {
@@ -53,6 +57,7 @@ const wanted = new Set<string>(Object.values(cast.heroes).flatMap((r) => r.map((
 for (const f of Object.values(wd.films) as { imdb: string[] }[]) for (const t of f.imdb) wanted.add(t);
 for (const f of snap.films) if (f.imdbId) wanted.add(f.imdbId);
 for (const v of Object.values(ours)) wanted.add(v.tconst);
+for (const t of Object.values(extra.links)) wanted.add(t);
 const imdb = new Map<string, ImdbTitle>();
 for await (const [tconst, type, primary, original, , start, , runtime, genres] of rows("title.basics.tsv.gz")) {
   if (!wanted.has(tconst)) continue;
@@ -128,6 +133,8 @@ export interface LinkedFilm {
   imdbRating: number | null;
   imdbVotes: number;
   imdbBilling: Record<string, number | null>;
+  /** The hero's position among the film's actors on IMDb (1 = top-billed); null when IMDb does not list him. */
+  imdbActorRank: Record<string, number | null>;
   runtimeMin: number | null;
   genres: string[];
   en: string | null;
@@ -151,6 +158,7 @@ const stats = {
   tconstFromCast: 0,
   tconstAmbiguous: 0,
   tconstFromTitleYear: 0,
+  tconstFromIndianTitles: 0,
 };
 for (const f of snap.films) {
   const credits = creditsByFilm.get(f.key);
@@ -215,6 +223,12 @@ for (const f of snap.films) {
     tconstBy = "unique imdb title and year";
     stats.tconstFromTitleYear++;
   }
+  // Then the only Indian title on IMDb that sounds the same and was released within a year.
+  if (!tconst && extra.links[f.key]) {
+    tconst = extra.links[f.key];
+    tconstBy = "imdb indian titles (close title and year)";
+    stats.tconstFromIndianTitles++;
+  }
   if (!qid && tconst && qidByTconst.has(tconst)) {
     qid = qidByTconst.get(tconst)!;
     qidBy = "imdb id on wikidata";
@@ -256,6 +270,12 @@ for (const f of snap.films) {
   const wdYears = (wf?.dates ?? []).map((d) => Number(d.slice(0, 4)));
   const imdbBilling: Record<string, number | null> = {};
   for (const h of heroes) imdbBilling[h] = tconst ? ((cast.heroes[h] ?? []).find((r) => r.tconst === tconst)?.ordering ?? null) : null;
+  const imdbActorRank: Record<string, number | null> = {};
+  for (const h of heroes) {
+    const ids: string[] = wd.heroes[heroBySlug.get(h)!.qid]?.imdb ?? [];
+    const i = tconst ? (extra.actors[tconst] ?? []).findIndex((a) => ids.includes(a.nconst)) : -1;
+    imdbActorRank[h] = i >= 0 ? i + 1 : null;
+  }
   out.push({
     key: f.key,
     title: f.title,
@@ -278,6 +298,7 @@ for (const f of snap.films) {
     imdbRating: it?.rating ?? null,
     imdbVotes: it?.votes ?? 0,
     imdbBilling,
+    imdbActorRank,
     runtimeMin: f.runtimeMin ?? it?.runtime ?? null,
     genres: f.genres?.length ? f.genres : (it?.genres ?? []),
     en: f.article ?? wf?.en ?? null,

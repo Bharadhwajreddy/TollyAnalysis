@@ -24,7 +24,8 @@
     "tolly:compute": "tsx scripts/tolly/compute.mts",
     "tolly:wikidata": "tsx scripts/tolly/wikidata.mts",
     "tolly:cast": "tsx scripts/tolly/imdb-cast.mts",
-    "tolly:link": "tsx scripts/tolly/link-films.mts"
+    "tolly:link": "tsx scripts/tolly/link-films.mts",
+    "tolly:extra": "tsx scripts/tolly/imdb-extra.mts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
