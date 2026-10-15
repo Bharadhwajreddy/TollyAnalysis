@@ -25,7 +25,8 @@
     "tolly:wikidata": "tsx scripts/tolly/wikidata.mts",
     "tolly:cast": "tsx scripts/tolly/imdb-cast.mts",
     "tolly:link": "tsx scripts/tolly/link-films.mts",
-    "tolly:extra": "tsx scripts/tolly/imdb-extra.mts"
+    "tolly:extra": "tsx scripts/tolly/imdb-extra.mts",
+    "tolly:all": "npm run tolly:wikidata && npm run tolly:imdb && npm run tolly:cast && npm run tolly:link && npm run tolly:extra && npm run tolly:link && npm run tolly:pageviews && npm run tolly:compute"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
