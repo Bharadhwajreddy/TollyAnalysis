@@ -98,7 +98,15 @@ export interface TollyHeroResult {
   missing: { title: string; year: number; missing: string[] }[];
 }
 
-export const round = (v: number, d = 1) => Math.round(v * 10 ** d) / 10 ** d;
+/**
+ * Rounds half away from zero on the decimal value, as Excel's ROUND does: first to 15 significant
+ * digits (so 0.5 × 45.8 + 0.3 × 70.1 + 0.2 × 67.6 = 57.44999999999999 is read as 57.45), then
+ * to `d` places (57.5, not 57.4).
+ */
+export const round = (v: number, d = 1) => {
+  const x = Number(Math.abs(v).toPrecision(15));
+  return Math.sign(v) * Number(`${Math.round(Number(`${x}e${d}`))}e-${d}`);
+};
 const mean = (xs: number[]) => xs.reduce((a, b) => a + b, 0) / xs.length;
 const median = (xs: number[]) => {
   const s = [...xs].sort((a, b) => a - b);

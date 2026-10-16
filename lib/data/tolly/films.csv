@@ -47,7 +47,7 @@ Narasimha Naidu,2001,balakrishna,complete,4,9388,6.91,65.6,86.6,82.1,75.2,1,75.2
 Bhalevadivi Basu,2001,balakrishna,complete,5,2617,5.71,52.3,54.4,28.3,48.1,0.636,50.3,,
 Seema Simham,2002,balakrishna,complete,3,3254,4.85,42.8,51.6,35.4,44,0.715,46.6,,
 Chennakesava Reddy,2002,balakrishna,complete,6,7638,6.09,56.5,83.9,77,68.8,0.948,68,6,
-Yuva Rathna,2002,taraka-ratna,complete,3,2751,6.71,63.5,40.4,30.1,49.9,0.613,51.1,,
+Yuva Rathna,2002,taraka-ratna,complete,3,2751,6.71,63.5,40.4,30.1,49.9,0.613,51.2,,
 Palanati Brahmanaidu,2003,balakrishna,complete,4,5115,3.59,28.8,64.3,50,43.7,0.822,45.4,,
 Lakshmi Narasimha,2004,balakrishna,complete,4,8172,6.24,58.3,68,70.5,63.7,0.952,63.1,,
 Vijayendra Varma,2004,balakrishna,complete,3,3240,3.32,25.8,54.5,32.1,35.7,0.852,38.1,,
@@ -80,7 +80,7 @@ Nuvvu Vasthavani,2000,nagarjuna,complete,3,5146,6.54,61.5,68.4,55.1,62.3,0.834,6
 Ninne Premistha,2000,nagarjuna,complete,2,5489,6.04,56.1,51.2,62.3,55.9,0.788,55.4,,
 Azad,2000,nagarjuna,complete,4,7528,6.04,56,75.4,76.8,66,0.833,63.9,,
 Eduruleni Manishi,2001,nagarjuna,complete,3,2216,5.2,46.7,58.8,23.6,45.7,0.763,47.7,,
-Bava Nachadu,2001,nagarjuna,complete,5,3953,4.91,43.5,61,41.5,48.3,0.699,50.1,,
+Bava Nachadu,2001,nagarjuna,complete,5,3953,4.91,43.5,61,41.5,48.4,0.699,50.1,,
 Akasa Veedhilo,2001,nagarjuna,complete,6,7868,5.66,51.7,61.5,78.3,60,0.68,58.1,,
 Snehamante Idera,2001,nagarjuna sumanth,incomplete,4,6314,,,,,,,,,IMDb rating with 10+ votes
 Santosham,2002,nagarjuna,complete,4,11577,7.11,67.9,78.5,85.8,74.7,0.966,74,,
@@ -88,7 +88,7 @@ Manmadhudu,2002,nagarjuna,complete,6,13837,8.24,80.4,95.7,90.3,87,1,87,8.3,
 Sivamani,2003,nagarjuna,complete,4,7389,6.24,58.2,69.6,68.4,63.7,0.922,62.9,,
 Nenunnanu,2004,nagarjuna,complete,5,8312,5.5,50,68,71.4,59.7,0.852,58.6,,
 Mass,2004,nagarjuna,complete,4,22457,6.53,61.4,82.9,92.9,74.2,1,74.2,,
-Super,2005,nagarjuna,complete,5,12881,5.3,47.8,75.1,85.1,63.4,0.984,63.2,,
+Super,2005,nagarjuna,complete,5,12881,5.3,47.8,75.1,85.1,63.5,0.984,63.3,,
 Boss,2006,nagarjuna,complete,5,8427,4.82,42.4,62.8,66.7,53.4,0.882,53.2,5.8,
 Don,2007,nagarjuna,complete,5,22094,5.87,54.2,84.5,97.4,71.9,1,71.9,,
 King,2008,nagarjuna,complete,4,15046,6.5,61.2,79.2,88.8,72.1,1,72.1,6,
@@ -323,7 +323,7 @@ Johnny,2003,pawan-kalyan,complete,5,5389,5.55,50.6,85.4,52.6,61.4,1,61.4,,
 Gudumba Shankar,2004,pawan-kalyan,complete,3,5696,5.79,53.2,69,58,58.9,1,58.9,6,
 Balu,2005,pawan-kalyan,complete,5,8144,5.95,55,83.3,64,65.3,1,65.3,,
 Bangaram,2006,pawan-kalyan,complete,4,9461,4.89,43.2,69.4,75.9,57.6,1,57.6,,
-Annavaram,2006,pawan-kalyan,complete,4,8494,5.12,45.8,70.1,67.6,57.4,1,57.4,,
+Annavaram,2006,pawan-kalyan,complete,4,8494,5.12,45.8,70.1,67.6,57.5,1,57.5,,
 Jalsa,2008,pawan-kalyan,complete,8,15713,7.36,70.6,97.6,89.7,82.5,1,82.5,,
 Puli,2010,pawan-kalyan,complete,3,14455,3.56,28.5,69.2,87.3,52.5,1,52.5,4,
 Teen Maar,2011,pawan-kalyan,complete,4,14211,5.53,50.3,73.5,85.6,64.3,1,64.3,,
@@ -444,7 +444,7 @@ Anveshana,2002,ravi-teja,complete,2,3452,6.04,56,17.7,38.1,40.9,0.492,47.1,,
 Ee Abbai Chala Manchodu,2003,ravi-teja,complete,5,4342,5.45,49.5,57.3,42.1,50.4,0.686,51.4,,
 Amma Nanna O Tamila Ammayi,2003,ravi-teja,complete,4,18064,7.24,69.4,77.8,92.1,76.5,1,76.5,,
 Oka Raju Oka Rani,2003,ravi-teja,complete,2,6143,5.94,54.9,26,57.9,46.8,0.615,49.4,,
-Dongodu,2003,ravi-teja,complete,2,5355,5.4,48.9,41.8,51.8,47.3,0.757,48.8,,
+Dongodu,2003,ravi-teja,complete,2,5355,5.4,48.9,41.8,51.8,47.4,0.757,48.9,,
 Veede,2003,ravi-teja,complete,3,7326,5.33,48.1,53.1,67.5,53.5,0.766,53.5,,
 Venky,2004,ravi-teja,complete,4,13682,7.26,69.5,76.3,86.6,75,1,75,6,
 Naa Autograph,2004,ravi-teja,complete,3,10923,7.16,68.5,64.3,80.4,69.6,0.981,69.3,,
@@ -588,7 +588,7 @@ Itlu Maredumilli Prajaneekam,2022,allari-naresh,complete,2,5284,6.15,57.3,28.7,3
 Ugram,2023,allari-naresh,complete,2,7817,6.23,58.1,58.7,44.7,55.6,1,55.6,6,
 Aa Okati Adakku,2024,allari-naresh,complete,4,9495,5.67,51.8,34,44.3,45,0.848,46.1,,
 Bachchala Malli,2024,allari-naresh,provisional,2,10243,7.23,69.2,58.9,47.1,61.7,1,61.7,,24 months since release
-12A Railway Colony,2025,allari-naresh,provisional,3,13778,5.65,51.6,26.9,43.4,42.6,0.718,45.2,,24 months since release
+12A Railway Colony,2025,allari-naresh,provisional,3,13778,5.65,51.6,26.9,43.4,42.6,0.718,45.3,,24 months since release
 Rambha Urvasi Menaka,2026,allari-naresh,provisional,2,54788,5.48,49.8,18.8,76.4,45.8,0.799,47.1,5,24 months since release
 Tholi Choopulone,2003,kalyan-ram,complete,2,1520,5.96,55.1,8.8,11.4,32.5,0.418,44.7,,
 Abhimanyu,2003,kalyan-ram,complete,4,2458,6.04,56,28.4,26.3,41.8,0.434,48.4,,
@@ -835,7 +835,7 @@ Brahmi Gadi Katha,2011,varun-sandesh,complete,2,696,5.69,52.1,6.7,2.4,28.5,0.418
 Priyudu,2011,varun-sandesh,complete,2,1003,5.62,51.4,10.1,5.6,29.9,0.506,41.1,,
 Chammak Challo,2013,varun-sandesh,complete,3,1839,5.62,51.3,27.4,20.9,38.1,0.583,43.7,,
 Priyathama Neevachata Kushalama,2013,varun-sandesh,complete,3,3067,5.61,51.2,23.1,36.6,39.9,0.515,45.6,,
-Saradaga Ammayitho,2013,varun-sandesh,complete,3,905,5.64,51.6,13.9,9,31.8,0.347,44.7,4,
+Saradaga Ammayitho,2013,varun-sandesh,complete,3,905,5.64,51.6,13.9,9,31.8,0.347,44.8,4,
 Abbai Class Ammai Mass,2013,varun-sandesh,complete,3,691,5.61,51.2,18.7,5.2,32.3,0.454,42.9,,
 D for Dopidi,2013,varun-sandesh sundeep-kishan naveen-polishetty,complete,5,9571,5.62,51.4,45.8,78.4,55.1,0.708,54.1,,
 Nuvvala Nenila,2014,varun-sandesh,complete,3,2826,5.69,52.1,24,31.5,39.6,0.506,45.5,,
@@ -953,7 +953,7 @@ G2,2026,adivi-sesh,provisional,2,70070,,,,,,,,,24 months since release; IMDb rat
 Sneha Geetham,2010,sundeep-kishan,complete,3,20055,5.67,51.9,34.5,95.2,55.3,0.627,53.7,,
 Routine Love Story,2012,sundeep-kishan,complete,3,3053,5.64,51.6,44.2,33.9,45.8,0.827,46.7,,
 Ra Ra Krishnayya,2014,sundeep-kishan,complete,4,1660,5.48,49.7,52.7,18.2,44.3,0.787,45.8,,
-Joru,2014,sundeep-kishan,complete,3,2827,5.44,49.3,35.2,32.2,41.7,0.711,44.5,4.5,
+Joru,2014,sundeep-kishan,complete,3,2827,5.44,49.3,35.2,32.2,41.7,0.711,44.6,4.5,
 Beeruva,2015,sundeep-kishan,complete,3,4718,5.72,52.4,32.4,47.4,45.4,0.699,47.5,,
 Tiger,2015,sundeep-kishan,complete,2,4163,5.53,50.3,27.5,43.2,42,0.739,44.7,,
 Run,2016,sundeep-kishan,complete,2,4211,5.79,53.2,18.1,41.2,40.3,0.678,44.3,6,
@@ -1080,7 +1080,7 @@ Bhala Thandanana,2022,sree-vishnu,complete,3,3191,5.8,53.4,32.5,22,40.9,0.84,42.
 Alluri,2022,sree-vishnu,complete,2,24336,5.79,53.3,29.3,83.8,52.2,0.93,52.2,,
 Samajavaragamana,2023,sree-vishnu,complete,2,7590,6.57,61.9,43.6,42.8,52.6,1,52.6,6.5,
 Single,2025,sree-vishnu,provisional,3,23303,6,55.6,69,63.1,61.1,1,61.1,6,24 months since release
-Vishnu Vinyasam,2026,sree-vishnu,provisional,2,14940,5.44,49.3,23.4,38.9,39.4,0.908,40.6,,24 months since release
+Vishnu Vinyasam,2026,sree-vishnu,provisional,2,14940,5.44,49.3,23.4,38.9,39.5,0.908,40.7,,24 months since release
 Mrithyunjay,2026,sree-vishnu,provisional,1,17110,5.82,53.5,21.1,44.4,42,1,42,,24 months since release
 Cinema Choopistha Mava,2015,raj-tarun,complete,2,5266,6.01,55.7,41.8,54.5,51.3,0.898,51.4,,
 Kumari 21F,2015,raj-tarun,complete,4,5832,7.29,69.9,78.2,60.4,70.5,1,70.5,,
@@ -1121,13 +1121,13 @@ Soul of Satya,2023,sai-durgha-tej,incomplete,0,0,,,,,,,,,IMDb title; release yea
 Alludu Seenu,2014,bellamkonda-sreenivas,complete,5,9127,5,44.5,71.9,74.8,58.8,0.978,58.6,6,
 Speedunnodu,2016,bellamkonda-sreenivas,complete,5,7238,5.3,47.8,57.5,61.2,53.4,0.874,53.3,,
 Kavacham,2018,bellamkonda-sreenivas,complete,3,6015,5.72,52.4,47.9,45.8,49.7,0.977,49.8,3,
-Sita,2019,bellamkonda-sreenivas,complete,3,10038,5.35,48.4,51.3,56.8,50.9,1,50.9,,
+Sita,2019,bellamkonda-sreenivas,complete,3,10038,5.35,48.4,51.3,56.8,51,1,51,,
 Rakshasudu,2019,bellamkonda-sreenivas,complete,4,18494,7.26,69.5,66.8,80,70.8,1,70.8,6.3,
 Dhira,2020,bellamkonda-sreenivas,complete,1,2975,6.06,56.2,16.2,20.6,37.1,0.892,39,,
 Alludu Adhurs,2021,bellamkonda-sreenivas,complete,3,7029,4.8,42.2,48.3,51.7,45.9,1,45.9,,
 Kishkindhapuri,2025,bellamkonda-sreenivas,provisional,2,27281,6.1,56.7,62.6,68.9,60.9,1,60.9,6,24 months since release
 Vara Prasad Potti Prasad,2011,srinivas-avasarala,incomplete,0,0,,,,,,,,,IMDb rating with 10+ votes
-Amrutham Chandamamalo,2013,srinivas-avasarala,complete,2,1878,5.58,50.9,23.4,22.4,36.9,0.705,41.2,,
+Amrutham Chandamamalo,2013,srinivas-avasarala,complete,2,1878,5.58,50.9,23.4,22.4,37,0.705,41.3,,
 Babu Baga Busy,2017,srinivas-avasarala,complete,3,3822,5.24,47.1,51.3,36.6,46.3,0.963,46.5,,
 Okka Kshanam,2017,allu-sirish,complete,2,5408,6.55,61.7,47.9,50.3,55.3,1,55.3,,
 Silence,2020,srinivas-avasarala,excluded,3,9127,,,,,,,,,not a Telugu-language film
@@ -1157,7 +1157,7 @@ Thanu Nenu,2015,santosh-sobhan,complete,2,1574,5.82,53.6,9.1,14.9,32.5,0.46,43.1
 Paper Boy,2018,santosh-sobhan,complete,3,2274,6.1,56.7,38,18.5,43.5,0.898,44.5,,
 Ek Mini Katha,2021,santosh-sobhan,complete,2,6867,6.78,64.2,58.5,49.7,59.6,1,59.6,,
 Manchi Rojulochaie,2021,santosh-sobhan,complete,2,5685,5.73,52.5,24,43.4,42.1,0.887,43.4,5.5,
-"Like, Share & Subscribe",2022,santosh-sobhan,complete,2,9434,5.8,53.4,18.3,61.3,44.4,0.788,46.1,,
+"Like, Share & Subscribe",2022,santosh-sobhan,complete,2,9434,5.8,53.4,18.3,61.3,44.5,0.788,46.2,,
 Kalyanam Kamaneeyam,2023,santosh-sobhan,complete,3,12681,5.78,53.1,33.3,60.4,48.6,0.861,49.1,,
 Sridevi Shoban Babu,2023,santosh-sobhan,complete,2,2061,5.65,51.7,15.9,14.5,33.5,0.775,37.6,,
 Anni Manchi Sakunamule,2023,santosh-sobhan,complete,2,13958,5.83,53.7,27.7,64.2,48,0.95,48.2,,
@@ -1170,7 +1170,7 @@ Ashoka Vanamlo Arjuna Kalyanam,2022,vishwak-sen,complete,3,16474,6.7,63.3,57.5,7
 Das Ka Dhamki,2023,vishwak-sen,complete,2,7520,5.92,54.7,44.4,41.5,49,1,49,4.8,
 Gaami,2024,vishwak-sen,complete,4,5130,5.99,55.5,59.5,22.1,50,1,50,,
 Gangs of Godavari,2024,vishwak-sen,complete,2,7867,5.47,49.7,31.3,37.1,41.7,0.996,41.7,4,
-Laila,2025,vishwak-sen,provisional,3,10558,5,44.4,35.7,37.7,40.4,0.928,41.2,2.8,24 months since release
+Laila,2025,vishwak-sen,provisional,3,10558,5,44.4,35.7,37.7,40.5,0.928,41.3,2.8,24 months since release
 Funky,2026,vishwak-sen,provisional,1,34738,5.07,45.2,20.1,63.9,41.4,1,41.4,4.1,24 months since release
 Prematho Mee Karthik,2017,karthikeya,complete,2,2981,5.93,54.8,13.6,30.9,37.7,0.651,42.9,,
 RX 100,2018,karthikeya,complete,3,16161,6.72,63.5,68.2,78,67.8,1,67.8,,
@@ -1217,8 +1217,8 @@ Mallesham,2019,priyadarshi,complete,4,3208,7.2,68.8,57.7,22.4,56.2,1,56.2,,
 Mail,2021,priyadarshi,complete,3,5699,6.32,59.1,33.1,44.1,48.3,0.88,48.9,,
 Balagam,2023,priyadarshi,complete,2,13479,7.37,70.7,65.8,62.3,67.6,1,67.6,,
 Thappinchuku Thiruguvadu Dhanyudu Sumathi,2024,priyadarshi,complete,2,950,5.18,46.4,31.8,3.6,33.5,1,33.5,2,
-Darling,2024,priyadarshi,complete,2,15083,5.57,50.8,28.5,60,45.9,0.978,46,,
-Court,2025,priyadarshi,provisional,6,21897,7.58,73.1,93.2,60.7,76.6,1,76.6,6.3,24 months since release
+Darling,2024,priyadarshi,complete,2,15083,5.57,50.8,28.5,60,46,0.978,46.1,,
+Court,2025,priyadarshi,provisional,6,21897,7.58,73.1,93.2,60.7,76.7,1,76.7,6.3,24 months since release
 Mithra Mandali,2025,priyadarshi,provisional,2,5034,5.87,54.1,37.4,18.9,42.1,1,42.1,,24 months since release
 Premante,2025,priyadarshi,provisional,2,8537,5.91,54.5,38.5,30.3,44.9,1,44.9,4,24 months since release
 Suyodhana,2026,priyadarshi,provisional,0,0,5.5,50,13,2.8,29.5,0.934,31,,24 months since release

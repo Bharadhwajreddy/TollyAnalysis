@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { confidenceOf, filmStatus, MIN_VOTES, monthsBetween, percentileOf, scoreFilms, scoreHeroes, WEIGHTS, type TollyFilmInput } from "@/lib/tolly";
+import { confidenceOf, filmStatus, round, MIN_VOTES, monthsBetween, percentileOf, scoreFilms, scoreHeroes, WEIGHTS, type TollyFilmInput } from "@/lib/tolly";
 import { correlation, criticScores, receptionSection } from "@/lib/tolly/critics";
 
 const AS_OF = "2026-10-13";
@@ -22,6 +22,14 @@ describe("Tolly Index v1", () => {
   it("weights add up to 1 with Voice reserved at 0", () => {
     expect(WEIGHTS.rating + WEIGHTS.reach + WEIGHTS.stay + WEIGHTS.voice).toBeCloseTo(1);
     expect(WEIGHTS.voice).toBe(0);
+  });
+
+  it("rounds decimal ties like Excel's ROUND", () => {
+    expect(round(0.5 * 45.8 + 0.3 * 70.1 + 0.2 * 67.6, 1)).toBe(57.5);
+    expect(round(0.5 * 48.4 + 0.3 * 51.3 + 0.2 * 56.8, 1)).toBe(51);
+    expect(round(57.45, 1)).toBe(57.5);
+    expect(round(1.005, 2)).toBe(1.01);
+    expect(round(-2.25, 1)).toBe(-2.3);
   });
 
   it("ranks with mid-ranks for ties", () => {
