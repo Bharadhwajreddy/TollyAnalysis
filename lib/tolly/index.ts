@@ -23,7 +23,7 @@
  * is ranked only when HERO_MIN_COMPLETE films and HERO_MIN_SHARE of his judged films are complete.
  */
 
-export const TOLLY_VERSION = "tolly-v1";
+export const TOLLY_VERSION = "tolly-v1.1";
 
 /** Proposal weights once Voice exists: Rating 35, Voice 30, Reach 20, Stay 15. */
 export const WEIGHTS_WITH_VOICE = { rating: 35, voice: 30, reach: 20, stay: 15 } as const;

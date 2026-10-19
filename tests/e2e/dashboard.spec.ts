@@ -122,11 +122,34 @@ test.describe("Other views", () => {
 });
 
 test.describe("Responsive layout", () => {
-  for (const path of ["/", "/heroes", "/hero/prabhas", "/hero/allari-naresh", "/rankings", "/compare", "/trends", "/methodology", "/annexure", "/annexure/registry", "/annexure/heroes/nani", "/annexure/corrections"]) {
+  for (const path of ["/", "/tolly-index", "/heroes", "/hero/prabhas", "/hero/allari-naresh", "/hero/sivaji", "/rankings", "/compare", "/trends", "/methodology", "/annexure", "/annexure/registry", "/annexure/heroes/nani", "/annexure/corrections"]) {
     test(`no horizontal page overflow on ${path}`, async ({ page }) => {
       await page.goto(path);
       const [scrollW, clientW] = await page.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]);
       expect(scrollW).toBeLessThanOrEqual(clientW);
     });
   }
+});
+
+test.describe("Tolly Index", () => {
+  test("ranking page lists ranked heroes with bands, and the heroes still waiting for data", async ({ page }) => {
+    await page.goto("/tolly-index");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Tolly Index");
+    await expect(page.getByRole("navigation", { name: "Main" })).toContainText("Tolly Index");
+    await expect(page.locator("#ranking")).toContainText("Hero ranking");
+    const rows = page.locator("table tbody tr");
+    expect(await rows.count()).toBeGreaterThan(40);
+    await expect(rows.first()).toContainText("±");
+    await expect(page.locator("#unranked")).toContainText("Not ranked yet");
+    await expect(page.locator("body")).not.toContainText("Panja Vaisshnav Tej");
+  });
+
+  test("hero page shows the index, its pillars and each film's score", async ({ page }) => {
+    await page.goto("/hero/allari-naresh");
+    const card = page.locator("#tolly");
+    await expect(card).toContainText("Tolly Index");
+    await expect(card).toContainText(/#\d+ of \d+ ranked heroes/);
+    await expect(card).toContainText("Staying power");
+    await expect(page.locator("#films thead")).toContainText("Tolly Index");
+  });
 });

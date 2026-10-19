@@ -1,6 +1,6 @@
 {
  "meta": {
-  "version": "tolly-v1",
+  "version": "tolly-v1.1",
   "asOf": "2026-10-15",
   "weights": {
    "rating": 0.5,

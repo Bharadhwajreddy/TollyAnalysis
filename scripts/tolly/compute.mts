@@ -154,6 +154,8 @@ const filmRows = films.map((r) => {
   return {
     ...r,
     heroes: i.l.heroes,
+    // Filmography keys merged into this film (spelling variants of the same title).
+    aliases: [...alias].filter(([, to]) => to === r.key).map(([from]) => from),
     ids: { imdb: i.l.tconst, wikidata: i.l.qid },
     sources: { imdb: i.l.tconstBy, wikidata: i.l.qidBy, releaseDate: i.l.releaseDateBy, language: i.l.languageBy },
     wikipedia: { en: i.enViews, te: i.teViews, editions: i.editions },

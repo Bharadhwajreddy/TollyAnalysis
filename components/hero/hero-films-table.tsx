@@ -32,6 +32,8 @@ export interface FilmRowView {
   wiki: string | null;
   wikidata: string | null;
   isDemo: boolean;
+  /** Tolly Index for this film (real data only). */
+  tolly: { index: number | null; status: string; missing: string[]; rating: number | null; reach: number | null; stay: number | null } | null;
 }
 
 const BADGE: Record<string, string> = {
@@ -44,7 +46,8 @@ const BADGE: Record<string, string> = {
   unknown: "bg-surface-2 text-muted",
 };
 
-type Key = "releaseDate" | "title" | "gross" | "budget" | "multiple" | "runtimeMin" | "verdict";
+type Key = "releaseDate" | "title" | "gross" | "budget" | "multiple" | "runtimeMin" | "verdict" | "tolly";
+const TOLLY_STATUS: Record<string, string> = { provisional: "Too recent", incomplete: "Missing data", excluded: "Not Telugu" };
 const VERDICT_ORDER: Record<string, number> = { blockbuster: 4, hit: 3, average: 2, flop: 1, ott: 0, recent: 0, unknown: -1 };
 const cr = (v: number | null) => (v === null ? "—" : `₹${v.toLocaleString("en-IN", { maximumFractionDigits: 1 })} cr`);
 const FILTERS: [string, string][] = [
@@ -55,17 +58,24 @@ const FILTERS: [string, string][] = [
   ["ott", "Direct to OTT"],
   ["unknown", "Not reported"],
 ];
-const COLS = 12;
+const COLS = 13;
 
 /** Every counted film with all the details we have, sortable and filterable, each with its evidence. */
 export function HeroFilmsTable({ rows, heroName }: { rows: FilmRowView[]; heroName: string }) {
   const [sort, setSort] = useState<{ key: Key; desc: boolean }>({ key: "releaseDate", desc: true });
   const [filter, setFilter] = useState("all");
+  const hasTolly = rows.some((r) => r.tolly);
   const [open, setOpen] = useState<Set<string>>(new Set());
   const sorted = useMemo(() => {
     const dir = sort.desc ? -1 : 1;
     const val = (r: FilmRowView): number | string | null =>
-      sort.key === "verdict" ? VERDICT_ORDER[r.verdict] : sort.key === "title" ? r.title.toLowerCase() : (r[sort.key] as number | string | null);
+      sort.key === "verdict"
+        ? VERDICT_ORDER[r.verdict]
+        : sort.key === "tolly"
+          ? (r.tolly?.index ?? null)
+          : sort.key === "title"
+            ? r.title.toLowerCase()
+            : (r[sort.key] as number | string | null);
     return rows
       .filter(
         (r) =>
@@ -123,6 +133,11 @@ export function HeroFilmsTable({ rows, heroName }: { rows: FilmRowView[]; heroNa
               <Th sort={sort} setSort={setSort} k="title">Film</Th>
               <Th sort={sort} setSort={setSort} k="releaseDate">Released</Th>
               <Th sort={sort} setSort={setSort} k="verdict">Result</Th>
+              {hasTolly && (
+                <Th sort={sort} setSort={setSort} k="tolly" right>
+                  Tolly Index
+                </Th>
+              )}
               <Th sort={sort} setSort={setSort} k="gross" right>Worldwide gross</Th>
               <Th sort={sort} setSort={setSort} k="budget" right>Budget</Th>
               <Th sort={sort} setSort={setSort} k="multiple" right>Gross ÷ budget</Th>
@@ -166,6 +181,18 @@ export function HeroFilmsTable({ rows, heroName }: { rows: FilmRowView[]; heroNa
                       </span>
                       {r.verdictSource && <span className="mt-1 block text-[10.5px] text-muted">via {r.verdictSource}</span>}
                     </td>
+                    {hasTolly && (
+                      <td className="tabular whitespace-nowrap px-2.5 py-2 text-right" title={r.tolly?.missing.length ? `Missing: ${r.tolly.missing.join(", ")}` : undefined}>
+                        {r.tolly?.index != null ? (
+                          <span className={`font-semibold ${r.tolly.status === "complete" ? "text-wine" : "text-muted"}`}>
+                            {r.tolly.index.toFixed(1)}
+                            {r.tolly.status === "provisional" && <span className="ml-1 text-[10px] font-normal">(recent)</span>}
+                          </span>
+                        ) : (
+                          <span className="text-[11px] text-muted">{TOLLY_STATUS[r.tolly?.status ?? ""] ?? "—"}</span>
+                        )}
+                      </td>
+                    )}
                     <td className="tabular px-2.5 py-2 text-right" title={r.grossText ?? undefined}>{cr(r.gross)}</td>
                     <td className="tabular px-2.5 py-2 text-right" title={r.budgetText ?? undefined}>{cr(r.budget)}</td>
                     <td className="tabular px-2.5 py-2 text-right font-semibold">{r.multiple ? `${r.multiple}×` : "—"}</td>
@@ -178,7 +205,7 @@ export function HeroFilmsTable({ rows, heroName }: { rows: FilmRowView[]; heroNa
                   </tr>
                   {isOpen && (
                     <tr className="bg-surface-2/60">
-                      <td colSpan={COLS} className="px-3 pb-3 pt-1">
+                      <td colSpan={hasTolly ? COLS : COLS - 1} className="px-3 pb-3 pt-1">
                         <dl className="grid gap-x-6 gap-y-2 text-[12.5px] sm:grid-cols-2 lg:grid-cols-3">
                           <Fact label="Result">
                             <strong>{r.verdictText}</strong>
@@ -187,6 +214,20 @@ export function HeroFilmsTable({ rows, heroName }: { rows: FilmRowView[]; heroNa
                           <Fact label="Why" wide>
                             {r.verdictWhy ? <span className="italic">“{r.verdictWhy}”</span> : r.verdict === "ott" ? "Released straight to a streaming platform, so there is no box-office result." : "No source we use states a result for this film yet."}
                           </Fact>
+                          {r.tolly && (
+                            <Fact label="Tolly Index">
+                              {r.tolly.index != null ? (
+                                <>
+                                  <strong>{r.tolly.index.toFixed(1)}</strong> · rating {r.tolly.rating?.toFixed(1)}, reach {r.tolly.reach?.toFixed(1)}, staying power {r.tolly.stay?.toFixed(1)}
+                                  {r.tolly.status === "provisional" ? " · under 2 years old, not counted for the hero yet" : ""}
+                                </>
+                              ) : r.tolly.status === "excluded" ? (
+                                "Not a Telugu-language film, so not counted"
+                              ) : (
+                                <>Not scored: missing {r.tolly.missing.join(", ")}</>
+                              )}
+                            </Fact>
+                          )}
                           <Fact label="Reported gross">{r.grossText ?? "not reported"}</Fact>
                           <Fact label="Reported budget">{r.budgetText ?? "not reported"}</Fact>
                           <Fact label="Lead credit">{r.billing ?? "—"}{r.coLeads.length ? ` · co-lead with ${r.coLeads.join(", ")}` : ""}</Fact>

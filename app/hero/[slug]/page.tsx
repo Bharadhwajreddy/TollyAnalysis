@@ -5,6 +5,7 @@ import { HeroStarBreakdown } from "@/components/dashboard/star-breakdown";
 import { HeroAvatar } from "@/components/hero/hero-avatar";
 import { HeroYearChart } from "@/components/hero/hero-year-chart";
 import { HeroFilmsTable, type FilmRowView } from "@/components/hero/hero-films-table";
+import { TollyHeroCard } from "@/components/tolly/tolly-hero-card";
 import { DemoBadge } from "@/components/ui/badges";
 import { Collapsible } from "@/components/ui/collapsible";
 import type { HeroMetricKey } from "@/lib/calculations/engine";
@@ -16,6 +17,8 @@ import { socialHandles } from "@/lib/data/real/load";
 import { REPORTED_INSTAGRAM } from "@/lib/data/real/reported-social";
 import { getDashboardData, getHeroExcluded, getHeroFilms, getPerson } from "@/lib/repositories";
 import { rankable } from "@/lib/ranking";
+import { tollyIndexEnabled } from "@/lib/features";
+import { getTollyFilm, getTollyHero, getTollyRanking, tollyMeta } from "@/lib/tolly/view";
 
 export async function generateMetadata(props: PageProps<"/hero/[slug]">): Promise<Metadata> {
   const { slug } = await props.params;
@@ -63,6 +66,8 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
   const handles = data.mode === "real" ? socialHandles(slug) : null;
   const igReported = data.mode === "real" ? REPORTED_INSTAGRAM.followers[slug] : undefined;
   const credit = HERO_PHOTOS[slug];
+  const tolly = data.mode === "real" && tollyIndexEnabled() ? getTollyHero(slug) : null;
+  const tollyRanked = tolly ? getTollyRanking().ranked.length : 0;
 
   const rankOf = (key: HeroMetricKey) => {
     const meta = METRICS[key];
@@ -84,6 +89,8 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
     const ott = f.route === "ott" && !f.commercial.label;
     const verdict = recent ? "recent" : ott ? "ott" : (f.commercial.label ?? "unknown");
     const src = f.details?.verdictSource ?? null;
+    // Real-data film ids are "f-" + the filmography key the Tolly Index uses.
+    const t = tolly && f.filmId.startsWith("f-") ? getTollyFilm(f.filmId.slice(2)) : null;
     return {
       id: f.filmId,
       title: f.title,
@@ -112,6 +119,7 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
       wiki: f.details?.wikiArticle ? `https://en.wikipedia.org/wiki/${encodeURIComponent(f.details.wikiArticle.replace(/ /g, "_"))}` : null,
       wikidata: f.details?.wikidataId ? `https://www.wikidata.org/wiki/${f.details.wikidataId}` : null,
       isDemo: f.isDemo,
+      tolly: t ? { index: t.index, status: t.status, missing: t.missing, rating: t.rating, reach: t.reach, stay: t.stay } : null,
     };
   });
 
@@ -180,6 +188,7 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
     }
   };
   const sectionNav = [
+    ...(tolly ? [["tolly", "Tolly Index"]] : []),
     ["star", "Star Score"],
     ["facts", "Career facts"],
     ["milestones", "Milestones"],
@@ -211,9 +220,18 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
               {hero.ott ? `, ${hero.ott} went straight to OTT` : ""}. Every film below links to the source its result was read from.
             </p>
             <div className="mt-6 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
+              {tolly && (
+                <BannerStat
+                  label="Tolly Index"
+                  value={tolly.index === null ? "—" : `${tolly.index.toFixed(1)}`}
+                  note={tolly.rank ? `#${tolly.rank} of ${tollyRanked} ranked heroes${tolly.band !== null ? ` · ± ${tolly.band.toFixed(1)}` : ""}` : "not ranked yet: films missing data"}
+                />
+              )}
               <BannerStat label="Star Score" value={formatMetric("starScore", hero.m.starScore.v)} note={hero.m.starScore.v === null ? "not enough data" : rankLabel(rankOf("starScore"))} />
               <BannerStat label="Success ratio" value={formatMetric("overallSuccessRatio", sr.v)} note={sr.v === null ? "no known results" : `${hero.m.hits.v} hits out of ${sr.n} films with a known result`} />
-              <BannerStat label="Reported box office" value={formatMetric("totalGross", hero.m.totalGross.v)} note={hero.m.totalGross.v === null ? "no reported gross" : `${hero.m.totalGross.n} films with a reported gross`} />
+              {!tolly && (
+                <BannerStat label="Reported box office" value={formatMetric("totalGross", hero.m.totalGross.v)} note={hero.m.totalGross.v === null ? "no reported gross" : `${hero.m.totalGross.n} films with a reported gross`} />
+              )}
               <BannerStat label="Blockbusters" value={formatMetric("blockbusters", hero.m.blockbusters.v)} note={hero.m.blockbusters.v === null ? "no known results" : `among ${hero.m.blockbusters.n} judged films`} />
             </div>
           </div>
@@ -287,6 +305,8 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
           Compare ↗
         </Link>
       </nav>
+
+      {tolly && <TollyHeroCard hero={tolly} rankedCount={tollyRanked} meta={tollyMeta} />}
 
       {/* Star Score breakdown */}
       <section id="star" className="card mt-5 scroll-mt-32 p-4 sm:p-6" aria-labelledby="star-title">
