@@ -27,11 +27,13 @@
     "tolly:link": "tsx scripts/tolly/link-films.mts",
     "tolly:extra": "tsx scripts/tolly/imdb-extra.mts",
     "tolly:all": "npm run tolly:wikidata && npm run tolly:imdb && npm run tolly:cast && npm run tolly:link && npm run tolly:extra && npm run tolly:link && npm run tolly:pageviews && npm run tolly:tmdb && npm run tolly:compute",
-    "tolly:tmdb": "tsx scripts/tolly/tmdb.mts",
-    "tolly:tmdb-search": "tsx scripts/tolly/tmdb-search.mts",
-    "tolly:omdb": "tsx scripts/tolly/omdb.mts",
-    "tolly:youtube": "tsx scripts/tolly/youtube.mts",
-    "tolly:reddit": "tsx scripts/tolly/reddit.mts"
+    "tolly:tmdb": "tsx --env-file-if-exists=.env.local scripts/tolly/tmdb.mts",
+    "tolly:tmdb-search": "tsx --env-file-if-exists=.env.local scripts/tolly/tmdb-search.mts",
+    "tolly:omdb": "tsx --env-file-if-exists=.env.local scripts/tolly/omdb.mts",
+    "tolly:bluesky": "tsx scripts/tolly/bluesky.mts",
+    "tolly:bluesky-voice": "python3 scripts/tolly/bluesky_sentiment.py",
+    "tolly:youtube": "tsx --env-file-if-exists=.env.local scripts/tolly/youtube.mts",
+    "tolly:reddit": "tsx --env-file-if-exists=.env.local scripts/tolly/reddit.mts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",

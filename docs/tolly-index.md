@@ -551,6 +551,26 @@ These were all tested from this project between 9 and 15 October 2026.
 | **Reddit Data API** | Not connected | Threads and comments (Voice) | Since November 2025 (Responsible Builder Policy) every new app, personal or research, needs Reddit's approval before any data access; commercial use needs written approval. Only the account owner can apply. |
 | **Instagram / Facebook (Meta Graph API)** | Not connected | Hero follower counts, post engagement | Needs Meta app review and each account owner's permission. |
 
+### Other sources checked (22 October 2026)
+
+| Source | Free? | What it could give | Verdict |
+|---|---|---|---|
+| **Bluesky** (public search API) | Yes, no key | Public posts naming a film | **Tested on all 1,194 scored films: not usable.** 570 films have any post, only 119 have 10+ posts with a clear tone (41 of them from 2025–26), short titles pick up unrelated posts, and post sentiment agrees with IMDb ratings at only r = 0.14. Scripts kept (`tolly:bluesky`, `tolly:bluesky-voice`) to re-test later. |
+| **Letterboxd API** | By application only | Film fans' ratings | Its API page says it is "not granting access for data-analysis, visualization or recommendation projects … or for private or personal projects". Our project is all three, so an application would almost certainly be refused. Its website terms forbid scraping. |
+| **Instagram** (Graph API, Business Discovery) | Yes | Follower and post counts of heroes' Business/Creator accounts | Works without App Review only for an app used by its own admins; a public website showing the numbers likely needs App Review and Business Verification. Needs your Instagram professional account linked to a Facebook Page. Hero-level context only, not film scores. |
+| **Instagram hashtag search** | Yes, with approval | Posts per film hashtag | Needs the "Instagram Public Content Access" feature (App Review); at most 30 hashtags a week. |
+| **Threads** (keyword search API) | Yes, with approval | Public posts naming a film (no like counts) | Needs the `threads_keyword_search` permission approved; up to 2,200 queries a day. Worth applying for. |
+| **Facebook Pages** | Yes, with approval | Likes and followers of film and hero Pages | Needs "Page Public Metadata Access" (App Review). |
+| **Meta Content Library** | Free | Research access to public Facebook/Instagram/Threads posts | Only for academic or non-profit research institutions. |
+| **Trakt**, **Simkl** | Free key after registering an app | Small rating counts, linked by IMDb id | Terms pages did not load from here; expect small numbers for Telugu films, like TMDB. Low priority. |
+| **Mastodon** | Yes | Posts | Full-text search needs an account on a server that supports it, and covers only that server. Very little Telugu film talk. |
+| **GDELT** (news) | Yes, including commercial use with citation | News article counts and tone | Only the last 3 months, and it rate-limited this environment. Useful for new releases only. |
+| **Google Trends API** | Alpha, by invitation | Search interest by region, 5 years | Apply for the alpha; cost not stated. |
+| **X (Twitter) API** | No | Posts | Pay per use: $0.005 per post read; no free read tier. |
+| **Last.fm API** | Free key, non-commercial | Song listener counts | Music popularity of soundtracks; non-commercial only. |
+| **Spotify Web API** | Needs Premium | — | Popularity scores removed in February 2026, and its policy forbids derived metrics. Not usable. |
+| **JioSaavn, BookMyShow, Sacnilk** | — | — | No official API; terms forbid scraping. |
+
 **The free, permanent route for Voice** is ratings and short reviews from this site's own visitors: free, no third-party rules, usable commercially, and covering every film including the 88 incomplete ones. It needs anti-brigading rules (one vote per account, rate limits, a minimum account age) and a privacy policy.
 
 ### Paid
