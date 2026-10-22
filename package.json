@@ -28,6 +28,8 @@
     "tolly:extra": "tsx scripts/tolly/imdb-extra.mts",
     "tolly:all": "npm run tolly:wikidata && npm run tolly:imdb && npm run tolly:cast && npm run tolly:link && npm run tolly:extra && npm run tolly:link && npm run tolly:pageviews && npm run tolly:tmdb && npm run tolly:compute",
     "tolly:tmdb": "tsx scripts/tolly/tmdb.mts",
+    "tolly:tmdb-search": "tsx scripts/tolly/tmdb-search.mts",
+    "tolly:omdb": "tsx scripts/tolly/omdb.mts",
     "tolly:youtube": "tsx scripts/tolly/youtube.mts",
     "tolly:reddit": "tsx scripts/tolly/reddit.mts"
   },

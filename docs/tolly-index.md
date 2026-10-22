@@ -95,6 +95,8 @@ All sources are official and free: published datasets or public APIs. Nothing is
 | **Wikipedia page views** (MediaWiki API) | CC0 data | Daily views of each film's English and Telugu article, 14 Aug – 12 Oct 2026 | Staying power |
 | **Critics' scores quoted in Wikipedia** | CC BY-SA | "Rated 3.5/5" style scores in reception sections | Cross-check only |
 | **MovieLens 32M** (GroupLens) | Research, non-commercial | 32 million ratings; 207 of our films | Cross-check only |
+| **TMDB API** (The Movie Database) | Free for non-commercial use, with attribution | Rating and vote count for 1,162 of our films (422 with 10+ votes), release dates | Cross-check only |
+| **OMDb API** | Free key (1,000 requests a day); CC BY-NC, no commercial use | Rotten Tomatoes and Metacritic scores where they exist; a second IMDb title search | Cross-check only |
 
 **Coverage of the data the formula needs (1,297 unique lead films since 2000):**
 
@@ -111,7 +113,7 @@ All sources are official and free: published datasets or public APIs. Nothing is
 
 **Hero data (71 heroes):** IMDb person id 71/71; birth date 70/71; career start 70/71; free-licence photo 63/71. Follower counts on X and Instagram are context only and not part of the index.
 
-> **Licence note.** IMDb and MovieLens are licensed for non-commercial use only. The repository therefore stores only our derived scores. Raw IMDb ratings and vote counts stay in a local cache that git ignores. A commercial launch needs an IMDb licence, or other rating sources (TMDB, Letterboxd) under their own terms.
+> **Licence note.** IMDb, MovieLens, TMDB and OMDb are all licensed for non-commercial use only. The repository therefore stores only our derived scores. Raw IMDb ratings and vote counts stay in a local cache that git ignores. A commercial launch needs an IMDb licence, or ratings collected on this site itself (see [section 13](#13-sources-we-do-not-have-access-to)).
 
 ---
 
@@ -502,7 +504,7 @@ Averages stay within 3 points across eras. Recent films have had less time to pr
 
 **2. Critics broadly agree with audiences.** For 417 complete films whose Wikipedia article quotes critics' scores, the critics' average and our Rating pillar correlate at **0.56**. Critics are a cross-check, not an input: quoted scores exist for fewer than 1 in 5 films before 2008, so using them would score old and new films differently.
 
-**3. A second audience source agrees.** MovieLens covers 60 of our films with 10 or more ratings; its averages agree with IMDb at **0.69**.
+**3. Two more audience sources agree.** TMDB has 10 or more votes for 422 of our films; its averages agree with IMDb at **0.85**. MovieLens covers 60 of our films with 10 or more ratings; it agrees at **0.69**.
 
 **4. The worked example matches the code.** The numbers in section 8 were recomputed by hand from the published inputs and agree with `films.csv` and `heroes.csv`.
 
@@ -539,15 +541,17 @@ Adjusting rupees by the consumer price index would not work either. Ticket price
 
 These were all tested from this project between 9 and 15 October 2026.
 
-### Need an API key (free to register; only the owner can do it)
+### API keys: what happened when we used them (22 October 2026)
 
-| Source | What it would add | Status | To unlock |
+| Source | Status | What it gave us | Rules that matter |
 |---|---|---|---|
-| **TMDB** (The Movie Database) | A second audience rating and vote count for most films; posters | 401 without a key | Register at themoviedb.org → API key; non-commercial terms, attribution required |
-| **OMDb** | IMDb-style rating plus Rotten Tomatoes and Metacritic scores where they exist | 401 without a key | Free key at omdbapi.com (1,000 requests a day) |
-| **YouTube Data API** | Trailer and song views, likes, comment counts (Reach), and comment text (Voice) | Needs a key | Google Cloud project → enable YouTube Data API v3 (10,000 units a day free) |
-| **Reddit Data API** | Threads and comments in r/tollywood, r/telugu, r/kollywood (Voice) | 403 from this environment | Register a Reddit app (client id + secret); confirm terms for our use |
-| **Instagram / Facebook (Meta Graph API)** | Hero follower counts, post engagement | Needs Meta app review and the account owner's permission | Meta developer app + business verification |
+| **TMDB** | Connected | Ratings for 1,162 films. They agree with IMDb (r = 0.85), but the 55 films short of 10 IMDb votes have 0 to 9 TMDB votes too, and a title search found only 3 of the 35 unlinked films (one of them a short). No gap filled; kept as a cross-check. | Free for non-commercial use only; attribution and logo required; cache at most 6 months; commercial use needs a written agreement. |
+| **OMDb** | Connected | Its copy of IMDb ratings is out of date (Kithakithalu: 5.8 from 228 votes vs 6.1 from 311 in IMDb's own data), so not used. Title search found none of the 35 unlinked films. Of the 281 most-voted films, 35 have a Rotten Tomatoes score and 2 a Metacritic score. | Free key 1,000 requests a day; CC BY-NC; terms forbid commercial use, indexes and derivatives without written permission. |
+| **YouTube Data API** | Not connected | Trailer views, likes, comments | The key is free and needs no billing account. But YouTube's developer policies forbid scores derived from views, likes or comments (including sentiment) unless the developer passes an audit and is accepted into the derived-metrics programme; statistics may be stored for only 30 days; search is capped at 100 calls a day. |
+| **Reddit Data API** | Not connected | Threads and comments (Voice) | Since November 2025 (Responsible Builder Policy) every new app, personal or research, needs Reddit's approval before any data access; commercial use needs written approval. Only the account owner can apply. |
+| **Instagram / Facebook (Meta Graph API)** | Not connected | Hero follower counts, post engagement | Needs Meta app review and each account owner's permission. |
+
+**The free, permanent route for Voice** is ratings and short reviews from this site's own visitors: free, no third-party rules, usable commercially, and covering every film including the 88 incomplete ones. It needs anti-brigading rules (one vote per account, rate limits, a minimum account age) and a privacy policy.
 
 ### Paid
 
@@ -562,7 +566,7 @@ These were all tested from this project between 9 and 15 October 2026.
 | Source | What happened |
 |---|---|
 | **Letterboxd** | Site refused (403); its API is by application only |
-| **Reddit** (any endpoint) | Refused (403) or redirected to login |
+| **Reddit** (any endpoint, including its help pages) | Refused (403) or redirected to login |
 | **Wikipedia page-view history** (REST, monthly) | Rate-limited after one request. The bulk dumps are 6.3 GB per month. No data exists before July 2015 in any case. |
 | **Wikidata search API** | Rate-limited (429); we used the SPARQL query service instead |
 
@@ -591,10 +595,10 @@ These were all tested from this project between 9 and 15 October 2026.
 
 | Gap | Size | What would fill it |
 |---|---|---|
-| Fewer than 10 IMDb votes | 55 films | A second rating source (TMDB key), then ratings from this site's own visitors |
+| Fewer than 10 IMDb votes | 55 films | Ratings from this site's own visitors (TMDB has 0–9 votes for these films too) |
 | No IMDb entry found | 33 films | Editors confirming links by hand (some exist under another title) |
 | Year not confirmed by a second source | 34 films (overlaps the 33 above) | Same as above |
-| Voice pillar | all films | TMDB, YouTube and Reddit keys; X budget; a labelling pilot on 50 films |
+| Voice pillar | all films | This site's own visitor ratings; Reddit approval; YouTube derived-metrics approval; X budget |
 | Lead credits where IMDb's order disagrees | 127 credits | Editor review |
 | Hero birth date | Sampoornesh Babu | An editor adding a sourced date |
 | Free-licence photo | 8 heroes | A request on Wikimedia Commons |
@@ -627,6 +631,10 @@ npm run tolly:all
 
 # optional cross-check: MovieLens 32M unzipped into .cache/tolly/movielens/, then
 python3 scripts/tolly/movielens.py && npm run tolly:compute
+
+# optional, with free keys in the environment (never in the repo):
+# TMDB_API_READ_TOKEN → cross-check and title search; OMDB_API_KEY → critics' scores (1,000 requests a day)
+npm run tolly:tmdb && npm run tolly:tmdb-search && npm run tolly:omdb && npm run tolly:compute -- 2026-10-15
 
 # tests
 npx vitest run tests/unit/tolly.test.ts tests/unit/tolly-match.test.ts

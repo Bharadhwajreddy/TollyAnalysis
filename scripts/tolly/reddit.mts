@@ -31,7 +31,7 @@ if (!tokenRes.ok) {
   process.exit(1);
 }
 const { access_token } = (await tokenRes.json()) as { access_token: string };
-const api = async <T>(path: string): Promise<T> => {
+const api = async <T,>(path: string): Promise<T> => {
   for (let attempt = 0; attempt < 5; attempt++) {
     const res = await fetch(`https://oauth.reddit.com${path}`, { headers: { authorization: `Bearer ${access_token}`, "user-agent": UA } });
     if (res.ok) return (await res.json()) as T;

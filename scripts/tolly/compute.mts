@@ -113,6 +113,15 @@ const movielensCheck = {
   with10: mlPairs.length,
   correlation: mlPairs.length > 2 ? Math.round(correlation(mlPairs.map((p) => p[0]), mlPairs.map((p) => p[1])) * 100) / 100 : null,
 };
+// Third audience source (TMDB, non-commercial API): agrees closely with IMDb but has no votes where IMDb
+// has none, so it is a cross-check, not an input.
+const tmdb: Record<string, { voteAverage: number; voteCount: number } | null> = existsSync(".cache/tolly/tmdb.json") ? read(".cache/tolly/tmdb.json") : {};
+const tmPairs = linkedFilms.filter((l) => l.tconst && l.imdbRating !== null && l.imdbVotes >= MIN_VOTES && (tmdb[l.tconst]?.voteCount ?? 0) >= MIN_VOTES).map((l) => [tmdb[l.tconst!]!.voteAverage, l.imdbRating as number]);
+const tmdbCheck = {
+  films: Object.values(tmdb).filter(Boolean).length,
+  with10: tmPairs.length,
+  correlation: tmPairs.length > 2 ? Math.round(correlation(tmPairs.map((p) => p[0]), tmPairs.map((p) => p[1])) * 100) / 100 : null,
+};
 // Lead credit vs IMDb's cast order (tested as a second check; IMDb's order does not follow billing reliably).
 const ranks = linkedFilms.flatMap((l) => Object.values(l.imdbActorRank ?? {}));
 const leadCheck = { credits: ranks.length, top3: ranks.filter((r) => r !== null && r <= 3).length, lower: ranks.filter((r) => r !== null && r > 3).length, notListed: ranks.filter((r) => r === null).length };
@@ -144,6 +153,7 @@ const meta = {
   missing: missingTally,
   critics,
   movielens: movielensCheck,
+  tmdb: tmdbCheck,
   leadCheck,
 };
 

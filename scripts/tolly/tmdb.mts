@@ -4,7 +4,7 @@
  * its IMDb id and keeps TMDB's average vote and vote count. Resumable; ~5 minutes for all films.
  * Without the token it says so and exits cleanly.
  *
- * Output: .cache/tolly/tmdb.json  { tconst: { id, title, voteAverage, voteCount } | null }
+ * Output: .cache/tolly/tmdb.json  { tconst: { id, title, releaseDate, language, voteAverage, voteCount } | null }
  * Usage: NODE_USE_ENV_PROXY=1 npx tsx scripts/tolly/tmdb.mts
  */
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
@@ -17,7 +17,8 @@ if (!TOKEN) {
 const OUT = ".cache/tolly/tmdb.json";
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const linked: { tconst: string | null }[] = JSON.parse(readFileSync(".cache/tolly/films-linked.json", "utf8"));
-const out: Record<string, { id: number; title: string; voteAverage: number; voteCount: number } | null> = existsSync(OUT) ? JSON.parse(readFileSync(OUT, "utf8")) : {};
+type Hit = { id: number; title: string; releaseDate: string | null; language: string; voteAverage: number; voteCount: number };
+const out: Record<string, Hit | null> = existsSync(OUT) ? JSON.parse(readFileSync(OUT, "utf8")) : {};
 const todo = [...new Set(linked.map((l) => l.tconst).filter((t): t is string => !!t))].filter((t) => !(t in out));
 console.log(`TMDB: ${todo.length} films to look up`);
 
@@ -30,9 +31,13 @@ for (const tconst of todo) {
       process.exit(1);
     }
     if (res.ok) {
-      const json = (await res.json()) as { movie_results?: { id: number; title: string; vote_average: number; vote_count: number }[] };
+      const json = (await res.json()) as {
+        movie_results?: { id: number; title: string; release_date?: string; original_language: string; vote_average: number; vote_count: number }[];
+      };
       const m = json.movie_results?.[0];
-      out[tconst] = m ? { id: m.id, title: m.title, voteAverage: m.vote_average, voteCount: m.vote_count } : null;
+      out[tconst] = m
+        ? { id: m.id, title: m.title, releaseDate: m.release_date || null, language: m.original_language, voteAverage: m.vote_average, voteCount: m.vote_count }
+        : null;
       break;
     }
     await sleep(Math.max(2, Number(res.headers.get("retry-after")) || 2 ** attempt) * 1000);
@@ -41,7 +46,7 @@ for (const tconst of todo) {
     writeFileSync(OUT, JSON.stringify(out));
     console.log(`  ${n}/${todo.length}`);
   }
-  await sleep(250);
+  await sleep(50);
 }
 writeFileSync(OUT, JSON.stringify(out));
 const found = Object.values(out).filter(Boolean) as { voteCount: number }[];

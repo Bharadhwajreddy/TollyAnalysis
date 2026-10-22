@@ -65,6 +65,11 @@
    "with10": 60,
    "correlation": 0.69
   },
+  "tmdb": {
+   "films": 1162,
+   "with10": 422,
+   "correlation": 0.85
+  },
   "leadCheck": {
    "credits": 1336,
    "top3": 1065,
