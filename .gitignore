@@ -50,3 +50,6 @@ next-env.d.ts
 
 # importer cache (npm run data:import)
 /.cache
+
+# Tolly Index offline snapshots hold IMDb/TMDB numbers (personal, non-commercial use): never commit
+tolly-snapshot-*.tar.gz

@@ -33,7 +33,9 @@
     "tolly:bluesky": "tsx scripts/tolly/bluesky.mts",
     "tolly:bluesky-voice": "python3 scripts/tolly/bluesky_sentiment.py",
     "tolly:youtube": "tsx --env-file-if-exists=.env.local scripts/tolly/youtube.mts",
-    "tolly:reddit": "tsx --env-file-if-exists=.env.local scripts/tolly/reddit.mts"
+    "tolly:reddit": "tsx --env-file-if-exists=.env.local scripts/tolly/reddit.mts",
+    "tolly:snapshot": "bash scripts/tolly/snapshot.sh snapshot",
+    "tolly:restore": "bash scripts/tolly/snapshot.sh restore"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",

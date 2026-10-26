@@ -639,6 +639,8 @@ Sivaji (21), Srihari (19) and Taraka Ratna (9) carry most of them, which is why 
 
 ## 15. How to rerun it
 
+The options and costs for getting and keeping all the data are in [tolly-data-plan.md](tolly-data-plan.md).
+
 ```bash
 # one-off: IMDb's two small files into the cache
 mkdir -p .cache/tolly/imdb && cd .cache/tolly/imdb
@@ -655,6 +657,10 @@ python3 scripts/tolly/movielens.py && npm run tolly:compute
 # optional, with free keys in the environment (never in the repo):
 # TMDB_API_READ_TOKEN → cross-check and title search; OMDB_API_KEY → critics' scores (1,000 requests a day)
 npm run tolly:tmdb && npm run tolly:tmdb-search && npm run tolly:omdb && npm run tolly:compute -- 2026-10-15
+
+# keep a private offline copy of every download (holds IMDb/TMDB numbers: never commit it)
+npm run tolly:snapshot                  # → tolly-snapshot-YYYY-MM-DD.tar.gz (~10 MB)
+npm run tolly:restore -- <archive>      # later, anywhere: then npm run tolly:compute, no internet needed
 
 # tests
 npx vitest run tests/unit/tolly.test.ts tests/unit/tolly-match.test.ts
