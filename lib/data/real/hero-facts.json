@@ -1,0 +1,725 @@
+{
+ "source": "Wikidata (CC0)",
+ "fetched": "2026-11-06",
+ "heroes": {
+  "aadi-saikumar": {
+   "birthPlace": "Andhra Pradesh",
+   "father": "Sai Kumar",
+   "awards": [
+    "Filmfare Awards South"
+   ],
+   "birthDate": "1987-12-23"
+  },
+  "adivi-sesh": {
+   "birthPlace": "Hyderabad",
+   "education": [
+    "San Francisco State University"
+   ],
+   "birthDate": "1985-12-17",
+   "siblings": [
+    "Sai Kiran Adivi"
+   ]
+  },
+  "akhil-akkineni": {
+   "birthPlace": "San Jose",
+   "father": "Akkineni Nagarjuna",
+   "mother": "Amala Akkineni",
+   "education": [
+    "Lee Strasberg Theatre and Film Institute"
+   ],
+   "birthDate": "1994-04-08",
+   "siblings": [
+    "Naga Chaitanya"
+   ]
+  },
+  "allari-naresh": {
+   "birthPlace": "Chennai",
+   "father": "E. V. V. Satyanarayana",
+   "education": [
+    "Chettinad Vidyashram"
+   ],
+   "awards": [
+    "Filmfare Awards South",
+    "Nandi Award"
+   ],
+   "birthDate": "1982-06-30",
+   "siblings": [
+    "Aryan Rajesh"
+   ]
+  },
+  "allu-arjun": {
+   "birthPlace": "Chennai",
+   "father": "Allu Aravind",
+   "children": [
+    "Arha Allu",
+    "Ayaan Allu"
+   ],
+   "awards": [
+    "Filmfare Awards South",
+    "Nandi Award"
+   ],
+   "birthDate": "1982-04-08",
+   "siblings": [
+    "Allu Sirish"
+   ]
+  },
+  "allu-sirish": {
+   "birthPlace": "Chennai",
+   "father": "Allu Aravind",
+   "mother": "Nirmala Allu",
+   "education": [
+    "Rishi Dayaram and Seth Hassaram National College and Seth Wassiamull Assomull Science College"
+   ],
+   "birthDate": "1987-05-30",
+   "siblings": [
+    "Allu Arjun"
+   ]
+  },
+  "balakrishna": {
+   "birthPlace": "Chennai",
+   "father": "N. T. Rama Rao",
+   "mother": "Basava Tarakam",
+   "offices": [
+    "Member of the 15th Andhra Pradesh Legislative Assembly",
+    "Member of the Andhra Pradesh Legislative Assembly"
+   ],
+   "education": [
+    "Nizam College"
+   ],
+   "party": [
+    "Telugu Desam Party"
+   ],
+   "awards": [
+    "Nandi Award",
+    "Padma Bhushan in Art"
+   ],
+   "birthDate": "1960-06-10",
+   "website": "http://www.manabalayya.com/",
+   "siblings": [
+    "Daggubati Purandeswari",
+    "Nandamuri Harikrishna"
+   ]
+  },
+  "bellamkonda-sreenivas": {
+   "birthPlace": "Guntur",
+   "father": "Bellamkonda Suresh",
+   "education": [
+    "Lee Strasberg Theatre and Film Institute"
+   ],
+   "birthDate": "1993-01-03"
+  },
+  "chiranjeevi": {
+   "birthPlace": "Mogalthur",
+   "father": "Venkat Rao Konidela",
+   "mother": "Anjana Devi Konidela",
+   "spouse": [
+    "Surekha Konidela"
+   ],
+   "offices": [
+    "Minister of Tourism"
+   ],
+   "children": [
+    "Ram Charan",
+    "Sreeja Konidela",
+    "Sushmita Konidela"
+   ],
+   "education": [
+    "Adyar Film Institute"
+   ],
+   "party": [
+    "Indian National Congress"
+   ],
+   "awards": [
+    "Filmfare Awards South",
+    "Nandi Award",
+    "Padma Bhushan",
+    "Padma Vibhushan"
+   ],
+   "birthDate": "1955-08-22",
+   "relatives": [
+    "Allu Rama Lingaiah"
+   ],
+   "siblings": [
+    "Nagendra Babu",
+    "Pawan Kalyan"
+   ]
+  },
+  "gopichand": {
+   "birthPlace": "Tangutur",
+   "father": "T. Krishna",
+   "awards": [
+    "Nandi Award"
+   ],
+   "birthDate": "1979-06-12"
+  },
+  "jagapathi-babu": {
+   "birthPlace": "Machilipatnam",
+   "father": "V. B. Rajendra Prasad",
+   "awards": [
+    "Filmfare Awards South",
+    "Nandi Award"
+   ],
+   "birthDate": "1962-02-12"
+  },
+  "jr-ntr": {
+   "birthPlace": "Hyderabad",
+   "father": "Nandamuri Harikrishna",
+   "education": [
+    "Vidyaranya High School"
+   ],
+   "awards": [
+    "Filmfare Awards South",
+    "Nandi Award"
+   ],
+   "birthDate": "1983-05-20",
+   "website": "http://www.jrntr.com/",
+   "siblings": [
+    "Nandamuri Kalyan Ram"
+   ]
+  },
+  "kalyaan-dhev": {
+   "birthDate": "1990-02-11"
+  },
+  "kalyan-ram": {
+   "birthPlace": "Hyderabad",
+   "father": "Nandamuri Harikrishna",
+   "education": [
+    "Illinois Institute of Technology"
+   ],
+   "birthDate": "1978-07-05",
+   "siblings": [
+    "N. T. Rama Rao Jr."
+   ]
+  },
+  "karthikeya": {
+   "birthPlace": "Hyderabad",
+   "birthDate": "1992-09-21"
+  },
+  "kiran-abbavaram": {
+   "birthDate": "1992-07-15"
+  },
+  "mahesh-babu": {
+   "birthPlace": "Chennai",
+   "father": "Krishna Ghattamaneni",
+   "spouse": [
+    "Namrata Shirodkar"
+   ],
+   "children": [
+    "Gautam Krishna Gattamaneni"
+   ],
+   "education": [
+    "Loyola College",
+    "St. Bede's Anglo Indian Higher Secondary School",
+    "University of Madras"
+   ],
+   "awards": [
+    "CineMAA Awards",
+    "Filmfare Award for Best Actor – Telugu",
+    "International Indian Film Academy Awards",
+    "Nandi Award",
+    "Santosham Best Actor Award",
+    "South Indian International Movie Awards"
+   ],
+   "birthDate": "1975-08-09",
+   "siblings": [
+    "Ghattamaneni Ramesh Babu",
+    "Manjula Ghattamaneni",
+    "Sudheer Babu"
+   ]
+  },
+  "manchu-manoj": {
+   "birthPlace": "Hyderabad",
+   "father": "Mohan Babu",
+   "mother": "Nirmala Devi Manchu",
+   "education": [
+    "Southeastern Oklahoma State University"
+   ],
+   "awards": [
+    "Nandi Award"
+   ],
+   "birthDate": "1983-05-20",
+   "siblings": [
+    "Lakshmi Manchu",
+    "Vishnu Manchu"
+   ]
+  },
+  "mohan-babu": {
+   "birthPlace": "Chittoor district",
+   "father": "Narayanswamy Naidu Manchu",
+   "mother": "Lakshmamma Manchu",
+   "spouse": [
+    "Nirmala Devi Manchu",
+    "Vidyavati Manchu"
+   ],
+   "children": [
+    "Lakshmi Manchu",
+    "Manoj Manchu",
+    "Vishnu Manchu"
+   ],
+   "education": [
+    "Adyar Film Institute"
+   ],
+   "party": [
+    "Telugu Desam Party"
+   ],
+   "awards": [
+    "Filmfare Awards South",
+    "Padma Shri in Art"
+   ],
+   "birthDate": "1952-03-19",
+   "website": "http://www.mohanbabu.com/"
+  },
+  "naga-chaitanya": {
+   "birthPlace": "Hyderabad",
+   "father": "Akkineni Nagarjuna",
+   "mother": "Lakshmi Daggubati",
+   "spouse": [
+    "Samantha Ruth Prabhu"
+   ],
+   "education": [
+    "New York Film Academy"
+   ],
+   "awards": [
+    "Filmfare Awards South"
+   ],
+   "birthDate": "1986-11-23",
+   "website": "http://nagachaitanyaakkineni.com/",
+   "relatives": [
+    "Daggubati Suresh Babu",
+    "Rana Daggubati",
+    "Venkatesh Daggubati"
+   ],
+   "siblings": [
+    "Akhil Akkineni"
+   ]
+  },
+  "naga-shaurya": {
+   "birthPlace": "Eluru",
+   "birthDate": "1989-01-22"
+  },
+  "nagarjuna": {
+   "birthPlace": "Chennai",
+   "father": "Akkineni Nageswara Rao",
+   "mother": "Annapurna Akkineni",
+   "spouse": [
+    "Amala Akkineni"
+   ],
+   "children": [
+    "Akhil Akkineni",
+    "Naga Chaitanya"
+   ],
+   "education": [
+    "Anna University",
+    "Eastern Michigan University"
+   ],
+   "awards": [
+    "Filmfare Awards South",
+    "Nandi Award"
+   ],
+   "birthDate": "1959-08-29"
+  },
+  "nani": {
+   "birthPlace": "Hyderabad",
+   "birthDate": "1984-02-24",
+   "website": "http://www.ActorNani.com"
+  },
+  "nara-rohit": {
+   "birthPlace": "Tirupati",
+   "education": [
+    "Anna University",
+    "New York Film Academy"
+   ],
+   "birthDate": "1984-07-25"
+  },
+  "navdeep": {
+   "birthPlace": "Hyderabad",
+   "birthDate": "1985-01-25"
+  },
+  "naveen-chandra": {
+   "birthPlace": "Ballari"
+  },
+  "naveen-polishetty": {
+   "birthPlace": "Hyderabad",
+   "birthDate": "1989-12-27"
+  },
+  "nikhil-siddhartha": {
+   "birthPlace": "Hyderabad",
+   "education": [
+    "Muffakham Jah College of Engineering and Technology"
+   ],
+   "birthDate": "1985-06-01"
+  },
+  "nithiin": {
+   "birthPlace": "Hyderabad",
+   "awards": [
+    "Filmfare Award for Best Male Debut – South"
+   ],
+   "birthDate": "1983-03-30"
+  },
+  "pawan-kalyan": {
+   "birthPlace": "Bapatla",
+   "father": "Venkat Rao Konidela",
+   "mother": "Anjana Devi Konidela",
+   "spouse": [
+    "Anna Lezhneva"
+   ],
+   "children": [
+    "Aadhya Katyani Konidela",
+    "Akira Nandan",
+    "Mark Shankar Pawanovich Konidela",
+    "Polena Anjana Pawanova Konidela"
+   ],
+   "awards": [
+    "Filmfare Awards South"
+   ],
+   "birthDate": "1971-09-02",
+   "website": "http://www.pawankalyan.info",
+   "relatives": [
+    "Allu Arjun",
+    "Ram Charan",
+    "Sai Dharam Tej"
+   ],
+   "siblings": [
+    "Chiranjeevi",
+    "Nagendra Babu"
+   ]
+  },
+  "prabhas": {
+   "birthPlace": "Chennai",
+   "father": "Uppalapati Surya Narayana Raju",
+   "awards": [
+    "Nandi Award for Best Actor",
+    "Siima for Best Actor – Telugu"
+   ],
+   "birthDate": "1979-10-23",
+   "relatives": [
+    "Krishnam Raju"
+   ]
+  },
+  "priyadarshi": {
+   "birthPlace": "Hyderabad",
+   "birthDate": "1989-09-26"
+  },
+  "raj-tarun": {
+   "birthPlace": "Visakhapatnam",
+   "birthDate": "1992-05-11"
+  },
+  "rajasekhar": {
+   "birthPlace": "Lakshmipuram",
+   "spouse": [
+    "Jeevitha"
+   ],
+   "awards": [
+    "Filmfare Awards South",
+    "Nandi Award"
+   ],
+   "birthDate": "1962-02-04",
+   "siblings": [
+    "Selva"
+   ]
+  },
+  "rajendra-prasad": {
+   "birthPlace": "Nemmikuru",
+   "education": [
+    "Andhra University"
+   ],
+   "awards": [
+    "Nandi Award for Best Actor",
+    "Nandi Special Jury Award"
+   ],
+   "birthDate": "1956-07-19"
+  },
+  "ram-charan": {
+   "birthPlace": "Chennai",
+   "father": "Chiranjeevi",
+   "mother": "Surekha Konidela",
+   "spouse": [
+    "Upasana Kamineni"
+   ],
+   "education": [
+    "Lawrence School, Lovedale"
+   ],
+   "awards": [
+    "Filmfare Awards South"
+   ],
+   "birthDate": "1985-03-27",
+   "relatives": [
+    "Allu Arjun"
+   ]
+  },
+  "ram-pothineni": {
+   "birthPlace": "Hyderabad",
+   "education": [
+    "Chettinad Vidyashram"
+   ],
+   "birthDate": "1988-05-15",
+   "heightCm": 173,
+   "siblings": [
+    "Krishna Chaitanya Pothineni"
+   ]
+  },
+  "rana-daggubati": {
+   "birthPlace": "Chennai",
+   "father": "Daggubati Suresh Babu",
+   "education": [
+    "Chettinad Vidyashram"
+   ],
+   "awards": [
+    "Filmfare Awards South",
+    "Nandi Award"
+   ],
+   "birthDate": "1984-12-14",
+   "heightCm": 189
+  },
+  "ravi-teja": {
+   "birthPlace": "Jaggampeta",
+   "awards": [
+    "Nandi Award"
+   ],
+   "birthDate": "1962-01-26",
+   "relatives": [
+    "Maadhav Bhupathiraju"
+   ]
+  },
+  "sai-durgha-tej": {
+   "birthPlace": "Hyderabad",
+   "father": "Dr. Siva Prasad",
+   "mother": "Vijayadurga Konidela",
+   "birthDate": "1987-10-15"
+  },
+  "sampoornesh-babu": {
+   "birthPlace": "Siddipet"
+  },
+  "santosh-sobhan": {
+   "birthDate": "1995-07-12"
+  },
+  "satyadev": {
+   "birthPlace": "Visakhapatnam",
+   "education": [
+    "Maharaj Vijayaram Gajapathi Raj College of Engineering"
+   ],
+   "birthDate": "1989-07-04"
+  },
+  "sharwanand": {
+   "birthPlace": "Hyderabad",
+   "birthDate": "1984-03-06"
+  },
+  "siddhu-jonnalagadda": {
+   "birthPlace": "Hyderabad"
+  },
+  "sivaji": {
+   "birthPlace": "Guntur district"
+  },
+  "sree-vishnu": {
+   "birthPlace": "Visakhapatnam",
+   "education": [
+    "Gandhi Institute of Technology and Management"
+   ],
+   "birthDate": "1985-08-30"
+  },
+  "sri-simha": {
+   "birthPlace": "Hyderabad",
+   "birthDate": "1996-02-23"
+  },
+  "srihari": {
+   "birthPlace": "Hyderabad",
+   "spouse": [
+    "Disco Shanti"
+   ],
+   "education": [
+    "Adyar Film Institute"
+   ],
+   "awards": [
+    "Filmfare Awards South",
+    "Nandi Award"
+   ],
+   "birthDate": "1964-08-15",
+   "deathDate": "2013-10-09"
+  },
+  "srikanth": {
+   "birthPlace": "Gangavathi",
+   "spouse": [
+    "Ooha"
+   ],
+   "children": [
+    "Roshan Meka"
+   ],
+   "education": [
+    "Dharwad district",
+    "Karnatak University"
+   ],
+   "awards": [
+    "Filmfare Awards South",
+    "Nandi Award"
+   ],
+   "birthDate": "1968-03-23"
+  },
+  "srinivas-avasarala": {
+   "birthPlace": "Hyderabad",
+   "education": [
+    "Andhra University",
+    "Lee Strasberg Theatre and Film Institute"
+   ],
+   "birthDate": "1984-03-19"
+  },
+  "sudheer-babu": {
+   "birthPlace": "Vijayawada",
+   "education": [
+    "Maharishi Institute of Management"
+   ],
+   "birthDate": "1980-05-11",
+   "siblings": [
+    "Ghattamaneni Ramesh Babu",
+    "Mahesh Babu",
+    "Manjula Ghattamaneni"
+   ]
+  },
+  "suhas": {
+   "birthPlace": "Vijayawada",
+   "birthDate": "1990-08-19"
+  },
+  "sumanth": {
+   "birthPlace": "Hyderabad",
+   "spouse": [
+    "Keerthi Reddy"
+   ],
+   "education": [
+    "Columbia College Chicago"
+   ],
+   "birthDate": "1975-02-09"
+  },
+  "sumanth-ashwin": {
+   "birthPlace": "Hyderabad",
+   "birthDate": "1988-06-30"
+  },
+  "sundeep-kishan": {
+   "birthPlace": "Chennai",
+   "education": [
+    "Osmania University",
+    "University of Hyderabad"
+   ],
+   "birthDate": "1987-05-07"
+  },
+  "sunil": {
+   "birthPlace": "Bhimavaram",
+   "birthDate": "1974-02-28"
+  },
+  "sushanth": {
+   "birthPlace": "India"
+  },
+  "taraka-ratna": {
+   "birthPlace": "Hyderabad",
+   "awards": [
+    "Nandi Award"
+   ],
+   "birthDate": "1983-02-22",
+   "deathDate": "2023-02-18"
+  },
+  "tarun": {
+   "birthPlace": "Andhra Pradesh",
+   "mother": "Roja Ramani",
+   "awards": [
+    "Nandi Award"
+   ],
+   "birthDate": "1983-01-08"
+  },
+  "teja-sajja": {
+   "birthPlace": "Hyderabad",
+   "birthDate": "1995-08-23"
+  },
+  "thiruveer": {
+   "birthPlace": "Mamidipalli",
+   "birthDate": "1988-07-23"
+  },
+  "uday-kiran": {
+   "birthPlace": "Hyderabad",
+   "birthDate": "1980-01-26",
+   "deathDate": "2014-01-05"
+  },
+  "varun-sandesh": {
+   "birthPlace": "Brahmapur",
+   "birthDate": "1989-07-21"
+  },
+  "varun-tej": {
+   "birthPlace": "Hyderabad",
+   "father": "Nagendra Babu",
+   "mother": "Padmaja Konidela",
+   "birthDate": "1990-01-19",
+   "siblings": [
+    "Allu Aravind",
+    "Niharika Konidela"
+   ]
+  },
+  "venkatesh": {
+   "birthPlace": "Karamchedu",
+   "father": "D. Ramanaidu",
+   "mother": "Daggubati Rajeswari",
+   "children": [
+    "Aashritha Daggubati"
+   ],
+   "education": [
+    "Loyola College",
+    "Middlebury Institute of International Studies at Monterey"
+   ],
+   "awards": [
+    "Filmfare Awards South",
+    "Nandi Award"
+   ],
+   "birthDate": "1960-12-13",
+   "relatives": [
+    "Naga Chaitanya",
+    "Rana Daggubati"
+   ],
+   "siblings": [
+    "Daggubati Suresh Babu",
+    "Lakshmi Daggubati"
+   ]
+  },
+  "venu-thottempudi": {
+   "birthPlace": "Andhra Pradesh",
+   "birthDate": "1976-06-04"
+  },
+  "vijay-deverakonda": {
+   "birthPlace": "Hyderabad",
+   "spouse": [
+    "Rashmika Mandanna"
+   ],
+   "education": [
+    "Sri Satya Sai University of Technology & Medical Sciences"
+   ],
+   "awards": [
+    "Behindwoods Gold Medal",
+    "Filmfare Award for Best Actor – Telugu",
+    "Nandi Award"
+   ],
+   "birthDate": "1989-05-09"
+  },
+  "vishnu-manchu": {
+   "birthPlace": "Chennai",
+   "father": "Mohan Babu",
+   "mother": "Vidyavati Manchu",
+   "spouse": [
+    "Viranica Manchu"
+   ],
+   "children": [
+    "Ariaana Manchu",
+    "Arvam Bhakta Manchu",
+    "Ayra Manchu",
+    "Viviana Manchu"
+   ],
+   "awards": [
+    "Filmfare Awards South"
+   ],
+   "birthDate": "1981-11-23",
+   "website": "http://www.vishnumanchu.com/",
+   "siblings": [
+    "Lakshmi Manchu",
+    "Manoj Manchu"
+   ]
+  },
+  "vishwak-sen": {
+   "birthPlace": "Dilsukhnagar",
+   "birthDate": "1995-03-29"
+  }
+ }
+}

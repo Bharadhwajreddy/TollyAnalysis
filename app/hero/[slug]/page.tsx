@@ -13,6 +13,7 @@ import type { StarPart } from "@/lib/calculations/star";
 import { FAMILY_GROUPS, groupOf } from "@/lib/constants/groups";
 import { formatMetric, METRICS } from "@/lib/constants/metrics";
 import { HERO_PHOTOS } from "@/lib/constants/photos";
+import { formatDay, heroFacts, heroFactsSource, yearsBetween } from "@/lib/data/real/hero-facts";
 import { socialHandles } from "@/lib/data/real/load";
 import { REPORTED_INSTAGRAM } from "@/lib/data/real/reported-social";
 import { getDashboardData, getHeroExcluded, getHeroFilms, getPerson } from "@/lib/repositories";
@@ -66,6 +67,8 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
   const handles = data.mode === "real" ? socialHandles(slug) : null;
   const igReported = data.mode === "real" ? REPORTED_INSTAGRAM.followers[slug] : undefined;
   const credit = HERO_PHOTOS[slug];
+  const facts = data.mode === "real" ? heroFacts(slug) : null;
+  const birthDate = facts?.birthDate ?? null;
   const tolly = data.mode === "real" && tollyIndexEnabled() ? getTollyHero(slug) : null;
   const tollyRanked = tolly ? getTollyRanking().ranked.length : 0;
 
@@ -254,6 +257,17 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
         <span className="lg:hidden">
           <HeroAvatar name={hero.name} photo={hero.photo} industry={hero.industry} color={color} size={48} />
         </span>
+        {birthDate &&
+          (facts?.deathDate ? (
+            <Chip>
+              {formatDay(birthDate)} – {formatDay(facts.deathDate)} (aged {yearsBetween(birthDate, facts.deathDate)})
+            </Chip>
+          ) : (
+            <Chip>
+              Age {yearsBetween(birthDate)} · born {formatDay(birthDate)}
+              {facts?.birthPlace ? `, ${facts.birthPlace}` : ""}
+            </Chip>
+          ))}
         {hero.debutYear && <Chip>Recorded debut: {hero.debutYear}</Chip>}
         {hero.firstYear && (
           <Chip>
@@ -293,6 +307,8 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
           </span>
         )}
       </div>
+
+      {facts && <HeroProfile facts={facts} />}
 
       {/* Section nav */}
       <nav aria-label="Profile sections" className="scroll-x sticky top-14 z-30 mt-4 flex gap-1 border-y border-line bg-bg/95 py-1 backdrop-blur sm:top-16">
@@ -521,6 +537,49 @@ function BannerStat({ label, value, note }: { label: string; value: string; note
       <p className="tabular mt-1 text-[26px] font-semibold leading-none tracking-tight text-white sm:text-[30px]">{value}</p>
       <p className="mt-1.5 text-[11px] leading-snug text-[#c9b8ab]">{note}</p>
     </div>
+  );
+}
+
+/** Family, awards, education and politics from Wikidata: context only, not part of any score. */
+function HeroProfile({ facts }: { facts: NonNullable<ReturnType<typeof heroFacts>> }) {
+  const family = [
+    facts.father && `Father: ${facts.father}`,
+    facts.mother && `Mother: ${facts.mother}`,
+    facts.spouse?.length && `Spouse: ${facts.spouse.join(", ")}`,
+    facts.siblings?.length && `Siblings: ${facts.siblings.join(", ")}`,
+    facts.children?.length && `Children: ${facts.children.join(", ")}`,
+    facts.relatives?.length && `Other relatives: ${facts.relatives.join(", ")}`,
+  ].filter(Boolean) as string[];
+  const rows: [string, string][] = [
+    ...(family.length ? [["Family", family.join(" · ")] as [string, string]] : []),
+    ...(facts.awards?.length ? [["Awards", facts.awards.join(", ")] as [string, string]] : []),
+    ...(facts.education?.length ? [["Education", facts.education.join(", ")] as [string, string]] : []),
+    ...(facts.party?.length || facts.offices?.length ? [["Politics", [...(facts.party ?? []), ...(facts.offices ?? [])].join(", ")] as [string, string]] : []),
+    ...(facts.heightCm ? [["Height", `${facts.heightCm} cm`] as [string, string]] : []),
+  ];
+  if (!rows.length && !facts.website) return null;
+  return (
+    <section aria-label="Profile" className="mt-3 rounded-xl border border-line bg-surface px-4 py-3 text-[12.5px]">
+      <dl className="grid gap-x-4 gap-y-1.5 sm:grid-cols-[110px_1fr]">
+        {rows.map(([k, v]) => (
+          <div key={k} className="contents">
+            <dt className="font-semibold text-ink">{k}</dt>
+            <dd className="text-ink-2">{v}</dd>
+          </div>
+        ))}
+      </dl>
+      <p className="mt-2 text-[11px] text-muted">
+        {facts.website && (
+          <>
+            <a href={facts.website} target="_blank" rel="noopener noreferrer nofollow" className="text-wine underline underline-offset-2">
+              Official website ↗
+            </a>{" "}
+            ·{" "}
+          </>
+        )}
+        Profile facts from {heroFactsSource.source}, {heroFactsSource.fetched}. Not part of any score.
+      </p>
+    </section>
   );
 }
 
