@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { compactCount } from "@/lib/data/real/hero-facts";
 import type { TollyHeroView, TollyMeta } from "@/lib/tolly/view";
 import { IndexValue, PILLARS, PillarBar } from "./tolly-parts";
 
@@ -41,6 +42,14 @@ export function TollyHeroCard({ hero, rankedCount, meta }: { hero: TollyHeroView
               </p>
               <p className="mt-1 text-[12px] text-muted">A hero is ranked once at least 5 films, and 90% of his films, have every input. We never guess a missing one.</p>
             </>
+          )}
+          {hero.fame !== null && hero.followers && (
+            <p className="tabular mt-3 border-t border-line pt-3 text-[12.5px] text-ink-2">
+              Fame <b className="text-ink">{hero.fame.toFixed(1)}</b> from {compactCount(hero.followers.total)} official followers (counted by {hero.followers.asOf}).{" "}
+              {meta.fame.applied && hero.filmIndex !== null
+                ? `Films ${hero.filmIndex.toFixed(1)} × ${(1 - meta.fame.weight).toFixed(2)} + fame × ${meta.fame.weight.toFixed(2)}.`
+                : `Fame joins the index at ${Math.round(meta.fame.weight * 100)}% once every ranked hero has a recent count.`}
+            </p>
           )}
           <p className="tabular mt-3 border-t border-line pt-3 text-[12.5px] text-ink-2">
             {hero.complete} of {hero.judged} films complete ({share}%)

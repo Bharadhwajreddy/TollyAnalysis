@@ -33,6 +33,11 @@ export interface TollyHeroView {
   pillars: { rating: number; reach: number; stay: number } | null;
   best: { title: string; year: number; index: number }[];
   missing: { title: string; year: number; missing: string[] }[];
+  /** Index from his films alone (equals `index` while fame is off). */
+  filmIndex: number | null;
+  /** Fame 0–100 from his official followers, when a recent count exists. */
+  fame: number | null;
+  followers: { total: number; asOf: string } | null;
 }
 
 export interface TollyMeta {
@@ -41,6 +46,8 @@ export interface TollyMeta {
   films: { total: number; complete: number; provisional: number; incomplete: number; excluded: number };
   heroes: { total: number; qualified: number };
   weights: { rating: number; reach: number; stay: number; voice: number };
+  /** Fame joins the hero index only when every ranked hero has a recent follower count. */
+  fame: { weight: number; applied: boolean; missing: number };
 }
 
 type RawFilm = (typeof filmsData.films)[number] & { aliases?: string[] };
@@ -51,6 +58,7 @@ export const tollyMeta: TollyMeta = {
   films: filmsData.meta.films,
   heroes: heroesData.meta.heroes,
   weights: filmsData.meta.weights,
+  fame: (heroesData.meta as { fame?: TollyMeta["fame"] }).fame ?? { weight: 0.15, applied: false, missing: heroesData.meta.heroes.qualified },
 };
 
 const filmByKey = new Map<string, TollyFilmView>();
@@ -87,6 +95,9 @@ const heroes: TollyHeroView[] = (() => {
     pillars: h.pillars,
     best: h.best,
     missing: h.missing,
+    filmIndex: (h as { filmIndex?: number | null }).filmIndex ?? h.index,
+    fame: (h as { fame?: number | null }).fame ?? null,
+    followers: (h as { followers?: { total: number; asOf: string } | null }).followers ?? null,
   }));
   const ranked = all.filter((h) => h.index !== null).sort((a, b) => (b.index as number) - (a.index as number));
   // Ties share a rank, as in the workbook (1 + number of heroes strictly above).

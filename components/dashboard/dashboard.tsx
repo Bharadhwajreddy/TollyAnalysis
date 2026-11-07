@@ -30,7 +30,7 @@ function fmtDate(iso: string | null) {
   return new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
 }
 
-export function Dashboard({ data, children }: { data: DashboardData; children?: ReactNode }) {
+export function Dashboard({ data, children, afterBanner }: { data: DashboardData; children?: ReactNode; afterBanner?: ReactNode }) {
   const router = useRouter();
   const [period, setPeriod] = useState<FilterWindow>("all_time");
   const [includeEmerging, setIncludeEmerging] = useState(false);
@@ -125,6 +125,8 @@ export function Dashboard({ data, children }: { data: DashboardData; children?: 
           )}
         </div>
       </section>
+
+      {afterBanner}
 
       {/* Filters */}
       <div className="card mt-4 flex flex-col gap-3 p-3 sm:p-4 lg:flex-row lg:items-center lg:justify-between">

@@ -1,13 +1,14 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("Heroes dashboard", () => {
-  test("opens on one scrolling page with the Star Score leaderboard first", async ({ page }) => {
+  test("opens with the two scores explained, then the Star Score leaderboard", async ({ page }) => {
     await page.goto("/");
     await expect(page.getByRole("heading", { level: 1 })).toContainText("Compare Telugu cinema careers");
     await expect(page.getByText(/PUBLIC-SOURCE SNAPSHOT/).first()).toBeVisible();
     await expect(page.getByRole("navigation", { name: "Main" })).toContainText("Inside the data");
     const titles = await page.locator("section h2").allTextContents();
-    expect(titles.find((t) => !/Compare Telugu/.test(t))).toContain("Star Score");
+    expect(titles.find((t) => !/Compare Telugu/.test(t))).toContain("What audiences think, and what the box office says");
+    expect(titles.find((t) => !/Compare Telugu|What audiences think/.test(t))).toContain("Star Score");
     expect(titles.some((t) => t.includes("More films vs. more success"))).toBe(true);
     await expect(page.locator("#how")).toContainText("How we calculate everything");
     await expect(page.locator("#leaderboard")).toContainText("What goes into the Star Score");
@@ -122,7 +123,7 @@ test.describe("Other views", () => {
 });
 
 test.describe("Responsive layout", () => {
-  for (const path of ["/", "/tolly-index", "/heroes", "/hero/prabhas", "/hero/allari-naresh", "/hero/sivaji", "/rankings", "/compare", "/trends", "/methodology", "/annexure", "/annexure/registry", "/annexure/heroes/nani", "/annexure/corrections"]) {
+  for (const path of ["/", "/tolly-index", "/heroes", "/hero/prabhas", "/hero/allari-naresh", "/hero/sivaji", "/rankings", "/compare", "/trends", "/methodology", "/annexure", "/annexure/registry", "/annexure/heroes/nani", "/annexure/corrections", "/annexure/sources", "/terms", "/privacy"]) {
     test(`no horizontal page overflow on ${path}`, async ({ page }) => {
       await page.goto(path);
       const [scrollW, clientW] = await page.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]);
@@ -151,5 +152,36 @@ test.describe("Tolly Index", () => {
     await expect(card).toContainText(/#\d+ of \d+ ranked heroes/);
     await expect(card).toContainText("Staying power");
     await expect(page.locator("#films thead")).toContainText("Tolly Index");
+  });
+
+  test("home page explains the two scores and links the Tolly Index top 10", async ({ page }) => {
+    await page.goto("/");
+    const panel = page.locator("section", { has: page.locator("#two-scores") });
+    await expect(panel).toContainText("Star Score");
+    await expect(panel.locator("ol li")).toHaveCount(10);
+    await panel.getByRole("link", { name: "Full ranking →" }).click();
+    await expect(page).toHaveURL(/\/tolly-index$/);
+  });
+
+  test("hero page shows age and profile facts", async ({ page }) => {
+    await page.goto("/hero/chiranjeevi");
+    await expect(page.locator("#facts")).toContainText(/Age \d+ · born 22 Aug 1955/);
+    await expect(page.getByRole("region", { name: "Profile" })).toContainText("Padma Vibhushan");
+  });
+});
+
+test.describe("Legal", () => {
+  test("every page credits IMDb and links the terms and privacy policy", async ({ page }) => {
+    await page.goto("/");
+    const footer = page.locator("footer");
+    await expect(footer).toContainText("Information courtesy of IMDb (https://www.imdb.com). Used with permission.");
+    await expect(footer.getByRole("link", { name: "Privacy policy" })).toHaveAttribute("href", "/privacy");
+    await expect(footer.getByRole("link", { name: "Terms of use" })).toHaveAttribute("href", "/terms");
+  });
+
+  test("the source ledger lists each data licence", async ({ page }) => {
+    await page.goto("/annexure/sources");
+    await expect(page.locator("body")).toContainText("IMDb non-commercial datasets");
+    await expect(page.locator("body")).toContainText("CC BY-SA 4.0");
   });
 });

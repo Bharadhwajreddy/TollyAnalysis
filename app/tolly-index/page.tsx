@@ -49,7 +49,9 @@ export default function TollyIndexPage() {
         </p>
       </PageHeader>
 
-      <section aria-labelledby="how" className="mt-6 grid gap-4 lg:grid-cols-3">
+      {/* On phones the ranking comes first; the method cards follow it. */}
+      <div className="flex flex-col">
+      <section aria-labelledby="how" className="order-2 mt-4 grid gap-4 lg:order-1 lg:mt-6 lg:grid-cols-3">
         <div className="card p-4 sm:p-5">
           <h2 id="how" className="eyebrow">
             Three rules keep it fair
@@ -86,7 +88,11 @@ export default function TollyIndexPage() {
               </li>
             ))}
           </ul>
-          <p className="mt-2 text-[12px] text-muted">A fourth question, what people say on social media, joins once the API keys are in place.</p>
+          <p className="mt-2 text-[12px] text-muted">
+            {m.fame.applied
+              ? `Fame, from each hero's official followers, adds ${Math.round(m.fame.weight * 100)}% to his score.`
+              : `Fame, from each hero's official followers, will add ${Math.round(m.fame.weight * 100)}% once every ranked hero has a recent count.`}
+          </p>
         </div>
         <div className="card p-4 sm:p-5">
           <h2 className="eyebrow">Five steps, rerun automatically</h2>
@@ -103,7 +109,7 @@ export default function TollyIndexPage() {
         </div>
       </section>
 
-      <section aria-labelledby="ranking" className="card mt-4 p-4 sm:p-6">
+      <section aria-labelledby="ranking" className="card order-1 mt-6 p-4 sm:p-6 lg:order-2 lg:mt-4">
         <div className="flex flex-wrap items-end justify-between gap-2">
           <div>
             <p className="section-kicker">Ranked heroes</p>
@@ -156,6 +162,7 @@ export default function TollyIndexPage() {
           </table>
         </div>
       </section>
+      </div>
 
       <div className="mt-4 grid gap-4 lg:grid-cols-2">
         <section aria-labelledby="films" className="card p-4 sm:p-6">

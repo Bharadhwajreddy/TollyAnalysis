@@ -13,7 +13,7 @@ import type { StarPart } from "@/lib/calculations/star";
 import { FAMILY_GROUPS, groupOf } from "@/lib/constants/groups";
 import { formatMetric, METRICS } from "@/lib/constants/metrics";
 import { HERO_PHOTOS } from "@/lib/constants/photos";
-import { formatDay, heroFacts, heroFactsSource, yearsBetween } from "@/lib/data/real/hero-facts";
+import { compactCount, formatDay, heroFacts, heroFactsSource, latestFollowers, yearsBetween, type FollowerCount } from "@/lib/data/real/hero-facts";
 import { socialHandles } from "@/lib/data/real/load";
 import { REPORTED_INSTAGRAM } from "@/lib/data/real/reported-social";
 import { getDashboardData, getHeroExcluded, getHeroFilms, getPerson } from "@/lib/repositories";
@@ -69,6 +69,17 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
   const credit = HERO_PHOTOS[slug];
   const facts = data.mode === "real" ? heroFacts(slug) : null;
   const birthDate = facts?.birthDate ?? null;
+  const igUrl = handles?.instagram?.username ? `https://www.instagram.com/${handles.instagram.username}/` : null;
+  const xUrl = handles?.x?.username ? `https://x.com/${handles.x.username}` : null;
+  const followerCounts =
+    data.mode === "real"
+      ? latestFollowers(slug, [
+          ...(handles?.x?.followers && handles.x.date ? [{ platform: "x", followers: handles.x.followers, date: handles.x.date, url: xUrl, source: "Wikidata" } as FollowerCount] : []),
+          ...(igReported ? [{ platform: "instagram", followers: igReported, date: REPORTED_INSTAGRAM.date, url: igUrl, source: "press report" } as FollowerCount] : []),
+        ])
+      : [];
+  const platformLabel: Record<FollowerCount["platform"], string> = { instagram: "Instagram", x: "X", youtube: "YouTube", facebook: "Facebook" };
+  const monthYear = (iso: string) => new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-IN", { month: "short", year: "numeric", timeZone: "UTC" });
   const tolly = data.mode === "real" && tollyIndexEnabled() ? getTollyHero(slug) : null;
   const tollyRanked = tolly ? getTollyRanking().ranked.length : 0;
 
@@ -276,21 +287,32 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
         )}
         {family && family.key !== "other" && <Chip color={family.color}>{family.label}</Chip>}
         {hero.isEmerging && <Chip>Newcomer</Chip>}
-        {handles?.x?.username && (
-          <a href={`https://x.com/${handles.x.username}`} target="_blank" rel="noopener noreferrer nofollow" className="text-wine underline underline-offset-2">
-            X @{handles.x.username}
-            {handles.x.followers ? ` · ${(handles.x.followers / 1e6).toFixed(1)}M followers (${handles.x.date})` : ""}
+        {followerCounts.map((c) => {
+          const label = (
+            <>
+              {platformLabel[c.platform]} <b className="font-semibold text-ink">{compactCount(c.followers)}</b>
+              <span className="text-muted"> · {monthYear(c.date)}</span>
+            </>
+          );
+          const title = `${c.followers.toLocaleString("en-IN")} followers on ${formatDay(c.date)} (${c.source})`;
+          return c.url ? (
+            <a key={c.platform} href={c.url} title={title} target="_blank" rel="noopener noreferrer nofollow" className="rounded-full border border-line bg-surface px-2.5 py-0.5 text-ink-2 hover:border-wine/40">
+              {label} ↗
+            </a>
+          ) : (
+            <span key={c.platform} title={title} className="rounded-full border border-line bg-surface px-2.5 py-0.5 text-ink-2">
+              {label}
+            </span>
+          );
+        })}
+        {!followerCounts.some((c) => c.platform === "instagram") && igUrl && (
+          <a href={igUrl} target="_blank" rel="noopener noreferrer nofollow" className="rounded-full border border-line bg-surface px-2.5 py-0.5 text-ink-2 hover:border-wine/40">
+            Instagram ↗
           </a>
         )}
-        {(handles?.instagram?.username || igReported) && (
-          <a
-            href={handles?.instagram?.username ? `https://www.instagram.com/${handles.instagram.username}/` : REPORTED_INSTAGRAM.url}
-            target="_blank"
-            rel="noopener noreferrer nofollow"
-            className="text-wine underline underline-offset-2"
-          >
-            Instagram{handles?.instagram?.username ? ` @${handles.instagram.username}` : ""}
-            {igReported ? ` · ${(igReported / 1e6).toFixed(1)}M followers (reported ${REPORTED_INSTAGRAM.date})` : ""}
+        {!followerCounts.some((c) => c.platform === "x") && xUrl && (
+          <a href={xUrl} target="_blank" rel="noopener noreferrer nofollow" className="rounded-full border border-line bg-surface px-2.5 py-0.5 text-ink-2 hover:border-wine/40">
+            X ↗
           </a>
         )}
         {person.wikiArticle && (
