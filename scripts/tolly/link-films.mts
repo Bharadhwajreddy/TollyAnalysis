@@ -25,6 +25,8 @@ const ours: Record<string, { tconst: string; matchedBy: string }> = existsSync("
 const extra: { actors: Record<string, { ordering: number; nconst: string }[]>; links: Record<string, string> } = existsSync(".cache/tolly/imdb-extra.json")
   ? read(".cache/tolly/imdb-extra.json")
   : { actors: {}, links: {} };
+// IMDb ids found by an editor (scripts/tolly/import-manual.mts): used only when no source above links the film.
+const manual: Record<string, { imdb: string | null }> = existsSync("lib/data/tolly/manual-links.json") ? read("lib/data/tolly/manual-links.json").films : {};
 const teTitles: Record<string, string> = existsSync(".cache/import/tewiki-titles.json") ? read(".cache/import/tewiki-titles.json") : {};
 
 async function* rows(file: string) {
@@ -58,6 +60,7 @@ for (const f of Object.values(wd.films) as { imdb: string[] }[]) for (const t of
 for (const f of snap.films) if (f.imdbId) wanted.add(f.imdbId);
 for (const v of Object.values(ours)) wanted.add(v.tconst);
 for (const t of Object.values(extra.links)) wanted.add(t);
+for (const m of Object.values(manual)) if (m.imdb) wanted.add(m.imdb);
 const imdb = new Map<string, ImdbTitle>();
 for await (const [tconst, type, primary, original, , start, , runtime, genres] of rows("title.basics.tsv.gz")) {
   if (!wanted.has(tconst)) continue;
@@ -228,6 +231,10 @@ for (const f of snap.films) {
     tconst = extra.links[f.key];
     tconstBy = "imdb indian titles (close title and year)";
     stats.tconstFromIndianTitles++;
+  }
+  if (!tconst && manual[f.key]?.imdb) {
+    tconst = manual[f.key].imdb;
+    tconstBy = "editor lookup";
   }
   if (!qid && tconst && qidByTconst.has(tconst)) {
     qid = qidByTconst.get(tconst)!;

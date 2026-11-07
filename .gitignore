@@ -53,3 +53,6 @@ next-env.d.ts
 
 # Tolly Index offline snapshots hold IMDb/TMDB numbers (personal, non-commercial use): never commit
 tolly-snapshot-*.tar.gz
+
+# Filled data-entry files (may hold Letterboxd numbers): kept out of the public repo, included in tolly:snapshot
+data-private/

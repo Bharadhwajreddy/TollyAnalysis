@@ -19,6 +19,12 @@
  *   TI_h  = (Σ c · TI + k · M) / (Σ c + k)        k = 3, M = mean TI of all complete films
  *   band  = ± 1.96 · spread / √(Σ c + k)
  *
+ * Fame (hero level, optional): official followers on Instagram, X, YouTube and Facebook added up,
+ * on a log scale (10k = 0, 100M = 100, as in the Star Score). It enters only when every ranked hero
+ * has a follower count no older than FAME_MAX_AGE_DAYS, so no two heroes are compared on different
+ * bases:  final = (1 − w) · TI_h + w · Fame, w = FAME_WEIGHT; the band shrinks by (1 − w).
+ * A hero with no official account anywhere (e.g. he died before social media) keeps his film index.
+ *
  * Completeness gate: a film is scored only when every input above is present and checked; a hero
  * is ranked only when HERO_MIN_COMPLETE films and HERO_MIN_SHARE of his judged films are complete.
  */
@@ -39,6 +45,10 @@ export const FULL_CONFIDENCE_VOTES = 1000;
 export const HERO_MIN_COMPLETE = 5;
 export const HERO_MIN_SHARE = 0.9;
 export const HERO_PRIOR_FILMS = 3;
+export const FAME_WEIGHT = 0.15;
+export const FAME_LOG10_FLOOR = 4;
+export const FAME_LOG10_CEILING = 8;
+export const FAME_MAX_AGE_DAYS = 365;
 
 export type FilmStatus = "complete" | "provisional" | "incomplete" | "excluded";
 
@@ -96,6 +106,20 @@ export interface TollyHeroResult {
   spread: number | null;
   pillars: { rating: number; reach: number; stay: number } | null;
   missing: { title: string; year: number; missing: string[] }[];
+  /** Index from his films alone, before fame (equals `index` when fame is not applied). */
+  filmIndex?: number | null;
+  /** Fame score 0–100 from his followers, when known and recent. */
+  fame?: number | null;
+  /** Followers added up across platforms, and the oldest date among the counts used. */
+  followers?: { total: number; asOf: string } | null;
+}
+
+/** One hero's latest official follower counts (any platform may be missing). */
+export interface HeroFollowers {
+  slug: string;
+  counts: { platform: "instagram" | "x" | "youtube" | "facebook"; followers: number; date: string }[];
+  /** Checked: he has no official account on any platform, so he is scored on films alone. */
+  noAccount?: boolean;
 }
 
 /**
@@ -239,4 +263,34 @@ export function scoreHeroes(heroes: { slug: string; name: string; films: string[
       missing: rs.filter((r) => r.status === "incomplete").map((r) => ({ title: r.title, year: r.year, missing: r.missing })),
     };
   });
+}
+
+/** Fame 0–100 from a follower total on a log scale (10k = 0, 100M = 100). */
+export const fameOf = (followers: number) =>
+  round(Math.max(0, Math.min(100, ((Math.log10(Math.max(1, followers)) - FAME_LOG10_FLOOR) / (FAME_LOG10_CEILING - FAME_LOG10_FLOOR)) * 100)));
+
+/**
+ * Adds fame to the hero results. Every hero gets his fame when his counts are recent; the ranked
+ * index changes only when every ranked hero has one. Returns whether fame was applied and who lacks it.
+ */
+export function applyFame(heroes: TollyHeroResult[], followers: HeroFollowers[], asOf: string): { applied: boolean; missing: string[] } {
+  const bySlug = new Map(followers.map((f) => [f.slug, f]));
+  const fresh = (date: string) => (new Date(asOf).getTime() - new Date(date).getTime()) / 86_400_000 <= FAME_MAX_AGE_DAYS;
+  for (const h of heroes) {
+    const counts = (bySlug.get(h.slug)?.counts ?? []).filter((c) => c.followers > 0 && fresh(c.date));
+    const total = counts.reduce((a, c) => a + c.followers, 0);
+    h.filmIndex = h.index;
+    h.followers = counts.length ? { total, asOf: counts.map((c) => c.date).sort()[0] } : null;
+    h.fame = counts.length ? fameOf(total) : null;
+  }
+  const missing = heroes.filter((h) => h.qualified && h.fame === null && !bySlug.get(h.slug)?.noAccount).map((h) => h.name);
+  const applied = missing.length === 0 && heroes.some((h) => h.qualified);
+  if (applied) {
+    for (const h of heroes) {
+      if (!h.qualified || h.filmIndex === null || h.filmIndex === undefined || h.fame === null || h.fame === undefined) continue;
+      h.index = round((1 - FAME_WEIGHT) * h.filmIndex + FAME_WEIGHT * (h.fame as number));
+      if (h.band !== null) h.band = round(h.band * (1 - FAME_WEIGHT));
+    }
+  }
+  return { applied, missing };
 }

@@ -16,7 +16,7 @@ cmd="${1:-}"
 case "$cmd" in
   snapshot)
     out="tolly-snapshot-$(date -u +%Y-%m-%d).tar.gz"
-    files=$(cd . && ls .cache/import/*.json .cache/tolly/*.json .cache/tolly/*.csv 2>/dev/null)
+    files=$(ls .cache/import/*.json .cache/tolly/*.json .cache/tolly/*.csv data-private/*.csv 2>/dev/null || true)
     tar -czf "$out" $files
     echo "wrote $out ($(du -h "$out" | cut -f1), $(echo "$files" | wc -l) files)"
     ;;

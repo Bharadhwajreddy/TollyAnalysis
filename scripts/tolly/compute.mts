@@ -11,8 +11,9 @@
  * Usage: npm run tolly:compute -- [asOf=YYYY-MM-DD]
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { REPORTED_INSTAGRAM } from "@/lib/data/real/reported-social";
 import { correlation, criticScores } from "@/lib/tolly/critics";
-import { MIN_VOTES, scoreFilms, scoreHeroes, TOLLY_VERSION, WEIGHTS, type TollyFilmInput } from "@/lib/tolly";
+import { applyFame, FAME_WEIGHT, MIN_VOTES, scoreFilms, scoreHeroes, TOLLY_VERSION, WEIGHTS, type HeroFollowers, type TollyFilmInput } from "@/lib/tolly";
 
 const asOf = process.argv[2] ?? new Date().toISOString().slice(0, 10);
 const read = (p: string) => JSON.parse(readFileSync(p, "utf8"));
@@ -60,6 +61,11 @@ const profiles: { slug: string; birthDate: string | null; birthDateBy: string | 
   ".cache/tolly/heroes-profile.json",
 );
 
+// Letterboxd ratings looked up by an editor (scripts/tolly/import-manual.mts): used only for a film
+// IMDb cannot rate (no IMDb title, or fewer than MIN_VOTES votes), on IMDb's 1–10 scale (stars × 2).
+const letterboxd: Record<string, { avg: number; count: number }> = existsSync(".cache/tolly/manual-letterboxd.json") ? read(".cache/tolly/manual-letterboxd.json") : {};
+const ratingSource = new Map<string, "imdb" | "letterboxd">();
+
 let viewsFrom = "";
 let viewsTo = "";
 const inputs: (TollyFilmInput & { l: (typeof linked)[number]; enViews: number | null; teViews: number | null; critics: number[] })[] = linkedFilms.map((l) => {
@@ -75,16 +81,21 @@ const inputs: (TollyFilmInput & { l: (typeof linked)[number]; enViews: number | 
   const fetched = (title: string | null, v: typeof en) => !title || v !== undefined;
   const wikiViews = fetched(l.en, en) && fetched(l.te, te) ? (en?.views ?? 0) + (te?.views ?? 0) : null;
   const editions = l.sitelinks ?? (l.en ? 1 : 0) + (l.te ? 1 : 0);
+  const lb = letterboxd[l.key];
+  const imdbUsable = !!l.tconst && l.imdbRating !== null && l.imdbVotes >= MIN_VOTES;
+  const useLb = !imdbUsable && !!lb && lb.count >= MIN_VOTES;
+  ratingSource.set(l.key, useLb ? "letterboxd" : "imdb");
   return {
     key: l.key,
     title: l.title,
     year: l.year,
     releaseDate: l.releaseDate,
     telugu: l.telugu,
-    linked: !!l.tconst,
-    yearConfirmed: [l.yearSources.wikidata, l.yearSources.imdb].some((y) => y !== null && Math.abs(y - l.year) <= 1),
-    imdbRating: l.imdbRating,
-    imdbVotes: l.imdbVotes,
+    // An editor matched the Letterboxd page on title, year and cast, which confirms the film and its year.
+    linked: !!l.tconst || useLb,
+    yearConfirmed: useLb || [l.yearSources.wikidata, l.yearSources.imdb].some((y) => y !== null && Math.abs(y - l.year) <= 1),
+    imdbRating: useLb ? Math.round(lb.avg * 2 * 100) / 100 : l.imdbRating,
+    imdbVotes: useLb ? lb.count : l.imdbVotes,
     editions,
     wikiViews,
     l,
@@ -99,7 +110,20 @@ const counted = snap.credits.filter((c: { include: boolean }) => c.include);
 const heroes = scoreHeroes(
   snap.heroes.map((h: { slug: string; name: string }) => ({ slug: h.slug, name: h.name, films: counted.filter((c: { hero: string }) => c.hero === h.slug).map((c: { film: string }) => alias.get(c.film) ?? c.film) })),
   films,
-).sort((a, b) => (b.index ?? -1) - (a.index ?? -1) || b.complete / Math.max(1, b.judged) - a.complete / Math.max(1, a.judged));
+);
+// Fame: official follower counts checked by an editor (import-manual.mts), else the dated press count.
+const editor: Record<string, { counts: HeroFollowers["counts"]; noAccount: boolean }> = existsSync("lib/data/real/hero-followers.json")
+  ? read("lib/data/real/hero-followers.json").heroes
+  : {};
+const followers: HeroFollowers[] = snap.heroes.map((h: { slug: string }) => {
+  const e = editor[h.slug];
+  const counts = [...(e?.counts ?? [])];
+  const press = (REPORTED_INSTAGRAM.followers as Record<string, number>)[h.slug];
+  if (press && !counts.some((c) => c.platform === "instagram")) counts.push({ platform: "instagram", followers: press, date: REPORTED_INSTAGRAM.date });
+  return { slug: h.slug, counts, noAccount: !!e?.noAccount };
+});
+const fame = applyFame(heroes, followers, asOf);
+heroes.sort((a, b) => (b.index ?? -1) - (a.index ?? -1) || b.complete / Math.max(1, b.judged) - a.complete / Math.max(1, a.judged));
 
 // Cross-check: do critics agree with the audience Rating pillar?
 const byKey = new Map(inputs.map((i) => [i.key, i]));
@@ -142,6 +166,7 @@ const meta = {
   asOf,
   weights: WEIGHTS,
   minVotes: MIN_VOTES,
+  fame: { weight: FAME_WEIGHT, applied: fame.applied, missing: fame.missing.length, missingHeroes: fame.missing },
   sources: {
     imdb: `IMDb non-commercial datasets (title.basics, title.ratings, title.principals, title.akas), ${asOf}`,
     wikidata: "Wikidata query service (CC0): films by cast, release dates, languages, IMDb ids, language editions",
@@ -167,7 +192,7 @@ const filmRows = films.map((r) => {
     // Filmography keys merged into this film (spelling variants of the same title).
     aliases: [...alias].filter(([, to]) => to === r.key).map(([from]) => from),
     ids: { imdb: i.l.tconst, wikidata: i.l.qid },
-    sources: { imdb: i.l.tconstBy, wikidata: i.l.qidBy, releaseDate: i.l.releaseDateBy, language: i.l.languageBy },
+    sources: { imdb: i.l.tconstBy, wikidata: i.l.qidBy, releaseDate: i.l.releaseDateBy, language: i.l.languageBy, rating: ratingSource.get(r.key) ?? "imdb" },
     wikipedia: { en: i.enViews, te: i.teViews, editions: i.editions },
     critics: i.critics.length ? { reviews: i.critics.length, average: Math.round((i.critics.reduce((a, b) => a + b, 0) / i.critics.length) * 10) / 10 } : null,
   };
