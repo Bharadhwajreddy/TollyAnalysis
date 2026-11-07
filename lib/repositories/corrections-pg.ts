@@ -4,7 +4,7 @@ import { getDb } from "@/db/client";
 import { writeChangeLog } from "@/db/repository";
 import { changeLog, correctionSubmissions } from "@/db/schema";
 import type { ChangeLogEntry } from "@/lib/domain/types";
-import type { CorrectionParsed } from "@/lib/validation/corrections";
+import { CLOSED_STATUSES, type CorrectionParsed } from "@/lib/validation/corrections";
 import type { CorrectionRecord, CorrectionStatus, CorrectionStore } from "./corrections";
 
 type Row = typeof correctionSubmissions.$inferSelect;
@@ -76,6 +76,8 @@ export class PgCorrectionStore implements CorrectionStore {
         dataAction: review.dataAction ?? null,
         reviewedBy: actor,
         reviewedAt: new Date(),
+        // Privacy policy: the contact email is kept only while the correction is open.
+        ...(CLOSED_STATUSES.includes(review.status) ? { email: null } : {}),
       })
       .where(eq(correctionSubmissions.id, id))
       .returning();

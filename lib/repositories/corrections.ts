@@ -1,7 +1,7 @@
 import "server-only";
 import type { ChangeLogEntry } from "@/lib/domain/types";
 import { serverEnv } from "@/lib/env";
-import type { CorrectionParsed, DATA_ACTIONS, REVIEW_STATUSES } from "@/lib/validation/corrections";
+import { CLOSED_STATUSES, type CorrectionParsed, type DATA_ACTIONS, type REVIEW_STATUSES } from "@/lib/validation/corrections";
 
 export type CorrectionStatus = "pending" | (typeof REVIEW_STATUSES)[number];
 
@@ -52,6 +52,8 @@ class MemoryStore implements CorrectionStore {
     if (!item) return null;
     const before = { status: item.status };
     Object.assign(item, { status: review.status, reviewNote: review.reviewNote, dataAction: review.dataAction ?? null, reviewedAt: new Date().toISOString() });
+    // Privacy policy: the contact email is kept only while the correction is open.
+    if (CLOSED_STATUSES.includes(review.status)) item.email = "";
     this.log.unshift({
       id: crypto.randomUUID(),
       entityType: "correction_submission",

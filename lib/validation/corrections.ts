@@ -62,6 +62,8 @@ export type CorrectionInput = z.input<typeof correctionInputSchema>;
 export type CorrectionParsed = z.output<typeof correctionInputSchema>;
 
 export const REVIEW_STATUSES = ["under_review", "approved", "rejected", "needs_more_evidence"] as const;
+/** A correction in one of these states is finished: its contact email is deleted (see /privacy). */
+export const CLOSED_STATUSES: readonly string[] = ["approved", "rejected"];
 export const DATA_ACTIONS = ["update_record", "create_record", "create_source_claim", "no_data_change"] as const;
 
 export const correctionReviewSchema = z

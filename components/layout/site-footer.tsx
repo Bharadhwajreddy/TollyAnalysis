@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { IMDB_ATTRIBUTION, TMDB_NOTICE } from "@/lib/legal/data-licences";
 
 export function SiteFooter() {
   return (
@@ -29,13 +30,21 @@ export function SiteFooter() {
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#d8a86b]">Transparency</p>
           <ul className="mt-3 space-y-2.5">
             <li><Link className="hover:text-white" href="/methodology">Methodology</Link></li>
-            <li><Link className="hover:text-white" href="/annexure/sources">Source ledger</Link></li>
+            <li><Link className="hover:text-white" href="/annexure/sources">Sources and data licences</Link></li>
             <li><Link className="hover:text-white" href="/annexure/coverage">Data coverage</Link></li>
             <li><Link className="hover:text-white" href="/annexure/corrections">Suggest a correction</Link></li>
             <li><Link className="hover:text-white" href="/annexure/photo-credits">Photo credits</Link></li>
-            <li><Link className="hover:text-white" href="/terms">Terms (beta)</Link></li>
+            <li><Link className="hover:text-white" href="/terms">Terms of use</Link></li>
+            <li><Link className="hover:text-white" href="/privacy">Privacy policy</Link></li>
           </ul>
         </div>
+      </div>
+      <div className="mx-auto max-w-7xl space-y-1 border-t border-white/10 px-4 py-4 text-[11.5px] leading-relaxed text-[#a8988c] sm:px-6">
+        <p>{IMDB_ATTRIBUTION} {TMDB_NOTICE}</p>
+        <p>
+          Film and hero facts: Wikipedia (CC BY-SA 4.0) and Wikidata (CC0). Scores are opinions from a published method. Independent and non-commercial; not
+          affiliated with any studio, actor or data provider.
+        </p>
       </div>
       <div className="mx-auto flex max-w-7xl flex-wrap justify-between gap-2 border-t border-white/10 px-4 py-5 text-xs text-[#a8988c] sm:px-6">
         <span>Tollywood Analysis</span>
