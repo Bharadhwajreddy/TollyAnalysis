@@ -59,7 +59,7 @@ export function HowWeCalculate({
               number. Each part is first turned into a score out of 100, then
               the parts are averaged with these weights:
             </p>
-            <StarWeights withFans />
+            <StarWeights />
             <ul className="list-disc pl-5">
               {STAR_PARTS.map((p) => (
                 <li key={p.key}>
