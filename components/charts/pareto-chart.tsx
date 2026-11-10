@@ -34,8 +34,8 @@ interface Props {
 }
 
 /**
- * Heroes on the "best trade-off" (Pareto) line: nobody else is at least as good
- * on both axes and better on one.
+ * Heroes nobody beats on both axes at once (the Pareto set). Used only to decide whose
+ * names are always shown; no line is drawn.
  */
 export function paretoFrontier<T extends { id: string; x: number; y: number }>(points: T[], xHigher: boolean, yHigher: boolean): T[] {
   const sx = xHigher ? 1 : -1;
@@ -151,19 +151,6 @@ export function ParetoChart({ data, xLabel, yLabel, xHigherIsBetter, yHigherIsBe
             {betterY === "top" ? (betterX === "right" ? "Better ↗" : "↖ Better") : betterX === "right" ? "Better ↘" : "↙ Better"}
           </text>
 
-          {/* Best trade-off (Pareto) line */}
-          {layout.frontier.length > 1 && (
-            <polyline
-              points={layout.frontier.map((f) => `${layout.sx(f.x)},${layout.sy(f.y)}`).join(" ")}
-              fill="none"
-              stroke="var(--wine)"
-              strokeOpacity={0.55}
-              strokeWidth={2}
-              strokeLinejoin="round"
-              strokeLinecap="round"
-            />
-          )}
-
           <text x={m.left + plotW / 2} y={height - 8} textAnchor="middle" className="fill-[var(--ink)] text-[12.5px] font-semibold">
             {xLabel}
           </text>
@@ -175,12 +162,6 @@ export function ParetoChart({ data, xLabel, yLabel, xHigherIsBetter, yHigherIsBe
             {yLabel}
           </text>
 
-          {layout.labels
-            .filter((l) => l.displaced)
-            .map((l) => (
-              <line key={`ll${l.id}`} x1={l.ax} y1={l.ay} x2={l.x - l.w / 2 + 2} y2={l.y} stroke="var(--axis)" strokeWidth={1} />
-            ))}
-
           {[...layout.points]
             .sort((a, b) => Number(!!a.selected) - Number(!!b.selected) || Number(a.frontier) - Number(b.frontier))
             .map((p) => {
@@ -190,7 +171,7 @@ export function ParetoChart({ data, xLabel, yLabel, xHigherIsBetter, yHigherIsBe
                   key={p.id}
                   role="button"
                   tabIndex={0}
-                  aria-label={`${p.label}: ${xLabel} ${p.x}, ${yLabel} ${p.y}${p.frontier ? ", on the best trade-off line" : ""}. Double-tap to open profile.`}
+                  aria-label={`${p.label}: ${xLabel} ${p.x}, ${yLabel} ${p.y}. Double-tap to open profile.`}
                   className="cursor-pointer outline-none"
                   onMouseEnter={show}
                   onFocus={show}
@@ -212,7 +193,9 @@ export function ParetoChart({ data, xLabel, yLabel, xHigherIsBetter, yHigherIsBe
               );
             })}
 
-          {layout.labels.map((l) => {
+          {layout.labels
+            .filter((l) => !l.displaced || layout.points.find((x) => x.id === l.id)?.selected || l.id === revealed)
+            .map((l) => {
             const p = layout.points.find((x) => x.id === l.id)!;
             return (
               <text
@@ -225,7 +208,7 @@ export function ParetoChart({ data, xLabel, yLabel, xHigherIsBetter, yHigherIsBe
                 stroke="var(--surface)"
                 strokeWidth={3.5}
                 strokeLinejoin="round"
-                className={`pointer-events-none text-[11.5px] ${p.selected ? "fill-[var(--wine)] font-bold" : p.frontier ? "fill-[var(--ink)] font-semibold" : "fill-[var(--ink-2)]"}`}
+                className={`pointer-events-none text-[11.5px] ${p.selected ? "fill-[var(--wine)] font-bold" : "fill-[var(--ink)] font-medium"}`}
               >
                 {l.text}
               </text>

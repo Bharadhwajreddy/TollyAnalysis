@@ -12,10 +12,7 @@ export function SiteFooter() {
             <br />
             starts with the numbers.
           </p>
-          <p className="mt-3 max-w-md leading-relaxed text-[#cbbdb2]">
-            Public-source records and transparent career benchmarks. Lead credits and film results are read automatically and
-            marked with their source; coverage varies and every film can be corrected. Hero photos: Wikimedia Commons, free licences.
-          </p>
+          <p className="mt-3 max-w-md leading-relaxed text-[#cbbdb2]">The careers of Telugu film heroes since 2000, in numbers.</p>
         </div>
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#d8a86b]">Explore</p>
@@ -23,15 +20,15 @@ export function SiteFooter() {
             <li><Link className="hover:text-white" href="/heroes">All heroes</Link></li>
             <li><Link className="hover:text-white" href="/compare">Compare heroes side by side</Link></li>
             <li><Link className="hover:text-white" href="/trends">Year-by-year trends</Link></li>
-            <li><Link className="hover:text-white" href="/annexure">Film-level evidence (Annexure)</Link></li>
+            <li><Link className="hover:text-white" href="/rankings">Rankings</Link></li>
           </ul>
         </div>
         <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#d8a86b]">Transparency</p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#d8a86b]">About the data</p>
           <ul className="mt-3 space-y-2.5">
-            <li><Link className="hover:text-white" href="/methodology">Methodology</Link></li>
+            <li><Link className="hover:text-white" href="/methodology">How it works</Link></li>
+            <li><Link className="hover:text-white" href="/annexure">Film-by-film evidence</Link></li>
             <li><Link className="hover:text-white" href="/annexure/sources">Sources and data licences</Link></li>
-            <li><Link className="hover:text-white" href="/annexure/coverage">Data coverage</Link></li>
             <li><Link className="hover:text-white" href="/annexure/corrections">Suggest a correction</Link></li>
             <li><Link className="hover:text-white" href="/annexure/photo-credits">Photo credits</Link></li>
             <li><Link className="hover:text-white" href="/terms">Terms of use</Link></li>

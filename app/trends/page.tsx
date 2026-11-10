@@ -13,7 +13,7 @@ export default async function TrendsPage() {
     .map((h) => ({ slug: h.slug, name: h.name }));
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6">
-      <PageHeader title="Trends" subtitle="How output and outcomes move over time, across the roster and for one hero." meta={data} />
+      <PageHeader title="Trends" subtitle="Films and hits year by year, for everyone and for one hero." meta={data} />
       <Trends years={trends.years} heroYearly={trends.heroYearly} heroes={heroes} />
     </div>
   );

@@ -16,7 +16,7 @@ export default async function RankingsPage(props: PageProps<"/rankings">) {
     <div className="mx-auto max-w-7xl px-4 sm:px-6">
       <PageHeader
         title="Rankings"
-        subtitle="Every hero ranked on every KPI. Pick a metric to see the full ordered list; tap any card below to switch."
+        subtitle="Pick a measure to rank every hero."
         meta={data}
       />
       <Rankings data={data} initialMetric={metric} />

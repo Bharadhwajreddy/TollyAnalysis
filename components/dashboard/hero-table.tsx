@@ -86,7 +86,7 @@ export function HeroTable({
   return (
     <div>
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <p className="text-xs text-muted">Tap a column to sort · tap a row to highlight · double-tap a row to open that hero&apos;s page.</p>
+        <p className="text-xs text-muted">Tap a column to sort.</p>
         <button
           type="button"
           onClick={exportCsv}
@@ -145,7 +145,7 @@ export function HeroTable({
       </div>
       <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
         <p className="text-[13px] text-ink-2">
-          Showing {showAll ? rows.length : Math.min(PAGE, rows.length)} of {rows.length} heroes. CSV includes every filtered hero.
+          Showing {showAll ? rows.length : Math.min(PAGE, rows.length)} of {rows.length} heroes.
         </p>
         {rows.length > PAGE && (
           <button type="button" onClick={() => setShowAll((v) => !v)} className="rounded-md border border-line px-3 py-1.5 text-[13px] font-medium text-wine hover:border-wine">
@@ -154,8 +154,7 @@ export function HeroTable({
         )}
       </div>
       <p className="mt-2 text-xs text-muted">
-        Row numbers follow the sorted column and are not benchmark ranks. <sup className="text-warn">*</sup> small sample: based on fewer than 3 films
-        with a known result (fewer than 5 for recent success and the Star Score). “—” means not enough data, never zero.
+        <sup className="text-warn">*</sup> based on only a few films · “—” not enough data
       </p>
     </div>
   );

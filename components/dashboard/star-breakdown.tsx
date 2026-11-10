@@ -56,9 +56,9 @@ export function HeroStarBreakdown({ parts, raw }: { parts: StarPart[]; raw: (p: 
             <span className="col-span-2 text-[11.5px] text-muted sm:col-span-1 sm:text-right">
               {p.score === null
                 ? p.raw !== null
-                  ? `${raw(p)} — too few reported grosses, weight shared out`
-                  : "no data — weight shared out"
-                : `${raw(p)} · weighs ${Math.round(p.effectiveWeight)}%`}
+                  ? `${raw(p)} · too few films to score`
+                  : "no data"
+                : raw(p)}
             </span>
           </li>
         );

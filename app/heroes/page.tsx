@@ -23,11 +23,8 @@ export default async function HeroesPage(props: PageProps<"/heroes">) {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6">
       <div className="pt-8">
-        <p className="section-kicker">Career atlas</p>
-        <h1 className="mt-1 font-serif text-[34px] font-bold tracking-tight text-ink sm:text-[44px]">All heroes</h1>
-        <p className="mt-1 max-w-2xl text-[15px] text-ink-2">
-          {heroes.length} Telugu heroes with at least one lead film since 2000. Open any card for every film, every number and its source.
-        </p>
+        <h1 className="font-serif text-[34px] font-bold tracking-tight text-ink sm:text-[44px]">All heroes</h1>
+        <p className="mt-1 max-w-2xl text-[15px] text-ink-2">{heroes.length} Telugu heroes. Open a card to see his films.</p>
         <nav aria-label="Sort heroes" className="mt-4 flex flex-wrap gap-1.5 text-[13px]">
           {Object.entries(SORTS).map(([k, v]) => (
             <Link

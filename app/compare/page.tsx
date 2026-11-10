@@ -18,7 +18,7 @@ export default async function ComparePage(props: PageProps<"/compare">) {
         .map((h) => h.slug);
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6">
-      <PageHeader title="Compare heroes" subtitle="Put 2–4 heroes side by side on every benchmark." meta={data} />
+      <PageHeader title="Compare heroes" subtitle="Put 2–4 heroes side by side." meta={data} />
       <Compare data={data} initial={initial} />
     </div>
   );

@@ -51,9 +51,9 @@ export function Rankings({ data, initialMetric }: { data: DashboardData; initial
       </div>
 
       <ChartCard
-        title={`Full ranking: ${METRICS[metric].label}`}
-        subtitle={`${WINDOW_LABEL[period]} · ${METRICS[metric].higherIsBetter ? "Higher is better" : "Lower is better — ranked from shortest gap"}`}
-        count={`${ranked.length} ranked · ${heroes.length - ranked.length} without enough evidence`}
+        title={METRICS[metric].label}
+        subtitle={METRICS[metric].higherIsBetter ? undefined : "Shortest first"}
+        count={`${ranked.length} heroes`}
         controls={
           <MetricPicker
             label="Ranking metric"

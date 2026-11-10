@@ -14,12 +14,12 @@ const NAV = [
   { href: "/rankings", label: "Rankings" },
   { href: "/compare", label: "Compare" },
   { href: "/trends", label: "Trends" },
-  { href: "/annexure", label: "Inside the data" },
 ];
 
 export function SiteHeader() {
   const path = usePathname();
   const active = (href: string) => (href === "/" ? path === "/" : path === href || path.startsWith(`${href}/`) || (href === "/heroes" && path.startsWith("/hero/")));
+  const info = path === "/methodology" || path.startsWith("/annexure") || path === "/terms" || path === "/privacy";
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-surface/95 backdrop-blur supports-[backdrop-filter]:bg-surface/85">
       <div className="mx-auto flex h-14 max-w-7xl items-center gap-4 px-4 sm:h-16 sm:px-6">
@@ -47,12 +47,21 @@ export function SiteHeader() {
               {n.label}
             </Link>
           ))}
+          {/* On phones the info page is the last tab; on wider screens it is the button on the right. */}
+          <Link
+            href="/methodology"
+            aria-current={info ? "page" : undefined}
+            className={`whitespace-nowrap border-b-2 px-2 py-1.5 text-[14px] transition-colors md:hidden ${info ? "border-wine font-semibold text-wine" : "border-transparent text-ink-2 hover:text-ink"}`}
+          >
+            How it works
+          </Link>
         </nav>
         <Link
-          href="/annexure/sources"
-          className="hidden shrink-0 rounded-full border border-line px-3.5 py-1.5 text-[13px] font-medium text-ink hover:border-ink-2 md:block"
+          href="/methodology"
+          aria-current={info ? "page" : undefined}
+          className={`hidden shrink-0 whitespace-nowrap rounded-full border px-3.5 py-1.5 text-[13px] font-medium hover:border-ink-2 md:block ${info ? "border-wine text-wine" : "border-line text-ink"}`}
         >
-          Sources ↗
+          How it works
         </Link>
       </div>
     </header>

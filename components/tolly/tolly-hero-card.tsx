@@ -10,17 +10,13 @@ export function TollyHeroCard({ hero, rankedCount, meta }: { hero: TollyHeroView
     <section id="tolly" className="card mt-5 scroll-mt-32 p-4 sm:p-6" aria-labelledby="tolly-title">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <p className="section-kicker">What audiences think, not box office</p>
-          <h2 id="tolly-title" className="mt-1 font-serif text-[24px] font-semibold text-ink">
+          <h2 id="tolly-title" className="font-serif text-[24px] font-semibold text-ink">
             Tolly Index
           </h2>
-          <p className="mt-0.5 max-w-2xl text-[13px] text-ink-2">
-            Each film is scored on three questions, always against films released within a year of it. His index is the average of his films, weighted by how
-            many people rated each. No money is used.
-          </p>
+          <p className="mt-0.5 max-w-2xl text-[13px] text-ink-2">What audiences think of his films, out of 100.</p>
         </div>
         <Link href="/tolly-index" className="text-[13px] font-medium text-wine hover:underline">
-          Full ranking and method →
+          Full ranking →
         </Link>
       </div>
 
@@ -30,17 +26,16 @@ export function TollyHeroCard({ hero, rankedCount, meta }: { hero: TollyHeroView
             <>
               <IndexValue hero={hero} />
               <p className="mt-2 text-[13px] font-semibold text-ink">
-                #{hero.rank} of {rankedCount} ranked heroes
+                #{hero.rank} of {rankedCount} heroes
               </p>
-              <p className="mt-1 text-[12px] text-muted">± is the 95% range: heroes whose ranges overlap are about level.</p>
+              <p className="mt-1 text-[12px] text-muted">± shows how sure we are.</p>
             </>
           ) : (
             <>
               <p className="text-[28px] font-semibold leading-none text-muted">Not ranked yet</p>
               <p className="mt-2 text-[13px] text-ink-2">
-                {hero.complete >= 5 && hero.judged > 0 ? `Only ${share}% of his films have every input; he needs 90%.` : `Needs at least 5 complete films; he has ${hero.complete}.`}
+                {hero.complete >= 5 && hero.judged > 0 ? `Only ${share}% of his films have audience ratings so far; he needs 90%.` : `He needs at least 5 rated films; he has ${hero.complete}.`}
               </p>
-              <p className="mt-1 text-[12px] text-muted">A hero is ranked once at least 5 films, and 90% of his films, have every input. We never guess a missing one.</p>
             </>
           )}
           {hero.fame !== null && hero.followers && (
@@ -52,8 +47,8 @@ export function TollyHeroCard({ hero, rankedCount, meta }: { hero: TollyHeroView
             </p>
           )}
           <p className="tabular mt-3 border-t border-line pt-3 text-[12.5px] text-ink-2">
-            {hero.complete} of {hero.judged} films complete ({share}%)
-            {hero.provisional ? ` · ${hero.provisional} under 2 years old, not counted yet` : ""}
+            Based on {hero.complete} of {hero.judged} films
+            {hero.provisional ? ` · ${hero.provisional} too new to count` : ""}
           </p>
         </div>
 
@@ -63,10 +58,9 @@ export function TollyHeroCard({ hero, rankedCount, meta }: { hero: TollyHeroView
               {PILLARS.map((p) => (
                 <PillarBar key={p.key} label={`${p.label} · ${p.weight}`} sub={p.question} value={hero.pillars?.[p.key] ?? null} color={p.color} />
               ))}
-              <p className="text-[11.5px] text-muted">0–100; the tick marks 50. Reach and Staying power are percentiles against films of the same years.</p>
             </div>
           ) : (
-            <p className="text-[13px] text-muted">No complete films yet, so no pillar profile.</p>
+            <p className="text-[13px] text-muted">No rated films yet.</p>
           )}
           {hero.best.length > 0 && (
             <div>
@@ -89,8 +83,7 @@ export function TollyHeroCard({ hero, rankedCount, meta }: { hero: TollyHeroView
 
       {hero.missing.length > 0 && (
         <details className="mt-4 rounded-lg border border-line bg-surface-2/50 px-3 py-2">
-          <summary className="cursor-pointer text-[13.5px] font-semibold text-ink">Films holding him back ({hero.missing.length})</summary>
-          <p className="mt-1 text-[12.5px] text-ink-2">These films are not scored because an input is missing in every free source we can reach. Know where to find it? Suggest a correction.</p>
+          <summary className="cursor-pointer text-[13.5px] font-semibold text-ink">Films without a score ({hero.missing.length})</summary>
           <ul className="mt-2 divide-y divide-line text-[12.5px]">
             {hero.missing.map((m) => (
               <li key={m.title + m.year} className="flex flex-wrap gap-x-3 py-1.5">
@@ -102,9 +95,6 @@ export function TollyHeroCard({ hero, rankedCount, meta }: { hero: TollyHeroView
           </ul>
         </details>
       )}
-      <p className="mt-3 text-[11px] text-muted">
-        Data as of {meta.asOf}: IMDb ratings and votes, Wikidata, and Wikipedia readers (English + Telugu). Method {meta.version}.
-      </p>
     </section>
   );
 }

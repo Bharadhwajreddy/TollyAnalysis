@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useMemo, useState, type ReactNode } from "react";
 import type { HeroMetricKey } from "@/lib/calculations/engine";
 import { ERA_GROUPS, FAMILY_GROUPS, groupOf, type ColourBy } from "@/lib/constants/groups";
-import { AXIS_METRICS, axisLabel, formatMetric, LEADERBOARD_METRICS, METRICS, MIN_SAMPLE_NOTE, WINDOW_LABEL } from "@/lib/constants/metrics";
+import { AXIS_METRICS, axisLabel, formatMetric, LEADERBOARD_METRICS, METRICS, WINDOW_LABEL } from "@/lib/constants/metrics";
 import type { FilterWindow } from "@/lib/domain/types";
 import type { DashboardData, HeroView } from "@/lib/view-models";
 import { ParetoChart } from "@/components/charts/pareto-chart";
@@ -19,18 +19,12 @@ import { Segmented } from "@/components/ui/segmented";
 import { Toggle } from "@/components/ui/toggle";
 import { HeroTable } from "./hero-table";
 import { GroupLegend, MetricTooltip, competitionRanks, rankable, rankBy } from "./shared";
-import { StarWeights } from "./star-breakdown";
 
 const WINDOWS: FilterWindow[] = ["all_time", "last_5_years", "last_10_films"];
 /** Measures offered as buttons; the rest sit in "More measures". */
 const PRIMARY: HeroMetricKey[] = ["starScore", "overallSuccessRatio", "hits", "blockbusters", "totalGross"];
 
-function fmtDate(iso: string | null) {
-  if (!iso) return "—";
-  return new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
-}
-
-export function Dashboard({ data, children, afterBanner }: { data: DashboardData; children?: ReactNode; afterBanner?: ReactNode }) {
+export function Dashboard({ data, children }: { data: DashboardData; children?: ReactNode }) {
   const router = useRouter();
   const [period, setPeriod] = useState<FilterWindow>("all_time");
   const [includeEmerging, setIncludeEmerging] = useState(false);
@@ -100,8 +94,7 @@ export function Dashboard({ data, children, afterBanner }: { data: DashboardData
             <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#e8c79c]">Telugu cinema · The career benchmark</p>
             <h1 className="mt-3 font-serif text-[34px] font-bold leading-[1.05] tracking-tight text-white sm:text-[52px]">Compare Telugu cinema careers</h1>
             <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-[#e6d9cf]">
-              Hits, flops, box office, release pace and social reach for {data.windows.all_time.filter((h) => !h.isEmerging).length} Telugu heroes. Films
-              from 2000 onwards, every number linked to its source.
+              Rankings, hits and box office for {data.windows.all_time.filter((h) => !h.isEmerging).length} Telugu heroes, from 2000 to today.
             </p>
           </div>
           {featured.length > 0 && (
@@ -125,8 +118,6 @@ export function Dashboard({ data, children, afterBanner }: { data: DashboardData
           )}
         </div>
       </section>
-
-      {afterBanner}
 
       {/* Filters */}
       <div className="card mt-4 flex flex-col gap-3 p-3 sm:p-4 lg:flex-row lg:items-center lg:justify-between">
@@ -168,28 +159,9 @@ export function Dashboard({ data, children, afterBanner }: { data: DashboardData
         </span>
       </div>
 
-      {/* Snapshot line */}
-      <div className="mt-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-line pb-3 text-xs text-muted">
-        <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
-          {data.mode === "demo" ? (
-            <DemoBadge />
-          ) : (
-            <span className="rounded-full border border-[#b9dcc4] bg-[#eef7f1] px-2.5 py-0.5 font-mono text-[11px] font-semibold tracking-wide text-good">
-              {data.mode === "real" ? "PUBLIC-SOURCE SNAPSHOT" : "LIVE"}
-            </span>
-          )}
-          <span>Snapshot {fmtDate(data.calculatedAt)}</span>
-          <a href="#how" className="font-semibold text-wine underline underline-offset-2">How we calculate</a>
-        </span>
-        <nav aria-label="On this page" className="flex gap-4 text-[13px] text-ink-2">
-          <a href="#leaderboard" className="hover:text-wine">Rankings</a>
-          <a href="#deep-dive" className="hover:text-wine">Career patterns</a>
-          <a href="#table" className="hover:text-wine">All the numbers</a>
-        </nav>
-      </div>
       {data.mode === "demo" && (
         <p className="mt-2 max-w-3xl text-xs text-muted">
-          Demo data: names and photos are real, but every film and number is made up so the charts can be checked. Nothing here is a factual claim yet.
+          <DemoBadge /> Demo data: names and photos are real, but every film and number is made up so the charts can be checked. Nothing here is a factual claim yet.
         </p>
       )}
 
@@ -201,22 +173,12 @@ export function Dashboard({ data, children, afterBanner }: { data: DashboardData
         <KpiHero label="Largest reported gross" hero={kpi("totalGross")} metric="totalGross" onOpen={open} accent="#eb6834" note="reported gross" />
       </section>
 
-      <p className="mt-4 rounded-lg bg-wine-soft px-3 py-2 text-[13px] text-wine">
-        <strong>Tip:</strong> tap a hero&apos;s photo or bar to highlight him in every chart. <strong>Double-tap</strong> (or double-click) to open his own page.
-      </p>
-
       <div className="mt-4 space-y-4">
         {/* Leaderboard */}
         <ChartCard
           id="leaderboard"
           title={leaderTitle}
-          subtitle={
-            <>
-              {METRICS[leaderMetric].definition}{" "}
-              <strong className="font-semibold">{METRICS[leaderMetric].higherIsBetter ? "Higher is better." : "Lower is better."}</strong>
-              {METRICS[leaderMetric].minSample ? ` ${MIN_SAMPLE_NOTE(METRICS[leaderMetric].minSample!)}` : ""}
-            </>
-          }
+          subtitle={leaderMetric === "starScore" ? undefined : METRICS[leaderMetric].definition}
           count={`${leaderAll ? leaderRanked.length : Math.min(TOP, leaderRanked.length)} of ${visible.length} heroes`}
           controls={
             <div className="space-y-3">
@@ -264,24 +226,10 @@ export function Dashboard({ data, children, afterBanner }: { data: DashboardData
                   ]}
                 />
               </div>
-              {leaderMetric === "starScore" && (
-                <div className="rounded-lg border border-line bg-surface-2 px-3 py-2.5">
-                  <p className="mb-2 text-[12px] font-semibold text-ink-2">What goes into the Star Score</p>
-                  <StarWeights />
-                </div>
-              )}
             </div>
           }
           legend={
-            <>
-              <p className="mb-2 text-xs text-muted">Tied ranks share a place; the next rank skips the tied entries.</p>
-              <GroupLegend
-                groups={groups}
-                hidden={hiddenGroups}
-                onToggle={toggleGroup}
-                note={colourBy === "era" ? "Colour shows when the hero got his first lead role. Tap a colour to hide it." : "Colour shows the film family. Tap a colour to hide it."}
-              />
-            </>
+            <GroupLegend groups={groups} hidden={hiddenGroups} onToggle={toggleGroup} note="Tap a colour to hide it." />
           }
         >
           <RankedBars
@@ -303,9 +251,9 @@ export function Dashboard({ data, children, afterBanner }: { data: DashboardData
         <section className="rounded-2xl border border-line bg-[linear-gradient(100deg,#f6e9ed,#faf6ef_55%,#f3eadf)] px-4 py-5 sm:px-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
-              <p className="section-kicker">01 / Career atlas</p>
+              <p className="section-kicker">Hero pages</p>
               <h2 className="mt-1 font-serif text-[21px] font-semibold text-ink">Start with a career</h2>
-              <p className="text-[13px] text-ink-2">Open any hero for every film, every number and its source.</p>
+              <p className="text-[13px] text-ink-2">Open any hero to see every film and how it did.</p>
             </div>
             <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
               {featured.map((h) => (
@@ -326,7 +274,7 @@ export function Dashboard({ data, children, afterBanner }: { data: DashboardData
         {/* Go deeper */}
         <section id="deep-dive" className="scroll-mt-24 space-y-4 pt-4">
           <div>
-            <p className="section-kicker">02 / Go deeper</p>
+            <p className="section-kicker">Go deeper</p>
             <h2 className="mt-1 font-serif text-[26px] font-semibold text-ink sm:text-[30px]">What makes a career stand out?</h2>
             <p className="text-[14px] text-ink-2">Trade-offs, box office, release pace and recent form.</p>
           </div>
@@ -368,7 +316,7 @@ export function Dashboard({ data, children, afterBanner }: { data: DashboardData
         </section>
 
         {/* Table */}
-        <ChartCard id="table" title="Every hero, every metric" subtitle={`${WINDOW_LABEL[period]} · the full comparison`} count={`${visible.length} heroes`}>
+        <ChartCard id="table" title="All heroes, all numbers" count={`${visible.length} heroes`}>
           <HeroTable heroes={visible} selected={selected} colorOf={colorOf} onActivate={activate} csvMeta={{ mode: data.mode, methodologyId: data.methodologyId, window: period }} />
         </ChartCard>
 
@@ -411,11 +359,6 @@ function TopList({ title, metric, heroes, toBars, onActivate }: { title: string;
   return (
     <ChartCard
       title={title}
-      subtitle={
-        <>
-          {METRICS[metric].definition} <strong className="font-semibold">{METRICS[metric].higherIsBetter ? "Higher is better." : "Lower is better."}</strong>
-        </>
-      }
       count={`${all ? ranked.length : Math.min(5, ranked.length)} of ${ranked.length}`}
       footer={
         ranked.length > 5 ? (
@@ -450,23 +393,16 @@ function SmallRanking({
   const ranked = rankBy(heroes, metric).slice(0, 10);
   if (!ranked.length) return null;
   const ranks = competitionRanks(ranked, metric);
-  const subtitle = (
-    <>
-      {METRICS[metric].definition} <strong className="font-semibold">{METRICS[metric].higherIsBetter ? "Higher is better." : "Lower is better."}</strong>
-      {METRICS[metric].minSample ? ` ${MIN_SAMPLE_NOTE(METRICS[metric].minSample!)}` : ""}
-    </>
-  );
   const chart = <RankedBars data={toBars(ranked, metric, ranks)} ariaLabel={title} orientation="horizontal" domainMax={domainMax} onActivate={onActivate} />;
   if (bare)
     return (
       <div>
-        <h3 className="text-[15px] font-semibold text-ink">{title}</h3>
-        <p className="mb-3 mt-0.5 text-[12.5px] text-ink-2">{subtitle}</p>
+        <h3 className="mb-3 text-[15px] font-semibold text-ink">{title}</h3>
         {chart}
       </div>
     );
   return (
-    <ChartCard title={title} subtitle={subtitle} count="Top 10">
+    <ChartCard title={title} count="Top 10">
       {chart}
     </ChartCard>
   );
@@ -543,7 +479,7 @@ function ParetoCard({
     <ChartCard
       id={id}
       title={title}
-      subtitle="Each photo is a hero. The line joins the heroes nobody beats on both measures at once — the best trade-off (Pareto) line."
+      subtitle="Each photo is a hero. Tap one to highlight him."
       count={`${points.length} heroes`}
       controls={
         <div className="flex flex-col gap-2 md:flex-row md:flex-wrap md:items-center">
@@ -562,12 +498,6 @@ function ParetoCard({
           </button>
         </div>
       }
-      footer={
-        <>
-          Across: {METRICS[x].definition} Up: {METRICS[y].definition} A few leaders are labelled; search below to find every plotted hero.
-          {[x, y].some((k) => METRICS[k].minSample) && ` Heroes with too few films to judge are left out.`}
-        </>
-      }
     >
       <ParetoChart
         data={points}
@@ -581,7 +511,7 @@ function ParetoCard({
         ariaLabel={`${METRICS[x].label} against ${METRICS[y].label}`}
       />
       <details className="mt-4 rounded-lg border border-line bg-surface-2 px-3 py-2">
-        <summary className="text-[13px] font-semibold text-ink">Find a hero · values for both measures</summary>
+        <summary className="text-[13px] font-semibold text-ink">Find a hero in this chart</summary>
         <input
           type="search"
           value={find}

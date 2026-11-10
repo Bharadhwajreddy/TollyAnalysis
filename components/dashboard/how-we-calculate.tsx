@@ -36,7 +36,7 @@ function Item({
   );
 }
 
-/** Plain-language explanation of every number, shown at the end of the page. */
+/** Plain-language explanation of every number, shown on the "How it works" page. */
 export function HowWeCalculate({
   m,
   mode,
@@ -48,8 +48,8 @@ export function HowWeCalculate({
   return (
     <div id="how" className="scroll-mt-20 space-y-4">
       <Collapsible
-        title="How we calculate everything"
-        subtitle="Every number on this page, explained in plain words."
+        title="Star Score and the other numbers"
+        subtitle="Every number on the site, explained in plain words."
         defaultOpen
       >
         <div>
@@ -272,18 +272,6 @@ export function HowWeCalculate({
               the result is “unknown”, not zero.
             </p>
           </Item>
-          <Item q="What is the red line in the scatter charts?">
-            <p>
-              It is the <strong>best trade-off line</strong> (also called a
-              Pareto line). It joins the heroes nobody else beats on both axes
-              at once. Heroes on the line are the best balance of the two things
-              you chose.
-            </p>
-            <p>
-              Use the “Across” and “Up” menus above each chart to change what is
-              compared.
-            </p>
-          </Item>
           <Item q="Colours">
             <p>
               <strong>Debut era</strong> colours heroes by the year of their
@@ -294,26 +282,7 @@ export function HowWeCalculate({
             </p>
           </Item>
         </div>
-        <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm">
-          <Link
-            href="/methodology"
-            className="font-semibold text-wine underline"
-          >
-            Full methodology
-          </Link>
-          <Link href="/annexure/sources" className="text-wine underline">
-            Sources
-          </Link>
-          <Link href="/annexure/coverage" className="text-wine underline">
-            Missing data
-          </Link>
-          <Link href="/annexure/photo-credits" className="text-wine underline">
-            Photo credits
-          </Link>
-          <Link href="/annexure/corrections" className="text-wine underline">
-            Suggest a correction
-          </Link>
-        </div>
+        
       </Collapsible>
       <Collapsible
         title="About this snapshot"

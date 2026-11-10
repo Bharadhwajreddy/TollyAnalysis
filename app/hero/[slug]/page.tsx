@@ -13,7 +13,7 @@ import type { StarPart } from "@/lib/calculations/star";
 import { FAMILY_GROUPS, groupOf } from "@/lib/constants/groups";
 import { formatMetric, METRICS } from "@/lib/constants/metrics";
 import { HERO_PHOTOS } from "@/lib/constants/photos";
-import { compactCount, formatDay, heroFacts, heroFactsSource, latestFollowers, yearsBetween, type FollowerCount } from "@/lib/data/real/hero-facts";
+import { compactCount, formatDay, heroFacts, latestFollowers, yearsBetween, type FollowerCount } from "@/lib/data/real/hero-facts";
 import { socialHandles } from "@/lib/data/real/load";
 import { REPORTED_INSTAGRAM } from "@/lib/data/real/reported-social";
 import { getDashboardData, getHeroExcluded, getHeroFilms, getPerson } from "@/lib/repositories";
@@ -138,7 +138,6 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
   });
 
   const count = (v: string) => rows.filter((r) => r.verdict === v).length;
-  const known = rows.filter((r) => ["blockbuster", "hit", "average", "flop"].includes(r.verdict)).length;
   const verdicts = [
     { key: "blockbuster", label: "Blockbuster", n: count("blockbuster"), color: "#1f7a3d" },
     { key: "hit", label: "Hit", n: count("hit"), color: "#6aa84f" },
@@ -168,11 +167,11 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
   const firstHit = [...dated].reverse().find((r) => r.verdict === "hit" || r.verdict === "blockbuster");
   const firstBlockbuster = [...dated].reverse().find((r) => r.verdict === "blockbuster");
   const milestones = [
-    first && { kicker: "First counted release", film: first, note: "Earliest dated lead film since 2000." },
-    firstHit && { kicker: "First hit", film: firstHit, note: "Earliest film labelled hit or blockbuster." },
-    firstBlockbuster && firstBlockbuster !== firstHit && { kicker: "First blockbuster", film: firstBlockbuster, note: "Earliest film labelled blockbuster." },
-    biggest && { kicker: "Highest reported gross", film: biggest, note: `${formatMetric("topGross", biggest.gross)} worldwide (all languages).` },
-    latest && { kicker: "Latest counted release", film: latest, note: "Most recent dated lead film." },
+    first && { kicker: "First film as lead", film: first, note: "" },
+    firstHit && { kicker: "First hit", film: firstHit, note: "" },
+    firstBlockbuster && firstBlockbuster !== firstHit && { kicker: "First blockbuster", film: firstBlockbuster, note: "" },
+    biggest && { kicker: "Biggest film", film: biggest, note: `${formatMetric("topGross", biggest.gross)} worldwide` },
+    latest && { kicker: "Latest film", film: latest, note: "" },
   ].filter((x): x is { kicker: string; film: FilmRowView; note: string } => !!x);
 
   const sr = hero.m.overallSuccessRatio;
@@ -204,12 +203,11 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
   const sectionNav = [
     ...(tolly ? [["tolly", "Tolly Index"]] : []),
     ["star", "Star Score"],
-    ["facts", "Career facts"],
     ["milestones", "Milestones"],
-    ["results", "Results by year"],
-    ["peers", "Peer context"],
-    ["stats", "All measures"],
-    ["films", "Film evidence"],
+    ["results", "Hits and flops"],
+    ["peers", "Vs other heroes"],
+    ["stats", "All numbers"],
+    ["films", "Films"],
   ];
 
   return (
@@ -224,29 +222,28 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
       <section className="cinema mt-4 overflow-hidden rounded-2xl">
         <div className="grid lg:grid-cols-[1fr_300px]">
           <div className="px-5 py-7 sm:px-9 sm:py-9">
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#e8c79c]">Career atlas / Individual profile</p>
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#e8c79c]">Telugu film hero</p>
             <div className="mt-2 flex flex-wrap items-center gap-3">
               <h1 className="font-serif text-[40px] font-bold leading-none tracking-tight text-white sm:text-[60px]">{hero.name}</h1>
               {data.mode === "demo" && <DemoBadge />}
             </div>
             <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-[#e6d9cf]">
-              {hero.eligible} lead films from {hero.firstYear ?? "—"} to {hero.lastYear ?? "—"}. {known} of them have a reported box-office result
-              {hero.ott ? `, ${hero.ott} went straight to OTT` : ""}. Every film below links to the source its result was read from.
+              {hero.eligible} films as lead hero, {hero.firstYear ?? "—"}–{hero.lastYear ?? "—"}.
             </p>
             <div className="mt-6 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
               {tolly && (
                 <BannerStat
                   label="Tolly Index"
                   value={tolly.index === null ? "—" : `${tolly.index.toFixed(1)}`}
-                  note={tolly.rank ? `#${tolly.rank} of ${tollyRanked} ranked heroes${tolly.band !== null ? ` · ± ${tolly.band.toFixed(1)}` : ""}` : "not ranked yet: films missing data"}
+                  note={tolly.rank ? `#${tolly.rank} of ${tollyRanked} heroes` : "not ranked yet"}
                 />
               )}
               <BannerStat label="Star Score" value={formatMetric("starScore", hero.m.starScore.v)} note={hero.m.starScore.v === null ? "not enough data" : rankLabel(rankOf("starScore"))} />
-              <BannerStat label="Success ratio" value={formatMetric("overallSuccessRatio", sr.v)} note={sr.v === null ? "no known results" : `${hero.m.hits.v} hits out of ${sr.n} films with a known result`} />
+              <BannerStat label="Success ratio" value={formatMetric("overallSuccessRatio", sr.v)} note={sr.v === null ? "no known results" : `${hero.m.hits.v} hits in ${sr.n} films`} />
               {!tolly && (
                 <BannerStat label="Reported box office" value={formatMetric("totalGross", hero.m.totalGross.v)} note={hero.m.totalGross.v === null ? "no reported gross" : `${hero.m.totalGross.n} films with a reported gross`} />
               )}
-              <BannerStat label="Blockbusters" value={formatMetric("blockbusters", hero.m.blockbusters.v)} note={hero.m.blockbusters.v === null ? "no known results" : `among ${hero.m.blockbusters.n} judged films`} />
+              <BannerStat label="Blockbusters" value={formatMetric("blockbusters", hero.m.blockbusters.v)} note={hero.m.blockbusters.v === null ? "no known results" : `in ${hero.m.blockbusters.n} films`} />
             </div>
           </div>
           <div className="relative hidden min-h-[260px] lg:block">
@@ -279,12 +276,7 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
               {facts?.birthPlace ? `, ${facts.birthPlace}` : ""}
             </Chip>
           ))}
-        {hero.debutYear && <Chip>Recorded debut: {hero.debutYear}</Chip>}
-        {hero.firstYear && (
-          <Chip>
-            Counted releases: {hero.firstYear}–{hero.lastYear}
-          </Chip>
-        )}
+        {hero.debutYear && <Chip>Debut {hero.debutYear}</Chip>}
         {family && family.key !== "other" && <Chip color={family.color}>{family.label}</Chip>}
         {hero.isEmerging && <Chip>Newcomer</Chip>}
         {followerCounts.map((c) => {
@@ -350,14 +342,10 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
       <section id="star" className="card mt-5 scroll-mt-32 p-4 sm:p-6" aria-labelledby="star-title">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
-            <p className="section-kicker">Everything in one number</p>
-            <h2 id="star-title" className="mt-1 font-serif text-[24px] font-semibold text-ink">
+            <h2 id="star-title" className="font-serif text-[24px] font-semibold text-ink">
               Star Score: <span className="text-wine">{formatMetric("starScore", hero.m.starScore.v)}</span>
             </h2>
-            <p className="mt-0.5 max-w-2xl text-[13px] text-ink-2">
-              Each part is scored out of 100 against the other heroes, then weighted. Parts without data are left out and their weight is shared out —
-              never counted as zero. {hero.m.starScore.e}
-            </p>
+            <p className="mt-0.5 max-w-2xl text-[13px] text-ink-2">Box-office success and reach, out of 100.</p>
           </div>
           <p className="tabular text-[13px] text-muted">{rankLabel(rankOf("starScore"))}</p>
         </div>
@@ -368,22 +356,19 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
 
       {/* Highlights */}
       <section aria-labelledby="hl" className="mt-6">
-        <p className="section-kicker">Career overview</p>
-        <h2 id="hl" className="mt-1 font-serif text-[24px] font-semibold text-ink">Highlights from the record</h2>
+        <h2 id="hl" className="font-serif text-[24px] font-semibold text-ink">Highlights</h2>
         <div className="mt-3 grid grid-cols-2 gap-3 lg:grid-cols-4">
-          <Highlight label="Highest reported gross" main={biggest ? formatMetric("topGross", biggest.gross) : "—"} sub={biggest?.title ?? "no reported gross"} />
-          <Highlight label="Highest gross ÷ budget" main={bestMultiple ? `${bestMultiple.multiple}×` : "—"} sub={bestMultiple?.title ?? "needs budget and gross"} />
-          <Highlight label="Latest dated film" main={latest?.title ?? "—"} sub={latest?.releaseDate ?? ""} small />
-          <Highlight label="Earliest dated film" main={first?.title ?? "—"} sub={first?.releaseDate ?? ""} small />
+          <Highlight label="Biggest film" main={biggest ? formatMetric("topGross", biggest.gross) : "—"} sub={biggest?.title ?? "no reported gross"} />
+          <Highlight label="Best return on budget" main={bestMultiple ? `${bestMultiple.multiple}×` : "—"} sub={bestMultiple?.title ?? "needs budget and gross"} />
+          <Highlight label="Latest film" main={latest?.title ?? "—"} sub={latest?.releaseDate ?? ""} small />
+          <Highlight label="First film" main={first?.title ?? "—"} sub={first?.releaseDate ?? ""} small />
         </div>
-        <p className="mt-2 text-xs text-muted">Reported worldwide grosses cover all languages and may be incomplete. Gross ÷ budget is a descriptive ratio, not profit.</p>
       </section>
 
       {/* Milestones */}
       {milestones.length > 0 && (
         <section id="milestones" className="card mt-4 scroll-mt-32 p-4 sm:p-6" aria-labelledby="ms">
-          <p className="section-kicker">Dated counted films</p>
-          <h2 id="ms" className="mt-1 font-serif text-[22px] font-semibold text-ink">Career milestones</h2>
+          <h2 id="ms" className="font-serif text-[22px] font-semibold text-ink">Career milestones</h2>
           <ol className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {milestones.map((ms) => (
               <li key={ms.kicker} className="relative border-t-2 border-wine/40 pt-3">
@@ -392,7 +377,7 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
                 <p className="font-mono text-[10.5px] font-semibold uppercase tracking-wider text-wine">{ms.kicker}</p>
                 <p className="mt-1 font-semibold text-ink">{ms.film.title}</p>
                 <span className={`mt-1 inline-block rounded px-1.5 py-0.5 text-[11px] font-semibold ${badgeClass(ms.film.verdict)}`}>{ms.film.verdictText}</span>
-                <p className="mt-1 text-[12px] text-muted">{ms.note}</p>
+                {ms.note && <p className="mt-1 text-[12px] text-muted">{ms.note}</p>}
               </li>
             ))}
           </ol>
@@ -402,9 +387,7 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
       <div id="results" className="mt-4 grid scroll-mt-32 gap-4 lg:grid-cols-2">
         {/* Verdicts */}
         <section className="card p-4 sm:p-6" aria-labelledby="verdicts">
-          <p className="section-kicker">Film result labels</p>
-          <h2 id="verdicts" className="mt-1 font-serif text-[22px] font-semibold text-ink">Results across counted films</h2>
-          <p className="mt-0.5 text-[13px] text-ink-2">Reported verdict first; otherwise worldwide gross ÷ budget (3× Blockbuster · 2× Hit · 1× Average · under 1× Flop).</p>
+          <h2 id="verdicts" className="font-serif text-[22px] font-semibold text-ink">Hits and flops</h2>
           <div className="mt-4 flex h-6 overflow-hidden rounded-md" role="img" aria-label={verdicts.map((v) => `${v.label}: ${v.n}`).join(", ")}>
             {verdicts
               .filter((v) => v.n)
@@ -425,9 +408,7 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
 
         {/* Year by year */}
         <section className="card p-4 sm:p-6" aria-labelledby="yby">
-          <p className="section-kicker">Release record</p>
-          <h2 id="yby" className="mt-1 font-serif text-[22px] font-semibold text-ink">Year by year</h2>
-          <p className="mt-0.5 text-[13px] text-ink-2">Films released each year and how many were hits.</p>
+          <h2 id="yby" className="font-serif text-[22px] font-semibold text-ink">Year by year</h2>
           <div className="mt-3">
             <HeroYearChart rows={yearRows} name={hero.name} />
           </div>
@@ -436,9 +417,8 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
 
       {/* Compared with others */}
       <section id="peers" className="card mt-4 scroll-mt-32 p-4 sm:p-6" aria-labelledby="vs">
-        <p className="section-kicker">Peer context</p>
-        <h2 id="vs" className="mt-1 font-serif text-[22px] font-semibold text-ink">Compared with other heroes</h2>
-        <p className="mt-0.5 text-[13px] text-ink-2">The black tick is the middle hero (median). Green ▲ = better than most, red ▼ = worse.</p>
+        <h2 id="vs" className="font-serif text-[22px] font-semibold text-ink">Compared with other heroes</h2>
+        <p className="mt-0.5 text-[13px] text-ink-2">The black tick is the typical hero.</p>
         <ul className="mt-4 grid gap-x-8 gap-y-3 lg:grid-cols-2">
           {COMPARE.filter((k) => cohort.some((h) => h.m[k].v !== null)).map((k) => {
             const meta = METRICS[k];
@@ -467,8 +447,7 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
 
       {/* All statistics */}
       <div id="stats" className="mt-4 scroll-mt-32">
-        <Collapsible title={`All statistics (${SECTIONS.reduce((a, s) => a + s.keys.length, 0)})`} subtitle="Every value, its rank, its definition and the sample behind it">
-          <p className="text-[13px] text-ink-2">Rank is out of all heroes with enough data for that number. “—” means not enough data (never zero).</p>
+        <Collapsible title={`All statistics (${SECTIONS.reduce((a, s) => a + s.keys.length, 0)})`} subtitle="Every number and its rank">
           <div className="mt-3 space-y-4">
             {SECTIONS.map((sec) => (
               <div key={sec.title}>
@@ -497,20 +476,18 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
       <section id="films" className="card mt-4 scroll-mt-32 p-4 sm:p-6" aria-labelledby="films-title">
         <div className="flex flex-wrap items-end justify-between gap-2">
           <div>
-            <p className="section-kicker">Underlying records</p>
-            <h2 id="films-title" className="mt-1 font-serif text-[24px] font-semibold text-ink">
-              Every counted film ({rows.length})
+            <h2 id="films-title" className="font-serif text-[24px] font-semibold text-ink">
+              Films ({rows.length})
             </h2>
           </div>
-          <span className="text-xs text-muted">Sort a column, filter by result, or open a row for its evidence.</span>
         </div>
         <HeroFilmsTable rows={rows} heroName={hero.name} />
       </section>
 
       {excluded.length > 0 && (
         <details className="card mt-4 p-4 sm:p-5">
-          <summary className="cursor-pointer text-[15px] font-semibold text-ink">Appearances not counted ({excluded.length})</summary>
-          <p className="mt-1 text-[13px] text-ink-2">Cameos, supporting and antagonist roles, other-language and unreleased films are listed here but do not count in any number.</p>
+          <summary className="cursor-pointer text-[15px] font-semibold text-ink">Other appearances ({excluded.length})</summary>
+          <p className="mt-1 text-[13px] text-ink-2">Cameos, supporting roles, other-language and unreleased films.</p>
           <ul className="mt-3 divide-y divide-line text-[13px]">
             {excluded.map((e, i) => (
               <li key={i} className="flex flex-wrap gap-x-3 py-1.5">
@@ -590,17 +567,13 @@ function HeroProfile({ facts }: { facts: NonNullable<ReturnType<typeof heroFacts
           </div>
         ))}
       </dl>
-      <p className="mt-2 text-[11px] text-muted">
-        {facts.website && (
-          <>
-            <a href={facts.website} target="_blank" rel="noopener noreferrer nofollow" className="text-wine underline underline-offset-2">
-              Official website ↗
-            </a>{" "}
-            ·{" "}
-          </>
-        )}
-        Profile facts from {heroFactsSource.source}, {heroFactsSource.fetched}. Not part of any score.
-      </p>
+      {facts.website && (
+        <p className="mt-2 text-[12px]">
+          <a href={facts.website} target="_blank" rel="noopener noreferrer nofollow" className="text-wine underline underline-offset-2">
+            Official website ↗
+          </a>
+        </p>
+      )}
     </section>
   );
 }

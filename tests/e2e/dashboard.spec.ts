@@ -1,17 +1,17 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("Heroes dashboard", () => {
-  test("opens with the two scores explained, then the Star Score leaderboard", async ({ page }) => {
+  test("opens on one clean page with the Star Score leaderboard first", async ({ page }) => {
     await page.goto("/");
     await expect(page.getByRole("heading", { level: 1 })).toContainText("Compare Telugu cinema careers");
-    await expect(page.getByText(/PUBLIC-SOURCE SNAPSHOT/).first()).toBeVisible();
-    await expect(page.getByRole("navigation", { name: "Main" })).toContainText("Inside the data");
+    await expect(page.getByRole("banner").getByRole("link", { name: "How it works" }).first()).toHaveAttribute("href", "/methodology");
     const titles = await page.locator("section h2").allTextContents();
-    expect(titles.find((t) => !/Compare Telugu/.test(t))).toContain("What audiences think, and what the box office says");
-    expect(titles.find((t) => !/Compare Telugu|What audiences think/.test(t))).toContain("Star Score");
+    expect(titles.find((t) => !/Compare Telugu/.test(t))).toContain("Star Score");
     expect(titles.some((t) => t.includes("More films vs. more success"))).toBe(true);
-    await expect(page.locator("#how")).toContainText("How we calculate everything");
-    await expect(page.locator("#leaderboard")).toContainText("What goes into the Star Score");
+    // The home page shows results only; how they are made lives on the "How it works" page.
+    await expect(page.locator("#leaderboard")).not.toContainText("What goes into the Star Score");
+    await expect(page.locator("body")).not.toContainText("How we calculate");
+    await expect(page.locator("polyline")).toHaveCount(0);
     // Photos are shown on the leaderboard.
     expect(await page.locator("#leaderboard image, #leaderboard img").count()).toBeGreaterThan(5);
     // Editorially excluded: never ranked or listed (only named in the note that explains the exclusion).
@@ -57,7 +57,7 @@ test.describe("Heroes dashboard", () => {
     await row.dblclick();
     await expect(page).toHaveURL(/\/hero\//);
     await expect(page.getByRole("heading", { level: 1 })).toContainText(name);
-    await expect(page.getByRole("heading", { name: /Every counted film/ })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /^Films \(\d+\)$/ })).toBeVisible();
   });
 
   test("more measures can be ranked", async ({ page }) => {
@@ -84,9 +84,9 @@ test.describe("Other views", () => {
     await page.goto("/hero/prabhas");
     await expect(page.locator("#star")).toContainText("Total box office");
     await expect(page.getByText(/All statistics/)).toBeVisible();
-    await expect(page.getByRole("heading", { name: /Every counted film/ })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /^Films \(\d+\)$/ })).toBeVisible();
     await expect(page.locator("#films")).toContainText("Baahubali 2: The Conclusion");
-    await page.locator("#films").getByRole("button", { name: /Inspect film evidence/ }).first().click();
+    await page.locator("#films").getByRole("button", { name: /Details/ }).first().click();
     await expect(page.locator("#films")).toContainText("Suggest a correction");
   });
 
@@ -149,18 +149,17 @@ test.describe("Tolly Index", () => {
     await page.goto("/hero/allari-naresh");
     const card = page.locator("#tolly");
     await expect(card).toContainText("Tolly Index");
-    await expect(card).toContainText(/#\d+ of \d+ ranked heroes/);
+    await expect(card).toContainText(/#\d+ of \d+ heroes/);
     await expect(card).toContainText("Staying power");
     await expect(page.locator("#films thead")).toContainText("Tolly Index");
   });
 
-  test("home page explains the two scores and links the Tolly Index top 10", async ({ page }) => {
-    await page.goto("/");
-    const panel = page.locator("section", { has: page.locator("#two-scores") });
-    await expect(panel).toContainText("Star Score");
-    await expect(panel.locator("ol li")).toHaveCount(10);
-    await panel.getByRole("link", { name: "Full ranking →" }).click();
-    await expect(page).toHaveURL(/\/tolly-index$/);
+  test("the how-it-works page holds the method for both scores", async ({ page }) => {
+    await page.goto("/methodology");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("How it works");
+    await expect(page.locator("#tolly-index")).toContainText("Three rules keep it fair");
+    await expect(page.locator("#how")).toContainText("Star Score and the other numbers");
+    await expect(page.getByRole("link", { name: /Sources and data licences/ }).first()).toBeVisible();
   });
 
   test("hero page shows age and profile facts", async ({ page }) => {

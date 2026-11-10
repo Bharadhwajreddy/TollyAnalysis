@@ -122,7 +122,7 @@ export function HeroFilmsTable({ rows, heroName }: { rows: FilmRowView[]; heroNa
           onClick={() => setOpen((s) => (s.size ? new Set() : new Set(sorted.map((r) => r.id))))}
           className="ml-auto rounded-full border border-line px-3 py-1 font-medium text-ink-2 hover:border-ink-2"
         >
-          {open.size ? "Close all evidence" : "Open all evidence"}
+          {open.size ? "Close all details" : "Open all details"}
         </button>
       </div>
       <div className="scroll-x rounded-lg border border-line">
@@ -171,7 +171,7 @@ export function HeroFilmsTable({ rows, heroName }: { rows: FilmRowView[]; heroNa
                         onClick={() => toggle(r.id)}
                         className="mt-1 block text-[11.5px] font-normal text-wine hover:underline"
                       >
-                        {isOpen ? "▾ Hide evidence" : "▸ Inspect film evidence"}
+                        {isOpen ? "▾ Hide details" : "▸ Details"}
                       </button>
                     </td>
                     <td className="tabular whitespace-nowrap px-2.5 py-2">{r.releaseDate ? (r.approximate ? r.releaseDate.slice(0, 4) : r.releaseDate) : "—"}</td>
