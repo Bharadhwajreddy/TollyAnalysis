@@ -1,4 +1,1404 @@
 {
  "source": "Official profiles, checked by an editor on the dates given",
- "heroes": {}
+ "heroes": {
+  "aadi-saikumar": {
+   "counts": [
+    {
+     "platform": "x",
+     "followers": 14326,
+     "date": "2026-11-08",
+     "url": "https://x.com/iamaadisaikumar"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": null,
+    "x": "iamaadisaikumar"
+   },
+   "notes": "Instagram: no verified account found in search; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "adivi-sesh": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 1332748,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/adivisesh/"
+    },
+    {
+     "platform": "x",
+     "followers": 788050,
+     "date": "2026-11-08",
+     "url": "https://x.com/AdiviSesh"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "adivisesh",
+    "x": "AdiviSesh"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "akhil-akkineni": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 3281669,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/akkineniakhil/"
+    },
+    {
+     "platform": "x",
+     "followers": 2790295,
+     "date": "2026-11-08",
+     "url": "https://x.com/AkhilAkkineni8"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "akkineniakhil",
+    "x": "AkhilAkkineni8"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "allari-naresh": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 391600,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/allari_naresh/"
+    },
+    {
+     "platform": "x",
+     "followers": 1389939,
+     "date": "2026-11-08",
+     "url": "https://x.com/allarinaresh"
+    },
+    {
+     "platform": "youtube",
+     "followers": 1490,
+     "date": "2026-11-08",
+     "url": "https://www.youtube.com/@AllariNaresh"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "allari_naresh",
+    "x": "allarinaresh"
+   },
+   "notes": "YouTube subscribers as shown by YouTube (rounded); Facebook not checked (needs a Facebook sign-in)"
+  },
+  "allu-arjun": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 27794587,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/alluarjunonline/"
+    },
+    {
+     "platform": "x",
+     "followers": 8579311,
+     "date": "2026-11-08",
+     "url": "https://x.com/alluarjun"
+    },
+    {
+     "platform": "youtube",
+     "followers": 2090000,
+     "date": "2026-11-08",
+     "url": "https://www.youtube.com/@AlluArjun"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "alluarjunonline",
+    "x": "alluarjun"
+   },
+   "notes": "YouTube subscribers as shown by YouTube (rounded); Facebook not checked (needs a Facebook sign-in)"
+  },
+  "allu-sirish": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 1290240,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/allusirish/"
+    },
+    {
+     "platform": "x",
+     "followers": 1694263,
+     "date": "2026-11-08",
+     "url": "https://x.com/AlluSirish"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "allusirish",
+    "x": "AlluSirish"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "anand-deverakonda": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 708940,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/ananddeverakonda/"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "ananddeverakonda",
+    "x": null
+   },
+   "notes": "X: @ananddevarkonda exists but is not verified; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "balakrishna": {
+   "counts": [
+    {
+     "platform": "youtube",
+     "followers": 12200,
+     "date": "2026-11-08",
+     "url": "https://www.youtube.com/@NandamuriBalakrishna"
+    }
+   ],
+   "noAccount": true,
+   "usernames": {
+    "instagram": null,
+    "x": null
+   },
+   "notes": "Instagram: no verified account found in search; X: no verified account found in search; YouTube subscribers as shown by YouTube (rounded); YouTube: verified channel, but its bio is written in the third person - may be run by his team; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "bellamkonda-sreenivas": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 1299450,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/sreenivasbellamkonda/"
+    },
+    {
+     "platform": "x",
+     "followers": 169555,
+     "date": "2026-11-08",
+     "url": "https://x.com/BSaiSreenivas"
+    },
+    {
+     "platform": "youtube",
+     "followers": 286,
+     "date": "2026-11-08",
+     "url": "https://www.youtube.com/@BellamkondaSreenivas"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "sreenivasbellamkonda",
+    "x": "BSaiSreenivas"
+   },
+   "notes": "YouTube subscribers as shown by YouTube (rounded); Facebook not checked (needs a Facebook sign-in)"
+  },
+  "chiranjeevi": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 3755437,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/chiranjeevikonidela/"
+    },
+    {
+     "platform": "x",
+     "followers": 2311391,
+     "date": "2026-11-08",
+     "url": "https://x.com/KChiruTweets"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "chiranjeevikonidela",
+    "x": "KChiruTweets"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "gopichand": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 639163,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/yoursgopichand/"
+    },
+    {
+     "platform": "x",
+     "followers": 98937,
+     "date": "2026-11-08",
+     "url": "https://x.com/YoursGopichand"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "yoursgopichand",
+    "x": "YoursGopichand"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "jagapathi-babu": {
+   "counts": [],
+   "noAccount": true,
+   "usernames": {
+    "instagram": null,
+    "x": null
+   },
+   "notes": "Instagram: no verified account found in search; X: @IamJagguBhai exists but is not verified; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "jr-ntr": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 8051851,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/jrntr/"
+    },
+    {
+     "platform": "x",
+     "followers": 7877298,
+     "date": "2026-11-08",
+     "url": "https://x.com/tarak9999"
+    },
+    {
+     "platform": "youtube",
+     "followers": 332000,
+     "date": "2026-11-08",
+     "url": "https://www.youtube.com/@jrNTRofficial"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "jrntr",
+    "x": "tarak9999"
+   },
+   "notes": "YouTube subscribers as shown by YouTube (rounded); Facebook not checked (needs a Facebook sign-in)"
+  },
+  "kalyaan-dhev": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 263796,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/kalyaan_dhev/"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "kalyaan_dhev",
+    "x": null
+   },
+   "notes": "X: @kalyaan_dhev / @IamKalyaanDhev exist but are not verified; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "kalyan-ram": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 79181,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/nandamurikalyanram/"
+    },
+    {
+     "platform": "x",
+     "followers": 1483857,
+     "date": "2026-11-08",
+     "url": "https://x.com/NANDAMURIKALYAN"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "nandamurikalyanram",
+    "x": "NANDAMURIKALYAN"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "karthikeya": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 846305,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/actorkartikeya/"
+    },
+    {
+     "platform": "x",
+     "followers": 357408,
+     "date": "2026-11-08",
+     "url": "https://x.com/actorkartikeya"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "actorkartikeya",
+    "x": "actorkartikeya"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "kiran-abbavaram": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 1866455,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/kiran_abbavaram/"
+    },
+    {
+     "platform": "x",
+     "followers": 91787,
+     "date": "2026-11-08",
+     "url": "https://x.com/Kiran_Abbavaram"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "kiran_abbavaram",
+    "x": "Kiran_Abbavaram"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "mahesh-babu": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 15330914,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/urstrulymahesh/"
+    },
+    {
+     "platform": "x",
+     "followers": 13452485,
+     "date": "2026-11-08",
+     "url": "https://x.com/urstrulyMahesh"
+    },
+    {
+     "platform": "youtube",
+     "followers": 1690000,
+     "date": "2026-11-08",
+     "url": "https://www.youtube.com/@urstrulymahesh"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "urstrulymahesh",
+    "x": "urstrulyMahesh"
+   },
+   "notes": "YouTube subscribers as shown by YouTube (rounded); Facebook not checked (needs a Facebook sign-in)"
+  },
+  "manchu-manoj": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 1004425,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/manojkmanchu/"
+    },
+    {
+     "platform": "x",
+     "followers": 1670912,
+     "date": "2026-11-08",
+     "url": "https://x.com/HeroManoj1"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "manojkmanchu",
+    "x": "HeroManoj1"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "mohan-babu": {
+   "counts": [
+    {
+     "platform": "x",
+     "followers": 785119,
+     "date": "2026-11-08",
+     "url": "https://x.com/themohanbabu"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": null,
+    "x": "themohanbabu"
+   },
+   "notes": "Instagram: no verified account found in search; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "naga-chaitanya": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 7337298,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/chayakkineni/"
+    },
+    {
+     "platform": "x",
+     "followers": 2625263,
+     "date": "2026-11-08",
+     "url": "https://x.com/chay_akkineni"
+    },
+    {
+     "platform": "youtube",
+     "followers": 117000,
+     "date": "2026-11-08",
+     "url": "https://www.youtube.com/@chay_akkineni"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "chayakkineni",
+    "x": "chay_akkineni"
+   },
+   "notes": "YouTube subscribers as shown by YouTube (rounded); Facebook not checked (needs a Facebook sign-in)"
+  },
+  "naga-shaurya": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 889222,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/actorshaurya/"
+    },
+    {
+     "platform": "x",
+     "followers": 200846,
+     "date": "2026-11-08",
+     "url": "https://x.com/IamNagashaurya"
+    },
+    {
+     "platform": "youtube",
+     "followers": 3180,
+     "date": "2026-11-08",
+     "url": "https://www.youtube.com/@Actorshaurya"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "actorshaurya",
+    "x": "IamNagashaurya"
+   },
+   "notes": "X: X account has no verified badge; YouTube subscribers as shown by YouTube (rounded); Facebook not checked (needs a Facebook sign-in)"
+  },
+  "nagarjuna": {
+   "counts": [
+    {
+     "platform": "x",
+     "followers": 6008072,
+     "date": "2026-11-08",
+     "url": "https://x.com/IamNagarjuna"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": null,
+    "x": "IamNagarjuna"
+   },
+   "notes": "Instagram: no verified account found in search; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "nani": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 10864278,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/nameisnani/"
+    },
+    {
+     "platform": "x",
+     "followers": 4678525,
+     "date": "2026-11-08",
+     "url": "https://x.com/NameisNani"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "nameisnani",
+    "x": "NameisNani"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "nara-rohit": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 79019,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/rohithnara/"
+    },
+    {
+     "platform": "x",
+     "followers": 48734,
+     "date": "2026-11-08",
+     "url": "https://x.com/IamRohithNara"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "rohithnara",
+    "x": "IamRohithNara"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "navdeep": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 899123,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/pnavdeep/"
+    },
+    {
+     "platform": "x",
+     "followers": 528625,
+     "date": "2026-11-08",
+     "url": "https://x.com/pnavdeep26"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "pnavdeep",
+    "x": "pnavdeep26"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "naveen-chandra": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 446928,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/naveenchandra212/"
+    },
+    {
+     "platform": "x",
+     "followers": 134141,
+     "date": "2026-11-08",
+     "url": "https://x.com/Naveenc212"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "naveenchandra212",
+    "x": "Naveenc212"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "naveen-polishetty": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 1323783,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/naveen.polishetty/"
+    },
+    {
+     "platform": "x",
+     "followers": 164089,
+     "date": "2026-11-08",
+     "url": "https://x.com/NaveenPolishety"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "naveen.polishetty",
+    "x": "NaveenPolishety"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "nikhil-siddhartha": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 1927700,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/actor_nikhil/"
+    },
+    {
+     "platform": "x",
+     "followers": 1635662,
+     "date": "2026-11-08",
+     "url": "https://x.com/actor_Nikhil"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "actor_nikhil",
+    "x": "actor_Nikhil"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "nithiin": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 2689207,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/actor_nithiin/"
+    },
+    {
+     "platform": "x",
+     "followers": 3399771,
+     "date": "2026-11-08",
+     "url": "https://x.com/actor_nithiin"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "actor_nithiin",
+    "x": "actor_nithiin"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "pawan-kalyan": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 4149143,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/pawankalyan/"
+    },
+    {
+     "platform": "x",
+     "followers": 6137131,
+     "date": "2026-11-08",
+     "url": "https://x.com/PawanKalyan"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "pawankalyan",
+    "x": "PawanKalyan"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "prabhas": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 14083452,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/actorprabhas/"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "actorprabhas",
+    "x": null
+   },
+   "notes": "X: no official account found (@prabhas is an unrelated account); YouTube: verified @prabhas5142 found but not used - bio is copied from Wikipedia and the handle looks auto-generated; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "priyadarshi": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 1166455,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/preyadarshe/"
+    },
+    {
+     "platform": "x",
+     "followers": 297131,
+     "date": "2026-11-08",
+     "url": "https://x.com/Preyadarshe"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "preyadarshe",
+    "x": "Preyadarshe"
+   },
+   "notes": "X: listed @priyadarshi_i was a different person; replaced with verified @Preyadarshe; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "raj-tarun": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 329449,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/rajtarunn/"
+    },
+    {
+     "platform": "x",
+     "followers": 692331,
+     "date": "2026-11-08",
+     "url": "https://x.com/itsRajTarun"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "rajtarunn",
+    "x": "itsRajTarun"
+   },
+   "notes": "X: X account has no verified badge; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "rajasekhar": {
+   "counts": [],
+   "noAccount": true,
+   "usernames": {
+    "instagram": null,
+    "x": null
+   },
+   "notes": "Instagram: no verified account found in search; X: no verified account found in search; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "rajendra-prasad": {
+   "counts": [],
+   "noAccount": true,
+   "usernames": {
+    "instagram": null,
+    "x": null
+   },
+   "notes": "Instagram: no verified account found in search; X: no verified account found in search; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "ram-charan": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 23476143,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/alwaysramcharan/"
+    },
+    {
+     "platform": "x",
+     "followers": 4156215,
+     "date": "2026-11-08",
+     "url": "https://x.com/AlwaysRamCharan"
+    },
+    {
+     "platform": "youtube",
+     "followers": 468000,
+     "date": "2026-11-08",
+     "url": "https://www.youtube.com/@AlwaysRamCharan"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "alwaysramcharan",
+    "x": "AlwaysRamCharan"
+   },
+   "notes": "YouTube subscribers as shown by YouTube (rounded); Facebook not checked (needs a Facebook sign-in)"
+  },
+  "ram-pothineni": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 4437233,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/ram_pothineni/"
+    },
+    {
+     "platform": "x",
+     "followers": 2848390,
+     "date": "2026-11-08",
+     "url": "https://x.com/ramsayz"
+    },
+    {
+     "platform": "youtube",
+     "followers": 1520000,
+     "date": "2026-11-08",
+     "url": "https://www.youtube.com/@PothineniRam"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "ram_pothineni",
+    "x": "ramsayz"
+   },
+   "notes": "YouTube subscribers as shown by YouTube (rounded); Facebook not checked (needs a Facebook sign-in)"
+  },
+  "rana-daggubati": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 5141295,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/ranadaggubati/"
+    },
+    {
+     "platform": "x",
+     "followers": 6169683,
+     "date": "2026-11-08",
+     "url": "https://x.com/RanaDaggubati"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "ranadaggubati",
+    "x": "RanaDaggubati"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "ravi-teja": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 2676512,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/raviteja_2628/"
+    },
+    {
+     "platform": "x",
+     "followers": 1899240,
+     "date": "2026-11-08",
+     "url": "https://x.com/RaviTeja_offl"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "raviteja_2628",
+    "x": "RaviTeja_offl"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "sai-durgha-tej": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 3788543,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/jetpanja/"
+    },
+    {
+     "platform": "x",
+     "followers": 3119025,
+     "date": "2026-11-08",
+     "url": "https://x.com/IamSaiDharamTej"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "jetpanja",
+    "x": "IamSaiDharamTej"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "sampoornesh-babu": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 108620,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/thesampoorneshbabu/"
+    },
+    {
+     "platform": "x",
+     "followers": 82804,
+     "date": "2026-11-08",
+     "url": "https://x.com/sampoornesh"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "thesampoorneshbabu",
+    "x": "sampoornesh"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "santosh-sobhan": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 199930,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/santoshsoban/"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "santoshsoban",
+    "x": null
+   },
+   "notes": "X: @santoshsoban exists but is not verified; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "satyadev": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 819782,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/actorsatyadev/"
+    },
+    {
+     "platform": "x",
+     "followers": 218740,
+     "date": "2026-11-08",
+     "url": "https://x.com/ActorSatyaDev"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "actorsatyadev",
+    "x": "ActorSatyaDev"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "sharwanand": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 1365461,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/imsharwanand/"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "imsharwanand",
+    "x": null
+   },
+   "notes": "X: @ImSharwanand exists but is not verified; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "siddhu-jonnalagadda": {
+   "counts": [],
+   "noAccount": true,
+   "usernames": {
+    "instagram": null,
+    "x": "Siddubuoyoffl"
+   },
+   "notes": "Instagram: listed @siddu_buoy shows \"page isn't available\"; no verified account found in search; X: uncertain - verified and named Siddhu Jonnalagadda but only 8.6K followers; please confirm; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "sivaji": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 391422,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/actorsivaji_/"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "actorsivaji_",
+    "x": null
+   },
+   "notes": "X: @SivajiActor exists but is not verified; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "sree-vishnu": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 537466,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/sreevishnu29/"
+    },
+    {
+     "platform": "x",
+     "followers": 172226,
+     "date": "2026-11-08",
+     "url": "https://x.com/sreevishnuoffl"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "sreevishnu29",
+    "x": "sreevishnuoffl"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "sri-simha": {
+   "counts": [
+    {
+     "platform": "x",
+     "followers": 10941,
+     "date": "2026-11-08",
+     "url": "https://x.com/Simhakoduri23"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": null,
+    "x": "Simhakoduri23"
+   },
+   "notes": "Instagram: no verified account found in search; X: verified and named Sri Simha Koduri, but bio is empty; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "srihari": {
+   "counts": [],
+   "noAccount": true,
+   "usernames": {
+    "instagram": null,
+    "x": null
+   },
+   "notes": "Instagram: no verified account found in search; X: no verified account found in search; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "srikanth": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 192549,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/srikanth.meka/"
+    },
+    {
+     "platform": "x",
+     "followers": 234636,
+     "date": "2026-11-08",
+     "url": "https://x.com/actorsrikanth"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "srikanth.meka",
+    "x": "actorsrikanth"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "srinivas-avasarala": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 169737,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/srinivasarala/"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "srinivasarala",
+    "x": null
+   },
+   "notes": "X: no verified account found in search; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "sudheer-babu": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 748943,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/isudheerbabu/"
+    },
+    {
+     "platform": "x",
+     "followers": 1000351,
+     "date": "2026-11-08",
+     "url": "https://x.com/isudheerbabu"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "isudheerbabu",
+    "x": "isudheerbabu"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "suhas": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 536053,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/suhassssssss/"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "suhassssssss",
+    "x": null
+   },
+   "notes": "X: no verified account found in search; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "sumanth": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 208228,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/sumanth_kumar/"
+    },
+    {
+     "platform": "x",
+     "followers": 1099806,
+     "date": "2026-11-08",
+     "url": "https://x.com/isumanth"
+    },
+    {
+     "platform": "youtube",
+     "followers": 255,
+     "date": "2026-11-08",
+     "url": "https://www.youtube.com/@SumanthOfficial"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "sumanth_kumar",
+    "x": "isumanth"
+   },
+   "notes": "YouTube subscribers as shown by YouTube (rounded); Facebook not checked (needs a Facebook sign-in)"
+  },
+  "sumanth-ashwin": {
+   "counts": [],
+   "noAccount": true,
+   "usernames": {
+    "instagram": null,
+    "x": null
+   },
+   "notes": "Instagram: no verified account found in search; X: @sumanthashwin exists but is not verified; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "sundeep-kishan": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 4458414,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/sundeepkishan/"
+    },
+    {
+     "platform": "x",
+     "followers": 823525,
+     "date": "2026-11-08",
+     "url": "https://x.com/sundeepkishan"
+    },
+    {
+     "platform": "youtube",
+     "followers": 74200,
+     "date": "2026-11-08",
+     "url": "https://www.youtube.com/@ActorSundeepKishan"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "sundeepkishan",
+    "x": "sundeepkishan"
+   },
+   "notes": "YouTube subscribers as shown by YouTube (rounded); Facebook not checked (needs a Facebook sign-in)"
+  },
+  "sunil": {
+   "counts": [],
+   "noAccount": true,
+   "usernames": {
+    "instagram": null,
+    "x": null
+   },
+   "notes": "Instagram: no verified account found in search; X: no verified account found in search; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "sushanth": {
+   "counts": [],
+   "noAccount": true,
+   "usernames": {
+    "instagram": null,
+    "x": null
+   },
+   "notes": "Instagram: no verified account found in search; X: no verified account found in search; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "taraka-ratna": {
+   "counts": [],
+   "noAccount": true,
+   "usernames": {
+    "instagram": null,
+    "x": null
+   },
+   "notes": "Instagram: no verified account found in search; X: no verified account found in search; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "tarun": {
+   "counts": [],
+   "noAccount": true,
+   "usernames": {
+    "instagram": null,
+    "x": null
+   },
+   "notes": "Instagram: no verified account found in search; X: no verified account found in search; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "teja-sajja": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 1119357,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/tejasajja123/"
+    },
+    {
+     "platform": "x",
+     "followers": 69905,
+     "date": "2026-11-08",
+     "url": "https://x.com/tejasajja123"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "tejasajja123",
+    "x": "tejasajja123"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "thiruveer": {
+   "counts": [],
+   "noAccount": true,
+   "usernames": {
+    "instagram": null,
+    "x": null
+   },
+   "notes": "Instagram: no verified account found in search; X: @iamThiruveeR exists but is not verified; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "uday-kiran": {
+   "counts": [],
+   "noAccount": true,
+   "usernames": {
+    "instagram": null,
+    "x": null
+   },
+   "notes": "Instagram: no verified account found in search; X: no verified account found in search; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "varun-sandesh": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 382282,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/itsvarunsandesh/"
+    },
+    {
+     "platform": "x",
+     "followers": 70830,
+     "date": "2026-11-08",
+     "url": "https://x.com/itsvarunsandesh"
+    },
+    {
+     "platform": "youtube",
+     "followers": 2050,
+     "date": "2026-11-08",
+     "url": "https://www.youtube.com/@VarunSandeshOfficial"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "itsvarunsandesh",
+    "x": "itsvarunsandesh"
+   },
+   "notes": "X: X account has no verified badge; YouTube subscribers as shown by YouTube (rounded); Facebook not checked (needs a Facebook sign-in)"
+  },
+  "varun-tej": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 3521501,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/varunkonidela7/"
+    },
+    {
+     "platform": "x",
+     "followers": 3395568,
+     "date": "2026-11-08",
+     "url": "https://x.com/IAmVarunTej"
+    },
+    {
+     "platform": "youtube",
+     "followers": 13800,
+     "date": "2026-11-08",
+     "url": "https://www.youtube.com/@IamVarunTej"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "varunkonidela7",
+    "x": "IAmVarunTej"
+   },
+   "notes": "YouTube subscribers as shown by YouTube (rounded); Facebook not checked (needs a Facebook sign-in)"
+  },
+  "venkatesh": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 1775022,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/venkateshdaggubati/"
+    },
+    {
+     "platform": "x",
+     "followers": 1058390,
+     "date": "2026-11-08",
+     "url": "https://x.com/VenkyMama"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "venkateshdaggubati",
+    "x": "VenkyMama"
+   },
+   "notes": "X: X bio says \"From the team of Venkatesh Daggubati\" (run by his team); Facebook not checked (needs a Facebook sign-in)"
+  },
+  "venu-thottempudi": {
+   "counts": [],
+   "noAccount": true,
+   "usernames": {
+    "instagram": null,
+    "x": null
+   },
+   "notes": "Instagram: no verified account found in search; X: no verified account found in search; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "vijay-deverakonda": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 23171755,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/thedeverakonda/"
+    },
+    {
+     "platform": "x",
+     "followers": 3778544,
+     "date": "2026-11-08",
+     "url": "https://x.com/TheDeverakonda"
+    },
+    {
+     "platform": "youtube",
+     "followers": 1470000,
+     "date": "2026-11-08",
+     "url": "https://www.youtube.com/@TheDeverakonda"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "thedeverakonda",
+    "x": "TheDeverakonda"
+   },
+   "notes": "YouTube subscribers as shown by YouTube (rounded); Facebook not checked (needs a Facebook sign-in)"
+  },
+  "vishnu-manchu": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 6342414,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/vishnumanchu/"
+    },
+    {
+     "platform": "x",
+     "followers": 649710,
+     "date": "2026-11-08",
+     "url": "https://x.com/iVishnuManchu"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "vishnumanchu",
+    "x": "iVishnuManchu"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "vishwak-sen": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 1409225,
+     "date": "2026-11-08",
+     "url": "https://www.instagram.com/vishwaksens/"
+    },
+    {
+     "platform": "x",
+     "followers": 132839,
+     "date": "2026-11-08",
+     "url": "https://x.com/VishwakSenActor"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "vishwaksens",
+    "x": "VishwakSenActor"
+   },
+   "notes": "Facebook not checked (needs a Facebook sign-in)"
+  }
+ }
 }

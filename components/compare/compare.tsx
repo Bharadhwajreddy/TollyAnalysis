@@ -105,7 +105,7 @@ export function Compare({ data, initial }: { data: DashboardData; initial: strin
         <div className="card p-8 text-center">
           <p className="text-[15px] font-medium text-ink">Pick 2–4 heroes to compare side by side.</p>
           <p className="mt-1 text-sm text-muted">
-            Use “Add hero” above, or tick heroes in the <Link href="/#table" className="text-wine underline">dashboard table</Link>.
+            Use “Add hero” above, or tick heroes in the <Link href="/star-score#table" className="text-wine underline">dashboard table</Link>.
           </p>
         </div>
       ) : (

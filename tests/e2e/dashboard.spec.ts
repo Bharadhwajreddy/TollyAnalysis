@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 
 test.describe("Heroes dashboard", () => {
   test("opens on one clean page with the Star Score leaderboard first", async ({ page }) => {
-    await page.goto("/");
+    await page.goto("/star-score");
     await expect(page.getByRole("heading", { level: 1 })).toContainText("Compare Telugu cinema careers");
     await expect(page.getByRole("banner").getByRole("link", { name: "How it works" }).first()).toHaveAttribute("href", "/methodology");
     const titles = await page.locator("section h2").allTextContents();
@@ -20,34 +20,34 @@ test.describe("Heroes dashboard", () => {
   });
 
   test("newcomer toggle never hides anyone already shown", async ({ page }) => {
-    await page.goto("/");
+    await page.goto("/star-score");
     const before = await page.locator("#table tbody tr").count();
     await page.getByRole("switch").click();
     expect(await page.locator("#table tbody tr").count()).toBeGreaterThanOrEqual(before);
   });
 
   test("colour can switch to film families", async ({ page }) => {
-    await page.goto("/");
+    await page.goto("/star-score");
     await page.getByRole("radio", { name: "Film family" }).click();
     await expect(page.locator("#leaderboard")).toContainText("Mega family");
   });
 
   test("search filters every chart and the table", async ({ page }) => {
-    await page.goto("/");
+    await page.goto("/star-score");
     await page.getByPlaceholder("Search a hero").fill("Satyadev");
     await expect(page.locator("#table tbody tr")).toHaveCount(1);
     await expect(page.locator("#table")).toContainText("Satyadev");
   });
 
   test("Pareto axes can be changed", async ({ page }) => {
-    await page.goto("/");
+    await page.goto("/star-score");
     const card = page.locator("#pareto-1");
     await card.getByRole("combobox").nth(1).selectOption("totalGross");
     await expect(card).toContainText("Total box office (₹ crore)");
   });
 
   test("double-tapping a hero opens his page", async ({ page }) => {
-    await page.goto("/");
+    await page.goto("/star-score");
     const row = page.locator("#table tbody tr").first();
     // The cell also holds the avatar's initials badge; the name is the longest line.
     const name = (await row.locator("td").nth(1).innerText())
@@ -61,13 +61,13 @@ test.describe("Heroes dashboard", () => {
   });
 
   test("more measures can be ranked", async ({ page }) => {
-    await page.goto("/");
+    await page.goto("/star-score");
     await page.locator("#leaderboard select").selectOption("releaseGap");
     await expect(page.locator("#leaderboard h2")).toContainText("gap between films");
   });
 
   test("fan ranking stays hidden unless switched on", async ({ page, request }) => {
-    await page.goto("/");
+    await page.goto("/star-score");
     await expect(page.locator("#fan-ranking")).toHaveCount(0);
     expect((await request.get("/api/user-ranking")).status()).toBe(404);
   });
@@ -123,7 +123,7 @@ test.describe("Other views", () => {
 });
 
 test.describe("Responsive layout", () => {
-  for (const path of ["/", "/tolly-index", "/heroes", "/hero/prabhas", "/hero/allari-naresh", "/hero/sivaji", "/rankings", "/compare", "/trends", "/methodology", "/annexure", "/annexure/registry", "/annexure/heroes/nani", "/annexure/corrections", "/annexure/sources", "/terms", "/privacy"]) {
+  for (const path of ["/", "/star-score", "/tolly-index", "/heroes", "/hero/prabhas", "/hero/allari-naresh", "/hero/sivaji", "/rankings", "/compare", "/trends", "/methodology", "/annexure", "/annexure/registry", "/annexure/heroes/nani", "/annexure/corrections", "/annexure/sources", "/terms", "/privacy"]) {
     test(`no horizontal page overflow on ${path}`, async ({ page }) => {
       await page.goto(path);
       const [scrollW, clientW] = await page.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]);
@@ -182,5 +182,57 @@ test.describe("Legal", () => {
     await page.goto("/annexure/sources");
     await expect(page.locator("body")).toContainText("IMDb non-commercial datasets");
     await expect(page.locator("body")).toContainText("CC BY-SA 4.0");
+  });
+});
+
+test.describe("Home page", () => {
+  test("leads with the Tolly Index: podium, top 10, one chart and ways to go deeper", async ({ page }) => {
+    const errors: string[] = [];
+    page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
+    await page.goto("/");
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("biggest hero");
+    await expect(page.getByRole("list", { name: "Top three heroes" }).getByRole("link")).toHaveCount(3);
+    await expect(page.locator("section:has(#top10) ol > li")).toHaveCount(10);
+    expect(await page.getByRole("list", { name: "Heroes by film score and followers" }).getByRole("link").count()).toBeGreaterThan(30);
+    // Only the essentials: the full dashboard lives on the Star Score page.
+    await expect(page.locator("#leaderboard")).toHaveCount(0);
+    await expect(page.locator("#table")).toHaveCount(0);
+    await expect(page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: "Star Score" })).toHaveAttribute("href", "/star-score");
+    await expect(page.locator("body")).not.toContainText("Panja Vaisshnav Tej");
+    expect(errors).toEqual([]);
+  });
+
+  test("find your hero opens his page", async ({ page }) => {
+    await page.goto("/");
+    await page.getByRole("searchbox", { name: "Find a hero" }).fill("prab");
+    await page.getByRole("list", { name: "Matching heroes" }).getByRole("link", { name: /Prabhas/ }).click();
+    await expect(page).toHaveURL(/\/hero\/prabhas$/);
+  });
+
+  test("the opening animation is skipped for reduced motion and never blocks the page", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.getByTestId("intro")).toHaveCount(0);
+  });
+});
+
+test.describe("Opening animation", () => {
+  test.use({ reducedMotion: "no-preference" });
+
+  test("plays once per session, can be skipped, and clears itself", async ({ page }) => {
+    const errors: string[] = [];
+    page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
+    await page.goto("/");
+    await expect(page.getByTestId("intro")).toBeVisible();
+    await page.getByRole("button", { name: "Skip intro" }).click();
+    await expect(page.getByTestId("intro")).toHaveCount(0);
+    await page.reload();
+    await expect(page.getByTestId("intro")).toBeHidden();
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+    expect(errors).toEqual([]);
+  });
+
+  test("ends by itself", async ({ page }) => {
+    await page.goto("/heroes");
+    await expect(page.getByTestId("intro")).toHaveCount(0, { timeout: 8000 });
   });
 });

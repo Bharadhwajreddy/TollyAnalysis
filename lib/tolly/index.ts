@@ -49,6 +49,8 @@ export const FAME_WEIGHT = 0.15;
 export const FAME_LOG10_FLOOR = 4;
 export const FAME_LOG10_CEILING = 8;
 export const FAME_MAX_AGE_DAYS = 365;
+/** Fame adds up the two platforms checked for every hero; other platforms are shown on profiles only. */
+export const FAME_PLATFORMS: readonly string[] = ["instagram", "x"];
 
 export type FilmStatus = "complete" | "provisional" | "incomplete" | "excluded";
 
@@ -277,7 +279,7 @@ export function applyFame(heroes: TollyHeroResult[], followers: HeroFollowers[],
   const bySlug = new Map(followers.map((f) => [f.slug, f]));
   const fresh = (date: string) => (new Date(asOf).getTime() - new Date(date).getTime()) / 86_400_000 <= FAME_MAX_AGE_DAYS;
   for (const h of heroes) {
-    const counts = (bySlug.get(h.slug)?.counts ?? []).filter((c) => c.followers > 0 && fresh(c.date));
+    const counts = (bySlug.get(h.slug)?.counts ?? []).filter((c) => FAME_PLATFORMS.includes(c.platform) && c.followers > 0 && fresh(c.date));
     const total = counts.reduce((a, c) => a + c.followers, 0);
     h.filmIndex = h.index;
     h.followers = counts.length ? { total, asOf: counts.map((c) => c.date).sort()[0] } : null;

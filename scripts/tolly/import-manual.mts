@@ -57,7 +57,7 @@ function parseCount(s: string): number | null {
   return Math.round(Number(m[1]) * (m[2] ? mult[m[2].toLowerCase()] : 1));
 }
 
-/** How far a rounded display like "28.4M" can be from the exact count: half its last digit. */
+/** Half the last digit of a display like "28.4M". Profiles round or cut off, so a full digit is allowed. */
 function toleranceOf(shown: string): number {
   const m = shown.replace(/,/g, "").trim().match(/^\d+(?:\.(\d+))?\s*([kmb]|lakh|lakhs|crore|cr)?$/i);
   if (!m) return 0;
@@ -90,17 +90,20 @@ if (existsSync(heroFile)) {
       const b = shown ? parseCount(shown) : null;
       const value = a ?? b;
       if (value === null) return problems.push(`${slug}: ${platform} count "${n || shown}" is not a number`);
-      if (a !== null && b !== null && Math.abs(a - b) > toleranceOf(shown as string) + 0.01 * a) problems.push(`${slug}: ${platform} ${a} does not match "${shown}" (kept ${a})`);
+      if (a !== null && b !== null && Math.abs(a - b) > 2 * toleranceOf(shown as string) + 0.01 * a) problems.push(`${slug}: ${platform} ${a} does not match "${shown}" (kept ${a})`);
       if (!isDate(date)) return problems.push(`${slug}: ${platform} count has no checked_on date (YYYY-MM-DD); not used`);
       counts.push({ platform, followers: value, date, url });
     };
     if (r.instagram_verified && !/^y/i.test(r.instagram_verified) && (r.instagram_followers || r.instagram_followers_as_shown)) {
       problems.push(`${slug}: Instagram account is not verified; not used`);
     } else take("instagram", r.instagram_followers, r.instagram_followers_as_shown, r.instagram_username ? `https://www.instagram.com/${r.instagram_username}/` : null);
-    take("x", r.x_followers, r.x_followers_as_shown, r.x_username ? `https://x.com/${r.x_username}` : null);
+    // An account the editor could not confirm is the hero's own is never used.
+    if (/\bX: uncertain/i.test(r.notes ?? "") && (r.x_followers || r.x_followers_as_shown)) problems.push(`${slug}: X account is marked uncertain; not used`);
+    else take("x", r.x_followers, r.x_followers_as_shown, r.x_username ? `https://x.com/${r.x_username}` : null);
     take("youtube", r.youtube_subscribers, undefined, r.youtube_channel_url || null);
     take("facebook", r.facebook_followers, undefined, r.facebook_page_url || null);
-    const noAccount = !counts.length && (/no (official |verified )?account|not on (instagram|x|social)/i.test(r.notes ?? "") || !!facts[slug]?.deathDate);
+    // Fame uses Instagram and X only (the two checked for every hero), so "no account" means neither.
+    const noAccount = !counts.some((c) => c.platform === "instagram" || c.platform === "x") && (/no (official |verified )?account|not on (instagram|x|social)/i.test(r.notes ?? "") || !!facts[slug]?.deathDate);
     heroes[slug] = { counts, noAccount, usernames: { instagram: r.instagram_username || null, x: r.x_username || null }, notes: r.notes || null };
   }
   writeFileSync(

@@ -507,7 +507,7 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
         <Link href={`/annexure/corrections?hero=${encodeURIComponent(hero.name)}`} className="rounded-md border border-line bg-surface px-3 py-2 font-medium text-ink hover:border-ink-2">
           Suggest a correction
         </Link>
-        <Link href="/#how" className="rounded-md border border-line bg-surface px-3 py-2 font-medium text-ink hover:border-ink-2">
+        <Link href="/methodology#how" className="rounded-md border border-line bg-surface px-3 py-2 font-medium text-ink hover:border-ink-2">
           How these numbers are calculated
         </Link>
       </div>

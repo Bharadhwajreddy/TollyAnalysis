@@ -7,9 +7,17 @@ import { tollyIndexEnabled } from "@/lib/features";
 // Inlined at build time; lib/env.ts is server-only.
 const REAL_DATA = !["demo", "live"].includes(process.env.NEXT_PUBLIC_DATA_MODE ?? "");
 
+const TOLLY = REAL_DATA && tollyIndexEnabled();
+
+// With the Tolly Index on, the home page leads with it and the career dashboard is "Star Score".
 const NAV = [
-  { href: "/", label: "Overview" },
-  ...(REAL_DATA && tollyIndexEnabled() ? [{ href: "/tolly-index", label: "Tolly Index" }] : []),
+  { href: "/", label: TOLLY ? "Home" : "Overview" },
+  ...(TOLLY
+    ? [
+        { href: "/tolly-index", label: "Tolly Index" },
+        { href: "/star-score", label: "Star Score" },
+      ]
+    : []),
   { href: "/heroes", label: "Heroes" },
   { href: "/rankings", label: "Rankings" },
   { href: "/compare", label: "Compare" },

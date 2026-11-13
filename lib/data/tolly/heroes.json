@@ -9,72 +9,80 @@
    "stay": 0.2
   },
   "minVotes": 10,
+  "fame": {
+   "weight": 0.15,
+   "applied": true,
+   "missing": 0,
+   "missingHeroes": []
+  },
   "sources": {
    "imdb": "IMDb non-commercial datasets (title.basics, title.ratings, title.principals, title.akas), 2026-10-15",
    "wikidata": "Wikidata query service (CC0): films by cast, release dates, languages, IMDb ids, language editions",
-   "wikipedia": "Wikimedia page views via the MediaWiki API, English + Telugu, 2026-08-14 to 2026-10-12"
+   "wikipedia": "Wikimedia page views via the MediaWiki API, English + Telugu, 2026-08-27 to 2026-10-25"
   },
   "films": {
-   "total": 1297,
-   "complete": 1109,
+   "total": 1296,
+   "complete": 1112,
    "provisional": 85,
-   "incomplete": 88,
+   "incomplete": 84,
    "excluded": 15
   },
   "heroes": {
    "total": 71,
-   "qualified": 52
+   "qualified": 53
   },
   "provenance": {
    "imdb": {
     "wikidata": 1163,
     "imdb cast list": 71,
-    "missing": 35,
+    "missing": 32,
     "unique imdb title and year": 18,
+    "editor lookup": 2,
     "imdb indian titles (close title and year)": 7,
     "imdb cast list (close title)": 3
    },
    "wikidata": {
     "wikipedia": 1177,
-    "missing": 109,
+    "missing": 107,
     "wikidata cast list": 6,
-    "imdb id on wikidata": 5
+    "imdb id on wikidata": 6
    },
    "releaseDate": {
-    "wikipedia": 1179,
-    "missing": 114,
+    "wikipedia": 1180,
+    "missing": 112,
     "wikidata": 4
    },
    "language": {
     "wikipedia": 1184,
-    "filmography": 105,
-    "wikidata": 8
+    "filmography": 103,
+    "wikidata": 9
    }
   },
   "missing": {
-   "IMDb rating with 10+ votes": 55,
-   "IMDb title": 33,
-   "release year from a second source": 34
+   "IMDb title": 30,
+   "release year from a second source": 31,
+   "IMDb rating with 10+ votes": 53,
+   "Wikipedia page views": 1
   },
   "critics": {
-   "films": 417,
+   "films": 418,
    "correlation": 0.56
   },
   "movielens": {
-   "films": 207,
-   "with10": 60,
-   "correlation": 0.69
+   "films": 0,
+   "with10": 0,
+   "correlation": null
   },
   "tmdb": {
    "films": 1162,
-   "with10": 422,
-   "correlation": 0.85
+   "with10": 433,
+   "correlation": 0.84
   },
   "leadCheck": {
-   "credits": 1336,
-   "top3": 1065,
-   "lower": 127,
-   "notListed": 144
+   "credits": 1335,
+   "top3": 1060,
+   "lower": 132,
+   "notListed": 143
   }
  },
  "heroes": [
@@ -88,32 +96,38 @@
    "judged": 19,
    "qualified": true,
    "reason": null,
-   "index": 73.8,
-   "band": 3.5,
+   "index": 76.1,
+   "band": 3,
    "best": [
     {
      "title": "Pushpa: The Rise",
      "year": 2021,
-     "index": 85.9
+     "index": 86.1
     },
     {
      "title": "Vedam",
      "year": 2010,
-     "index": 85.6
+     "index": 85.7
     },
     {
      "title": "Arya",
      "year": 2004,
-     "index": 85.5
+     "index": 85.4
     }
    ],
    "spread": 8.4,
    "pillars": {
-    "rating": 61.7,
+    "rating": 61.8,
     "reach": 93.1,
-    "stay": 90.2
+    "stay": 90
    },
    "missing": [],
+   "filmIndex": 73.8,
+   "followers": {
+    "total": 36373898,
+    "asOf": "2026-11-08"
+   },
+   "fame": 89,
    "profile": {
     "slug": "allu-arjun",
     "imdb": [
@@ -136,8 +150,8 @@
    "judged": 26,
    "qualified": true,
    "reason": null,
-   "index": 73.5,
-   "band": 3.4,
+   "index": 75.5,
+   "band": 2.9,
    "best": [
     {
      "title": "Pokiri",
@@ -147,21 +161,27 @@
     {
      "title": "Athadu",
      "year": 2005,
-     "index": 88
+     "index": 87.6
     },
     {
-     "title": "Okkadu",
-     "year": 2003,
-     "index": 87.9
+     "title": "1: Nenokkadine",
+     "year": 2014,
+     "index": 87.6
     }
    ],
    "spread": 9.4,
    "pillars": {
     "rating": 61.1,
     "reach": 91.4,
-    "stay": 88.5
+    "stay": 88.6
    },
    "missing": [],
+   "filmIndex": 73.5,
+   "followers": {
+    "total": 28783399,
+    "asOf": "2026-11-08"
+   },
+   "fame": 86.5,
    "profile": {
     "slug": "mahesh-babu",
     "imdb": [
@@ -184,8 +204,8 @@
    "judged": 27,
    "qualified": true,
    "reason": null,
-   "index": 71.5,
-   "band": 3.2,
+   "index": 73,
+   "band": 2.7,
    "best": [
     {
      "title": "Eega",
@@ -195,21 +215,27 @@
     {
      "title": "Hi Nanna",
      "year": 2023,
-     "index": 86.2
+     "index": 86.5
     },
     {
      "title": "Shyam Singha Roy",
      "year": 2021,
-     "index": 83.6
+     "index": 84.1
     }
    ],
    "spread": 8.9,
    "pillars": {
     "rating": 64.5,
     "reach": 79.7,
-    "stay": 87.1
+    "stay": 88.8
    },
    "missing": [],
+   "filmIndex": 71.8,
+   "followers": {
+    "total": 15542803,
+    "asOf": "2026-11-08"
+   },
+   "fame": 79.8,
    "profile": {
     "slug": "nani",
     "imdb": [
@@ -232,18 +258,18 @@
    "judged": 12,
    "qualified": true,
    "reason": null,
-   "index": 70.5,
-   "band": 4.9,
+   "index": 72.8,
+   "band": 4.2,
    "best": [
     {
      "title": "RRR",
      "year": 2022,
-     "index": 87.7
+     "index": 87.6
     },
     {
      "title": "Rangasthalam",
      "year": 2018,
-     "index": 87.6
+     "index": 87.4
     },
     {
      "title": "Magadheera",
@@ -251,13 +277,19 @@
      "index": 87.2
     }
    ],
-   "spread": 9.6,
+   "spread": 9.7,
    "pillars": {
     "rating": 58.2,
     "reach": 92.1,
-    "stay": 88.7
+    "stay": 88.6
    },
    "missing": [],
+   "filmIndex": 70.5,
+   "followers": {
+    "total": 27632358,
+    "asOf": "2026-11-08"
+   },
+   "fame": 86,
    "profile": {
     "slug": "ram-charan",
     "imdb": [
@@ -266,6 +298,60 @@
     "birthDate": "1985-03-27",
     "birthDateBy": "wikidata",
     "debutYear": 2007,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": true
+   }
+  },
+  {
+   "slug": "vijay-deverakonda",
+   "name": "Vijay Deverakonda",
+   "films": 11,
+   "excluded": 0,
+   "provisional": 1,
+   "complete": 10,
+   "judged": 10,
+   "qualified": true,
+   "reason": null,
+   "index": 71.6,
+   "band": 5.2,
+   "best": [
+    {
+     "title": "Arjun Reddy",
+     "year": 2017,
+     "index": 87.7
+    },
+    {
+     "title": "Pelli Choopulu",
+     "year": 2016,
+     "index": 85.3
+    },
+    {
+     "title": "Geetha Govindam",
+     "year": 2018,
+     "index": 85.3
+    }
+   ],
+   "spread": 11.2,
+   "pillars": {
+    "rating": 57.5,
+    "reach": 88.2,
+    "stay": 91.1
+   },
+   "missing": [],
+   "filmIndex": 69.1,
+   "followers": {
+    "total": 26950299,
+    "asOf": "2026-11-08"
+   },
+   "fame": 85.8,
+   "profile": {
+    "slug": "vijay-deverakonda",
+    "imdb": [
+     "nm4797922"
+    ],
+    "birthDate": "1989-05-09",
+    "birthDateBy": "wikidata",
+    "debutYear": 2011,
     "debutYearBy": "wikidata",
     "hasFreePhoto": true
    }
@@ -280,8 +366,8 @@
    "judged": 22,
    "qualified": true,
    "reason": null,
-   "index": 69.7,
-   "band": 3.7,
+   "index": 71.3,
+   "band": 3.1,
    "best": [
     {
      "title": "Baahubali 2: The Conclusion",
@@ -299,13 +385,19 @@
      "index": 82.9
     }
    ],
-   "spread": 9.5,
+   "spread": 9.3,
    "pillars": {
     "rating": 55.4,
-    "reach": 88.8,
-    "stay": 87.3
+    "reach": 88.7,
+    "stay": 89.3
    },
    "missing": [],
+   "filmIndex": 70,
+   "followers": {
+    "total": 14083452,
+    "asOf": "2026-11-08"
+   },
+   "fame": 78.7,
    "profile": {
     "slug": "prabhas",
     "imdb": [
@@ -314,102 +406,6 @@
     "birthDate": "1979-10-23",
     "birthDateBy": "wikidata",
     "debutYear": 2002,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": true
-   }
-  },
-  {
-   "slug": "vijay-deverakonda",
-   "name": "Vijay Deverakonda",
-   "films": 11,
-   "excluded": 0,
-   "provisional": 1,
-   "complete": 10,
-   "judged": 10,
-   "qualified": true,
-   "reason": null,
-   "index": 68.4,
-   "band": 6.3,
-   "best": [
-    {
-     "title": "Arjun Reddy",
-     "year": 2017,
-     "index": 87.5
-    },
-    {
-     "title": "Geetha Govindam",
-     "year": 2018,
-     "index": 84.9
-    },
-    {
-     "title": "Pelli Choopulu",
-     "year": 2016,
-     "index": 84.4
-    }
-   ],
-   "spread": 11.5,
-   "pillars": {
-    "rating": 57.5,
-    "reach": 88.1,
-    "stay": 86.9
-   },
-   "missing": [],
-   "profile": {
-    "slug": "vijay-deverakonda",
-    "imdb": [
-     "nm4797922"
-    ],
-    "birthDate": "1989-05-09",
-    "birthDateBy": "wikidata",
-    "debutYear": 2011,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": true
-   }
-  },
-  {
-   "slug": "chiranjeevi",
-   "name": "Chiranjeevi",
-   "films": 17,
-   "excluded": 0,
-   "provisional": 1,
-   "complete": 16,
-   "judged": 16,
-   "qualified": true,
-   "reason": null,
-   "index": 67,
-   "band": 4.2,
-   "best": [
-    {
-     "title": "Indra",
-     "year": 2002,
-     "index": 84.5
-    },
-    {
-     "title": "Tagore",
-     "year": 2003,
-     "index": 83.1
-    },
-    {
-     "title": "Sye Raa Narasimha Reddy",
-     "year": 2019,
-     "index": 79.4
-    }
-   ],
-   "spread": 9.3,
-   "pillars": {
-    "rating": 57.2,
-    "reach": 80.1,
-    "stay": 84.7
-   },
-   "missing": [],
-   "profile": {
-    "slug": "chiranjeevi",
-    "imdb": [
-     "nm0158112"
-    ],
-    "birthDate": "1955-08-22",
-    "birthDateBy": "wikidata",
-    "debutYear": 1978,
     "debutYearBy": "wikidata",
     "hasFreePhoto": true
    }
@@ -424,32 +420,38 @@
    "judged": 20,
    "qualified": true,
    "reason": null,
-   "index": 66.6,
-   "band": 4,
+   "index": 67.8,
+   "band": 3.4,
    "best": [
     {
      "title": "Kushi",
      "year": 2001,
-     "index": 84.4
-    },
-    {
-     "title": "Attarintiki Daredi",
-     "year": 2013,
-     "index": 82.7
+     "index": 84.5
     },
     {
      "title": "Jalsa",
      "year": 2008,
-     "index": 82.5
+     "index": 83
+    },
+    {
+     "title": "Attarintiki Daredi",
+     "year": 2013,
+     "index": 82.9
     }
    ],
-   "spread": 9.7,
+   "spread": 9.8,
    "pillars": {
     "rating": 55.2,
-    "reach": 83.1,
-    "stay": 79.4
+    "reach": 83,
+    "stay": 78.9
    },
    "missing": [],
+   "filmIndex": 66.5,
+   "followers": {
+    "total": 10286274,
+    "asOf": "2026-11-08"
+   },
+   "fame": 75.3,
    "profile": {
     "slug": "pawan-kalyan",
     "imdb": [
@@ -472,13 +474,13 @@
    "judged": 29,
    "qualified": true,
    "reason": null,
-   "index": 65.5,
-   "band": 4.5,
+   "index": 67.8,
+   "band": 3.7,
    "best": [
     {
      "title": "RRR",
      "year": 2022,
-     "index": 87.7
+     "index": 87.6
     },
     {
      "title": "Simhadri",
@@ -491,13 +493,19 @@
      "index": 82.6
     }
    ],
-   "spread": 12.8,
+   "spread": 12.5,
    "pillars": {
     "rating": 53.2,
-    "reach": 81.8,
-    "stay": 77.2
+    "reach": 81.6,
+    "stay": 78.1
    },
    "missing": [],
+   "filmIndex": 65.6,
+   "followers": {
+    "total": 15929149,
+    "asOf": "2026-11-08"
+   },
+   "fame": 80.1,
    "profile": {
     "slug": "jr-ntr",
     "imdb": [
@@ -506,6 +514,60 @@
     "birthDate": "1983-05-20",
     "birthDateBy": "wikidata",
     "debutYear": 2001,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": true
+   }
+  },
+  {
+   "slug": "chiranjeevi",
+   "name": "Chiranjeevi",
+   "films": 17,
+   "excluded": 0,
+   "provisional": 1,
+   "complete": 16,
+   "judged": 16,
+   "qualified": true,
+   "reason": null,
+   "index": 67.5,
+   "band": 3.7,
+   "best": [
+    {
+     "title": "Indra",
+     "year": 2002,
+     "index": 84.5
+    },
+    {
+     "title": "Tagore",
+     "year": 2003,
+     "index": 83.5
+    },
+    {
+     "title": "Shankar Dada M.B.B.S.",
+     "year": 2004,
+     "index": 79.6
+    }
+   ],
+   "spread": 9.5,
+   "pillars": {
+    "rating": 57.2,
+    "reach": 80.4,
+    "stay": 84.4
+   },
+   "missing": [],
+   "filmIndex": 67.1,
+   "followers": {
+    "total": 6066828,
+    "asOf": "2026-11-08"
+   },
+   "fame": 69.6,
+   "profile": {
+    "slug": "chiranjeevi",
+    "imdb": [
+     "nm0158112"
+    ],
+    "birthDate": "1955-08-22",
+    "birthDateBy": "wikidata",
+    "debutYear": 1978,
     "debutYearBy": "wikidata",
     "hasFreePhoto": true
    }
@@ -520,13 +582,13 @@
    "judged": 9,
    "qualified": true,
    "reason": null,
-   "index": 64.2,
-   "band": 9.8,
+   "index": 63.2,
+   "band": 8.3,
    "best": [
     {
      "title": "Major",
      "year": 2022,
-     "index": 84.4
+     "index": 83.7
     },
     {
      "title": "HIT: The Second Case",
@@ -543,9 +605,15 @@
    "pillars": {
     "rating": 67.9,
     "reach": 68.1,
-    "stay": 63
+    "stay": 61.4
    },
    "missing": [],
+   "filmIndex": 64.1,
+   "followers": {
+    "total": 2120798,
+    "asOf": "2026-11-08"
+   },
+   "fame": 58.2,
    "profile": {
     "slug": "adivi-sesh",
     "imdb": [
@@ -554,6 +622,114 @@
     "birthDate": "1985-12-17",
     "birthDateBy": "wikidata",
     "debutYear": 2002,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": true
+   }
+  },
+  {
+   "slug": "rana-daggubati",
+   "name": "Rana Daggubati",
+   "films": 8,
+   "excluded": 1,
+   "provisional": 0,
+   "complete": 7,
+   "judged": 7,
+   "qualified": true,
+   "reason": null,
+   "index": 63,
+   "band": 6,
+   "best": [
+    {
+     "title": "Leader",
+     "year": 2010,
+     "index": 77.9
+    },
+    {
+     "title": "Kaadan",
+     "year": 2021,
+     "index": 70.6
+    },
+    {
+     "title": "Bheemla Nayak",
+     "year": 2022,
+     "index": 70.4
+    }
+   ],
+   "spread": 11.3,
+   "pillars": {
+    "rating": 58.4,
+    "reach": 70.5,
+    "stay": 64
+   },
+   "missing": [],
+   "filmIndex": 60.7,
+   "followers": {
+    "total": 11310978,
+    "asOf": "2026-11-08"
+   },
+   "fame": 76.3,
+   "profile": {
+    "slug": "rana-daggubati",
+    "imdb": [
+     "nm2281292"
+    ],
+    "birthDate": "1984-12-14",
+    "birthDateBy": "wikidata",
+    "debutYear": 2010,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": true
+   }
+  },
+  {
+   "slug": "varun-tej",
+   "name": "Varun Tej",
+   "films": 15,
+   "excluded": 1,
+   "provisional": 2,
+   "complete": 12,
+   "judged": 12,
+   "qualified": true,
+   "reason": null,
+   "index": 62.5,
+   "band": 3.8,
+   "best": [
+    {
+     "title": "Fidaa",
+     "year": 2017,
+     "index": 79.1
+    },
+    {
+     "title": "Tholi Prema",
+     "year": 2018,
+     "index": 73.6
+    },
+    {
+     "title": "Kanche",
+     "year": 2015,
+     "index": 73.4
+    }
+   ],
+   "spread": 8.8,
+   "pillars": {
+    "rating": 55.9,
+    "reach": 68.5,
+    "stay": 71.1
+   },
+   "missing": [],
+   "filmIndex": 61,
+   "followers": {
+    "total": 6917069,
+    "asOf": "2026-11-08"
+   },
+   "fame": 71,
+   "profile": {
+    "slug": "varun-tej",
+    "imdb": [
+     "nm7674551"
+    ],
+    "birthDate": "1990-01-19",
+    "birthDateBy": "wikidata",
+    "debutYear": 2014,
     "debutYearBy": "wikidata",
     "hasFreePhoto": true
    }
@@ -568,32 +744,38 @@
    "judged": 31,
    "qualified": true,
    "reason": null,
-   "index": 62.4,
-   "band": 3.9,
+   "index": 62.2,
+   "band": 3.4,
    "best": [
     {
      "title": "Nuvvu Naaku Nachav",
      "year": 2001,
-     "index": 88.2
+     "index": 88.1
     },
     {
      "title": "Drushyam",
      "year": 2014,
-     "index": 82.6
+     "index": 83.5
     },
     {
      "title": "Malliswari",
      "year": 2004,
-     "index": 82.3
+     "index": 82.2
     }
    ],
-   "spread": 11.4,
+   "spread": 11.5,
    "pillars": {
     "rating": 58.4,
-    "reach": 67.2,
-    "stay": 69.6
+    "reach": 67.1,
+    "stay": 69.3
    },
    "missing": [],
+   "filmIndex": 62.3,
+   "followers": {
+    "total": 2833412,
+    "asOf": "2026-11-08"
+   },
+   "fame": 61.3,
    "profile": {
     "slug": "venkatesh",
     "imdb": [
@@ -616,8 +798,8 @@
    "judged": 54,
    "qualified": true,
    "reason": null,
-   "index": 61.4,
-   "band": 2.8,
+   "index": 61.7,
+   "band": 2.5,
    "best": [
     {
      "title": "Kick",
@@ -632,16 +814,22 @@
     {
      "title": "Khadgam",
      "year": 2002,
-     "index": 82.3
+     "index": 81.8
     }
    ],
-   "spread": 10.4,
+   "spread": 10.6,
    "pillars": {
     "rating": 54.1,
-    "reach": 63.9,
-    "stay": 77
+    "reach": 63.8,
+    "stay": 73.2
    },
    "missing": [],
+   "filmIndex": 60.8,
+   "followers": {
+    "total": 4575752,
+    "asOf": "2026-11-08"
+   },
+   "fame": 66.5,
    "profile": {
     "slug": "ravi-teja",
     "imdb": [
@@ -650,158 +838,6 @@
     "birthDate": "1962-01-26",
     "birthDateBy": "wikidata",
     "debutYear": 1997,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": true
-   }
-  },
-  {
-   "slug": "varun-tej",
-   "name": "Varun Tej",
-   "films": 15,
-   "excluded": 1,
-   "provisional": 2,
-   "complete": 12,
-   "judged": 12,
-   "qualified": true,
-   "reason": null,
-   "index": 61.4,
-   "band": 4.5,
-   "best": [
-    {
-     "title": "Fidaa",
-     "year": 2017,
-     "index": 79.9
-    },
-    {
-     "title": "Kanche",
-     "year": 2015,
-     "index": 74.2
-    },
-    {
-     "title": "Tholi Prema",
-     "year": 2018,
-     "index": 74.2
-    }
-   ],
-   "spread": 8.9,
-   "pillars": {
-    "rating": 55.9,
-    "reach": 68.4,
-    "stay": 73.7
-   },
-   "missing": [],
-   "profile": {
-    "slug": "varun-tej",
-    "imdb": [
-     "nm7674551"
-    ],
-    "birthDate": "1990-01-19",
-    "birthDateBy": "wikidata",
-    "debutYear": 2014,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": true
-   }
-  },
-  {
-   "slug": "rana-daggubati",
-   "name": "Rana Daggubati",
-   "films": 8,
-   "excluded": 1,
-   "provisional": 0,
-   "complete": 7,
-   "judged": 7,
-   "qualified": true,
-   "reason": null,
-   "index": 60.7,
-   "band": 7.2,
-   "best": [
-    {
-     "title": "Leader",
-     "year": 2010,
-     "index": 77.3
-    },
-    {
-     "title": "Kaadan",
-     "year": 2021,
-     "index": 71.1
-    },
-    {
-     "title": "Bheemla Nayak",
-     "year": 2022,
-     "index": 70.7
-    }
-   ],
-   "spread": 11.3,
-   "pillars": {
-    "rating": 58.4,
-    "reach": 70.4,
-    "stay": 64.1
-   },
-   "missing": [],
-   "profile": {
-    "slug": "rana-daggubati",
-    "imdb": [
-     "nm2281292"
-    ],
-    "birthDate": "1984-12-14",
-    "birthDateBy": "wikidata",
-    "debutYear": 2010,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": true
-   }
-  },
-  {
-   "slug": "nagarjuna",
-   "name": "Nagarjuna",
-   "films": 36,
-   "excluded": 0,
-   "provisional": 1,
-   "complete": 34,
-   "judged": 35,
-   "qualified": true,
-   "reason": null,
-   "index": 59.7,
-   "band": 3.1,
-   "best": [
-    {
-     "title": "Manmadhudu",
-     "year": 2002,
-     "index": 87
-    },
-    {
-     "title": "Mass",
-     "year": 2004,
-     "index": 74.2
-    },
-    {
-     "title": "Santosham",
-     "year": 2002,
-     "index": 74
-    }
-   ],
-   "spread": 9.2,
-   "pillars": {
-    "rating": 53.6,
-    "reach": 66.5,
-    "stay": 67.7
-   },
-   "missing": [
-    {
-     "title": "Snehamante Idera",
-     "year": 2001,
-     "missing": [
-      "IMDb rating with 10+ votes"
-     ]
-    }
-   ],
-   "profile": {
-    "slug": "nagarjuna",
-    "imdb": [
-     "nm0015459"
-    ],
-    "birthDate": "1959-08-29",
-    "birthDateBy": "wikidata",
-    "debutYear": 1961,
     "debutYearBy": "wikidata",
     "hasFreePhoto": true
    }
@@ -816,32 +852,38 @@
    "judged": 19,
    "qualified": true,
    "reason": null,
-   "index": 59.4,
-   "band": 4.6,
+   "index": 61.7,
+   "band": 4,
    "best": [
     {
      "title": "Ye Maaya Chesave",
      "year": 2010,
-     "index": 80.8
+     "index": 80.9
     },
     {
      "title": "Majili",
      "year": 2019,
-     "index": 79.6
+     "index": 79.3
     },
     {
      "title": "100% Love",
      "year": 2011,
-     "index": 75.5
+     "index": 75.8
     }
    ],
-   "spread": 11,
+   "spread": 11.1,
    "pillars": {
     "rating": 55.1,
     "reach": 66.2,
-    "stay": 63.4
+    "stay": 63
    },
    "missing": [],
+   "filmIndex": 59.3,
+   "followers": {
+    "total": 9962561,
+    "asOf": "2026-11-08"
+   },
+   "fame": 75,
    "profile": {
     "slug": "naga-chaitanya",
     "imdb": [
@@ -850,6 +892,60 @@
     "birthDate": "1986-11-23",
     "birthDateBy": "wikidata",
     "debutYear": 2009,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": true
+   }
+  },
+  {
+   "slug": "nagarjuna",
+   "name": "Nagarjuna",
+   "films": 36,
+   "excluded": 0,
+   "provisional": 1,
+   "complete": 35,
+   "judged": 35,
+   "qualified": true,
+   "reason": null,
+   "index": 61.3,
+   "band": 2.6,
+   "best": [
+    {
+     "title": "Manmadhudu",
+     "year": 2002,
+     "index": 87.3
+    },
+    {
+     "title": "Mass",
+     "year": 2004,
+     "index": 74.1
+    },
+    {
+     "title": "Santosham",
+     "year": 2002,
+     "index": 73.6
+    }
+   ],
+   "spread": 9.1,
+   "pillars": {
+    "rating": 53.7,
+    "reach": 66.4,
+    "stay": 68.1
+   },
+   "missing": [],
+   "filmIndex": 59.8,
+   "followers": {
+    "total": 6008072,
+    "asOf": "2026-11-08"
+   },
+   "fame": 69.5,
+   "profile": {
+    "slug": "nagarjuna",
+    "imdb": [
+     "nm0015459"
+    ],
+    "birthDate": "1959-08-29",
+    "birthDateBy": "wikidata",
+    "debutYear": 1961,
     "debutYearBy": "wikidata",
     "hasFreePhoto": true
    }
@@ -864,8 +960,8 @@
    "judged": 20,
    "qualified": true,
    "reason": null,
-   "index": 59.1,
-   "band": 3.2,
+   "index": 61.1,
+   "band": 2.8,
    "best": [
     {
      "title": "Ready",
@@ -875,7 +971,7 @@
     {
      "title": "Hello Guru Prema Kosame",
      "year": 2018,
-     "index": 71.9
+     "index": 73.3
     },
     {
      "title": "Nenu Sailaja",
@@ -883,13 +979,19 @@
      "index": 69.7
     }
    ],
-   "spread": 7.8,
+   "spread": 7.9,
    "pillars": {
     "rating": 53.2,
     "reach": 66.2,
-    "stay": 67
+    "stay": 67.7
    },
    "missing": [],
+   "filmIndex": 59.2,
+   "followers": {
+    "total": 7285623,
+    "asOf": "2026-11-08"
+   },
+   "fame": 71.6,
    "profile": {
     "slug": "ram-pothineni",
     "imdb": [
@@ -898,63 +1000,6 @@
     "birthDate": "1988-05-15",
     "birthDateBy": "wikidata",
     "debutYear": 2006,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": true
-   }
-  },
-  {
-   "slug": "sharwanand",
-   "name": "Sharwanand",
-   "films": 25,
-   "excluded": 2,
-   "provisional": 2,
-   "complete": 20,
-   "judged": 21,
-   "qualified": true,
-   "reason": null,
-   "index": 58,
-   "band": 4.8,
-   "best": [
-    {
-     "title": "Prasthanam",
-     "year": 2010,
-     "index": 80.1
-    },
-    {
-     "title": "Gamyam",
-     "year": 2008,
-     "index": 77.9
-    },
-    {
-     "title": "Run Raja Run",
-     "year": 2014,
-     "index": 68.8
-    }
-   ],
-   "spread": 11.2,
-   "pillars": {
-    "rating": 60.5,
-    "reach": 54.8,
-    "stay": 56.1
-   },
-   "missing": [
-    {
-     "title": "Aidho Tareekhu",
-     "year": 2004,
-     "missing": [
-      "IMDb title",
-      "release year from a second source"
-     ]
-    }
-   ],
-   "profile": {
-    "slug": "sharwanand",
-    "imdb": [
-     "nm2319565"
-    ],
-    "birthDate": "1984-03-06",
-    "birthDateBy": "wikidata",
-    "debutYear": 2004,
     "debutYearBy": "wikidata",
     "hasFreePhoto": true
    }
@@ -969,32 +1014,38 @@
    "judged": 27,
    "qualified": true,
    "reason": null,
-   "index": 57.3,
-   "band": 4.5,
+   "index": 59.1,
+   "band": 3.8,
    "best": [
     {
      "title": "Sye",
      "year": 2004,
-     "index": 80.8
+     "index": 80.7
     },
     {
      "title": "A Aa",
      "year": 2016,
-     "index": 78.2
+     "index": 77.8
     },
     {
      "title": "Bheeshma",
      "year": 2020,
-     "index": 71.5
+     "index": 71.9
     }
    ],
-   "spread": 11.6,
+   "spread": 11.7,
    "pillars": {
     "rating": 53.6,
     "reach": 61,
     "stay": 59
    },
    "missing": [],
+   "filmIndex": 57.3,
+   "followers": {
+    "total": 6088978,
+    "asOf": "2026-11-08"
+   },
+   "fame": 69.6,
    "profile": {
     "slug": "nithiin",
     "imdb": [
@@ -1003,6 +1054,69 @@
     "birthDate": "1983-03-30",
     "birthDateBy": "wikidata",
     "debutYear": 2002,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": true
+   }
+  },
+  {
+   "slug": "sharwanand",
+   "name": "Sharwanand",
+   "films": 25,
+   "excluded": 2,
+   "provisional": 2,
+   "complete": 20,
+   "judged": 21,
+   "qualified": true,
+   "reason": null,
+   "index": 57.1,
+   "band": 4.1,
+   "best": [
+    {
+     "title": "Prasthanam",
+     "year": 2010,
+     "index": 80.4
+    },
+    {
+     "title": "Gamyam",
+     "year": 2008,
+     "index": 77.9
+    },
+    {
+     "title": "Run Raja Run",
+     "year": 2014,
+     "index": 68.6
+    }
+   ],
+   "spread": 11.3,
+   "pillars": {
+    "rating": 60.5,
+    "reach": 54.9,
+    "stay": 55.2
+   },
+   "missing": [
+    {
+     "title": "Aidho Tareekhu",
+     "year": 2004,
+     "missing": [
+      "IMDb title",
+      "release year from a second source"
+     ]
+    }
+   ],
+   "filmIndex": 57.8,
+   "followers": {
+    "total": 1365461,
+    "asOf": "2026-11-08"
+   },
+   "fame": 53.4,
+   "profile": {
+    "slug": "sharwanand",
+    "imdb": [
+     "nm2319565"
+    ],
+    "birthDate": "1984-03-06",
+    "birthDateBy": "wikidata",
+    "debutYear": 2004,
     "debutYearBy": "wikidata",
     "hasFreePhoto": true
    }
@@ -1017,32 +1131,38 @@
    "judged": 10,
    "qualified": true,
    "reason": null,
-   "index": 56.8,
-   "band": 6.7,
+   "index": 56.9,
+   "band": 5.7,
    "best": [
     {
      "title": "HIT: The First Case",
      "year": 2020,
-     "index": 80.1
+     "index": 80.5
     },
     {
      "title": "Ee Nagaraniki Emaindhi",
      "year": 2018,
-     "index": 72.9
+     "index": 74.2
     },
     {
-     "title": "Ashoka Vanamlo Arjuna Kalyanam",
+     "title": "Ori Devuda",
      "year": 2022,
-     "index": 63.9
+     "index": 64.4
     }
    ],
    "spread": 12.2,
    "pillars": {
     "rating": 59.8,
-    "reach": 53.4,
-    "stay": 55.6
+    "reach": 53.5,
+    "stay": 59.5
    },
    "missing": [],
+   "filmIndex": 57.3,
+   "followers": {
+    "total": 1542064,
+    "asOf": "2026-11-08"
+   },
+   "fame": 54.7,
    "profile": {
     "slug": "vishwak-sen",
     "imdb": [
@@ -1051,166 +1171,6 @@
     "birthDate": "1995-03-29",
     "birthDateBy": "wikidata",
     "debutYear": 2017,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": true
-   }
-  },
-  {
-   "slug": "nikhil-siddhartha",
-   "name": "Nikhil Siddhartha",
-   "films": 19,
-   "excluded": 0,
-   "provisional": 1,
-   "complete": 17,
-   "judged": 18,
-   "qualified": true,
-   "reason": null,
-   "index": 55.2,
-   "band": 6,
-   "best": [
-    {
-     "title": "Karthikeya 2",
-     "year": 2022,
-     "index": 82.1
-    },
-    {
-     "title": "Karthikeya",
-     "year": 2014,
-     "index": 76.6
-    },
-    {
-     "title": "Ekkadiki Pothavu Chinnavada",
-     "year": 2016,
-     "index": 67.2
-    }
-   ],
-   "spread": 12.6,
-   "pillars": {
-    "rating": 58.1,
-    "reach": 52.2,
-    "stay": 43.6
-   },
-   "missing": [
-    {
-     "title": "Donga Police",
-     "year": 2013,
-     "missing": [
-      "IMDb rating with 10+ votes"
-     ]
-    }
-   ],
-   "profile": {
-    "slug": "nikhil-siddhartha",
-    "imdb": [
-     "nm2981266"
-    ],
-    "birthDate": "1985-06-01",
-    "birthDateBy": "wikidata",
-    "debutYear": 2006,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": true
-   }
-  },
-  {
-   "slug": "uday-kiran",
-   "name": "Uday Kiran",
-   "films": 14,
-   "excluded": 0,
-   "provisional": 0,
-   "complete": 13,
-   "judged": 14,
-   "qualified": true,
-   "reason": null,
-   "index": 55,
-   "band": 5.1,
-   "best": [
-    {
-     "title": "Manasantha Nuvve",
-     "year": 2001,
-     "index": 72.8
-    },
-    {
-     "title": "Nuvvu Nenu",
-     "year": 2001,
-     "index": 65.6
-    },
-    {
-     "title": "Chitram",
-     "year": 2000,
-     "index": 61.9
-    }
-   ],
-   "spread": 8.7,
-   "pillars": {
-    "rating": 57.6,
-    "reach": 44,
-    "stay": 60.2
-   },
-   "missing": [
-    {
-     "title": "Nuvvekaddunte Nenakkadunta",
-     "year": 2012,
-     "missing": [
-      "IMDb rating with 10+ votes"
-     ]
-    }
-   ],
-   "profile": {
-    "slug": "uday-kiran",
-    "imdb": [
-     "nm1245012"
-    ],
-    "birthDate": "1980-01-26",
-    "birthDateBy": "wikidata",
-    "debutYear": 2000,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": true
-   }
-  },
-  {
-   "slug": "manchu-manoj",
-   "name": "Manchu Manoj",
-   "films": 7,
-   "excluded": 0,
-   "provisional": 1,
-   "complete": 6,
-   "judged": 6,
-   "qualified": true,
-   "reason": null,
-   "index": 54.3,
-   "band": 10.4,
-   "best": [
-    {
-     "title": "Vedam",
-     "year": 2010,
-     "index": 85.6
-    },
-    {
-     "title": "Current Theega",
-     "year": 2014,
-     "index": 57.4
-    },
-    {
-     "title": "Attack",
-     "year": 2016,
-     "index": 49.2
-    }
-   ],
-   "spread": 15.5,
-   "pillars": {
-    "rating": 55.9,
-    "reach": 57.1,
-    "stay": 41.7
-   },
-   "missing": [],
-   "profile": {
-    "slug": "manchu-manoj",
-    "imdb": [
-     "nm2486247"
-    ],
-    "birthDate": "1983-05-20",
-    "birthDateBy": "wikidata",
-    "debutYear": 1998,
     "debutYearBy": "wikidata",
     "hasFreePhoto": true
    }
@@ -1225,13 +1185,13 @@
    "judged": 15,
    "qualified": true,
    "reason": null,
-   "index": 54.3,
-   "band": 4.3,
+   "index": 56.8,
+   "band": 3.6,
    "best": [
     {
      "title": "Virupaksha",
      "year": 2023,
-     "index": 72.8
+     "index": 72.6
     },
     {
      "title": "Bro",
@@ -1241,14 +1201,14 @@
     {
      "title": "Chitralahari",
      "year": 2019,
-     "index": 63.6
+     "index": 62.9
     }
    ],
-   "spread": 8.8,
+   "spread": 8.5,
    "pillars": {
     "rating": 53,
-    "reach": 52.6,
-    "stay": 58.1
+    "reach": 52.7,
+    "stay": 58
    },
    "missing": [
     {
@@ -1260,12 +1220,420 @@
      ]
     }
    ],
+   "filmIndex": 54.3,
+   "followers": {
+    "total": 6907568,
+    "asOf": "2026-11-08"
+   },
+   "fame": 71,
    "profile": {
     "slug": "sai-durgha-tej",
     "imdb": [
      "nm4753603"
     ],
     "birthDate": "1987-10-15",
+    "birthDateBy": "wikidata",
+    "debutYear": 2014,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": true
+   }
+  },
+  {
+   "slug": "nikhil-siddhartha",
+   "name": "Nikhil Siddhartha",
+   "films": 19,
+   "excluded": 0,
+   "provisional": 1,
+   "complete": 17,
+   "judged": 18,
+   "qualified": true,
+   "reason": null,
+   "index": 56.5,
+   "band": 5.1,
+   "best": [
+    {
+     "title": "Karthikeya 2",
+     "year": 2022,
+     "index": 82.4
+    },
+    {
+     "title": "Karthikeya",
+     "year": 2014,
+     "index": 77.2
+    },
+    {
+     "title": "Ekkadiki Pothavu Chinnavada",
+     "year": 2016,
+     "index": 66.6
+    }
+   ],
+   "spread": 12.5,
+   "pillars": {
+    "rating": 58.1,
+    "reach": 52.3,
+    "stay": 43.7
+   },
+   "missing": [
+    {
+     "title": "Donga Police",
+     "year": 2013,
+     "missing": [
+      "IMDb rating with 10+ votes"
+     ]
+    }
+   ],
+   "filmIndex": 55.2,
+   "followers": {
+    "total": 3563362,
+    "asOf": "2026-11-08"
+   },
+   "fame": 63.8,
+   "profile": {
+    "slug": "nikhil-siddhartha",
+    "imdb": [
+     "nm2981266"
+    ],
+    "birthDate": "1985-06-01",
+    "birthDateBy": "wikidata",
+    "debutYear": 2006,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": true
+   }
+  },
+  {
+   "slug": "vishnu-manchu",
+   "name": "Vishnu Manchu",
+   "films": 19,
+   "excluded": 0,
+   "provisional": 0,
+   "complete": 18,
+   "judged": 19,
+   "qualified": true,
+   "reason": null,
+   "index": 55.3,
+   "band": 3,
+   "best": [
+    {
+     "title": "Dhee",
+     "year": 2007,
+     "index": 73.8
+    },
+    {
+     "title": "Doosukeltha",
+     "year": 2013,
+     "index": 60.8
+    },
+    {
+     "title": "Rowdy",
+     "year": 2014,
+     "index": 59.1
+    }
+   ],
+   "spread": 7.9,
+   "pillars": {
+    "rating": 50.4,
+    "reach": 60.3,
+    "stay": 42.4
+   },
+   "missing": [
+    {
+     "title": "Chadarangam",
+     "year": 2020,
+     "missing": [
+      "IMDb title",
+      "release year from a second source"
+     ]
+    }
+   ],
+   "filmIndex": 52.5,
+   "followers": {
+    "total": 6992124,
+    "asOf": "2026-11-08"
+   },
+   "fame": 71.1,
+   "profile": {
+    "slug": "vishnu-manchu",
+    "imdb": [
+     "nm2059736"
+    ],
+    "birthDate": "1981-11-23",
+    "birthDateBy": "wikidata",
+    "debutYear": 2003,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": false
+   }
+  },
+  {
+   "slug": "manchu-manoj",
+   "name": "Manchu Manoj",
+   "films": 7,
+   "excluded": 0,
+   "provisional": 1,
+   "complete": 6,
+   "judged": 6,
+   "qualified": true,
+   "reason": null,
+   "index": 55.2,
+   "band": 8.8,
+   "best": [
+    {
+     "title": "Vedam",
+     "year": 2010,
+     "index": 85.7
+    },
+    {
+     "title": "Current Theega",
+     "year": 2014,
+     "index": 56.6
+    },
+    {
+     "title": "Attack",
+     "year": 2016,
+     "index": 49
+    }
+   ],
+   "spread": 15.5,
+   "pillars": {
+    "rating": 55.9,
+    "reach": 57.1,
+    "stay": 40.7
+   },
+   "missing": [],
+   "filmIndex": 54.2,
+   "followers": {
+    "total": 2675337,
+    "asOf": "2026-11-08"
+   },
+   "fame": 60.7,
+   "profile": {
+    "slug": "manchu-manoj",
+    "imdb": [
+     "nm2486247"
+    ],
+    "birthDate": "1983-05-20",
+    "birthDateBy": "wikidata",
+    "debutYear": 1998,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": true
+   }
+  },
+  {
+   "slug": "uday-kiran",
+   "name": "Uday Kiran",
+   "films": 14,
+   "excluded": 0,
+   "provisional": 0,
+   "complete": 13,
+   "judged": 14,
+   "qualified": true,
+   "reason": null,
+   "index": 54.7,
+   "band": 4.9,
+   "best": [
+    {
+     "title": "Manasantha Nuvve",
+     "year": 2001,
+     "index": 71.8
+    },
+    {
+     "title": "Nuvvu Nenu",
+     "year": 2001,
+     "index": 65.2
+    },
+    {
+     "title": "Chitram",
+     "year": 2000,
+     "index": 61.7
+    }
+   ],
+   "spread": 8.5,
+   "pillars": {
+    "rating": 57.6,
+    "reach": 43.6,
+    "stay": 58.3
+   },
+   "missing": [
+    {
+     "title": "Nuvvekaddunte Nenakkadunta",
+     "year": 2012,
+     "missing": [
+      "IMDb rating with 10+ votes"
+     ]
+    }
+   ],
+   "filmIndex": 54.7,
+   "followers": null,
+   "fame": null,
+   "profile": {
+    "slug": "uday-kiran",
+    "imdb": [
+     "nm1245012"
+    ],
+    "birthDate": "1980-01-26",
+    "birthDateBy": "wikidata",
+    "debutYear": 2000,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": true
+   }
+  },
+  {
+   "slug": "tarun",
+   "name": "Tarun",
+   "films": 20,
+   "excluded": 1,
+   "provisional": 0,
+   "complete": 18,
+   "judged": 19,
+   "qualified": true,
+   "reason": null,
+   "index": 53.7,
+   "band": 4.5,
+   "best": [
+    {
+     "title": "Nuvve Kavali",
+     "year": 2000,
+     "index": 77.4
+    },
+    {
+     "title": "Nuvve Nuvve",
+     "year": 2002,
+     "index": 70.1
+    },
+    {
+     "title": "Priyamaina Neeku",
+     "year": 2001,
+     "index": 59.4
+    }
+   ],
+   "spread": 9,
+   "pillars": {
+    "rating": 54.7,
+    "reach": 46.8,
+    "stay": 49.4
+   },
+   "missing": [
+    {
+     "title": "Veta",
+     "year": 2014,
+     "missing": [
+      "IMDb rating with 10+ votes"
+     ]
+    }
+   ],
+   "filmIndex": 53.7,
+   "followers": null,
+   "fame": null,
+   "profile": {
+    "slug": "tarun",
+    "imdb": [
+     "nm0850761"
+    ],
+    "birthDate": "1983-01-08",
+    "birthDateBy": "wikidata",
+    "debutYear": 1990,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": false
+   }
+  },
+  {
+   "slug": "balakrishna",
+   "name": "Balakrishna",
+   "films": 35,
+   "excluded": 0,
+   "provisional": 3,
+   "complete": 32,
+   "judged": 32,
+   "qualified": true,
+   "reason": null,
+   "index": 53.6,
+   "band": 3.9,
+   "best": [
+    {
+     "title": "Narasimha Naidu",
+     "year": 2001,
+     "index": 75.3
+    },
+    {
+     "title": "Akhanda",
+     "year": 2021,
+     "index": 74.6
+    },
+    {
+     "title": "Legend",
+     "year": 2014,
+     "index": 72.4
+    }
+   ],
+   "spread": 11.1,
+   "pillars": {
+    "rating": 44.6,
+    "reach": 63.9,
+    "stay": 57
+   },
+   "missing": [],
+   "filmIndex": 53.6,
+   "followers": null,
+   "fame": null,
+   "profile": {
+    "slug": "balakrishna",
+    "imdb": [
+     "nm0049395"
+    ],
+    "birthDate": "1960-06-10",
+    "birthDateBy": "wikidata",
+    "debutYear": 1974,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": true
+   }
+  },
+  {
+   "slug": "bellamkonda-sreenivas",
+   "name": "Bellamkonda Sreenivas",
+   "films": 11,
+   "excluded": 0,
+   "provisional": 2,
+   "complete": 9,
+   "judged": 9,
+   "qualified": true,
+   "reason": null,
+   "index": 53.5,
+   "band": 4.2,
+   "best": [
+    {
+     "title": "Rakshasudu",
+     "year": 2019,
+     "index": 70.8
+    },
+    {
+     "title": "Alludu Seenu",
+     "year": 2014,
+     "index": 58.2
+    },
+    {
+     "title": "Jaya Janaki Nayaka",
+     "year": 2017,
+     "index": 57.9
+    }
+   ],
+   "spread": 8.5,
+   "pillars": {
+    "rating": 50.8,
+    "reach": 53.4,
+    "stay": 56.9
+   },
+   "missing": [],
+   "filmIndex": 53.4,
+   "followers": {
+    "total": 1469005,
+    "asOf": "2026-11-08"
+   },
+   "fame": 54.2,
+   "profile": {
+    "slug": "bellamkonda-sreenivas",
+    "imdb": [
+     "nm6618354"
+    ],
+    "birthDate": "1993-01-03",
     "birthDateBy": "wikidata",
     "debutYear": 2014,
     "debutYearBy": "wikidata",
@@ -1282,32 +1650,38 @@
    "judged": 15,
    "qualified": true,
    "reason": null,
-   "index": 53.7,
-   "band": 4.6,
+   "index": 53.1,
+   "band": 4,
    "best": [
     {
      "title": "Brochevarevarura",
      "year": 2019,
-     "index": 75.6
+     "index": 76.5
     },
     {
      "title": "Mental Madhilo",
      "year": 2017,
-     "index": 62.3
+     "index": 63.8
     },
     {
      "title": "Raja Raja Chora",
      "year": 2021,
-     "index": 59.4
+     "index": 60.9
     }
    ],
-   "spread": 9.6,
+   "spread": 9.8,
    "pillars": {
     "rating": 60.5,
-    "reach": 44.6,
-    "stay": 45
+    "reach": 44.8,
+    "stay": 48.1
    },
    "missing": [],
+   "filmIndex": 54.3,
+   "followers": {
+    "total": 709692,
+    "asOf": "2026-11-08"
+   },
+   "fame": 46.3,
    "profile": {
     "slug": "sree-vishnu",
     "imdb": [
@@ -1321,145 +1695,217 @@
    }
   },
   {
-   "slug": "suhas",
-   "name": "Suhas",
-   "films": 10,
+   "slug": "anand-deverakonda",
+   "name": "Anand Deverakonda",
+   "films": 6,
    "excluded": 0,
-   "provisional": 2,
-   "complete": 8,
-   "judged": 8,
+   "provisional": 1,
+   "complete": 5,
+   "judged": 5,
    "qualified": true,
    "reason": null,
-   "index": 53.6,
-   "band": 6.6,
+   "index": 52.8,
+   "band": 5.7,
    "best": [
     {
-     "title": "Colour Photo",
+     "title": "Middle Class Melodies",
      "year": 2020,
-     "index": 78
+     "index": 69.5
     },
     {
-     "title": "Writer Padmabhushan",
-     "year": 2023,
-     "index": 63.3
+     "title": "Pushpaka Vimanam",
+     "year": 2021,
+     "index": 55.9
     },
     {
-     "title": "Janaka Aithe Ganaka",
-     "year": 2024,
-     "index": 52.2
+     "title": "Highway",
+     "year": 2022,
+     "index": 48.1
     }
    ],
-   "spread": 11.1,
+   "spread": 9.3,
    "pillars": {
-    "rating": 60.5,
-    "reach": 47.9,
-    "stay": 42.3
+    "rating": 57.6,
+    "reach": 33.1,
+    "stay": 69.5
    },
    "missing": [],
+   "filmIndex": 53.9,
+   "followers": {
+    "total": 708940,
+    "asOf": "2026-11-08"
+   },
+   "fame": 46.3,
    "profile": {
-    "slug": "suhas",
+    "slug": "anand-deverakonda",
     "imdb": [
-     "nm8819004"
+     "nm10710806"
     ],
-    "birthDate": "1990-08-19",
-    "birthDateBy": "wikidata",
-    "debutYear": 2018,
+    "birthDate": "1992-03-15",
+    "birthDateBy": "wikipedia",
+    "debutYear": 2019,
     "debutYearBy": "wikidata",
     "hasFreePhoto": false
    }
   },
   {
-   "slug": "bellamkonda-sreenivas",
-   "name": "Bellamkonda Sreenivas",
-   "films": 11,
-   "excluded": 0,
-   "provisional": 2,
-   "complete": 9,
-   "judged": 9,
+   "slug": "sundeep-kishan",
+   "name": "Sundeep Kishan",
+   "films": 20,
+   "excluded": 1,
+   "provisional": 1,
+   "complete": 18,
+   "judged": 18,
    "qualified": true,
    "reason": null,
-   "index": 53.5,
-   "band": 4.9,
+   "index": 52.7,
+   "band": 2,
    "best": [
     {
-     "title": "Rakshasudu",
-     "year": 2019,
-     "index": 70.8
+     "title": "Venkatadri Express",
+     "year": 2013,
+     "index": 62.3
     },
     {
-     "title": "Alludu Seenu",
-     "year": 2014,
-     "index": 58.6
+     "title": "Michael",
+     "year": 2023,
+     "index": 58.2
     },
     {
-     "title": "Jaya Janaki Nayaka",
-     "year": 2017,
-     "index": 58.3
+     "title": "D for Dopidi",
+     "year": 2013,
+     "index": 54.3
     }
    ],
-   "spread": 8.5,
+   "spread": 5,
    "pillars": {
-    "rating": 50.8,
-    "reach": 53.2,
-    "stay": 57.7
+    "rating": 52.8,
+    "reach": 38.6,
+    "stay": 50.4
    },
    "missing": [],
+   "filmIndex": 50,
+   "followers": {
+    "total": 5281939,
+    "asOf": "2026-11-08"
+   },
+   "fame": 68.1,
    "profile": {
-    "slug": "bellamkonda-sreenivas",
+    "slug": "sundeep-kishan",
     "imdb": [
-     "nm6618354"
+     "nm3807965"
     ],
-    "birthDate": "1993-01-03",
+    "birthDate": "1987-05-07",
     "birthDateBy": "wikidata",
-    "debutYear": 2014,
+    "debutYear": 2010,
     "debutYearBy": "wikidata",
     "hasFreePhoto": true
    }
   },
   {
-   "slug": "balakrishna",
-   "name": "Balakrishna",
-   "films": 35,
-   "excluded": 0,
-   "provisional": 3,
-   "complete": 32,
-   "judged": 32,
+   "slug": "allu-sirish",
+   "name": "Allu Sirish",
+   "films": 7,
+   "excluded": 1,
+   "provisional": 0,
+   "complete": 6,
+   "judged": 6,
    "qualified": true,
    "reason": null,
-   "index": 53.4,
-   "band": 3.8,
+   "index": 52.7,
+   "band": 3.1,
    "best": [
     {
-     "title": "Narasimha Naidu",
-     "year": 2001,
-     "index": 75.2
+     "title": "Srirastu Subhamastu",
+     "year": 2016,
+     "index": 55.9
     },
     {
-     "title": "Akhanda",
-     "year": 2021,
-     "index": 74.2
+     "title": "Okka Kshanam",
+     "year": 2017,
+     "index": 55.3
     },
     {
-     "title": "Legend",
-     "year": 2014,
-     "index": 71.8
+     "title": "Urvasivo Rakshasivo",
+     "year": 2022,
+     "index": 50.2
     }
    ],
-   "spread": 11.1,
+   "spread": 5.2,
    "pillars": {
-    "rating": 44.5,
-    "reach": 63.9,
-    "stay": 55.7
+    "rating": 53.9,
+    "reach": 36.5,
+    "stay": 52.6
    },
    "missing": [],
+   "filmIndex": 51.1,
+   "followers": {
+    "total": 2984503,
+    "asOf": "2026-11-08"
+   },
+   "fame": 61.9,
    "profile": {
-    "slug": "balakrishna",
+    "slug": "allu-sirish",
     "imdb": [
-     "nm0049395"
+     "nm3224930"
     ],
-    "birthDate": "1960-06-10",
+    "birthDate": "1987-05-30",
     "birthDateBy": "wikidata",
-    "debutYear": 1974,
+    "debutYear": 2013,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": true
+   }
+  },
+  {
+   "slug": "kalyan-ram",
+   "name": "Kalyan Ram",
+   "films": 21,
+   "excluded": 0,
+   "provisional": 1,
+   "complete": 20,
+   "judged": 20,
+   "qualified": true,
+   "reason": null,
+   "index": 52.3,
+   "band": 2.8,
+   "best": [
+    {
+     "title": "Bimbisara",
+     "year": 2022,
+     "index": 70.7
+    },
+    {
+     "title": "Pataas",
+     "year": 2015,
+     "index": 64.6
+    },
+    {
+     "title": "Devil: The British Secret Agent",
+     "year": 2023,
+     "index": 56.7
+    }
+   ],
+   "spread": 7.3,
+   "pillars": {
+    "rating": 53.8,
+    "reach": 47.4,
+    "stay": 42.6
+   },
+   "missing": [],
+   "filmIndex": 51.8,
+   "followers": {
+    "total": 1563038,
+    "asOf": "2026-11-08"
+   },
+   "fame": 54.8,
+   "profile": {
+    "slug": "kalyan-ram",
+    "imdb": [
+     "nm2498217"
+    ],
+    "birthDate": "1978-07-05",
+    "birthDateBy": "wikidata",
+    "debutYear": 2003,
     "debutYearBy": "wikidata",
     "hasFreePhoto": true
    }
@@ -1474,8 +1920,8 @@
    "judged": 21,
    "qualified": true,
    "reason": null,
-   "index": 53.2,
-   "band": 3,
+   "index": 52.1,
+   "band": 2.6,
    "best": [
     {
      "title": "Sahasam",
@@ -1493,13 +1939,19 @@
      "index": 63
     }
    ],
-   "spread": 7.3,
+   "spread": 7.5,
    "pillars": {
     "rating": 53.4,
     "reach": 48.8,
-    "stay": 56.8
+    "stay": 55.6
    },
    "missing": [],
+   "filmIndex": 53,
+   "followers": {
+    "total": 738100,
+    "asOf": "2026-11-08"
+   },
+   "fame": 46.7,
    "profile": {
     "slug": "gopichand",
     "imdb": [
@@ -1513,202 +1965,163 @@
    }
   },
   {
-   "slug": "anand-deverakonda",
-   "name": "Anand Deverakonda",
-   "films": 6,
+   "slug": "suhas",
+   "name": "Suhas",
+   "films": 10,
    "excluded": 0,
-   "provisional": 1,
-   "complete": 5,
-   "judged": 5,
+   "provisional": 2,
+   "complete": 8,
+   "judged": 8,
    "qualified": true,
    "reason": null,
-   "index": 53.2,
-   "band": 6.5,
+   "index": 52.1,
+   "band": 5.5,
    "best": [
     {
-     "title": "Middle Class Melodies",
+     "title": "Colour Photo",
      "year": 2020,
-     "index": 67.6
+     "index": 78.2
     },
     {
-     "title": "Pushpaka Vimanam",
-     "year": 2021,
-     "index": 55.1
-    },
-    {
-     "title": "Highway",
-     "year": 2022,
-     "index": 47.2
-    }
-   ],
-   "spread": 9.1,
-   "pillars": {
-    "rating": 57.6,
-    "reach": 32.8,
-    "stay": 63.1
-   },
-   "missing": [],
-   "profile": {
-    "slug": "anand-deverakonda",
-    "imdb": [
-     "nm10710806"
-    ],
-    "birthDate": "1992-03-15",
-    "birthDateBy": "wikipedia",
-    "debutYear": 2019,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": false
-   }
-  },
-  {
-   "slug": "vishnu-manchu",
-   "name": "Vishnu Manchu",
-   "films": 19,
-   "excluded": 0,
-   "provisional": 0,
-   "complete": 18,
-   "judged": 19,
-   "qualified": true,
-   "reason": null,
-   "index": 52.5,
-   "band": 3.5,
-   "best": [
-    {
-     "title": "Dhee",
-     "year": 2007,
-     "index": 74
-    },
-    {
-     "title": "Doosukeltha",
-     "year": 2013,
-     "index": 61.1
-    },
-    {
-     "title": "Pandavulu Pandavulu Tummeda",
-     "year": 2014,
-     "index": 60.2
-    }
-   ],
-   "spread": 8.1,
-   "pillars": {
-    "rating": 50.4,
-    "reach": 60.3,
-    "stay": 42.3
-   },
-   "missing": [
-    {
-     "title": "Chadarangam",
-     "year": 2020,
-     "missing": [
-      "IMDb title",
-      "release year from a second source"
-     ]
-    }
-   ],
-   "profile": {
-    "slug": "vishnu-manchu",
-    "imdb": [
-     "nm2059736"
-    ],
-    "birthDate": "1981-11-23",
-    "birthDateBy": "wikidata",
-    "debutYear": 2003,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": false
-   }
-  },
-  {
-   "slug": "kalyan-ram",
-   "name": "Kalyan Ram",
-   "films": 21,
-   "excluded": 0,
-   "provisional": 1,
-   "complete": 20,
-   "judged": 20,
-   "qualified": true,
-   "reason": null,
-   "index": 51.6,
-   "band": 3.3,
-   "best": [
-    {
-     "title": "Bimbisara",
-     "year": 2022,
-     "index": 70.4
-    },
-    {
-     "title": "Pataas",
-     "year": 2015,
-     "index": 64.5
-    },
-    {
-     "title": "Devil: The British Secret Agent",
+     "title": "Writer Padmabhushan",
      "year": 2023,
-     "index": 56.5
+     "index": 62.1
+    },
+    {
+     "title": "Janaka Aithe Ganaka",
+     "year": 2024,
+     "index": 52.9
     }
    ],
-   "spread": 7.2,
+   "spread": 10.8,
    "pillars": {
-    "rating": 53.8,
-    "reach": 47.3,
-    "stay": 41.6
+    "rating": 60.5,
+    "reach": 47.8,
+    "stay": 43.3
    },
    "missing": [],
+   "filmIndex": 53.7,
+   "followers": {
+    "total": 536053,
+    "asOf": "2026-11-08"
+   },
+   "fame": 43.2,
    "profile": {
-    "slug": "kalyan-ram",
+    "slug": "suhas",
     "imdb": [
-     "nm2498217"
+     "nm8819004"
     ],
-    "birthDate": "1978-07-05",
+    "birthDate": "1990-08-19",
     "birthDateBy": "wikidata",
-    "debutYear": 2003,
+    "debutYear": 2018,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": false
+   }
+  },
+  {
+   "slug": "sudheer-babu",
+   "name": "Sudheer Babu",
+   "films": 18,
+   "excluded": 1,
+   "provisional": 0,
+   "complete": 17,
+   "judged": 17,
+   "qualified": true,
+   "reason": null,
+   "index": 51.9,
+   "band": 3.6,
+   "best": [
+    {
+     "title": "V",
+     "year": 2020,
+     "index": 75.7
+    },
+    {
+     "title": "Sammohanam",
+     "year": 2018,
+     "index": 60.3
+    },
+    {
+     "title": "Prema Katha Chitram",
+     "year": 2013,
+     "index": 59.8
+    }
+   ],
+   "spread": 9.2,
+   "pillars": {
+    "rating": 56.8,
+    "reach": 47.2,
+    "stay": 35.1
+   },
+   "missing": [],
+   "filmIndex": 51.1,
+   "followers": {
+    "total": 1749294,
+    "asOf": "2026-11-08"
+   },
+   "fame": 56.1,
+   "profile": {
+    "slug": "sudheer-babu",
+    "imdb": [
+     "nm4460942"
+    ],
+    "birthDate": "1980-05-11",
+    "birthDateBy": "wikidata",
+    "debutYear": 2012,
     "debutYearBy": "wikidata",
     "hasFreePhoto": true
    }
   },
   {
-   "slug": "allu-sirish",
-   "name": "Allu Sirish",
-   "films": 7,
-   "excluded": 1,
-   "provisional": 0,
-   "complete": 6,
-   "judged": 6,
+   "slug": "sumanth",
+   "name": "Sumanth",
+   "films": 25,
+   "excluded": 0,
+   "provisional": 1,
+   "complete": 24,
+   "judged": 24,
    "qualified": true,
    "reason": null,
-   "index": 51.4,
-   "band": 3.7,
+   "index": 51.3,
+   "band": 3.1,
    "best": [
     {
-     "title": "Srirastu Subhamastu",
-     "year": 2016,
-     "index": 55.9
+     "title": "Godavari",
+     "year": 2006,
+     "index": 74.6
     },
     {
-     "title": "Okka Kshanam",
+     "title": "Malli Raava",
      "year": 2017,
-     "index": 55.3
+     "index": 64.8
     },
     {
-     "title": "Urvasivo Rakshasivo",
-     "year": 2022,
-     "index": 53
+     "title": "Snehamante Idera",
+     "year": 2001,
+     "index": 61
     }
    ],
-   "spread": 5.5,
+   "spread": 8.5,
    "pillars": {
-    "rating": 54,
-    "reach": 36.4,
-    "stay": 55
+    "rating": 55.8,
+    "reach": 41.3,
+    "stay": 40.4
    },
    "missing": [],
+   "filmIndex": 51,
+   "followers": {
+    "total": 1308034,
+    "asOf": "2026-11-08"
+   },
+   "fame": 52.9,
    "profile": {
-    "slug": "allu-sirish",
+    "slug": "sumanth",
     "imdb": [
-     "nm3224930"
+     "nm1368731"
     ],
-    "birthDate": "1987-05-30",
+    "birthDate": "1975-02-09",
     "birthDateBy": "wikidata",
-    "debutYear": 2013,
+    "debutYear": 1999,
     "debutYearBy": "wikidata",
     "hasFreePhoto": true
    }
@@ -1723,30 +2136,30 @@
    "judged": 17,
    "qualified": true,
    "reason": null,
-   "index": 51.1,
-   "band": 4.1,
+   "index": 51.2,
+   "band": 3.6,
    "best": [
     {
      "title": "Oohalu Gusagusalade",
      "year": 2014,
-     "index": 68.1
+     "index": 67.8
     },
     {
      "title": "Chalo",
      "year": 2018,
-     "index": 67
+     "index": 67.2
     },
     {
      "title": "Krishna Vrinda Vihari",
      "year": 2022,
-     "index": 57.1
+     "index": 56.8
     }
    ],
-   "spread": 8.6,
+   "spread": 8.7,
    "pillars": {
     "rating": 55.1,
-    "reach": 41.9,
-    "stay": 45.1
+    "reach": 42,
+    "stay": 45.7
    },
    "missing": [
     {
@@ -1758,316 +2171,18 @@
      ]
     }
    ],
+   "filmIndex": 51.3,
+   "followers": {
+    "total": 1090068,
+    "asOf": "2026-11-08"
+   },
+   "fame": 50.9,
    "profile": {
     "slug": "naga-shaurya",
     "imdb": [
      "nm6601752"
     ],
     "birthDate": "1989-01-22",
-    "birthDateBy": "wikidata",
-    "debutYear": 2011,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": true
-   }
-  },
-  {
-   "slug": "sudheer-babu",
-   "name": "Sudheer Babu",
-   "films": 18,
-   "excluded": 1,
-   "provisional": 0,
-   "complete": 17,
-   "judged": 17,
-   "qualified": true,
-   "reason": null,
-   "index": 51,
-   "band": 4.3,
-   "best": [
-    {
-     "title": "V",
-     "year": 2020,
-     "index": 75.8
-    },
-    {
-     "title": "Sammohanam",
-     "year": 2018,
-     "index": 60.5
-    },
-    {
-     "title": "Prema Katha Chitram",
-     "year": 2013,
-     "index": 60.1
-    }
-   ],
-   "spread": 9.3,
-   "pillars": {
-    "rating": 56.8,
-    "reach": 47.1,
-    "stay": 34.8
-   },
-   "missing": [],
-   "profile": {
-    "slug": "sudheer-babu",
-    "imdb": [
-     "nm4460942"
-    ],
-    "birthDate": "1980-05-11",
-    "birthDateBy": "wikidata",
-    "debutYear": 2012,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": true
-   }
-  },
-  {
-   "slug": "sri-simha",
-   "name": "Sri Simha Koduri",
-   "films": 6,
-   "excluded": 0,
-   "provisional": 0,
-   "complete": 6,
-   "judged": 6,
-   "qualified": true,
-   "reason": null,
-   "index": 51,
-   "band": 6,
-   "best": [
-    {
-     "title": "Mathu Vadalara",
-     "year": 2019,
-     "index": 67
-    },
-    {
-     "title": "Mathu Vadalara 2",
-     "year": 2024,
-     "index": 50.5
-    },
-    {
-     "title": "Thellavarithe Guruvaram",
-     "year": 2021,
-     "index": 48.6
-    }
-   ],
-   "spread": 8.9,
-   "pillars": {
-    "rating": 58.8,
-    "reach": 38,
-    "stay": 37.7
-   },
-   "missing": [],
-   "profile": {
-    "slug": "sri-simha",
-    "imdb": [
-     "nm9842626"
-    ],
-    "birthDate": "1996-02-23",
-    "birthDateBy": "wikidata",
-    "debutYear": 2012,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": true
-   }
-  },
-  {
-   "slug": "sushanth",
-   "name": "Sushanth",
-   "films": 6,
-   "excluded": 0,
-   "provisional": 0,
-   "complete": 6,
-   "judged": 6,
-   "qualified": true,
-   "reason": null,
-   "index": 50.6,
-   "band": 5,
-   "best": [
-    {
-     "title": "Chi La Sow",
-     "year": 2018,
-     "index": 62.7
-    },
-    {
-     "title": "Current",
-     "year": 2009,
-     "index": 46.2
-    },
-    {
-     "title": "Aatadukundam Raa",
-     "year": 2016,
-     "index": 46.2
-    }
-   ],
-   "spread": 7.1,
-   "pillars": {
-    "rating": 54,
-    "reach": 37.9,
-    "stay": 39
-   },
-   "missing": [],
-   "profile": {
-    "slug": "sushanth",
-    "imdb": [
-     "nm3118945"
-    ],
-    "birthDate": "1986-03-18",
-    "birthDateBy": "wikipedia",
-    "debutYear": 2008,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": true
-   }
-  },
-  {
-   "slug": "sumanth",
-   "name": "Sumanth",
-   "films": 25,
-   "excluded": 0,
-   "provisional": 1,
-   "complete": 23,
-   "judged": 24,
-   "qualified": true,
-   "reason": null,
-   "index": 50.4,
-   "band": 3.7,
-   "best": [
-    {
-     "title": "Godavari",
-     "year": 2006,
-     "index": 74.6
-    },
-    {
-     "title": "Malli Raava",
-     "year": 2017,
-     "index": 64.7
-    },
-    {
-     "title": "Yuvakudu",
-     "year": 2000,
-     "index": 60.5
-    }
-   ],
-   "spread": 8.3,
-   "pillars": {
-    "rating": 55.7,
-    "reach": 39.9,
-    "stay": 37.9
-   },
-   "missing": [
-    {
-     "title": "Snehamante Idera",
-     "year": 2001,
-     "missing": [
-      "IMDb rating with 10+ votes"
-     ]
-    }
-   ],
-   "profile": {
-    "slug": "sumanth",
-    "imdb": [
-     "nm1368731"
-    ],
-    "birthDate": "1975-02-09",
-    "birthDateBy": "wikidata",
-    "debutYear": 1999,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": true
-   }
-  },
-  {
-   "slug": "sundeep-kishan",
-   "name": "Sundeep Kishan",
-   "films": 20,
-   "excluded": 1,
-   "provisional": 1,
-   "complete": 18,
-   "judged": 18,
-   "qualified": true,
-   "reason": null,
-   "index": 49.9,
-   "band": 2.4,
-   "best": [
-    {
-     "title": "Venkatadri Express",
-     "year": 2013,
-     "index": 62.4
-    },
-    {
-     "title": "Michael",
-     "year": 2023,
-     "index": 58.1
-    },
-    {
-     "title": "D for Dopidi",
-     "year": 2013,
-     "index": 54.1
-    }
-   ],
-   "spread": 5.1,
-   "pillars": {
-    "rating": 52.8,
-    "reach": 38.5,
-    "stay": 50
-   },
-   "missing": [],
-   "profile": {
-    "slug": "sundeep-kishan",
-    "imdb": [
-     "nm3807965"
-    ],
-    "birthDate": "1987-05-07",
-    "birthDateBy": "wikidata",
-    "debutYear": 2010,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": true
-   }
-  },
-  {
-   "slug": "satyadev",
-   "name": "Satyadev",
-   "films": 12,
-   "excluded": 0,
-   "provisional": 2,
-   "complete": 9,
-   "judged": 10,
-   "qualified": true,
-   "reason": null,
-   "index": 49.8,
-   "band": 4.4,
-   "best": [
-    {
-     "title": "Uma Maheswara Ugra Roopasya",
-     "year": 2020,
-     "index": 64.1
-    },
-    {
-     "title": "Thimmarusu",
-     "year": 2021,
-     "index": 52.4
-    },
-    {
-     "title": "Godse",
-     "year": 2022,
-     "index": 51.4
-    }
-   ],
-   "spread": 7.6,
-   "pillars": {
-    "rating": 57.2,
-    "reach": 40.8,
-    "stay": 31.2
-   },
-   "missing": [
-    {
-     "title": "Letter",
-     "year": 2015,
-     "missing": [
-      "IMDb rating with 10+ votes"
-     ]
-    }
-   ],
-   "profile": {
-    "slug": "satyadev",
-    "imdb": [
-     "nm8488982"
-    ],
-    "birthDate": "1989-07-04",
     "birthDateBy": "wikidata",
     "debutYear": 2011,
     "debutYearBy": "wikidata",
@@ -2084,8 +2199,8 @@
    "judged": 56,
    "qualified": true,
    "reason": null,
-   "index": 49.7,
-   "band": 2.1,
+   "index": 50.9,
+   "band": 1.9,
    "best": [
     {
      "title": "Gamyam",
@@ -2095,19 +2210,19 @@
     {
      "title": "Sambho Siva Sambho",
      "year": 2010,
-     "index": 69
+     "index": 67.4
     },
     {
      "title": "Naandhi",
      "year": 2021,
-     "index": 64.9
+     "index": 65.1
     }
    ],
-   "spread": 7.2,
+   "spread": 7.3,
    "pillars": {
     "rating": 53.7,
     "reach": 38.5,
-    "stay": 44.8
+    "stay": 45.8
    },
    "missing": [
     {
@@ -2119,6 +2234,12 @@
      ]
     }
    ],
+   "filmIndex": 49.9,
+   "followers": {
+    "total": 1781539,
+    "asOf": "2026-11-08"
+   },
+   "fame": 56.3,
    "profile": {
     "slug": "allari-naresh",
     "imdb": [
@@ -2127,6 +2248,119 @@
     "birthDate": "1982-06-30",
     "birthDateBy": "wikidata",
     "debutYear": 2002,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": true
+   }
+  },
+  {
+   "slug": "sushanth",
+   "name": "Sushanth",
+   "films": 6,
+   "excluded": 0,
+   "provisional": 0,
+   "complete": 6,
+   "judged": 6,
+   "qualified": true,
+   "reason": null,
+   "index": 50.7,
+   "band": 5.1,
+   "best": [
+    {
+     "title": "Chi La Sow",
+     "year": 2018,
+     "index": 63.2
+    },
+    {
+     "title": "Kalidasu",
+     "year": 2008,
+     "index": 45.9
+    },
+    {
+     "title": "Current",
+     "year": 2009,
+     "index": 45.7
+    }
+   ],
+   "spread": 7.3,
+   "pillars": {
+    "rating": 53.9,
+    "reach": 37.9,
+    "stay": 38.9
+   },
+   "missing": [],
+   "filmIndex": 50.7,
+   "followers": null,
+   "fame": null,
+   "profile": {
+    "slug": "sushanth",
+    "imdb": [
+     "nm3118945"
+    ],
+    "birthDate": "1986-03-18",
+    "birthDateBy": "wikipedia",
+    "debutYear": 2008,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": true
+   }
+  },
+  {
+   "slug": "satyadev",
+   "name": "Satyadev",
+   "films": 12,
+   "excluded": 0,
+   "provisional": 2,
+   "complete": 9,
+   "judged": 10,
+   "qualified": true,
+   "reason": null,
+   "index": 50,
+   "band": 3.7,
+   "best": [
+    {
+     "title": "Uma Maheswara Ugra Roopasya",
+     "year": 2020,
+     "index": 64
+    },
+    {
+     "title": "Thimmarusu",
+     "year": 2021,
+     "index": 52.8
+    },
+    {
+     "title": "Godse",
+     "year": 2022,
+     "index": 51.1
+    }
+   ],
+   "spread": 7.5,
+   "pillars": {
+    "rating": 57.2,
+    "reach": 41.1,
+    "stay": 30.9
+   },
+   "missing": [
+    {
+     "title": "Letter",
+     "year": 2015,
+     "missing": [
+      "IMDb rating with 10+ votes"
+     ]
+    }
+   ],
+   "filmIndex": 49.9,
+   "followers": {
+    "total": 1038522,
+    "asOf": "2026-11-08"
+   },
+   "fame": 50.4,
+   "profile": {
+    "slug": "satyadev",
+    "imdb": [
+     "nm8488982"
+    ],
+    "birthDate": "1989-07-04",
+    "birthDateBy": "wikidata",
+    "debutYear": 2011,
     "debutYearBy": "wikidata",
     "hasFreePhoto": true
    }
@@ -2142,31 +2376,37 @@
    "qualified": true,
    "reason": null,
    "index": 49.5,
-   "band": 4.4,
+   "band": 3.7,
    "best": [
     {
      "title": "RX 100",
      "year": 2018,
-     "index": 67.8
+     "index": 67.1
     },
     {
      "title": "Guna 369",
      "year": 2019,
-     "index": 48.6
+     "index": 47.8
     },
     {
      "title": "Chaavu Kaburu Challaga",
      "year": 2021,
-     "index": 47.6
+     "index": 47.2
     }
    ],
    "spread": 7.6,
    "pillars": {
     "rating": 54.8,
-    "reach": 36.6,
-    "stay": 42.2
+    "reach": 36.9,
+    "stay": 38.3
    },
    "missing": [],
+   "filmIndex": 49.1,
+   "followers": {
+    "total": 1203713,
+    "asOf": "2026-11-08"
+   },
+   "fame": 52,
    "profile": {
     "slug": "karthikeya",
     "imdb": [
@@ -2189,32 +2429,38 @@
    "judged": 11,
    "qualified": true,
    "reason": null,
-   "index": 49.4,
-   "band": 3.9,
+   "index": 49.3,
+   "band": 3.5,
    "best": [
     {
      "title": "Rayalaseema Ramanna Chowdary",
      "year": 2000,
-     "index": 67.4
-    },
-    {
-     "title": "Tappu Chesi Pappu Koodu",
-     "year": 2002,
-     "index": 50.3
+     "index": 68.3
     },
     {
      "title": "Adhipathi",
      "year": 2001,
-     "index": 49.9
+     "index": 50.9
+    },
+    {
+     "title": "Gayatri",
+     "year": 2018,
+     "index": 50
     }
    ],
-   "spread": 7.1,
+   "spread": 7.4,
    "pillars": {
-    "rating": 45.8,
-    "reach": 54.4,
-    "stay": 38.4
+    "rating": 45.9,
+    "reach": 54.2,
+    "stay": 40.3
    },
    "missing": [],
+   "filmIndex": 49.6,
+   "followers": {
+    "total": 785119,
+    "asOf": "2026-11-08"
+   },
+   "fame": 47.4,
    "profile": {
     "slug": "mohan-babu",
     "imdb": [
@@ -2223,165 +2469,6 @@
     "birthDate": "1952-03-19",
     "birthDateBy": "wikidata",
     "debutYear": 1974,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": true
-   }
-  },
-  {
-   "slug": "varun-sandesh",
-   "name": "Varun Sandesh",
-   "films": 26,
-   "excluded": 0,
-   "provisional": 2,
-   "complete": 22,
-   "judged": 24,
-   "qualified": true,
-   "reason": null,
-   "index": 49,
-   "band": 4.5,
-   "best": [
-    {
-     "title": "Happy Days",
-     "year": 2007,
-     "index": 83.4
-    },
-    {
-     "title": "Kotha Bangaru Lokam",
-     "year": 2008,
-     "index": 61.3
-    },
-    {
-     "title": "D for Dopidi",
-     "year": 2013,
-     "index": 54.1
-    }
-   ],
-   "spread": 9.4,
-   "pillars": {
-    "rating": 54.6,
-    "reach": 32.6,
-    "stay": 30
-   },
-   "missing": [
-    {
-     "title": "Mister 420",
-     "year": 2016,
-     "missing": [
-      "IMDb rating with 10+ votes"
-     ]
-    },
-    {
-     "title": "Marla Puli",
-     "year": 2018,
-     "missing": [
-      "IMDb rating with 10+ votes"
-     ]
-    }
-   ],
-   "profile": {
-    "slug": "varun-sandesh",
-    "imdb": [
-     "nm2967763"
-    ],
-    "birthDate": "1989-07-21",
-    "birthDateBy": "wikidata",
-    "debutYear": 2007,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": true
-   }
-  },
-  {
-   "slug": "santosh-sobhan",
-   "name": "Santosh Sobhan",
-   "films": 10,
-   "excluded": 0,
-   "provisional": 1,
-   "complete": 9,
-   "judged": 9,
-   "qualified": true,
-   "reason": null,
-   "index": 48.6,
-   "band": 3.6,
-   "best": [
-    {
-     "title": "Ek Mini Katha",
-     "year": 2021,
-     "index": 59.6
-    },
-    {
-     "title": "Kalyanam Kamaneeyam",
-     "year": 2023,
-     "index": 49.1
-    },
-    {
-     "title": "Anni Manchi Sakunamule",
-     "year": 2023,
-     "index": 48.2
-    }
-   ],
-   "spread": 5.9,
-   "pillars": {
-    "rating": 54.9,
-    "reach": 30.5,
-    "stay": 40.1
-   },
-   "missing": [],
-   "profile": {
-    "slug": "santosh-sobhan",
-    "imdb": [
-     "nm9922589"
-    ],
-    "birthDate": "1995-07-12",
-    "birthDateBy": "wikidata",
-    "debutYear": 2015,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": true
-   }
-  },
-  {
-   "slug": "sumanth-ashwin",
-   "name": "Sumanth Ashwin",
-   "films": 12,
-   "excluded": 0,
-   "provisional": 0,
-   "complete": 12,
-   "judged": 12,
-   "qualified": true,
-   "reason": null,
-   "index": 48.4,
-   "band": 2.2,
-   "best": [
-    {
-     "title": "Kerintha",
-     "year": 2015,
-     "index": 54.4
-    },
-    {
-     "title": "Anthaka Mundu Aa Tarvatha",
-     "year": 2013,
-     "index": 50.7
-    },
-    {
-     "title": "Tuneega Tuneega",
-     "year": 2012,
-     "index": 49.1
-    }
-   ],
-   "spread": 3.7,
-   "pillars": {
-    "rating": 53.1,
-    "reach": 32.7,
-    "stay": 31.8
-   },
-   "missing": [],
-   "profile": {
-    "slug": "sumanth-ashwin",
-    "imdb": [
-     "nm5896360"
-    ],
-    "birthDate": "1988-06-30",
-    "birthDateBy": "wikidata",
-    "debutYear": 2012,
     "debutYearBy": "wikidata",
     "hasFreePhoto": true
    }
@@ -2396,32 +2483,38 @@
    "judged": 8,
    "qualified": true,
    "reason": null,
-   "index": 48.4,
-   "band": 3.7,
+   "index": 49.3,
+   "band": 3.1,
    "best": [
     {
      "title": "Raja Vaaru Rani Gaaru",
      "year": 2019,
-     "index": 54.6
+     "index": 52.8
     },
     {
      "title": "Vinaro Bhagyamu Vishnu Katha",
      "year": 2023,
-     "index": 53.4
+     "index": 52.6
     },
     {
      "title": "SR Kalyanamandapam",
      "year": 2021,
-     "index": 52.6
+     "index": 52.4
     }
    ],
-   "spread": 6.2,
+   "spread": 6,
    "pillars": {
     "rating": 53.4,
-    "reach": 35.8,
-    "stay": 40.1
+    "reach": 35.9,
+    "stay": 35.7
    },
    "missing": [],
+   "filmIndex": 47.9,
+   "followers": {
+    "total": 1958242,
+    "asOf": "2026-11-08"
+   },
+   "fame": 57.3,
    "profile": {
     "slug": "kiran-abbavaram",
     "imdb": [
@@ -2444,32 +2537,38 @@
    "judged": 17,
    "qualified": true,
    "reason": null,
-   "index": 48.1,
-   "band": 3.7,
+   "index": 48.6,
+   "band": 3.1,
    "best": [
     {
      "title": "Kumari 21F",
      "year": 2015,
-     "index": 70.5
+     "index": 70.2
     },
     {
      "title": "Eedo Rakam Aado Rakam",
      "year": 2016,
-     "index": 57.8
+     "index": 57.2
     },
     {
      "title": "Cinema Choopistha Mava",
      "year": 2015,
-     "index": 51.4
+     "index": 55.2
     }
    ],
-   "spread": 7.9,
+   "spread": 8,
    "pillars": {
     "rating": 56.1,
-    "reach": 39.2,
-    "stay": 25.9
+    "reach": 39.4,
+    "stay": 26.8
    },
    "missing": [],
+   "filmIndex": 48.3,
+   "followers": {
+    "total": 1021780,
+    "asOf": "2026-11-08"
+   },
+   "fame": 50.2,
    "profile": {
     "slug": "raj-tarun",
     "imdb": [
@@ -2483,49 +2582,201 @@
    }
   },
   {
-   "slug": "nara-rohit",
-   "name": "Nara Rohit",
-   "films": 20,
+   "slug": "varun-sandesh",
+   "name": "Varun Sandesh",
+   "films": 26,
    "excluded": 0,
    "provisional": 2,
-   "complete": 18,
-   "judged": 18,
+   "complete": 22,
+   "judged": 24,
    "qualified": true,
    "reason": null,
-   "index": 48,
-   "band": 2.4,
+   "index": 48.4,
+   "band": 3.9,
    "best": [
     {
-     "title": "Jyo Achyutananda",
-     "year": 2016,
-     "index": 55
+     "title": "Happy Days",
+     "year": 2007,
+     "index": 83.6
     },
     {
-     "title": "Appatlo Okadundevadu",
-     "year": 2016,
-     "index": 54.2
+     "title": "Kotha Bangaru Lokam",
+     "year": 2008,
+     "index": 64
     },
     {
-     "title": "Baanam",
-     "year": 2009,
-     "index": 52
+     "title": "D for Dopidi",
+     "year": 2013,
+     "index": 54.3
     }
    ],
-   "spread": 5.1,
+   "spread": 9.6,
    "pillars": {
-    "rating": 56.4,
-    "reach": 37.5,
-    "stay": 25.6
+    "rating": 54.6,
+    "reach": 32.6,
+    "stay": 35.1
+   },
+   "missing": [
+    {
+     "title": "Mister 420",
+     "year": 2016,
+     "missing": [
+      "IMDb rating with 10+ votes"
+     ]
+    },
+    {
+     "title": "Marla Puli",
+     "year": 2018,
+     "missing": [
+      "IMDb rating with 10+ votes"
+     ]
+    }
+   ],
+   "filmIndex": 49.6,
+   "followers": {
+    "total": 453112,
+    "asOf": "2026-11-08"
+   },
+   "fame": 41.4,
+   "profile": {
+    "slug": "varun-sandesh",
+    "imdb": [
+     "nm2967763"
+    ],
+    "birthDate": "1989-07-21",
+    "birthDateBy": "wikidata",
+    "debutYear": 2007,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": true
+   }
+  },
+  {
+   "slug": "sumanth-ashwin",
+   "name": "Sumanth Ashwin",
+   "films": 12,
+   "excluded": 0,
+   "provisional": 0,
+   "complete": 12,
+   "judged": 12,
+   "qualified": true,
+   "reason": null,
+   "index": 47.9,
+   "band": 1.9,
+   "best": [
+    {
+     "title": "Kerintha",
+     "year": 2015,
+     "index": 52.1
+    },
+    {
+     "title": "Anthaka Mundu Aa Tarvatha",
+     "year": 2013,
+     "index": 50
+    },
+    {
+     "title": "Tuneega Tuneega",
+     "year": 2012,
+     "index": 47.9
+    }
+   ],
+   "spread": 3.2,
+   "pillars": {
+    "rating": 53.1,
+    "reach": 32.7,
+    "stay": 26.7
    },
    "missing": [],
+   "filmIndex": 47.9,
+   "followers": null,
+   "fame": null,
    "profile": {
-    "slug": "nara-rohit",
+    "slug": "sumanth-ashwin",
     "imdb": [
-     "nm3611091"
+     "nm5896360"
     ],
-    "birthDate": "1984-07-25",
+    "birthDate": "1988-06-30",
     "birthDateBy": "wikidata",
-    "debutYear": 2009,
+    "debutYear": 2012,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": true
+   }
+  },
+  {
+   "slug": "jagapathi-babu",
+   "name": "Jagapathi Babu",
+   "films": 47,
+   "excluded": 0,
+   "provisional": 1,
+   "complete": 42,
+   "judged": 46,
+   "qualified": true,
+   "reason": null,
+   "index": 46,
+   "band": 1.3,
+   "best": [
+    {
+     "title": "Manoharam",
+     "year": 2000,
+     "index": 53
+    },
+    {
+     "title": "Bachi",
+     "year": 2000,
+     "index": 52.6
+    },
+    {
+     "title": "Family Circus",
+     "year": 2001,
+     "index": 52.1
+    }
+   ],
+   "spread": 3.5,
+   "pillars": {
+    "rating": 53.1,
+    "reach": 30.8,
+    "stay": 22
+   },
+   "missing": [
+    {
+     "title": "That Is Pandu",
+     "year": 2005,
+     "missing": [
+      "IMDb rating with 10+ votes"
+     ]
+    },
+    {
+     "title": "Six",
+     "year": 2012,
+     "missing": [
+      "IMDb rating with 10+ votes"
+     ]
+    },
+    {
+     "title": "O Manishi Katha",
+     "year": 2014,
+     "missing": [
+      "IMDb rating with 10+ votes"
+     ]
+    },
+    {
+     "title": "Hitudu",
+     "year": 2015,
+     "missing": [
+      "IMDb rating with 10+ votes"
+     ]
+    }
+   ],
+   "filmIndex": 46,
+   "followers": null,
+   "fame": null,
+   "profile": {
+    "slug": "jagapathi-babu",
+    "imdb": [
+     "nm0045075"
+    ],
+    "birthDate": "1962-02-12",
+    "birthDateBy": "wikidata",
+    "debutYear": 1989,
     "debutYearBy": "wikidata",
     "hasFreePhoto": true
    }
@@ -2540,30 +2791,30 @@
    "judged": 58,
    "qualified": true,
    "reason": null,
-   "index": 46.9,
-   "band": 2.3,
+   "index": 45.9,
+   "band": 2,
    "best": [
     {
      "title": "Khadgam",
      "year": 2002,
-     "index": 82.3
+     "index": 81.8
     },
     {
      "title": "Kshemamga Velli Labamgarandi",
      "year": 2000,
-     "index": 61.5
+     "index": 59.8
     },
     {
      "title": "Ammo! Okato Tareekhu",
      "year": 2000,
-     "index": 58.4
+     "index": 57.9
     }
    ],
-   "spread": 7,
+   "spread": 6.8,
    "pillars": {
     "rating": 54.6,
-    "reach": 28.5,
-    "stay": 24.9
+    "reach": 28.4,
+    "stay": 24.3
    },
    "missing": [
     {
@@ -2602,6 +2853,12 @@
      ]
     }
    ],
+   "filmIndex": 46.8,
+   "followers": {
+    "total": 427185,
+    "asOf": "2026-11-08"
+   },
+   "fame": 40.8,
    "profile": {
     "slug": "srikanth",
     "imdb": [
@@ -2615,78 +2872,163 @@
    }
   },
   {
-   "slug": "jagapathi-babu",
-   "name": "Jagapathi Babu",
-   "films": 47,
+   "slug": "santosh-sobhan",
+   "name": "Santosh Sobhan",
+   "films": 10,
    "excluded": 0,
    "provisional": 1,
-   "complete": 42,
-   "judged": 46,
+   "complete": 9,
+   "judged": 9,
    "qualified": true,
    "reason": null,
-   "index": 46.1,
-   "band": 1.3,
+   "index": 45.7,
+   "band": 2.8,
    "best": [
     {
-     "title": "Manoharam",
-     "year": 2000,
-     "index": 53.1
+     "title": "Ek Mini Katha",
+     "year": 2021,
+     "index": 58.7
     },
     {
-     "title": "Bachi",
-     "year": 2000,
-     "index": 52.2
+     "title": "Kalyanam Kamaneeyam",
+     "year": 2023,
+     "index": 47.2
     },
     {
-     "title": "Budget Padmanabham",
-     "year": 2001,
-     "index": 52.1
+     "title": "Anni Manchi Sakunamule",
+     "year": 2023,
+     "index": 46.2
     }
    ],
-   "spread": 3.5,
+   "spread": 5.6,
    "pillars": {
-    "rating": 53.1,
-    "reach": 30.9,
-    "stay": 22.3
+    "rating": 54.9,
+    "reach": 30.6,
+    "stay": 35.5
    },
-   "missing": [
+   "missing": [],
+   "filmIndex": 48,
+   "followers": {
+    "total": 199930,
+    "asOf": "2026-11-08"
+   },
+   "fame": 32.5,
+   "profile": {
+    "slug": "santosh-sobhan",
+    "imdb": [
+     "nm9922589"
+    ],
+    "birthDate": "1995-07-12",
+    "birthDateBy": "wikidata",
+    "debutYear": 2015,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": true
+   }
+  },
+  {
+   "slug": "nara-rohit",
+   "name": "Nara Rohit",
+   "films": 20,
+   "excluded": 0,
+   "provisional": 2,
+   "complete": 18,
+   "judged": 18,
+   "qualified": true,
+   "reason": null,
+   "index": 45,
+   "band": 2.1,
+   "best": [
     {
-     "title": "That Is Pandu",
-     "year": 2005,
-     "missing": [
-      "IMDb rating with 10+ votes"
-     ]
+     "title": "Jyo Achyutananda",
+     "year": 2016,
+     "index": 55.4
     },
     {
-     "title": "Six",
-     "year": 2012,
-     "missing": [
-      "IMDb rating with 10+ votes"
-     ]
+     "title": "Appatlo Okadundevadu",
+     "year": 2016,
+     "index": 54.7
     },
     {
-     "title": "O Manishi Katha",
-     "year": 2014,
-     "missing": [
-      "IMDb rating with 10+ votes"
-     ]
-    },
-    {
-     "title": "Hitudu",
-     "year": 2015,
-     "missing": [
-      "IMDb rating with 10+ votes"
-     ]
+     "title": "Baanam",
+     "year": 2009,
+     "index": 52.7
     }
    ],
+   "spread": 5.2,
+   "pillars": {
+    "rating": 56.4,
+    "reach": 37.5,
+    "stay": 26.3
+   },
+   "missing": [],
+   "filmIndex": 48.1,
+   "followers": {
+    "total": 127753,
+    "asOf": "2026-11-08"
+   },
+   "fame": 27.7,
    "profile": {
-    "slug": "jagapathi-babu",
+    "slug": "nara-rohit",
     "imdb": [
-     "nm0045075"
+     "nm3611091"
     ],
-    "birthDate": "1962-02-12",
+    "birthDate": "1984-07-25",
     "birthDateBy": "wikidata",
-    "debutYear": 1989,
+    "debutYear": 2009,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": true
+   }
+  },
+  {
+   "slug": "sri-simha",
+   "name": "Sri Simha Koduri",
+   "films": 6,
+   "excluded": 0,
+   "provisional": 0,
+   "complete": 6,
+   "judged": 6,
+   "qualified": true,
+   "reason": null,
+   "index": 43.6,
+   "band": 5.1,
+   "best": [
+    {
+     "title": "Mathu Vadalara",
+     "year": 2019,
+     "index": 67.4
+    },
+    {
+     "title": "Mathu Vadalara 2",
+     "year": 2024,
+     "index": 50.2
+    },
+    {
+     "title": "Thellavarithe Guruvaram",
+     "year": 2021,
+     "index": 49.4
+    }
+   ],
+   "spread": 9,
+   "pillars": {
+    "rating": 58.8,
+    "reach": 38.1,
+    "stay": 38.7
+   },
+   "missing": [],
+   "filmIndex": 51.1,
+   "followers": {
+    "total": 10941,
+    "asOf": "2026-11-08"
+   },
+   "fame": 1,
+   "profile": {
+    "slug": "sri-simha",
+    "imdb": [
+     "nm9842626"
+    ],
+    "birthDate": "1996-02-23",
+    "birthDateBy": "wikidata",
+    "debutYear": 2012,
     "debutYearBy": "wikidata",
     "hasFreePhoto": true
    }
@@ -2701,32 +3043,38 @@
    "judged": 19,
    "qualified": true,
    "reason": null,
-   "index": 45.1,
-   "band": 1.4,
+   "index": 39.2,
+   "band": 1.2,
    "best": [
     {
      "title": "Prema Kavali",
      "year": 2011,
-     "index": 49.1
-    },
-    {
-     "title": "Sukumarudu",
-     "year": 2013,
-     "index": 47.1
+     "index": 49.2
     },
     {
      "title": "Tees Maar Khan",
      "year": 2022,
-     "index": 46.8
+     "index": 47.7
+    },
+    {
+     "title": "Crazy Fellow",
+     "year": 2022,
+     "index": 47.2
     }
    ],
-   "spread": 2.9,
+   "spread": 3,
    "pillars": {
     "rating": 51.5,
-    "reach": 31.7,
-    "stay": 26.2
+    "reach": 31.8,
+    "stay": 28.4
    },
    "missing": [],
+   "filmIndex": 45.4,
+   "followers": {
+    "total": 14326,
+    "asOf": "2026-11-08"
+   },
+   "fame": 3.9,
    "profile": {
     "slug": "aadi-saikumar",
     "imdb": [
@@ -2755,26 +3103,32 @@
     {
      "title": "Hello!",
      "year": 2017,
-     "index": 79.4
+     "index": 79.2
     },
     {
      "title": "Mr. Majnu",
      "year": 2019,
-     "index": 69.8
+     "index": 69
     },
     {
      "title": "Most Eligible Bachelor",
      "year": 2021,
-     "index": 69.2
+     "index": 69
     }
    ],
-   "spread": 8.4,
+   "spread": 8.6,
    "pillars": {
     "rating": 55.1,
-    "reach": 77.3,
-    "stay": 89.3
+    "reach": 77.4,
+    "stay": 86.6
    },
    "missing": [],
+   "filmIndex": null,
+   "followers": {
+    "total": 6071964,
+    "asOf": "2026-11-08"
+   },
+   "fame": 69.6,
    "profile": {
     "slug": "akhil-akkineni",
     "imdb": [
@@ -2803,26 +3157,32 @@
     {
      "title": "Super Machi",
      "year": 2022,
-     "index": 45
+     "index": 45.8
     },
     {
      "title": "Vijetha",
      "year": 2018,
-     "index": 43.8
+     "index": 44.2
     },
     {
      "title": "Kinnerasani",
      "year": 2022,
-     "index": 40
+     "index": 40.1
     }
    ],
-   "spread": 2.1,
+   "spread": 2.4,
    "pillars": {
     "rating": 51.9,
     "reach": 33.7,
-    "stay": 25.6
+    "stay": 28.1
    },
    "missing": [],
+   "filmIndex": null,
+   "followers": {
+    "total": 263796,
+    "asOf": "2026-11-08"
+   },
+   "fame": 35.5,
    "profile": {
     "slug": "kalyaan-dhev",
     "imdb": [
@@ -2851,26 +3211,32 @@
     {
      "title": "Hanu-Man",
      "year": 2024,
-     "index": 84.3
+     "index": 83.7
     },
     {
      "title": "Zombie Reddy",
      "year": 2021,
-     "index": 68
+     "index": 66.2
     },
     {
      "title": "Adbhutham",
      "year": 2021,
-     "index": 63.9
+     "index": 63.7
     }
    ],
-   "spread": 13.3,
+   "spread": 13,
    "pillars": {
     "rating": 64.1,
-    "reach": 61.5,
-    "stay": 79
+    "reach": 61.8,
+    "stay": 75.5
    },
    "missing": [],
+   "filmIndex": null,
+   "followers": {
+    "total": 1189262,
+    "asOf": "2026-11-08"
+   },
+   "fame": 51.9,
    "profile": {
     "slug": "teja-sajja",
     "imdb": [
@@ -2899,26 +3265,32 @@
     {
      "title": "Agent Sai Srinivasa Athreya",
      "year": 2019,
-     "index": 81.4
+     "index": 83
     },
     {
      "title": "Jathi Ratnalu",
      "year": 2021,
-     "index": 77
+     "index": 77.5
     },
     {
      "title": "D for Dopidi",
      "year": 2013,
-     "index": 54.1
+     "index": 54.3
     }
    ],
-   "spread": 12,
+   "spread": 12.4,
    "pillars": {
     "rating": 68.4,
-    "reach": 77.6,
-    "stay": 77.2
+    "reach": 77.7,
+    "stay": 81.3
    },
    "missing": [],
+   "filmIndex": null,
+   "followers": {
+    "total": 1487872,
+    "asOf": "2026-11-08"
+   },
+   "fame": 54.3,
    "profile": {
     "slug": "naveen-polishetty",
     "imdb": [
@@ -2929,69 +3301,6 @@
     "debutYear": 2012,
     "debutYearBy": "wikidata",
     "hasFreePhoto": true
-   }
-  },
-  {
-   "slug": "tarun",
-   "name": "Tarun",
-   "films": 20,
-   "excluded": 1,
-   "provisional": 0,
-   "complete": 17,
-   "judged": 19,
-   "qualified": false,
-   "reason": "17 of 19 films complete (89%, needs 90%)",
-   "index": null,
-   "band": null,
-   "best": [
-    {
-     "title": "Nuvve Kavali",
-     "year": 2000,
-     "index": 77.4
-    },
-    {
-     "title": "Priyamaina Neeku",
-     "year": 2001,
-     "index": 59.6
-    },
-    {
-     "title": "Nuvvu Leka Nenu Lenu",
-     "year": 2002,
-     "index": 58.2
-    }
-   ],
-   "spread": 8,
-   "pillars": {
-    "rating": 53.5,
-    "reach": 43.6,
-    "stay": 50.6
-   },
-   "missing": [
-    {
-     "title": "Nuvve Nuvve",
-     "year": 2002,
-     "missing": [
-      "IMDb rating with 10+ votes"
-     ]
-    },
-    {
-     "title": "Veta",
-     "year": 2014,
-     "missing": [
-      "IMDb rating with 10+ votes"
-     ]
-    }
-   ],
-   "profile": {
-    "slug": "tarun",
-    "imdb": [
-     "nm0850761"
-    ],
-    "birthDate": "1983-01-08",
-    "birthDateBy": "wikidata",
-    "debutYear": 1990,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": false
    }
   },
   {
@@ -3010,24 +3319,24 @@
     {
      "title": "Andala Rakshasi",
      "year": 2012,
-     "index": 66.2
+     "index": 67.6
     },
     {
      "title": "1997",
      "year": 2021,
-     "index": 51.8
+     "index": 51.9
     },
     {
      "title": "Month of Madhu",
      "year": 2023,
-     "index": 47.7
+     "index": 47.8
     }
    ],
-   "spread": 7.1,
+   "spread": 7.5,
    "pillars": {
     "rating": 59.6,
-    "reach": 31,
-    "stay": 18
+    "reach": 31.2,
+    "stay": 17.8
    },
    "missing": [
     {
@@ -3046,6 +3355,12 @@
      ]
     }
    ],
+   "filmIndex": null,
+   "followers": {
+    "total": 581069,
+    "asOf": "2026-11-08"
+   },
+   "fame": 44.1,
    "profile": {
     "slug": "naveen-chandra",
     "imdb": [
@@ -3054,6 +3369,68 @@
     "birthDate": "1988-12-02",
     "birthDateBy": "wikipedia",
     "debutYear": 2006,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": true
+   }
+  },
+  {
+   "slug": "priyadarshi",
+   "name": "Priyadarshi",
+   "films": 14,
+   "excluded": 1,
+   "provisional": 5,
+   "complete": 7,
+   "judged": 8,
+   "qualified": false,
+   "reason": "7 of 8 films complete (88%, needs 90%)",
+   "index": null,
+   "band": null,
+   "best": [
+    {
+     "title": "Balagam",
+     "year": 2023,
+     "index": 67.1
+    },
+    {
+     "title": "Mallesham",
+     "year": 2019,
+     "index": 56.6
+    },
+    {
+     "title": "Mail",
+     "year": 2021,
+     "index": 47.6
+    }
+   ],
+   "spread": 10.8,
+   "pillars": {
+    "rating": 58.1,
+    "reach": 36.8,
+    "stay": 30.2
+   },
+   "missing": [
+    {
+     "title": "Bommala Ramaram",
+     "year": 2016,
+     "missing": [
+      "IMDb rating with 10+ votes"
+     ]
+    }
+   ],
+   "filmIndex": null,
+   "followers": {
+    "total": 1463586,
+    "asOf": "2026-11-08"
+   },
+   "fame": 54.1,
+   "profile": {
+    "slug": "priyadarshi",
+    "imdb": [
+     "nm6419392"
+    ],
+    "birthDate": "1989-09-26",
+    "birthDateBy": "wikidata",
+    "debutYear": 2016,
     "debutYearBy": "wikidata",
     "hasFreePhoto": true
    }
@@ -3074,24 +3451,24 @@
     {
      "title": "Kobbari Matta",
      "year": 2019,
-     "index": 55.1
+     "index": 54.7
     },
     {
      "title": "Hrudaya Kaleyam",
      "year": 2014,
-     "index": 54.2
+     "index": 54.1
     },
     {
      "title": "Singham 123",
      "year": 2015,
-     "index": 47.4
+     "index": 47.5
     }
    ],
-   "spread": 7,
+   "spread": 6.8,
    "pillars": {
     "rating": 52.5,
-    "reach": 30.6,
-    "stay": 49.9
+    "reach": 30.8,
+    "stay": 49.4
    },
    "missing": [
     {
@@ -3102,6 +3479,12 @@
      ]
     }
    ],
+   "filmIndex": null,
+   "followers": {
+    "total": 191424,
+    "asOf": "2026-11-08"
+   },
+   "fame": 32,
    "profile": {
     "slug": "sampoornesh-babu",
     "imdb": [
@@ -3130,24 +3513,24 @@
     {
      "title": "Chirunavvutho",
      "year": 2000,
-     "index": 63.9
+     "index": 64.2
     },
     {
      "title": "Allare Allari",
      "year": 2007,
-     "index": 54.7
+     "index": 55.2
     },
     {
      "title": "Pellam Oorelithe",
      "year": 2003,
-     "index": 51.7
+     "index": 51.5
     }
    ],
-   "spread": 5.9,
+   "spread": 6.1,
    "pillars": {
     "rating": 55.4,
-    "reach": 32.7,
-    "stay": 27.4
+    "reach": 32.5,
+    "stay": 27.7
    },
    "missing": [
     {
@@ -3173,6 +3556,9 @@
      ]
     }
    ],
+   "filmIndex": null,
+   "followers": null,
+   "fame": null,
    "profile": {
     "slug": "venu-thottempudi",
     "imdb": [
@@ -3201,24 +3587,24 @@
     {
      "title": "PSV Garuda Vega",
      "year": 2017,
-     "index": 65.9
+     "index": 66.7
     },
     {
      "title": "Villain",
      "year": 2003,
-     "index": 63.5
+     "index": 65.2
     },
     {
      "title": "Maa Annayya",
      "year": 2000,
-     "index": 57
+     "index": 56.6
     }
    ],
-   "spread": 6.6,
+   "spread": 6.8,
    "pillars": {
     "rating": 57.6,
-    "reach": 32.7,
-    "stay": 43.8
+    "reach": 32.6,
+    "stay": 43.1
    },
    "missing": [
     {
@@ -3252,6 +3638,9 @@
      ]
     }
    ],
+   "filmIndex": null,
+   "followers": null,
+   "fame": null,
    "profile": {
     "slug": "rajasekhar",
     "imdb": [
@@ -3285,12 +3674,12 @@
     {
      "title": "Katha Screenplay Darsakatvam Appalaraju",
      "year": 2011,
-     "index": 48.7
+     "index": 48
     },
     {
      "title": "Poola Rangadu",
      "year": 2012,
-     "index": 47.4
+     "index": 47.6
     }
    ],
    "spread": 9.9,
@@ -3332,6 +3721,9 @@
      ]
     }
    ],
+   "filmIndex": null,
+   "followers": null,
+   "fame": null,
    "profile": {
     "slug": "sunil",
     "imdb": [
@@ -3340,70 +3732,6 @@
     "birthDate": "1974-02-28",
     "birthDateBy": "wikidata",
     "debutYear": 1998,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": true
-   }
-  },
-  {
-   "slug": "priyadarshi",
-   "name": "Priyadarshi",
-   "films": 14,
-   "excluded": 0,
-   "provisional": 5,
-   "complete": 7,
-   "judged": 9,
-   "qualified": false,
-   "reason": "7 of 9 films complete (78%, needs 90%)",
-   "index": null,
-   "band": null,
-   "best": [
-    {
-     "title": "Balagam",
-     "year": 2023,
-     "index": 67.6
-    },
-    {
-     "title": "Mallesham",
-     "year": 2019,
-     "index": 56.2
-    },
-    {
-     "title": "Mail",
-     "year": 2021,
-     "index": 48.9
-    }
-   ],
-   "spread": 10.9,
-   "pillars": {
-    "rating": 58.1,
-    "reach": 36.7,
-    "stay": 31.1
-   },
-   "missing": [
-    {
-     "title": "Bommala Ramaram",
-     "year": 2016,
-     "missing": [
-      "IMDb rating with 10+ votes"
-     ]
-    },
-    {
-     "title": "Ghazi",
-     "year": 2017,
-     "missing": [
-      "IMDb title",
-      "release year from a second source"
-     ]
-    }
-   ],
-   "profile": {
-    "slug": "priyadarshi",
-    "imdb": [
-     "nm6419392"
-    ],
-    "birthDate": "1989-09-26",
-    "birthDateBy": "wikidata",
-    "debutYear": 2016,
     "debutYearBy": "wikidata",
     "hasFreePhoto": true
    }
@@ -3424,24 +3752,24 @@
     {
      "title": "DJ Tillu",
      "year": 2022,
-     "index": 68.8
+     "index": 68.9
     },
     {
      "title": "Tillu Square",
      "year": 2024,
-     "index": 63.3
+     "index": 63.1
     },
     {
      "title": "Krishna and His Leela",
      "year": 2020,
-     "index": 51.6
+     "index": 52.1
     }
    ],
-   "spread": 10.5,
+   "spread": 10.3,
    "pillars": {
     "rating": 58.2,
-    "reach": 57,
-    "stay": 41.4
+    "reach": 57.3,
+    "stay": 42.3
    },
    "missing": [
     {
@@ -3459,6 +3787,9 @@
      ]
     }
    ],
+   "filmIndex": null,
+   "followers": null,
+   "fame": null,
    "profile": {
     "slug": "siddhu-jonnalagadda",
     "imdb": [
@@ -3487,19 +3818,19 @@
     {
      "title": "Babu Baga Busy",
      "year": 2017,
-     "index": 46.5
+     "index": 46.1
     },
     {
      "title": "Amrutham Chandamamalo",
      "year": 2013,
-     "index": 41.3
+     "index": 41.1
     }
    ],
-   "spread": 2.6,
+   "spread": 2.5,
    "pillars": {
     "rating": 48.7,
     "reach": 39.5,
-    "stay": 30.6
+    "stay": 28.6
    },
    "missing": [
     {
@@ -3510,6 +3841,12 @@
      ]
     }
    ],
+   "filmIndex": null,
+   "followers": {
+    "total": 169737,
+    "asOf": "2026-11-08"
+   },
+   "fame": 30.7,
    "profile": {
     "slug": "srinivas-avasarala",
     "imdb": [
@@ -3543,14 +3880,14 @@
     {
      "title": "Pareshan",
      "year": 2023,
-     "index": 37.4
+     "index": 37.2
     }
    ],
-   "spread": 0.7,
+   "spread": 0.8,
    "pillars": {
     "rating": 53.9,
     "reach": 13.8,
-    "stay": 7
+    "stay": 6.3
    },
    "missing": [
     {
@@ -3561,6 +3898,9 @@
      ]
     }
    ],
+   "filmIndex": null,
+   "followers": null,
+   "fame": null,
    "profile": {
     "slug": "thiruveer",
     "imdb": [
@@ -3594,19 +3934,19 @@
     {
      "title": "Yuva Rathna",
      "year": 2002,
-     "index": 51.2
+     "index": 51.4
     },
     {
      "title": "Amaravathi",
      "year": 2009,
-     "index": 49.9
+     "index": 49.5
     }
    ],
    "spread": 4.3,
    "pillars": {
-    "rating": 57.2,
+    "rating": 57.1,
     "reach": 23.2,
-    "stay": 13
+    "stay": 13.1
    },
    "missing": [
     {
@@ -3680,6 +4020,9 @@
      ]
     }
    ],
+   "filmIndex": null,
+   "followers": null,
+   "fame": null,
    "profile": {
     "slug": "taraka-ratna",
     "imdb": [
@@ -3708,12 +4051,12 @@
     {
      "title": "Brahmalokam To Yamalokam Via Bhulokam",
      "year": 2010,
-     "index": 49.8
+     "index": 50
     },
     {
      "title": "Taj Mahal",
      "year": 2010,
-     "index": 45.6
+     "index": 45.9
     },
     {
      "title": "Seesa",
@@ -3721,10 +4064,10 @@
      "index": 45.1
     }
    ],
-   "spread": 2.5,
+   "spread": 2.6,
    "pillars": {
     "rating": 50.8,
-    "reach": 15.4,
+    "reach": 15.3,
     "stay": 16
    },
    "missing": [
@@ -3792,8 +4135,7 @@
      "title": "Aadivaram Adavallaku Selavu Kavali",
      "year": 2007,
      "missing": [
-      "IMDb title",
-      "release year from a second source"
+      "Wikipedia page views"
      ]
     },
     {
@@ -3881,6 +4223,12 @@
      ]
     }
    ],
+   "filmIndex": null,
+   "followers": {
+    "total": 391422,
+    "asOf": "2026-11-08"
+   },
+   "fame": 39.8,
    "profile": {
     "slug": "sivaji",
     "imdb": [
@@ -3899,10 +4247,10 @@
    "films": 35,
    "excluded": 0,
    "provisional": 0,
-   "complete": 16,
+   "complete": 17,
    "judged": 35,
    "qualified": false,
-   "reason": "16 of 35 films complete (46%, needs 90%)",
+   "reason": "17 of 35 films complete (49%, needs 90%)",
    "index": null,
    "band": null,
    "best": [
@@ -3914,19 +4262,19 @@
     {
      "title": "Bhadrachalam",
      "year": 2001,
-     "index": 48.9
+     "index": 48.8
     },
     {
      "title": "Thank You Subba Rao",
      "year": 2001,
-     "index": 48.4
+     "index": 48.6
     }
    ],
-   "spread": 10.4,
+   "spread": 10.2,
    "pillars": {
-    "rating": 56.9,
-    "reach": 22.5,
-    "stay": 21.7
+    "rating": 57,
+    "reach": 20.9,
+    "stay": 20.7
    },
    "missing": [
     {
@@ -4062,16 +4410,11 @@
      "missing": [
       "IMDb rating with 10+ votes"
      ]
-    },
-    {
-     "title": "Narthanasala",
-     "year": 2020,
-     "missing": [
-      "IMDb title",
-      "release year from a second source"
-     ]
     }
    ],
+   "filmIndex": null,
+   "followers": null,
+   "fame": null,
    "profile": {
     "slug": "srihari",
     "imdb": [
@@ -4100,6 +4443,9 @@
    "spread": null,
    "pillars": null,
    "missing": [],
+   "filmIndex": null,
+   "followers": null,
+   "fame": null,
    "profile": {
     "slug": "rajendra-prasad",
     "imdb": [
@@ -4128,6 +4474,12 @@
    "spread": null,
    "pillars": null,
    "missing": [],
+   "filmIndex": null,
+   "followers": {
+    "total": 1427748,
+    "asOf": "2026-11-08"
+   },
+   "fame": 53.9,
    "profile": {
     "slug": "navdeep",
     "imdb": [

@@ -156,3 +156,389 @@ details:not([open]) > summary .when-open {
     forced-color-adjust: none;
   }
 }
+
+/* ── Opening animation (components/home/intro.tsx) ─────────────────────────
+ * 0.0s board drops in · 0.95s the arm claps · 1.0s photos burst out · 2.8s everything lifts away.
+ * The last keyframe hides the overlay, so it clears itself even without JavaScript. */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  color: #f3ebe4;
+  background:
+    radial-gradient(70% 55% at 50% 44%, rgba(163, 40, 79, 0.5), transparent 70%),
+    radial-gradient(60% 50% at 50% 100%, rgba(216, 168, 107, 0.14), transparent 70%),
+    linear-gradient(160deg, #2b1c1a 0%, #140d0c 100%);
+  animation: intro-out 3.3s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+html[data-intro="skip"] .intro {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro {
+    display: none;
+  }
+}
+@keyframes intro-out {
+  0%,
+  86% {
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.06);
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+.intro-stage {
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  width: 0;
+  height: 0;
+}
+.intro-board {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  top: 0;
+  width: clamp(168px, 30vmin, 250px);
+  transform: translate(-50%, -50%);
+  animation:
+    intro-board-in 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.3) both,
+    intro-shake 0.32s 0.97s linear;
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.5));
+}
+@keyframes intro-board-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -80%) scale(0.7) rotate(-8deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+@keyframes intro-shake {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  25% {
+    translate: 0 5px;
+  }
+  60% {
+    translate: 0 -2px;
+  }
+}
+.intro-arm,
+.intro-arm-base {
+  height: clamp(20px, 3.6vmin, 30px);
+  border-radius: 4px;
+  border: 2px solid #f3ebe4;
+  background: repeating-linear-gradient(-55deg, #f3ebe4 0 16px, #1b1211 16px 32px);
+}
+.intro-arm {
+  transform-origin: 6% 100%;
+  transform: rotate(-30deg);
+  animation: intro-clap 0.5s 0.55s cubic-bezier(0.6, 0, 0.9, 0.4) forwards;
+}
+@keyframes intro-clap {
+  0% {
+    transform: rotate(-30deg);
+  }
+  45% {
+    transform: rotate(-36deg);
+  }
+  84% {
+    transform: rotate(0deg);
+  }
+  92% {
+    transform: rotate(-4deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+.intro-arm-base {
+  margin-top: 2px;
+  background: repeating-linear-gradient(55deg, #f3ebe4 0 16px, #1b1211 16px 32px);
+}
+.intro-slate {
+  margin-top: 2px;
+  display: grid;
+  gap: 0;
+  border: 2px solid #f3ebe4;
+  border-radius: 4px 4px 8px 8px;
+  background: #1b1211;
+  font-family: var(--font-serif);
+  font-size: clamp(12px, 2.1vmin, 16px);
+  font-weight: 600;
+  line-height: 1.2;
+}
+.intro-slate > span {
+  padding: 0.5em 0.75em;
+  border-bottom: 1px solid rgba(243, 235, 228, 0.35);
+  white-space: nowrap;
+}
+.intro-slate > span:last-child {
+  border-bottom: 0;
+}
+.intro-slate i {
+  display: block;
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 0.62em;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #d8a86b;
+}
+.intro-slate-row {
+  display: grid !important;
+  grid-template-columns: 1fr 1.4fr;
+  padding: 0 !important;
+}
+.intro-slate-row > span {
+  padding: 0.5em 0.75em;
+}
+.intro-slate-row > span + span {
+  border-left: 1px solid rgba(243, 235, 228, 0.35);
+}
+.intro-flash {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 40vmin;
+  height: 40vmin;
+  margin: -20vmin 0 0 -20vmin;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 232, 190, 0.85) 0%, rgba(216, 168, 107, 0.35) 40%, transparent 70%);
+  opacity: 0;
+  animation: intro-flash 0.7s 0.95s ease-out forwards;
+}
+@keyframes intro-flash {
+  0% {
+    opacity: 0.95;
+    transform: scale(0.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3.4);
+  }
+}
+.intro-ball,
+.intro-spark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.intro-ball {
+  z-index: 2;
+  width: clamp(40px, var(--sz), 88px);
+  height: clamp(40px, var(--sz), 88px);
+  margin: calc(clamp(40px, var(--sz), 88px) / -2) 0 0 calc(clamp(40px, var(--sz), 88px) / -2);
+  overflow: hidden;
+  background: #3a1d22;
+  box-shadow:
+    0 0 0 2px #d8a86b,
+    0 8px 20px rgba(0, 0, 0, 0.45);
+  animation: intro-burst 2.2s calc(0.97s + var(--i) * 16ms) cubic-bezier(0.16, 0.9, 0.3, 1) forwards;
+}
+.intro-ball img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.intro-spark {
+  z-index: 1;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  background: #f0c98a;
+  box-shadow: 0 0 10px 2px rgba(240, 201, 138, 0.7);
+  animation: intro-burst 1.5s calc(0.95s + var(--i) * 10ms) cubic-bezier(0.1, 0.9, 0.3, 1) forwards;
+}
+@keyframes intro-burst {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.1);
+  }
+  6% {
+    opacity: 1;
+  }
+  42% {
+    opacity: 1;
+    transform: translate(var(--dx), var(--dy)) scale(1);
+  }
+  72% {
+    opacity: 1;
+    transform: translate(calc(var(--dx) * 1.05), calc(var(--dy) * 1.05 + 8px)) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(var(--dx) * 1.9), calc(var(--dy) * 1.9 + 30px)) scale(0.75);
+  }
+}
+.intro-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(44% + clamp(96px, 19vmin, 150px));
+  z-index: 4;
+  margin: 0;
+  text-align: center;
+  text-shadow: 0 2px 18px rgba(20, 13, 12, 0.9);
+  animation: intro-title 0.6s 1.15s ease-out both;
+}
+@keyframes intro-title {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.intro-title-name {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: clamp(26px, 5.4vmin, 46px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.intro-title-name span {
+  color: #e0668c;
+}
+.intro-title-tag {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: clamp(10px, 1.7vmin, 13px);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #d8a86b;
+}
+.intro-skip {
+  position: absolute;
+  z-index: 5;
+  right: 16px;
+  bottom: 16px;
+  padding: 8px 14px;
+  border: 1px solid rgba(243, 235, 228, 0.35);
+  border-radius: 999px;
+  background: rgba(27, 18, 17, 0.5);
+  color: #f3ebe4;
+  font-size: 13px;
+  cursor: pointer;
+}
+.intro-skip:hover {
+  border-color: #f3ebe4;
+}
+
+/* ── Home page motion ──────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  /* Staggered entrance for the banner: set --d (delay) on each piece. */
+  .rise {
+    animation: rise 0.7s var(--d, 0s) cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .grow-y {
+    transform-origin: bottom;
+    animation: grow-y 0.8s var(--d, 0s) cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  @keyframes grow-y {
+    from {
+      transform: scaleY(0);
+    }
+    to {
+      transform: none;
+    }
+  }
+  /* Sections fade up, and bars fill, as they scroll into view (where the browser supports it). */
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+    .fill-x {
+      transform-origin: left;
+      animation: fill-x linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 28%;
+    }
+    @keyframes fill-x {
+      from {
+        transform: scaleX(0);
+      }
+      to {
+        transform: none;
+      }
+    }
+  }
+  .lift {
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      border-color 0.2s ease;
+  }
+  .lift:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(35, 24, 21, 0.1);
+  }
+}
+
+/* Photo dots in the home-page chart: the name appears on hover or keyboard focus. */
+.dot {
+  position: absolute;
+  transform: translate(-50%, 50%);
+  border-radius: 50%;
+  transition: transform 0.15s ease;
+}
+.dot:hover,
+.dot:focus-visible {
+  z-index: 5;
+  transform: translate(-50%, 50%) scale(1.45);
+}
+.dot-tip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  transform: translateX(-50%);
+  padding: 3px 7px;
+  border-radius: 6px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 10px;
+  line-height: 1.25;
+  white-space: nowrap;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+}
+.dot:hover .dot-tip,
+.dot:focus-visible .dot-tip {
+  opacity: 1;
+}

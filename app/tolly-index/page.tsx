@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/layout/page-header";
 import { HeroAvatar } from "@/components/hero/hero-avatar";
 import { BandBar, IndexValue } from "@/components/tolly/tolly-parts";
+import { compactCount } from "@/lib/data/real/hero-facts";
 import { DATA_MODE } from "@/lib/env";
 import { tollyIndexEnabled } from "@/lib/features";
 import { getDashboardData } from "@/lib/repositories";
@@ -24,7 +25,7 @@ export default async function TollyIndexPage() {
   const updated = new Date(`${m.asOf}T00:00:00Z`).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6">
-      <PageHeader title="Tolly Index" subtitle="Every Telugu hero scored from 0 to 100 on what audiences think of his films.">
+      <PageHeader title="Tolly Index" subtitle={m.fame.applied ? "Every Telugu hero scored from 0 to 100 on what audiences think of his films and how many fans follow him." : "Every Telugu hero scored from 0 to 100 on what audiences think of his films."}>
         <p className="mt-2 text-[13px] text-muted">
           Updated {updated} ·{" "}
           <Link href="/methodology#tolly-index" className="font-medium text-wine hover:underline">
@@ -63,7 +64,7 @@ export default async function TollyIndexPage() {
           <p className="text-[12px] text-muted">± shows how sure we are. Heroes whose ranges overlap are about level.</p>
         </div>
         <div className="scroll-x mt-3 rounded-lg border border-line">
-          <table className="w-full min-w-[860px] text-[13.5px]">
+          <table className="w-full min-w-[920px] text-[13.5px]">
             <thead className="bg-surface-2 text-[10.5px] uppercase tracking-wide text-ink-2">
               <tr>
                 <th scope="col" className="px-2.5 py-2 text-left">#</th>
@@ -73,6 +74,9 @@ export default async function TollyIndexPage() {
                 <th scope="col" className="px-2.5 py-2 text-right">Liked</th>
                 <th scope="col" className="px-2.5 py-2 text-right">Reach</th>
                 <th scope="col" className="px-2.5 py-2 text-right">Still watched</th>
+                {m.fame.applied && (
+                  <th scope="col" className="px-2.5 py-2 text-right">Followers</th>
+                )}
                 <th scope="col" className="px-2.5 py-2 text-left">Best film</th>
               </tr>
             </thead>
@@ -95,6 +99,7 @@ export default async function TollyIndexPage() {
                   <td className="tabular px-2.5 py-2 text-right">{h.pillars?.rating.toFixed(1)}</td>
                   <td className="tabular px-2.5 py-2 text-right">{h.pillars?.reach.toFixed(1)}</td>
                   <td className="tabular px-2.5 py-2 text-right">{h.pillars?.stay.toFixed(1)}</td>
+                  {m.fame.applied && <td className="tabular px-2.5 py-2 text-right">{h.followers ? compactCount(h.followers.total) : "—"}</td>}
                   <td className="px-2.5 py-2 text-ink-2">{h.best[0] ? `${h.best[0].title} (${h.best[0].year})` : "—"}</td>
                 </tr>
               ))}

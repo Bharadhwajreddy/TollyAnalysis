@@ -686,3 +686,14 @@ In this cloud environment, network scripts need `NODE_USE_ENV_PROXY=1`.
 | **Complete / provisional / incomplete / excluded** | Film statuses from the completeness gate |
 | **Judged films** | A hero's Telugu films at least 2 years old: the films that must be complete |
 | **Language editions** | Number of Wikipedias (any language) with an article on the film |
+
+## Fame (on since the November 2026 follower check)
+
+Hero index = 85% film index + 15% fame. Fame is a log scale of the hero's followers on Instagram plus X
+(10 thousand = 0, 100 million = 100), read from his official profiles on a dated check
+(`lib/data/real/hero-followers.json`, imported by `npm run tolly:update`).
+
+- Only Instagram and X count, because both were checked for every hero. YouTube counts are shown on profiles only.
+- A hero with no official account on either is scored on films alone. An account an editor marked uncertain is not used.
+- Fame switches on only when every ranked hero has a count less than a year old or is confirmed to have no account.
+- Known limit: a hero with a small official account scores lower than one with no account at all.

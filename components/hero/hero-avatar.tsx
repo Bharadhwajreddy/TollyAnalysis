@@ -12,6 +12,11 @@ export function initialsOf(name: string) {
     .toUpperCase();
 }
 
+/** The small square version of a hero photo (scripts/hero-thumbs.mts), for avatars up to ~88 px. */
+export function heroThumb(photo: string | null): string | null {
+  return photo ? photo.replace("/heroes/", "/heroes/thumb/").replace(/\.\w+$/, ".jpg") : null;
+}
+
 /** Round hero portrait with an industry-coloured ring; falls back to initials. */
 export function HeroAvatar({
   name,

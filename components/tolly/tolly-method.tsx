@@ -57,7 +57,7 @@ export function TollyMethod({ m }: { m: TollyMeta }) {
           </ul>
           <p className="mt-2 text-[12px] text-muted">
             {m.fame.applied
-              ? `Fame, from each hero's official followers, adds ${Math.round(m.fame.weight * 100)}% to his score.`
+              ? `Then fame: a hero's score is ${Math.round((1 - m.fame.weight) * 100)}% his films and ${Math.round(m.fame.weight * 100)}% his followers on Instagram and X. A hero with no official account is scored on films alone.`
               : `Fame, from each hero's official followers, will add ${Math.round(m.fame.weight * 100)}% once every ranked hero has a recent count.`}
           </p>
         </div>
