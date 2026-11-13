@@ -134,7 +134,14 @@ settings = [
     ("HeroMin", "Hero needs at least this many complete films", 5, "", "0"),
     ("HeroShare", "Hero needs this share of judged films complete", 0.9, "", "0%"),
     ("HeroPrior", "Average films added to every hero (k)", 3, "Pulls small careers toward the all-film mean", "0"),
-    ("W_Fame", "Weight: Fame in the final hero index", 0.15, "Final = (1 − w) × hero TI + w × Fame, only while FameOn is TRUE", "0.00"),
+    ("W_Audience", "Hero weight: Audience (his films' Tolly Index)", 0.5, "Final = Σ weight × factor ÷ Σ weights, over the factors he has data for", "0.00"),
+    ("W_Success", "Hero weight: Box-office success (hit rate)", 0.2, "Hits ÷ films with a known result, pulled toward the typical hero", "0.00"),
+    ("W_Fame", "Hero weight: Fame (followers)", 0.15, "Counts only while FameOn is TRUE", "0.00"),
+    ("W_Recent", "Hero weight: Recent form", 0.1, "Hit rate of his latest films", "0.00"),
+    ("W_Career", "Hero weight: Experience", 0.05, "Lead films ÷ CareerFull, capped at 100", "0.00"),
+    ("PriorFilms", "Success: 'typical' films added to every hero", 5, "So 2 hits from 2 films is not 100%", "0"),
+    ("PriorRecent", "Recent form: 'typical' films added", 2, "", "0"),
+    ("CareerFull", "Experience: lead films that score 100", 40, "", "0"),
     ("FameFloor", "Fame: log10 of followers that scores 0", 4, "4 = 10,000 followers", "0"),
     ("FameCeiling", "Fame: log10 of followers that scores 100", 8, "8 = 100 million followers", "0"),
 ]
@@ -183,6 +190,16 @@ for c in "ABCD":
     st[f"{c}{r}"].font = f_body
 st[f"A{r}"].font = f_bold
 name("FameOn", f"Settings!$C${r}")
+r += 1
+st[f"A{r}"] = "SuccessPrior"
+st[f"B{r}"] = "The typical hero's hit rate (all hits ÷ all films with a known result)"
+st[f"C{r}"] = f"=IF(SUM(Heroes!$S$2:$S${LH})>0,SUM(Heroes!$T$2:$T${LH})/SUM(Heroes!$S$2:$S${LH}),0.5)"
+st[f"C{r}"].number_format = "0.000"
+st[f"D{r}"] = "Calculated: short records are pulled toward this rate"
+for c in "ABCD":
+    st[f"{c}{r}"].font = f_body
+st[f"A{r}"].font = f_bold
+name("SuccessPrior", f"Settings!$C${r}")
 widths(st, [16, 50, 14, 80])
 
 # ───────────────────────────── Movies (inputs) ─────────────────────────────
@@ -229,7 +246,9 @@ hcols = [
     ("Career start source", 11, "ctx"), ("Free-licence photo?", 9, "ctx"), ("X followers (context only)", 12, "ctx"), ("X followers as of", 11, "ctx"),
     ("X handle", 16, "ctx"), ("Instagram followers (reported, context only)", 14, "ctx"),
     ("Followers for fame (official platforms added up, counts ≤ 1 year old)", 16, "in"), ("Followers counted as of", 11, "in"),
-    ("No official account? (Yes = scored on films alone)", 11, "in"),
+    ("No official account? (Yes = scored without fame)", 11, "in"),
+    ("Films with a known box-office result", 10, "in"), ("…of which hits or better", 9, "in"),
+    ("Latest films with a known result", 10, "in"), ("…of which hits or better", 9, "in"), ("Films as lead hero", 9, "in"),
 ]
 header(hv, [c[0] for c in hcols], [fill_in if c[2] == "in" else fill_ctx for c in hcols])
 widths(hv, [c[1] for c in hcols])
@@ -238,6 +257,8 @@ for i, h in enumerate(heroes, start=2):
            date.fromisoformat(h["birth"]) if h["birth"] else None, h["birthBy"], h["debut"], h["debutBy"],
            "Yes" if h["photo"] or h["slug"] in site_photos else "No", h["x"], date.fromisoformat(h["xDate"]) if h["xDate"] else None, h["xUser"], h["ig"],
            h.get("fameFollowers"), date.fromisoformat(h["fameDate"]) if h.get("fameDate") else None, "Yes" if h.get("noAccount") else None]
+    cr = h.get("career")
+    row += [cr["judged"], cr["hits"], cr["recentJudged"], cr["recentHits"], cr["leadFilms"]] if cr else [None] * 5
     for j, v in enumerate(row, start=1):
         hv.cell(row=i, column=j, value=v).font = f_input
     hv.cell(row=i, column=7).number_format = "yyyy-mm-dd"
@@ -472,11 +493,15 @@ HSTEPS = [
     ("Y", "", "Sort key (ranking)", 9, "", ""),
     ("Z", "", "Not-ranked # (helper)", 9, "", ""),
     ("AA", "H19", "Fame (0–100)", 9, "Fame = ROUND(MIN(100, MAX(0, (log10(followers) − 4) ÷ 4 × 100)), 1)", "Official followers added up (Heroes column P), log scale: 10k = 0, 1M = 50, 100M = 100."),
-    ("AB", "H20", "FINAL TOLLY INDEX", 10, "Final = ROUND(0.85 × hero TI + 0.15 × Fame, 1) while FameOn; otherwise the hero TI", "Fame counts only when every ranked hero has a recent follower count (or has no account)."),
-    ("AC", "H21", "Final ± band", 8, "band × (1 − 0.15), rounded, while fame applies", ""),
+    ("AB", "H25", "FINAL TOLLY INDEX", 10, "Final = ROUND(Σ weight × factor ÷ Σ weights, 1): Audience 50%, Success 20%, Fame 15%, Recent form 10%, Experience 5%", "A factor with no data is left out and the others are scaled up. Fame counts only while FameOn."),
+    ("AC", "H26", "Final ± band", 8, "band × W_Audience ÷ Σ weights, rounded", "Only the audience factor carries a measured uncertainty."),
+    ("AD", "H21", "Success (0–100)", 9, "Success = ROUND((hits + SuccessPrior × 5) ÷ (judged + 5) × 100, 1)", "Hit rate from box-office verdicts (Heroes S–T), pulled toward the typical hero."),
+    ("AE", "H22", "Recent form (0–100)", 9, "Recent = ROUND((recent hits + SuccessPrior × 2) ÷ (recent judged + 2) × 100, 1)", "The same for his latest films (Heroes U–V)."),
+    ("AF", "H23", "Experience (0–100)", 9, "Experience = ROUND(MIN(100, lead films ÷ 40 × 100), 1)", "Heroes column W."),
+    ("AG", "H24", "Σ weights used", 8, "sum of the weights of the factors he has data for", ""),
 ]
 th = wb.create_sheet("Tolly Index Heroes")
-header(th, [f"{s[1]} · {s[2]}" if s[1] else s[2] for s in HSTEPS], [fill_calc] * 22 + [fill_ref] * 4 + [fill_calc] * 3, height=66)
+header(th, [f"{s[1]} · {s[2]}" if s[1] else s[2] for s in HSTEPS], [fill_calc] * 22 + [fill_ref] * 4 + [fill_calc] * 7, height=66)
 widths(th, [s[3] for s in HSTEPS])
 for s in HSTEPS:
     if s[4]:
@@ -521,8 +546,12 @@ for i, h in enumerate(heroes, start=2):
         "Y": f'=IF(ISNUMBER(AB{r}),AB{r}-ROW()/1000000,"")',
         "Z": f'=IF(M{r}="No",COUNTIF($M$2:M{r},"No"),"")',
         "AA": f'=IF(N(Heroes!P{r})>0,ROUND(MAX(0,MIN(100,(LOG10(Heroes!P{r})-FameFloor)/(FameCeiling-FameFloor)*100)),1),"")',
-        "AB": f'=IF(O{r}="","",IF(AND(FameOn,AA{r}<>""),ROUND((1-W_Fame)*O{r}+W_Fame*AA{r},1),O{r}))',
-        "AC": f'=IF(P{r}="","",IF(AND(FameOn,AA{r}<>""),ROUND(P{r}*(1-W_Fame),1),P{r}))',
+        "AB": f'=IF(O{r}="","",ROUND((W_Audience*O{r}+W_Success*N(AD{r})+IF(AND(FameOn,AA{r}<>""),W_Fame*AA{r},0)+W_Recent*N(AE{r})+W_Career*N(AF{r}))/AG{r},1))',
+        "AC": f'=IF(P{r}="","",ROUND(P{r}*W_Audience/AG{r},1))',
+        "AD": f'=IF(N(Heroes!S{r})>0,ROUND((Heroes!T{r}+SuccessPrior*PriorFilms)/(Heroes!S{r}+PriorFilms)*100,1),"")',
+        "AE": f'=IF(N(Heroes!U{r})>0,ROUND((Heroes!V{r}+SuccessPrior*PriorRecent)/(Heroes!U{r}+PriorRecent)*100,1),"")',
+        "AF": f'=IF(Heroes!W{r}="","",ROUND(MIN(100,Heroes!W{r}/CareerFull*100),1))',
+        "AG": f'=W_Audience+IF(AD{r}<>"",W_Success,0)+IF(AND(FameOn,AA{r}<>""),W_Fame,0)+IF(AE{r}<>"",W_Recent,0)+IF(AF{r}<>"",W_Career,0)',
     }
     for col, v in fm.items():
         th[f"{col}{r}"] = v
@@ -539,7 +568,7 @@ for i, h in enumerate(heroes, start=2):
     th[f"K{r}"].number_format = "0.0"
     th[f"L{r}"].number_format = "0.0"
     th[f"Y{r}"].number_format = "0.000000"
-th.auto_filter.ref = f"A1:AC{LH}"
+th.auto_filter.ref = f"A1:AG{LH}"
 th.conditional_formatting.add(f"M2:M{LH}", CellIsRule(operator="equal", formula=['"Yes"'], fill=fill_green))
 th.conditional_formatting.add(f"M2:M{LH}", CellIsRule(operator="equal", formula=['"No"'], fill=PatternFill("solid", fgColor="FFEB9C")))
 th.conditional_formatting.add(f"O2:O{LH}", DataBarRule(start_type="num", start_value=0, end_type="num", end_value=100, color="E9A23B"))
@@ -832,9 +861,18 @@ Hc.step("hti", "H12", "HERO TOLLY INDEX", '=IF({ranked}="Yes",ROUND(({sct}+{k}*{
         fmt="0.0", result=True)
 Hc.step("fame", "H12b", "Fame (0–100) from his followers", "=INDEX(" + TH + "!$AA$2:$AA$@LH@,{hi})", "Fame = (log10(followers) − 4) ÷ 4 × 100, between 0 and 100",
         '=IF(ISNUMBER({fame}),TEXT(INDEX(Heroes!$P$2:$P$@LH@,{hi}),"#,##0")&" followers → "&TEXT({fame},"0.0"),IF(FameOn,"no account: films alone","no recent follower count"))', fmt="0.0")
-Hc.step("final", "H12c", "FINAL TOLLY INDEX", '=IF(ISNUMBER({hti}),IF(AND(FameOn,ISNUMBER({fame})),ROUND((1-W_Fame)*{hti}+W_Fame*{fame},1),{hti}),"Not ranked")',
-        "Final = ROUND((1 − 0.15) × hero TI + 0.15 × Fame, 1) while fame is on",
-        '=IF(ISNUMBER({final}),IF(AND(FameOn,ISNUMBER({fame})),TEXT(1-W_Fame,"0.00")&" × "&TEXT({hti},"0.0")&" + "&TEXT(W_Fame,"0.00")&" × "&TEXT({fame},"0.0")&" = "&TEXT({final},"0.0"),"fame is off until every ranked hero has a recent count: final = hero TI"),"")',
+Hc.step("succ", "H12c", "Box-office success (0–100)", "=INDEX(" + TH + "!$AD$2:$AD$@LH@,{hi})", "Success = (hits + typical rate × 5) ÷ (films with a result + 5) × 100",
+        '=IF(ISNUMBER({succ}),INDEX(Heroes!$T$2:$T$@LH@,{hi})&" hits from "&INDEX(Heroes!$S$2:$S$@LH@,{hi})&" films with a known result","no film with a known result")', fmt="0.0")
+Hc.step("recent", "H12d", "Recent form (0–100)", "=INDEX(" + TH + "!$AE$2:$AE$@LH@,{hi})", "Recent = (recent hits + typical rate × 2) ÷ (recent films + 2) × 100",
+        '=IF(ISNUMBER({recent}),INDEX(Heroes!$V$2:$V$@LH@,{hi})&" hits in his latest "&INDEX(Heroes!$U$2:$U$@LH@,{hi})&" films with a result","")', fmt="0.0")
+Hc.step("exp", "H12e", "Experience (0–100)", "=INDEX(" + TH + "!$AF$2:$AF$@LH@,{hi})", "Experience = MIN(100, lead films ÷ 40 × 100)",
+        '=IF(ISNUMBER({exp}),INDEX(Heroes!$W$2:$W$@LH@,{hi})&" films as lead hero","")', fmt="0.0")
+Hc.step("wsum", "H12f", "Σ weights of the factors he has", '=W_Audience+IF(ISNUMBER({succ}),W_Success,0)+IF(AND(FameOn,ISNUMBER({fame})),W_Fame,0)+IF(ISNUMBER({recent}),W_Recent,0)+IF(ISNUMBER({exp}),W_Career,0)',
+        "Audience 0.50 + Success 0.20 + Fame 0.15 + Recent 0.10 + Experience 0.05, leaving out any he has no data for", fmt="0.00")
+Hc.step("final", "H12g", "FINAL TOLLY INDEX",
+        '=IF(ISNUMBER({hti}),ROUND((W_Audience*{hti}+W_Success*N({succ})+IF(AND(FameOn,ISNUMBER({fame})),W_Fame*{fame},0)+W_Recent*N({recent})+W_Career*N({exp}))/{wsum},1),"Not ranked")',
+        "Final = ROUND(Σ weight × factor ÷ Σ weights, 1)",
+        '=IF(ISNUMBER({final}),"("&TEXT(W_Audience,"0.00")&" × "&TEXT({hti},"0.0")&IF(ISNUMBER({succ})," + "&TEXT(W_Success,"0.00")&" × "&TEXT({succ},"0.0"),"")&IF(AND(FameOn,ISNUMBER({fame}))," + "&TEXT(W_Fame,"0.00")&" × "&TEXT({fame},"0.0"),"")&IF(ISNUMBER({recent})," + "&TEXT(W_Recent,"0.00")&" × "&TEXT({recent},"0.0"),"")&IF(ISNUMBER({exp})," + "&TEXT(W_Career,"0.00")&" × "&TEXT({exp},"0.0"),"")&") ÷ "&TEXT({wsum},"0.00")&" = "&TEXT({final},"0.0"),"")',
         fmt="0.0", result=True)
 Hc.step("rank", "H13", "Rank", '=IF(ISNUMBER({final}),COUNTIF(' + TH + '!$AB$2:$AB$@LH@,">"&{final})+1,"")', "1 + number of heroes with a higher final index",
         '=IF(ISNUMBER({rank}),"#"&{rank}&" of "&COUNT(' + TH + '!$AB$2:$AB$@LH@)&" ranked heroes","")', fmt="0", result=True)
@@ -845,7 +883,7 @@ Hc.step("spread", "H15", "Spread (how much his films vary)", f'=IF({{comp}}>=2,S
         "spread = √(mean of TI² − mean²)  (population SD)", fmt="0.00")
 Hc.step("band", "H16", "± band (95%)", '=IF(AND({ranked}="Yes",{spread}<>""),ROUND(1.96*{spread}/SQRT({sc}+{k}),1),"")', "band = ROUND(1.96 × spread ÷ √(Σ c + k), 1)",
         '=IF(ISNUMBER({band}),"1.96 × "&TEXT({spread},"0.00")&" ÷ √("&TEXT({sc},"0.00")&" + "&{k}&") = "&TEXT({band},"0.0"),"")', fmt="0.0", result=True)
-Hc.step("fband", "H16b", "Final ± band", '=IF(ISNUMBER({band}),IF(AND(FameOn,ISNUMBER({fame})),ROUND({band}*(1-W_Fame),1),{band}),"")', "band × (1 − 0.15) while fame is on", fmt="0.0")
+Hc.step("fband", "H16b", "Final ± band", '=IF(ISNUMBER({band}),ROUND({band}*W_Audience/{wsum},1),"")', "band × Audience weight ÷ Σ weights", fmt="0.0")
 Hc.step("range", "H17", "Range", '=IF(ISNUMBER({fband}),TEXT({final}-{fband},"0.0")&" to "&TEXT({final}+{fband},"0.0"),"")', "final − band  to  final + band",
         '=IF(ISNUMBER({band}),"heroes whose ranges overlap are about level","")')
 
@@ -1070,7 +1108,7 @@ eqs = [
     ("8", "FILM TOLLY INDEX", "TI = c × raw + (1 − c) × cohort mean raw", "Little evidence → the film is pulled to its era's typical film."),
     ("9", "HERO TOLLY INDEX", "Hero TI = (Σ c × TI + 3 × M) ÷ (Σ c + 3)", "Over his complete films; M = mean TI of all complete films. Ranked only with ≥ 5 complete films and ≥ 90% of judged films complete."),
     ("10", "± band", "band = 1.96 × spread ÷ √(Σ c + 3)", "spread = standard deviation of his films' TI. Overlapping ranges = about level."),
-    ("11", "Fame and final index", "Final = 0.85 × Hero TI + 0.15 × Fame;  Fame = (log10 followers − 4) ÷ 4 × 100", "Fame switches on only when every ranked hero has a follower count less than a year old (or has no account at all)."),
+    ("11", "Final index: five factors", "Final = 0.50 × Audience (hero TI) + 0.20 × Success + 0.15 × Fame + 0.10 × Recent form + 0.05 × Experience, ÷ the weights he has data for", "Success and Recent form are hit rates pulled toward the typical hero; Fame = (log10 followers − 4) ÷ 4 × 100 and switches on only when every ranked hero has a recent count (or no account); Experience = lead films ÷ 40."),
 ]
 for c, h in zip("ACDE", ["#", "Name", "Equation", "What it means"]):
     fb[f"{c}5"] = h

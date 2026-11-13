@@ -11,9 +11,10 @@
  * Usage: npm run tolly:compute -- [asOf=YYYY-MM-DD]
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { getHeroSnapshots } from "@/lib/repositories";
 import { REPORTED_INSTAGRAM } from "@/lib/data/real/reported-social";
 import { correlation, criticScores } from "@/lib/tolly/critics";
-import { applyFame, FAME_WEIGHT, MIN_VOTES, scoreFilms, scoreHeroes, TOLLY_VERSION, WEIGHTS, type HeroFollowers, type TollyFilmInput } from "@/lib/tolly";
+import { applyHeroFactors, CAREER_FULL_FILMS, FAME_WEIGHT, HERO_WEIGHTS, MIN_VOTES, RECENT_PRIOR_FILMS, SUCCESS_PRIOR_FILMS, scoreFilms, scoreHeroes, TOLLY_VERSION, WEIGHTS, type HeroCareer, type HeroFollowers, type TollyFilmInput } from "@/lib/tolly";
 
 const asOf = process.argv[2] ?? new Date().toISOString().slice(0, 10);
 const read = (p: string) => JSON.parse(readFileSync(p, "utf8"));
@@ -122,7 +123,23 @@ const followers: HeroFollowers[] = snap.heroes.map((h: { slug: string }) => {
   if (press && !counts.some((c) => c.platform === "instagram")) counts.push({ platform: "instagram", followers: press, date: REPORTED_INSTAGRAM.date });
   return { slug: h.slug, counts, noAccount: !!e?.noAccount };
 });
-const fame = applyFame(heroes, followers, asOf);
+// Box-office record per hero, from the same career numbers the site shows (hit / flop verdicts, no money).
+const careerSnaps = await getHeroSnapshots("all_time", true);
+const career: HeroCareer[] = careerSnaps.map((c) => {
+  const all = c.metrics.overallSuccessRatio;
+  const recent = c.metrics.recentSuccessRatio;
+  const judged = all.value === null ? 0 : all.coverage.numerator;
+  const recentJudged = recent.value === null ? 0 : recent.coverage.numerator;
+  return {
+    slug: c.slug,
+    judged,
+    hits: Math.round(((all.value ?? 0) / 100) * judged),
+    recentJudged,
+    recentHits: Math.round(((recent.value ?? 0) / 100) * recentJudged),
+    leadFilms: c.metrics.films.value ?? 0,
+  };
+});
+const fame = applyHeroFactors(heroes, followers, career, asOf);
 heroes.sort((a, b) => (b.index ?? -1) - (a.index ?? -1) || b.complete / Math.max(1, b.judged) - a.complete / Math.max(1, a.judged));
 
 // Cross-check: do critics agree with the audience Rating pillar?
@@ -166,6 +183,8 @@ const meta = {
   asOf,
   weights: WEIGHTS,
   minVotes: MIN_VOTES,
+  heroWeights: HERO_WEIGHTS,
+  heroFactors: { successPrior: fame.successPrior, successPriorFilms: SUCCESS_PRIOR_FILMS, recentPriorFilms: RECENT_PRIOR_FILMS, careerFullFilms: CAREER_FULL_FILMS },
   fame: { weight: FAME_WEIGHT, applied: fame.applied, missing: fame.missing.length, missingHeroes: fame.missing },
   sources: {
     imdb: `IMDb non-commercial datasets (title.basics, title.ratings, title.principals, title.akas), ${asOf}`,

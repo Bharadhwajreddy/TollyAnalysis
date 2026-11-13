@@ -38,7 +38,12 @@ export interface TollyHeroView {
   /** Fame 0–100 from his official followers, when a recent count exists. */
   fame: number | null;
   followers: { total: number; asOf: string } | null;
+  /** The five factors of the final index: 0–100 value (null = no data) and share of the index in %. */
+  factors: Record<FactorKey, { value: number | null; share: number }> | null;
+  career: { judged: number; hits: number; recentJudged: number; recentHits: number; leadFilms: number } | null;
 }
+
+export type FactorKey = "audience" | "success" | "fame" | "recent" | "career";
 
 export interface TollyMeta {
   version: string;
@@ -48,6 +53,8 @@ export interface TollyMeta {
   weights: { rating: number; reach: number; stay: number; voice: number };
   /** Fame joins the hero index only when every ranked hero has a recent follower count. */
   fame: { weight: number; applied: boolean; missing: number };
+  /** Weights of the five hero factors (they add up to 1). */
+  heroWeights: Record<FactorKey, number>;
 }
 
 type RawFilm = (typeof filmsData.films)[number] & { aliases?: string[] };
@@ -58,6 +65,7 @@ export const tollyMeta: TollyMeta = {
   films: filmsData.meta.films,
   heroes: heroesData.meta.heroes,
   weights: filmsData.meta.weights,
+  heroWeights: (heroesData.meta as { heroWeights?: TollyMeta["heroWeights"] }).heroWeights ?? { audience: 1, success: 0, fame: 0, recent: 0, career: 0 },
   fame: (heroesData.meta as { fame?: TollyMeta["fame"] }).fame ?? { weight: 0.15, applied: false, missing: heroesData.meta.heroes.qualified },
 };
 
@@ -98,6 +106,8 @@ const heroes: TollyHeroView[] = (() => {
     filmIndex: (h as { filmIndex?: number | null }).filmIndex ?? h.index,
     fame: (h as { fame?: number | null }).fame ?? null,
     followers: (h as { followers?: { total: number; asOf: string } | null }).followers ?? null,
+    factors: (h as { factors?: TollyHeroView["factors"] }).factors ?? null,
+    career: (h as { career?: TollyHeroView["career"] }).career ?? null,
   }));
   const ranked = all.filter((h) => h.index !== null).sort((a, b) => (b.index as number) - (a.index as number));
   // Ties share a rank, as in the workbook (1 + number of heroes strictly above).

@@ -3,14 +3,16 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { Dashboard } from "@/components/dashboard/dashboard";
 import { heroThumb, initialsOf } from "@/components/hero/hero-avatar";
-import { FameChart, type FamePoint } from "@/components/home/fame-chart";
+import { HeadToHead, type DuelHero } from "@/components/home/head-to-head";
 import { HeroSearch } from "@/components/home/hero-search";
+import { HomeCharts, type ChartHero } from "@/components/home/home-charts";
 import { FanRanking } from "@/components/ranking/fan-ranking";
+import { FACTORS, factorFact } from "@/components/tolly/tolly-parts";
 import { compactCount } from "@/lib/data/real/hero-facts";
 import { DATA_MODE } from "@/lib/env";
 import { tollyIndexEnabled, userRankingEnabled } from "@/lib/features";
 import { getDashboardData } from "@/lib/repositories";
-import { getTollyRanking, getTopTollyFilms, tollyMeta } from "@/lib/tolly/view";
+import { getTollyHero, getTollyRanking, getTopTollyFilms, tollyMeta } from "@/lib/tolly/view";
 
 const MEDAL = ["#d8a86b", "#c9c2bb", "#c08a5e"];
 const delay = (s: number) => ({ "--d": `${s}s` }) as CSSProperties;
@@ -78,16 +80,36 @@ export default async function HomePage() {
   const podium = [ranked[1], ranked[0], ranked[2]].filter(Boolean);
   const films = getTopTollyFilms(5);
   const followed = [...ranked].filter((h) => h.followers).sort((a, b) => (b.followers?.total ?? 0) - (a.followers?.total ?? 0));
-  const points: FamePoint[] = ranked
-    .filter((h) => h.fame !== null && h.filmIndex !== null && h.followers)
-    .map((h) => ({
+  // Ratios need a few films behind them, as on the Star Score page.
+  const MIN_JUDGED = 5;
+  const chart: ChartHero[] = all.map((h) => {
+    const t = getTollyHero(h.slug);
+    const sr = h.m.overallSuccessRatio;
+    const enough = sr.v !== null && sr.n >= MIN_JUDGED && h.m.films.v !== null;
+    return {
       slug: h.slug,
       name: h.name,
       thumb: thumbs.get(h.slug) ?? null,
-      films: h.filmIndex as number,
-      fame: h.fame as number,
-      followers: compactCount(h.followers?.total ?? 0),
-    }));
+      family: h.family,
+      debutYear: h.debutYear,
+      rank: t?.rank ?? null,
+      films: enough ? h.m.films.v : null,
+      successRatio: enough ? sr.v : null,
+      hits: enough ? Math.round(((sr.v as number) / 100) * sr.n) : null,
+      judged: enough ? sr.n : null,
+      audience: t?.rank ? (t.filmIndex ?? null) : null,
+      fame: t?.rank ? (t.fame ?? null) : null,
+      followers: t?.followers ? compactCount(t.followers.total) : null,
+    };
+  });
+  const duel: DuelHero[] = ranked.map((h) => ({
+    slug: h.slug,
+    name: h.name,
+    thumb: thumbs.get(h.slug) ?? null,
+    rank: h.rank as number,
+    index: h.index as number,
+    factors: FACTORS.map((f) => ({ key: f.key, label: f.label, value: h.factors?.[f.key].value ?? null, fact: factorFact(h, f.key, compactCount) })),
+  }));
   const search = all
     .map((h) => ({ slug: h.slug, name: h.name, thumb: thumbs.get(h.slug) ?? null, rank: ranked.find((r) => r.slug === h.slug)?.rank ?? null }))
     .sort((a, b) => (a.rank ?? 999) - (b.rank ?? 999) || a.name.localeCompare(b.name));
@@ -108,8 +130,8 @@ export default async function HomePage() {
               Who is Tollywood&apos;s <span className="text-[#f0c98a]">biggest hero?</span>
             </h1>
             <p className="rise mt-4 max-w-xl text-[15.5px] leading-relaxed text-white/80 sm:text-[17px]" style={delay(0.16)}>
-              {m.heroes.qualified} heroes, ranked by how much audiences love their films{m.fame.applied ? " and how many fans follow them" : ""}. One score out of 100: the Tolly
-              Index.
+              {m.heroes.qualified} heroes, ranked on how much audiences love their films, how often they deliver hits, how many fans follow them and how they are doing
+              lately. One score out of 100: the Tolly Index.
             </p>
             <div className="rise mt-6" style={delay(0.24)}>
               <HeroSearch heroes={search} />
@@ -272,16 +294,29 @@ export default async function HomePage() {
         </div>
       </div>
 
-      {/* The one chart */}
-      {points.length >= 10 && (
-        <section aria-labelledby="fame-chart" className="card reveal mt-4 p-4 sm:p-6">
-          <p className="section-kicker">Films vs. fame</p>
-          <h2 id="fame-chart" className="mt-1 font-serif text-[26px] font-semibold leading-tight text-ink sm:text-[30px]">
-            Loved on screen, followed online
-          </h2>
-          <p className="mt-1 text-[14px] text-ink-2">Every photo is a hero. Tap one to open his page.</p>
-          <div className="mt-4">
-            <FameChart points={points} />
+      {/* The one chart, with a second view */}
+      <section aria-labelledby="home-chart" className="card reveal mt-4 p-4 sm:p-6">
+        <p className="section-kicker">The big picture</p>
+        <h2 id="home-chart" className="mt-1 font-serif text-[26px] font-semibold leading-tight text-ink sm:text-[30px]">
+          More films, or more hits?
+        </h2>
+        <div className="mt-4">
+          <HomeCharts heroes={chart} />
+        </div>
+      </section>
+
+      {/* Head to head */}
+      {duel.length >= 2 && (
+        <section aria-labelledby="duel" className="card reveal mt-4 p-4 sm:p-6">
+          <div className="mx-auto max-w-3xl">
+            <p className="section-kicker">Head to head</p>
+            <h2 id="duel" className="mt-1 font-serif text-[26px] font-semibold leading-tight text-ink sm:text-[30px]">
+              Settle the debate
+            </h2>
+            <p className="mt-1 text-[14px] text-ink-2">Pick any two heroes and see who leads on each part of the Tolly Index.</p>
+            <div className="mt-4">
+              <HeadToHead heroes={duel} />
+            </div>
           </div>
         </section>
       )}

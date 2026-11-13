@@ -11,6 +11,8 @@ export interface FamePoint {
   /** Fame 0–100 (log scale of followers). */
   fame: number;
   followers: string;
+  /** Ring colour (debut era or film family). */
+  color?: string;
 }
 
 const Y_TICKS = [
@@ -26,6 +28,7 @@ const Y_TICKS = [
  * received (across) and how many people follow him (up). Each photo links to the hero's page.
  */
 export function FameChart({ points }: { points: FamePoint[] }) {
+  if (points.length === 0) return <p className="py-10 text-center text-[13.5px] text-muted">Every group is hidden. Tap a colour above to show it.</p>;
   const lo = Math.floor((Math.min(...points.map((p) => p.films)) - 3) / 5) * 5;
   const hi = Math.ceil((Math.max(...points.map((p) => p.films)) + 2) / 5) * 5;
   const x = (v: number) => ((v - lo) / (hi - lo)) * 100;
@@ -59,8 +62,8 @@ export function FameChart({ points }: { points: FamePoint[] }) {
               <li key={p.slug}>
                 <Link
                   href={`/hero/${p.slug}`}
-                  className="dot block h-7 w-7 bg-wine ring-2 ring-surface sm:h-10 sm:w-10"
-                  style={{ left: `${x(p.films)}%`, bottom: `${p.fame}%` }}
+                  className="dot block h-7 w-7 bg-wine sm:h-10 sm:w-10"
+                  style={{ left: `${x(p.films)}%`, bottom: `${p.fame}%`, boxShadow: `0 0 0 2.5px ${p.color ?? "var(--surface)"}` }}
                   aria-label={`${p.name}: films ${p.films.toFixed(1)}, ${p.followers} followers`}
                 >
                   {p.thumb ? (

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { compactCount } from "@/lib/data/real/hero-facts";
 import type { TollyHeroView, TollyMeta } from "@/lib/tolly/view";
-import { IndexValue, PILLARS, PillarBar } from "./tolly-parts";
+import { FACTORS, factorFact, IndexValue, PILLARS, PillarBar } from "./tolly-parts";
 
 /** The hero page's Tolly Index section: score, band, pillar profile, coverage and the films holding him back. */
 export function TollyHeroCard({ hero, rankedCount, meta }: { hero: TollyHeroView; rankedCount: number; meta: TollyMeta }) {
@@ -13,7 +13,7 @@ export function TollyHeroCard({ hero, rankedCount, meta }: { hero: TollyHeroView
           <h2 id="tolly-title" className="font-serif text-[24px] font-semibold text-ink">
             Tolly Index
           </h2>
-          <p className="mt-0.5 max-w-2xl text-[13px] text-ink-2">What audiences think of his films, out of 100.</p>
+          <p className="mt-0.5 max-w-2xl text-[13px] text-ink-2">His films, his box-office record, his fame and his form, in one score out of 100.</p>
         </div>
         <Link href="/tolly-index" className="text-[13px] font-medium text-wine hover:underline">
           Full ranking →
@@ -38,14 +38,6 @@ export function TollyHeroCard({ hero, rankedCount, meta }: { hero: TollyHeroView
               </p>
             </>
           )}
-          {hero.fame !== null && hero.followers && (
-            <p className="tabular mt-3 border-t border-line pt-3 text-[12.5px] text-ink-2">
-              Fame <b className="text-ink">{hero.fame.toFixed(1)}</b> from {compactCount(hero.followers.total)} official followers (counted by {hero.followers.asOf}).{" "}
-              {meta.fame.applied && hero.filmIndex !== null
-                ? `Films ${hero.filmIndex.toFixed(1)} × ${(1 - meta.fame.weight).toFixed(2)} + fame × ${meta.fame.weight.toFixed(2)}.`
-                : `Fame joins the index at ${Math.round(meta.fame.weight * 100)}% once every ranked hero has a recent count.`}
-            </p>
-          )}
           <p className="tabular mt-3 border-t border-line pt-3 text-[12.5px] text-ink-2">
             Based on {hero.complete} of {hero.judged} films
             {hero.provisional ? ` · ${hero.provisional} too new to count` : ""}
@@ -53,14 +45,34 @@ export function TollyHeroCard({ hero, rankedCount, meta }: { hero: TollyHeroView
         </div>
 
         <div className="space-y-4">
-          {hero.pillars ? (
+          {hero.factors && hero.qualified ? (
             <div className="space-y-2.5">
-              {PILLARS.map((p) => (
-                <PillarBar key={p.key} label={`${p.label} · ${p.weight}`} sub={p.question} value={hero.pillars?.[p.key] ?? null} color={p.color} />
-              ))}
+              {FACTORS.map((f) => {
+                const part = hero.factors?.[f.key];
+                const fact = factorFact(hero, f.key, compactCount);
+                return (
+                  <PillarBar
+                    key={f.key}
+                    label={`${f.label} · ${part && part.share ? `${Math.round(part.share)}%` : "not counted"}`}
+                    sub={part?.value === null && f.key === "fame" && !meta.fame.applied ? "not counted yet" : (fact ?? "no data")}
+                    value={part?.value ?? null}
+                    color={f.color}
+                  />
+                );
+              })}
             </div>
           ) : (
-            <p className="text-[13px] text-muted">No rated films yet.</p>
+            <p className="text-[13px] text-muted">{hero.pillars ? "His score appears once enough of his films are rated." : "No rated films yet."}</p>
+          )}
+          {hero.pillars && (
+            <details className="rounded-lg border border-line bg-surface-2/50 px-3 py-2">
+              <summary className="cursor-pointer text-[13px] font-semibold text-ink">Inside the audience score</summary>
+              <div className="mt-3 space-y-2.5 pb-1">
+                {PILLARS.map((p) => (
+                  <PillarBar key={p.key} label={`${p.label} · ${p.weight}`} sub={p.question} value={hero.pillars?.[p.key] ?? null} color={p.color} />
+                ))}
+              </div>
+            </details>
           )}
           {hero.best.length > 0 && (
             <div>

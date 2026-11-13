@@ -6,6 +6,32 @@ export const PILLARS = [
   { key: "stay", label: "Staying power", question: "Do people still care?", weight: "20%", color: "#b7791f" },
 ] as const;
 
+/** The five factors of a hero's final Tolly Index, in weight order. */
+export const FACTORS = [
+  { key: "audience", label: "Audience", question: "Do people love his films?", color: "var(--wine)" },
+  { key: "success", label: "Box office", question: "How often do his films hit?", color: "#2a78d6" },
+  { key: "fame", label: "Fame", question: "How many fans follow him?", color: "#b7791f" },
+  { key: "recent", label: "Recent form", question: "How are his latest films doing?", color: "#1baf7a" },
+  { key: "career", label: "Experience", question: "How many films has he led?", color: "#8a7f78" },
+] as const;
+
+/** The fact behind a factor, in a few words ("14 hits from 20 films"). */
+export function factorFact(hero: Pick<TollyHeroView, "career" | "followers" | "complete">, key: (typeof FACTORS)[number]["key"], followers: (n: number) => string): string | null {
+  const c = hero.career;
+  switch (key) {
+    case "audience":
+      return `${hero.complete} rated films`;
+    case "success":
+      return c && c.judged ? `${c.hits} ${c.hits === 1 ? "hit" : "hits"} from ${c.judged} films` : null;
+    case "fame":
+      return hero.followers ? `${followers(hero.followers.total)} followers` : "no official account";
+    case "recent":
+      return c && c.recentJudged ? `${c.recentHits} ${c.recentHits === 1 ? "hit" : "hits"} in his latest ${c.recentJudged}` : null;
+    case "career":
+      return c ? `${c.leadFilms} films as lead` : null;
+  }
+}
+
 /** One 0–100 bar with its value. */
 export function PillarBar({ label, value, color, sub }: { label: string; value: number | null; color: string; sub?: string }) {
   return (

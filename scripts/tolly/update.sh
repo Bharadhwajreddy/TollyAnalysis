@@ -22,7 +22,7 @@ npx tsx "$HERE/import-manual.mts" "$DIR"
 echo "== 2/4 link films"
 npx tsx "$HERE/link-films.mts" >/dev/null
 echo "== 3/4 compute scores (as of $AS_OF)"
-npx tsx "$HERE/compute.mts" "$AS_OF" >/dev/null
+npx tsx --conditions=react-server "$HERE/compute.mts" "$AS_OF" >/dev/null
 echo "== 4/4 rebuild the workbook"
 bash "$HERE/workbook/build.sh" | tail -2
 

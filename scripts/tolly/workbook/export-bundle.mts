@@ -109,7 +109,7 @@ const films = (
 const profiles = new Map(
   (read(".cache/tolly/heroes-profile.json") as { slug: string; birthDate: string | null; birthDateBy: string | null; debutYear: number | null; debutYearBy: string | null; hasFreePhoto: boolean; imdb: string[] }[]).map((p) => [p.slug, p]),
 );
-type AppHero = { slug: string; index: number | null; followers?: { total: number; asOf: string } | null };
+type AppHero = { slug: string; index: number | null; followers?: { total: number; asOf: string } | null; career?: { judged: number; hits: number; recentJudged: number; recentHits: number; leadFilms: number } | null };
 const appHero = new Map((tollyHeroes.heroes as AppHero[]).map((h) => [h.slug, h]));
 type SnapHero = { slug: string; name: string; qid: string | null; article: string | null; filmographyPage: string | null; social?: { x?: { followers: number | null; date: string | null; username: string | null } | null } };
 const heroes = (snap.heroes as SnapHero[]).map((h) => {
@@ -133,6 +133,7 @@ const heroes = (snap.heroes as SnapHero[]).map((h) => {
     fameFollowers: appHero.get(h.slug)?.followers?.total ?? null,
     fameDate: appHero.get(h.slug)?.followers?.asOf ?? null,
     noAccount: !!editorFollowers[h.slug]?.noAccount,
+    career: appHero.get(h.slug)?.career ?? null,
     appIndex: appHero.get(h.slug)?.index ?? null,
   };
 });

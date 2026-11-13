@@ -193,6 +193,14 @@ test.describe("Home page", () => {
     await expect(page.getByRole("heading", { level: 1 })).toContainText("biggest hero");
     await expect(page.getByRole("list", { name: "Top three heroes" }).getByRole("link")).toHaveCount(3);
     await expect(page.locator("section:has(#top10) ol > li")).toHaveCount(10);
+    // One chart: success ratio against number of films, coloured by debut era or film family.
+    const chart = page.locator("section:has(#home-chart)");
+    await expect(chart.getByRole("group", { name: /number of films as lead/ })).toBeVisible();
+    expect(await chart.locator("svg [role=button]").count()).toBeGreaterThan(30);
+    await expect(chart).toContainText("Debut 2000–2007");
+    await chart.getByRole("radio", { name: "Film family" }).click();
+    await expect(chart).toContainText("Mega family");
+    await chart.getByRole("radio", { name: "Loved vs. followed" }).click();
     expect(await page.getByRole("list", { name: "Heroes by film score and followers" }).getByRole("link").count()).toBeGreaterThan(30);
     // Only the essentials: the full dashboard lives on the Star Score page.
     await expect(page.locator("#leaderboard")).toHaveCount(0);
@@ -207,6 +215,15 @@ test.describe("Home page", () => {
     await page.getByRole("searchbox", { name: "Find a hero" }).fill("prab");
     await page.getByRole("list", { name: "Matching heroes" }).getByRole("link", { name: /Prabhas/ }).click();
     await expect(page).toHaveURL(/\/hero\/prabhas$/);
+  });
+
+  test("head to head compares any two heroes factor by factor", async ({ page }) => {
+    await page.goto("/");
+    const duel = page.locator("section:has(#duel)");
+    await duel.getByLabel("First hero").selectOption("prabhas");
+    await duel.getByLabel("Second hero").selectOption("mahesh-babu");
+    await expect(duel.getByRole("list", { name: "Prabhas against Mahesh Babu, factor by factor" }).getByRole("listitem")).toHaveCount(5);
+    await expect(duel.getByRole("link", { name: "Compare every number →" })).toHaveAttribute("href", "/compare?heroes=prabhas,mahesh-babu");
   });
 
   test("the opening animation is skipped for reduced motion and never blocks the page", async ({ page }) => {
