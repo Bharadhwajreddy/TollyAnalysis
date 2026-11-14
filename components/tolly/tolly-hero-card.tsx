@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { compactCount } from "@/lib/data/real/hero-facts";
+import { HERO_FACTORS } from "@/lib/tolly";
 import type { TollyHeroView, TollyMeta } from "@/lib/tolly/view";
-import { FACTORS, factorFact, IndexValue, PILLARS, PillarBar } from "./tolly-parts";
+import { GROUPS, groupValue, IndexValue, kpiFact, PILLARS, PillarBar } from "./tolly-parts";
 
-/** The hero page's Tolly Index section: score, band, pillar profile, coverage and the films holding him back. */
+/** The hero page's Tolly Index section: the score, its five groups, every number behind it, and the films holding him back. */
 export function TollyHeroCard({ hero, rankedCount, meta }: { hero: TollyHeroView; rankedCount: number; meta: TollyMeta }) {
   const share = hero.judged ? Math.round((hero.complete / hero.judged) * 100) : 0;
   return (
@@ -13,7 +14,7 @@ export function TollyHeroCard({ hero, rankedCount, meta }: { hero: TollyHeroView
           <h2 id="tolly-title" className="font-serif text-[24px] font-semibold text-ink">
             Tolly Index
           </h2>
-          <p className="mt-0.5 max-w-2xl text-[13px] text-ink-2">His films, his box-office record, his fame and his form, in one score out of 100.</p>
+          <p className="mt-0.5 max-w-2xl text-[13px] text-ink-2">His films, box office, form, fame and career in one score out of 100.</p>
         </div>
         <Link href="/tolly-index" className="text-[13px] font-medium text-wine hover:underline">
           Full ranking →
@@ -47,22 +48,44 @@ export function TollyHeroCard({ hero, rankedCount, meta }: { hero: TollyHeroView
         <div className="space-y-4">
           {hero.factors && hero.qualified ? (
             <div className="space-y-2.5">
-              {FACTORS.map((f) => {
-                const part = hero.factors?.[f.key];
-                const fact = factorFact(hero, f.key, compactCount);
+              {GROUPS.map((g) => {
+                const part = groupValue(hero, g.key);
                 return (
                   <PillarBar
-                    key={f.key}
-                    label={`${f.label} · ${part && part.share ? `${Math.round(part.share)}%` : "not counted"}`}
-                    sub={part?.value === null && f.key === "fame" && !meta.fame.applied ? "not counted yet" : (fact ?? "no data")}
-                    value={part?.value ?? null}
-                    color={f.color}
+                    key={g.key}
+                    label={`${g.label} · ${part.value === null ? "not counted" : `${Math.round(part.share)}%`}`}
+                    sub={g.key === "fame" && part.value === null && !meta.fame.applied ? "not counted yet" : g.question}
+                    value={part.value}
+                    color={g.color}
                   />
                 );
               })}
             </div>
           ) : (
             <p className="text-[13px] text-muted">{hero.pillars ? "His score appears once enough of his films are rated." : "No rated films yet."}</p>
+          )}
+
+          {hero.factors && hero.qualified && (
+            <details className="rounded-lg border border-line bg-surface-2/50 px-3 py-2">
+              <summary className="cursor-pointer text-[13px] font-semibold text-ink">All {HERO_FACTORS.length} numbers behind the score</summary>
+              <div className="scroll-x mt-2">
+                <table className="w-full min-w-[520px] text-[12.5px]">
+                  <thead className="text-left text-[10.5px] uppercase tracking-wide text-ink-2">
+                    <tr>
+                      <th scope="col" className="py-1.5 pr-2">Number</th>
+                      <th scope="col" className="py-1.5 pr-2">His record</th>
+                      <th scope="col" className="py-1.5 pr-2 text-right">Score</th>
+                      <th scope="col" className="py-1.5 text-right">Counts for</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {GROUPS.map((g) => (
+                      <GroupRows key={g.key} hero={hero} group={g.key} />
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </details>
           )}
           {hero.pillars && (
             <details className="rounded-lg border border-line bg-surface-2/50 px-3 py-2">
@@ -108,5 +131,29 @@ export function TollyHeroCard({ hero, rankedCount, meta }: { hero: TollyHeroView
         </details>
       )}
     </section>
+  );
+}
+
+function GroupRows({ hero, group }: { hero: TollyHeroView; group: (typeof GROUPS)[number]["key"] }) {
+  const g = GROUPS.find((x) => x.key === group) as (typeof GROUPS)[number];
+  return (
+    <>
+      <tr>
+        <th colSpan={4} scope="colgroup" className="pb-1 pt-3 text-left text-[11px] font-semibold uppercase tracking-wide" style={{ color: g.color }}>
+          {g.label}
+        </th>
+      </tr>
+      {HERO_FACTORS.filter((f) => f.group === group).map((f) => {
+        const part = hero.factors?.[f.key];
+        return (
+          <tr key={f.key} className="border-t border-line">
+            <td className="py-1.5 pr-2 font-medium text-ink">{f.label}</td>
+            <td className="py-1.5 pr-2 text-ink-2">{kpiFact(hero, f.key, compactCount) ?? "no data"}</td>
+            <td className="tabular py-1.5 pr-2 text-right">{part?.value?.toFixed(1) ?? "—"}</td>
+            <td className="tabular py-1.5 text-right text-ink-2">{part && part.value !== null ? `${part.share.toFixed(1)}%` : "left out"}</td>
+          </tr>
+        );
+      })}
+    </>
   );
 }

@@ -1,6 +1,6 @@
 # The Tolly Index: how it is calculated
 
-*Method version: tolly-v2.0 (see "Final hero index" at the end; the sections before it describe the film score, now the Audience factor). Data as of 15 October 2026. Code: `lib/tolly/`, `scripts/tolly/`. Results: `lib/data/tolly/`.*
+*Method version: tolly-v3.0 (see "Final hero index" at the end; the sections before it describe the film score, now the Audience factor). Data as of 15 October 2026. Code: `lib/tolly/`, `scripts/tolly/`. Results: `lib/data/tolly/`.*
 
 ---
 
@@ -687,27 +687,41 @@ In this cloud environment, network scripts need `NODE_USE_ENV_PROXY=1`.
 | **Judged films** | A hero's Telugu films at least 2 years old: the films that must be complete |
 | **Language editions** | Number of Wikipedias (any language) with an article on the film |
 
-## Final hero index (v2.0, November 2026)
+## Final hero index (v3.0, November 2026)
 
-The hero score described above (films only) is now the **Audience** factor. The final Tolly Index adds four
-hero-level factors, each 0–100:
+The hero score described above (films only) is the **Audience** factor. The final Tolly Index adds every other
+career KPI the site has, 15 numbers in all, each 0–100:
 
-| Factor | Weight | How it is measured |
-|---|---|---|
-| Audience | 50% | Hero index from his films (rating, reach, staying power), as above |
-| Box-office success | 20% | (hits + p × 5) ÷ (films with a known result + 5) × 100, where p is the typical hit rate of all heroes |
-| Fame | 15% | Followers on official Instagram + X, log scale: 10 thousand = 0, 100 million = 100 |
-| Recent form | 10% | The same hit rate over his latest films, with 2 typical films added instead of 5 |
-| Experience | 5% | Lead films since 2000 ÷ 40 × 100, capped at 100 |
+| Group | Number | Weight | How it is measured |
+|---|---|---|---|
+| Audience | Audience score of his films | 37 | Hero index from his films (rating, reach, staying power), as above |
+| Box office | Success ratio | 9 | (hits + p × 5) ÷ (films with a known result + 5) × 100, p = the typical hit rate of all heroes |
+| | Hit films | 6 | Number of hits and blockbusters, percentile among ranked heroes |
+| | Blockbusters | 4 | Number of blockbusters, percentile |
+| | ₹100-crore films | 3 | Films grossing ₹100 crore or more, percentile |
+| | Total box office | 6 | Reported worldwide gross of all films, percentile |
+| | Biggest film | 3 | Highest reported gross, percentile |
+| | Box office per film | 4 | Average reported gross, percentile |
+| Recent form | Recent success | 7 | Same hit rate over his latest films, with 2 typical films added instead of 5 |
+| Fame | Fame | 10 | Followers on official Instagram + X, log scale: 10 thousand = 0, 100 million = 100 |
+| Career | Consistency | 4 | Spread of his films' scores, percentile (lower spread ranks higher) |
+| | Films as lead | 3 | Lead films since 2000, percentile |
+| | Years active | 2 | First to latest film, percentile |
+| | Busiest year | 1 | Most films released in one year, percentile |
+| | Release pace | 1 | Median gap between releases, percentile (shorter ranks higher) |
 
-Final = Σ weight × factor ÷ Σ weights, over the factors the hero has data for. The ± band is the audience band
-× 0.5 ÷ Σ weights (only the audience factor has a measured uncertainty).
+**Final = Σ weight × factor ÷ Σ weights**, over the factors the hero has data for. The ± band is the audience band
+× 37 ÷ Σ weights (only the audience factor has a measured uncertainty).
 
-- Box office enters only as hit / flop verdicts from the filmography, never as rupee figures.
+- Percentiles are ranks among the ranked heroes; ties share the average rank: (heroes below + ½ × (ties − 1)) ÷ (heroes − 1) × 100.
+- The four money factors count only for a hero with at least 3 reported grosses covering at least 25% of his films.
+- A factor with no data is left out and its weight is shared among the rest.
 - Fame counts Instagram and X only, because both were checked for every hero. YouTube is shown on profiles only.
-- A hero with no official account has no fame factor; its weight is shared among his other factors.
-  An account an editor marked uncertain is not used.
+  A hero with no official account has no fame factor. An account an editor marked uncertain is not used.
 - Fame switches on for everyone at once, only when every ranked hero has a count less than a year old or is
   confirmed to have no account.
-- Known limit: a hero with a small official account scores lower on fame than one with no account at all.
-- Code: `applyHeroFactors` in `lib/tolly/index.ts`; workbook: Tolly Index Heroes columns AA–AG.
+- Left out on purpose: the Star Score and HPI (composites of these same inputs), X and Instagram follower counts
+  (the two halves of fame), average rating (already inside the audience score), films per year (films ÷ years),
+  momentum and audience success ratio (older variants of recent success and audience), and fans' votes (no votes
+  exist yet; the factor can be added when the fans' ranking is on).
+- Code: `HERO_FACTORS` and `applyHeroFactors` in `lib/tolly/index.ts`; workbook: Tolly Index Heroes columns AA–AV and Settings.

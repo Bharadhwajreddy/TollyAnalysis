@@ -14,7 +14,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { getHeroSnapshots } from "@/lib/repositories";
 import { REPORTED_INSTAGRAM } from "@/lib/data/real/reported-social";
 import { correlation, criticScores } from "@/lib/tolly/critics";
-import { applyHeroFactors, CAREER_FULL_FILMS, FAME_WEIGHT, HERO_WEIGHTS, MIN_VOTES, RECENT_PRIOR_FILMS, SUCCESS_PRIOR_FILMS, scoreFilms, scoreHeroes, TOLLY_VERSION, WEIGHTS, type HeroCareer, type HeroFollowers, type TollyFilmInput } from "@/lib/tolly";
+import { applyHeroFactors, FAME_WEIGHT, HERO_FACTORS, HERO_WEIGHTS, MIN_GROSS_FILMS, MIN_GROSS_SHARE, MIN_VOTES, RECENT_PRIOR_FILMS, SUCCESS_PRIOR_FILMS, scoreFilms, scoreHeroes, TOLLY_VERSION, WEIGHTS, type HeroCareer, type HeroFollowers, type TollyFilmInput } from "@/lib/tolly";
 
 const asOf = process.argv[2] ?? new Date().toISOString().slice(0, 10);
 const read = (p: string) => JSON.parse(readFileSync(p, "utf8"));
@@ -130,6 +130,7 @@ const career: HeroCareer[] = careerSnaps.map((c) => {
   const recent = c.metrics.recentSuccessRatio;
   const judged = all.value === null ? 0 : all.coverage.numerator;
   const recentJudged = recent.value === null ? 0 : recent.coverage.numerator;
+  const v = (k: keyof typeof c.metrics) => (c.metrics[k].status === "insufficient" ? null : c.metrics[k].value);
   return {
     slug: c.slug,
     judged,
@@ -137,6 +138,15 @@ const career: HeroCareer[] = careerSnaps.map((c) => {
     recentJudged,
     recentHits: Math.round(((recent.value ?? 0) / 100) * recentJudged),
     leadFilms: c.metrics.films.value ?? 0,
+    blockbusters: v("blockbusters"),
+    bigFilms: v("bigFilms"),
+    totalGross: v("totalGross"),
+    topGross: v("topGross"),
+    avgGross: v("avgGross"),
+    grossFilms: c.metrics.totalGross.coverage.numerator,
+    yearsActive: v("yearsActive"),
+    peakFilms: v("peakFilms"),
+    releaseGap: v("releaseGap"),
   };
 });
 const fame = applyHeroFactors(heroes, followers, career, asOf);
@@ -183,8 +193,9 @@ const meta = {
   asOf,
   weights: WEIGHTS,
   minVotes: MIN_VOTES,
+  heroFactors: HERO_FACTORS,
   heroWeights: HERO_WEIGHTS,
-  heroFactors: { successPrior: fame.successPrior, successPriorFilms: SUCCESS_PRIOR_FILMS, recentPriorFilms: RECENT_PRIOR_FILMS, careerFullFilms: CAREER_FULL_FILMS },
+  heroRules: { successPrior: fame.successPrior, successPriorFilms: SUCCESS_PRIOR_FILMS, recentPriorFilms: RECENT_PRIOR_FILMS, minGrossFilms: MIN_GROSS_FILMS, minGrossShare: MIN_GROSS_SHARE },
   fame: { weight: FAME_WEIGHT, applied: fame.applied, missing: fame.missing.length, missingHeroes: fame.missing },
   sources: {
     imdb: `IMDb non-commercial datasets (title.basics, title.ratings, title.principals, title.akas), ${asOf}`,

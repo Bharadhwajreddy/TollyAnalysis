@@ -3,11 +3,13 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { Dashboard } from "@/components/dashboard/dashboard";
 import { heroThumb, initialsOf } from "@/components/hero/hero-avatar";
+import { AllGraphs } from "@/components/home/all-graphs";
 import { HeadToHead, type DuelHero } from "@/components/home/head-to-head";
 import { HeroSearch } from "@/components/home/hero-search";
+import { TopTen, type TopRow } from "@/components/home/top-ten";
 import { HomeCharts, type ChartHero } from "@/components/home/home-charts";
 import { FanRanking } from "@/components/ranking/fan-ranking";
-import { FACTORS, factorFact } from "@/components/tolly/tolly-parts";
+import { GROUPS, groupFact, groupValue } from "@/components/tolly/tolly-parts";
 import { compactCount } from "@/lib/data/real/hero-facts";
 import { DATA_MODE } from "@/lib/env";
 import { tollyIndexEnabled, userRankingEnabled } from "@/lib/features";
@@ -102,20 +104,23 @@ export default async function HomePage() {
       followers: t?.followers ? compactCount(t.followers.total) : null,
     };
   });
+  const topRows: TopRow[] = top10.map((h) => {
+    const v = all.find((x) => x.slug === h.slug);
+    return { slug: h.slug, name: h.name, thumb: thumbs.get(h.slug) ?? null, family: v?.family ?? null, debutYear: v?.debutYear ?? null, rank: h.rank as number, index: h.index as number, best: h.best[0]?.title ?? null };
+  });
   const duel: DuelHero[] = ranked.map((h) => ({
     slug: h.slug,
     name: h.name,
     thumb: thumbs.get(h.slug) ?? null,
     rank: h.rank as number,
     index: h.index as number,
-    factors: FACTORS.map((f) => ({ key: f.key, label: f.label, value: h.factors?.[f.key].value ?? null, fact: factorFact(h, f.key, compactCount) })),
+    factors: GROUPS.map((g) => ({ key: g.key, label: g.label, value: groupValue(h, g.key).value, fact: groupFact(h, g.key, compactCount) })),
   }));
   const search = all
     .map((h) => ({ slug: h.slug, name: h.name, thumb: thumbs.get(h.slug) ?? null, rank: ranked.find((r) => r.slug === h.slug)?.rank ?? null }))
     .sort((a, b) => (a.rank ?? 999) - (b.rank ?? 999) || a.name.localeCompare(b.name));
   const wall = [...search];
   const updated = new Date(`${m.asOf}T00:00:00Z`).toLocaleDateString("en-IN", { month: "long", year: "numeric", timeZone: "UTC" });
-  const maxIndex = Math.max(...top10.map((h) => h.index as number));
 
   return (
     <div className="mx-auto max-w-7xl px-4 pb-4 sm:px-6">
@@ -130,7 +135,7 @@ export default async function HomePage() {
               Who is Tollywood&apos;s <span className="text-[#f0c98a]">biggest hero?</span>
             </h1>
             <p className="rise mt-4 max-w-xl text-[15.5px] leading-relaxed text-white/80 sm:text-[17px]" style={delay(0.16)}>
-              {m.heroes.qualified} heroes, ranked on how much audiences love their films, how often they deliver hits, how many fans follow them and how they are doing
+              {m.heroes.qualified} heroes, ranked on 15 numbers: how much audiences love their films, how often they hit at the box office, how many fans follow them and how they are doing
               lately. One score out of 100: the Tolly Index.
             </p>
             <div className="rise mt-6" style={delay(0.24)}>
@@ -215,34 +220,7 @@ export default async function HomePage() {
               All {ranked.length} heroes →
             </Link>
           </div>
-          <ol className="mt-4 space-y-1">
-            {top10.map((h, i) => (
-              <li key={h.slug}>
-                <Link href={`/hero/${h.slug}`} className="group grid grid-cols-[26px_44px_1fr_auto] items-center gap-3 rounded-xl px-2 py-2 transition-colors hover:bg-wine-soft/60 sm:grid-cols-[28px_48px_1fr_auto] sm:px-3">
-                  <span
-                    className="tabular grid h-6 w-6 place-items-center rounded-full text-[12px] font-bold"
-                    style={i < 3 ? { background: MEDAL[i], color: "#2b1c1a" } : { color: "var(--muted)" }}
-                  >
-                    {h.rank}
-                  </span>
-                  <Face name={h.name} thumb={thumbs.get(h.slug) ?? null} size={44} />
-                  <span className="min-w-0">
-                    <span className="flex items-baseline justify-between gap-2">
-                      <span className="truncate text-[15px] font-semibold text-ink group-hover:text-wine">{h.name}</span>
-                      {h.best[0] && <span className="hidden truncate text-[12px] text-muted sm:block">Best: {h.best[0].title}</span>}
-                    </span>
-                    <span className="mt-1.5 block h-2 overflow-hidden rounded-full bg-surface-2 ring-1 ring-line">
-                      <span
-                        className="fill-x block h-full rounded-full"
-                        style={{ width: `${((h.index as number) / maxIndex) * 100}%`, background: i < 3 ? "linear-gradient(90deg, #7a1f3d, #c2456f)" : "linear-gradient(90deg, #7a1f3d, #a3284f)" }}
-                      />
-                    </span>
-                  </span>
-                  <span className="tabular w-[46px] text-right font-serif text-[20px] font-bold text-wine">{h.index?.toFixed(1)}</span>
-                </Link>
-              </li>
-            ))}
-          </ol>
+          <TopTen rows={topRows} />
         </section>
 
         <div className="grid gap-4">
@@ -320,6 +298,13 @@ export default async function HomePage() {
           </div>
         </section>
       )}
+
+      {/* Every graph, folded away */}
+      <div className="mt-4">
+        <AllGraphs title="See all the graphs" subtitle="Leaderboards, trade-off charts, box office, release pace and the table of every number. Tap to open.">
+          <Dashboard data={data} embedded />
+        </AllGraphs>
+      </div>
 
       {/* Every hero */}
       <section aria-labelledby="wall" className="card reveal mt-4 p-4 sm:p-6">

@@ -34,8 +34,8 @@ export default async function MethodologyPage() {
             Tolly Index
           </h2>
           <p className="mb-4 mt-1 max-w-3xl text-[14px] text-ink-2">
-            One score out of 100 for each hero, from five things: how much audiences love his films, how often his films are hits, how many fans follow him, how
-            his latest films did, and how many films he has led. Data as of {tollyMeta.asOf}: {tollyMeta.films.complete.toLocaleString("en-IN")} of {tollyMeta.films.total.toLocaleString("en-IN")} films scored,{" "}
+            One score out of 100 for each hero, from fifteen numbers in five groups: how much audiences love his films, how often and how big his films hit at the box office, how his
+            latest films did, how many fans follow him, and how steady, long and busy his career is. Data as of {tollyMeta.asOf}: {tollyMeta.films.complete.toLocaleString("en-IN")} of {tollyMeta.films.total.toLocaleString("en-IN")} films scored,{" "}
             {tollyMeta.heroes.qualified} of {tollyMeta.heroes.total} heroes ranked.
           </p>
           <TollyMethod m={tollyMeta} />

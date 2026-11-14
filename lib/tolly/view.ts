@@ -4,6 +4,7 @@
  */
 import filmsData from "@/lib/data/tolly/films.json";
 import heroesData from "@/lib/data/tolly/heroes.json";
+import type { HeroCareer, HeroFactorKey } from "@/lib/tolly";
 
 export interface TollyFilmView {
   key: string;
@@ -39,11 +40,9 @@ export interface TollyHeroView {
   fame: number | null;
   followers: { total: number; asOf: string } | null;
   /** The five factors of the final index: 0–100 value (null = no data) and share of the index in %. */
-  factors: Record<FactorKey, { value: number | null; share: number }> | null;
-  career: { judged: number; hits: number; recentJudged: number; recentHits: number; leadFilms: number } | null;
+  factors: Record<HeroFactorKey, { value: number | null; share: number }> | null;
+  career: Omit<HeroCareer, "slug"> | null;
 }
-
-export type FactorKey = "audience" | "success" | "fame" | "recent" | "career";
 
 export interface TollyMeta {
   version: string;
@@ -53,8 +52,8 @@ export interface TollyMeta {
   weights: { rating: number; reach: number; stay: number; voice: number };
   /** Fame joins the hero index only when every ranked hero has a recent follower count. */
   fame: { weight: number; applied: boolean; missing: number };
-  /** Weights of the five hero factors (they add up to 1). */
-  heroWeights: Record<FactorKey, number>;
+  /** Weights of the hero factors, out of 100. */
+  heroWeights: Record<HeroFactorKey, number>;
 }
 
 type RawFilm = (typeof filmsData.films)[number] & { aliases?: string[] };
@@ -65,7 +64,7 @@ export const tollyMeta: TollyMeta = {
   films: filmsData.meta.films,
   heroes: heroesData.meta.heroes,
   weights: filmsData.meta.weights,
-  heroWeights: (heroesData.meta as { heroWeights?: TollyMeta["heroWeights"] }).heroWeights ?? { audience: 1, success: 0, fame: 0, recent: 0, career: 0 },
+  heroWeights: (heroesData.meta as { heroWeights?: TollyMeta["heroWeights"] }).heroWeights as TollyMeta["heroWeights"],
   fame: (heroesData.meta as { fame?: TollyMeta["fame"] }).fame ?? { weight: 0.15, applied: false, missing: heroesData.meta.heroes.qualified },
 };
 

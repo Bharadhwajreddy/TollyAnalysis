@@ -19,10 +19,9 @@
  *   TI_h  = (Σ c · TI + k · M) / (Σ c + k)        k = 3, M = mean TI of all complete films
  *   band  = ± 1.96 · spread / √(Σ c + k)
  *
- * Final hero index (v2): the film score above is the "audience" factor, joined by four hero-level
- * factors (HERO_WEIGHTS): box-office success (hit rate from the filmography's verdicts, pulled toward
- * the typical hero for short records), fame (official followers on Instagram + X, log scale
- * 10k = 0, 100M = 100), recent form (hit rate of his latest films) and experience (lead films ÷ 40).
+ * Final hero index (v3): the film score above is the "audience" factor, joined by every other career KPI
+ * (HERO_FACTORS): box-office success and counts, reported grosses, recent form, fame (official followers on
+ * Instagram + X, log scale 10k = 0, 100M = 100), consistency, career length and release pace. Each is 0–100;
  *   final = Σ w · factor / Σ w over the factors he has data for;  band × (w_audience / Σ w)
  * Fame enters for everyone at once, only when every ranked hero has a follower count no older than
  * FAME_MAX_AGE_DAYS or is confirmed to have no official account.
@@ -31,7 +30,7 @@
  * is ranked only when HERO_MIN_COMPLETE films and HERO_MIN_SHARE of his judged films are complete.
  */
 
-export const TOLLY_VERSION = "tolly-v2.0";
+export const TOLLY_VERSION = "tolly-v3.0";
 
 /** Proposal weights once Voice exists: Rating 35, Voice 30, Reach 20, Stay 15. */
 export const WEIGHTS_WITH_VOICE = { rating: 35, voice: 30, reach: 20, stay: 15 } as const;
@@ -52,17 +51,38 @@ export const FAME_LOG10_FLOOR = 4;
 export const FAME_LOG10_CEILING = 8;
 export const FAME_MAX_AGE_DAYS = 365;
 /**
- * The final hero index: his films' audience score plus four hero-level factors.
- * Weights add up to 1; a factor with no data is left out and the rest are scaled up.
+ * The final hero index (v3): his films' audience score plus every other career KPI the site has.
+ * Each factor is a 0–100 value; weights add up to 100. A factor a hero has no data for is left out and
+ * the rest are scaled up. Most factors are percentile ranks among the ranked heroes (ties share the
+ * average rank); consistency and release pace rank lower raw values higher.
  */
-export const HERO_WEIGHTS = { audience: 0.5, success: 0.2, fame: 0.15, recent: 0.1, career: 0.05 } as const;
-export type HeroFactorKey = keyof typeof HERO_WEIGHTS;
+export const HERO_FACTORS = [
+  { key: "audience", group: "audience", label: "Audience score of his films", weight: 37, how: "Hero index from his films' rating, reach and staying power" },
+  { key: "success", group: "boxoffice", label: "Success ratio", weight: 9, how: "Hits ÷ films with a known result, pulled toward the typical hero" },
+  { key: "hits", group: "boxoffice", label: "Hit films", weight: 6, how: "Number of hits and blockbusters, percentile" },
+  { key: "blockbusters", group: "boxoffice", label: "Blockbusters", weight: 4, how: "Number of blockbusters, percentile" },
+  { key: "bigFilms", group: "boxoffice", label: "₹100-crore films", weight: 3, how: "Films grossing ₹100 crore or more, percentile" },
+  { key: "totalGross", group: "boxoffice", label: "Total box office", weight: 6, how: "Reported worldwide gross of all his films, percentile" },
+  { key: "topGross", group: "boxoffice", label: "Biggest film", weight: 3, how: "His highest reported gross, percentile" },
+  { key: "avgGross", group: "boxoffice", label: "Box office per film", weight: 4, how: "Average reported gross, percentile" },
+  { key: "recent", group: "recent", label: "Recent success", weight: 7, how: "Hit rate of his latest films, pulled toward the typical hero" },
+  { key: "fame", group: "fame", label: "Fame", weight: 10, how: "Instagram + X followers, log scale: 10 thousand = 0, 100 million = 100" },
+  { key: "consistency", group: "career", label: "Consistency", weight: 4, how: "How little his films' scores vary, percentile (lower spread is better)" },
+  { key: "films", group: "career", label: "Films as lead", weight: 3, how: "Number of lead films since 2000, percentile" },
+  { key: "years", group: "career", label: "Years active", weight: 2, how: "Years from first to latest film, percentile" },
+  { key: "peak", group: "career", label: "Busiest year", weight: 1, how: "Most films released in one year, percentile" },
+  { key: "gap", group: "career", label: "Release pace", weight: 1, how: "Typical (median) gap between releases, percentile (shorter is better)" },
+] as const;
+export type HeroFactorKey = (typeof HERO_FACTORS)[number]["key"];
+export type HeroGroupKey = (typeof HERO_FACTORS)[number]["group"];
+export const HERO_WEIGHTS = Object.fromEntries(HERO_FACTORS.map((f) => [f.key, f.weight])) as Record<HeroFactorKey, number>;
 /** Pseudo-films at the typical hit rate added to a hero's record, so 2 hits from 2 films is not 100%. */
 export const SUCCESS_PRIOR_FILMS = 5;
 export const RECENT_PRIOR_FILMS = 2;
-/** Lead films that count as a full career (experience = films ÷ this, capped at 100). */
-export const CAREER_FULL_FILMS = 40;
-export const FAME_WEIGHT = HERO_WEIGHTS.fame;
+/** Money factors count only with at least this many reported grosses, covering this share of his films. */
+export const MIN_GROSS_FILMS = 3;
+export const MIN_GROSS_SHARE = 0.25;
+export const FAME_WEIGHT = HERO_WEIGHTS.fame / 100;
 /** Fame adds up the two platforms checked for every hero; other platforms are shown on profiles only. */
 export const FAME_PLATFORMS: readonly string[] = ["instagram", "x"];
 
@@ -288,28 +308,63 @@ export function scoreHeroes(heroes: { slug: string; name: string; films: string[
 export const fameOf = (followers: number) =>
   round(Math.max(0, Math.min(100, ((Math.log10(Math.max(1, followers)) - FAME_LOG10_FLOOR) / (FAME_LOG10_CEILING - FAME_LOG10_FLOOR)) * 100)));
 
-/** One hero's box-office record from the filmography's hit / flop verdicts (no rupee figures). */
+/** One hero's career numbers, from the same KPIs the site shows (null = no data). */
 export interface HeroCareer {
   slug: string;
-  /** Lead films with a known result, and how many of them were hits or better. */
+  /** Films with a known box-office result, and how many of them were hits or better. */
   judged: number;
   hits: number;
-  /** The same, over his latest films only. */
+  /** The same over his latest films only. */
   recentJudged: number;
   recentHits: number;
   /** All films as lead hero since 2000. */
   leadFilms: number;
+  blockbusters: number | null;
+  /** Films grossing ₹100 crore or more. */
+  bigFilms: number | null;
+  /** Reported worldwide grosses in ₹ crore, and how many films have one. */
+  totalGross: number | null;
+  topGross: number | null;
+  avgGross: number | null;
+  grossFilms: number;
+  yearsActive: number | null;
+  peakFilms: number | null;
+  /** Typical (median) gap between releases, in months. */
+  releaseGap: number | null;
 }
 
 /** A hit rate out of 100, pulled toward the typical hero when he has few judged films. */
 export const blendedRate = (hits: number, judged: number, prior: number, priorFilms: number) =>
   judged > 0 ? round(((hits + prior * priorFilms) / (judged + priorFilms)) * 100) : null;
 
+/** Percentile rank 0–100 with ties sharing the average rank (one value → 50); `low` ranks smaller values higher. */
+export function percentileRanks(values: Map<string, number>, low = false): Map<string, number> {
+  const n = values.size;
+  const out = new Map<string, number>();
+  for (const [k, v] of values) {
+    if (n === 1) {
+      out.set(k, 50);
+      continue;
+    }
+    let below = 0;
+    let same = 0;
+    for (const w of values.values()) {
+      if (low ? w > v : w < v) below++;
+      else if (w === v) same++;
+    }
+    out.set(k, round(((below + (same - 1) / 2) / (n - 1)) * 100));
+  }
+  return out;
+}
+
+/** Money factors need enough reported grosses, or a sparsely reported career would look small. */
+export const hasMoneyData = (c: Pick<HeroCareer, "grossFilms" | "leadFilms">) => c.grossFilms >= MIN_GROSS_FILMS && c.grossFilms / Math.max(1, c.leadFilms) >= MIN_GROSS_SHARE;
+
 /**
- * Turns each hero's film score into the final Tolly Index by adding the hero-level factors:
- * box-office success, fame, recent form and experience (HERO_WEIGHTS). A factor a hero has no
- * data for is left out and its weight is shared among the rest; fame joins for everyone at once,
- * only when every ranked hero has a recent follower count or is confirmed to have no account.
+ * Turns each hero's film score into the final Tolly Index by adding every other career KPI
+ * (HERO_FACTORS). A factor a hero has no data for is left out and its weight is shared among the rest;
+ * fame joins for everyone at once, only when every ranked hero has a recent follower count or is
+ * confirmed to have no account.
  */
 export function applyHeroFactors(
   heroes: TollyHeroResult[],
@@ -332,21 +387,51 @@ export function applyHeroFactors(
   }
   const missing = heroes.filter((h) => h.qualified && h.fame === null && !bySlug.get(h.slug)?.noAccount).map((h) => h.name);
   const applied = missing.length === 0 && heroes.some((h) => h.qualified);
+
+  // Percentile factors are ranked among the ranked heroes only.
+  const ranked = heroes.filter((h) => h.qualified && h.filmIndex !== null && h.filmIndex !== undefined);
+  const pctOf = (pick: (c: HeroCareer, h: TollyHeroResult) => number | null | undefined, opts: { money?: boolean; low?: boolean } = {}) => {
+    const m = new Map<string, number>();
+    for (const h of ranked) {
+      const c = careerBy.get(h.slug);
+      if (!c || (opts.money && !hasMoneyData(c))) continue;
+      const v = pick(c, h);
+      if (v !== null && v !== undefined) m.set(h.slug, v);
+    }
+    return percentileRanks(m, opts.low);
+  };
+  const pct: Partial<Record<HeroFactorKey, Map<string, number>>> = {
+    hits: pctOf((c) => (c.judged ? c.hits : null)),
+    blockbusters: pctOf((c) => (c.judged ? c.blockbusters : null)),
+    bigFilms: pctOf((c) => c.bigFilms, { money: true }),
+    totalGross: pctOf((c) => c.totalGross, { money: true }),
+    topGross: pctOf((c) => c.topGross, { money: true }),
+    avgGross: pctOf((c) => c.avgGross, { money: true }),
+    consistency: pctOf((_, h) => h.spread, { low: true }),
+    films: pctOf((c) => c.leadFilms),
+    years: pctOf((c) => c.yearsActive),
+    peak: pctOf((c) => c.peakFilms),
+    gap: pctOf((c) => c.releaseGap, { low: true }),
+  };
+
   for (const h of heroes) {
     const c = careerBy.get(h.slug);
-    const values: Record<HeroFactorKey, number | null> = {
+    const values: Partial<Record<HeroFactorKey, number | null>> = {
       audience: h.filmIndex ?? null,
       success: c ? blendedRate(c.hits, c.judged, successPrior, SUCCESS_PRIOR_FILMS) : null,
-      fame: applied ? (h.fame ?? null) : null,
       recent: c ? blendedRate(c.recentHits, c.recentJudged, successPrior, RECENT_PRIOR_FILMS) : null,
-      career: c ? round(Math.min(100, (c.leadFilms / CAREER_FULL_FILMS) * 100)) : null,
+      fame: applied ? (h.fame ?? null) : null,
     };
-    h.career = c ? { judged: c.judged, hits: c.hits, recentJudged: c.recentJudged, recentHits: c.recentHits, leadFilms: c.leadFilms } : null;
-    const keys = (Object.keys(HERO_WEIGHTS) as HeroFactorKey[]).filter((k) => values[k] !== null);
+    for (const f of HERO_FACTORS) if (pct[f.key]) values[f.key] = pct[f.key]?.get(h.slug) ?? null;
+    h.career = c ? { ...c } : null;
+    const keys = HERO_FACTORS.filter((f) => (values[f.key] ?? null) !== null).map((f) => f.key);
     const weight = keys.reduce((a, k) => a + HERO_WEIGHTS[k], 0);
     h.factors = Object.fromEntries(
-      (Object.keys(HERO_WEIGHTS) as HeroFactorKey[]).map((k) => [k, { value: values[k], share: values[k] === null ? 0 : round((HERO_WEIGHTS[k] / weight) * 100) }]),
-    ) as TollyHeroResult["factors"];
+      HERO_FACTORS.map((f) => {
+        const v = values[f.key] ?? null;
+        return [f.key, { value: v, share: v === null ? 0 : round((HERO_WEIGHTS[f.key] / weight) * 100) }];
+      }),
+    ) as NonNullable<TollyHeroResult["factors"]>;
     if (!h.qualified || h.filmIndex === null || h.filmIndex === undefined) continue;
     h.index = round(keys.reduce((a, k) => a + HERO_WEIGHTS[k] * (values[k] as number), 0) / weight);
     if (h.band !== null) h.band = round((h.band * HERO_WEIGHTS.audience) / weight);

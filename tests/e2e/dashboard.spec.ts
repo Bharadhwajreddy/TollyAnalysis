@@ -152,12 +152,25 @@ test.describe("Tolly Index", () => {
     await expect(card).toContainText(/#\d+ of \d+ heroes/);
     await expect(card).toContainText("Staying power");
     await expect(page.locator("#films thead")).toContainText("Tolly Index");
+    // Every number behind the score is listed with its weight.
+    await expect(card.getByText("All 15 numbers behind the score")).toBeVisible();
+    await expect(card.locator("table tbody tr")).toHaveCount(5 + 15);
+  });
+
+  test("heroes are coloured by debut era or film family on the ranking page", async ({ page }) => {
+    await page.goto("/tolly-index");
+    await expect(page.getByRole("list", { name: "Colours" })).toContainText("Debut 2000–2007");
+    await page.getByRole("radio", { name: "Film family" }).click();
+    await expect(page.getByRole("list", { name: "Colours" })).toContainText("Mega family");
+    const rings = await page.locator("section:has(#ranking) tbody tr td:nth-child(2) a > span").evaluateAll((els) => new Set(els.map((e) => (e as HTMLElement).style.boxShadow)).size);
+    expect(rings).toBeGreaterThan(2); // not one colour for everybody
   });
 
   test("the how-it-works page holds the method for both scores", async ({ page }) => {
     await page.goto("/methodology");
     await expect(page.getByRole("heading", { level: 1 })).toHaveText("How it works");
     await expect(page.locator("#tolly-index")).toContainText("Three rules keep it fair");
+    await expect(page.locator("#tolly-index")).toContainText("Fifteen numbers make a hero's score");
     await expect(page.locator("#how")).toContainText("Star Score and the other numbers");
     await expect(page.getByRole("link", { name: /Sources and data licences/ }).first()).toBeVisible();
   });
@@ -192,7 +205,7 @@ test.describe("Home page", () => {
     await page.goto("/");
     await expect(page.getByRole("heading", { level: 1 })).toContainText("biggest hero");
     await expect(page.getByRole("list", { name: "Top three heroes" }).getByRole("link")).toHaveCount(3);
-    await expect(page.locator("section:has(#top10) ol > li")).toHaveCount(10);
+    await expect(page.locator("section:has(#top10) ol:not([aria-label]) > li")).toHaveCount(10);
     // One chart: success ratio against number of films, coloured by debut era or film family.
     const chart = page.locator("section:has(#home-chart)");
     await expect(chart.getByRole("group", { name: /number of films as lead/ })).toBeVisible();
@@ -202,9 +215,15 @@ test.describe("Home page", () => {
     await expect(chart).toContainText("Mega family");
     await chart.getByRole("radio", { name: "Loved vs. followed" }).click();
     expect(await page.getByRole("list", { name: "Heroes by film score and followers" }).getByRole("link").count()).toBeGreaterThan(30);
-    // Only the essentials: the full dashboard lives on the Star Score page.
+    // Only the essentials up front; every other graph sits behind one tap and loads only when opened.
     await expect(page.locator("#leaderboard")).toHaveCount(0);
     await expect(page.locator("#table")).toHaveCount(0);
+    const all = page.locator("#all-graphs");
+    await expect(all).toContainText("See all the graphs");
+    await all.locator("summary").click();
+    await expect(page.locator("#leaderboard")).toBeVisible();
+    await expect(page.locator("#pareto-1")).toBeVisible();
+    await expect(page.locator("#table")).toBeVisible();
     await expect(page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: "Star Score" })).toHaveAttribute("href", "/star-score");
     await expect(page.locator("body")).not.toContainText("Panja Vaisshnav Tej");
     expect(errors).toEqual([]);

@@ -24,7 +24,8 @@ const WINDOWS: FilterWindow[] = ["all_time", "last_5_years", "last_10_films"];
 /** Measures offered as buttons; the rest sit in "More measures". */
 const PRIMARY: HeroMetricKey[] = ["starScore", "overallSuccessRatio", "hits", "blockbusters", "totalGross"];
 
-export function Dashboard({ data, children }: { data: DashboardData; children?: ReactNode }) {
+/** `embedded` drops the banner and the hero shortcuts, for use inside the home page's "all the graphs" bar. */
+export function Dashboard({ data, children, embedded = false }: { data: DashboardData; children?: ReactNode; embedded?: boolean }) {
   const router = useRouter();
   const [period, setPeriod] = useState<FilterWindow>("all_time");
   const [includeEmerging, setIncludeEmerging] = useState(false);
@@ -87,7 +88,7 @@ export function Dashboard({ data, children }: { data: DashboardData; children?: 
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6">
-      {/* Banner */}
+      {!embedded && (
       <section className="cinema relative mt-4 overflow-hidden rounded-2xl px-5 py-8 sm:mt-6 sm:px-9 sm:py-11">
         <div className="relative z-[1] grid items-center gap-8 lg:grid-cols-[1.1fr_1fr]">
           <div>
@@ -118,6 +119,7 @@ export function Dashboard({ data, children }: { data: DashboardData; children?: 
           )}
         </div>
       </section>
+      )}
 
       {/* Filters */}
       <div className="card mt-4 flex flex-col gap-3 p-3 sm:p-4 lg:flex-row lg:items-center lg:justify-between">
@@ -247,7 +249,7 @@ export function Dashboard({ data, children }: { data: DashboardData; children?: 
           <TopList title="Total reported box office" metric="totalGross" heroes={visible} toBars={toBars} onActivate={activate} />
         </div>
 
-        {/* Career atlas */}
+        {!embedded && (
         <section className="rounded-2xl border border-line bg-[linear-gradient(100deg,#f6e9ed,#faf6ef_55%,#f3eadf)] px-4 py-5 sm:px-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
@@ -270,6 +272,7 @@ export function Dashboard({ data, children }: { data: DashboardData; children?: 
             </Link>
           </div>
         </section>
+        )}
 
         {/* Go deeper */}
         <section id="deep-dive" className="scroll-mt-24 space-y-4 pt-4">
