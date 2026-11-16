@@ -14,15 +14,17 @@
  * Nothing is scraped from IMDb, BookMyShow or social networks.
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { EXCLUDED_CREDITS } from "@/lib/constants/editorial";
+import { applyIncludedCredits, EXCLUDED_CREDITS } from "@/lib/constants/editorial";
 import { INITIAL_ROSTER } from "@/lib/constants/roster";
+import { editDistance, makeBilling } from "@/lib/import/billing";
 import { classifyRole, looksUnreleased } from "@/lib/import/classify";
 import { parseFilmPost, parseTradePage, type TradeRow } from "@/lib/import/trade-blog";
 import { articleVerdict, heroProseVerdicts, teluguVerdict } from "@/lib/import/verdict";
 import { parseCrore } from "@/lib/import/money";
 import { firstLink, infoboxField, parseWikitables, plainText, splitTop } from "@/lib/import/wikitext";
 
-const UA = "TollywoodAnalysis/0.2 (https://github.com/Bharadhwajreddy/TollyAnalysis; contact saibharadhwajreddy@gmail.com)";
+// A generic client name. Set TOLLY_CONTACT in the environment to add a contact address when a site asks for one.
+const UA = `TollywoodAnalysis/0.2 (research project; https://github.com/Bharadhwajreddy/TollyAnalysis${process.env.TOLLY_CONTACT ? `; ${process.env.TOLLY_CONTACT}` : ""})`;
 const CACHE = ".cache/import";
 const OUT = "lib/data/real/snapshot.json";
 const TODAY = new Date().toISOString().slice(0, 10);
@@ -130,24 +132,10 @@ function filmDate(raw: string | null): string | null {
 }
 
 
-function editDistance(a: string, b: string): number {
-  const dp = Array.from({ length: b.length + 1 }, (_, j) => j);
-  for (let i = 1; i <= a.length; i++) {
-    let prev = dp[0];
-    dp[0] = i;
-    for (let j = 1; j <= b.length; j++) {
-      const tmp = dp[j];
-      dp[j] = Math.min(dp[j] + 1, dp[j - 1] + 1, prev + (a[i - 1] === b[j - 1] ? 0 : 1));
-      prev = tmp;
-    }
-  }
-  return dp[b.length];
-}
-
 /** Ordered cast names from an infobox "starring" value (links resolved to article titles). */
 function starringList(raw: string | null): string[] {
   if (!raw) return [];
-  const cleaned = raw.replace(/<ref[^>]*\/>/g, "").replace(/<ref[^>]*>[\s\S]*?<\/ref>/g, "");
+  const cleaned = raw.replace(/<!--[\s\S]*?-->/g, "").replace(/<ref[^>]*\/>/g, "").replace(/<ref[^>]*>[\s\S]*?<\/ref>/g, "");
   const parts = cleaned
     .replace(/\{\{\s*(?:plain ?list|ubl|unbulleted list|flatlist|hlist)\s*\|/gi, "")
     .split(/\n\s*\*|<br\s*\/?>/i)
@@ -589,17 +577,10 @@ async function main() {
   // 5b. Lead check from billing order. Filmography tables list every acting credit, so a
   // film counts only when the hero is billed first in the infobox, or is a genuine co-lead
   // billed right after other roster heroes (multi-hero films).
-  const heroArticleSet = new Map(Object.entries(heroInfo).map(([slug, v]) => [norm(v.article), slug]));
-  const squash = (x: string) => x.toLowerCase().replace(/\([^)]*\)/g, "").replace(/[^a-z]/g, "");
-  const aliasesOf = new Map(heroes.map((h) => [h.slug, [h.name, ...h.wiki, heroInfo[h.slug]?.article ?? ""].map(squash).filter((x) => x.length >= 3)]));
-  const isHero = (entry: string, slug: string) => {
-    const e = squash(entry);
-    if (e.length < 3) return false;
-    return aliasesOf.get(slug)!.some(
-      (a) => e === a || (e.length >= 5 && (a.startsWith(e) || e.startsWith(a))) || (e.length >= 8 && Math.abs(e.length - a.length) <= 2 && editDistance(e, a) <= 2),
-    );
-  };
-  const rosterSlugOf = (entry: string) => heroes.find((h) => heroInfo[h.slug] && isHero(entry, h.slug))?.slug;
+  const billingCheck = makeBilling(
+    heroes.filter((h) => heroInfo[h.slug]).map((h) => ({ slug: h.slug, names: [h.name, ...h.wiki, heroInfo[h.slug].article], strict: h.strictBilling })),
+    Object.values(heroInfo).map((v) => norm(v.article)),
+  );
   for (const c of credits) {
     if (!c.include) continue;
     const f = films.get(c.film)!;
@@ -607,10 +588,7 @@ async function main() {
       c.billing = "no starring list (kept, unverified)";
       continue;
     }
-    const pos = f.starring.findIndex((n) => isHero(n, c.hero));
-    const before = f.starring.slice(0, Math.max(0, pos));
-    const strict = heroes.find((h) => h.slug === c.hero)?.strictBilling;
-    const coLead = !strict && pos > 0 && pos <= 2 && before.every((n) => heroArticleSet.has(n) || !!rosterSlugOf(n));
+    const { pos, coLead } = billingCheck(c.hero, f.starring);
     c.billing = pos < 0 ? "not in starring list" : `billed #${pos + 1}`;
     if (pos === 0) c.scope = "lead";
     else if (coLead) c.scope = "lead";
@@ -630,6 +608,9 @@ async function main() {
       c.excludeReason = `Editorial: ${o.reason}`;
     }
   }
+
+  // 5d. Editorial includes: leads the billing order misses (a heroine or a senior star billed first).
+  applyIncludedCredits(credits);
 
   await fillVerdicts(heroes, heroInfo, credits, films);
 

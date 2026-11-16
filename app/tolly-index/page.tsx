@@ -56,6 +56,9 @@ export default async function TollyIndexPage() {
           <h2 id="films" className="font-serif text-[22px] font-semibold text-ink">
             Top 10 films
           </h2>
+          <p className="mt-0.5 text-[13px] text-ink-2">
+            Each film is scored out of 100 on audience rating (50%), reach (30%) and staying power (20%). Reach and staying power compare it with films released within a year of it.
+          </p>
           <ol className="mt-3 divide-y divide-line text-[13px]">
             {top.map((f, i) => (
               <li key={f.key} className="grid grid-cols-[28px_1fr_auto] items-baseline gap-2 py-1.5">
@@ -63,6 +66,9 @@ export default async function TollyIndexPage() {
                 <span className="font-medium text-ink">
                   {f.title} <span className="font-normal text-muted">({f.year})</span>
                   <span className="block text-[12px] font-normal text-ink-2">{f.heroes.map((slug) => names.get(slug) ?? slug).join(", ")}</span>
+                  <span className="tabular block text-[11.5px] font-normal text-muted">
+                    Rating {f.rating?.toFixed(0)} · Reach {f.reach?.toFixed(0)} · Staying power {f.stay?.toFixed(0)}
+                  </span>
                 </span>
                 <span className="tabular font-semibold text-wine">{f.index?.toFixed(1)}</span>
               </li>

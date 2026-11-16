@@ -14,7 +14,8 @@ import { Readable } from "node:stream";
 import { createGunzip } from "node:zlib";
 
 const BASE = "https://datasets.imdbws.com";
-const UA = "TollywoodAnalysis/0.4 (contact saibharadhwajreddy@gmail.com)";
+// A generic client name. Set TOLLY_CONTACT in the environment to add a contact address when a site asks for one.
+const UA = `TollywoodAnalysis/0.4 (research project${process.env.TOLLY_CONTACT ? `; ${process.env.TOLLY_CONTACT}` : ""})`;
 
 async function* stream(file: string) {
   const res = await fetch(`${BASE}/${file}`, { headers: { "user-agent": UA } });

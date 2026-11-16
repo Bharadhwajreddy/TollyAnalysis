@@ -1539,7 +1539,6 @@
     "url": "https://en.wikipedia.org/wiki/Sri_Manjunatha_(film)"
    },
    "starring": [
-    "<!--ORDER AS PER THE FILM'S OPENING CREDITS",
     "Chiranjeevi",
     "Arjun Sarja",
     "Soundarya",
@@ -2124,8 +2123,6 @@
     "url": "https://en.wikipedia.org/wiki/Acharya_(2022_film)"
    },
    "starring": [
-    "<!--Order as per the cast list in the film's trailer",
-    "See description at youtube.com/watch?v=m09a8jWgUNk-->",
     "Chiranjeevi",
     "Ram Charan",
     "Pooja Hegde",
@@ -7401,7 +7398,6 @@
     "url": "https://en.wikipedia.org/wiki/Gopala_Gopala_(2015_film)"
    },
    "starring": [
-    "<!--Order as per the opening credits",
     "Venkatesh (actor)",
     "Pawan Kalyan",
     "Shriya Saran",
@@ -10672,7 +10668,6 @@
    "starring": [
     "Ram Charan",
     "Samantha Ruth Prabhu",
-    "Credited names are used as per the template instructions-->",
     "Jagapathi Babu",
     "Aadhi Pinisetty",
     "Prakash Raj",
@@ -33689,8 +33684,6 @@
     "url": "https://en.wikipedia.org/wiki/Jailer_(2023_Tamil_film)"
    },
    "starring": [
-    "<!--As per the end credits",
-    "Don't change this.-->",
     "Rajinikanth",
     "Ramya Krishnan",
     "Vinayakan",
@@ -34877,8 +34870,6 @@
     "url": "https://en.wikipedia.org/wiki/Aadavallu_Meeku_Johaarlu_(2022_film)"
    },
    "starring": [
-    "<!--Order as per the opening credits",
-    "Women are credited first-->",
     "Rashmika Mandanna",
     "Khushbu Sundar",
     "Radhika Sarathkumar",
@@ -39668,7 +39659,6 @@
     "John Kani",
     "John Oliver",
     "Beyoncé Knowles-Carter",
-    "Per WP:NOTBROKEN. -->",
     "James Earl Jones"
    ]
   },
@@ -52598,8 +52588,7 @@
     "url": "https://en.wikipedia.org/wiki/Agent_Sai_Srinivasa_Athreya"
    },
    "starring": [
-    "Naveen Polishetty<!-- already wikilinked in \"screenplay\" parameter",
-    "Do NOT link again -->",
+    "Naveen Polishetty",
     "Shruti Sharma (actress)"
    ]
   },
@@ -56242,10 +56231,10 @@
    "role": "Manjunatha / Lord Siva",
    "notes": "Kannada film; Partially reshot in Telugu",
    "language": "",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #2 (supporting role)",
-   "billing": "billed #2"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
   },
   {
    "hero": "chiranjeevi",
@@ -56446,10 +56435,10 @@
    "role": "Acharya",
    "notes": "",
    "language": "",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #3 (supporting role)",
-   "billing": "billed #3"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
   },
   {
    "hero": "chiranjeevi",
@@ -56526,18 +56515,6 @@
    "scope": "lead",
    "include": false,
    "excludeReason": "not yet released"
-  },
-  {
-   "hero": "chiranjeevi",
-   "film": "Sri Manjunatha (film)",
-   "year": 2001,
-   "displayTitle": "Sri Manjunatha",
-   "role": "Manjunatha / Lord Shiva",
-   "notes": "Partially reshot in Telugu",
-   "language": "Kannada",
-   "scope": "lead",
-   "include": false,
-   "excludeReason": "Kannada film"
   },
   {
    "hero": "chiranjeevi",
@@ -57314,10 +57291,10 @@
    "role": "Sri Rama / Vishnu",
    "notes": "",
    "language": "",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #2 (supporting role)",
-   "billing": "billed #2"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: plays Rama, the lead; Akkineni Nageswara Rao is billed first as a senior star"
   },
   {
    "hero": "balakrishna",
@@ -57779,10 +57756,10 @@
    "role": "Kancherla Gopanna",
    "notes": "Nandi Award for Best Actor",
    "language": "Telugu",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #2 (supporting role)",
-   "billing": "billed #2"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: the title lead; Akkineni Nageswara Rao is billed first as a senior star"
   },
   {
    "hero": "nagarjuna",
@@ -57889,18 +57866,6 @@
   },
   {
    "hero": "nagarjuna",
-   "film": "Payanam (2011 film)",
-   "year": 2011,
-   "displayTitle": "Payanam",
-   "role": "Major N. Raveendra",
-   "notes": "Bilingual film",
-   "language": "Tamil",
-   "scope": "lead",
-   "include": false,
-   "excludeReason": "Tamil film"
-  },
-  {
-   "hero": "nagarjuna",
    "film": "Rajanna",
    "year": 2011,
    "displayTitle": "Rajanna",
@@ -57985,10 +57950,10 @@
    "role": "Seetharamudu, Nageswara Rao \"Bittu\"",
    "notes": "",
    "language": "Telugu",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #2 (supporting role)",
-   "billing": "billed #2"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: a lead of the three-generation Akkineni film"
   },
   {
    "hero": "nagarjuna",
@@ -58574,10 +58539,10 @@
    "role": "Gopalaraao",
    "notes": "",
    "language": "",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #2 (supporting role)",
-   "billing": "billed #2"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
   },
   {
    "hero": "venkatesh",
@@ -60010,8 +59975,8 @@
    "language": "",
    "scope": "supporting",
    "include": false,
-   "excludeReason": "billed #4 (supporting role)",
-   "billing": "billed #4"
+   "excludeReason": "billed #3 (supporting role)",
+   "billing": "billed #3"
   },
   {
    "hero": "jagapathi-babu",
@@ -62119,10 +62084,10 @@
    "role": "Lord Krishna",
    "notes": "",
    "language": "",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #3 (supporting role)",
-   "billing": "billed #3"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #2"
   },
   {
    "hero": "pawan-kalyan",
@@ -62457,10 +62422,10 @@
    "role": "Vamsi",
    "notes": "",
    "language": "",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #2 (supporting role)",
-   "billing": "billed #2"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: the lead; Krishna is billed first as a senior star"
   },
   {
    "hero": "mahesh-babu",
@@ -63552,10 +63517,10 @@
    "role": "Anand",
    "notes": "",
    "language": "",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #2 (supporting role)",
-   "billing": "billed #2"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: the title lead; Mohanlal is billed first as a senior star"
   },
   {
    "hero": "jr-ntr",
@@ -64154,10 +64119,10 @@
    "role": "Comrade Siddha",
    "notes": "",
    "language": "",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #4 (supporting role)",
-   "billing": "billed #4"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #2"
   },
   {
    "hero": "ram-charan",
@@ -67409,10 +67374,10 @@
    "role": "Kannappa & Arjuna",
    "notes": "",
    "language": "",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #9 (supporting role)",
-   "billing": "billed #9"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: the title lead of a large ensemble"
   },
   {
    "hero": "vishnu-manchu",
@@ -67595,19 +67560,6 @@
    "include": false,
    "excludeReason": "not listed in the film's starring credits",
    "billing": "not in starring list"
-  },
-  {
-   "hero": "vishnu-manchu",
-   "film": "Kannappa (film)",
-   "year": 2025,
-   "displayTitle": "Kannappa",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #9 (supporting role)",
-   "billing": "billed #9"
   },
   {
    "hero": "manchu-manoj",
@@ -68323,10 +68275,10 @@
    "role": "Anand",
    "notes": "Also playback singer for \"Goal Goal\"",
    "language": "",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #2 (supporting role)",
-   "billing": "billed #2"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: the lead; Krishnam Raju is billed first as a senior star"
   },
   {
    "hero": "uday-kiran",
@@ -68505,18 +68457,6 @@
    "include": true,
    "excludeReason": null,
    "billing": "billed #1"
-  },
-  {
-   "hero": "venu-thottempudi",
-   "film": "Pottu Amman (film)",
-   "year": 2000,
-   "displayTitle": "Pottu Amman",
-   "role": "Pratap",
-   "notes": "Tamil film",
-   "language": "",
-   "scope": "lead",
-   "include": false,
-   "excludeReason": "not a Telugu film"
   },
   {
    "hero": "venu-thottempudi",
@@ -73756,8 +73696,8 @@
    "language": "",
    "scope": "supporting",
    "include": false,
-   "excludeReason": "billed #7 (supporting role)",
-   "billing": "billed #7"
+   "excludeReason": "billed #5 (supporting role)",
+   "billing": "billed #5"
   },
   {
    "hero": "sharwanand",
@@ -73871,10 +73811,10 @@
    "role": "Anji",
    "notes": "",
    "language": "",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #2 (supporting role)",
-   "billing": "billed #2"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: the lead; Arjun Sarja is billed first as a senior star"
   },
   {
    "hero": "nithiin",
@@ -74220,10 +74160,10 @@
    "role": "Arun",
    "notes": "Released on Hotstar",
    "language": "",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #2 (supporting role)",
-   "billing": "billed #2"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: the male lead; the heroine is billed first"
   },
   {
    "hero": "nithiin",
@@ -75779,10 +75719,10 @@
    "role": "Dr. Das",
    "notes": "",
    "language": "",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #4 (supporting role)",
-   "billing": "billed #4"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: co-lead with Nagarjuna"
   },
   {
    "hero": "nani",
@@ -75804,9 +75744,10 @@
    "role": "Arjun",
    "notes": "Also dubbed for Harish Kalyan",
    "language": "",
-   "scope": "cameo",
-   "include": false,
-   "excludeReason": "cameo / special / voice appearance"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
   },
   {
    "hero": "nani",
@@ -76112,18 +76053,6 @@
    "include": false,
    "excludeReason": "not listed in the film's starring credits",
    "billing": "not in starring list"
-  },
-  {
-   "hero": "nani",
-   "film": "Jersey (2019 film)",
-   "year": 2019,
-   "displayTitle": "Jersey",
-   "role": "Adult Nani",
-   "notes": "Cameo role",
-   "language": "",
-   "scope": "cameo",
-   "include": false,
-   "excludeReason": "cameo / special / voice appearance"
   },
   {
    "hero": "nani",
@@ -77207,18 +77136,6 @@
    "hero": "rana-daggubati",
    "film": "Kaadan",
    "year": 2021,
-   "displayTitle": "Kaadan",
-   "role": "Veerabarathi \"Kaadan\"",
-   "notes": "Trilingual film",
-   "language": "Tamil",
-   "scope": "lead",
-   "include": false,
-   "excludeReason": "Tamil film"
-  },
-  {
-   "hero": "rana-daggubati",
-   "film": "Kaadan",
-   "year": 2021,
    "displayTitle": "Aranya",
    "role": "Narendra Bhupathi \"Aranya\"",
    "notes": "Trilingual film",
@@ -77227,18 +77144,6 @@
    "include": true,
    "excludeReason": null,
    "billing": "billed #1"
-  },
-  {
-   "hero": "rana-daggubati",
-   "film": "Kaadan",
-   "year": 2021,
-   "displayTitle": "Haathi Mere Saathi",
-   "role": "Sumitranandan \"Bandev\"",
-   "notes": "Trilingual film",
-   "language": "Hindi",
-   "scope": "lead",
-   "include": false,
-   "excludeReason": "Hindi film"
   },
   {
    "hero": "rana-daggubati",
@@ -77261,10 +77166,10 @@
    "role": "Comrade Ravanna",
    "notes": "",
    "language": "Telugu",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #2 (supporting role)",
-   "billing": "billed #2"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: the male lead; the heroine is billed first"
   },
   {
    "hero": "rana-daggubati",
@@ -77474,10 +77379,10 @@
    "role": "Venkat",
    "notes": "",
    "language": "",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #2 (supporting role)",
-   "billing": "billed #2"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: co-lead with Lakshmi Manchu"
   },
   {
    "hero": "adivi-sesh",
@@ -77629,18 +77534,6 @@
    "include": true,
    "excludeReason": null,
    "billing": "billed #1"
-  },
-  {
-   "hero": "adivi-sesh",
-   "film": "G2 (film)",
-   "year": 2026,
-   "displayTitle": "G2",
-   "role": "M. Gopi / M. Arjun Kumar alias Agent Gopi 116",
-   "notes": "Also writer; Filming",
-   "language": "",
-   "scope": "lead",
-   "include": false,
-   "excludeReason": "not yet released"
   },
   {
    "hero": "adivi-sesh",
@@ -78021,10 +77914,10 @@
    "role": "Sanju",
    "notes": "",
    "language": "Telugu",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #2 (supporting role)",
-   "billing": "billed #2"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: the male lead; the heroine is billed first"
   },
   {
    "hero": "sundeep-kishan",
@@ -78931,10 +78824,10 @@
    "role": "Naveen",
    "notes": "",
    "language": "Telugu",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #2 (supporting role)",
-   "billing": "billed #2"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: the male lead; the heroine is billed first"
   },
   {
    "hero": "naveen-chandra",
@@ -81057,10 +80950,10 @@
    "role": "Suri",
    "notes": "Also screenwriter; SIIMA Award for Best Male Debut – Telugu",
    "language": "",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #2 (supporting role)",
-   "billing": "billed #2"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: the male lead; the heroine is billed first"
   },
   {
    "hero": "raj-tarun",
@@ -83240,10 +83133,10 @@
    "role": "Ramakrishna \"Ricky\" / \"Wild Saala\"",
    "notes": "",
    "language": "",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #2 (supporting role)",
-   "billing": "billed #2"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: the lead; Mammootty is billed first as a senior star"
   },
   {
    "hero": "akhil-akkineni",
@@ -84532,10 +84425,10 @@
    "role": "Sidhu Polishetty",
    "notes": "",
    "language": "",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #2 (supporting role)",
-   "billing": "billed #2"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: the male lead; the heroine is billed first"
   },
   {
    "hero": "naveen-polishetty",
@@ -84610,10 +84503,10 @@
    "role": "Anand",
    "notes": "",
    "language": "",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #2 (supporting role)",
-   "billing": "billed #2"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: the male lead; the heroine is billed first"
   },
   {
    "hero": "anand-deverakonda",
@@ -85026,10 +84919,10 @@
    "role": "Jani",
    "notes": "",
    "language": "",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #2 (supporting role)",
-   "billing": "billed #2"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: co-lead"
   },
   {
    "hero": "priyadarshi",
@@ -85065,10 +84958,10 @@
    "role": "Pushkar",
    "notes": "",
    "language": "",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #2 (supporting role)",
-   "billing": "billed #2"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: co-lead"
   },
   {
    "hero": "priyadarshi",
@@ -85952,10 +85845,10 @@
    "role": "Chinna",
    "notes": "",
    "language": "",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #2 (supporting role)",
-   "billing": "billed #2"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: the male lead; the heroine is billed first"
   },
   {
    "hero": "suhas",
@@ -86131,10 +86024,10 @@
    "role": "Gopi Krishna",
    "notes": "",
    "language": "",
-   "scope": "supporting",
-   "include": false,
-   "excludeReason": "billed #2 (supporting role)",
-   "billing": "billed #2"
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: the male lead; the heroine is billed first"
   },
   {
    "hero": "thiruveer",

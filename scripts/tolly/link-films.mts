@@ -263,10 +263,12 @@ for (const f of snap.films) {
   }
 
   // Original language: Wikipedia infobox, else Wikidata, else the hero's filmography (Telugu unless noted).
-  let telugu: boolean | null = f.languages?.length ? f.languages.includes("Telugu") : null;
+  // "Telugu Tamil", "Telugu & Tamil" and "Tamil/Telugu" are bilingual Telugu films; match the word, not the whole string.
+  const hasTelugu = (l: string[]) => l.some((x) => /\btelugu\b/i.test(x));
+  let telugu: boolean | null = f.languages?.length ? hasTelugu(f.languages) : null;
   let languageBy: By = telugu === null ? null : "wikipedia";
   if (telugu === null && wf?.languages.length) {
-    telugu = wf.languages.includes("Telugu");
+    telugu = hasTelugu(wf.languages);
     languageBy = "wikidata";
   }
   if (telugu === null && credits.every((c) => !c.language || /telugu/i.test(c.language))) {

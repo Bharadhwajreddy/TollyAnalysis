@@ -13,7 +13,8 @@ import { titleKey } from "@/lib/tolly/match";
 
 const OUT = ".cache/tolly/bluesky.json";
 const API = "https://api.bsky.app/xrpc/app.bsky.feed.searchPosts";
-const UA = "tollywood-analysis/0.6 (contact saibharadhwajreddy@gmail.com)";
+// A generic client name. Set TOLLY_CONTACT in the environment to add a contact address when a site asks for one.
+const UA = `tollywood-analysis/0.6 (research project${process.env.TOLLY_CONTACT ? `; ${process.env.TOLLY_CONTACT}` : ""})`;
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 type Post = { uri: string; createdAt: string; text: string; likes: number; reposts: number; replies: number; langs: string[] };

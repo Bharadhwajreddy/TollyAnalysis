@@ -16,7 +16,8 @@ if (!ID || !SECRET) {
   console.log("Reddit skipped: set REDDIT_CLIENT_ID and REDDIT_CLIENT_SECRET (reddit.com/prefs/apps → create a 'script' app).");
   process.exit(0);
 }
-const UA = "web:tollywood-analysis:0.5 (contact saibharadhwajreddy@gmail.com)";
+// A generic client name. Set TOLLY_CONTACT in the environment to add a contact address when a site asks for one.
+const UA = `web:tollywood-analysis:0.5 (research project${process.env.TOLLY_CONTACT ? `; ${process.env.TOLLY_CONTACT}` : ""})`;
 const OUT = ".cache/tolly/reddit.json";
 const SUBS = "tollywood+telugu+kollywood";
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));

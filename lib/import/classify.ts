@@ -1,5 +1,8 @@
 /** Roles that never count as a lead credit. */
-const EXCLUDE_ROLE = /\b(cameo|special appearance|guest appearance|guest role|guest|friendly appearance|voice(?:-| )?(?:over|only|role)?|narrat|uncredited|item (?:song|number)|song appearance|in the song|special song|also (?:singer|lyricist) only|archive footage|dubbed)\b/i;
+const EXCLUDE_ROLE = /\b(cameo|special appearance|guest appearance|guest role|guest|friendly appearance|voice(?:-| )?(?:over|only|role)?|narrat|uncredited|item (?:song|number)|song appearance|in the song|special song|also (?:singer|lyricist) only|archive footage)\b/i;
+/** "Also dubbed for X" says the hero voiced someone else; "Dubbed" alone says the credit is voice-only. */
+const DUBBED_ONLY = /\bdubbed\b/i;
+const ALSO_DUBBED = /\balso\b[^.;]*\bdubbed\b/i;
 const UNRELEASED = /\b(post-production|filming|pre-production|upcoming|announced|delayed|shelved|unreleased|completed|in production|†)\b|†/i;
 const SUPPORTING = /\bsupporting role\b/i;
 
@@ -10,7 +13,7 @@ const SUPPORTING = /\bsupporting role\b/i;
  * role can mention a cameo of a second character.
  */
 export function classifyRole(role: string, notes: string): "lead" | "cameo" | "supporting" {
-  if (EXCLUDE_ROLE.test(notes)) return "cameo";
+  if (EXCLUDE_ROLE.test(notes) || (DUBBED_ONLY.test(notes) && !ALSO_DUBBED.test(notes))) return "cameo";
   if (/^\s*(himself|narrator|voice|cameo|special appearance|guest)\b[^/,]*$/i.test(role)) return "cameo";
   if (SUPPORTING.test(notes)) return "supporting";
   return "lead";

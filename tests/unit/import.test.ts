@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
+import { makeBilling, withoutComments } from "@/lib/import/billing";
 import { classifyRole, looksUnreleased } from "@/lib/import/classify";
+import { applyIncludedCredits } from "@/lib/constants/editorial";
 import { croreToMinor, parseCrore } from "@/lib/import/money";
 import { firstLink, infoboxField, parseWikitables, plainText } from "@/lib/import/wikitext";
 
@@ -60,6 +62,9 @@ describe("filmography parsing", () => {
     expect(classifyRole("Raju / Joker (cameo)", "")).toBe("lead");
     expect(classifyRole("Narrator", "")).toBe("cameo");
     expect(classifyRole("Venkat", "Also producer")).toBe("lead");
+    // "Also dubbed for X" says he voiced someone else in another film; it is not a voice-only credit.
+    expect(classifyRole("Arjun", "Also dubbed for Harish Kalyan")).toBe("lead");
+    expect(classifyRole("Hero", "Dubbed version")).toBe("cameo");
   });
   it("detects unreleased films", () => {
     expect(looksUnreleased(t.rows[3][1], plainText(t.rows[3][3]))).toBe(true);
@@ -68,5 +73,40 @@ describe("filmography parsing", () => {
     const box = "{{Infobox film\n| name = X\n| budget = {{INR|170}} crore<ref>{{cite web|url=a|title=b}}</ref>\n| gross = ₹600 crore\n}}";
     expect(infoboxField(box, "budget")).toContain("{{INR|170}} crore");
     expect(infoboxField(box, "gross")).toBe("₹600 crore");
+  });
+});
+
+describe("lead-credit billing", () => {
+  it("drops HTML comments from a starring list, even when the closing marker is missing", () => {
+    expect(withoutComments(["<!--Order as per the cast list in the film's trailer", "See description at youtube.com/watch?v=x-->", "Chiranjeevi", "Ram Charan"])).toEqual(["Chiranjeevi", "Ram Charan"]);
+    expect(withoutComments(["<!--Order as per the opening credits", "Venkatesh (actor)", "Pawan Kalyan"])).toEqual(["Venkatesh (actor)", "Pawan Kalyan"]);
+    expect(withoutComments(["Ram Charan", "Samantha", "Credited names are used as per the template instructions-->", "Jagapathi Babu"])).toEqual(["Ram Charan", "Samantha", "Jagapathi Babu"]);
+  });
+
+  const check = makeBilling(
+    [
+      { slug: "venkatesh", names: ["Venkatesh", "Venkatesh (actor)"] },
+      { slug: "pawan-kalyan", names: ["Pawan Kalyan"] },
+      { slug: "sunil", names: ["Sunil", "Sunil (actor)"], strict: true },
+    ],
+    ["Venkatesh (actor)", "Pawan Kalyan"],
+  );
+  it("counts the first-billed hero, and a co-lead billed right after another roster hero", () => {
+    expect(check("venkatesh", ["Venkatesh (actor)", "Pawan Kalyan", "Shriya Saran"])).toEqual({ pos: 0, coLead: false });
+    expect(check("pawan-kalyan", ["Venkatesh (actor)", "Pawan Kalyan", "Shriya Saran"])).toEqual({ pos: 1, coLead: true });
+  });
+  it("does not count a hero billed after a non-roster name, or a strict-billing actor who is not first", () => {
+    expect(check("pawan-kalyan", ["Some Heroine", "Pawan Kalyan"])).toEqual({ pos: 1, coLead: false });
+    expect(check("sunil", ["Venkatesh (actor)", "Sunil (actor)"])).toEqual({ pos: 1, coLead: false });
+    expect(check("sunil", ["Shriya Saran"]).pos).toBe(-1);
+  });
+
+  it("applies an editorial include to the credit with a real role, and only when nothing counts yet", () => {
+    const row = (role: string, include = false) => ({ hero: "nani", film: "Jersey (2019 film)", include, scope: "cameo", excludeReason: "cameo / special / voice appearance", role });
+    const rows = [row("Adult Nani"), row("Arjun")];
+    expect(applyIncludedCredits(rows)).toBe(1);
+    expect(rows[1]).toMatchObject({ include: true, scope: "lead", excludeReason: null });
+    expect(rows[0].include).toBe(false);
+    expect(applyIncludedCredits([row("Arjun", true)])).toBe(0);
   });
 });

@@ -227,8 +227,14 @@ export default async function HomePage() {
           <section aria-labelledby="top-films" className="card reveal p-4 sm:p-6">
             <p className="section-kicker">Films</p>
             <h2 id="top-films" className="mt-1 font-serif text-[22px] font-semibold text-ink">
-              Best-loved films
+              Top-scored films
             </h2>
+            <p className="mt-0.5 text-[12.5px] text-ink-2">
+              Scored out of 100 on audience rating, reach and staying power.{" "}
+              <Link href="/methodology#tolly-index" className="font-medium text-wine hover:underline">
+                How?
+              </Link>
+            </p>
             <ol className="mt-3 divide-y divide-line">
               {films.map((f, i) => (
                 <li key={f.key} className="grid grid-cols-[22px_1fr_auto] items-baseline gap-2 py-2">
@@ -238,6 +244,9 @@ export default async function HomePage() {
                       {f.title} <span className="font-normal text-muted">({f.year})</span>
                     </span>
                     <span className="block truncate text-[12.5px] text-ink-2">{f.heroes.map((s) => names.get(s) ?? s).join(", ")}</span>
+                    <span className="tabular block truncate text-[11.5px] text-muted">
+                      Rating {f.rating?.toFixed(0)} · Reach {f.reach?.toFixed(0)} · Still read {f.stay?.toFixed(0)}
+                    </span>
                   </span>
                   <span className="tabular text-[15px] font-bold text-wine">{f.index?.toFixed(1)}</span>
                 </li>

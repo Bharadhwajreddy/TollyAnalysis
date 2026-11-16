@@ -11,6 +11,12 @@
 | 3 | **A contact address** | India's DPDP Act expects a way to reach whoever runs the site for privacy requests and grievances. Today that is the corrections form. | Add a dedicated contact email to /privacy and /terms. |
 | 4 | **Collection through your own accounts** (Claude desktop app: Instagram, Letterboxd) | Both platforms' terms forbid automated collection; the risk is a restriction on your accounts. | Keep it slow, read-only and small (71 profiles, 88 films). Keep Letterboxd numbers private (they never enter the repository). |
 
+## Found on 16 November 2026
+
+| Finding | Status |
+|---|---|
+| The owner's personal email address was written into the User-Agent text of seven collection scripts (sent to Wikipedia, Wikidata, Reddit and Bluesky) and committed to the **public** repository. | Removed from every file. The scripts now send a generic client name; set `TOLLY_CONTACT` in the environment to add a contact address when a site asks for one. **The address is still in the repository's git history**, which cannot be edited without rewriting history. Either make the repository private (decision 1) or treat the address as public and consider a new, dedicated address. |
+
 ## What is already in place
 
 | Item | Where |

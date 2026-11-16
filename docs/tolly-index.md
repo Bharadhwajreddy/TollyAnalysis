@@ -725,3 +725,19 @@ career KPI the site has, 15 numbers in all, each 0–100:
   momentum and audience success ratio (older variants of recent success and audience), and fans' votes (no votes
   exist yet; the factor can be added when the fans' ranking is on).
 - Code: `HERO_FACTORS` and `applyHeroFactors` in `lib/tolly/index.ts`; workbook: Tolly Index Heroes columns AA–AV and Settings.
+
+## Which films count for a hero
+
+A film counts when the hero is its lead. The importer reads each film's infobox: he must be billed first,
+or billed straight after other roster heroes (a co-lead). Fixes made on 16 November 2026 after an audit
+against IMDb's cast lists (`scripts/fix-credits.mts`, built into `scripts/import-real-data.mts`):
+
+- HTML comments inside an infobox cast list were read as names, pushing heroes down the order (Acharya, Gopala Gopala).
+- "Also dubbed for X" in the filmography notes made a lead credit look voice-only (Jersey).
+- Bilingual Telugu films ("Telugu Tamil", "Telugu & Tamil") were dropped as non-Telugu (Baahubali: The Beginning).
+- `INCLUDED_CREDITS` in `lib/constants/editorial.ts` lists leads the billing order misses, because a heroine or a
+  senior star is billed first (Janatha Garage, Baby, Virata Parvam, Miss Shetty Mr Polishetty, and others).
+
+Still approximate: billing order is the rule, so a lead billed after a heroine or a senior star can be missed
+until someone adds him to `INCLUDED_CREDITS`, and a strong second hero billed first can be counted as a lead.
+Check each hero's film list on his page and use the corrections form.

@@ -9,7 +9,8 @@
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
-const UA = "TollywoodAnalysis/0.3 (https://github.com/Bharadhwajreddy/TollyAnalysis; contact saibharadhwajreddy@gmail.com)";
+// A generic client name. Set TOLLY_CONTACT in the environment to add a contact address when a site asks for one.
+const UA = `TollywoodAnalysis/0.3 (research project; https://github.com/Bharadhwajreddy/TollyAnalysis${process.env.TOLLY_CONTACT ? `; ${process.env.TOLLY_CONTACT}` : ""})`;
 const OUT = ".cache/tolly/pageviews-60d.json";
 mkdirSync(".cache/tolly", { recursive: true });
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));

@@ -35,3 +35,65 @@ export const EXCLUDED_CREDITS: Record<string, { film: string; reason: string }[]
   ],
   "taraka-ratna": [{ film: "Raja Cheyyi Vesthe", reason: "antagonist role in a Nara Rohit film" }],
 };
+
+/**
+ * Editorial includes: films where the hero IS the lead although the billing order says otherwise
+ * (a heroine or a senior star is billed first, or the infobox lists many names). Each entry is a
+ * film (Wikipedia article title) that must count for that hero. Keep this list small and explain
+ * every entry; it is applied after the automatic check and before the editorial exclusions above
+ * are reported on a hero's page.
+ */
+export const INCLUDED_CREDITS: Record<string, { film: string; reason: string }[]> = {
+  "jr-ntr": [{ film: "Janatha Garage", reason: "the title lead; Mohanlal is billed first as a senior star" }],
+  nani: [
+    { film: "Jersey (2019 film)", reason: "the lead (the filmography notes that he also dubbed for another film)" },
+    { film: "Devadas (2018 film)", reason: "co-lead with Nagarjuna" },
+  ],
+  "anand-deverakonda": [{ film: "Baby (2023 film)", reason: "the male lead; the heroine is billed first" }],
+  "naveen-polishetty": [{ film: "Miss Shetty Mr Polishetty", reason: "the male lead; the heroine is billed first" }],
+  "rana-daggubati": [{ film: "Virata Parvam", reason: "the male lead; the heroine is billed first" }],
+  "vishnu-manchu": [{ film: "Kannappa (film)", reason: "the title lead of a large ensemble" }],
+  "akhil-akkineni": [{ film: "Agent (film)", reason: "the lead; Mammootty is billed first as a senior star" }],
+  nithiin: [
+    { film: "Maestro (2021 film)", reason: "the male lead; the heroine is billed first" },
+    { film: "Sri Anjaneyam", reason: "the lead; Arjun Sarja is billed first as a senior star" },
+  ],
+  balakrishna: [{ film: "Sri Rama Rajyam", reason: "plays Rama, the lead; Akkineni Nageswara Rao is billed first as a senior star" }],
+  nagarjuna: [
+    { film: "Sri Ramadasu", reason: "the title lead; Akkineni Nageswara Rao is billed first as a senior star" },
+    { film: "Manam (film)", reason: "a lead of the three-generation Akkineni film" },
+  ],
+  "mahesh-babu": [{ film: "Vamsi (film)", reason: "the lead; Krishna is billed first as a senior star" }],
+  "naveen-chandra": [{ film: "Lacchimdeviki O Lekkundi", reason: "the male lead; the heroine is billed first" }],
+  "raj-tarun": [{ film: "Uyyala Jampala", reason: "the male lead; the heroine is billed first" }],
+  suhas: [{ film: "Uppu Kappurambu", reason: "the male lead; the heroine is billed first" }],
+  thiruveer: [{ film: "Masooda", reason: "the male lead; the heroine is billed first" }],
+  "uday-kiran": [{ film: "Neeku Nenu Naaku Nuvvu", reason: "the lead; Krishnam Raju is billed first as a senior star" }],
+  "sundeep-kishan": [{ film: "Next Enti?", reason: "the male lead; the heroine is billed first" }],
+  priyadarshi: [
+    { film: "Mithai (film)", reason: "co-lead" },
+    { film: "Rama Chakkani Seetha", reason: "co-lead" },
+  ],
+  "adivi-sesh": [{ film: "Dongaata (2015 film)", reason: "co-lead with Lakshmi Manchu" }],
+};
+
+/** Marks the editorial includes as lead credits (pure: used by the importer and by scripts/fix-credits.mts). */
+export function applyIncludedCredits(
+  credits: { hero: string; film: string; include: boolean; scope: string; excludeReason: string | null; billing?: string; role?: string }[],
+): number {
+  let n = 0;
+  for (const [hero, list] of Object.entries(INCLUDED_CREDITS)) {
+    for (const entry of list) {
+      const rows = credits.filter((c) => c.hero === hero && c.film.replace(/_/g, " ") === entry.film);
+      if (!rows.length || rows.some((c) => c.include)) continue;
+      // Several rows for one film: the first one that names a real role carries the credit.
+      const row = rows.find((c) => !/^(adult|young|child)\b/i.test(c.role ?? "")) ?? rows[0];
+      row.include = true;
+      row.scope = "lead";
+      row.excludeReason = null;
+      row.billing = `Editorial: ${entry.reason}`;
+      n++;
+    }
+  }
+  return n;
+}

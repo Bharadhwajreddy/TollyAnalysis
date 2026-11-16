@@ -16,7 +16,8 @@ import { Readable } from "node:stream";
 import { createGunzip } from "node:zlib";
 import { soundKey } from "@/lib/tolly/match";
 
-const UA = "TollywoodAnalysis/0.5 (contact saibharadhwajreddy@gmail.com)";
+// A generic client name. Set TOLLY_CONTACT in the environment to add a contact address when a site asks for one.
+const UA = `TollywoodAnalysis/0.5 (research project${process.env.TOLLY_CONTACT ? `; ${process.env.TOLLY_CONTACT}` : ""})`;
 async function* lines(file: string) {
   const local = `.cache/tolly/imdb/${file}`;
   let input: NodeJS.ReadableStream;
