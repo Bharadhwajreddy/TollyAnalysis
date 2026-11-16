@@ -27,7 +27,7 @@ export function AllGraphs({ title, subtitle, children }: { title: string; subtit
           <span className="when-open">−</span>
         </span>
       </summary>
-      <div className="border-t border-line bg-bg px-1 pb-6 pt-1 sm:px-3">{opened ? children : null}</div>
+      <div className="border-t border-line bg-bg px-1 pb-6 pt-1 sm:px-3">{opened ? <div className="rise">{children}</div> : null}</div>
     </details>
   );
 }

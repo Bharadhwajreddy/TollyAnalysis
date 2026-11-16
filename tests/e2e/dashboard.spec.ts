@@ -236,6 +236,18 @@ test.describe("Home page", () => {
     await expect(page).toHaveURL(/\/hero\/prabhas$/);
   });
 
+  test("the film list opens a film's breakdown and grows to the top 25", async ({ page }) => {
+    await page.goto("/");
+    const films = page.locator("section:has(#top-films)");
+    const first = films.getByRole("button", { expanded: false }).first();
+    await first.click();
+    await expect(films.getByRole("button", { expanded: true }).first()).toBeVisible();
+    await expect(films).toContainText("Audience rating");
+    await films.getByRole("button", { name: "Show the top 25" }).click();
+    await expect(films.getByRole("button", { name: "Show fewer" })).toBeVisible();
+    await expect(films.locator("#more-films li")).toHaveCount(20);
+  });
+
   test("head to head compares any two heroes factor by factor", async ({ page }) => {
     await page.goto("/");
     const duel = page.locator("section:has(#duel)");

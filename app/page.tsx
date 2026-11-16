@@ -6,7 +6,9 @@ import { heroThumb, initialsOf } from "@/components/hero/hero-avatar";
 import { AllGraphs } from "@/components/home/all-graphs";
 import { HeadToHead, type DuelHero } from "@/components/home/head-to-head";
 import { HeroSearch } from "@/components/home/hero-search";
+import { TopFilms } from "@/components/home/top-films";
 import { TopTen, type TopRow } from "@/components/home/top-ten";
+import { CountUp } from "@/components/ui/count-up";
 import { HomeCharts, type ChartHero } from "@/components/home/home-charts";
 import { FanRanking } from "@/components/ranking/fan-ranking";
 import { GROUPS, groupFact, groupValue } from "@/components/tolly/tolly-parts";
@@ -80,7 +82,7 @@ export default async function HomePage() {
   const names = new Map(all.map((h) => [h.slug, h.name]));
   const top10 = ranked.slice(0, 10);
   const podium = [ranked[1], ranked[0], ranked[2]].filter(Boolean);
-  const films = getTopTollyFilms(5);
+  const films = getTopTollyFilms(25);
   const followed = [...ranked].filter((h) => h.followers).sort((a, b) => (b.followers?.total ?? 0) - (a.followers?.total ?? 0));
   // Ratios need a few films behind them, as on the Star Score page.
   const MIN_JUDGED = 5;
@@ -199,8 +201,8 @@ export default async function HomePage() {
           { v: followed[0] ? compactCount(followed[0].followers?.total ?? 0) : "—", l: followed[0] ? `followers: ${followed[0].name}, the most followed` : "followers" },
           { v: films[0]?.index?.toFixed(1) ?? "—", l: films[0] ? `top film: ${films[0].title}` : "top film" },
         ].map((s) => (
-          <li key={s.l} className="card px-4 py-3.5 sm:px-5">
-            <span className="tabular block font-serif text-[28px] font-bold leading-none text-wine sm:text-[34px]">{s.v}</span>
+          <li key={s.l} className="card lift px-4 py-3.5 sm:px-5">
+            <CountUp value={s.v} className="tabular block font-serif text-[28px] font-bold leading-none text-wine sm:text-[34px]" />
             <span className="mt-1.5 block text-[12.5px] leading-snug text-ink-2 sm:text-[13.5px]">{s.l}</span>
           </li>
         ))}
@@ -230,28 +232,23 @@ export default async function HomePage() {
               Top-scored films
             </h2>
             <p className="mt-0.5 text-[12.5px] text-ink-2">
-              Scored out of 100 on audience rating, reach and staying power.{" "}
+              Scored out of 100 on audience rating, reach and staying power. Tap a film to see why.{" "}
               <Link href="/methodology#tolly-index" className="font-medium text-wine hover:underline">
                 How?
               </Link>
             </p>
-            <ol className="mt-3 divide-y divide-line">
-              {films.map((f, i) => (
-                <li key={f.key} className="grid grid-cols-[22px_1fr_auto] items-baseline gap-2 py-2">
-                  <span className="tabular text-[12.5px] text-muted">{i + 1}</span>
-                  <span className="min-w-0">
-                    <span className="block truncate text-[14.5px] font-semibold text-ink">
-                      {f.title} <span className="font-normal text-muted">({f.year})</span>
-                    </span>
-                    <span className="block truncate text-[12.5px] text-ink-2">{f.heroes.map((s) => names.get(s) ?? s).join(", ")}</span>
-                    <span className="tabular block truncate text-[11.5px] text-muted">
-                      Rating {f.rating?.toFixed(0)} · Reach {f.reach?.toFixed(0)} · Still read {f.stay?.toFixed(0)}
-                    </span>
-                  </span>
-                  <span className="tabular text-[15px] font-bold text-wine">{f.index?.toFixed(1)}</span>
-                </li>
-              ))}
-            </ol>
+            <TopFilms
+              films={films.map((f) => ({
+                key: f.key,
+                title: f.title,
+                year: f.year,
+                index: f.index as number,
+                rating: f.rating,
+                reach: f.reach,
+                stay: f.stay,
+                heroes: f.heroes.map((slug) => ({ slug, name: names.get(slug) ?? slug })),
+              }))}
+            />
           </section>
 
           {followed.length > 0 && (
