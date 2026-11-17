@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-05T21:50:38.063Z",
+ "generatedAt": "2026-11-17T22:23:05.632Z",
  "sources": {
   "wikipedia": "https://en.wikipedia.org (CC BY-SA 4.0)",
   "wikidata": "https://www.wikidata.org (CC0)"
@@ -345,7 +345,7 @@
    "filmographyPage": null,
    "debutYear": 1999,
    "birthDate": "1975-02-09",
-   "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Sumanthkumar1.jpg",
+   "image": null,
    "social": {
     "x": {
      "followers": 1205369,
@@ -405,7 +405,7 @@
    "filmographyPage": null,
    "debutYear": 2003,
    "birthDate": "1981-11-23",
-   "image": null,
+   "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Vishnu%20Manchu%20photoshoot%202014.jpg",
    "social": {
     "x": {
      "followers": 684037,
@@ -1412,6 +1412,22 @@
     "youtube": null,
     "youtubeSubscribers": null
    }
+  },
+  {
+   "slug": "mouli-tanuj-prasanth",
+   "name": "Mouli Tanuj Prasanth",
+   "qid": "Q142083668",
+   "article": "Mouli Tanuj Prasanth",
+   "filmographyPage": null,
+   "debutYear": 2022,
+   "birthDate": null,
+   "image": null,
+   "social": {
+    "x": null,
+    "instagram": null,
+    "youtube": null,
+    "youtubeSubscribers": null
+   }
   }
  ],
  "films": [
@@ -1500,7 +1516,7 @@
    "gross": null,
    "verdict": {
     "verdict": "disaster",
-    "sentence": "Released during the Sankranthi festival on 11 January 2001, the film was a box-office bomb.",
+    "sentence": "The film also became a box-office bomb.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Mrugaraju"
    },
@@ -1605,9 +1621,9 @@
     "text": "₹10 crore"
    },
    "gross": {
-    "low": 55,
-    "high": 55,
-    "text": "₹55 crore"
+    "low": 59,
+    "high": 59,
+    "text": "₹59 crore"
    },
    "verdict": {
     "verdict": "super_hit",
@@ -1915,10 +1931,10 @@
    "music": "M. M. Keeravani",
    "runtimeMin": 158,
    "genres": [
-    "fantasy film",
     "action film",
-    "musical film",
-    "romance film"
+    "fantasy film",
+    "romance film",
+    "musical film"
    ],
    "imdbId": "tt1447500",
    "qid": "Q1134677",
@@ -2080,7 +2096,7 @@
    },
    "verdict": {
     "verdict": "disaster",
-    "sentence": "The film ended up as a major box office failure.",
+    "sentence": "However, it ended up as a major box office failure, grossing ₹240 crore at the box office against a budget of ₹200–300 crore.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Sye_Raa_Narasimha_Reddy"
    },
@@ -2270,18 +2286,18 @@
    "imdbId": "tt28629017",
    "qid": "Q135647565",
    "budget": {
-    "low": 120,
-    "high": 120,
-    "text": "₹120 crore"
+    "low": 28,
+    "high": 28,
+    "text": "₹28 crore"
    },
    "gross": {
     "low": 300,
     "high": 310,
-    "text": "₹300-310 crore"
+    "text": "₹300–310 crore"
    },
    "verdict": {
-    "verdict": "hit",
-    "sentence": "It performed well at the box office, making it the second highest-grossing Telugu film of 2026, fifth highest-grossing Indian film of 2026, and twelfth highest-grossing Telugu film of all time.",
+    "verdict": "blockbuster",
+    "sentence": "It performed well at the box office, making it the first blockbuster of 2026 in Indian cinema.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Mana_Shankara_Vara_Prasad_Garu"
    },
@@ -2334,7 +2350,7 @@
    "key": "Hanuman (2005 film)",
    "article": "Hanuman (2005 film)",
    "title": "Hanuman",
-   "year": 2005,
+   "year": 2006,
    "releaseDate": "2005-10-21",
    "dateApproximate": false,
    "languages": [
@@ -2342,7 +2358,7 @@
    ],
    "director": "V. G. Samant",
    "music": "Tapas Relia",
-   "runtimeMin": 89,
+   "runtimeMin": 99,
    "genres": [
     "children's film"
    ],
@@ -2359,7 +2375,9 @@
     "text": "₹11.68 crore"
    },
    "verdict": null,
-   "starring": []
+   "starring": [
+    "Mukesh Khanna"
+   ]
   },
   {
    "key": "Varudu",
@@ -2376,9 +2394,9 @@
    "runtimeMin": 147,
    "genres": [
     "drama film",
+    "romance film",
     "action film",
-    "thriller film",
-    "romance film"
+    "thriller film"
    ],
    "imdbId": "tt1582637",
    "qid": "Q59495",
@@ -2404,7 +2422,7 @@
    "releaseDate": "2015-10-09",
    "dateApproximate": false,
    "languages": [
-    "Telugu & Tamil"
+    "Telugu"
    ],
    "director": "Gunasekhar",
    "music": "Ilaiyaraaja",
@@ -2417,9 +2435,9 @@
    "qid": "Q7376917",
    "budget": null,
    "gross": {
-    "low": 86.92,
-    "high": 86.92,
-    "text": "₹86.92 crore"
+    "low": 84,
+    "high": 84,
+    "text": "₹84 crore"
    },
    "verdict": {
     "verdict": "hit",
@@ -2588,8 +2606,8 @@
    "music": "A. R. Rahman",
    "runtimeMin": 167,
    "genres": [
-    "historical fiction",
-    "action-adventure film"
+    "action-adventure film",
+    "historical fiction"
    ],
    "imdbId": "tt10701074",
    "qid": "Q108940413",
@@ -2989,8 +3007,7 @@
     "Mohan Babu",
     "Vishnu Manchu",
     "Shobana",
-    "Parvati Melton",
-    "Shriya Saran"
+    "Parvati Melton"
    ]
   },
   {
@@ -3015,12 +3032,12 @@
    "budget": {
     "low": 16,
     "high": 18,
-    "text": "₹160–180 million"
+    "text": "₹16–18 crore"
    },
    "gross": {
     "low": 28,
     "high": 28,
-    "text": "₹280 million distributors' share",
+    "text": "₹28 crore distributors' share",
     "isShare": true
    },
    "verdict": {
@@ -3372,9 +3389,13 @@
    "budget": {
     "low": 25,
     "high": 25,
-    "text": "₹25crore"
+    "text": "₹25 crore"
    },
-   "gross": null,
+   "gross": {
+    "low": 85,
+    "high": 90,
+    "text": "₹85–90 crore"
+   },
    "verdict": null,
    "starring": [
     "Keerthy Suresh",
@@ -3544,7 +3565,7 @@
   },
   {
    "key": "The Paradise (2026 Indian film)",
-   "article": "The Paradise (2026 Indian film)",
+   "article": "The Paradise (film)",
    "title": "The Paradise",
    "year": 2026,
    "releaseDate": "2026-09-24",
@@ -3556,23 +3577,23 @@
    "music": "Anirudh Ravichander",
    "runtimeMin": 173,
    "genres": [],
-   "imdbId": null,
-   "qid": null,
+   "imdbId": "tt31969655",
+   "qid": "Q133172723",
    "budget": {
     "low": 150,
     "high": 200,
     "text": "₹150–200 crore"
    },
    "gross": {
-    "low": 150,
-    "high": 150,
-    "text": "₹150 crore"
+    "low": 169,
+    "high": 169,
+    "text": "₹169 crore"
    },
    "verdict": {
-    "verdict": "hit",
-    "sentence": "The blog's film page gives the verdict \"Hit\".",
-    "source": "trade-blog",
-    "url": "https://www.mtwikiblog.com/2025/03/the-paradise-telugu-movie-2026-budget.html"
+    "verdict": "above_average",
+    "sentence": "Despite the strong backlash, the film managed to become an above-average grosser with minor losses.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/The_Paradise_(film)"
    },
    "starring": [
     "Nani (actor)",
@@ -4199,7 +4220,7 @@
    },
    "verdict": {
     "verdict": "blockbuster",
-    "sentence": "Sri Rama Rajyam is a reboot of the 1963 blockbuster film Lava Kusa.",
+    "sentence": "Sri Rama Rajyam is a reboot of the 1963 blockbuster film Lava Kusa, which is itself based on the Ramayanam by Valmiki, the story focusing on Lava and Kusha, the twin sons of Rama and Sita.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Sri_Rama_Rajyam"
    },
@@ -4759,21 +4780,13 @@
    "genres": [],
    "imdbId": "tt27957740",
    "qid": "Q131278912",
-   "budget": {
-    "low": 100,
-    "high": 100,
-    "text": "₹100 crore"
-   },
-   "gross": {
-    "low": 130,
-    "high": 130,
-    "text": "₹130 crore"
-   },
+   "budget": null,
+   "gross": null,
    "verdict": {
-    "verdict": "flop",
-    "sentence": "The film has received mixed reviews from critics and underperformed at box office.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Daaku_Maharaaj"
+    "verdict": "hit",
+    "sentence": "He achieved commercial success, with works such as Sahasame Jeevitham (1984) , Janani Janmabhoomi (1984) , Mangammagari Manavadu (1984) , Apoorva Sahodarulu (1986) , Muvva Gopaludu (1987) , Muddula Mavayya (1989) , Nari Nari Naduma Murari (1990) , Lorry Driver (1990) , Aditya 369",
+    "source": "wikipedia-hero",
+    "url": "https://en.wikipedia.org/wiki/Nandamuri_Balakrishna"
    },
    "starring": [
     "Nandamuri Balakrishna",
@@ -4797,9 +4810,9 @@
    "music": "Thaman S.",
    "runtimeMin": 165,
    "genres": [
-    "fantasy film",
     "action thriller",
-    "action-adventure film"
+    "action-adventure film",
+    "fantasy film"
    ],
    "imdbId": "tt15387182",
    "qid": "Q136514093",
@@ -4842,7 +4855,12 @@
    "qid": null,
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The blog's film page gives the verdict \"Hit\".",
+    "source": "trade-blog",
+    "url": "https://www.mtwikiblog.com/2026/10/dada-telugu-movie-2026-budget-hit-or.html"
+   },
    "starring": []
   },
   {
@@ -5222,28 +5240,28 @@
    "article": "LOC: Kargil",
    "title": "LOC Kargil",
    "year": 2003,
-   "releaseDate": "2003-12-12",
+   "releaseDate": "2003-12-26",
    "dateApproximate": false,
    "languages": [
     "Hindi"
    ],
    "director": "J. P. Dutta",
    "music": "Songs: Anu Malik Score: Aadesh Shrivastava",
-   "runtimeMin": 255,
+   "runtimeMin": 247,
    "genres": [
     "war film"
    ],
    "imdbId": "tt0347416",
    "qid": "Q2009584",
    "budget": {
-    "low": 33,
-    "high": 33,
-    "text": "₹33 crore"
+    "low": 30,
+    "high": 30,
+    "text": "₹30 crore"
    },
    "gross": {
-    "low": 31.68,
-    "high": 31.68,
-    "text": "₹31.68 crore"
+    "low": 32.32,
+    "high": 32.32,
+    "text": "₹32.32 crore"
    },
    "verdict": {
     "verdict": "flop",
@@ -5490,7 +5508,7 @@
    "languages": [
     "Telugu"
    ],
-   "director": "Sreenu Vaitla",
+   "director": "Srinu Vaitla",
    "music": "Devi Sri Prasad",
    "runtimeMin": 181,
    "genres": [],
@@ -5555,16 +5573,8 @@
    ],
    "imdbId": "tt2005364",
    "qid": "Q7709375",
-   "budget": {
-    "low": 2,
-    "high": 2,
-    "text": "₹ 2 crore"
-   },
-   "gross": {
-    "low": 8,
-    "high": 8,
-    "text": "₹ 8 crore"
-   },
+   "budget": null,
+   "gross": null,
    "verdict": null,
    "starring": [
     "Harshvardhan Rane",
@@ -5575,6 +5585,7 @@
     "Trinetrudu",
     "Eva Ellis",
     "Bhakti Punjani",
+    "Waheeda",
     "Swati Rajput"
    ]
   },
@@ -5853,7 +5864,7 @@
    ],
    "director": "Vamsy Krishna",
    "music": "Satya Mahaveer Sai Karthik Raghu Kunche",
-   "runtimeMin": null,
+   "runtimeMin": 139,
    "genres": [
     "action thriller"
    ],
@@ -6046,7 +6057,11 @@
     "high": 20,
     "text": "₹20 crore"
    },
-   "gross": null,
+   "gross": {
+    "low": 37.95,
+    "high": 37.95,
+    "text": "₹37.95 crore"
+   },
    "verdict": {
     "verdict": "hit",
     "sentence": "The film was one of the highest grossing Telugu films of the year 2016.",
@@ -6222,8 +6237,8 @@
    "music": "Chaitan Bharadwaj",
    "runtimeMin": 152,
    "genres": [
-    "comedy drama",
-    "romantic comedy film"
+    "romantic comedy film",
+    "comedy drama"
    ],
    "imdbId": "tt10076106",
    "qid": "Q63952867",
@@ -6459,7 +6474,7 @@
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "The film received mixed reviews from critics but became a commercial success.",
+    "sentence": "The film received generally mixed reviews from critics but became a commercial success.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Coolie_(2025_film)"
    },
@@ -6470,9 +6485,7 @@
     "Upendra (actor)",
     "Shruti Haasan",
     "Sathyaraj",
-    "Rachita Ram",
-    "Aamir Khan",
-    "Pooja Hegde"
+    "Rachita Ram"
    ]
   },
   {
@@ -6868,9 +6881,7 @@
     "Sneha (actress)",
     "Sangeetha Krish",
     "Aarthi Agarwal",
-    "Rathi (actress)",
-    "Sharada (actress)",
-    "Chandra Mohan (Telugu actor)"
+    "Rathi (actress)"
    ]
   },
   {
@@ -7393,9 +7404,9 @@
    "gross": null,
    "verdict": {
     "verdict": "hit",
-    "sentence": "It received positive reviews from critics and was commercially successful grossing 88.1 crore with a distributor share of 41.1 crore.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Gopala_Gopala_(2015_film)"
+    "sentence": "Gopala Gopala (2015) co-starring Venkatesh was a success while Sardaar Gabbar Singh , Katamarayudu , and Agnyaathavaasi received negative reviews.",
+    "source": "wikipedia-hero",
+    "url": "https://en.wikipedia.org/wiki/Pawan_Kalyan_filmography"
    },
    "starring": [
     "Venkatesh (actor)",
@@ -7428,15 +7439,15 @@
     "text": "₹28 crore"
    },
    "gross": {
-    "low": 50,
-    "high": 50,
-    "text": "₹50 crore"
+    "low": 46.2,
+    "high": 46.2,
+    "text": "₹46.2 crore"
    },
    "verdict": {
     "verdict": "above_average",
-    "sentence": "The film turned out to be a profitable venture for its producers and an above average success for its distributors grossing over ₹51 crore at the box office with a distributors' share of ₹27.7 crore.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Babu_Bangaram"
+    "sentence": "Listed as \"Semi Hit\" in the blog's Venkatesh filmography.",
+    "source": "trade-blog",
+    "url": "https://www.mtwikiblog.com/p/venkatesh-filmography.html"
    },
    "starring": [
     "Venkatesh (actor)",
@@ -7498,18 +7509,18 @@
    "imdbId": "tt7711342",
    "qid": "Q43302292",
    "budget": {
-    "low": 70,
-    "high": 70,
-    "text": "₹70 crore"
+    "low": 90,
+    "high": 90,
+    "text": "₹90 crore"
    },
    "gross": {
-    "low": 60,
-    "high": 60,
-    "text": "₹60 crores"
+    "low": 95,
+    "high": 95,
+    "text": "₹95 crores"
    },
    "verdict": {
     "verdict": "disaster",
-    "sentence": "The film was a disaster at the box office, only recovering roughly half of its investment with earnings of roughly ₹60 crore, and resulting in negative returns for all distributors.",
+    "sentence": "The film was a disaster at the box office, only recovering roughly half of its investment of ₹125 cr theatrical rights with earnings of roughly ₹60 crore share , and resulting in negative returns for all distributors.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Agnyaathavaasi"
    },
@@ -7591,7 +7602,7 @@
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "The film was released on 13 December 2019, coinciding with Venkatesh's birthday, to mixed reviews from critics but praise for Venkatesh's performance and ended up as a commercial success at the box office.",
+    "sentence": "The film was released on 13 December 2019, coinciding with Venkatesh's birthday, to mixed reviews from critics with praise for Venkatesh's performance and criticism for its script and writing but ended up as a commercial success at the box office.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Venky_Mama"
    },
@@ -7754,9 +7765,9 @@
    "imdbId": "tt3679040",
    "qid": "Q112161059",
    "budget": {
-    "low": 130,
-    "high": 130,
-    "text": "₹130 crore"
+    "low": 100,
+    "high": 100,
+    "text": "₹100 crore"
    },
    "gross": {
     "low": 182,
@@ -7764,8 +7775,8 @@
     "text": "₹182 crore"
    },
    "verdict": {
-    "verdict": "flop",
-    "sentence": "It received negative reviews from critics and underperformed at the box office,grossing over 182 crore against a budget of 130 crore.",
+    "verdict": "average",
+    "sentence": "It received mixed reviews from critics and was an average grosser at the box office, grossing over 182 crore against a budget of 100 crore.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Kisi_Ka_Bhai_Kisi_Ki_Jaan"
    },
@@ -7854,22 +7865,32 @@
   },
   {
    "key": "Aadarsha Kutumbam House No: 47 - AK47",
-   "article": null,
+   "article": "Aadarsha Kutumbam House No: 47 - AK47",
    "title": "Aadarsha Kutumbam House No: 47 - AK47",
    "year": 2026,
-   "releaseDate": null,
-   "dateApproximate": true,
-   "languages": [],
-   "director": null,
-   "music": null,
-   "runtimeMin": null,
+   "releaseDate": "2026-10-30",
+   "dateApproximate": false,
+   "languages": [
+    "Telugu"
+   ],
+   "director": "Trivikram Srinivas",
+   "music": "Thaman S",
+   "runtimeMin": 149,
    "genres": [],
-   "imdbId": null,
-   "qid": null,
+   "imdbId": "tt30768979",
+   "qid": "Q141859653",
    "budget": null,
-   "gross": null,
+   "gross": {
+    "low": 74.35,
+    "high": 74.35,
+    "text": "₹74.35 crore"
+   },
    "verdict": null,
-   "starring": []
+   "starring": [
+    "Venkatesh (actor)",
+    "Srinidhi Shetty",
+    "Nara Rohith"
+   ]
   },
   {
    "key": "Ravanna (film)",
@@ -8477,7 +8498,7 @@
    "starring": [
     "Rajasekhar (actor)",
     "Pooja Kumar",
-    "Adith Arun",
+    "Thrigun",
     "Shraddha Das",
     "Kishore (actor, born 1974)"
    ]
@@ -9035,8 +9056,8 @@
    "runtimeMin": 131,
    "genres": [
     "romance film",
-    "romantic comedy film",
-    "sport film"
+    "sport film",
+    "romantic comedy film"
    ],
    "imdbId": "tt0342609",
    "qid": "Q18740603",
@@ -9870,8 +9891,7 @@
    "verdict": null,
    "starring": [
     "Jagapathi Babu",
-    "Vimala Raman",
-    "Revathi"
+    "Vimala Raman"
    ]
   },
   {
@@ -10198,7 +10218,7 @@
    "article": "Pilla Nuvvu Leni Jeevitham",
    "title": "Pilla Nuvvu Leni Jeevitam",
    "year": 2014,
-   "releaseDate": "2013-11-14",
+   "releaseDate": "2014-11-14",
    "dateApproximate": false,
    "languages": [
     "Telugu"
@@ -10276,14 +10296,10 @@
    "imdbId": "tt4727512",
    "qid": "Q18395078",
    "budget": null,
-   "gross": {
-    "low": 200,
-    "high": 200,
-    "text": "₹200 crore"
-   },
+   "gross": null,
    "verdict": {
-    "verdict": "blockbuster",
-    "sentence": "The film opened to positive critical reception and was a commercial success, grossing over 200 crore globally on a budget of 6070 crore and becoming the second highest-grossing Telugu film of all time in its initial release.",
+    "verdict": "hit",
+    "sentence": "The film opened to positive critical reception and was a commercial success.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Srimanthudu"
    },
@@ -10919,13 +10935,13 @@
     "text": "₹60 crore"
    },
    "gross": {
-    "low": 175,
+    "low": 200,
     "high": 200,
-    "text": "₹175–200 crore"
+    "text": "₹200 crore"
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "Maharshi was the third highest grossing Telugu film of 2019 and one of the highest-grossing Telugu films.",
+    "sentence": "Maharshi was a commercial success and became the third highest grossing Telugu film of 2019 and one of the highest-grossing Telugu films.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Maharshi_(2019_film)"
    },
@@ -11397,11 +11413,15 @@
    ],
    "imdbId": "tt13927994",
    "qid": "Q106298596",
-   "budget": null,
+   "budget": {
+    "low": 270,
+    "high": 300,
+    "text": "₹270–300 crore"
+   },
    "gross": {
-    "low": 580,
-    "high": 580,
-    "text": "₹580 crore"
+    "low": 612,
+    "high": 702,
+    "text": "₹612–702 crore"
    },
    "verdict": {
     "verdict": "blockbuster",
@@ -11445,7 +11465,7 @@
    "gross": {
     "low": 172,
     "high": 212,
-    "text": "₹172 - ₹212 crore"
+    "text": "₹172–212 crore"
    },
    "verdict": {
     "verdict": "below_average",
@@ -11488,13 +11508,13 @@
     "text": "₹50 crore"
    },
    "gross": {
-    "low": 33,
-    "high": 33,
-    "text": "₹33 crore"
+    "low": 28,
+    "high": 28,
+    "text": "₹28 crore"
    },
    "verdict": {
     "verdict": "flop",
-    "sentence": "The film was a failure at the box office grossing 33 crore worldwide against a budget of 50 crore.",
+    "sentence": "The film was a failure at the box office grossing 28 crore worldwide against a budget of 50 crore.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/The_Family_Star"
    },
@@ -11592,12 +11612,12 @@
    },
    "gross": {
     "low": 1642,
-    "high": 1700,
-    "text": "₹1642–1700 crore"
+    "high": 1800,
+    "text": "₹1642–1800 crore"
    },
    "verdict": {
     "verdict": "super_hit",
-    "sentence": "The film was a major commercial success, grossing between 1642 and 1800 crores worldwide, making it the second highest-grossing film in India and the fourth-highest-grossing Indian film worldwide at the time of its release.",
+    "sentence": "The film was a major commercial success, grossing between 1642 and 1800 crores worldwide, making it the second highest-grossing film in India and the fourth-highest-grossing Indian film worldwide at the time of its release, and registered the highest grossing day 1 for an Indian ",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Pushpa_2%3A_The_Rule"
    },
@@ -11628,12 +11648,7 @@
    "qid": "Q131455085",
    "budget": null,
    "gross": null,
-   "verdict": {
-    "verdict": "disaster",
-    "sentence": "The film was released on 5 September 2025 to negative reviews from critics and became a box office bomb.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Ghaati"
-   },
+   "verdict": null,
    "starring": [
     "Vikram Prabhu",
     "Anushka Shetty"
@@ -11732,12 +11747,12 @@
    },
    "gross": {
     "low": 330,
-    "high": 400,
-    "text": "₹330–400 crore"
+    "high": 336.85,
+    "text": "₹330–336.85 crore"
    },
    "verdict": {
     "verdict": "flop",
-    "sentence": "The film was a commercial hit at the box office and became the highest grossing Telugu film of 2026, however, it underperformed significantly in other pan-Indian regions and overseas markets.",
+    "sentence": "The film received mixed reviews from critics but was a commercial success at the box office and became the highest grossing Telugu film of 2026, however, it underperformed significantly in other pan-Indian regions and overseas markets.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Peddi"
    },
@@ -11870,12 +11885,7 @@
    "qid": "Q7262201",
    "budget": null,
    "gross": null,
-   "verdict": {
-    "verdict": "flop",
-    "sentence": "The publicity for the film was weak and it took a poor opening at the box office with the grossing of in the first week.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Puthagam"
-   },
+   "verdict": null,
    "starring": [
     "Sathya (Tamil actor)",
     "Rakul Preet Singh"
@@ -12018,8 +12028,8 @@
     "text": "₹139–145 crore"
    },
    "verdict": {
-    "verdict": "hit",
-    "sentence": "Despite receiving mixed reviews from critics, the film was extremely successful at the box office.",
+    "verdict": "blockbuster",
+    "sentence": "Despite receiving mixed reviews from critics, the film was an industry hit at the box office.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Pulimurugan"
    },
@@ -12419,9 +12429,9 @@
    "imdbId": null,
    "qid": null,
    "budget": {
-    "low": 130,
-    "high": 130,
-    "text": "₹130 crore"
+    "low": 100,
+    "high": 100,
+    "text": "₹100 crore"
    },
    "gross": {
     "low": 182,
@@ -12429,8 +12439,8 @@
     "text": "₹182 crore"
    },
    "verdict": {
-    "verdict": "flop",
-    "sentence": "It received negative reviews from critics and underperformed at the box office,grossing over 182 crore against a budget of 130 crore.",
+    "verdict": "average",
+    "sentence": "It received mixed reviews from critics and was an average grosser at the box office, grossing over 182 crore against a budget of 100 crore.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Kisi_Ka_Bhai_Kisi_Ki_Jaan"
    },
@@ -12558,13 +12568,13 @@
    "qid": "Q131395445",
    "budget": {
     "low": 80,
-    "high": 80,
-    "text": "₹80 crore"
+    "high": 100,
+    "text": "₹80-100 crore"
    },
    "gross": {
-    "low": 120.6,
-    "high": 120.6,
-    "text": "₹120.6 crore"
+    "low": 119.24,
+    "high": 119.24,
+    "text": "₹119.24 crore"
    },
    "verdict": {
     "verdict": "hit",
@@ -13415,9 +13425,7 @@
     "Sneha (actress)",
     "Sangeetha Krish",
     "Aarthi Agarwal",
-    "Rathi (actress)",
-    "Sharada (actress)",
-    "Chandra Mohan (Telugu actor)"
+    "Rathi (actress)"
    ]
   },
   {
@@ -15226,14 +15234,22 @@
    ],
    "imdbId": "tt1889440",
    "qid": "Q7694308",
-   "budget": null,
-   "gross": {
-    "low": 17.4,
-    "high": 17.4,
-    "text": "₹17.4 crores distributors' share",
-    "isShare": true
+   "budget": {
+    "low": 26,
+    "high": 26,
+    "text": "₹ 26 crores"
    },
-   "verdict": null,
+   "gross": {
+    "low": 30,
+    "high": 30,
+    "text": "₹30 crores"
+   },
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "It was a flop at the Box Office .",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Teen_Maar"
+   },
    "starring": [
     "Pawan Kalyan",
     "Trisha (actress)",
@@ -15266,9 +15282,9 @@
     "text": "₹33 crore"
    },
    "gross": {
-    "low": 40,
-    "high": 40,
-    "text": "₹40 crore<br />₹5.12 crore (Re-Release)"
+    "low": 32.1,
+    "high": 32.1,
+    "text": "₹32.1 crore<br />₹5.12 crore (Re-Release)"
    },
    "verdict": {
     "verdict": "flop",
@@ -15572,11 +15588,15 @@
    "genres": [],
    "imdbId": "tt26675491",
    "qid": "Q119133686",
-   "budget": null,
+   "budget": {
+    "low": 80,
+    "high": 80,
+    "text": "₹80 crores"
+   },
    "gross": {
-    "low": 100.5,
-    "high": 100.5,
-    "text": "₹100.50 crores"
+    "low": 115.5,
+    "high": 115.5,
+    "text": "₹115.50 crores"
    },
    "verdict": {
     "verdict": "flop",
@@ -15651,9 +15671,9 @@
     "text": "₹200–250 crore"
    },
    "gross": {
-    "low": 293.65,
-    "high": 300,
-    "text": "₹293.65–300 crore"
+    "low": 295,
+    "high": 295,
+    "text": "₹295 crore"
    },
    "verdict": {
     "verdict": "hit",
@@ -15668,7 +15688,9 @@
     "Priyanka Mohan",
     "Arjun Das",
     "Sudev Nair",
-    "Sriya Reddy"
+    "Sriya Reddy",
+    "Vincent Asokan",
+    "Kazuki Kitamura"
    ]
   },
   {
@@ -15699,7 +15721,7 @@
    },
    "verdict": {
     "verdict": "flop",
-    "sentence": "Despite the festive release, it was Harish Shankar's second consecutive commercial failure after Mr.",
+    "sentence": "Despite the festive release and reviews, it was Harish Shankar's second consecutive commercial failure after Mr.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Ustaad_Bhagat_Singh"
    },
@@ -15913,10 +15935,10 @@
    },
    "gross": null,
    "verdict": {
-    "verdict": "flop",
-    "sentence": "The film released on 31 October 2002 to mixed reviews and became a box office failure.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Bobby_(2002_film)"
+    "verdict": "disaster",
+    "sentence": "Listed as \"Disaster\" in the blog's Mahesh Babu filmography.",
+    "source": "trade-blog",
+    "url": "https://www.mtwikiblog.com/p/mahesh-babu-filmography.html"
    },
    "starring": [
     "Mahesh Babu",
@@ -15974,7 +15996,7 @@
    ],
    "director": "Teja",
    "music": "R. P. Patnaik",
-   "runtimeMin": 196,
+   "runtimeMin": 187,
    "genres": [
     "drama film",
     "action film"
@@ -16021,10 +16043,10 @@
    },
    "gross": null,
    "verdict": {
-    "verdict": "flop",
-    "sentence": "It was a box office failure.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Naani"
+    "verdict": "disaster",
+    "sentence": "Listed as \"Disaster\" in the blog's Mahesh Babu filmography.",
+    "source": "trade-blog",
+    "url": "https://www.mtwikiblog.com/p/mahesh-babu-filmography.html"
    },
    "starring": [
     "Mahesh Babu",
@@ -16180,9 +16202,9 @@
    "gross": null,
    "verdict": {
     "verdict": "flop",
-    "sentence": "It opened to mixed to negative reviews upon release and went on to become a box office failure.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Sainikudu"
+    "sentence": "Listed as \"Flop\" in the blog's Mahesh Babu filmography.",
+    "source": "trade-blog",
+    "url": "https://www.mtwikiblog.com/p/mahesh-babu-filmography.html"
    },
    "starring": [
     "Mahesh Babu",
@@ -16217,10 +16239,10 @@
    },
    "gross": null,
    "verdict": {
-    "verdict": "disaster",
-    "sentence": "The film received mixed reviews and was a box office bomb.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Athidhi"
+    "verdict": "flop",
+    "sentence": "Listed as \"Flop\" in the blog's Mahesh Babu filmography.",
+    "source": "trade-blog",
+    "url": "https://www.mtwikiblog.com/p/mahesh-babu-filmography.html"
    },
    "starring": [
     "Mahesh Babu",
@@ -16241,9 +16263,9 @@
    "music": "Mani Sharma",
    "runtimeMin": 164,
    "genres": [
+    "action film",
     "fantasy film",
-    "comedy film",
-    "action film"
+    "comedy film"
    ],
    "imdbId": "tt1582519",
    "qid": "Q1010104",
@@ -16296,10 +16318,9 @@
     "text": "₹35crore"
    },
    "gross": {
-    "low": 57,
-    "high": 57,
-    "text": "₹57 crore distributors' share",
-    "isShare": true
+    "low": 101,
+    "high": 101,
+    "text": "₹101crore"
    },
    "verdict": {
     "verdict": "hit",
@@ -16344,8 +16365,8 @@
     "text": "₹72 crore"
    },
    "verdict": {
-    "verdict": "blockbuster",
-    "sentence": "The film collected approximately 62.93 crore by the end of its first week at the global box office and was declared a blockbuster.",
+    "verdict": "hit",
+    "sentence": "The film grossed over 72 crore in its original release, becoming one of the highest-grossing Telugu films of 2012.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Businessman_(film)"
    },
@@ -16379,12 +16400,7 @@
     "high": 70,
     "text": "₹60–70 crore"
    },
-   "gross": {
-    "low": 29,
-    "high": 29,
-    "text": "₹29 crore distributors' share",
-    "isShare": true
-   },
+   "gross": null,
    "verdict": {
     "verdict": "flop",
     "sentence": "The film eventually became a box office failure.",
@@ -16469,8 +16485,8 @@
    },
    "starring": [
     "Mahesh Babu",
-    "Kajal Aggarwal",
     "Samantha Ruth Prabhu",
+    "Kajal Aggarwal",
     "Revathi"
    ]
   },
@@ -16482,8 +16498,8 @@
    "releaseDate": "2017-09-27",
    "dateApproximate": false,
    "languages": [
-    "Telugu",
-    "Tamil"
+    "Tamil",
+    "Telugu"
    ],
    "director": "A. R. Murugadoss",
    "music": "Harris Jayaraj",
@@ -16504,10 +16520,10 @@
     "text": "₹150 crore"
    },
    "verdict": {
-    "verdict": "flop",
-    "sentence": "Listed as \"Flop\" in the blog's Mahesh Babu filmography.",
-    "source": "trade-blog",
-    "url": "https://www.mtwikiblog.com/p/mahesh-babu-filmography.html"
+    "verdict": "disaster",
+    "sentence": "The film received mixed reviews from critics and was a box office bomb.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Spyder_(film)"
    },
    "starring": [
     "Mahesh Babu",
@@ -16580,9 +16596,9 @@
     "text": "₹75 crore"
    },
    "gross": {
-    "low": 200,
-    "high": 200,
-    "text": "₹200 crore"
+    "low": 260,
+    "high": 260,
+    "text": "₹260 crore"
    },
    "verdict": {
     "verdict": "hit",
@@ -16647,8 +16663,8 @@
    "runtimeMin": null,
    "genres": [
     "action film",
-    "adventure film",
-    "epic film"
+    "epic film",
+    "adventure film"
    ],
    "imdbId": "tt21438726",
    "qid": "Q133231406",
@@ -17101,7 +17117,7 @@
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "The film went on to be a hit at the box office, grossing over ₹36 crore.",
+    "sentence": "The film went on to be a commercial success at the box office.The film later was remade in Kannada as Bulbul (2013).",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Darling_(2010_film)"
    },
@@ -17186,37 +17202,6 @@
    ]
   },
   {
-   "key": "Denikaina Ready",
-   "article": "Denikaina Ready",
-   "title": "Denikaina Ready",
-   "year": 2012,
-   "releaseDate": "2012-10-24",
-   "dateApproximate": false,
-   "languages": [
-    "Telugu"
-   ],
-   "director": "G. Nageswara Reddy",
-   "music": "Songs: Chakri Yuvan Shankar Raja Score: Chinna",
-   "runtimeMin": 139,
-   "genres": [
-    "comedy film"
-   ],
-   "imdbId": "tt2393775",
-   "qid": "Q5269509",
-   "budget": null,
-   "gross": null,
-   "verdict": {
-    "verdict": "hit",
-    "sentence": "It was a commercial success at the box office.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Denikaina_Ready"
-   },
-   "starring": [
-    "Vishnu Manchu",
-    "Hansika Motwani"
-   ]
-  },
-  {
    "key": "Mirchi (film)",
    "article": "Mirchi (film)",
    "title": "Mirchi",
@@ -17250,50 +17235,6 @@
     "Prabhas",
     "Anushka Shetty",
     "Richa Gangopadhyay"
-   ]
-  },
-  {
-   "key": "Action Jackson (2014 film)",
-   "article": "Action Jackson (2014 film)",
-   "title": "Action Jackson",
-   "year": 2014,
-   "releaseDate": "2014-12-05",
-   "dateApproximate": false,
-   "languages": [
-    "Hindi"
-   ],
-   "director": "Prabhu Deva",
-   "music": "Songs: Himesh Reshammiya Score: Sandeep Chowta",
-   "runtimeMin": 144,
-   "genres": [
-    "action film",
-    "action comedy film"
-   ],
-   "imdbId": "tt0403935",
-   "qid": "Q16058052",
-   "budget": {
-    "low": 93,
-    "high": 93,
-    "text": "₹93 crore"
-   },
-   "gross": {
-    "low": 88.87,
-    "high": 88.87,
-    "text": "₹88.87 crore"
-   },
-   "verdict": {
-    "verdict": "disaster",
-    "sentence": "Action Jackson was released on 5 December 2014 to negative reviews from critics and bombed at the box office.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Action_Jackson_(2014_film)"
-   },
-   "starring": [
-    "Ajay Devgn",
-    "Yami Gautam",
-    "Sonakshi Sinha",
-    "Kunaal Roy Kapur",
-    "Manasvi Mamgai",
-    "Anandaraj"
    ]
   },
   {
@@ -17354,9 +17295,9 @@
    "music": "M. M. Keeravani",
    "runtimeMin": 171,
    "genres": [
+    "action film",
     "drama film",
-    "fantasy film",
-    "action film"
+    "fantasy film"
    ],
    "imdbId": "tt4849438",
    "qid": "Q21001674",
@@ -17412,9 +17353,9 @@
     "text": "₹350 crore"
    },
    "gross": {
-    "low": 434,
-    "high": 439,
-    "text": "₹434–439 crore"
+    "low": 451,
+    "high": 451,
+    "text": "₹451 crore"
    },
    "verdict": {
     "verdict": "hit",
@@ -17450,9 +17391,9 @@
    "qid": "Q105605280",
    "budget": null,
    "gross": {
-    "low": 392.7,
-    "high": 392.7,
-    "text": "₹392.70 crore"
+    "low": 174,
+    "high": 174,
+    "text": "₹174 crore net ''Deccan Chronicle'', and ''News18''."
    },
    "verdict": {
     "verdict": "disaster",
@@ -17482,8 +17423,8 @@
    "music": "Santhosh Narayanan",
    "runtimeMin": 181,
    "genres": [
-    "science fiction film",
-    "dystopian film"
+    "dystopian film",
+    "science fiction film"
    ],
    "imdbId": "tt12735488",
    "qid": "Q112430183",
@@ -17504,9 +17445,9 @@
     "url": "https://en.wikipedia.org/wiki/Kalki_2898_AD"
    },
    "starring": [
-    "Prabhas",
     "Amitabh Bachchan",
     "Kamal Haasan",
+    "Prabhas",
     "Deepika Padukone",
     "Shobana",
     "Disha Patani"
@@ -17597,9 +17538,9 @@
    "key": "Fauzi (film)",
    "article": "Fauzi (film)",
    "title": "Fauzi",
-   "year": 2026,
-   "releaseDate": null,
-   "dateApproximate": true,
+   "year": 2027,
+   "releaseDate": "2027-03-19",
+   "dateApproximate": false,
    "languages": [
     "Telugu"
    ],
@@ -17619,9 +17560,9 @@
    "starring": [
     "Prabhas",
     "Imanvi Esmail",
+    "Anupam Kher",
     "Sajjad Delafrooz",
-    "Mithun Chakraborty",
-    "Anupam Kher"
+    "Mithun Chakraborty"
    ]
   },
   {
@@ -17642,6 +17583,81 @@
    "gross": null,
    "verdict": null,
    "starring": []
+  },
+  {
+   "key": "Denikaina Ready",
+   "article": "Denikaina Ready",
+   "title": "Denikaina Ready",
+   "year": 2012,
+   "releaseDate": "2012-10-24",
+   "dateApproximate": false,
+   "languages": [
+    "Telugu"
+   ],
+   "director": "G. Nageswara Reddy",
+   "music": "Songs: Chakri Yuvan Shankar Raja Score: Chinna",
+   "runtimeMin": 139,
+   "genres": [
+    "comedy film"
+   ],
+   "imdbId": "tt2393775",
+   "qid": "Q5269509",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "It was a commercial success at the box office.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Denikaina_Ready"
+   },
+   "starring": [
+    "Vishnu Manchu",
+    "Hansika Motwani"
+   ]
+  },
+  {
+   "key": "Action Jackson (2014 film)",
+   "article": "Action Jackson (2014 film)",
+   "title": "Action Jackson",
+   "year": 2014,
+   "releaseDate": "2014-12-05",
+   "dateApproximate": false,
+   "languages": [
+    "Hindi"
+   ],
+   "director": "Prabhu Deva",
+   "music": "Songs: Himesh Reshammiya Score: Sandeep Chowta",
+   "runtimeMin": 144,
+   "genres": [
+    "action film",
+    "action comedy film"
+   ],
+   "imdbId": "tt0403935",
+   "qid": "Q16058052",
+   "budget": {
+    "low": 93,
+    "high": 93,
+    "text": "₹93 crore"
+   },
+   "gross": {
+    "low": 88.87,
+    "high": 88.87,
+    "text": "₹88.87 crore"
+   },
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "Action Jackson was released on 5 December 2014 to negative reviews from critics and bombed at the box office.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Action_Jackson_(2014_film)"
+   },
+   "starring": [
+    "Ajay Devgn",
+    "Yami Gautam",
+    "Sonakshi Sinha",
+    "Kunaal Roy Kapur",
+    "Manasvi Mamgai",
+    "Anandaraj"
+   ]
   },
   {
    "key": "Ninnu Choodalani",
@@ -17665,9 +17681,9 @@
    "gross": null,
    "verdict": {
     "verdict": "disaster",
-    "sentence": "Listed as \"Disaster\" in the blog's Jr NTR filmography.",
-    "source": "trade-blog",
-    "url": "https://www.mtwikiblog.com/2016/12/jr-ntr-movies-list-hits-flops-box-office-records.html"
+    "sentence": "The film was a box-office bomb.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Ninnu_Choodalani"
    },
    "starring": [
     "N. T. Rama Rao Jr.",
@@ -17864,9 +17880,9 @@
    "runtimeMin": 175,
    "genres": [
     "drama film",
-    "comedy film",
     "action film",
-    "horror film"
+    "horror film",
+    "thriller film"
    ],
    "imdbId": "tt0375066",
    "qid": "Q7517709",
@@ -17952,17 +17968,12 @@
    "imdbId": "tt0417106",
    "qid": "Q7408948",
    "budget": null,
-   "gross": {
-    "low": 16,
-    "high": 16,
-    "text": "₹16 crore distributors' share",
-    "isShare": true
-   },
+   "gross": null,
    "verdict": {
     "verdict": "hit",
-    "sentence": "The film was a commercial success at the box office earning a distributor share of ₹16 crore.It was remade in Kannada as Mandya (2006).",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Samba_(2004_film)"
+    "sentence": "Listed as \"Hit\" in the blog's Jr NTR filmography.",
+    "source": "trade-blog",
+    "url": "https://www.mtwikiblog.com/2016/12/jr-ntr-movies-list-hits-flops-box-office-records.html"
    },
    "starring": [
     "N. T. Rama Rao Jr.",
@@ -18093,20 +18104,11 @@
    ],
    "imdbId": "tt0924274",
    "qid": "Q13007654",
-   "budget": {
-    "low": 8,
-    "high": 8,
-    "text": "₹8 crore"
-   },
-   "gross": {
-    "low": 14,
-    "high": 14,
-    "text": "₹14 crore distributors' share",
-    "isShare": true
-   },
+   "budget": null,
+   "gross": null,
    "verdict": {
     "verdict": "hit",
-    "sentence": "The film became a sleeper hit earning a distributor share of ₹14 crore.",
+    "sentence": "Rakhi was released with 250 prints and became a sleeper hit at the box office.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Rakhi_(2006_film)"
    },
@@ -18363,10 +18365,10 @@
     "isShare": true
    },
    "verdict": {
-    "verdict": "average",
-    "sentence": "He next starred in the action drama Dammu (2012) , which became an average grosser.",
-    "source": "wikipedia-hero",
-    "url": "https://en.wikipedia.org/wiki/N._T._Rama_Rao_Jr."
+    "verdict": "hit",
+    "sentence": "The film grossed ₹60 crore with a distributor share of ₹35 crore and was a commercial success at the box office.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Dammu"
    },
    "starring": [
     "N.T. Rama Rao Jr.",
@@ -18395,7 +18397,11 @@
    ],
    "imdbId": "tt2204243",
    "qid": "Q4166243",
-   "budget": null,
+   "budget": {
+    "low": 55,
+    "high": 55,
+    "text": "₹55 crore"
+   },
    "gross": {
     "low": 48.5,
     "high": 48.5,
@@ -18526,10 +18532,10 @@
     "text": "₹74.3 crore"
    },
    "verdict": {
-    "verdict": "hit",
-    "sentence": "In its lifetime, the film grossed 74.3 crore and collected a share of 43.1 crore and was declared a profitable film for its distributors on a whole.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Temper_(film)"
+    "verdict": "above_average",
+    "sentence": "Listed as \"Above Average\" in the blog's Jr NTR filmography.",
+    "source": "trade-blog",
+    "url": "https://www.mtwikiblog.com/2016/12/jr-ntr-movies-list-hits-flops-box-office-records.html"
    },
    "starring": [
     "N. T. Rama Rao Jr.",
@@ -18568,8 +18574,8 @@
     "text": "₹150 crore"
    },
    "verdict": {
-    "verdict": "hit",
-    "sentence": "It was the highest-grossing Telugu film of 2016.",
+    "verdict": "super_hit",
+    "sentence": "The film was a major commercial success grossing over ₹150 crore on a budget of ₹50 crore, making it the highest-grossing Telugu film of 2016.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Janatha_Garage"
    },
@@ -18711,25 +18717,6 @@
    ]
   },
   {
-   "key": "Dragon (2027 film)",
-   "article": null,
-   "title": "Dragon",
-   "year": 2027,
-   "releaseDate": null,
-   "dateApproximate": true,
-   "languages": [],
-   "director": null,
-   "music": null,
-   "runtimeMin": null,
-   "genres": [],
-   "imdbId": null,
-   "qid": null,
-   "budget": null,
-   "gross": null,
-   "verdict": null,
-   "starring": []
-  },
-  {
    "key": "Gangotri (2003 film)",
    "article": "Gangotri (2003 film)",
    "title": "Gangotri",
@@ -18776,9 +18763,9 @@
    "music": "Devi Sri Prasad",
    "runtimeMin": 151,
    "genres": [
-    "romance film",
+    "musical film",
     "romantic comedy",
-    "musical film"
+    "romance film"
    ],
    "imdbId": "tt0431619",
    "qid": "Q4802580",
@@ -18855,8 +18842,8 @@
    "runtimeMin": 152,
    "genres": [
     "action film",
-    "romantic comedy",
-    "comedy drama"
+    "comedy drama",
+    "romantic comedy"
    ],
    "imdbId": "tt0491775",
    "qid": "Q13522749",
@@ -18961,8 +18948,8 @@
    "music": "Devi Sri Prasad",
    "runtimeMin": 165,
    "genres": [
-    "romance film",
-    "musical film"
+    "musical film",
+    "romance film"
    ],
    "imdbId": "tt1526323",
    "qid": "Q4802586",
@@ -18970,7 +18957,7 @@
    "gross": null,
    "verdict": {
     "verdict": "above_average",
-    "sentence": "Despite this, it managed to gross over ₹25 crore in its initial run, while also collecting a distributor's share of ₹14 crore, emerging as an average to an above average success at the box office.",
+    "sentence": "The film collected a distributor's share of ₹12 crore, emerging as an average to an above average success at the box office.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Arya_2"
    },
@@ -19052,8 +19039,7 @@
     "Allu Arjun",
     "Tamannaah Bhatia",
     "Prakash Raj",
-    "Kelly Dorji",
-    "Ashwini Kalsekar"
+    "Kelly Dorji"
    ]
   },
   {
@@ -19077,12 +19063,7 @@
    "imdbId": "tt2330927",
    "qid": "Q6305601",
    "budget": null,
-   "gross": {
-    "low": 45,
-    "high": 45,
-    "text": "₹45 crore distributors' share",
-    "isShare": true
-   },
+   "gross": null,
    "verdict": {
     "verdict": "hit",
     "sentence": "The film collected a distributor share of over ₹40 crore and grossed roughly ₹70 crore in its lifetime making it one highest grossing Telugu films of 2012.",
@@ -19440,25 +19421,6 @@
    ]
   },
   {
-   "key": "unlinked:Raaka|2028",
-   "article": null,
-   "title": "Raaka",
-   "year": 2028,
-   "releaseDate": null,
-   "dateApproximate": true,
-   "languages": [],
-   "director": null,
-   "music": null,
-   "runtimeMin": null,
-   "genres": [],
-   "imdbId": null,
-   "qid": null,
-   "budget": null,
-   "gross": null,
-   "verdict": null,
-   "starring": []
-  },
-  {
    "key": "Chirutha",
    "article": "Chirutha",
    "title": "Chirutha",
@@ -19605,7 +19567,7 @@
    "releaseDate": "2013-09-06",
    "dateApproximate": false,
    "languages": [
-    "Hindi"
+    "Hindi Telugu"
    ],
    "director": "Apoorva Lakhia",
    "music": null,
@@ -20951,8 +20913,8 @@
    "music": "Vijay Antony",
    "runtimeMin": 155,
    "genres": [
-    "fantasy film",
-    "comedy film"
+    "comedy film",
+    "fantasy film"
    ],
    "imdbId": "tt2304573",
    "qid": "Q15703991",
@@ -21740,13 +21702,13 @@
     "text": "₹35–40 crore"
    },
    "gross": {
-    "low": 250,
-    "high": 250,
-    "text": "₹250 crore"
+    "low": 244.97,
+    "high": 251.25,
+    "text": "₹244.97–251.25 crore"
    },
    "verdict": {
-    "verdict": "hit",
-    "sentence": "It was a commercial success at the box office, breaking several box office and footfall records in Andhra Pradesh and Telangana.",
+    "verdict": "blockbuster",
+    "sentence": "It was a commercial blockbuster success at the box office, grossing around worldwide and is the career highest grosser for Ravi Teja and Shiva Nirvana.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Irumudi"
    },
@@ -23455,12 +23417,12 @@
    "budget": {
     "low": 25,
     "high": 25,
-    "text": "₹25 crores"
+    "text": "₹25 crore"
    },
    "gross": {
     "low": 100,
     "high": 100,
-    "text": "₹100 crores"
+    "text": "₹100 crore"
    },
    "verdict": {
     "verdict": "super_hit",
@@ -24994,8 +24956,8 @@
    "music": "Koti",
    "runtimeMin": 157,
    "genres": [
-    "fantasy film",
-    "comedy film"
+    "comedy film",
+    "fantasy film"
    ],
    "imdbId": "tt2433542",
    "qid": "Q16311106",
@@ -26231,6 +26193,25 @@
    ]
   },
   {
+   "key": "unlinked:January 12 Vidudala|2027",
+   "article": null,
+   "title": "January 12 Vidudala",
+   "year": 2027,
+   "releaseDate": null,
+   "dateApproximate": true,
+   "languages": [],
+   "director": null,
+   "music": null,
+   "runtimeMin": null,
+   "genres": [],
+   "imdbId": null,
+   "qid": null,
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": []
+  },
+  {
    "key": "Vishnu (2003 film)",
    "article": "Vishnu (2003 film)",
    "title": "Vishnu",
@@ -26803,7 +26784,7 @@
    "article": "Raju Bhai",
    "title": "Raju Bhai",
    "year": 2007,
-   "releaseDate": "2010-05-18",
+   "releaseDate": "2007-05-18",
    "dateApproximate": false,
    "languages": [
     "Telugu"
@@ -27216,9 +27197,9 @@
    "music": "Shiva Shankar",
    "runtimeMin": null,
    "genres": [
-    "musical film",
+    "romance film",
     "romantic comedy",
-    "romance film"
+    "musical film"
    ],
    "imdbId": "tt1606320",
    "qid": "Q7246495",
@@ -27842,7 +27823,7 @@
     "Telugu"
    ],
    "director": "R. Raghuraj",
-   "music": "Devi Sri Prasad",
+   "music": "Devi Sri Prasad Deva (1 song)",
    "runtimeMin": 140,
    "genres": [
     "romance film",
@@ -27979,7 +27960,12 @@
    "qid": "Q16252286",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "average",
+    "sentence": "Listed as \"AVERAGE\" in the blog's 2003 Telugu hits-and-flops list.",
+    "source": "trade-blog",
+    "url": "https://www.mtwikiblog.com/2021/05/2003-Telugu-Movies-Hits-and-Flops.html"
+   },
    "starring": [
     "Krishnam Raju",
     "Uday Kiran",
@@ -28275,19 +28261,21 @@
    ]
   },
   {
-   "key": "Jai Shri Ram",
-   "article": null,
-   "title": "Jai Sriram",
+   "key": "Jai Sreeram",
+   "article": "Jai Sreeram",
+   "title": "Jai Sreeram",
    "year": 2013,
-   "releaseDate": null,
-   "dateApproximate": true,
-   "languages": [],
-   "director": null,
-   "music": null,
+   "releaseDate": "2013-04-11",
+   "dateApproximate": false,
+   "languages": [
+    "Telugu"
+   ],
+   "director": "Balaji N. Sai",
+   "music": "Dhake",
    "runtimeMin": null,
    "genres": [],
-   "imdbId": null,
-   "qid": null,
+   "imdbId": "tt7889170",
+   "qid": "Q17058530",
    "budget": null,
    "gross": null,
    "verdict": {
@@ -28296,7 +28284,10 @@
     "source": "wikipedia-hero",
     "url": "https://en.wikipedia.org/wiki/Uday_Kiran"
    },
-   "starring": []
+   "starring": [
+    "Uday Kiran",
+    "Reshma Rathore"
+   ]
   },
   {
    "key": "Manasu Paddanu Kaani",
@@ -30130,15 +30121,11 @@
    "genres": [],
    "imdbId": "tt5256640",
    "qid": "Q140423139",
-   "budget": {
-    "low": 50,
-    "high": 50,
-    "text": "₹50 crore"
-   },
+   "budget": null,
    "gross": {
-    "low": 100,
-    "high": 100,
-    "text": "₹100 crore"
+    "low": 67,
+    "high": 67,
+    "text": "₹67 crore"
    },
    "verdict": null,
    "starring": [
@@ -31030,16 +31017,16 @@
    "music": "M. M. Keeravani",
    "runtimeMin": 175,
    "genres": [
-    "romance film",
-    "romantic comedy"
+    "romantic comedy",
+    "romance film"
    ],
    "imdbId": "tt0477255",
    "qid": "Q4731158",
    "budget": null,
    "gross": null,
    "verdict": {
-    "verdict": "flop",
-    "sentence": "Keeravani, was released in September 2005 and it was a flop at the box office.",
+    "verdict": "average",
+    "sentence": "Keeravani, was released in September 2005 and it was an average grosser at the box office.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Allari_Bullodu"
    },
@@ -31187,9 +31174,9 @@
    "music": "Devi Sri Prasad",
    "runtimeMin": 168,
    "genres": [
-    "family drama",
+    "musical film",
     "romantic comedy film",
-    "musical film"
+    "family drama"
    ],
    "imdbId": "tt0843326",
    "qid": "Q3536183",
@@ -31476,12 +31463,7 @@
     "text": "₹20 crore"
    },
    "gross": null,
-   "verdict": {
-    "verdict": "disaster",
-    "sentence": "The film received mixed reviews and was a box office bomb.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Athidhi"
-   },
+   "verdict": null,
    "starring": [
     "Mahesh Babu",
     "Amrita Rao"
@@ -31544,8 +31526,8 @@
    "music": "Kamalakar",
    "runtimeMin": null,
    "genres": [
-    "romance film",
-    "musical film"
+    "musical film",
+    "romance film"
    ],
    "imdbId": "tt1612123",
    "qid": "Q7907824",
@@ -31680,8 +31662,8 @@
    "music": "Devi Sri Prasad",
    "runtimeMin": 175,
    "genres": [
-    "romantic comedy film",
-    "action comedy film"
+    "action comedy film",
+    "romantic comedy film"
    ],
    "imdbId": "tt1156516",
    "qid": "Q7300646",
@@ -32406,8 +32388,16 @@
    ],
    "imdbId": "tt8093952",
    "qid": "Q48990426",
-   "budget": null,
-   "gross": null,
+   "budget": {
+    "low": 18,
+    "high": 18,
+    "text": "₹18 crore"
+   },
+   "gross": {
+    "low": 12,
+    "high": 12,
+    "text": "₹12 crore"
+   },
    "verdict": {
     "verdict": "flop",
     "sentence": "It received mixed reviews from critics and ended up as a commercial failure.",
@@ -33660,7 +33650,7 @@
    ],
    "director": "Nelson Dilipkumar",
    "music": "Anirudh Ravichander",
-   "runtimeMin": 169,
+   "runtimeMin": 165,
    "genres": [
     "comedy film",
     "action film"
@@ -33678,8 +33668,8 @@
     "text": "₹605–650 crore"
    },
    "verdict": {
-    "verdict": "blockbuster",
-    "sentence": "The blockbuster success of Jailer has boosted the share price of Chennai-based media conglomerate Sun TV Network Ltd, the parent company of Sun Pictures, which produced the film.",
+    "verdict": "super_hit",
+    "sentence": "The sequel, Jailer 2, was released on 15 October 2026, which was also a major box office success and became the highest grossing Tamil film of all time.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Jailer_(2023_Tamil_film)"
    },
@@ -33831,9 +33821,9 @@
    "qid": "Q125935867",
    "budget": null,
    "gross": {
-    "low": 62,
+    "low": 60,
     "high": 62,
-    "text": "₹62 crore"
+    "text": "₹60–62 crore"
    },
    "verdict": null,
    "starring": [
@@ -33893,7 +33883,7 @@
    ],
    "director": "Sabarish Nanda",
    "music": "Ajmal Tahseen",
-   "runtimeMin": null,
+   "runtimeMin": 128,
    "genres": [],
    "imdbId": "tt28298511",
    "qid": "Q135910016",
@@ -34023,7 +34013,7 @@
     "Nikhila Vimal",
     "Regena Cassandrra",
     "Dev Mohan",
-    "Santhi Balachandran"
+    "Santhy Balachandran"
    ]
   },
   {
@@ -34053,8 +34043,8 @@
     "text": "₹320–325 crore"
    },
    "verdict": {
-    "verdict": "flop",
-    "sentence": "The film underperformed at the box office, though it set several records for a Tamil film, such as the highest-grossing Tamil film of 2026, one of the highest-grossing Indian films of 2026, and one of the highest-grossing Tamil films of all time.",
+    "verdict": "hit",
+    "sentence": "It grossed ₹320–325 crore emerging as one the highest-grossing Tamil film of 2026, and one of the highest-grossing Tamil film of all time.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Jana_Nayagan"
    },
@@ -34063,6 +34053,41 @@
     "Bobby Deol",
     "Pooja Hegde",
     "Mamitha Baiju"
+   ]
+  },
+  {
+   "key": "Mookuthi Amman 2",
+   "article": "Mookuthi Amman 2",
+   "title": "Mookuthi Amman 2",
+   "year": 2026,
+   "releaseDate": "2026-11-06",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Sundar C",
+   "music": "Hiphop Tamizha",
+   "runtimeMin": 144,
+   "genres": [],
+   "imdbId": "tt32909364",
+   "qid": "Q133126053",
+   "budget": {
+    "low": 90,
+    "high": 100,
+    "text": "₹90–100 crore"
+   },
+   "gross": null,
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "It was subsequently considered a box-office bomb.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Mookuthi_Amman_2"
+   },
+   "starring": [
+    "Nayanthara",
+    "Regena Cassandrra",
+    "Duniya Vijay",
+    "Urvashi (actress)"
    ]
   },
   {
@@ -34513,16 +34538,14 @@
    },
    "verdict": {
     "verdict": "blockbuster",
-    "sentence": "The film released worldwide on 1 August 2014 to positive reviews from critics and became a box office blockbuster success.",
+    "sentence": "The film was released worldwide on 1 August 2014 to positive reviews from critics and became a box office blockbuster success.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Run_Raja_Run"
    },
    "starring": [
     "Sharwanand",
     "Seerat Kapoor",
-    "Adivi Sesh",
-    "Sampath Raj",
-    "Jayaprakash (actor)"
+    "Adivi Sesh"
    ]
   },
   {
@@ -34565,10 +34588,10 @@
    "releaseDate": "2015-03-06",
    "dateApproximate": false,
    "languages": [
-    "Tamil Telugu"
+    "Tamil"
    ],
    "director": "Cheran",
-   "music": "Songs: G.V. Prakash Kumar Score: Siddharth Vipin",
+   "music": "Songs: G. V. Prakash Kumar Score: Siddharth Vipin",
    "runtimeMin": 139,
    "genres": [
     "drama film",
@@ -34578,17 +34601,10 @@
    "qid": "Q6108369",
    "budget": null,
    "gross": null,
-   "verdict": {
-    "verdict": "below_average",
-    "sentence": "Cheran's Tamil directorial venture JK Enum Nanbanin Vaazhkai , which was also released in Telugu in 2016 with Nithya Menen was below average at the box office.",
-    "source": "wikipedia-hero",
-    "url": "https://en.wikipedia.org/wiki/Sharwanand"
-   },
+   "verdict": null,
    "starring": [
     "Sharwanand",
-    "Nithya Menen",
-    "Prakash Raj",
-    "Santhanam (actor)"
+    "Nithya Menen"
    ]
   },
   {
@@ -35566,8 +35582,16 @@
    ],
    "imdbId": "tt7249874",
    "qid": "Q30611871",
-   "budget": null,
-   "gross": null,
+   "budget": {
+    "low": 32,
+    "high": 32,
+    "text": "₹32 crore"
+   },
+   "gross": {
+    "low": 17,
+    "high": 17,
+    "text": "₹17 crore"
+   },
    "verdict": {
     "verdict": "disaster",
     "sentence": "Listed as \"Disaster\" in the blog's Nithiin filmography.",
@@ -35619,7 +35643,7 @@
    "article": "Gaddalakonda Ganesh",
    "title": "Gaddalakonda Ganesh",
    "year": 2019,
-   "releaseDate": "2018-09-20",
+   "releaseDate": "2019-09-20",
    "dateApproximate": false,
    "languages": [
     "Telugu"
@@ -35784,7 +35808,8 @@
     "Nithiin",
     "Nabha Natesh",
     "Jisshu Sengupta"
-   ]
+   ],
+   "route": "ott"
   },
   {
    "key": "Macherla Niyojakavargam",
@@ -35895,7 +35920,7 @@
    "languages": [
     "Telugu"
    ],
-   "director": "Y. V. S. Chowdary",
+   "director": "Y. V. Satyanarayana. Chowdary",
    "music": "Chakri",
    "runtimeMin": 174,
    "genres": [
@@ -36567,8 +36592,11 @@
    "verdict": null,
    "starring": [
     "Rajinikanth",
+    "Ram Pothineni",
     "Simran (actress)",
-    "Raashii Khanna"
+    "Nayanthara",
+    "Raashii Khanna",
+    "Sreeleela"
    ]
   },
   {
@@ -36652,9 +36680,7 @@
    },
    "starring": [
     "Varun Sandesh",
-    "Shweta Basu Prasad",
-    "Prakash Raj",
-    "Jayasudha"
+    "Shweta Basu Prasad"
    ]
   },
   {
@@ -37242,8 +37268,8 @@
    "music": "Sam C. S.",
    "runtimeMin": 155,
    "genres": [
-    "action film",
-    "neo-noir"
+    "neo-noir",
+    "action film"
    ],
    "imdbId": "tt15309808",
    "qid": "Q116452897",
@@ -37384,6 +37410,30 @@
    "gross": null,
    "verdict": null,
    "starring": []
+  },
+  {
+   "key": "Naa Wife Missing",
+   "article": "Naa Wife Missing",
+   "title": "Naa Wife Missing",
+   "year": 2026,
+   "releaseDate": "2026-10-22",
+   "dateApproximate": false,
+   "languages": [
+    "Telugu"
+   ],
+   "director": "Swathi Prakash Matripragada",
+   "music": "Sai Karthik",
+   "runtimeMin": 99,
+   "genres": [],
+   "imdbId": "tt42602688",
+   "qid": "Q142075988",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Varun Sandesh",
+    "Shweta Basu Prasad"
+   ]
   },
   {
    "key": "Hyderabad Nawabs",
@@ -38162,8 +38212,8 @@
    "music": "Kalyani Malik",
    "runtimeMin": 126,
    "genres": [
-    "romantic comedy",
-    "comedy film"
+    "comedy film",
+    "romantic comedy"
    ],
    "imdbId": "tt1704137",
    "qid": "Q4805922",
@@ -38349,12 +38399,7 @@
    "qid": "Q11003667",
    "budget": null,
    "gross": null,
-   "verdict": {
-    "verdict": "flop",
-    "sentence": "The Telugu version Sega failed at the box office, due to the post-release hype of Ala Modalaindi, in which film Nani and Nithya had starred together.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Veppam"
-   },
+   "verdict": null,
    "starring": [
     "Nani (actor)",
     "Nithya Menen",
@@ -38409,9 +38454,9 @@
    "music": "M. M. Keeravani",
    "runtimeMin": 134,
    "genres": [
+    "action film",
     "drama film",
     "fantasy film",
-    "action film",
     "science fiction film"
    ],
    "imdbId": "tt2258337",
@@ -38717,8 +38762,17 @@
    ],
    "imdbId": "tt5457840",
    "qid": "Q22251981",
-   "budget": null,
-   "gross": null,
+   "budget": {
+    "low": 14,
+    "high": 14,
+    "text": "₹14 crore"
+   },
+   "gross": {
+    "low": 13.34,
+    "high": 13.34,
+    "text": "₹13.34 crore (distributor share)",
+    "isShare": true
+   },
    "verdict": {
     "verdict": "hit",
     "sentence": "Nani established himself as a leading actor with critical and commercial success through films like Bhale Bhale Magadivoy (2015) , Krishna Gaadi Veera Prema Gaadha (2016) , Gentleman (2016) , Nenu Local (2017) , Ninnu Kori (2017) , Middle Class Abbayi (2017) , Jersey (2019) , Nan",
@@ -38789,16 +38843,8 @@
    "genres": [],
    "imdbId": "tt6056644",
    "qid": "Q27958476",
-   "budget": {
-    "low": 16,
-    "high": 16,
-    "text": "₹16 crore"
-   },
-   "gross": {
-    "low": 28.4,
-    "high": 28.4,
-    "text": "₹28.4 crore"
-   },
+   "budget": null,
+   "gross": null,
    "verdict": {
     "verdict": "hit",
     "sentence": "Nani later played the lead in the commercially successful Telugu films Majnu (2016) , Nenu Local (2017) , Middle Class Abbayi (2017) , and Ninnu Kori (2017) .",
@@ -38855,7 +38901,7 @@
    "music": "Devi Sri Prasad",
    "runtimeMin": 143,
    "genres": [
-    "romantic comedy"
+    "romantic comedy film"
    ],
    "imdbId": "tt6494052",
    "qid": "Q27890311",
@@ -39049,7 +39095,12 @@
     "high": 51.7,
     "text": "₹51.70 crore"
    },
-   "verdict": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Nani established himself as a leading actor with critical and commercial success through films like Bhale Bhale Magadivoy (2015) , Krishna Gaadi Veera Prema Gaadha (2016) , Gentleman (2016) , Nenu Local (2017) , Ninnu Kori (2017) , Middle Class Abbayi (2017) , Jersey (2019) , Nan",
+    "source": "wikipedia-hero",
+    "url": "https://en.wikipedia.org/wiki/Nani_(actor)"
+   },
    "starring": [
     "Nani (actor)",
     "Shraddha Srinath"
@@ -39401,6 +39452,46 @@
    ]
   },
   {
+   "key": "The Paradise (film)",
+   "article": "The Paradise (film)",
+   "title": "The Paradise",
+   "year": 2026,
+   "releaseDate": "2026-09-24",
+   "dateApproximate": false,
+   "languages": [
+    "Telugu"
+   ],
+   "director": "Srikanth Odela",
+   "music": "Anirudh Ravichander",
+   "runtimeMin": 173,
+   "genres": [],
+   "imdbId": null,
+   "qid": null,
+   "budget": {
+    "low": 150,
+    "high": 200,
+    "text": "₹150–200 crore"
+   },
+   "gross": {
+    "low": 169,
+    "high": 169,
+    "text": "₹169 crore"
+   },
+   "verdict": {
+    "verdict": "above_average",
+    "sentence": "Despite the strong backlash, the film managed to become an above-average grosser with minor losses.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/The_Paradise_(film)"
+   },
+   "starring": [
+    "Nani (actor)",
+    "Mohan Babu",
+    "Kayadu Lohar",
+    "Sonali Kulkarni",
+    "Raghav Juyal"
+   ]
+  },
+  {
    "key": "Awe (film)",
    "article": "Awe (film)",
    "title": "Awe",
@@ -39515,6 +39606,25 @@
     "Harsh Roshan",
     "Sridevi Apalla"
    ]
+  },
+  {
+   "key": "unlinked:Alias Rukmini|2026",
+   "article": null,
+   "title": "Alias Rukmini",
+   "year": 2026,
+   "releaseDate": null,
+   "dateApproximate": true,
+   "languages": [],
+   "director": null,
+   "music": null,
+   "runtimeMin": null,
+   "genres": [],
+   "imdbId": null,
+   "qid": null,
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": []
   },
   {
    "key": "unlinked:Bloody Romeo|2027",
@@ -39637,8 +39747,8 @@
    "genres": [
     "drama film",
     "comedy film",
-    "adventure film",
-    "musical film"
+    "musical film",
+    "adventure film"
    ],
    "imdbId": "tt6105098",
    "qid": "Q27044293",
@@ -39808,8 +39918,8 @@
    "music": "Pradeep Koneru Vikram Negi Bapi-Tutul Amar Mohile",
    "runtimeMin": null,
    "genres": [
-    "drama film",
-    "action film"
+    "action film",
+    "drama film"
    ],
    "imdbId": "tt2071418",
    "qid": "Q4881540",
@@ -39928,7 +40038,7 @@
    ],
    "director": "R. Chandru",
    "music": "Hari",
-   "runtimeMin": null,
+   "runtimeMin": 133,
    "genres": [
     "action film",
     "romance film"
@@ -40858,7 +40968,7 @@
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "Leader was a commercial success collecting a share of ₹10 crore at the box office.",
+    "sentence": "Leader was released on 19 February 2010 to rave reviews and was a commercial success.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Leader_(2010_film)"
    },
@@ -40989,12 +41099,12 @@
    "budget": {
     "low": 32,
     "high": 32,
-    "text": "₹320 million"
+    "text": "₹32 crore"
    },
    "gross": {
     "low": 19.05,
     "high": 19.05,
-    "text": "₹190.5 million"
+    "text": "₹19.05 crore"
    },
    "verdict": null,
    "starring": [
@@ -41100,9 +41210,9 @@
     "text": "₹60 crore"
    },
    "gross": {
-    "low": 124,
+    "low": 80,
     "high": 124,
-    "text": "₹124 crore"
+    "text": "₹80–124 crore"
    },
    "verdict": {
     "verdict": "hit",
@@ -41154,13 +41264,11 @@
    },
    "starring": [
     "Akshay Kumar",
-    "Anupam Kher",
     "Danny Denzongpa",
-    "Madhurima Tuli",
     "Rana Daggubati",
     "Taapsee Pannu",
-    "Kay Kay Menon",
-    "Rasheed Naz"
+    "Anupam Kher",
+    "Kay Kay Menon"
    ]
   },
   {
@@ -41303,8 +41411,8 @@
    "runtimeMin": 153,
    "genres": [
     "tragedy",
-    "political thriller film",
-    "political film"
+    "political film",
+    "political thriller film"
    ],
    "imdbId": "tt7249854",
    "qid": "Q27590934",
@@ -41556,12 +41664,12 @@
    },
    "gross": {
     "low": 250,
-    "high": 250,
-    "text": "₹250 crore"
+    "high": 253,
+    "text": "₹250–253 crore"
    },
    "verdict": {
-    "verdict": "flop",
-    "sentence": "Although emerging as the third highest-grossing Tamil film of 2024 and the seventeenth highest-grossing Tamil film of all time, it underperformed at the box-office.",
+    "verdict": "disaster",
+    "sentence": "Although emerging as the third highest-grossing Tamil film of 2024 and the seventeenth highest-grossing Tamil film of all time, it was a Box-office bomb.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Vettaiyan"
    },
@@ -41626,18 +41734,18 @@
    "imdbId": "tt35019998",
    "qid": "Q131445677",
    "budget": {
-    "low": 150,
-    "high": 250,
-    "text": "₹150–250 crore"
+    "low": 140,
+    "high": 150,
+    "text": "₹140-150 crore"
    },
    "gross": {
-    "low": 84,
+    "low": 85,
     "high": 100,
-    "text": "₹84–100 crore"
+    "text": "₹85-100 crore"
    },
    "verdict": {
     "verdict": "flop",
-    "sentence": "The film received mixed reviews from critics and underperformed at the box office, grossing between – against a production budget of -.",
+    "sentence": "The film concluded its run with a worldwide gross estimated to be ₹54–60 crore and ended as flop movie.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Parasakthi_(2026_film)"
    },
@@ -41871,8 +41979,8 @@
    "runtimeMin": 146,
    "genres": [
     "drama film",
-    "action film",
-    "biographical film"
+    "biographical film",
+    "action film"
    ],
    "imdbId": "tt9851854",
    "qid": "Q104608137",
@@ -41899,10 +42007,29 @@
    ]
   },
   {
+   "key": "unlinked:M. Gopi / M. Arjun Kumar alias Agent Gopi 116|2027",
+   "article": null,
+   "title": "M. Gopi / M. Arjun Kumar alias Agent Gopi 116",
+   "year": 2027,
+   "releaseDate": null,
+   "dateApproximate": true,
+   "languages": [],
+   "director": null,
+   "music": null,
+   "runtimeMin": null,
+   "genres": [],
+   "imdbId": null,
+   "qid": null,
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": []
+  },
+  {
    "key": "G2 (film)",
    "article": "G2 (film)",
    "title": "G2",
-   "year": 2026,
+   "year": 2027,
    "releaseDate": null,
    "dateApproximate": true,
    "languages": [
@@ -42539,7 +42666,12 @@
    "qid": "Q30642757",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Listed as \"Flop\" in the blog's Sundeep Kishan filmography.",
+    "source": "trade-blog",
+    "url": "https://www.mtwikiblog.com/p/sundeep-kishan-filmography.html"
+   },
    "starring": [
     "Tamannaah Bhatia",
     "Sundeep Kishan",
@@ -42753,8 +42885,8 @@
    },
    "gross": {
     "low": 73,
-    "high": 100,
-    "text": "₹73–100 crore"
+    "high": 73,
+    "text": "₹73 crore"
    },
    "verdict": {
     "verdict": "hit",
@@ -42874,7 +43006,7 @@
    },
    "verdict": {
     "verdict": "flop",
-    "sentence": "It was released on 26 February 2025 and was a commercial failure at the box office.",
+    "sentence": "It was released on 26 February 2025 to mixed to positive reviews but it was a commercial failure at the box office.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Mazaka"
    },
@@ -42884,6 +43016,81 @@
     "Anshu Ambani",
     "Rao Ramesh"
    ]
+  },
+  {
+   "key": "Sigma (film)",
+   "article": "Sigma (film)",
+   "title": "Sigma",
+   "year": 2026,
+   "releaseDate": "2026-10-02",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Jason Sanjay",
+   "music": "Thaman S",
+   "runtimeMin": 146,
+   "genres": [],
+   "imdbId": "tt39239754",
+   "qid": "Q141626260",
+   "budget": {
+    "low": 30,
+    "high": 30,
+    "text": "₹30 crore"
+   },
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Sundeep Kishan",
+    "Faria Abdullah"
+   ]
+  },
+  {
+   "key": "Karikaala Chapter 1 (2027 film)",
+   "article": "Karikaala Chapter 1 (2027 film)",
+   "title": "Karikaala Chapter 1",
+   "year": 2027,
+   "releaseDate": null,
+   "dateApproximate": true,
+   "languages": [
+    "Telugu"
+   ],
+   "director": "Ugandhar Muni",
+   "music": "Sricharan Pakala",
+   "runtimeMin": null,
+   "genres": [],
+   "imdbId": null,
+   "qid": null,
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Sundeep Kishan",
+    "Catherine Tresa",
+    "Sakshi Mhadolkar",
+    "Gayatri Bharadwaj"
+   ]
+  },
+  {
+   "key": "unlinked:Kaarikala Chapter-2|2027",
+   "article": null,
+   "title": "Kaarikala Chapter-2",
+   "year": 2027,
+   "releaseDate": null,
+   "dateApproximate": true,
+   "languages": [
+    "Telugu"
+   ],
+   "director": null,
+   "music": null,
+   "runtimeMin": null,
+   "genres": [],
+   "imdbId": null,
+   "qid": null,
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": []
   },
   {
    "key": "Cricket Girls & Beer",
@@ -43286,8 +43493,8 @@
    "music": "Mahati Swara Sagar",
    "runtimeMin": null,
    "genres": [
-    "romantic comedy film",
-    "action comedy film"
+    "action comedy film",
+    "romantic comedy film"
    ],
    "imdbId": "tt8737640",
    "qid": "Q56276544",
@@ -44158,6 +44365,44 @@
    ]
   },
   {
+   "key": "unlinked:SI Yugandhar|2026",
+   "article": null,
+   "title": "SI Yugandhar",
+   "year": 2026,
+   "releaseDate": null,
+   "dateApproximate": true,
+   "languages": [],
+   "director": null,
+   "music": null,
+   "runtimeMin": null,
+   "genres": [],
+   "imdbId": null,
+   "qid": null,
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": []
+  },
+  {
+   "key": "unlinked:Ego raja|2026",
+   "article": null,
+   "title": "Ego raja",
+   "year": 2026,
+   "releaseDate": null,
+   "dateApproximate": true,
+   "languages": [],
+   "director": null,
+   "music": null,
+   "runtimeMin": null,
+   "genres": [],
+   "imdbId": null,
+   "qid": null,
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": []
+  },
+  {
    "key": "Sambhavami Yuge Yuge (2006 film)",
    "article": "Sambhavami Yuge Yuge (2006 film)",
    "title": "Sambhavami Yuge Yuge",
@@ -44249,14 +44494,22 @@
    ],
    "director": "Hanu Raghavapudi",
    "music": "Radhan",
-   "runtimeMin": null,
+   "runtimeMin": 139,
    "genres": [
     "romance film"
    ],
    "imdbId": "tt2316756",
    "qid": "Q4753488",
-   "budget": null,
-   "gross": null,
+   "budget": {
+    "low": 1.5,
+    "high": 1.5,
+    "text": "₹1.5 crore–"
+   },
+   "gross": {
+    "low": 12,
+    "high": 12,
+    "text": "₹12 crore–"
+   },
    "verdict": null,
    "starring": [
     "Naveen Chandra",
@@ -44981,11 +45234,7 @@
    "imdbId": "tt24226474",
    "qid": "Q118903242",
    "budget": null,
-   "gross": {
-    "low": 60,
-    "high": 64.55,
-    "text": "₹60–64.55 crore"
-   },
+   "gross": null,
    "verdict": null,
    "starring": [
     "Raghava Lawrence",
@@ -45156,7 +45405,11 @@
    "imdbId": "tt28961625",
    "qid": "Q137168954",
    "budget": null,
-   "gross": null,
+   "gross": {
+    "low": 51.3,
+    "high": 51.3,
+    "text": "₹51.30 crore"
+   },
    "verdict": null,
    "starring": [
     "Sudeepa",
@@ -45291,7 +45544,7 @@
    ],
    "director": "Tatineni Satya",
    "music": "V. Selvaganesh Yuvan Shankar Raja (unc.)",
-   "runtimeMin": null,
+   "runtimeMin": 146,
    "genres": [],
    "imdbId": "tt3118194",
    "qid": "Q7499243",
@@ -45887,7 +46140,9 @@
     "Sree Vishnu",
     "Nivetha Thomas",
     "Nivetha Pethuraj",
-    "Satyadev (actor)"
+    "Satyadev (actor)",
+    "Priyadarshi (actor)",
+    "Rahul Ramakrishna"
    ]
   },
   {
@@ -46068,7 +46323,7 @@
    ],
    "director": "Vishvak Khanderao",
    "music": "Prashanth R Vihari",
-   "runtimeMin": null,
+   "runtimeMin": 148,
    "genres": [],
    "imdbId": "tt15029058",
    "qid": "Q110245510",
@@ -46302,13 +46557,13 @@
    "qid": "Q139386818",
    "budget": null,
    "gross": {
-    "low": 6.5,
-    "high": 6.5,
-    "text": "₹6.5 crore"
+    "low": 14.3,
+    "high": 14.3,
+    "text": "₹14.30 crore"
    },
    "verdict": {
     "verdict": "flop",
-    "sentence": "The film opened up to positive reviews but ended as a commercial failure.",
+    "sentence": "The film opened up to positive reviews but ended as a commercial failure, grossing over only ₹14.30 crore at the box office.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Rao_Bahadur_(film)"
    },
@@ -46330,7 +46585,7 @@
    ],
    "director": "Tatineni Satya",
    "music": "V. Selvaganesh Yuvan Shankar Raja (unc.)",
-   "runtimeMin": null,
+   "runtimeMin": 146,
    "genres": [],
    "imdbId": null,
    "qid": null,
@@ -46396,7 +46651,7 @@
    ],
    "director": "Krishna Reddy Gangadhasuu",
    "music": "Sri",
-   "runtimeMin": null,
+   "runtimeMin": 144,
    "genres": [
     "romantic comedy film"
    ],
@@ -46425,7 +46680,7 @@
    ],
    "director": "Nellore Bose",
    "music": "Manikanth Kadri",
-   "runtimeMin": null,
+   "runtimeMin": 127,
    "genres": [
     "black comedy film"
    ],
@@ -46452,7 +46707,7 @@
    ],
    "director": "Sriram Adittya",
    "music": "Sunny M. R.",
-   "runtimeMin": null,
+   "runtimeMin": 135,
    "genres": [],
    "imdbId": "tt5290794",
    "qid": "Q21646170",
@@ -46802,7 +47057,7 @@
    ],
    "director": null,
    "music": "Samira Koppikar",
-   "runtimeMin": null,
+   "runtimeMin": 135,
    "genres": [],
    "imdbId": "tt32813410",
    "qid": "Q136722785",
@@ -47164,8 +47419,8 @@
    "releaseDate": "2012-02-17",
    "dateApproximate": false,
    "languages": [
-    "Telugu",
-    "Tamil"
+    "Tamil",
+    "Telugu"
    ],
    "director": "Balaji Mohan",
    "music": "Thaman S",
@@ -47434,9 +47689,9 @@
    "qid": "Q108079953",
    "budget": null,
    "gross": {
-    "low": 11.15,
-    "high": 11.15,
-    "text": "₹11.15 crore"
+    "low": 21.15,
+    "high": 21.15,
+    "text": "₹21.15 crore"
    },
    "verdict": {
     "verdict": "blockbuster",
@@ -47733,6 +47988,39 @@
     "Tharun Bhascker",
     "Faria Abdullah",
     "J. D. Chakravarthy"
+   ]
+  },
+  {
+   "key": "Comrade Kalyan",
+   "article": "Comrade Kalyan",
+   "title": "Comrade Kalyan",
+   "year": 2026,
+   "releaseDate": "2026-10-09",
+   "dateApproximate": false,
+   "languages": [
+    "Telugu"
+   ],
+   "director": "Janaki Ram Marella",
+   "music": "Vijai Bulganin",
+   "runtimeMin": null,
+   "genres": [],
+   "imdbId": "tt32089596",
+   "qid": "Q141692924",
+   "budget": null,
+   "gross": {
+    "low": 17,
+    "high": 17,
+    "text": "₹17 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Prasad The film was theatrically released on 9 October 2026 to mixed to positive emerged as a commercial success at the box office.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Comrade_Kalyan"
+   },
+   "starring": [
+    "Sree Vishnu",
+    "Mahima Nambiar"
    ]
   },
   {
@@ -48710,7 +48998,7 @@
    "article": "Pilla Nuvvu Leni Jeevitham",
    "title": "Pilla Nuvvu Leni Jeevitham",
    "year": 2014,
-   "releaseDate": "2013-11-14",
+   "releaseDate": "2014-11-14",
    "dateApproximate": false,
    "languages": [
     "Telugu"
@@ -49033,8 +49321,8 @@
    "music": "Devi Sri Prasad",
    "runtimeMin": 144,
    "genres": [
-    "Masala film",
-    "action thriller"
+    "action thriller",
+    "Masala film"
    ],
    "imdbId": "tt3850358",
    "qid": "Q16974667",
@@ -49718,7 +50006,7 @@
    ],
    "director": "Mohanakrishna Indraganti",
    "music": "Vivek Sagar",
-   "runtimeMin": null,
+   "runtimeMin": 136,
    "genres": [],
    "imdbId": "tt32327480",
    "qid": "Q133779825",
@@ -49789,6 +50077,30 @@
     "Thiruveer",
     "Payal Radhakrishna",
     "Ajay Ghosh"
+   ]
+  },
+  {
+   "key": "Garividi Lakshmi",
+   "article": "Garividi Lakshmi",
+   "title": "Garividi Lakshmi",
+   "year": 2026,
+   "releaseDate": "2026-10-17",
+   "dateApproximate": false,
+   "languages": [
+    "Telugu"
+   ],
+   "director": "Gowri Naidu Jammu",
+   "music": "Charan Arjun",
+   "runtimeMin": 141,
+   "genres": [],
+   "imdbId": "tt37645628",
+   "qid": "Q141798707",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Anandhi (actress)",
+    "Rag Mayur"
    ]
   },
   {
@@ -50296,11 +50608,7 @@
    ],
    "imdbId": "tt8108034",
    "qid": "Q56290706",
-   "budget": {
-    "low": 60,
-    "high": 60,
-    "text": "₹60 crore"
-   },
+   "budget": null,
    "gross": {
     "low": 25.5,
     "high": 25.5,
@@ -50548,8 +50856,8 @@
    "genres": [
     "drama film",
     "action film",
-    "romance film",
-    "sport film"
+    "sport film",
+    "romance film"
    ],
    "imdbId": "tt4435072",
    "qid": "Q104904706",
@@ -50571,8 +50879,8 @@
    },
    "starring": [
     "Vijay Deverakonda",
-    "Mike Tyson",
     "Ananya Panday",
+    "Mike Tyson",
     "Ramya Krishnan",
     "Ronit Roy"
    ]
@@ -50637,8 +50945,17 @@
     "high": 22,
     "text": "₹22 crore"
    },
-   "gross": null,
-   "verdict": null,
+   "gross": {
+    "low": 6,
+    "high": 6,
+    "text": "₹6 crore"
+   },
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "Sing Geetham was released worldwide on 12 June 2026 in theatres and received critical acclaim. but, the film was a box office bomb.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Sing_Geetham"
+   },
    "starring": [
     "Ayaan Khan",
     "Shalini Kondepudi",
@@ -50647,22 +50964,41 @@
   },
   {
    "key": "Ranabaali",
-   "article": null,
+   "article": "Ranabaali",
    "title": "Ranabaali",
    "year": 2026,
-   "releaseDate": null,
-   "dateApproximate": true,
-   "languages": [],
-   "director": null,
-   "music": null,
-   "runtimeMin": null,
+   "releaseDate": "2026-10-16",
+   "dateApproximate": false,
+   "languages": [
+    "Telugu"
+   ],
+   "director": "Rahul Sankrityan",
+   "music": "Ajay-Atul",
+   "runtimeMin": 178,
    "genres": [],
-   "imdbId": null,
-   "qid": null,
-   "budget": null,
-   "gross": null,
-   "verdict": null,
-   "starring": []
+   "imdbId": "tt32324552",
+   "qid": "Q140419781",
+   "budget": {
+    "low": 120,
+    "high": 120,
+    "text": "₹120 crore"
+   },
+   "gross": {
+    "low": 80,
+    "high": 81.1,
+    "text": "₹80–81.10 crore"
+   },
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "The film is a box office disaster.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Ranabaali"
+   },
+   "starring": [
+    "Vijay Deverakonda",
+    "Rashmika Mandanna",
+    "Arnold Vosloo"
+   ]
   },
   {
    "key": "Mr. Majnu",
@@ -50763,7 +51099,12 @@
     "high": 13,
     "text": "₹13 crore"
    },
-   "verdict": null,
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "Listed as \"Disaster\" in the blog's 2023 Telugu hits-and-flops list.",
+    "source": "trade-blog",
+    "url": "https://www.mtwikiblog.com/p/telugu-movies-hits-and-flops-2023.html"
+   },
    "starring": [
     "Mammootty",
     "Akhil Akkineni",
@@ -51446,6 +51787,67 @@
    "starring": [
     "Vishwak Sen",
     "Kayadu Lohar"
+   ]
+  },
+  {
+   "key": "Cult (2026 Telugu film)",
+   "article": "Cult (2026 Telugu film)",
+   "title": "Cult",
+   "year": 2026,
+   "releaseDate": "2026-10-30",
+   "dateApproximate": false,
+   "languages": [
+    "Telugu"
+   ],
+   "director": "Vishwak Sen",
+   "music": "Ravi Basrur",
+   "runtimeMin": 152,
+   "genres": [],
+   "imdbId": "tt36915004",
+   "qid": "Q141921125",
+   "budget": null,
+   "gross": {
+    "low": 6.47,
+    "high": 6.47,
+    "text": "₹6.47 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The blog's film page gives the verdict \"Hit\".",
+    "source": "trade-blog",
+    "url": "https://www.mtwikiblog.com/2026/10/cult-telugu-movie-2026-budget-hit-flop.html"
+   },
+   "starring": [
+    "Vishwak Sen",
+    "Gayatri Bhardwaj",
+    "Tarak Ponnappa"
+   ]
+  },
+  {
+   "key": "ENE Repeat",
+   "article": "ENE Repeat",
+   "title": "ENE Repeat",
+   "year": 2026,
+   "releaseDate": "2026-11-19",
+   "dateApproximate": false,
+   "languages": [
+    "Telugu"
+   ],
+   "director": "Tharun Bhascker",
+   "music": "Vivek Sagar",
+   "runtimeMin": null,
+   "genres": [],
+   "imdbId": null,
+   "qid": "Q142116389",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Vishwak Sen",
+    "Abhinav Gomatam",
+    "Venkatesh Kakamanu",
+    "Shivathmika Rajashekar",
+    "Anisha Ambrose"
    ]
   },
   {
@@ -52160,8 +52562,8 @@
     "text": "₹53 crore"
    },
    "verdict": {
-    "verdict": "super_hit",
-    "sentence": "KA was theatrically released on 31 October 2024 to positive reviews from critics and became a major commercial success grossing over ₹53 crore worldwide.",
+    "verdict": "hit",
+    "sentence": "The film grossed more than ₹50 crore in its theatrical run, and was among the highest-grossing Telugu films of 2024.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/KA_(film)"
    },
@@ -52290,6 +52692,25 @@
     "Kiran Abbavaram",
     "Sri Gouri Priya"
    ]
+  },
+  {
+   "key": "unlinked:Reality|2026",
+   "article": null,
+   "title": "Reality",
+   "year": 2026,
+   "releaseDate": null,
+   "dateApproximate": true,
+   "languages": [],
+   "director": null,
+   "music": null,
+   "runtimeMin": null,
+   "genres": [],
+   "imdbId": null,
+   "qid": null,
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": []
   },
   {
    "key": "Vasantam",
@@ -52533,25 +52954,6 @@
     "Vinay Rai",
     "Vennela Kishore"
    ]
-  },
-  {
-   "key": "unlinked:Zombie Reddy NXT LVL|2026",
-   "article": null,
-   "title": "Zombie Reddy NXT LVL",
-   "year": 2026,
-   "releaseDate": null,
-   "dateApproximate": true,
-   "languages": [],
-   "director": null,
-   "music": null,
-   "runtimeMin": null,
-   "genres": [],
-   "imdbId": null,
-   "qid": null,
-   "budget": null,
-   "gross": null,
-   "verdict": null,
-   "starring": []
   },
   {
    "key": "Agent Sai Srinivasa Athreya",
@@ -54137,7 +54539,8 @@
    "starring": [
     "Keerthy Suresh",
     "Suhas (Telugu actor)"
-   ]
+   ],
+   "route": "ott"
   },
   {
    "key": "Oh Bhama Ayyo Rama",
@@ -54223,13 +54626,13 @@
     "text": "₹75 crore"
    },
    "gross": {
-    "low": 125,
-    "high": 125,
-    "text": "₹125 crore"
+    "low": 133.82,
+    "high": 150,
+    "text": "₹133.82–150 crore"
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "The film was a commercial success grossing ₹125 crore on a budget of ₹75 crore, becoming the 4th highest grossing Tamil film of 2026.",
+    "sentence": "The film was a critical and commercial success grossing around ₹133–₹150 crore against a budget of ₹75 crore, becoming the 4th highest grossing Tamil film of 2026.",
     "source": "wikipedia-film",
     "url": "https://en.wikipedia.org/wiki/Mandaadi"
    },
@@ -55911,7 +56314,7 @@
    "releaseDate": "2013-09-06",
    "dateApproximate": false,
    "languages": [
-    "Hindi"
+    "Hindi Telugu"
    ],
    "director": "Apoorva Lakhia",
    "music": null,
@@ -56182,6 +56585,111 @@
     "Sonakshi Sinha",
     "Sonu Sood"
    ]
+  },
+  {
+   "key": "unlinked:Happy Birthday|2022",
+   "article": null,
+   "title": "Happy Birthday",
+   "year": 2022,
+   "releaseDate": null,
+   "dateApproximate": true,
+   "languages": [],
+   "director": null,
+   "music": null,
+   "runtimeMin": null,
+   "genres": [],
+   "imdbId": null,
+   "qid": null,
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The blog's film page gives the verdict \"Hit\".",
+    "source": "trade-blog",
+    "url": "https://www.mtwikiblog.com/2022/07/Happy-Birthday-Telugu-Movie-Box-Office-Hit-or-Flop.html"
+   },
+   "starring": []
+  },
+  {
+   "key": "unlinked:Hostel Days|2023",
+   "article": null,
+   "title": "Hostel Days",
+   "year": 2023,
+   "releaseDate": null,
+   "dateApproximate": true,
+   "languages": [],
+   "director": null,
+   "music": null,
+   "runtimeMin": null,
+   "genres": [],
+   "imdbId": null,
+   "qid": null,
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": []
+  },
+  {
+   "key": "unlinked:90's – A Middle Class Biopic|2024",
+   "article": null,
+   "title": "90's – A Middle Class Biopic",
+   "year": 2024,
+   "releaseDate": null,
+   "dateApproximate": true,
+   "languages": [],
+   "director": null,
+   "music": null,
+   "runtimeMin": null,
+   "genres": [],
+   "imdbId": null,
+   "qid": null,
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": []
+  },
+  {
+   "key": "unlinked:Little Hearts|2025",
+   "article": null,
+   "title": "Little Hearts",
+   "year": 2025,
+   "releaseDate": null,
+   "dateApproximate": true,
+   "languages": [],
+   "director": null,
+   "music": null,
+   "runtimeMin": null,
+   "genres": [],
+   "imdbId": null,
+   "qid": null,
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The blog's film page gives the verdict \"Hit\".",
+    "source": "trade-blog",
+    "url": "https://www.mtwikiblog.com/2025/09/little-hearts-telugu-movie-2025-budget.html"
+   },
+   "starring": []
+  },
+  {
+   "key": "unlinked:Donga Naa Koduku|2026",
+   "article": null,
+   "title": "Donga Naa Koduku",
+   "year": 2026,
+   "releaseDate": null,
+   "dateApproximate": true,
+   "languages": [],
+   "director": null,
+   "music": null,
+   "runtimeMin": null,
+   "genres": [],
+   "imdbId": null,
+   "qid": null,
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": []
   }
  ],
  "credits": [
@@ -56519,7 +57027,7 @@
   {
    "hero": "chiranjeevi",
    "film": "Hanuman (2005 film)",
-   "year": 2005,
+   "year": 2006,
    "displayTitle": "Hanuman",
    "role": "",
    "notes": "Telugu version",
@@ -57526,8 +58034,8 @@
    "notes": "",
    "language": "",
    "scope": "lead",
-   "include": true,
-   "excludeReason": null,
+   "include": false,
+   "excludeReason": "not yet released (no release date yet)",
    "billing": "no starring list (kept, unverified)"
   },
   {
@@ -58203,8 +58711,8 @@
    "notes": "",
    "language": "Telugu",
    "scope": "lead",
-   "include": true,
-   "excludeReason": null,
+   "include": false,
+   "excludeReason": "not yet released (no release date yet)",
    "billing": "no starring list (kept, unverified)"
   },
   {
@@ -58727,11 +59235,12 @@
    "year": 2026,
    "displayTitle": "Aadarsha Kutumbam House No: 47 - AK47",
    "role": "Chittibabu",
-   "notes": "Filming",
+   "notes": "",
    "language": "",
    "scope": "lead",
-   "include": false,
-   "excludeReason": "not yet released"
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
   },
   {
    "hero": "venkatesh",
@@ -59426,7 +59935,7 @@
    "film": "Lakshyam (2007 film)",
    "year": 2007,
    "displayTitle": "Lakshyam",
-   "role": "ACP Bose",
+   "role": "ACP Subash Chandra Bose",
    "notes": "",
    "language": "",
    "scope": "supporting",
@@ -61806,8 +62315,8 @@
    "notes": "",
    "language": "",
    "scope": "lead",
-   "include": true,
-   "excludeReason": null,
+   "include": false,
+   "excludeReason": "not yet released (no release date yet)",
    "billing": "no starring list (kept, unverified)"
   },
   {
@@ -62680,7 +63189,7 @@
    "year": 2017,
    "displayTitle": "Spyder",
    "role": "Shiva",
-   "notes": "",
+   "notes": "Simultaneously shot in Tamil",
    "language": "",
    "scope": "lead",
    "include": true,
@@ -62961,18 +63470,6 @@
   },
   {
    "hero": "prabhas",
-   "film": "Denikaina Ready",
-   "year": 2012,
-   "displayTitle": "Denikaina Ready",
-   "role": "Himself",
-   "notes": "Voice-over",
-   "language": "",
-   "scope": "cameo",
-   "include": false,
-   "excludeReason": "cameo / special / voice appearance"
-  },
-  {
-   "hero": "prabhas",
    "film": "Mirchi (film)",
    "year": 2013,
    "displayTitle": "Mirchi",
@@ -62983,18 +63480,6 @@
    "include": true,
    "excludeReason": null,
    "billing": "billed #1"
-  },
-  {
-   "hero": "prabhas",
-   "film": "Action Jackson (2014 film)",
-   "year": 2014,
-   "displayTitle": "Action Jackson",
-   "role": "Himself",
-   "notes": "Hindi film; Cameo appearance in the song \"Punjabi Mast\"",
-   "language": "",
-   "scope": "cameo",
-   "include": false,
-   "excludeReason": "cameo / special / voice appearance"
   },
   {
    "hero": "prabhas",
@@ -63085,7 +63570,80 @@
    "scope": "lead",
    "include": true,
    "excludeReason": null,
+   "billing": "Editorial: the lead; Amitabh Bachchan and Kamal Haasan are billed first as senior stars"
+  },
+  {
+   "hero": "prabhas",
+   "film": "Baahubali: The Epic",
+   "year": 2025,
+   "displayTitle": "Baahubali: The Epic",
+   "role": "",
+   "notes": "Combined recut version of The Beginning and The Conclusion",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "re-release"
+  },
+  {
+   "hero": "prabhas",
+   "film": "The RajaSaab",
+   "year": 2026,
+   "displayTitle": "The RajaSaab",
+   "role": "Raju \"Rajasaab\" / Joker",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
    "billing": "billed #1"
+  },
+  {
+   "hero": "prabhas",
+   "film": "Fauzi (film)",
+   "year": 2027,
+   "displayTitle": "Fauzi",
+   "role": "Fauzi",
+   "notes": "Filming",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "not yet released"
+  },
+  {
+   "hero": "prabhas",
+   "film": "Spirit (movie)",
+   "year": 2027,
+   "displayTitle": "Spirit",
+   "role": "",
+   "notes": "Filming",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "not yet released"
+  },
+  {
+   "hero": "prabhas",
+   "film": "Denikaina Ready",
+   "year": 2012,
+   "displayTitle": "Denikaina Ready",
+   "role": "Himself",
+   "notes": "Voice-over",
+   "language": "",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "prabhas",
+   "film": "Action Jackson (2014 film)",
+   "year": 2014,
+   "displayTitle": "Action Jackson",
+   "role": "Himself",
+   "notes": "Hindi film; Cameo appearance in the song \"Punjabi Mast\"",
+   "language": "",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
   },
   {
    "hero": "prabhas",
@@ -63110,55 +63668,6 @@
    "scope": "cameo",
    "include": false,
    "excludeReason": "cameo / special / voice appearance"
-  },
-  {
-   "hero": "prabhas",
-   "film": "Baahubali: The Epic",
-   "year": 2025,
-   "displayTitle": "Baahubali: The Epic",
-   "role": "",
-   "notes": "Combined recut version of The Beginning and The Conclusion",
-   "language": "",
-   "scope": "lead",
-   "include": false,
-   "excludeReason": "re-release"
-  },
-  {
-   "hero": "prabhas",
-   "film": "The RajaSaab",
-   "year": 2026,
-   "displayTitle": "The RajaSaab",
-   "role": "Raju \"Rajasaab\" / Joker (cameo)",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "prabhas",
-   "film": "Fauzi (film)",
-   "year": 2026,
-   "displayTitle": "Fauzi",
-   "role": "",
-   "notes": "Filming",
-   "language": "",
-   "scope": "lead",
-   "include": false,
-   "excludeReason": "not yet released"
-  },
-  {
-   "hero": "prabhas",
-   "film": "Spirit (movie)",
-   "year": 2027,
-   "displayTitle": "Spirit",
-   "role": "",
-   "notes": "Filming",
-   "language": "",
-   "scope": "lead",
-   "include": false,
-   "excludeReason": "not yet released"
   },
   {
    "hero": "jr-ntr",
@@ -63587,18 +64096,6 @@
    "excludeReason": "not a Telugu film"
   },
   {
-   "hero": "jr-ntr",
-   "film": "Dragon (2027 film)",
-   "year": 2027,
-   "displayTitle": "Dragon",
-   "role": "Luger / Dragon",
-   "notes": "Filming",
-   "language": "",
-   "scope": "lead",
-   "include": false,
-   "excludeReason": "not yet released"
-  },
-  {
    "hero": "allu-arjun",
    "film": "Daddy (2001 film)",
    "year": 2001,
@@ -63920,18 +64417,6 @@
    "billing": "billed #1"
   },
   {
-   "hero": "allu-arjun",
-   "film": "unlinked:Raaka|2028",
-   "year": 2028,
-   "displayTitle": "Raaka",
-   "role": "TBA",
-   "notes": "Filming",
-   "language": "",
-   "scope": "lead",
-   "include": false,
-   "excludeReason": "not yet released"
-  },
-  {
    "hero": "ram-charan",
    "film": "Chirutha",
    "year": 2007,
@@ -64005,8 +64490,9 @@
    "notes": "Also shot in Hindi; Singer for \"Mumbai Ke Hero\" (Telugu version only)",
    "language": "",
    "scope": "lead",
-   "include": false,
-   "excludeReason": "Hindi film"
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
   },
   {
    "hero": "ram-charan",
@@ -65033,7 +65519,7 @@
    "year": 2026,
    "displayTitle": "Irumudi",
    "role": "Trinadh Rama Kasu",
-   "notes": "Come Back after 6 back-to-back Disasters",
+   "notes": "",
    "language": "",
    "scope": "lead",
    "include": true,
@@ -65861,11 +66347,12 @@
    "year": 2026,
    "displayTitle": "Mahendragiri Varahi",
    "role": "Siddharth",
-   "notes": "Post-production",
+   "notes": "",
    "language": "",
    "scope": "lead",
-   "include": false,
-   "excludeReason": "not yet released"
+   "include": true,
+   "excludeReason": null,
+   "billing": "no starring list (kept, unverified)"
   },
   {
    "hero": "allari-naresh",
@@ -67049,12 +67536,24 @@
    "year": 2025,
    "displayTitle": "Arjun Son Of Vyjayanthi",
    "role": "Arjun Vishwanath",
-   "notes": "",
+   "notes": "Also producer",
    "language": "",
    "scope": "lead",
    "include": true,
    "excludeReason": null,
    "billing": "billed #1"
+  },
+  {
+   "hero": "kalyan-ram",
+   "film": "unlinked:January 12 Vidudala|2027",
+   "year": 2027,
+   "displayTitle": "January 12 Vidudala",
+   "role": "",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "not yet released"
   },
   {
    "hero": "vishnu-manchu",
@@ -68312,11 +68811,11 @@
    "year": 2006,
    "displayTitle": "Poi",
    "role": "Kamban",
-   "notes": "Tamil debut film",
+   "notes": "Tamil debut film; Dubbed in Telugu as Abaddam",
    "language": "",
-   "scope": "lead",
+   "scope": "cameo",
    "include": false,
-   "excludeReason": "Tamil film"
+   "excludeReason": "cameo / special / voice appearance"
   },
   {
    "hero": "uday-kiran",
@@ -68337,11 +68836,11 @@
    "year": 2008,
    "displayTitle": "Vambuchanda",
    "role": "Prabhakaran",
-   "notes": "Tamil film",
+   "notes": "Tamil film; dubbed in Telugu as Lakshmi Putrudu",
    "language": "",
-   "scope": "lead",
+   "scope": "cameo",
    "include": false,
-   "excludeReason": "not a Telugu film"
+   "excludeReason": "cameo / special / voice appearance"
   },
   {
    "hero": "uday-kiran",
@@ -68375,11 +68874,11 @@
    "year": 2010,
    "displayTitle": "Pen Singam",
    "role": "Surya",
-   "notes": "Tamil film",
+   "notes": "Tamil film; dubbed in Telugu as Alladista",
    "language": "",
-   "scope": "lead",
+   "scope": "cameo",
    "include": false,
-   "excludeReason": "not a Telugu film"
+   "excludeReason": "cameo / special / voice appearance"
   },
   {
    "hero": "uday-kiran",
@@ -68408,16 +68907,16 @@
   },
   {
    "hero": "uday-kiran",
-   "film": "Jai Shri Ram",
+   "film": "Jai Sreeram",
    "year": 2013,
-   "displayTitle": "Jai Sriram",
+   "displayTitle": "Jai Sreeram",
    "role": "Sriram Srinivas",
    "notes": "",
    "language": "",
    "scope": "lead",
    "include": true,
    "excludeReason": null,
-   "billing": "no starring list (kept, unverified)"
+   "billing": "billed #1"
   },
   {
    "hero": "venu-thottempudi",
@@ -73049,7 +73548,7 @@
    "film": "Madrasi (2006 film)",
    "year": 2006,
    "displayTitle": "Madrasi",
-   "role": "",
+   "role": "Crowd member",
    "notes": "Uncredited role",
    "language": "Tamil",
    "scope": "cameo",
@@ -73133,7 +73632,7 @@
    "film": "unlinked:Hrashwo Deergha|2024",
    "year": 2024,
    "displayTitle": "Hrashwo Deergha",
-   "role": "",
+   "role": "Sunil Varma",
    "notes": "",
    "language": "Nepali",
    "scope": "lead",
@@ -73193,7 +73692,7 @@
    "film": "Pookie (film)",
    "year": 2026,
    "displayTitle": "Pookie",
-   "role": "Vikas Vibes swamiji",
+   "role": "Vikas Vibes Swamiji",
    "notes": "",
    "language": "Tamil",
    "scope": "lead",
@@ -73242,6 +73741,18 @@
    "year": 2026,
    "displayTitle": "Jana Nayagan",
    "role": "Velu",
+   "notes": "",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "Tamil film"
+  },
+  {
+   "hero": "sunil",
+   "film": "Mookuthi Amman 2",
+   "year": 2026,
+   "displayTitle": "Mookuthi Amman 2",
+   "role": "Rajasimman",
    "notes": "",
    "language": "Tamil",
    "scope": "lead",
@@ -73565,9 +74076,8 @@
    "notes": "Tamil film; partially reshot in Telugu as Rajadhi Raja",
    "language": "",
    "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
+   "include": false,
+   "excludeReason": "Tamil film"
   },
   {
    "hero": "sharwanand",
@@ -74533,7 +75043,7 @@
    "year": 2027,
    "displayTitle": "Dharman",
    "role": "TBA",
-   "notes": "Tamil film; Filming",
+   "notes": "Tamil film; Filming 25 Mar 2027 Release",
    "language": "",
    "scope": "lead",
    "include": false,
@@ -74952,6 +75462,19 @@
    "include": true,
    "excludeReason": null,
    "billing": "no starring list (kept, unverified)"
+  },
+  {
+   "hero": "varun-sandesh",
+   "film": "Naa Wife Missing",
+   "year": 2026,
+   "displayTitle": "Naa Wife Missing",
+   "role": "Balu",
+   "notes": "Released on Aha",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
   },
   {
    "hero": "nikhil-siddhartha",
@@ -75451,7 +75974,7 @@
    "year": 2011,
    "displayTitle": "Veppam",
    "role": "Karthik",
-   "notes": "Debut in Tamil film",
+   "notes": "Tamil film",
    "language": "",
    "scope": "lead",
    "include": false,
@@ -75880,10 +76403,10 @@
   },
   {
    "hero": "nani",
-   "film": "The Paradise (2026 Indian film)",
+   "film": "The Paradise (film)",
    "year": 2026,
    "displayTitle": "The Paradise",
-   "role": "Jadal",
+   "role": "Jadal alias \"Sarakka\"",
    "notes": "",
    "language": "",
    "scope": "lead",
@@ -75897,7 +76420,7 @@
    "year": 2027,
    "displayTitle": "scope=\"row\"",
    "role": "Romeo",
-   "notes": "Pre Production",
+   "notes": "Filming",
    "language": "",
    "scope": "lead",
    "include": false,
@@ -75980,6 +76503,19 @@
    "include": false,
    "excludeReason": "not listed in the film's starring credits",
    "billing": "not in starring list"
+  },
+  {
+   "hero": "nani",
+   "film": "unlinked:Alias Rukmini|2026",
+   "year": 2026,
+   "displayTitle": "Alias Rukmini",
+   "role": "",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "not yet released (no release date yet)",
+   "billing": "no starring list (kept, unverified)"
   },
   {
    "hero": "nani",
@@ -77537,6 +78073,18 @@
   },
   {
    "hero": "adivi-sesh",
+   "film": "unlinked:M. Gopi / M. Arjun Kumar alias Agent Gopi 116|2027",
+   "year": 2027,
+   "displayTitle": "M. Gopi / M. Arjun Kumar alias Agent Gopi 116",
+   "role": "Also writer; Filming",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "not yet released"
+  },
+  {
+   "hero": "adivi-sesh",
    "film": "Karma (2010 film)",
    "year": 2010,
    "displayTitle": "Karma",
@@ -77567,7 +78115,7 @@
    "year": 2016,
    "displayTitle": "Kshanam",
    "role": "",
-   "notes": "Screenplay and story only",
+   "notes": "Screenplay also",
    "language": "",
    "scope": "lead",
    "include": true,
@@ -77580,7 +78128,7 @@
    "year": 2018,
    "displayTitle": "Goodachari",
    "role": "",
-   "notes": "Screenplay and story only",
+   "notes": "Screenplay also",
    "language": "",
    "scope": "lead",
    "include": true,
@@ -77593,7 +78141,7 @@
    "year": 2022,
    "displayTitle": "Major",
    "role": "",
-   "notes": "Screenplay and story only",
+   "notes": "",
    "language": "",
    "scope": "lead",
    "include": true,
@@ -77606,7 +78154,7 @@
    "year": 2026,
    "displayTitle": "Dacoit: A Love Story",
    "role": "",
-   "notes": "Screenplay and story only",
+   "notes": "Screenplay also",
    "language": "",
    "scope": "lead",
    "include": true,
@@ -77616,15 +78164,14 @@
   {
    "hero": "adivi-sesh",
    "film": "G2 (film)",
-   "year": 2026,
+   "year": 2027,
    "displayTitle": "G2",
    "role": "",
-   "notes": "Screenplay and story only",
+   "notes": "",
    "language": "",
    "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
+   "include": false,
+   "excludeReason": "not yet released"
   },
   {
    "hero": "sundeep-kishan",
@@ -78056,6 +78603,42 @@
    "include": true,
    "excludeReason": null,
    "billing": "billed #1"
+  },
+  {
+   "hero": "sundeep-kishan",
+   "film": "Sigma (film)",
+   "year": 2026,
+   "displayTitle": "Sigma",
+   "role": "Guru",
+   "notes": "",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "Tamil film"
+  },
+  {
+   "hero": "sundeep-kishan",
+   "film": "Karikaala Chapter 1 (2027 film)",
+   "year": 2027,
+   "displayTitle": "Karikaala Chapter 1",
+   "role": "TBA",
+   "notes": "",
+   "language": "Telugu",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "not yet released"
+  },
+  {
+   "hero": "sundeep-kishan",
+   "film": "unlinked:Kaarikala Chapter-2|2027",
+   "year": 2027,
+   "displayTitle": "Kaarikala Chapter-2",
+   "role": "TBA",
+   "notes": "",
+   "language": "Telugu",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "not yet released"
   },
   {
    "hero": "naga-shaurya",
@@ -78579,7 +79162,7 @@
    "film": "Black (2022 film)",
    "year": 2022,
    "displayTitle": "Black",
-   "role": "Constable Vikramaditya \"Aditya\" Dharmaraj",
+   "role": "Vikramaditya \"Aditya\" Dharmaraj",
    "notes": "",
    "language": "",
    "scope": "lead",
@@ -78664,6 +79247,32 @@
    "include": true,
    "excludeReason": null,
    "billing": "billed #1"
+  },
+  {
+   "hero": "aadi-saikumar",
+   "film": "unlinked:SI Yugandhar|2026",
+   "year": 2026,
+   "displayTitle": "SI Yugandhar",
+   "role": "Yugandhar",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "no starring list (kept, unverified)"
+  },
+  {
+   "hero": "aadi-saikumar",
+   "film": "unlinked:Ego raja|2026",
+   "year": 2026,
+   "displayTitle": "Ego raja",
+   "role": "sethu",
+   "notes": "releasing soon",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "not yet released (no release date yet)",
+   "billing": "no starring list (kept, unverified)"
   },
   {
    "hero": "naveen-chandra",
@@ -80523,7 +81132,7 @@
    "year": 2009,
    "displayTitle": "Baanam",
    "role": "Academy officer",
-   "notes": "",
+   "notes": "Debut film",
    "language": "",
    "scope": "supporting",
    "include": false,
@@ -80549,7 +81158,7 @@
    "year": 2012,
    "displayTitle": "Kadhalil Sodhappuvadhu Yeppadi",
    "role": "Rupesh",
-   "notes": "Uncredited role; Tamil film Dubbed in Telugu as Love Failure",
+   "notes": "Uncredited role; Bilingual film; Tamil Debut",
    "language": "",
    "scope": "cameo",
    "include": false,
@@ -80587,7 +81196,7 @@
    "year": 2013,
    "displayTitle": "Prema Ishq Kaadhal",
    "role": "Royal Raju",
-   "notes": "",
+   "notes": "Debut as Lead Actor",
    "language": "",
    "scope": "supporting",
    "include": false,
@@ -80941,6 +81550,19 @@
    "scope": "cameo",
    "include": false,
    "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "sree-vishnu",
+   "film": "Comrade Kalyan",
+   "year": 2026,
+   "displayTitle": "Comrade Kalyan",
+   "role": "Kalyan",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
   },
   {
    "hero": "raj-tarun",
@@ -81827,7 +82449,7 @@
    "year": 2023,
    "displayTitle": "Chatrapathi",
    "role": "Chatrapathi / Shivaji",
-   "notes": "Hindi film debut",
+   "notes": "Hindi film",
    "language": "",
    "scope": "lead",
    "include": false,
@@ -82020,7 +82642,7 @@
    "film": "Govindudu Andarivadele",
    "year": 2014,
    "displayTitle": "Govindudu Andarivadele",
-   "role": "Dr. N. Raju",
+   "role": "Dr. N. Raju \"Nookaraju\"",
    "notes": "",
    "language": "",
    "scope": "supporting",
@@ -82510,6 +83132,19 @@
    "year": 2026,
    "displayTitle": "Korean Kanakaraju",
    "role": "Prithviraju",
+   "notes": "",
+   "language": "",
+   "scope": "supporting",
+   "include": false,
+   "excludeReason": "not listed in the film's starring credits",
+   "billing": "not in starring list"
+  },
+  {
+   "hero": "srinivas-avasarala",
+   "film": "Garividi Lakshmi",
+   "year": 2026,
+   "displayTitle": "Garividi Lakshmi",
+   "role": "",
    "notes": "",
    "language": "",
    "scope": "supporting",
@@ -83043,11 +83678,12 @@
    "year": 2026,
    "displayTitle": "Ranabaali",
    "role": "Singanamala Bobbili Ranabaali",
-   "notes": "Filming",
+   "notes": "",
    "language": "",
    "scope": "lead",
-   "include": false,
-   "excludeReason": "not yet released"
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
   },
   {
    "hero": "akhil-akkineni",
@@ -83375,7 +84011,7 @@
    "film": "HIT: The First Case",
    "year": 2020,
    "displayTitle": "HIT: The First Case",
-   "role": "Inspector Vikram Rudraraju",
+   "role": "SP Vikram Rudraraju IPS",
    "notes": "",
    "language": "",
    "scope": "lead",
@@ -83524,6 +84160,31 @@
    "include": true,
    "excludeReason": null,
    "billing": "billed #1"
+  },
+  {
+   "hero": "vishwak-sen",
+   "film": "Cult (2026 Telugu film)",
+   "year": 2026,
+   "displayTitle": "Cult",
+   "role": "DSP Sankalp Nayak IPS",
+   "notes": "Also director and writer",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "vishwak-sen",
+   "film": "ENE Repeat",
+   "year": 2026,
+   "displayTitle": "ENE Repeat",
+   "role": "Vivek",
+   "notes": "Filming",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "not yet released"
   },
   {
    "hero": "vishwak-sen",
@@ -83940,6 +84601,19 @@
    "billing": "billed #1"
   },
   {
+   "hero": "kiran-abbavaram",
+   "film": "unlinked:Reality|2026",
+   "year": 2026,
+   "displayTitle": "Reality",
+   "role": "Anandam",
+   "notes": "Also writer and director",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "not yet released (no release date yet)",
+   "billing": "no starring list (kept, unverified)"
+  },
+  {
    "hero": "teja-sajja",
    "film": "Kalisundam Raa",
    "year": 2000,
@@ -84328,19 +85002,6 @@
    "billing": "billed #1"
   },
   {
-   "hero": "teja-sajja",
-   "film": "unlinked:Zombie Reddy NXT LVL|2026",
-   "year": 2026,
-   "displayTitle": "Zombie Reddy NXT LVL",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "no starring list (kept, unverified)"
-  },
-  {
    "hero": "naveen-polishetty",
    "film": "Life Is Beautiful (2012 film)",
    "year": 2012,
@@ -84530,8 +85191,8 @@
    "notes": "",
    "language": "",
    "scope": "lead",
-   "include": true,
-   "excludeReason": null,
+   "include": false,
+   "excludeReason": "not yet released (no release date yet)",
    "billing": "no starring list (kept, unverified)"
   },
   {
@@ -84934,8 +85595,8 @@
    "language": "",
    "scope": "supporting",
    "include": false,
-   "excludeReason": "not listed in the film's starring credits",
-   "billing": "not in starring list"
+   "excludeReason": "billed #5 (supporting role)",
+   "billing": "billed #5"
   },
   {
    "hero": "priyadarshi",
@@ -86499,7 +87160,7 @@
   {
    "hero": "taraka-ratna",
    "film": "S5 No Exit",
-   "year": 2023,
+   "year": 2022,
    "displayTitle": "S5 No Exit",
    "role": "Subbu",
    "notes": "",
@@ -87153,9 +87814,10 @@
    "role": "Sher Khan",
    "notes": "",
    "language": "",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "Hindi film"
+   "excludeReason": "billed #4 (supporting role)",
+   "billing": "billed #4"
   },
   {
    "hero": "srihari",
@@ -87318,6 +87980,71 @@
    "scope": "lead",
    "include": false,
    "excludeReason": "Hindi film"
+  },
+  {
+   "hero": "mouli-tanuj-prasanth",
+   "film": "unlinked:Happy Birthday|2022",
+   "year": 2022,
+   "displayTitle": "Happy Birthday",
+   "role": "",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "no starring list (kept, unverified)"
+  },
+  {
+   "hero": "mouli-tanuj-prasanth",
+   "film": "unlinked:Hostel Days|2023",
+   "year": 2023,
+   "displayTitle": "Hostel Days",
+   "role": "",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "no starring list (kept, unverified)"
+  },
+  {
+   "hero": "mouli-tanuj-prasanth",
+   "film": "unlinked:90's – A Middle Class Biopic|2024",
+   "year": 2024,
+   "displayTitle": "90's – A Middle Class Biopic",
+   "role": "",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "no starring list (kept, unverified)"
+  },
+  {
+   "hero": "mouli-tanuj-prasanth",
+   "film": "unlinked:Little Hearts|2025",
+   "year": 2025,
+   "displayTitle": "Little Hearts",
+   "role": "",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "no starring list (kept, unverified)"
+  },
+  {
+   "hero": "mouli-tanuj-prasanth",
+   "film": "unlinked:Donga Naa Koduku|2026",
+   "year": 2026,
+   "displayTitle": "Donga Naa Koduku",
+   "role": "",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "not yet released (no release date yet)",
+   "billing": "no starring list (kept, unverified)"
   }
  ]
 }

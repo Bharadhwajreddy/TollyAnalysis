@@ -3,7 +3,7 @@ const EXCLUDE_ROLE = /\b(cameo|special appearance|guest appearance|guest role|gu
 /** "Also dubbed for X" says the hero voiced someone else; "Dubbed" alone says the credit is voice-only. */
 const DUBBED_ONLY = /\bdubbed\b/i;
 const ALSO_DUBBED = /\balso\b[^.;]*\bdubbed\b/i;
-const UNRELEASED = /\b(post-production|filming|pre-production|upcoming|announced|delayed|shelved|unreleased|completed|in production|†)\b|†/i;
+const UNRELEASED = /\b(post-production|filming|pre-production|upcoming|announced|delayed|shelved|unreleased|completed|in production|releasing soon|yet to (?:be )?release[d]?|to be released)\b|†/i;
 const SUPPORTING = /\bsupporting role\b/i;
 
 /**

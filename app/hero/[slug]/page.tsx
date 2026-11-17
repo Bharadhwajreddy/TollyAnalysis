@@ -163,6 +163,11 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
   const biggest = [...rows].filter((r) => r.gross).sort((a, b) => (b.gross ?? 0) - (a.gross ?? 0))[0];
   const bestMultiple = [...rows].filter((r) => r.multiple).sort((a, b) => (b.multiple ?? 0) - (a.multiple ?? 0))[0];
   const latest = dated[0];
+  // A newer release that does not count (another language), and the next announced film.
+  const latestYear = latest?.releaseDate ? Number(latest.releaseDate.slice(0, 4)) : 0;
+  const otherLanguage = (r: string | null) => /(Hindi|Tamil|Kannada|Malayalam|English|Bengali|Marathi) film/i.exec(r ?? "")?.[1] ?? (/not a Telugu/i.test(r ?? "") ? "another language" : null);
+  const newerOther = excluded.find((e) => e.year !== null && e.year >= latestYear && otherLanguage(e.reason) !== null && !/not yet released/i.test(e.reason ?? ""));
+  const nextFilm = [...excluded].filter((e) => /not yet released/i.test(e.reason ?? "")).sort((a, b) => (a.year ?? 9999) - (b.year ?? 9999))[0];
   const first = dated[dated.length - 1];
   const firstHit = [...dated].reverse().find((r) => r.verdict === "hit" || r.verdict === "blockbuster");
   const firstBlockbuster = [...dated].reverse().find((r) => r.verdict === "blockbuster");
@@ -277,6 +282,12 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
             </Chip>
           ))}
         {hero.debutYear && <Chip>Debut {hero.debutYear}</Chip>}
+        {nextFilm && (
+          <Chip>
+            Next: {nextFilm.title.replace(/^unlinked:/, "").replace(/\|\d{4}$/, "")}
+            {nextFilm.year ? ` (${nextFilm.year})` : ""}
+          </Chip>
+        )}
         {family && family.key !== "other" && <Chip color={family.color}>{family.label}</Chip>}
         {hero.isEmerging && <Chip>Newcomer</Chip>}
         {followerCounts.map((c) => {
@@ -360,7 +371,12 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
         <div className="mt-3 grid grid-cols-2 gap-3 lg:grid-cols-4">
           <Highlight label="Biggest film" main={biggest ? formatMetric("topGross", biggest.gross) : "—"} sub={biggest?.title ?? "no reported gross"} />
           <Highlight label="Best return on budget" main={bestMultiple ? `${bestMultiple.multiple}×` : "—"} sub={bestMultiple?.title ?? "needs budget and gross"} />
-          <Highlight label="Latest film" main={latest?.title ?? "—"} sub={latest?.releaseDate ?? ""} small />
+          <Highlight
+            label="Latest film"
+            main={latest?.title ?? "—"}
+            sub={[latest?.releaseDate ?? "", newerOther ? `Newer: ${newerOther.title} (${newerOther.year}, ${otherLanguage(newerOther.reason)} film, not counted)` : ""].filter(Boolean).join(" · ")}
+            small
+          />
           <Highlight label="First film" main={first?.title ?? "—"} sub={first?.releaseDate ?? ""} small />
         </div>
       </section>
@@ -592,7 +608,7 @@ function Highlight({ label, main, sub, small = false }: { label: string; main: s
     <div className="card p-3 sm:p-4">
       <p className="text-xs font-medium text-ink-2">{label}</p>
       <p className={`mt-1 font-semibold tracking-tight text-wine ${small ? "line-clamp-2 font-serif text-lg text-ink" : "text-2xl"}`}>{main}</p>
-      <p className="truncate text-xs text-muted">{sub}</p>
+      <p className="line-clamp-2 text-xs text-muted">{sub}</p>
     </div>
   );
 }

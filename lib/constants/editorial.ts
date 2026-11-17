@@ -45,6 +45,7 @@ export const EXCLUDED_CREDITS: Record<string, { film: string; reason: string }[]
  */
 export const INCLUDED_CREDITS: Record<string, { film: string; reason: string }[]> = {
   "jr-ntr": [{ film: "Janatha Garage", reason: "the title lead; Mohanlal is billed first as a senior star" }],
+  prabhas: [{ film: "Kalki 2898 AD", reason: "the lead; Amitabh Bachchan and Kamal Haasan are billed first as senior stars" }],
   nani: [
     { film: "Jersey (2019 film)", reason: "the lead (the filmography notes that he also dubbed for another film)" },
     { film: "Devadas (2018 film)", reason: "co-lead with Nagarjuna" },

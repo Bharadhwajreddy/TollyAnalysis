@@ -7,11 +7,15 @@
  *   2. "Also dubbed for X" in the notes no longer turns a lead credit into a voice-only one.
  *   3. Editorial includes (INCLUDED_CREDITS) and excludes (EXCLUDED_CREDITS) are applied.
  *   4. A film listed twice for one hero keeps only the credit that counts.
+ *   5. A film from this year or later with no release date counts only if IMDb already has audience
+ *      ratings for it (it is out); otherwise it is treated as not yet released.
  *
  * Usage: npx tsx scripts/fix-credits.mts [--dry]
  * Then:  npm run tolly:update -- <folder> or: tolly:link, tolly:pageviews, tolly:compute, tolly:workbook
  */
-import { readFileSync, writeFileSync } from "node:fs";
+import { createReadStream, existsSync, readFileSync, writeFileSync } from "node:fs";
+import { createInterface } from "node:readline";
+import { createGunzip } from "node:zlib";
 import { applyIncludedCredits, EXCLUDED_CREDITS } from "@/lib/constants/editorial";
 import { INITIAL_ROSTER } from "@/lib/constants/roster";
 import { makeBilling, withoutComments } from "@/lib/import/billing";
@@ -82,6 +86,39 @@ for (const c of credits) {
 const before = new Set(credits.filter((c) => c.include).map((c) => `${c.hero}|${c.film}`));
 applyIncludedCredits(credits);
 for (const c of credits) if (c.include && !before.has(`${c.hero}|${c.film}`)) changes.push(`+ ${label(c)}  [editorial include]`);
+
+// 5. Undated films from this year on: released only if IMDb shows audience ratings for the hero's matching title.
+const thisYear = new Date().getUTCFullYear();
+const undated = credits.filter((c) => c.include && c.year >= thisYear && !films.get(c.film)?.releaseDate);
+if (undated.length) {
+  const castPath = ".cache/tolly/imdb-cast.json";
+  const imdbDir = ".cache/tolly/imdb";
+  const released = new Set<string>(); // hero|squashed title
+  if (existsSync(castPath) && existsSync(`${imdbDir}/title.basics.tsv.gz`) && existsSync(`${imdbDir}/title.ratings.tsv.gz`)) {
+    const cast = JSON.parse(readFileSync(castPath, "utf8")).heroes as Record<string, { tconst: string; ordering: number }[]>;
+    const heroesOf = new Map<string, string[]>();
+    for (const [h, rows] of Object.entries(cast)) for (const r of rows) heroesOf.set(r.tconst, [...(heroesOf.get(r.tconst) ?? []), h]);
+    const lines = (f: string) => createInterface({ input: createReadStream(`${imdbDir}/${f}`).pipe(createGunzip()) });
+    const rated = new Set<string>();
+    for await (const line of lines("title.ratings.tsv.gz")) {
+      const [t, , votes] = line.split("\t");
+      if (heroesOf.has(t) && Number(votes) > 0) rated.add(t);
+    }
+    const sq = (x: string) => x.toLowerCase().replace(/\([^)]*\)/g, "").replace(/[^a-z0-9]/g, "");
+    for await (const line of lines("title.basics.tsv.gz")) {
+      const p = line.split("\t");
+      if (!rated.has(p[0]) || Number(p[5]) < thisYear - 1) continue;
+      for (const h of heroesOf.get(p[0]) ?? []) for (const t of [p[2], p[3]]) released.add(`${h}|${sq(t)}`);
+    }
+    const titleOf = (c: Credit) => sq(c.film.startsWith("unlinked:") ? c.film.slice(9).split("|")[0] : c.film);
+    for (const c of undated) {
+      if (released.has(`${c.hero}|${titleOf(c)}`)) continue;
+      c.include = false;
+      c.excludeReason = "not yet released (no release date yet)";
+      changes.push(`- ${label(c)}  [no release date and no IMDb ratings yet]`);
+    }
+  } else console.log("IMDb cache missing: undated films left as they are (run npm run tolly:all first)");
+}
 
 // 4. One credit per hero and film: drop excluded duplicates of an included credit.
 const counted = new Set(credits.filter((c) => c.include).map((c) => `${c.hero}|${c.film}`));
