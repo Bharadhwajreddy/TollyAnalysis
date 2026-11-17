@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, JetBrains_Mono, Playfair_Display } from "next/font/google";
+import { Inter, JetBrains_Mono, Playfair_Display } from "next/font/google";
 import { heroThumb } from "@/components/hero/hero-avatar";
 import { Intro } from "@/components/home/intro";
 import { SiteFooter } from "@/components/layout/site-footer";
@@ -8,7 +8,8 @@ import { INTRO_GUARD } from "@/lib/intro";
 import { getDashboardData } from "@/lib/repositories";
 import "./globals.css";
 
-const dmSans = DM_Sans({ variable: "--font-dm-sans", subsets: ["latin"], display: "swap" });
+// Inter: very legible names and text, with clear, even-height figures for every number.
+const sans = Inter({ variable: "--font-body", subsets: ["latin"], display: "swap" });
 const playfair = Playfair_Display({ variable: "--font-playfair", subsets: ["latin"], weight: ["600", "700"], display: "swap" });
 const jetbrains = JetBrains_Mono({ variable: "--font-jetbrains", subsets: ["latin"], weight: ["400", "500"], display: "swap" });
 
@@ -36,7 +37,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     .slice(0, INTRO_FACES)
     .map((h) => ({ name: h.name, src: heroThumb(h.photo) as string }));
   return (
-    <html lang="en" className={`${dmSans.variable} ${playfair.variable} ${jetbrains.variable} antialiased`} suppressHydrationWarning>
+    <html lang="en" className={`${sans.variable} ${playfair.variable} ${jetbrains.variable} antialiased`} suppressHydrationWarning>
       <body className="flex min-h-dvh flex-col">
         {/* Decides before first paint whether the opening animation plays (once per session). */}
         <script dangerouslySetInnerHTML={{ __html: INTRO_GUARD }} />

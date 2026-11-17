@@ -22,7 +22,7 @@ function Side({ hero, wins, align }: { hero: DuelHero; wins: number; align: "lef
       </span>
       <span className="min-w-0">
         <span className="block truncate text-[14px] font-semibold text-ink group-hover:text-wine sm:text-[16px]">{hero.name}</span>
-        <span className="tabular block font-serif text-[26px] font-bold leading-tight text-wine sm:text-[32px]">{hero.index.toFixed(1)}</span>
+        <span className="num block text-[26px] font-extrabold leading-tight text-wine sm:text-[32px]">{hero.index.toFixed(1)}</span>
         <span className="block text-[11.5px] text-muted">
           #{hero.rank} · wins {wins}
         </span>

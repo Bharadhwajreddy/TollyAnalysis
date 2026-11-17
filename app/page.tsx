@@ -171,12 +171,12 @@ export default async function HomePage() {
                         </span>
                       </span>
                       <span className="mt-2.5 block truncate text-[13.5px] font-semibold text-white sm:text-[16px]">{h.name}</span>
-                      <span className="tabular block font-serif text-[22px] font-bold leading-tight sm:text-[30px]" style={{ color: MEDAL[place] }}>
+                      <span className="num block text-[22px] font-extrabold leading-tight sm:text-[30px]" style={{ color: MEDAL[place] }}>
                         {h.index?.toFixed(1)}
                       </span>
                     </span>
                     <span
-                      className="grow-y mt-2 grid place-items-start justify-center rounded-t-lg pt-2 font-serif text-[22px] font-bold text-[#2b1c1a] sm:text-[28px]"
+                      className="grow-y mt-2 grid place-items-start justify-center rounded-t-lg pt-2 num text-[22px] font-extrabold text-[#2b1c1a] sm:text-[28px]"
                       style={{
                         ...delay(0.2 + (first ? 0.3 : place === 1 ? 0.15 : 0)),
                         height: first ? 96 : place === 1 ? 68 : 48,
@@ -202,7 +202,7 @@ export default async function HomePage() {
           { v: films[0]?.index?.toFixed(1) ?? "—", l: films[0] ? `top film: ${films[0].title}` : "top film" },
         ].map((s) => (
           <li key={s.l} className="card lift px-4 py-3.5 sm:px-5">
-            <CountUp value={s.v} className="tabular block font-serif text-[28px] font-bold leading-none text-wine sm:text-[34px]" />
+            <CountUp value={s.v} className="num block text-[28px] font-extrabold leading-none text-wine sm:text-[34px]" />
             <span className="mt-1.5 block text-[12.5px] leading-snug text-ink-2 sm:text-[13.5px]">{s.l}</span>
           </li>
         ))}

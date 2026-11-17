@@ -58,7 +58,7 @@ export function TollyRanking({ rows }: { rows: RankingRow[] }) {
                 <span className="tabular absolute -bottom-1 -right-1 grid h-7 w-7 place-items-center rounded-full bg-ink text-[13px] font-bold text-white ring-2 ring-surface">{r.rank}</span>
               </span>
               <span className="min-w-0">
-                <span className="block truncate font-serif text-[20px] font-semibold text-ink">{r.name}</span>
+                <span className="block truncate text-[19px] font-bold tracking-tight text-ink">{r.name}</span>
                 <span className="tabular block text-[26px] font-semibold leading-tight" style={{ color: colour(r) }}>
                   {r.index.toFixed(1)}
                   {r.band !== null && <span className="ml-1.5 text-[13px] font-normal text-muted">± {r.band.toFixed(1)}</span>}

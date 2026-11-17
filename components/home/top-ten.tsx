@@ -61,7 +61,7 @@ export function TopTen({ rows }: { rows: TopRow[] }) {
                     <span className="fill-x block h-full rounded-full" style={{ width: `${(r.index / max) * 100}%`, background: c }} />
                   </span>
                 </span>
-                <span className="tabular w-[46px] text-right font-serif text-[20px] font-bold" style={{ color: c }}>
+                <span className="num w-[52px] text-right text-[19px] font-extrabold" style={{ color: c }}>
                   {r.index.toFixed(1)}
                 </span>
               </Link>
