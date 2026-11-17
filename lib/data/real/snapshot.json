@@ -54610,7 +54610,8 @@
    "releaseDate": "2026-09-10",
    "dateApproximate": false,
    "languages": [
-    "Tamil"
+    "Tamil",
+    "Telugu"
    ],
    "director": "Mathimaran Pugazhendhi",
    "music": "G. V. Prakash Kumar",
@@ -57032,9 +57033,10 @@
    "role": "",
    "notes": "Telugu version",
    "language": "",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "Hindi film"
+   "excludeReason": "not listed in the film's starring credits",
+   "billing": "not in starring list"
   },
   {
    "hero": "chiranjeevi",
@@ -57122,9 +57124,10 @@
    "role": "",
    "notes": "Telugu version",
    "language": "",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "Hindi film"
+   "excludeReason": "not listed in the film's starring credits",
+   "billing": "not in starring list"
   },
   {
    "hero": "chiranjeevi",
@@ -58163,9 +58166,10 @@
    "role": "Yavakri",
    "notes": "",
    "language": "Hindi",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "Hindi film"
+   "excludeReason": "billed #3 (supporting role)",
+   "billing": "billed #3"
   },
   {
    "hero": "nagarjuna",
@@ -58201,9 +58205,10 @@
    "role": "Major Padmapani Acharya",
    "notes": "",
    "language": "Hindi",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "Hindi film"
+   "excludeReason": "billed #13 (supporting role)",
+   "billing": "billed #13"
   },
   {
    "hero": "nagarjuna",
@@ -58647,9 +58652,10 @@
    "role": "Anish Shetty",
    "notes": "",
    "language": "Hindi",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "Hindi film"
+   "excludeReason": "billed #5 (supporting role)",
+   "billing": "billed #5"
   },
   {
    "hero": "nagarjuna",
@@ -59187,9 +59193,10 @@
    "role": "Gundamaneni Balakrishna alias \"Rowdy Anna\"",
    "notes": "Hindi film",
    "language": "",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "not a Telugu film"
+   "excludeReason": "billed #2 (supporting role)",
+   "billing": "billed #2"
   },
   {
    "hero": "venkatesh",
@@ -61154,9 +61161,10 @@
    "role": "Anand Rajput",
    "notes": "",
    "language": "Hindi",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "Hindi film"
+   "excludeReason": "not listed in the film's starring credits",
+   "billing": "not in starring list"
   },
   {
    "hero": "jagapathi-babu",
@@ -61178,9 +61186,10 @@
    "role": "Kodati Nageshwar",
    "notes": "",
    "language": "Hindi",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "Hindi film"
+   "excludeReason": "not listed in the film's starring credits",
+   "billing": "not in starring list"
   },
   {
    "hero": "jagapathi-babu",
@@ -61214,9 +61223,10 @@
    "role": "Officer Sameer Singh",
    "notes": "",
    "language": "Hindi",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "Hindi film"
+   "excludeReason": "billed #3 (supporting role)",
+   "billing": "billed #3"
   },
   {
    "hero": "jagapathi-babu",
@@ -61226,9 +61236,10 @@
    "role": "Sathya Moorthy",
    "notes": "",
    "language": "Hindi",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "Hindi film"
+   "excludeReason": "not listed in the film's starring credits",
+   "billing": "not in starring list"
   },
   {
    "hero": "jagapathi-babu",
@@ -64092,8 +64103,9 @@
    "notes": "Hindi film",
    "language": "",
    "scope": "lead",
-   "include": false,
-   "excludeReason": "not a Telugu film"
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: co-lead of a Hindi film with Hrithik Roshan, who is billed first"
   },
   {
    "hero": "allu-arjun",
@@ -68902,8 +68914,9 @@
    "notes": "Hinglish film; released in Telugu as Jodi No.1 in 2003",
    "language": "",
    "scope": "lead",
-   "include": false,
-   "excludeReason": "English Hindi film"
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
   },
   {
    "hero": "uday-kiran",
@@ -73707,9 +73720,10 @@
    "role": "Prasad",
    "notes": "",
    "language": "Hindi",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "Hindi film"
+   "excludeReason": "not listed in the film's starring credits",
+   "billing": "not in starring list"
   },
   {
    "hero": "sunil",
@@ -74452,8 +74466,9 @@
    "notes": "Hindi film",
    "language": "",
    "scope": "lead",
-   "include": false,
-   "excludeReason": "not a Telugu film"
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
   },
   {
    "hero": "nithiin",
@@ -76995,9 +77010,10 @@
    "role": "Balaraju Bodi, Ramaraju Bodi, Devaraju Bodi and Varadaraju Bodi",
    "notes": "Hindi film",
    "language": "",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "not a Telugu film"
+   "excludeReason": "billed #3 (supporting role)",
+   "billing": "billed #3"
   },
   {
    "hero": "naga-chaitanya",
@@ -77355,9 +77371,10 @@
    "role": "DJ Joaquim \"Joki\" Fernandes",
    "notes": "",
    "language": "Hindi",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "Hindi film"
+   "excludeReason": "billed #3 (supporting role)",
+   "billing": "billed #3"
   },
   {
    "hero": "rana-daggubati",
@@ -77393,9 +77410,10 @@
    "role": "Shiv Narayan",
    "notes": "",
    "language": "Hindi",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "Hindi film"
+   "excludeReason": "billed #3 (supporting role)",
+   "billing": "billed #3"
   },
   {
    "hero": "rana-daggubati",
@@ -77454,9 +77472,10 @@
    "role": "Jai Singh Rathore",
    "notes": "",
    "language": "Hindi",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "Hindi film"
+   "excludeReason": "billed #3 (supporting role)",
+   "billing": "billed #3"
   },
   {
    "hero": "rana-daggubati",
@@ -77577,9 +77596,10 @@
    "role": "Arjun Verma",
    "notes": "Bilingual film",
    "language": "Hindi",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "Hindi film"
+   "excludeReason": "Editorial: Hindi version of Ghazi, which already counts",
+   "billing": "billed #1"
   },
   {
    "hero": "rana-daggubati",
@@ -77652,9 +77672,10 @@
    "role": "Raja Gama, Pappu Rangeela",
    "notes": "Dual role",
    "language": "Hindi",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "Hindi film"
+   "excludeReason": "not listed in the film's starring credits",
+   "billing": "not in starring list"
   },
   {
    "hero": "rana-daggubati",
@@ -78207,9 +78228,10 @@
    "role": "Sawan Murthy",
    "notes": "",
    "language": "Hindi",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "Hindi film"
+   "excludeReason": "billed #5 (supporting role)",
+   "billing": "billed #5"
   },
   {
    "hero": "sundeep-kishan",
@@ -80595,9 +80617,10 @@
    "role": "Anjaneyan Pushpakumaran \"AP\"",
    "notes": "Hindi film",
    "language": "",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "not a Telugu film"
+   "excludeReason": "billed #5 (supporting role)",
+   "billing": "billed #5"
   },
   {
    "hero": "satyadev",
@@ -80798,9 +80821,10 @@
    "role": "Raghav",
    "notes": "Hindi film",
    "language": "",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "not a Telugu film"
+   "excludeReason": "billed #3 (supporting role)",
+   "billing": "billed #3"
   },
   {
    "hero": "sudheer-babu",
@@ -82452,8 +82476,9 @@
    "notes": "Hindi film",
    "language": "",
    "scope": "lead",
-   "include": false,
-   "excludeReason": "not a Telugu film"
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
   },
   {
    "hero": "bellamkonda-sreenivas",
@@ -85061,9 +85086,10 @@
    "role": "Himanshu \"Acid\" Deshmukh",
    "notes": "Hindi film",
    "language": "",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "not a Telugu film"
+   "excludeReason": "billed #4 (supporting role)",
+   "billing": "billed #4"
   },
   {
    "hero": "naveen-polishetty",
@@ -86020,9 +86046,10 @@
    "role": "Lt. Nilesh Mishra",
    "notes": "",
    "language": "Hindi",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "Hindi film"
+   "excludeReason": "not listed in the film's starring credits",
+   "billing": "not in starring list"
   },
   {
    "hero": "priyadarshi",
@@ -86068,9 +86095,10 @@
    "role": "pyaare mohan",
    "notes": "",
    "language": "Hindi",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "Hindi film"
+   "excludeReason": "not listed in the film's starring credits",
+   "billing": "not in starring list"
   },
   {
    "hero": "sri-simha",
@@ -86494,9 +86522,10 @@
    "role": "Venkat Rao",
    "notes": "Hindi film",
    "language": "",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "not a Telugu film"
+   "excludeReason": "not listed in the film's starring credits",
+   "billing": "not in starring list"
   },
   {
    "hero": "suhas",
@@ -86570,8 +86599,9 @@
    "notes": "Tamil film",
    "language": "",
    "scope": "lead",
-   "include": false,
-   "excludeReason": "not a Telugu film"
+   "include": true,
+   "excludeReason": null,
+   "billing": "Editorial: a lead of a Tamil film that was also released in Telugu"
   },
   {
    "hero": "thiruveer",
@@ -87977,9 +88007,10 @@
    "role": "Ajit Taaka",
    "notes": "Posthumously released",
    "language": "Hindi",
-   "scope": "lead",
+   "scope": "supporting",
    "include": false,
-   "excludeReason": "Hindi film"
+   "excludeReason": "not listed in the film's starring credits",
+   "billing": "not in starring list"
   },
   {
    "hero": "mouli-tanuj-prasanth",

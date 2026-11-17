@@ -1,3 +1,4 @@
+import { isCountedLanguage } from "@/lib/import/classify";
 import { INITIAL_ROSTER } from "@/lib/constants/roster";
 import { croreToMinor } from "@/lib/import/money";
 import type {
@@ -144,7 +145,9 @@ export function buildRealDataset(): Dataset {
     const credits = creditByFilm.get(f.key) ?? [];
     if (!credits.length) continue;
     const date = f.releaseDate ?? `${f.year}-07-01`;
+    // Telugu films, and Hindi films where the hero is the lead (see lib/import/classify.ts).
     const isTelugu = !f.languages.length || f.languages.some((l) => /telugu/i.test(l));
+    const counted = isTelugu || f.languages.some((l) => isCountedLanguage(l));
     const firstBilling = credits.find((c) => c.include)?.billing ?? credits[0]?.billing ?? null;
     films.push({
       id: filmId(f.key),
@@ -158,7 +161,7 @@ export function buildRealDataset(): Dataset {
         releaseType: "original",
         releaseDate: date,
         route: f.route === "ott" ? "ott" : "theatrical",
-        isEligibleTeluguRelease: isTelugu,
+        isEligibleTeluguRelease: counted,
         isReRelease: false,
       },
       tmdbMovieId: null,

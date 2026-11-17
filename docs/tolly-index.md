@@ -741,3 +741,15 @@ against IMDb's cast lists (`scripts/fix-credits.mts`, built into `scripts/import
 Still approximate: billing order is the rule, so a lead billed after a heroine or a senior star can be missed
 until someone adds him to `INCLUDED_CREDITS`, and a strong second hero billed first can be counted as a lead.
 Check each hero's film list on his page and use the corrections form.
+
+## Languages and upcoming films (17 November 2026)
+
+- **Hindi films count** when the hero is the lead, by the same billing rule as Telugu films (for example
+  Agyaat, Chatrapathi (2023), Mysterious Girl). War 2 counts for Jr NTR through `INCLUDED_CREDITS`, because
+  Hrithik Roshan is billed first. A Hindi version of a bilingual that already counts in Telugu is left out
+  (The Ghazi Attack). Rule: `COUNTED_LANGUAGE` in `lib/import/classify.ts`.
+- **Films in other languages** count only through an editorial include that records a Telugu release
+  (`alsoReleasedIn: "Telugu"`, for example Mandaadi for Suhas).
+- **Upcoming films** are shown on the hero's page ("Releasing soon" this year, "Next" for later years) but never
+  enter the Tolly Index, the Star Score or any chart. A film from this year with no release date counts only
+  once IMDb has audience ratings for it.

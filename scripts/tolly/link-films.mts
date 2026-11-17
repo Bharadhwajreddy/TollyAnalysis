@@ -264,7 +264,8 @@ for (const f of snap.films) {
 
   // Original language: Wikipedia infobox, else Wikidata, else the hero's filmography (Telugu unless noted).
   // "Telugu Tamil", "Telugu & Tamil" and "Tamil/Telugu" are bilingual Telugu films; match the word, not the whole string.
-  const hasTelugu = (l: string[]) => l.some((x) => /\btelugu\b/i.test(x));
+  // Hindi films count too when a hero is the lead (lib/import/classify.ts).
+  const hasTelugu = (l: string[]) => l.some((x) => /\b(telugu|hindi)\b/i.test(x));
   let telugu: boolean | null = f.languages?.length ? hasTelugu(f.languages) : null;
   let languageBy: By = telugu === null ? null : "wikipedia";
   if (telugu === null && wf?.languages.length) {

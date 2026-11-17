@@ -17,7 +17,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { applyIncludedCredits, EXCLUDED_CREDITS } from "@/lib/constants/editorial";
 import { INITIAL_ROSTER } from "@/lib/constants/roster";
 import { editDistance, makeBilling } from "@/lib/import/billing";
-import { classifyRole, looksUnreleased } from "@/lib/import/classify";
+import { classifyRole, isCountedLanguage, looksUnreleased } from "@/lib/import/classify";
 import { parseFilmPost, parseTradePage, type TradeRow } from "@/lib/import/trade-blog";
 import { articleVerdict, heroProseVerdicts, teluguVerdict } from "@/lib/import/verdict";
 import { parseCrore } from "@/lib/import/money";
@@ -425,8 +425,8 @@ async function main() {
         else if (scope === "supporting") excludeReason = "supporting role";
         else if (looksUnreleased(row[ti] ?? "", notes)) excludeReason = "not yet released";
         else if (/re-?release|recut|re-edit|compilation/i.test(notes)) excludeReason = "re-release";
-        else if (language && !/telugu/i.test(language)) excludeReason = `${language} film`;
-        else if (/\b(hindi|tamil|kannada|malayalam|english|bengali|marathi) film\b/i.test(notes) && !/telugu/i.test(notes)) excludeReason = "not a Telugu film";
+        else if (language && !isCountedLanguage(language)) excludeReason = `${language} film`;
+        else if (/\b(tamil|kannada|malayalam|english|bengali|marathi) film\b/i.test(notes) && !isCountedLanguage(notes)) excludeReason = "not a Telugu film";
         credits.push({
           hero: h.slug,
           film: link ? norm(link.target) : `unlinked:${displayTitle}|${year}`,
@@ -568,7 +568,7 @@ async function main() {
     } else if (date < "2000-01-01") {
       c.include = false;
       c.excludeReason = "released before 2000";
-    } else if (f.languages.length && !f.languages.some((l) => /telugu/i.test(l))) {
+    } else if (f.languages.length && !f.languages.some((l) => isCountedLanguage(l))) {
       c.include = false;
       c.excludeReason = `${f.languages.join("/")} film`;
     }
@@ -610,7 +610,7 @@ async function main() {
   }
 
   // 5d. Editorial includes: leads the billing order misses (a heroine or a senior star billed first).
-  applyIncludedCredits(credits);
+  applyIncludedCredits(credits, films);
 
   await fillVerdicts(heroes, heroInfo, credits, films);
 

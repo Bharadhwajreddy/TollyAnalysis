@@ -9,6 +9,7 @@
  */
 export const EXCLUDED_CREDITS: Record<string, { film: string; reason: string }[]> = {
   "rana-daggubati": [
+    { film: "The Ghazi Attack", reason: "Hindi version of Ghazi, which already counts" },
     { film: "Baahubali: The Beginning", reason: "antagonist role, not a co-lead" },
     { film: "Baahubali 2: The Conclusion", reason: "antagonist role, not a co-lead" },
     { film: "N.T.R: Mahanayakudu", reason: "supporting role (N. Chandrababu Naidu)" },
@@ -43,8 +44,11 @@ export const EXCLUDED_CREDITS: Record<string, { film: string; reason: string }[]
  * every entry; it is applied after the automatic check and before the editorial exclusions above
  * are reported on a hero's page.
  */
-export const INCLUDED_CREDITS: Record<string, { film: string; reason: string }[]> = {
-  "jr-ntr": [{ film: "Janatha Garage", reason: "the title lead; Mohanlal is billed first as a senior star" }],
+export const INCLUDED_CREDITS: Record<string, { film: string; reason: string; alsoReleasedIn?: string }[]> = {
+  "jr-ntr": [
+    { film: "Janatha Garage", reason: "the title lead; Mohanlal is billed first as a senior star" },
+    { film: "War 2 (film)", reason: "co-lead of a Hindi film with Hrithik Roshan, who is billed first" },
+  ],
   prabhas: [{ film: "Kalki 2898 AD", reason: "the lead; Amitabh Bachchan and Kamal Haasan are billed first as senior stars" }],
   nani: [
     { film: "Jersey (2019 film)", reason: "the lead (the filmography notes that he also dubbed for another film)" },
@@ -67,7 +71,10 @@ export const INCLUDED_CREDITS: Record<string, { film: string; reason: string }[]
   "mahesh-babu": [{ film: "Vamsi (film)", reason: "the lead; Krishna is billed first as a senior star" }],
   "naveen-chandra": [{ film: "Lacchimdeviki O Lekkundi", reason: "the male lead; the heroine is billed first" }],
   "raj-tarun": [{ film: "Uyyala Jampala", reason: "the male lead; the heroine is billed first" }],
-  suhas: [{ film: "Uppu Kappurambu", reason: "the male lead; the heroine is billed first" }],
+  suhas: [
+    { film: "Uppu Kappurambu", reason: "the male lead; the heroine is billed first" },
+    { film: "Mandaadi", reason: "a lead of a Tamil film that was also released in Telugu", alsoReleasedIn: "Telugu" },
+  ],
   thiruveer: [{ film: "Masooda", reason: "the male lead; the heroine is billed first" }],
   "uday-kiran": [{ film: "Neeku Nenu Naaku Nuvvu", reason: "the lead; Krishnam Raju is billed first as a senior star" }],
   "sundeep-kishan": [{ film: "Next Enti?", reason: "the male lead; the heroine is billed first" }],
@@ -81,6 +88,7 @@ export const INCLUDED_CREDITS: Record<string, { film: string; reason: string }[]
 /** Marks the editorial includes as lead credits (pure: used by the importer and by scripts/fix-credits.mts). */
 export function applyIncludedCredits(
   credits: { hero: string; film: string; include: boolean; scope: string; excludeReason: string | null; billing?: string; role?: string }[],
+  films?: Map<string, { languages: string[] }>,
 ): number {
   let n = 0;
   for (const [hero, list] of Object.entries(INCLUDED_CREDITS)) {
@@ -93,6 +101,9 @@ export function applyIncludedCredits(
       row.scope = "lead";
       row.excludeReason = null;
       row.billing = `Editorial: ${entry.reason}`;
+      // A film in another language that was also released in Telugu: record the Telugu release.
+      const f = entry.alsoReleasedIn ? films?.get(row.film) : undefined;
+      if (f && entry.alsoReleasedIn && !f.languages.some((l) => l.toLowerCase().includes(entry.alsoReleasedIn!.toLowerCase()))) f.languages.push(entry.alsoReleasedIn);
       n++;
     }
   }

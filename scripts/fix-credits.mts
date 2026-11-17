@@ -19,7 +19,7 @@ import { createGunzip } from "node:zlib";
 import { applyIncludedCredits, EXCLUDED_CREDITS } from "@/lib/constants/editorial";
 import { INITIAL_ROSTER } from "@/lib/constants/roster";
 import { makeBilling, withoutComments } from "@/lib/import/billing";
-import { classifyRole } from "@/lib/import/classify";
+import { classifyRole, isCountedLanguage } from "@/lib/import/classify";
 
 const dry = process.argv.includes("--dry");
 const path = "lib/data/real/snapshot.json";
@@ -55,10 +55,13 @@ for (const c of credits) {
   const editorial = /^Editorial:/.test(c.excludeReason ?? "");
   const wasCameo = c.scope === "cameo";
   const billingExcluded = c.scope === "supporting" && /^(billed #\d+ \(supporting role\)|not listed in the film's starring credits)$/.test(c.excludeReason ?? "");
-  if (editorial || !(billingExcluded || (wasCameo && classifyRole(c.role, c.notes) !== "cameo"))) continue;
+  // Hindi films now count when the hero is the lead: re-check credits dropped only for their language.
+  const languageExcluded = c.scope === "lead" && (/\bfilm$/.test(c.excludeReason ?? "") || c.excludeReason === "not a Telugu film") && /\bhindi\b/i.test(`${c.excludeReason} ${c.notes}`);
+  // (A Tamil version of a bilingual film stays out: its Telugu version already counts.)
+  if (editorial || !(billingExcluded || languageExcluded || (wasCameo && classifyRole(c.role, c.notes) !== "cameo"))) continue;
   // Back to the start of the eligibility checks (steps 5 and 5b of the importer).
   const date = f.releaseDate ?? `${c.year}-07-01`;
-  if (date > TODAY || date < "2000-01-01" || (f.languages.length && !f.languages.some((l) => /telugu/i.test(l)))) continue;
+  if (date > TODAY || date < "2000-01-01" || (f.languages.length && !f.languages.some((l) => isCountedLanguage(l)))) continue;
   if (!f.starring.length) continue;
   const { pos, coLead } = check(c.hero, f.starring);
   c.billing = pos < 0 ? "not in starring list" : `billed #${pos + 1}`;
@@ -84,7 +87,7 @@ for (const c of credits) {
   }
 }
 const before = new Set(credits.filter((c) => c.include).map((c) => `${c.hero}|${c.film}`));
-applyIncludedCredits(credits);
+applyIncludedCredits(credits, films);
 for (const c of credits) if (c.include && !before.has(`${c.hero}|${c.film}`)) changes.push(`+ ${label(c)}  [editorial include]`);
 
 // 5. Undated films from this year on: released only if IMDb shows audience ratings for the hero's matching title.
@@ -126,9 +129,7 @@ const kept = credits.filter((c) => c.include || !counted.has(`${c.hero}|${c.film
 const dropped = credits.length - kept.length;
 snap.credits = kept;
 
-console.log(`starring lists cleaned: ${cleaned}; credits now counted: ${kept.filter((c) => c.include).length}; duplicate rows dropped: ${dropped}`);
+// Save first, so a closed output pipe (e.g. piping into head) can never lose the result.
+if (!dry) writeFileSync(path, JSON.stringify(snap, null, 1) + "\n");
+console.log(`starring lists cleaned: ${cleaned}; credits now counted: ${kept.filter((c) => c.include).length}; duplicate rows dropped: ${dropped}${dry ? " (dry run)" : "; snapshot.json updated"}`);
 for (const l of changes.sort()) console.log(l);
-if (!dry) {
-  writeFileSync(path, JSON.stringify(snap, null, 1) + "\n");
-  console.log("snapshot.json updated");
-}

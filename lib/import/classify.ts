@@ -22,3 +22,10 @@ export function classifyRole(role: string, notes: string): "lead" | "cameo" | "s
 export function looksUnreleased(...parts: string[]) {
   return parts.some((p) => UNRELEASED.test(p));
 }
+
+/**
+ * Languages whose films count: Telugu, and Hindi films where a Telugu hero plays the lead.
+ * Other languages count only through an editorial include (a film also released in Telugu).
+ */
+export const COUNTED_LANGUAGE = /\b(telugu|hindi)\b/i;
+export const isCountedLanguage = (text: string) => COUNTED_LANGUAGE.test(text);

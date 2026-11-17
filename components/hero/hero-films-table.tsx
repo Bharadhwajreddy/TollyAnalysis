@@ -222,7 +222,7 @@ export function HeroFilmsTable({ rows, heroName }: { rows: FilmRowView[]; heroNa
                                   {r.tolly.status === "provisional" ? " · under 2 years old, not counted for the hero yet" : ""}
                                 </>
                               ) : r.tolly.status === "excluded" ? (
-                                "Not a Telugu-language film, so not counted"
+                                "Not a Telugu or Hindi film, so not counted"
                               ) : (
                                 <>Not scored: missing {r.tolly.missing.join(", ")}</>
                               )}

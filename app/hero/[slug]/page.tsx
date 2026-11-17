@@ -283,9 +283,11 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
           ))}
         {hero.debutYear && <Chip>Debut {hero.debutYear}</Chip>}
         {nextFilm && (
-          <Chip>
-            Next: {nextFilm.title.replace(/^unlinked:/, "").replace(/\|\d{4}$/, "")}
-            {nextFilm.year ? ` (${nextFilm.year})` : ""}
+          // Shown only: upcoming films never enter the Tolly Index, the Star Score or any chart.
+          <Chip color={nextFilm.year !== null && nextFilm.year <= new Date().getUTCFullYear() ? "#1f7a3d" : undefined}>
+            {nextFilm.year !== null && nextFilm.year <= new Date().getUTCFullYear() ? "Releasing soon: " : "Next: "}
+            {nextFilm.title.replace(/^unlinked:/, "").replace(/\|\d{4}$/, "").replace(/ \((\d{4} )?(Indian |Telugu )?film\)$/, "")}
+            {nextFilm.year !== null && nextFilm.year > new Date().getUTCFullYear() ? ` (${nextFilm.year})` : ""}
           </Chip>
         )}
         {family && family.key !== "other" && <Chip color={family.color}>{family.label}</Chip>}
