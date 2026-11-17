@@ -127,7 +127,7 @@ export default async function HomePage() {
   return (
     <div className="mx-auto max-w-7xl px-4 pb-4 sm:px-6">
       {/* Banner: the question, a search box, and the answer */}
-      <section aria-labelledby="home-title" className="cinema relative mt-4 overflow-hidden rounded-2xl px-5 pb-0 pt-8 shadow-xl sm:px-10 sm:pt-12">
+      <section aria-labelledby="home-title" className="cinema relative z-10 mt-4 rounded-2xl px-5 pb-0 pt-8 shadow-xl sm:px-10 sm:pt-12">
         <div className="grid items-end gap-8 lg:grid-cols-[1.05fr_1fr]">
           <div className="pb-2 lg:pb-12">
             <p className="rise font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#e8c79c]" style={delay(0)}>

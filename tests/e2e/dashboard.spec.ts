@@ -231,9 +231,21 @@ test.describe("Home page", () => {
 
   test("find your hero opens his page", async ({ page }) => {
     await page.goto("/");
-    await page.getByRole("searchbox", { name: "Find a hero" }).fill("prab");
-    await page.getByRole("list", { name: "Matching heroes" }).getByRole("link", { name: /Prabhas/ }).click();
+    const box = page.getByRole("combobox", { name: "Find a hero" });
+    await box.fill("ra");
+    const list = page.getByRole("listbox", { name: "Matching heroes" });
+    // Every match is visible on screen, not cut off by the banner.
+    const options = list.getByRole("option");
+    await expect(options.nth(4)).toBeInViewport();
+    expect(await options.count()).toBeGreaterThan(4);
+    await box.fill("prab");
+    await list.getByRole("option", { name: /Prabhas/ }).click();
     await expect(page).toHaveURL(/\/hero\/prabhas$/);
+    // Keyboard: arrow down and Enter open a hero.
+    await page.goto("/");
+    await page.getByRole("combobox", { name: "Find a hero" }).fill("nani");
+    await page.keyboard.press("Enter");
+    await expect(page).toHaveURL(/\/hero\/nani$/);
   });
 
   test("the film list opens a film's breakdown and grows to the top 25", async ({ page }) => {
