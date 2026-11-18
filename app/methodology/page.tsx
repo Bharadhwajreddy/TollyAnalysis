@@ -8,9 +8,18 @@ import { Collapsible } from "@/components/ui/collapsible";
 import { DATA_MODE } from "@/lib/env";
 import { tollyIndexEnabled } from "@/lib/features";
 import { getMethodology } from "@/lib/repositories";
+import { breadcrumbJsonLd, faqJsonLd, JsonLd, jsonLdGraph, methodologyFaq, pageMetadata, webPageJsonLd } from "@/lib/seo";
 import { tollyMeta } from "@/lib/tolly/view";
 
-export const metadata: Metadata = { title: "How it works" };
+const METHODOLOGY_DESCRIPTION =
+  "How Tollywood Analysis calculates the Tolly Index and Star Score: all 15 factors, box-office hit and flop rules, lead-credit eligibility and public data sources.";
+
+export const metadata: Metadata = pageMetadata({
+  title: "How It Works — Tolly Index & Star Score Methodology",
+  description: METHODOLOGY_DESCRIPTION,
+  path: "/methodology",
+  keywords: ["Tolly Index formula", "Star Score methodology", "how Telugu box office verdict is calculated", "Tollywood Analysis methodology"],
+});
 
 const MORE = [
   ["/annexure/sources", "Sources and data licences"],
@@ -24,8 +33,26 @@ const MORE = [
 export default async function MethodologyPage() {
   const m = await getMethodology();
   const showTolly = DATA_MODE === "real" && tollyIndexEnabled();
+  const jsonLd = jsonLdGraph(
+    webPageJsonLd({
+      path: "/methodology",
+      name: "How It Works — Tolly Index & Star Score Methodology · Tollywood Analysis",
+      description: METHODOLOGY_DESCRIPTION,
+      dateModified: tollyMeta.asOf,
+      breadcrumb: true,
+    }),
+    breadcrumbJsonLd(
+      [
+        { name: "Home", path: "/" },
+        { name: "How it works", path: "/methodology" },
+      ],
+      "/methodology",
+    ),
+    faqJsonLd(methodologyFaq(DATA_MODE), "/methodology"),
+  );
   return (
     <div className="mx-auto max-w-5xl px-4 sm:px-6">
+      <JsonLd data={jsonLd} />
       <PageHeader title="How it works" subtitle="How the scores are made and where the data comes from." />
 
       {showTolly && (

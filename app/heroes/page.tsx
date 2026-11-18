@@ -4,9 +4,22 @@ import { HeroAvatar } from "@/components/hero/hero-avatar";
 import { FAMILY_GROUPS, groupOf } from "@/lib/constants/groups";
 import { formatMetric } from "@/lib/constants/metrics";
 import { getDashboardData } from "@/lib/repositories";
+import { pageMetadata } from "@/lib/seo";
 import type { HeroView } from "@/lib/view-models";
 
-export const metadata: Metadata = { title: "All heroes" };
+export const metadata: Metadata = pageMetadata({
+  title: "All Telugu Heroes — Filmography, Hits & Flops Directory",
+  description:
+    "Browse every Telugu cinema lead actor profiled on Tollywood Analysis: sort by Star Score, name, total lead films or debut year to inspect hits, flops and box office.",
+  path: "/heroes",
+  keywords: [
+    "Telugu heroes list",
+    "Tollywood actors list",
+    "Telugu heroes hits and flops list",
+    "Telugu cinema lead actors",
+    "Tollywood heroes debut year",
+  ],
+});
 
 const SORTS = {
   star: { label: "Star Score", fn: (a: HeroView, b: HeroView) => (b.m.starScore.v ?? -1) - (a.m.starScore.v ?? -1) },

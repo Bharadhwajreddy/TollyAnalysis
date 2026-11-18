@@ -7,6 +7,7 @@ import { INDUSTRY_COLOR } from "@/lib/constants/colors";
 import { formatMetric, INDUSTRY_LABEL, METRICS } from "@/lib/constants/metrics";
 import type { HeroMetricKey } from "@/lib/calculations/engine";
 import { getHeroFilms, getHeroSnapshots, getMeta, getPerson } from "@/lib/repositories";
+import { getAnnexureHeroSeo, JsonLd } from "@/lib/seo";
 
 export async function generateStaticParams() {
   const snapshots = await getHeroSnapshots("all_time", true);
@@ -15,8 +16,8 @@ export async function generateStaticParams() {
 
 export async function generateMetadata(props: PageProps<"/annexure/heroes/[slug]">): Promise<Metadata> {
   const { slug } = await props.params;
-  const p = await getPerson(slug);
-  return { title: p ? `${p.displayName} · Annexure` : "Hero not found" };
+  const seo = await getAnnexureHeroSeo(slug);
+  return seo ? seo.metadata : { title: "Hero not found", robots: { index: false, follow: false } };
 }
 
 const KEYS: HeroMetricKey[] = ["starScore", "hpi", "filmSuccess", "overallSuccessRatio", "audienceIndex", "consistency", "socialReach", "momentum", "releaseGap", "peakFilms", "filmsPerYear"];
@@ -25,11 +26,12 @@ export default async function HeroDetailPage(props: PageProps<"/annexure/heroes/
   const { slug } = await props.params;
   const person = await getPerson(slug);
   if (!person) notFound();
-  const [films, snapshots, meta] = await Promise.all([getHeroFilms(slug), getHeroSnapshots("all_time", true), getMeta()]);
+  const [films, snapshots, meta, seo] = await Promise.all([getHeroFilms(slug), getHeroSnapshots("all_time", true), getMeta(), getAnnexureHeroSeo(slug)]);
   const snap = snapshots.find((s) => s.slug === slug) ?? null;
 
   return (
     <div>
+      {seo && <JsonLd data={seo.jsonLd} />}
       <p className="text-xs text-muted">
         <Link href="/annexure/heroes" className="hover:text-wine">Hero detail</Link> / {person.displayName}
       </p>

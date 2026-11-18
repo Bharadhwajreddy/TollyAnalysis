@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element -- small local portraits */
+import type { Metadata } from "next";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { Dashboard } from "@/components/dashboard/dashboard";
@@ -16,7 +17,13 @@ import { compactCount } from "@/lib/data/real/hero-facts";
 import { DATA_MODE } from "@/lib/env";
 import { tollyIndexEnabled, userRankingEnabled } from "@/lib/features";
 import { getDashboardData } from "@/lib/repositories";
+import { getHomeSeo, JsonLd } from "@/lib/seo";
 import { getTollyHero, getTollyRanking, getTopTollyFilms, tollyMeta } from "@/lib/tolly/view";
+
+/** Canonical "/", a data-driven "who is No. 1" description, and complete OpenGraph/Twitter blocks. */
+export async function generateMetadata(): Promise<Metadata> {
+  return (await getHomeSeo()).metadata;
+}
 
 const MEDAL = ["#d8a86b", "#c9c2bb", "#c08a5e"];
 const delay = (s: number) => ({ "--d": `${s}s` }) as CSSProperties;
@@ -67,13 +74,18 @@ function Face({ name, thumb, size, ring }: { name: string; thumb: string | null;
 }
 
 export default async function HomePage() {
-  const data = await getDashboardData();
+  const [data, seo] = await Promise.all([getDashboardData(), getHomeSeo()]);
   const all = data.windows.all_time;
 
   // Demo / live data, or the index switched off: the career dashboard is the home page, as before.
   if (!tollyIndexEnabled() || DATA_MODE !== "real") {
     const heroes = all.map((h) => ({ slug: h.slug, name: h.name, photo: h.photo, industry: h.industry }));
-    return <Dashboard data={data}>{userRankingEnabled() && <FanRanking heroes={heroes} />}</Dashboard>;
+    return (
+      <>
+        <JsonLd data={seo.jsonLd} />
+        <Dashboard data={data}>{userRankingEnabled() && <FanRanking heroes={heroes} />}</Dashboard>
+      </>
+    );
   }
 
   const { ranked } = getTollyRanking();
@@ -126,6 +138,7 @@ export default async function HomePage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 pb-4 sm:px-6">
+      <JsonLd data={seo.jsonLd} />
       {/* Banner: the question, a search box, and the answer */}
       <section aria-labelledby="home-title" className="cinema relative z-10 mt-4 rounded-2xl px-5 pb-0 pt-8 shadow-xl sm:px-10 sm:pt-12">
         <div className="grid items-end gap-8 lg:grid-cols-[1.05fr_1fr]">

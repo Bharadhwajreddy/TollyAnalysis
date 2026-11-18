@@ -2,8 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { DemoBadge } from "@/components/ui/badges";
 import { getCoverage, getMeta } from "@/lib/repositories";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Annexure & Sources" };
+export const metadata: Metadata = pageMetadata({
+  title: "Annexure & Sources — Film-by-Film Box Office Evidence",
+  description:
+    "Everything behind Tollywood Analysis: film-by-film box-office evidence, formulas, hero registry, source ledger, data coverage, change log and correction workflow.",
+  path: "/annexure",
+  keywords: ["Tollywood box office sources", "Telugu films verdict evidence", "Tollywood hero registry", "Tollywood Analysis annexure"],
+});
 
 const CARDS = [
   { href: "/annexure/methodology", title: "Methodology", body: "Formulas, weights, thresholds, missing-data rules and the active methodology version." },

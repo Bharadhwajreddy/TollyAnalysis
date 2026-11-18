@@ -9,19 +9,32 @@ import { compactCount } from "@/lib/data/real/hero-facts";
 import { DATA_MODE } from "@/lib/env";
 import { tollyIndexEnabled } from "@/lib/features";
 import { getDashboardData } from "@/lib/repositories";
+import { breadcrumbJsonLd, itemListJsonLd, JsonLd, jsonLdGraph, pageMetadata, tollyIndexEntries, webPageJsonLd } from "@/lib/seo";
 import { getTollyRanking, getTopTollyFilms, tollyMeta } from "@/lib/tolly/view";
 
-export const metadata: Metadata = {
-  title: "Tolly Index",
-  description: "Every Telugu hero scored from 0 to 100 on his films, his box-office record, his fame and his form.",
-};
+const TOLLY_INDEX_DESCRIPTION = `Every Telugu hero scored from 0 to 100 on his films, his box-office record, his fame and his form: ${tollyMeta.heroes.qualified} Tollywood heroes ranked across ${tollyMeta.films.complete.toLocaleString("en-IN")} scored films.`;
+
+export const metadata: Metadata = pageMetadata({
+  title: "Tolly Index — Telugu Hero Ranking (0 to 100)",
+  description: TOLLY_INDEX_DESCRIPTION,
+  path: "/tolly-index",
+  keywords: [
+    "Tolly Index",
+    "Tollywood hero ranking",
+    "Top 10 Telugu heroes ranking",
+    "Who is No 1 hero in Tollywood",
+    "Telugu heroes box office ranking",
+    "Tollywood star power ranking",
+  ],
+});
 
 export default async function TollyIndexPage() {
   if (!tollyIndexEnabled() || DATA_MODE !== "real") notFound();
   const { ranked, unranked } = getTollyRanking();
   const top = getTopTollyFilms(10);
   const m = tollyMeta;
-  const all = (await getDashboardData()).windows.all_time;
+  const [dashboard, entries] = await Promise.all([getDashboardData(), tollyIndexEntries()]);
+  const all = dashboard.windows.all_time;
   const heroBy = new Map(all.map((h) => [h.slug, h]));
   const names = new Map(all.map((h) => [h.slug, h.name]));
   const rows: RankingRow[] = ranked.map((h) => ({
@@ -38,8 +51,32 @@ export default async function TollyIndexPage() {
     followers: h.followers ? compactCount(h.followers.total) : null,
   }));
   const updated = new Date(`${m.asOf}T00:00:00Z`).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+  const jsonLd = jsonLdGraph(
+    webPageJsonLd({
+      path: "/tolly-index",
+      name: "Tolly Index — Telugu Hero Ranking (0 to 100) · Tollywood Analysis",
+      description: TOLLY_INDEX_DESCRIPTION,
+      type: "CollectionPage",
+      dateModified: m.asOf,
+      breadcrumb: true,
+    }),
+    breadcrumbJsonLd(
+      [
+        { name: "Home", path: "/" },
+        { name: "Tolly Index", path: "/tolly-index" },
+      ],
+      "/tolly-index",
+    ),
+    itemListJsonLd({
+      name: `Tolly Index: ${m.heroes.qualified} ranked Telugu heroes (${m.asOf})`,
+      description: "Every qualified Telugu film lead actor ranked from 0 to 100 on audience reception, box-office record, fame and recent form.",
+      path: "/tolly-index",
+      entries,
+    }),
+  );
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6">
+      <JsonLd data={jsonLd} />
       <PageHeader title="Tolly Index" subtitle="Every Telugu hero scored from 0 to 100 on his films, his box-office record, his fame and his form.">
         <p className="mt-2 text-[13px] text-muted">
           Updated {updated} ·{" "}

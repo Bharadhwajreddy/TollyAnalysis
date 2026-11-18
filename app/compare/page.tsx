@@ -2,8 +2,20 @@ import type { Metadata } from "next";
 import { Compare } from "@/components/compare/compare";
 import { PageHeader } from "@/components/layout/page-header";
 import { getDashboardData } from "@/lib/repositories";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Compare heroes" };
+export const metadata: Metadata = pageMetadata({
+  title: "Compare Telugu Heroes Side by Side — Box Office & Hit Ratio",
+  description:
+    "Compare 2 to 4 Tollywood heroes head-to-head across Tolly Index, Star Score, hits and flops, hit percentage, total worldwide gross, biggest film and release pace.",
+  path: "/compare",
+  keywords: [
+    "Compare Telugu heroes",
+    "Tollywood heroes comparison",
+    "Telugu heroes hit percentage comparison",
+    "Tollywood box office head to head",
+  ],
+});
 
 export default async function ComparePage(props: PageProps<"/compare">) {
   const sp = await props.searchParams;

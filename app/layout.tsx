@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { INTRO_GUARD } from "@/lib/intro";
 import { getDashboardData } from "@/lib/repositories";
+import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_LOCALE, SITE_NAME, SITE_TITLE, SITE_URL, THEME_COLOR } from "@/lib/seo";
 import "./globals.css";
 
 // Inter: very legible names and text, with clear, even-height figures for every number.
@@ -13,26 +14,41 @@ const sans = Inter({ variable: "--font-body", subsets: ["latin"], display: "swap
 const playfair = Playfair_Display({ variable: "--font-playfair", subsets: ["latin"], weight: ["600", "700"], display: "swap" });
 const jetbrains = JetBrains_Mono({ variable: "--font-jetbrains", subsets: ["latin"], weight: ["400", "500"], display: "swap" });
 
+/**
+ * Site-wide defaults. Deliberately no `alternates.canonical` and no `openGraph.url` here: metadata merges
+ * shallowly, so a root canonical of "/" would be inherited by every page that sets none and tell search
+ * engines each of them is a duplicate of the home page. Every indexable page sets its own canonical and
+ * OpenGraph block through `pageMetadata()` (lib/seo.ts).
+ */
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tollyanalysis.com"),
-  title: { default: "Tollywood Analysis — Who is Tollywood's biggest hero?", template: "%s · Tollywood Analysis" },
-  description:
-    "Independent, transparent benchmarks of Telugu-cinema lead actors: performance, audience reception, consistency, momentum and release cadence.",
-  alternates: { canonical: "/" },
-  robots: { index: true, follow: true },
+  metadataBase: new URL(SITE_URL),
+  applicationName: SITE_NAME,
+  title: { default: SITE_TITLE, template: `%s · ${SITE_NAME}` },
+  description: SITE_DESCRIPTION,
+  keywords: SITE_KEYWORDS,
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  category: "entertainment",
+  // Box-office figures such as "1,042" must not turn into phone links on iOS.
+  formatDetection: { telephone: false, email: false, address: false },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+  },
   openGraph: {
-    title: "Tollywood Analysis — Who is Tollywood's biggest hero?",
-    description:
-      "Independent, transparent benchmarks of Telugu-cinema lead actors: performance, audience reception, consistency, momentum and release cadence.",
-    url: "https://tollyanalysis.com",
-    siteName: "Tollywood Analysis",
-    locale: "en_IN",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    siteName: SITE_NAME,
+    locale: SITE_LOCALE,
     type: "website",
   },
+  twitter: { card: "summary", title: SITE_TITLE, description: SITE_DESCRIPTION },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f7f3ec",
+  themeColor: THEME_COLOR,
   width: "device-width",
   initialScale: 1,
 };

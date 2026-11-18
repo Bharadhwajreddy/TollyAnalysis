@@ -19,6 +19,7 @@ import { REPORTED_INSTAGRAM } from "@/lib/data/real/reported-social";
 import { getDashboardData, getHeroExcluded, getHeroFilms, getPerson } from "@/lib/repositories";
 import { rankable } from "@/lib/ranking";
 import { tollyIndexEnabled } from "@/lib/features";
+import { getHeroSeo, JsonLd } from "@/lib/seo";
 import { getTollyFilm, getTollyHero, getTollyRanking, tollyMeta } from "@/lib/tolly/view";
 
 export async function generateStaticParams() {
@@ -28,8 +29,8 @@ export async function generateStaticParams() {
 
 export async function generateMetadata(props: PageProps<"/hero/[slug]">): Promise<Metadata> {
   const { slug } = await props.params;
-  const p = await getPerson(slug);
-  return { title: p ? p.displayName : "Hero not found" };
+  const seo = await getHeroSeo(slug);
+  return seo ? seo.metadata : { title: "Hero not found", robots: { index: false, follow: false } };
 }
 
 const SECTIONS: { title: string; keys: HeroMetricKey[] }[] = [
@@ -63,7 +64,7 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
   const { slug } = await props.params;
   const person = await getPerson(slug);
   if (!person) notFound();
-  const [data, films, excluded] = await Promise.all([getDashboardData(), getHeroFilms(slug), getHeroExcluded(slug)]);
+  const [data, films, excluded, seo] = await Promise.all([getDashboardData(), getHeroFilms(slug), getHeroExcluded(slug), getHeroSeo(slug)]);
   const hero = data.windows.all_time.find((h) => h.slug === slug);
   if (!hero) notFound();
   const cohort = data.windows.all_time.filter((h) => !h.isEmerging || h.slug === slug);
@@ -222,6 +223,7 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6">
+      {seo && <JsonLd data={seo.jsonLd} />}
       <div className="pt-5">
         <Link href="/heroes" className="text-sm font-medium text-wine hover:underline">
           ← All heroes
