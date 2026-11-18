@@ -25,6 +25,11 @@ export interface RosterCandidate {
    * counts when he is billed first (never as "second hero").
    */
   strictBilling?: boolean;
+  /**
+   * Heroes from another industry whose films reach Telugu audiences: films in this language count
+   * when there is evidence of a Telugu release (original, bilingual or dubbed); see scripts/fix-credits.mts.
+   */
+  homeLanguage?: "Tamil" | "Malayalam";
 }
 
 /** Actors who moved into character roles; see `strictBilling`. */
@@ -157,6 +162,11 @@ export const INITIAL_ROSTER: RosterCandidate[] = [
   h("srihari", "Srihari", "telugu", 2000, ["Srihari (actor)", "Srihari"], { status: "review", demoEndYear: 2013 }),
   h("aadi-pinisetty", "Aadi Pinisetty", "telugu", 2006, "Aadi Pinisetty"),
   h("mouli-tanuj-prasanth", "Mouli Tanuj Prasanth", "telugu", 2025, "Mouli Tanuj Prasanth", { status: "review", demoFilmCount: 1 }),
+  // Heroes from other industries whose films are released in Telugu (dubbed, bilingual or Telugu originals).
+  h("rajinikanth", "Rajinikanth", "tamil", 2000, "Rajinikanth", { homeLanguage: "Tamil", status: "living_legacy" }),
+  h("suriya", "Suriya", "tamil", 2000, ["Suriya", "Suriya (actor)"], { homeLanguage: "Tamil" }),
+  h("karthi", "Karthi", "tamil", 2007, ["Karthi", "Karthi (actor)"], { homeLanguage: "Tamil" }),
+  h("dulquer-salmaan", "Dulquer Salmaan", "malayalam", 2012, "Dulquer Salmaan", { homeLanguage: "Malayalam" }),
 ];
 
 /** Names that must never appear in the seed roster without a new editorial decision. */

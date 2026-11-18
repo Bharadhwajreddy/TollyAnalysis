@@ -1,6 +1,6 @@
 {
  "source": "Wikidata (CC0)",
- "fetched": "2026-11-06",
+ "fetched": "2026-11-18",
  "heroes": {
   "aadi-saikumar": {
    "birthPlace": "Andhra Pradesh",
@@ -144,6 +144,26 @@
     "Pawan Kalyan"
    ]
   },
+  "dulquer-salmaan": {
+   "birthPlace": "Kochi",
+   "father": "Mammootty",
+   "mother": "Sulfath",
+   "education": [
+    "Mitchell E. Daniels, Jr. School of Business",
+    "Purdue University",
+    "Toc-H Public School"
+   ],
+   "awards": [
+    "Filmfare Award for Best Male Debut – South",
+    "Kerala State Film Award for Best Actor"
+   ],
+   "birthDate": "1983-07-28",
+   "relatives": [
+    "Ashkar Saudan",
+    "Ibrahim Kutty",
+    "Maqbool Salmaan"
+   ]
+  },
   "gopichand": {
    "birthPlace": "Tangutur",
    "father": "T. Krishna",
@@ -189,6 +209,23 @@
    "birthDate": "1978-07-05",
    "siblings": [
     "N. T. Rama Rao Jr."
+   ]
+  },
+  "karthi": {
+   "birthPlace": "Chennai",
+   "father": "Sivakumar",
+   "education": [
+    "B.S. Abdur Rahman Crescent Institute of Science and Technology",
+    "Binghamton University",
+    "St. Bede's Anglo Indian Higher Secondary School"
+   ],
+   "awards": [
+    "Filmfare Awards South"
+   ],
+   "birthDate": "1977-05-25",
+   "siblings": [
+    "Jyothika",
+    "Suriya"
    ]
   },
   "karthikeya": {
@@ -429,6 +466,35 @@
    ],
    "birthDate": "1956-07-19"
   },
+  "rajinikanth": {
+   "birthPlace": "Bengaluru",
+   "father": "Ramoji Rao Gaekwad",
+   "mother": "Jijabai Shahaji Bhosale",
+   "spouse": [
+    "Latha Rajinikanth"
+   ],
+   "children": [
+    "Aishwarya R. Dhanush",
+    "Soundarya Rajinikanth"
+   ],
+   "education": [
+    "Acharya Pathasala Public School",
+    "Adyar Film Institute"
+   ],
+   "awards": [
+    "Dadasaheb Phalke Award",
+    "Filmfare Awards South",
+    "Padma Bhushan",
+    "Padma Vibhushan",
+    "Tamil Nadu State Film Awards"
+   ],
+   "birthDate": "1950-12-12",
+   "siblings": [
+    "Aswath Balubhai",
+    "Nageshwar Rao Gaikwad",
+    "Sathyanarayana Rao Gaikwad"
+   ]
+  },
   "ram-charan": {
    "birthPlace": "Chennai",
    "father": "Chiranjeevi",
@@ -603,6 +669,29 @@
   "sunil": {
    "birthPlace": "Bhimavaram",
    "birthDate": "1974-02-28"
+  },
+  "suriya": {
+   "birthPlace": "Chennai",
+   "father": "Sivakumar",
+   "spouse": [
+    "Jyothika"
+   ],
+   "education": [
+    "Loyola College",
+    "Padma Seshadri Bala Bhavan",
+    "St. Bede's Anglo Indian Higher Secondary School"
+   ],
+   "party": [
+    "Dravida Munnetra Kazhagam",
+    "Dravidar Kazhagam"
+   ],
+   "awards": [
+    "Filmfare Awards South"
+   ],
+   "birthDate": "1975-07-23",
+   "siblings": [
+    "Karthik Siva kumar"
+   ]
   },
   "sushanth": {
    "birthPlace": "India"

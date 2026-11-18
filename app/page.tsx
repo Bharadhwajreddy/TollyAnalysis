@@ -11,7 +11,7 @@ import { TopTen, type TopRow } from "@/components/home/top-ten";
 import { CountUp } from "@/components/ui/count-up";
 import { HomeCharts, type ChartHero } from "@/components/home/home-charts";
 import { FanRanking } from "@/components/ranking/fan-ranking";
-import { GROUPS, groupFact, groupValue } from "@/components/tolly/tolly-parts";
+import { GROUPS, groupFact, groupValue, PROVISIONAL_TIP } from "@/components/tolly/tolly-parts";
 import { compactCount } from "@/lib/data/real/hero-facts";
 import { DATA_MODE } from "@/lib/env";
 import { tollyIndexEnabled, userRankingEnabled } from "@/lib/features";
@@ -108,7 +108,7 @@ export default async function HomePage() {
   });
   const topRows: TopRow[] = top10.map((h) => {
     const v = all.find((x) => x.slug === h.slug);
-    return { slug: h.slug, name: h.name, thumb: thumbs.get(h.slug) ?? null, family: v?.family ?? null, debutYear: v?.debutYear ?? null, rank: h.rank as number, index: h.index as number, best: h.best[0]?.title ?? null };
+    return { slug: h.slug, name: h.name, thumb: thumbs.get(h.slug) ?? null, family: v?.family ?? null, debutYear: v?.debutYear ?? null, rank: h.rank as number, index: h.index as number, best: h.best[0]?.title ?? null, provisional: !!v && v.industry !== "telugu" };
   });
   const duel: DuelHero[] = ranked.map((h) => ({
     slug: h.slug,
@@ -171,6 +171,11 @@ export default async function HomePage() {
                         </span>
                       </span>
                       <span className="mt-2.5 block truncate text-[13.5px] font-semibold text-white sm:text-[16px]">{h.name}</span>
+                      {all.find((x) => x.slug === h.slug)?.industry !== "telugu" && (
+                        <span title={PROVISIONAL_TIP} className="block text-[10px] font-semibold uppercase tracking-wide text-[#f0c98a]">
+                          Provisional
+                        </span>
+                      )}
                       <span className="num block text-[22px] font-extrabold leading-tight sm:text-[30px]" style={{ color: MEDAL[place] }}>
                         {h.index?.toFixed(1)}
                       </span>

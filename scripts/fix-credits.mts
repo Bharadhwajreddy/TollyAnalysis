@@ -9,6 +9,8 @@
  *   4. A film listed twice for one hero keeps only the credit that counts.
  *   5. A film from this year or later with no release date counts only if IMDb already has audience
  *      ratings for it (it is out); otherwise it is treated as not yet released.
+ *   6. Heroes from other industries (homeLanguage in the roster): a Tamil or Malayalam film counts only
+ *      with evidence of a Telugu release: a Telugu title on IMDb or a Telugu Wikipedia article.
  *
  * Usage: npx tsx scripts/fix-credits.mts [--dry]
  * Then:  npm run tolly:update -- <folder> or: tolly:link, tolly:pageviews, tolly:compute, tolly:workbook
@@ -123,9 +125,41 @@ if (undated.length) {
   } else console.log("IMDb cache missing: undated films left as they are (run npm run tolly:all first)");
 }
 
+// 6. Other-industry heroes: keep a home-language film only when it was released in Telugu.
+{
+  const cast = existsSync(".cache/tolly/imdb-cast.json") ? JSON.parse(readFileSync(".cache/tolly/imdb-cast.json", "utf8")) : {};
+  const teluguTitles = new Set<string>(cast.teluguTitles ?? []);
+  const wd = existsSync(".cache/tolly/wikidata.json") ? JSON.parse(readFileSync(".cache/tolly/wikidata.json", "utf8")) : { films: {} };
+  const teArticle = (qid: string | null) => !!(qid && wd.films?.[qid]?.te);
+  const home = new Map(INITIAL_ROSTER.filter((h) => h.homeLanguage).map((h) => [h.slug, h.homeLanguage as string]));
+  const raw = new Map<string, { imdbId: string | null; qid: string | null; teluguRelease?: string }>(snap.films.map((f: { key: string; imdbId: string | null; qid: string | null }) => [f.key, f]));
+  if (!cast.teluguTitles) console.log("IMDb Telugu titles not downloaded yet (run npm run tolly:cast): other-industry films checked on Telugu Wikipedia only");
+  for (const c of credits) {
+    if (!home.has(c.hero) || !c.include) continue;
+    const f = films.get(c.film);
+    const r = raw.get(c.film);
+    if (!f || !r || f.languages.some((l) => isCountedLanguage(l))) continue; // Telugu, bilingual or Hindi: counts as it is
+    if ((r.imdbId && teluguTitles.has(r.imdbId)) || teArticle(r.qid)) {
+      r.teluguRelease = "dubbed";
+      continue;
+    }
+    c.include = false;
+    c.excludeReason = "no Telugu release found";
+    changes.push(`- ${label(c)}  [no Telugu release found]`);
+  }
+}
+
 // 4. One credit per hero and film: drop excluded duplicates of an included credit.
+// A film listed twice in one filmography (two rows) must count once: keep the first counted row.
 const counted = new Set(credits.filter((c) => c.include).map((c) => `${c.hero}|${c.film}`));
-const kept = credits.filter((c) => c.include || !counted.has(`${c.hero}|${c.film}`));
+const seen = new Set<string>();
+const kept = credits.filter((c) => {
+  const k = `${c.hero}|${c.film}`;
+  if (!c.include) return !counted.has(k);
+  if (seen.has(k)) return false;
+  seen.add(k);
+  return true;
+});
 const dropped = credits.length - kept.length;
 snap.credits = kept;
 

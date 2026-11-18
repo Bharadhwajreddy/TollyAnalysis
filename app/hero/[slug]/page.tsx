@@ -167,7 +167,10 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
   const latestYear = latest?.releaseDate ? Number(latest.releaseDate.slice(0, 4)) : 0;
   const otherLanguage = (r: string | null) => /(Hindi|Tamil|Kannada|Malayalam|English|Bengali|Marathi) film/i.exec(r ?? "")?.[1] ?? (/not a Telugu/i.test(r ?? "") ? "another language" : null);
   const newerOther = excluded.find((e) => e.year !== null && e.year >= latestYear && otherLanguage(e.reason) !== null && !/not yet released/i.test(e.reason ?? ""));
-  const nextFilm = [...excluded].filter((e) => /not yet released/i.test(e.reason ?? "")).sort((a, b) => (a.year ?? 9999) - (b.year ?? 9999))[0];
+  // Skip broken table rows that carry markup instead of a title (e.g. scope="row").
+  const nextFilm = [...excluded]
+    .filter((e) => /not yet released/i.test(e.reason ?? "") && !/[="]/.test(e.title))
+    .sort((a, b) => (a.year ?? 9999) - (b.year ?? 9999))[0];
   const first = dated[dated.length - 1];
   const firstHit = [...dated].reverse().find((r) => r.verdict === "hit" || r.verdict === "blockbuster");
   const firstBlockbuster = [...dated].reverse().find((r) => r.verdict === "blockbuster");
@@ -227,7 +230,9 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
       <section className="cinema mt-4 overflow-hidden rounded-2xl">
         <div className="grid lg:grid-cols-[1fr_300px]">
           <div className="px-5 py-7 sm:px-9 sm:py-9">
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#e8c79c]">Telugu film hero</p>
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#e8c79c]">
+              {hero.industry === "telugu" ? "Telugu film hero" : `${hero.industry === "tamil" ? "Tamil" : "Malayalam"} film hero · counts his films released in Telugu`}
+            </p>
             <div className="mt-2 flex flex-wrap items-center gap-3">
               <h1 className="font-serif text-[40px] font-bold leading-none tracking-tight text-white sm:text-[60px]">{hero.name}</h1>
               {data.mode === "demo" && <DemoBadge />}
@@ -349,7 +354,7 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
         </Link>
       </nav>
 
-      {tolly && <TollyHeroCard hero={tolly} rankedCount={tollyRanked} meta={tollyMeta} />}
+      {tolly && <TollyHeroCard hero={tolly} rankedCount={tollyRanked} meta={tollyMeta} provisional={hero.industry !== "telugu"} />}
 
       {/* Star Score breakdown */}
       <section id="star" className="card mt-5 scroll-mt-32 p-4 sm:p-6" aria-labelledby="star-title">

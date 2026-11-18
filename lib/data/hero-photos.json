@@ -510,5 +510,37 @@
     "license": "GFDL",
     "wikiTitle": "Wikidata image (P18)",
     "description": ""
+  },
+  "rajinikanth": {
+    "file": "/heroes/rajinikanth.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Rajinikanth_at_Inauguration_of_MGR_Statue_(cropped).jpg",
+    "author": "Dani Charles, Silverscreen Media Inc. (https://silverscreen.in)",
+    "license": "CC-BY-SA-3.0",
+    "wikiTitle": "Rajinikanth",
+    "description": "Indian actor (born 1950)"
+  },
+  "suriya": {
+    "file": "/heroes/suriya.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Retro_audio_launch_-_Suriya.jpg",
+    "author": "Shiva CK",
+    "license": "CC-BY-SA-4.0",
+    "wikiTitle": "Suriya",
+    "description": "Indian actor and film producer (born 1975)"
+  },
+  "karthi": {
+    "file": "/heroes/karthi.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Karthi_Sivakumar_at_Nenjil_Thunivirunthal_Audio_Launch_(cropped).jpg",
+    "author": "Sriram Narasimhan Silverscreen Media Inc. (https://silverscreen.in)",
+    "license": "CC-BY-SA-3.0",
+    "wikiTitle": "Karthi",
+    "description": "Indian actor (born 1977)"
+  },
+  "dulquer-salmaan": {
+    "file": "/heroes/dulquer-salmaan.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Dulquer_promoting_Zoya_Factor_cropped.jpg",
+    "author": "Bollywood Hungama",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Dulquer Salmaan",
+    "description": "Indian actor, playback singer and producer (born 1983)"
   }
 }

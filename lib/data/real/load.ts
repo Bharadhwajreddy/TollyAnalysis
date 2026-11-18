@@ -123,7 +123,7 @@ export function buildRealDataset(): Dataset {
       id: `p-${h.slug}`,
       slug: h.slug,
       displayName: roster.get(h.slug)!.name,
-      industry: "telugu",
+      industry: roster.get(h.slug)!.industry,
       status: roster.get(h.slug)!.status,
       visibility: "public",
       tmdbPersonId: null,
@@ -147,7 +147,10 @@ export function buildRealDataset(): Dataset {
     const date = f.releaseDate ?? `${f.year}-07-01`;
     // Telugu films, and Hindi films where the hero is the lead (see lib/import/classify.ts).
     const isTelugu = !f.languages.length || f.languages.some((l) => /telugu/i.test(l));
-    const counted = isTelugu || f.languages.some((l) => isCountedLanguage(l));
+    // A Tamil or Malayalam film of a hero from another industry counts once its Telugu release is
+    // confirmed (scripts/fix-credits.mts sets teluguRelease: "dubbed").
+    const dubbed = !isTelugu && (f as { teluguRelease?: string }).teluguRelease === "dubbed";
+    const counted = isTelugu || dubbed || f.languages.some((l) => isCountedLanguage(l));
     const firstBilling = credits.find((c) => c.include)?.billing ?? credits[0]?.billing ?? null;
     films.push({
       id: filmId(f.key),
@@ -158,6 +161,8 @@ export function buildRealDataset(): Dataset {
       featureType: "feature",
       status: date <= snap.generatedAt.slice(0, 10) ? "released" : "upcoming",
       teluguRelease: {
+        // Counted as the hero's own original release: for heroes from other industries the box office
+        // is the film's overall result (Telugu-dub-only figures are almost never reported).
         releaseType: "original",
         releaseDate: date,
         route: f.route === "ott" ? "ott" : "theatrical",

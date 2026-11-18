@@ -2,10 +2,10 @@ import Link from "next/link";
 import { compactCount } from "@/lib/data/real/hero-facts";
 import { HERO_FACTORS } from "@/lib/tolly";
 import type { TollyHeroView, TollyMeta } from "@/lib/tolly/view";
-import { GROUPS, groupValue, IndexValue, kpiFact, PILLARS, PillarBar } from "./tolly-parts";
+import { GROUPS, groupValue, IndexValue, kpiFact, PILLARS, PillarBar, PROVISIONAL_TIP } from "./tolly-parts";
 
 /** The hero page's Tolly Index section: the score, its five groups, every number behind it, and the films holding him back. */
-export function TollyHeroCard({ hero, rankedCount, meta }: { hero: TollyHeroView; rankedCount: number; meta: TollyMeta }) {
+export function TollyHeroCard({ hero, rankedCount, meta, provisional = false }: { hero: TollyHeroView; rankedCount: number; meta: TollyMeta; provisional?: boolean }) {
   const share = hero.judged ? Math.round((hero.complete / hero.judged) * 100) : 0;
   return (
     <section id="tolly" className="card mt-5 scroll-mt-32 p-4 sm:p-6" aria-labelledby="tolly-title">
@@ -30,6 +30,7 @@ export function TollyHeroCard({ hero, rankedCount, meta }: { hero: TollyHeroView
                 #{hero.rank} of {rankedCount} heroes
               </p>
               <p className="mt-1 text-[12px] text-muted">± shows how sure we are.</p>
+              {provisional && <p className="mt-2 rounded-md bg-gold-soft px-2 py-1.5 text-[12px] text-warn">{PROVISIONAL_TIP}</p>}
             </>
           ) : (
             <>

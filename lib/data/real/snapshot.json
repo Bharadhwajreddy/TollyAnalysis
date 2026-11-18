@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-17T22:23:05.632Z",
+ "generatedAt": "2026-11-18T21:29:22.923Z",
  "sources": {
   "wikipedia": "https://en.wikipedia.org (CC BY-SA 4.0)",
   "wikidata": "https://www.wikidata.org (CC0)"
@@ -344,7 +344,7 @@
    "article": "Sumanth",
    "filmographyPage": null,
    "debutYear": 1999,
-   "birthDate": "1975-02-09",
+   "birthDate": "1976-02-09",
    "image": null,
    "social": {
     "x": {
@@ -1428,6 +1428,94 @@
     "youtube": null,
     "youtubeSubscribers": null
    }
+  },
+  {
+   "slug": "rajinikanth",
+   "name": "Rajinikanth",
+   "qid": "Q60068",
+   "article": "Rajinikanth",
+   "filmographyPage": "Rajinikanth filmography",
+   "debutYear": 1975,
+   "birthDate": "1950-12-12",
+   "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Rajinikanth%20Felicitates%20Writer%20Kalaignanam.jpg",
+   "social": {
+    "x": {
+     "followers": 6378057,
+     "date": "2023-02-05",
+     "username": "Rajinikanth"
+    },
+    "instagram": {
+     "followers": null,
+     "date": null,
+     "username": "rajinikanth"
+    },
+    "youtube": null,
+    "youtubeSubscribers": null
+   }
+  },
+  {
+   "slug": "suriya",
+   "name": "Suriya",
+   "qid": "Q3345518",
+   "article": "Suriya",
+   "filmographyPage": "Suriya filmography",
+   "debutYear": 1997,
+   "birthDate": "1975-07-23",
+   "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Soorya%20sivakumar.jpg",
+   "social": {
+    "x": {
+     "followers": 8562268,
+     "date": "2023-02-03",
+     "username": "Suriya_offl"
+    },
+    "instagram": {
+     "followers": null,
+     "date": null,
+     "username": "actorsuriya"
+    },
+    "youtube": null,
+    "youtubeSubscribers": null
+   }
+  },
+  {
+   "slug": "karthi",
+   "name": "Karthi",
+   "qid": "Q3534361",
+   "article": "Karthi",
+   "filmographyPage": null,
+   "debutYear": 2007,
+   "birthDate": "1977-05-25",
+   "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Karthi%20Sivakumar%20%28cropped%29.jpg",
+   "social": {
+    "x": null,
+    "instagram": null,
+    "youtube": null,
+    "youtubeSubscribers": null
+   }
+  },
+  {
+   "slug": "dulquer-salmaan",
+   "name": "Dulquer Salmaan",
+   "qid": "Q1105021",
+   "article": "Dulquer Salmaan",
+   "filmographyPage": "Dulquer Salmaan filmography",
+   "debutYear": 2012,
+   "birthDate": "1983-07-28",
+   "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Dulquer%20Salmaan%20at%20Karwaan%20promotions%20%28cropped%29.jpg",
+   "social": {
+    "x": {
+     "followers": 2446212,
+     "date": "2023-02-09",
+     "username": "dulQuer"
+    },
+    "instagram": {
+     "followers": null,
+     "date": null,
+     "username": "dqsalmaan"
+    },
+    "youtube": null,
+    "youtubeSubscribers": null
+   }
   }
  ],
  "films": [
@@ -1931,8 +2019,8 @@
    "music": "M. M. Keeravani",
    "runtimeMin": 158,
    "genres": [
-    "action film",
     "fantasy film",
+    "action film",
     "romance film",
     "musical film"
    ],
@@ -2394,8 +2482,8 @@
    "runtimeMin": 147,
    "genres": [
     "drama film",
-    "romance film",
     "action film",
+    "romance film",
     "thriller film"
    ],
    "imdbId": "tt1582637",
@@ -2606,8 +2694,8 @@
    "music": "A. R. Rahman",
    "runtimeMin": 167,
    "genres": [
-    "action-adventure film",
-    "historical fiction"
+    "historical fiction",
+    "action-adventure film"
    ],
    "imdbId": "tt10701074",
    "qid": "Q108940413",
@@ -3164,8 +3252,8 @@
    "runtimeMin": 164,
    "genres": [
     "action film",
-    "romance film",
-    "romantic comedy"
+    "romantic comedy",
+    "romance film"
    ],
    "imdbId": "tt1318035",
    "qid": "Q7403845",
@@ -3628,7 +3716,9 @@
     "Suriya",
     "Aparna Balamurali",
     "Paresh Rawal"
-   ]
+   ],
+   "route": "ott",
+   "teluguRelease": "dubbed"
   },
   {
    "key": "Vamsoddharakudu",
@@ -4810,9 +4900,9 @@
    "music": "Thaman S.",
    "runtimeMin": 165,
    "genres": [
+    "fantasy film",
     "action thriller",
-    "action-adventure film",
-    "fantasy film"
+    "action-adventure film"
    ],
    "imdbId": "tt15387182",
    "qid": "Q136514093",
@@ -6237,8 +6327,8 @@
    "music": "Chaitan Bharadwaj",
    "runtimeMin": 152,
    "genres": [
-    "romantic comedy film",
-    "comedy drama"
+    "comedy drama",
+    "romantic comedy film"
    ],
    "imdbId": "tt10076106",
    "qid": "Q63952867",
@@ -6486,7 +6576,8 @@
     "Shruti Haasan",
     "Sathyaraj",
     "Rachita Ram"
-   ]
+   ],
+   "teluguRelease": "dubbed"
   },
   {
    "key": "King 100",
@@ -10056,8 +10147,8 @@
    "music": "Parthasaradhi",
    "runtimeMin": 158,
    "genres": [
-    "biographical film",
-    "crime film"
+    "crime film",
+    "biographical film"
    ],
    "imdbId": "tt3371380",
    "qid": "Q6963211",
@@ -11969,7 +12060,8 @@
     "Anushka Shetty",
     "Sonakshi Sinha",
     "Jagapathi Babu"
-   ]
+   ],
+   "teluguRelease": "dubbed"
   },
   {
    "key": "Jaguar (2016 film)",
@@ -12352,7 +12444,8 @@
     "Nayanthara",
     "Keerthy Suresh",
     "Jagapathi Babu"
-   ]
+   ],
+   "teluguRelease": "dubbed"
   },
   {
    "key": "Madhagaja",
@@ -16263,8 +16356,8 @@
    "music": "Mani Sharma",
    "runtimeMin": 164,
    "genres": [
-    "action film",
     "fantasy film",
+    "action film",
     "comedy film"
    ],
    "imdbId": "tt1582519",
@@ -16498,8 +16591,8 @@
    "releaseDate": "2017-09-27",
    "dateApproximate": false,
    "languages": [
-    "Tamil",
-    "Telugu"
+    "Telugu",
+    "Tamil"
    ],
    "director": "A. R. Murugadoss",
    "music": "Harris Jayaraj",
@@ -16663,8 +16756,8 @@
    "runtimeMin": null,
    "genres": [
     "action film",
-    "epic film",
-    "adventure film"
+    "adventure film",
+    "epic film"
    ],
    "imdbId": "tt21438726",
    "qid": "Q133231406",
@@ -17295,9 +17388,9 @@
    "music": "M. M. Keeravani",
    "runtimeMin": 171,
    "genres": [
-    "action film",
     "drama film",
-    "fantasy film"
+    "fantasy film",
+    "action film"
    ],
    "imdbId": "tt4849438",
    "qid": "Q21001674",
@@ -17380,8 +17473,8 @@
    "releaseDate": "2023-06-16",
    "dateApproximate": false,
    "languages": [
-    "Telugu",
-    "Hindi"
+    "Hindi",
+    "Telugu"
    ],
    "director": "Om Raut",
    "music": null,
@@ -17423,8 +17516,8 @@
    "music": "Santhosh Narayanan",
    "runtimeMin": 181,
    "genres": [
-    "dystopian film",
-    "science fiction film"
+    "science fiction film",
+    "dystopian film"
    ],
    "imdbId": "tt12735488",
    "qid": "Q112430183",
@@ -17881,8 +17974,8 @@
    "genres": [
     "drama film",
     "action film",
-    "horror film",
-    "thriller film"
+    "comedy film",
+    "horror film"
    ],
    "imdbId": "tt0375066",
    "qid": "Q7517709",
@@ -18164,8 +18257,8 @@
    "music": "Devi Sri Prasad",
    "runtimeMin": 150,
    "genres": [
-    "comedy film",
     "action film",
+    "comedy film",
     "thriller film"
    ],
    "imdbId": "tt1582466",
@@ -18281,8 +18374,8 @@
    "music": "Mani Sharma",
    "runtimeMin": 158,
    "genres": [
-    "fantasy film",
-    "action film"
+    "action film",
+    "fantasy film"
    ],
    "imdbId": "tt1736647",
    "qid": "Q13010360",
@@ -18313,8 +18406,8 @@
    "music": "Devi Sri Prasad",
    "runtimeMin": 162,
    "genres": [
-    "comedy film",
-    "action film"
+    "action film",
+    "comedy film"
    ],
    "imdbId": "tt1890493",
    "qid": "Q3764194",
@@ -18390,9 +18483,9 @@
    "music": "S. Thaman",
    "runtimeMin": 164,
    "genres": [
-    "comedy film",
     "action film",
     "horror film",
+    "comedy film",
     "crime film"
    ],
    "imdbId": "tt2204243",
@@ -19056,8 +19149,8 @@
    "music": "Devi Sri Prasad",
    "runtimeMin": 152,
    "genres": [
-    "comedy film",
     "action film",
+    "comedy film",
     "heist film"
    ],
    "imdbId": "tt2330927",
@@ -19152,8 +19245,8 @@
    "music": "Devi Sri Prasad",
    "runtimeMin": 166,
    "genres": [
-    "comedy film",
-    "action film"
+    "action film",
+    "comedy film"
    ],
    "imdbId": "tt2211173",
    "qid": "Q8053079",
@@ -19191,8 +19284,8 @@
    "music": "S. Thaman",
    "runtimeMin": 163,
    "genres": [
-    "action comedy film",
     "Masala film",
+    "action comedy film",
     "romantic comedy film"
    ],
    "imdbId": "tt3142764",
@@ -20008,8 +20101,8 @@
    "music": "M. M. Keeravani",
    "runtimeMin": null,
    "genres": [
-    "romance film",
-    "romantic comedy film"
+    "romantic comedy film",
+    "romance film"
    ],
    "imdbId": "tt2363161",
    "qid": "Q5347004",
@@ -20913,8 +21006,8 @@
    "music": "Vijay Antony",
    "runtimeMin": 155,
    "genres": [
-    "comedy film",
-    "fantasy film"
+    "fantasy film",
+    "comedy film"
    ],
    "imdbId": "tt2304573",
    "qid": "Q15703991",
@@ -27198,8 +27291,8 @@
    "runtimeMin": null,
    "genres": [
     "romance film",
-    "romantic comedy",
-    "musical film"
+    "musical film",
+    "romantic comedy"
    ],
    "imdbId": "tt1606320",
    "qid": "Q7246495",
@@ -31662,8 +31755,8 @@
    "music": "Devi Sri Prasad",
    "runtimeMin": 175,
    "genres": [
-    "action comedy film",
-    "romantic comedy film"
+    "romantic comedy film",
+    "action comedy film"
    ],
    "imdbId": "tt1156516",
    "qid": "Q7300646",
@@ -33652,8 +33745,8 @@
    "music": "Anirudh Ravichander",
    "runtimeMin": 165,
    "genres": [
-    "comedy film",
-    "action film"
+    "action film",
+    "comedy film"
    ],
    "imdbId": "tt11663228",
    "qid": "Q113625011",
@@ -33682,7 +33775,8 @@
     "Vasanth Ravi",
     "Yogi Babu",
     "Mirnaa"
-   ]
+   ],
+   "teluguRelease": "dubbed"
   },
   {
    "key": "Mark Antony (2023 film)",
@@ -33743,7 +33837,8 @@
    "starring": [
     "Karthi",
     "Anu Emmanuel"
-   ]
+   ],
+   "teluguRelease": "dubbed"
   },
   {
    "key": "Turbo (2024 film)",
@@ -35277,7 +35372,12 @@
    "qid": "Q4694725",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Listed as \"Flop\" in the blog's Nithiin filmography.",
+    "source": "trade-blog",
+    "url": "https://www.mtwikiblog.com/p/nithiin-filmography.html"
+   },
    "starring": [
     "Nithiin",
     "Priyanka Kothari",
@@ -37268,8 +37368,8 @@
    "music": "Sam C. S.",
    "runtimeMin": 155,
    "genres": [
-    "neo-noir",
-    "action film"
+    "action film",
+    "neo-noir"
    ],
    "imdbId": "tt15309808",
    "qid": "Q116452897",
@@ -38454,8 +38554,8 @@
    "music": "M. M. Keeravani",
    "runtimeMin": 134,
    "genres": [
-    "action film",
     "drama film",
+    "action film",
     "fantasy film",
     "science fiction film"
    ],
@@ -39746,9 +39846,9 @@
    "runtimeMin": 118,
    "genres": [
     "drama film",
+    "adventure film",
     "comedy film",
-    "musical film",
-    "adventure film"
+    "musical film"
    ],
    "imdbId": "tt6105098",
    "qid": "Q27044293",
@@ -39918,8 +40018,8 @@
    "music": "Pradeep Koneru Vikram Negi Bapi-Tutul Amar Mohile",
    "runtimeMin": null,
    "genres": [
-    "action film",
-    "drama film"
+    "drama film",
+    "action film"
    ],
    "imdbId": "tt2071418",
    "qid": "Q4881540",
@@ -41681,7 +41781,8 @@
     "Manju Warrier",
     "Ritika Singh",
     "Dushara Vijayan"
-   ]
+   ],
+   "teluguRelease": "dubbed"
   },
   {
    "key": "Kaantha",
@@ -41979,8 +42080,8 @@
    "runtimeMin": 146,
    "genres": [
     "drama film",
-    "biographical film",
-    "action film"
+    "action film",
+    "biographical film"
    ],
    "imdbId": "tt9851854",
    "qid": "Q104608137",
@@ -46611,8 +46712,8 @@
    "music": "Jeevan Babu",
    "runtimeMin": 130,
    "genres": [
-    "comedy horror",
-    "romance film"
+    "romance film",
+    "comedy horror"
    ],
    "imdbId": "tt2971414",
    "qid": "Q7240193",
@@ -48845,10 +48946,10 @@
    "music": "Alan Menken",
    "runtimeMin": 128,
    "genres": [
-    "fantasy film",
     "action film",
-    "adventure film",
-    "musical film"
+    "fantasy film",
+    "romance film",
+    "adventure film"
    ],
    "imdbId": "tt6139732",
    "qid": "Q27188178",
@@ -50856,8 +50957,8 @@
    "genres": [
     "drama film",
     "action film",
-    "sport film",
-    "romance film"
+    "romance film",
+    "sport film"
    ],
    "imdbId": "tt4435072",
    "qid": "Q104904706",
@@ -51014,9 +51115,9 @@
    "music": "S. Thaman",
    "runtimeMin": 145,
    "genres": [
-    "romance",
+    "romance film",
     "romantic comedy",
-    "romance film"
+    "romance"
    ],
    "imdbId": "tt9021092",
    "qid": "Q60738449",
@@ -54010,7 +54111,8 @@
     "Karthik (actor)",
     "Ramya Krishnan",
     "Keerthy Suresh"
-   ]
+   ],
+   "teluguRelease": "dubbed"
   },
   {
    "key": "Frozen 2",
@@ -54026,8 +54128,8 @@
    "music": null,
    "runtimeMin": 103,
    "genres": [
-    "drama film",
     "fantasy film",
+    "drama film",
     "adventure film",
     "musical film"
    ],
@@ -56691,6 +56793,4530 @@
    "gross": null,
    "verdict": null,
    "starring": []
+  },
+  {
+   "key": "Bulandi (2000 film)",
+   "article": "Bulandi (2000 film)",
+   "title": "Bulandi",
+   "year": 2000,
+   "releaseDate": "2000-01-07",
+   "dateApproximate": false,
+   "languages": [
+    "Hindi"
+   ],
+   "director": "T. Rama Rao",
+   "music": "Viju Shah",
+   "runtimeMin": 175,
+   "genres": [
+    "action film",
+    "drama film"
+   ],
+   "imdbId": "tt0230055",
+   "qid": "Q4987214",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Anil Kapoor",
+    "Rekha",
+    "Raveena Tandon"
+   ]
+  },
+  {
+   "key": "Baba (2002 film)",
+   "article": "Baba (2002 film)",
+   "title": "Baba",
+   "year": 2002,
+   "releaseDate": "2002-08-15",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Suresh Krissna",
+   "music": "A. R. Rahman",
+   "runtimeMin": 178,
+   "genres": [
+    "fantasy film"
+   ],
+   "imdbId": "tt0326746",
+   "qid": "Q4837250",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "First released in 2002 with more than 100 days in theatres, the film was met with mixed critical reviews and was a box-office failure, resulting in Rajinikanth reimbursing distributors for their losses.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Baba_(2002_film)"
+   },
+   "starring": [
+    "Rajinikanth",
+    "Manisha Koirala"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Chandramukhi",
+   "article": "Chandramukhi",
+   "title": "Chandramukhi",
+   "year": 2005,
+   "releaseDate": "2005-04-14",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "P. Vasu",
+   "music": "Vidyasagar",
+   "runtimeMin": 167,
+   "genres": [
+    "comedy film",
+    "horror film",
+    "comedy horror",
+    "speculative fiction film"
+   ],
+   "imdbId": "tt0449869",
+   "qid": "Q1193810",
+   "budget": {
+    "low": 19,
+    "high": 19,
+    "text": "₹19 crore"
+   },
+   "gross": {
+    "low": 60,
+    "high": 90,
+    "text": "₹60–90 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Chandramukhi was a box office success, selling 20 million tickets worldwide and earning 150 million in salary and profit share for Rajinikanth.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Chandramukhi"
+   },
+   "starring": [
+    "Rajinikanth",
+    "Prabhu",
+    "Jyothika"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Sivaji: The Boss",
+   "article": "Sivaji: The Boss",
+   "title": "Sivaji: The Boss",
+   "year": 2007,
+   "releaseDate": "2007-06-14",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil",
+    "Telugu"
+   ],
+   "director": "Shankar",
+   "music": "A. R. Rahman",
+   "runtimeMin": 188,
+   "genres": [
+    "action film",
+    "political thriller film"
+   ],
+   "imdbId": "tt0479751",
+   "qid": "Q763144",
+   "budget": {
+    "low": 60,
+    "high": 60,
+    "text": "₹60 crore"
+   },
+   "gross": {
+    "low": 150,
+    "high": 150,
+    "text": "₹150 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Released on 15 June 2007, Sivaji received positive reviews from critics and became a commercial success by grossing ₹125-160 crore worldwide.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Sivaji%3A_The_Boss"
+   },
+   "starring": [
+    "Rajinikanth",
+    "Shriya Saran",
+    "Vivek (actor)",
+    "Suman (actor)"
+   ]
+  },
+  {
+   "key": "Kuselan",
+   "article": "Kuselan",
+   "title": "Kuselan",
+   "year": 2008,
+   "releaseDate": "2008-08-01",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil",
+    "Telugu"
+   ],
+   "director": "P. Vasu",
+   "music": "G. V. Prakash Kumar",
+   "runtimeMin": 159,
+   "genres": [],
+   "imdbId": "tt1273218",
+   "qid": "Q3523843",
+   "budget": {
+    "low": 15,
+    "high": 15,
+    "text": "₹15 crore"
+   },
+   "gross": {
+    "low": 8,
+    "high": 8,
+    "text": "₹8 crore"
+   },
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "The film was still labelled as a \"colossal flop\".",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Kuselan"
+   },
+   "starring": [
+    "Rajinikanth",
+    "Pasupathy",
+    "Meena (actress)"
+   ]
+  },
+  {
+   "key": "Enthiran",
+   "article": "Enthiran",
+   "title": "Enthiran",
+   "year": 2010,
+   "releaseDate": "2010-10-01",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Shankar",
+   "music": "A. R. Rahman",
+   "runtimeMin": 180,
+   "genres": [
+    "comedy film",
+    "superhero film"
+   ],
+   "imdbId": "tt1305797",
+   "qid": "Q283490",
+   "budget": {
+    "low": 132,
+    "high": 150,
+    "text": "₹132–150 crore"
+   },
+   "gross": {
+    "low": 283,
+    "high": 320,
+    "text": "₹283–320 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "It is currently 16th highest-grossing Tamil film worldwide.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Enthiran"
+   },
+   "starring": [
+    "Rajinikanth",
+    "Aishwarya Rai Bachchan",
+    "Danny Denzongpa"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Ra.One",
+   "article": "Ra.One",
+   "title": "Ra.One",
+   "year": 2011,
+   "releaseDate": "2011-10-24",
+   "dateApproximate": false,
+   "languages": [
+    "Hindi"
+   ],
+   "director": "Anubhav Sinha",
+   "music": "Vishal–Shekhar",
+   "runtimeMin": 156,
+   "genres": [
+    "comedy film",
+    "cyberpunk",
+    "science fiction film",
+    "superhero film"
+   ],
+   "imdbId": "tt1562871",
+   "qid": "Q284184",
+   "budget": {
+    "low": 120,
+    "high": 150,
+    "text": "₹120–150 crore"
+   },
+   "gross": {
+    "low": 207,
+    "high": 207,
+    "text": "₹207 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film also earned more than worldwide against a budget of , and was a commercial success.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Ra.One"
+   },
+   "starring": [
+    "Shah Rukh Khan",
+    "Arjun Rampal",
+    "Kareena Kapoor",
+    "Armaan Verma"
+   ]
+  },
+  {
+   "key": "Kochadaiiyaan",
+   "article": "Kochadaiiyaan",
+   "title": "Kochadaiiyaan",
+   "year": 2014,
+   "releaseDate": "2014-05-23",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Soundarya Rajinikanth",
+   "music": "A. R. Rahman",
+   "runtimeMin": 124,
+   "genres": [
+    "fantasy film",
+    "action film",
+    "biographical film",
+    "adventure film"
+   ],
+   "imdbId": "tt2339505",
+   "qid": "Q6424778",
+   "budget": {
+    "low": 125,
+    "high": 125,
+    "text": "₹125 crore"
+   },
+   "gross": {
+    "low": 85,
+    "high": 85,
+    "text": "₹85 crores"
+   },
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "The film was declared a hit at the box office in Tamil, while the Telugu version settled with an average verdict, and the Hindi and remaining versions being declared as failures. it had bumper opening weekend and grossed but the hype slowly faded and the film eventually bombed at",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Kochadaiiyaan"
+   },
+   "starring": [
+    "Rajinikanth",
+    "Deepika Padukone"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Kabali",
+   "article": "Kabali",
+   "title": "Kabali",
+   "year": 2016,
+   "releaseDate": "2016-07-21",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Pa. Ranjith",
+   "music": "Santhosh Narayanan",
+   "runtimeMin": 150,
+   "genres": [
+    "gangster film"
+   ],
+   "imdbId": "tt5071886",
+   "qid": "Q20900127",
+   "budget": {
+    "low": 100,
+    "high": 100,
+    "text": "₹100 crore"
+   },
+   "gross": {
+    "low": 320,
+    "high": 320,
+    "text": "₹320 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The movie became the highest grossing Tamil movie of 2016, highest grossing South Indian movie of 2016 and 3rd highest grossing Indian movie of 2016.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Kabali"
+   },
+   "starring": [
+    "Rajinikanth",
+    "Radhika Apte",
+    "Winston Chao",
+    "Sai Dhanshika"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Cinema Veeran",
+   "article": "Cinema Veeran",
+   "title": "Cinema Veeran",
+   "year": 2017,
+   "releaseDate": "2017-06-21",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Aishwarya Rajinikanth",
+   "music": "Score: A. R. Rahman Qutub-E-Kripa",
+   "runtimeMin": 51,
+   "genres": [
+    "documentary film"
+   ],
+   "imdbId": "tt18556266",
+   "qid": "Q85752482",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": []
+  },
+  {
+   "key": "Kaala (2018 film)",
+   "article": "Kaala (2018 film)",
+   "title": "Kaala",
+   "year": 2018,
+   "releaseDate": "2018-06-06",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Pa. Ranjith",
+   "music": "Santhosh Narayanan",
+   "runtimeMin": 159,
+   "genres": [
+    "crime film",
+    "action film"
+   ],
+   "imdbId": "tt6929642",
+   "qid": "Q30048306",
+   "budget": {
+    "low": 140,
+    "high": 140,
+    "text": "₹140 crore"
+   },
+   "gross": {
+    "low": 159.6,
+    "high": 159.6,
+    "text": "₹159.6 crore"
+   },
+   "verdict": {
+    "verdict": "average",
+    "sentence": "The film grossed and was average at the box office.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Kaala_(2018_film)"
+   },
+   "starring": [
+    "Rajinikanth",
+    "Nana Patekar",
+    "Samuthirakani",
+    "Easwari Rao",
+    "Huma Qureshi",
+    "Pankaj Tripathi"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "2.0 (film)",
+   "article": "2.0 (film)",
+   "title": "2.0",
+   "year": 2018,
+   "releaseDate": "2018-11-29",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Shankar",
+   "music": "A. R. Rahman",
+   "runtimeMin": 147,
+   "genres": [
+    "techno-thriller",
+    "superhero film"
+   ],
+   "imdbId": "tt5080556",
+   "qid": "Q21095433",
+   "budget": {
+    "low": 400,
+    "high": 600,
+    "text": "₹400–600 crore"
+   },
+   "gross": {
+    "low": 699,
+    "high": 800,
+    "text": "₹699–800 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Indian scientists and wildlife experts, too, called out the conspiracy theory, which forms the core idea of the film. 2.0 became the highest-grossing Indian film of 2018 and second highest-grossing Tamil film of all time.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/2.0_(film)"
+   },
+   "starring": [
+    "Rajinikanth",
+    "Akshay Kumar",
+    "Amy Jackson"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Petta (film)",
+   "article": "Petta (film)",
+   "title": "Petta",
+   "year": 2019,
+   "releaseDate": "2019-01-10",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Karthik Subbaraj",
+   "music": "Anirudh Ravichander",
+   "runtimeMin": 170,
+   "genres": [
+    "action film"
+   ],
+   "imdbId": "tt8959820",
+   "qid": "Q56523863",
+   "budget": {
+    "low": 160,
+    "high": 160,
+    "text": "₹160 crore"
+   },
+   "gross": {
+    "low": 220,
+    "high": 240,
+    "text": "₹220–240 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film grossed over 200 crore against a budget of 160 crore, thus becoming one of the highest-grossing Tamil films of all time and the second highest-grossing Tamil film of 2019.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Petta_(film)"
+   },
+   "starring": [
+    "Rajinikanth",
+    "Vijay Sethupathi",
+    "Nawazuddin Siddiqui",
+    "M. Sasikumar",
+    "Simran (actress)",
+    "Trisha Krishnan"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Darbar (film)",
+   "article": "Darbar (film)",
+   "title": "Darbar",
+   "year": 2020,
+   "releaseDate": "2020-01-09",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "AR Murugadoss",
+   "music": "Anirudh Ravichander",
+   "runtimeMin": 159,
+   "genres": [
+    "action film"
+   ],
+   "imdbId": "tt9635540",
+   "qid": "Q63064236",
+   "budget": {
+    "low": 190,
+    "high": 240,
+    "text": "₹190–240 crore"
+   },
+   "gross": {
+    "low": 250,
+    "high": 250,
+    "text": "₹250 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film met with mixed reviews upon release with praise for Rajinikanth’s performance and grossed 250 crore at the box office, making it the highest-grossing Tamil film of 2020 and 4th highest-grossing Indian film of 2020.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Darbar_(film)"
+   },
+   "starring": [
+    "Rajinikanth",
+    "Suniel Shetty",
+    "Nayanthara",
+    "Nivetha Thomas"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Lal Salaam (2024 film)",
+   "article": "Lal Salaam (2024 film)",
+   "title": "Lal Salaam",
+   "year": 2024,
+   "releaseDate": "2024-02-09",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Aishwarya Rajinikanth",
+   "music": "A. R. Rahman",
+   "runtimeMin": 150,
+   "genres": [],
+   "imdbId": "tt23461428",
+   "qid": "Q121319600",
+   "budget": {
+    "low": 80,
+    "high": 90,
+    "text": "₹80–90 crores"
+   },
+   "gross": {
+    "low": 17.46,
+    "high": 17.46,
+    "text": "₹17.46 crores"
+   },
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "The film received mixed to negative reviews from critics and was a box-office bomb, earning 19 crore against the budget of 80–90 crore.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Lal_Salaam_(2024_film)"
+   },
+   "starring": [
+    "Rajinikanth",
+    "Vishnu Vishal",
+    "Vikranth"
+   ]
+  },
+  {
+   "key": "Jailer 2",
+   "article": "Jailer 2",
+   "title": "Jailer 2",
+   "year": 2026,
+   "releaseDate": "2026-10-15",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Nelson Dilipkumar",
+   "music": "Anirudh Ravichander",
+   "runtimeMin": 165,
+   "genres": [
+    "action comedy film"
+   ],
+   "imdbId": "tt33318732",
+   "qid": "Q133255153",
+   "budget": {
+    "low": 250,
+    "high": 350,
+    "text": "₹250–350 crore"
+   },
+   "gross": {
+    "low": 826.74,
+    "high": 826.74,
+    "text": "₹826.74 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film received generally positive reviews from critics and was a box-office success.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Jailer_2"
+   },
+   "starring": [
+    "Rajinikanth",
+    "S. J. Suryah",
+    "Mithun Chakraborty",
+    "Suraj Venjaramoodu",
+    "Ramya Krishnan",
+    "Vidya Balan"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "unlinked:scope=\"row\"|2028",
+   "article": null,
+   "title": "scope=\"row\"",
+   "year": 2028,
+   "releaseDate": null,
+   "dateApproximate": true,
+   "languages": [
+    "Tamil"
+   ],
+   "director": null,
+   "music": null,
+   "runtimeMin": null,
+   "genres": [],
+   "imdbId": null,
+   "qid": null,
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": []
+  },
+  {
+   "key": "Uyirile Kalanthathu",
+   "article": "Uyirile Kalanthathu",
+   "title": "Uyirile Kalanthathu",
+   "year": 2000,
+   "releaseDate": "2000-09-23",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "K. R. Jaya",
+   "music": "Deva",
+   "runtimeMin": 149,
+   "genres": [
+    "drama film",
+    "romance film"
+   ],
+   "imdbId": "tt4971292",
+   "qid": "Q7904371",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Suriya",
+    "Jyothika",
+    "Raghuvaran"
+   ]
+  },
+  {
+   "key": "Friends (2001 film)",
+   "article": "Friends (2001 film)",
+   "title": "Friends",
+   "year": 2001,
+   "releaseDate": "2001-01-14",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Siddique",
+   "music": "Ilaiyaraaja",
+   "runtimeMin": 167,
+   "genres": [
+    "drama film",
+    "comedy drama",
+    "buddy film"
+   ],
+   "imdbId": "tt0308280",
+   "qid": "Q3429658",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film was running 175 days and became a commercial success.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Friends_(2001_film)"
+   },
+   "starring": [
+    "C. Joseph Vijay",
+    "Suriya",
+    "Devayani (actress)",
+    "Vijayalakshmi (Kannada actress)",
+    "Ramesh Khanna"
+   ]
+  },
+  {
+   "key": "Nandhaa",
+   "article": "Nandhaa",
+   "title": "Nandhaa",
+   "year": 2001,
+   "releaseDate": "2001-11-14",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Bala",
+   "music": "Yuvan Shankar Raja",
+   "runtimeMin": 121,
+   "genres": [
+    "action film"
+   ],
+   "imdbId": "tt0375997",
+   "qid": "Q3429464",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Suriya",
+    "Rajkiran",
+    "Laila (actress)"
+   ]
+  },
+  {
+   "key": "Unnai Ninaithu",
+   "article": "Unnai Ninaithu",
+   "title": "Unnai Ninaithu",
+   "year": 2002,
+   "releaseDate": "2002-05-10",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Vikraman",
+   "music": "Sirpy",
+   "runtimeMin": 163,
+   "genres": [
+    "drama film"
+   ],
+   "imdbId": "tt6358182",
+   "qid": "Q3418196",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film was released on 10 May 2002 and became a commercial success.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Unnai_Ninaithu"
+   },
+   "starring": [
+    "Suriya",
+    "Laila (actress)",
+    "Sneha (actress)"
+   ]
+  },
+  {
+   "key": "Sri (2002 film)",
+   "article": "Sri (2002 film)",
+   "title": "Sri",
+   "year": 2002,
+   "releaseDate": "2002-07-20",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Pushpavasagan",
+   "music": "T. S. Muralidharan",
+   "runtimeMin": 148,
+   "genres": [
+    "action film"
+   ],
+   "imdbId": "tt5985446",
+   "qid": "Q16254187",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Sri was a commercial failure, and Shrutika mentioned that she lacked someone to guide her in acting.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Sri_(2002_film)"
+   },
+   "starring": [
+    "Suriya",
+    "Shrutika",
+    "Gayatri Jayaraman"
+   ]
+  },
+  {
+   "key": "Mounam Pesiyadhe",
+   "article": "Mounam Pesiyadhe",
+   "title": "Mounam Pesiyadhe",
+   "year": 2002,
+   "releaseDate": "2002-12-13",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Ameer",
+   "music": "Yuvan Shankar Raja",
+   "runtimeMin": 148,
+   "genres": [
+    "romantic comedy"
+   ],
+   "imdbId": "tt0386650",
+   "qid": "Q3537002",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film was released on 13 December 2002 and became a commercial hit.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Mounam_Pesiyadhe"
+   },
+   "starring": [
+    "Suriya",
+    "Nandaa",
+    "Trisha Krishnan",
+    "Neha Pendse"
+   ]
+  },
+  {
+   "key": "Kaakha Kaakha",
+   "article": "Kaakha Kaakha",
+   "title": "Kaakha Kaakha",
+   "year": 2003,
+   "releaseDate": "2003-08-01",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Gautham Vasudev Menon",
+   "music": "Harris Jayaraj",
+   "runtimeMin": 153,
+   "genres": [
+    "action film",
+    "romance film"
+   ],
+   "imdbId": "tt0375878",
+   "qid": "Q3411591",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film was released on 1 August 2003 and became a commercial success, winning four Filmfare Awards South, two Tamil Nadu State Film Awards and three ITFA Awards.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Kaakha_Kaakha"
+   },
+   "starring": [
+    "Suriya",
+    "Jyothika",
+    "Jeevan (Tamil actor)"
+   ]
+  },
+  {
+   "key": "Pithamagan",
+   "article": "Pithamagan",
+   "title": "Pithamagan",
+   "year": 2003,
+   "releaseDate": "2003-10-24",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Bala",
+   "music": "Ilaiyaraaja",
+   "runtimeMin": 158,
+   "genres": [
+    "drama film"
+   ],
+   "imdbId": "tt0376076",
+   "qid": "Q3411584",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film became a success and Vikram won numerous accolades for his performance, including the National Film Award for Best Actor in a Leading Role.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Pithamagan"
+   },
+   "starring": [
+    "Vikram (actor)",
+    "Suriya",
+    "Laila (actress)",
+    "Sangeetha Krish",
+    "Ramaraju (actor)"
+   ]
+  },
+  {
+   "key": "Perazhagan",
+   "article": "Perazhagan",
+   "title": "Perazhagan",
+   "year": 2004,
+   "releaseDate": "2004-05-07",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Sasi Shanker",
+   "music": "Yuvan Shankar Raja",
+   "runtimeMin": 148,
+   "genres": [
+    "soundtrack"
+   ],
+   "imdbId": "tt0422934",
+   "qid": "Q3536884",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "blockbuster",
+    "sentence": "Following award-winning performances of a conman in Pithamagan (2003) and a hunchback in Perazhagan (2004) , he played a man suffering from anterograde amnesia in the 2005 blockbuster Ghajini .",
+    "source": "wikipedia-hero",
+    "url": "https://en.wikipedia.org/wiki/Suriya"
+   },
+   "starring": [
+    "Suriya",
+    "Jyothika"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Aayutha Ezhuthu",
+   "article": "Aayutha Ezhuthu",
+   "title": "Aayutha Ezhuthu",
+   "year": 2004,
+   "releaseDate": "2004-05-21",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Mani Ratnam",
+   "music": "A. R. Rahman",
+   "runtimeMin": 155,
+   "genres": [
+    "drama film",
+    "political film"
+   ],
+   "imdbId": "tt0375571",
+   "qid": "Q2820123",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Suriya",
+    "R. Madhavan",
+    "Siddharth (actor)",
+    "Trisha (actress)",
+    "Meera Jasmine",
+    "Esha Deol"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Maayavi",
+   "article": "Maayavi",
+   "title": "Maayavi",
+   "year": 2005,
+   "releaseDate": "2005-03-10",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Singampuli",
+   "music": "Devi Sri Prasad",
+   "runtimeMin": 135,
+   "genres": [
+    "drama film"
+   ],
+   "imdbId": "tt1496797",
+   "qid": "Q6721313",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "average",
+    "sentence": "Maayavi and Aaru were moderately successful.",
+    "source": "wikipedia-hero",
+    "url": "https://en.wikipedia.org/wiki/Suriya_filmography"
+   },
+   "starring": [
+    "Suriya (actor)",
+    "Jyothika",
+    "Sathyan Sivakumar"
+   ]
+  },
+  {
+   "key": "Ghajini (2005 film)",
+   "article": "Ghajini (2005 film)",
+   "title": "Ghajini",
+   "year": 2005,
+   "releaseDate": "2005-09-29",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "A. R. Murugadoss",
+   "music": "Harris Jayaraj",
+   "runtimeMin": 175,
+   "genres": [
+    "drama film",
+    "action film",
+    "thriller film"
+   ],
+   "imdbId": "tt0449951",
+   "qid": "Q2737320",
+   "budget": {
+    "low": 7,
+    "high": 7,
+    "text": "₹7 crore"
+   },
+   "gross": {
+    "low": 50,
+    "high": 50,
+    "text": "₹50 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Ghajini was a commercial success and became among the highest grossing Tamil films of that year.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Ghajini_(2005_film)"
+   },
+   "starring": [
+    "Suriya",
+    "Asin",
+    "Nayanthara",
+    "Pradeep Rawat (actor)"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Aaru (film)",
+   "article": "Aaru (film)",
+   "title": "Aaru",
+   "year": 2005,
+   "releaseDate": "2005-12-09",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Hari",
+   "music": "Devi Sri Prasad",
+   "runtimeMin": 168,
+   "genres": [
+    "action film",
+    "drama film",
+    "romance film"
+   ],
+   "imdbId": "tt0455309",
+   "qid": "Q3534938",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "It was not well-received by critics but became a commercial success.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Aaru_(film)"
+   },
+   "starring": [
+    "Suriya",
+    "Trisha Krishnan"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "June R",
+   "article": "June R",
+   "title": "June R",
+   "year": 2006,
+   "releaseDate": "2006-02-10",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Revathy S. Varmha",
+   "music": "Sharreth",
+   "runtimeMin": 120,
+   "genres": [
+    "drama film"
+   ],
+   "imdbId": "tt0475632",
+   "qid": "Q6312400",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Jyothika",
+    "Khushbu Sundar",
+    "Saritha",
+    "Biju Menon"
+   ]
+  },
+  {
+   "key": "Sillunu Oru Kaadhal",
+   "article": "Sillunu Oru Kaadhal",
+   "title": "Sillunu Oru Kaadhal",
+   "year": 2006,
+   "releaseDate": "2006-09-08",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Krishna",
+   "music": "A. R. Rahman",
+   "runtimeMin": 175,
+   "genres": [
+    "romance film"
+   ],
+   "imdbId": "tt0464071",
+   "qid": "Q3429157",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Suriya",
+    "Jyothika",
+    "Bhumika Chawla"
+   ]
+  },
+  {
+   "key": "Vel (film)",
+   "article": "Vel (film)",
+   "title": "Vel",
+   "year": 2007,
+   "releaseDate": "2007-11-08",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Hari",
+   "music": "Yuvan Shankar Raja",
+   "runtimeMin": 161,
+   "genres": [
+    "soundtrack"
+   ],
+   "imdbId": "tt1436481",
+   "qid": "Q7918757",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Vel was released on 8 November 2007, coinciding with Diwali, and became a commercial success.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Vel_(film)"
+   },
+   "starring": [
+    "Suriya",
+    "Asin",
+    "Kalabhavan Mani",
+    "Vadivelu"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Vaaranam Aayiram",
+   "article": "Vaaranam Aayiram",
+   "title": "Vaaranam Aayiram",
+   "year": 2008,
+   "releaseDate": "2008-11-14",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Gautham Vasudev Menon",
+   "music": "Harris Jayaraj",
+   "runtimeMin": 170,
+   "genres": [
+    "drama film"
+   ],
+   "imdbId": "tt1180583",
+   "qid": "Q3471929",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Further, the film also became a commercial success, eventually becoming the biggest hit in Suriya's career at that time.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Vaaranam_Aayiram"
+   },
+   "starring": [
+    "Suriya",
+    "Simran (actress)",
+    "Sameera Reddy",
+    "Divya Spandana"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Ayan (film)",
+   "article": "Ayan (film)",
+   "title": "Ayan",
+   "year": 2009,
+   "releaseDate": "2009-04-03",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "K. V. Anand",
+   "music": "Harris Jayaraj",
+   "runtimeMin": 165,
+   "genres": [
+    "action film"
+   ],
+   "imdbId": "tt1355546",
+   "qid": "Q3521366",
+   "budget": {
+    "low": 15,
+    "high": 15,
+    "text": "₹15 crore"
+   },
+   "gross": {
+    "low": 80,
+    "high": 80,
+    "text": "₹80 crore"
+   },
+   "verdict": {
+    "verdict": "blockbuster",
+    "sentence": "Ayan was declared as the solo blockbuster of 2009 in Tamil cinema, collecting about worldwide and became the highest grossing Tamil film of the year.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Ayan_(film)"
+   },
+   "starring": [
+    "Suriya",
+    "Prabhu (actor)",
+    "Tamannaah Bhatia"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Aadhavan",
+   "article": "Aadhavan",
+   "title": "Aadhavan",
+   "year": 2009,
+   "releaseDate": "2009-10-17",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "K. S. Ravikumar",
+   "music": "Harris Jayaraj",
+   "runtimeMin": 168,
+   "genres": [
+    "thriller film"
+   ],
+   "imdbId": "tt1483820",
+   "qid": "Q2819998",
+   "budget": {
+    "low": 30,
+    "high": 30,
+    "text": "₹30 crore"
+   },
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Aadhavan was released on 17 October 2009 and became commercially successful.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Aadhavan"
+   },
+   "starring": [
+    "Suriya",
+    "Nayanthara"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Singam",
+   "article": "Singam",
+   "title": "Singam",
+   "year": 2010,
+   "releaseDate": "2010-05-28",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Hari",
+   "music": "Devi Sri Prasad",
+   "runtimeMin": 159,
+   "genres": [
+    "action film"
+   ],
+   "imdbId": "tt1655607",
+   "qid": "Q3072954",
+   "budget": {
+    "low": 15,
+    "high": 15,
+    "text": "₹15 crore"
+   },
+   "gross": {
+    "low": 90,
+    "high": 90,
+    "text": "₹90 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "According to The Times of India, it grossed around worldwide and was the second highest-grossing Tamil film of the year behind Enthiran.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Singam"
+   },
+   "starring": [
+    "Suriya",
+    "Anushka Shetty",
+    "Prakash Raj"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Rakta Charitra 2",
+   "article": "Rakta Charitra 2",
+   "title": "Rakta Charitra 2",
+   "year": 2010,
+   "releaseDate": "2010-12-03",
+   "dateApproximate": false,
+   "languages": [
+    "Telugu Hindi"
+   ],
+   "director": "Ram Gopal Varma",
+   "music": null,
+   "runtimeMin": 116,
+   "genres": [
+    "crime film"
+   ],
+   "imdbId": "tt1727535",
+   "qid": "Q65051886",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Vivek Oberoi",
+    "Suriya",
+    "Sudeepa",
+    "Shatrughan Sinha",
+    "Priyamani",
+    "Radhika Apte"
+   ]
+  },
+  {
+   "key": "Manmadan Ambu",
+   "article": "Manmadan Ambu",
+   "title": "Manmadan Ambu",
+   "year": 2010,
+   "releaseDate": "2010-12-23",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "K. S. Ravikumar",
+   "music": "Devi Sri Prasad",
+   "runtimeMin": 152,
+   "genres": [
+    "romantic comedy"
+   ],
+   "imdbId": "tt1806959",
+   "qid": "Q3286029",
+   "budget": {
+    "low": 50,
+    "high": 50,
+    "text": "₹ 50 crore"
+   },
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Kamal Haasan",
+    "Trisha (actress)",
+    "R. Madhavan",
+    "Sangeetha Krish"
+   ]
+  },
+  {
+   "key": "Ko (film)",
+   "article": "Ko (film)",
+   "title": "Ko",
+   "year": 2011,
+   "releaseDate": "2011-04-22",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "K. V. Anand",
+   "music": "Harris Jayaraj",
+   "runtimeMin": 165,
+   "genres": [
+    "political thriller film"
+   ],
+   "imdbId": "tt1851988",
+   "qid": "Q3531952",
+   "budget": {
+    "low": 14,
+    "high": 14,
+    "text": "₹14 crore"
+   },
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Ko was released on 22 April 2011 and became a commercial success, winning two Filmfare Awards South, three Vijay Awards, two SIIMA Awards, and four Tamil Nadu State Film Awards.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Ko_(film)"
+   },
+   "starring": [
+    "Jiiva",
+    "Ajmal Ameer",
+    "Karthika Nair",
+    "Pia Bajpiee"
+   ]
+  },
+  {
+   "key": "Avan Ivan",
+   "article": "Avan Ivan",
+   "title": "Avan Ivan",
+   "year": 2011,
+   "releaseDate": "2011-06-17",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Bala",
+   "music": "Yuvan Shankar Raja",
+   "runtimeMin": 131,
+   "genres": [
+    "comedy drama"
+   ],
+   "imdbId": "tt1606376",
+   "qid": "Q4827630",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "It was successful at the box office.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Avan_Ivan"
+   },
+   "starring": [
+    "Vishal (actor)",
+    "Arya (actor)",
+    "G. M. Kumar",
+    "R. K. (actor)",
+    "Madhu Shalini",
+    "Janani Iyer"
+   ]
+  },
+  {
+   "key": "7 Aum Arivu",
+   "article": "7 Aum Arivu",
+   "title": "7 Aum Arivu",
+   "year": 2011,
+   "releaseDate": "2011-10-25",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "A. R. Murugadoss",
+   "music": "Harris Jayaraj",
+   "runtimeMin": 168,
+   "genres": [
+    "science fiction film"
+   ],
+   "imdbId": "tt1725795",
+   "qid": "Q3089385",
+   "budget": {
+    "low": 80,
+    "high": 85,
+    "text": "₹80–85 crore"
+   },
+   "gross": {
+    "low": 100,
+    "high": 109,
+    "text": "₹100–109 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Indian film trades considered the film a commercial success, despite a high budget and distribution price. 7 Aum Arivu grossed an estimated – worldwide in its lifetime; it was reported to be Suriya's first film to cross 100 crore at the box office.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/7_Aum_Arivu"
+   },
+   "starring": [
+    "Suriya",
+    "Shruti Haasan",
+    "Johnny Trí Nguyễn"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Maattrraan",
+   "article": "Maattrraan",
+   "title": "Maattrraan",
+   "year": 2012,
+   "releaseDate": "2012-10-12",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "K. V. Anand",
+   "music": "Harris Jayaraj",
+   "runtimeMin": 169,
+   "genres": [
+    "action film",
+    "science fiction film"
+   ],
+   "imdbId": "tt2246837",
+   "qid": "Q3083040",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Suriya",
+    "Kajal Aggarwal",
+    "Sachin Khedekar",
+    "Tara (Kannada actress)"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Chennaiyil Oru Naal",
+   "article": "Chennaiyil Oru Naal",
+   "title": "Chennaiyil Oru Naal",
+   "year": 2013,
+   "releaseDate": "2013-03-29",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Shaheed Kader",
+   "music": "Mejo Joseph",
+   "runtimeMin": 119,
+   "genres": [
+    "thriller film"
+   ],
+   "imdbId": "tt2816642",
+   "qid": "Q5091474",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "blockbuster",
+    "sentence": "The film opened on 29 March 2013 to positive reviews and was a blockbuster at the box office.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Chennaiyil_Oru_Naal"
+   },
+   "starring": [
+    "R. Sarathkumar",
+    "Cheran (director)",
+    "Prasanna (actor)",
+    "Prakash Raj",
+    "Radhika Sarathkumar",
+    "Parvathy Thiruvothu",
+    "Ineya",
+    "Sachin Mani",
+    "Aishwarya Devan",
+    "Gabriella Charlton"
+   ]
+  },
+  {
+   "key": "Singam II",
+   "article": "Singam II",
+   "title": "Singam II",
+   "year": 2013,
+   "releaseDate": "2013-07-05",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Hari",
+   "music": "Devi Sri Prasad",
+   "runtimeMin": 165,
+   "genres": [
+    "action film"
+   ],
+   "imdbId": "tt2309600",
+   "qid": "Q6491585",
+   "budget": {
+    "low": 45,
+    "high": 45,
+    "text": "₹45 crore"
+   },
+   "gross": {
+    "low": 136,
+    "high": 136,
+    "text": "₹136 crore"
+   },
+   "verdict": {
+    "verdict": "super_hit",
+    "sentence": "According to Sify.com, the film stayed inside the top five positions at Chennai box office continuously for eight weeks after its release and was declared a 'Superhit'.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Singam_II"
+   },
+   "starring": [
+    "Suriya",
+    "Anushka Shetty",
+    "Hansika Motwani",
+    "Danny Sapani"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Ninaithathu Yaaro",
+   "article": "Ninaithathu Yaaro",
+   "title": "Ninaithathu Yaaro",
+   "year": 2014,
+   "releaseDate": "2014-01-30",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Vikraman",
+   "music": "X. Paulraj",
+   "runtimeMin": 117,
+   "genres": [
+    "romance film"
+   ],
+   "imdbId": "tt3569828",
+   "qid": "Q16252411",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Rejith Menon",
+    "Nimisha Suresh"
+   ]
+  },
+  {
+   "key": "Anjaan (2014 film)",
+   "article": "Anjaan (2014 film)",
+   "title": "Anjaan",
+   "year": 2014,
+   "releaseDate": "2014-08-14",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "N. Lingusamy",
+   "music": "Yuvan Shankar Raja",
+   "runtimeMin": 160,
+   "genres": [
+    "action film"
+   ],
+   "imdbId": "tt3563156",
+   "qid": "Q16076231",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "This delayed release led to a loss of and the film subsequently became a box-office bomb pushing the production house into further financial crisis.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Anjaan_(2014_film)"
+   },
+   "starring": [
+    "Suriya",
+    "Samantha Ruth Prabhu",
+    "Vidyut Jammwal",
+    "Manoj Bajpayee"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Massu Engira Masilamani",
+   "article": "Massu Engira Masilamani",
+   "title": "Massu Engira Masilamani",
+   "year": 2015,
+   "releaseDate": "2015-05-29",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Venkat Prabhu",
+   "music": "Yuvan Shankar Raja S. Thaman (guest composer)",
+   "runtimeMin": 152,
+   "genres": [
+    "comedy horror"
+   ],
+   "imdbId": "tt4328798",
+   "qid": "Q18127889",
+   "budget": {
+    "low": 55,
+    "high": 55,
+    "text": "₹55 crore"
+   },
+   "gross": {
+    "low": 147,
+    "high": 147,
+    "text": "₹147 crore"
+   },
+   "verdict": null,
+   "starring": [
+    "Suriya",
+    "Nayanthara",
+    "Pranitha Subhash",
+    "Premgi Amaren",
+    "R. Parthiban",
+    "Samuthirakani",
+    "Riyaz Khan"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Pasanga 2",
+   "article": "Pasanga 2",
+   "title": "Pasanga 2",
+   "year": 2015,
+   "releaseDate": "2015-12-24",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Pandiraj",
+   "music": "Arrol Corelli",
+   "runtimeMin": null,
+   "genres": [
+    "children's film"
+   ],
+   "imdbId": "tt5285050",
+   "qid": "Q19630501",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film was released on 24 December 2015, coinciding with Christmas weekend and became a hit at the box-office.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Pasanga_2"
+   },
+   "starring": [
+    "Nishesh",
+    "Vaishnavi",
+    "Ramdoss",
+    "Vidya Pradeep",
+    "Karthik Kumar",
+    "Bindu Madhavi",
+    "Suriya",
+    "Amala Paul"
+   ]
+  },
+  {
+   "key": "24 (2016 film)",
+   "article": "24 (2016 film)",
+   "title": "24",
+   "year": 2016,
+   "releaseDate": "2016-05-06",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Vikram Kumar",
+   "music": "A. R. Rahman",
+   "runtimeMin": 160,
+   "genres": [
+    "science fiction film",
+    "thriller film"
+   ],
+   "imdbId": "tt4981966",
+   "qid": "Q19804229",
+   "budget": {
+    "low": 70,
+    "high": 70,
+    "text": "₹70 crore"
+   },
+   "gross": {
+    "low": 100,
+    "high": 100,
+    "text": "₹100 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film was a critical and commercial success, and won two awards at the 64th National Film Awards Best Cinematography and Best Production Design.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/24_(2016_film)"
+   },
+   "starring": [
+    "Suriya",
+    "Samantha Ruth Prabhu",
+    "Nithya Menen"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Si3 (film)",
+   "article": "Si3 (film)",
+   "title": "Si3",
+   "year": 2017,
+   "releaseDate": "2017-02-09",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Hari",
+   "music": "Harris Jayaraj",
+   "runtimeMin": 154,
+   "genres": [
+    "action film",
+    "thriller film"
+   ],
+   "imdbId": "tt5323640",
+   "qid": "Q20463713",
+   "budget": null,
+   "gross": {
+    "low": 110,
+    "high": 110,
+    "text": "₹110 crore"
+   },
+   "verdict": null,
+   "starring": [
+    "Suriya",
+    "Anushka Shetty",
+    "Shruti Haasan",
+    "Thakur Anoop Singh"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Kadaikutty Singam",
+   "article": "Kadaikutty Singam",
+   "title": "Kadaikutty Singam",
+   "year": 2018,
+   "releaseDate": "2018-07-13",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Pandiraj",
+   "music": "D. Imman",
+   "runtimeMin": 149,
+   "genres": [
+    "drama film"
+   ],
+   "imdbId": "tt8023734",
+   "qid": "Q48818258",
+   "budget": {
+    "low": 25,
+    "high": 25,
+    "text": "₹25 crore"
+   },
+   "gross": {
+    "low": 70,
+    "high": 70,
+    "text": "₹70 crore"
+   },
+   "verdict": null,
+   "starring": [
+    "Karthi",
+    "Sayyeshaa",
+    "Sathyaraj",
+    "Bhanupriya",
+    "Arthana Binu",
+    "Priya Bhavani Shankar"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "NGK (film)",
+   "article": "NGK (film)",
+   "title": "NGK",
+   "year": 2019,
+   "releaseDate": "2019-05-31",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Selvaraghavan",
+   "music": "Yuvan Shankar Raja",
+   "runtimeMin": 150,
+   "genres": [
+    "political thriller film"
+   ],
+   "imdbId": "tt8094252",
+   "qid": "Q50825957",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Suriya",
+    "Sai Pallavi",
+    "Rakul Preet Singh"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Kaappaan",
+   "article": "Kaappaan",
+   "title": "Kaappaan",
+   "year": 2019,
+   "releaseDate": "2019-09-20",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "K. V. Anand",
+   "music": "Harris Jayaraj",
+   "runtimeMin": 163,
+   "genres": [
+    "action thriller"
+   ],
+   "imdbId": "tt8411144",
+   "qid": "Q55784446",
+   "budget": {
+    "low": 75,
+    "high": 75,
+    "text": "₹75 crore"
+   },
+   "gross": {
+    "low": 100,
+    "high": 100,
+    "text": "₹100 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "In its opening weekend, the film collected in Tamil Nadu, which at the time made it one of the highest-grossing opening weekends in Tamil film history.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Kaappaan"
+   },
+   "starring": [
+    "Suriya",
+    "Mohanlal",
+    "Arya (actor)"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Jai Bhim (film)",
+   "article": "Jai Bhim (film)",
+   "title": "Jai Bhim",
+   "year": 2021,
+   "releaseDate": "2021-11-02",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "T. J. Gnanavel",
+   "music": "Sean Roldan",
+   "runtimeMin": 164,
+   "genres": [
+    "legal drama"
+   ],
+   "imdbId": "tt15097216",
+   "qid": "Q108376991",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Suriya",
+    "Lijomol Jose",
+    "K. Manikandan"
+   ],
+   "route": "ott",
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Etharkkum Thunindhavan",
+   "article": "Etharkkum Thunindhavan",
+   "title": "Etharkkum Thunindhavan",
+   "year": 2022,
+   "releaseDate": "2022-03-10",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Pandiraj",
+   "music": "D. Imman",
+   "runtimeMin": 150,
+   "genres": [],
+   "imdbId": "tt10340562",
+   "qid": "Q108085772",
+   "budget": {
+    "low": 75,
+    "high": 75,
+    "text": "₹75 crore"
+   },
+   "gross": {
+    "low": 71.4,
+    "high": 200,
+    "text": "₹71.4–200 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "It reached worldwide on its fifth day and grossed in its lifetime, becoming one of the highest-grossing Tamil films of the year.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Etharkkum_Thunindhavan"
+   },
+   "starring": [
+    "Suriya",
+    "Vinay Rai",
+    "Priyanka Mohan"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Vikram (2022 film)",
+   "article": "Vikram (2022 film)",
+   "title": "Vikram",
+   "year": 2022,
+   "releaseDate": "2022-06-03",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Lokesh Kanagaraj",
+   "music": "Anirudh Ravichander",
+   "runtimeMin": 174,
+   "genres": [
+    "action thriller"
+   ],
+   "imdbId": "tt9179430",
+   "qid": "Q102147287",
+   "budget": {
+    "low": 120,
+    "high": 120,
+    "text": "₹120 crore"
+   },
+   "gross": {
+    "low": 424,
+    "high": 500,
+    "text": "₹424–500 crore"
+   },
+   "verdict": {
+    "verdict": "blockbuster",
+    "sentence": "According to Hindustan Times, at the end of its 113-day theatrical run, Vikram became the highest-grossing film ever in Tamil Nadu, registered a record attendance and grossed over worldwide.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Vikram_(2022_film)"
+   },
+   "starring": [
+    "Kamal Haasan",
+    "Vijay Sethupathi",
+    "Fahadh Faasil"
+   ]
+  },
+  {
+   "key": "Rocketry: The Nambi Effect",
+   "article": "Rocketry: The Nambi Effect",
+   "title": "Rocketry: The Nambi Effect",
+   "year": 2022,
+   "releaseDate": "2022-05-19",
+   "dateApproximate": false,
+   "languages": [
+    "English"
+   ],
+   "director": "R. Madhavan",
+   "music": "Songs: Sam C. S. Billy Dawson Nate Cornell Diwakar Subramaniam Background Score:",
+   "runtimeMin": 157,
+   "genres": [
+    "biographical film"
+   ],
+   "imdbId": "tt9263550",
+   "qid": "Q58034627",
+   "budget": {
+    "low": 25,
+    "high": 25,
+    "text": "₹25 crore"
+   },
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "R. Madhavan",
+    "Simran (actress)"
+   ]
+  },
+  {
+   "key": "Sarfira",
+   "article": "Sarfira",
+   "title": "Sarfira",
+   "year": 2024,
+   "releaseDate": "2024-07-12",
+   "dateApproximate": false,
+   "languages": [
+    "Hindi"
+   ],
+   "director": "Sudha Kongara",
+   "music": "G. V. Prakash Kumar",
+   "runtimeMin": 153,
+   "genres": [],
+   "imdbId": "tt23475174",
+   "qid": "Q124532446",
+   "budget": {
+    "low": 80,
+    "high": 80,
+    "text": "₹80 crore"
+   },
+   "gross": {
+    "low": 30.02,
+    "high": 30.02,
+    "text": "₹30.02 crore"
+   },
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Sarfira performed poorly at the box office, earning on the opening day.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Sarfira"
+   },
+   "starring": [
+    "Akshay Kumar",
+    "Paresh Rawal",
+    "Radhika Madan"
+   ]
+  },
+  {
+   "key": "Kanguva",
+   "article": "Kanguva",
+   "title": "Kanguva",
+   "year": 2024,
+   "releaseDate": "2024-11-14",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Siva",
+   "music": "Devi Sri Prasad",
+   "runtimeMin": 155,
+   "genres": [],
+   "imdbId": "tt22036406",
+   "qid": "Q118485602",
+   "budget": {
+    "low": 300,
+    "high": 350,
+    "text": "₹300–350 crore"
+   },
+   "gross": {
+    "low": 106,
+    "high": 106,
+    "text": "₹106 crore"
+   },
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "The film grossed 106 crore, making it a box-office disaster.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Kanguva"
+   },
+   "starring": [
+    "Suriya",
+    "Bobby Deol",
+    "Disha Patani"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Retro (film)",
+   "article": "Retro (film)",
+   "title": "Retro",
+   "year": 2025,
+   "releaseDate": "2025-05-01",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Karthik Subbaraj",
+   "music": "Santhosh Narayanan",
+   "runtimeMin": 168,
+   "genres": [],
+   "imdbId": "tt31945132",
+   "qid": "Q126327867",
+   "budget": {
+    "low": 60,
+    "high": 65,
+    "text": "₹60–65 crore"
+   },
+   "gross": {
+    "low": 80,
+    "high": 250,
+    "text": "₹80–250 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "In India, Retro was released alongside HIT: The Third Case, Raid 2 and Tourist Family.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Retro_(film)"
+   },
+   "starring": [
+    "Suriya",
+    "Pooja Hegde"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Karuppu (film)",
+   "article": "Karuppu (film)",
+   "title": "Karuppu",
+   "year": 2026,
+   "releaseDate": "2026-05-15",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "RJ Balaji",
+   "music": "Sai Abhyankkar",
+   "runtimeMin": 152,
+   "genres": [
+    "action film"
+   ],
+   "imdbId": "tt33988385",
+   "qid": "Q131341662",
+   "budget": {
+    "low": 130,
+    "high": 140,
+    "text": "₹130–140 crore"
+   },
+   "gross": {
+    "low": 296.44,
+    "high": 363,
+    "text": "₹296.44–363 crore"
+   },
+   "verdict": {
+    "verdict": "super_hit",
+    "sentence": "The film was a massive commercial success, grossing worldwide and became the highest-grossing film in Suriya's career and also the third highest-grossing Tamil film of 2026.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Karuppu_(film)"
+   },
+   "starring": [
+    "Suriya",
+    "RJ Balaji",
+    "Trisha Krishnan"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Vishwanath & Sons",
+   "article": "Vishwanath & Sons",
+   "title": "Vishwanath & Sons",
+   "year": 2026,
+   "releaseDate": "2026-08-14",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Venky Atluri",
+   "music": "G. V. Prakash Kumar",
+   "runtimeMin": 161,
+   "genres": [],
+   "imdbId": "tt35836025",
+   "qid": "Q135094933",
+   "budget": null,
+   "gross": {
+    "low": 200,
+    "high": 260,
+    "text": "₹200–260 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "It emerged as one of the highest-grossing Tamil films of 2026.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Vishwanath_%26_Sons"
+   },
+   "starring": [
+    "Suriya",
+    "Mamitha Baiju"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Scene (2026 film)",
+   "article": "Scene (2026 film)",
+   "title": "Scene",
+   "year": 2026,
+   "releaseDate": "2026-11-06",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Jithu Madhavan",
+   "music": "Sushin Shyam",
+   "runtimeMin": 149,
+   "genres": [
+    "comedy film",
+    "action film",
+    "romance film",
+    "crime film"
+   ],
+   "imdbId": "tt38192494",
+   "qid": "Q141438727",
+   "budget": {
+    "low": 30,
+    "high": 30,
+    "text": "₹30 crore"
+   },
+   "gross": {
+    "low": 247.85,
+    "high": 247.85,
+    "text": "₹247.85 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "It has grossed over worldwide, making it one of the highest-grossing Tamil films of 2026.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Scene_(2026_film)"
+   },
+   "starring": [
+    "Suriya",
+    "Naslen",
+    "Nazriya Nazim"
+   ]
+  },
+  {
+   "key": "unlinked:scope= \"row\"|2027",
+   "article": null,
+   "title": "scope= \"row\"",
+   "year": 2027,
+   "releaseDate": null,
+   "dateApproximate": true,
+   "languages": [],
+   "director": null,
+   "music": null,
+   "runtimeMin": null,
+   "genres": [],
+   "imdbId": null,
+   "qid": null,
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": []
+  },
+  {
+   "key": "Kadugu",
+   "article": "Kadugu",
+   "title": "Kadugu",
+   "year": 2017,
+   "releaseDate": "2017-03-24",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "S. D. Vijay Milton",
+   "music": "Songs: S. N. Arunagiri Score: Anoop Seelin",
+   "runtimeMin": 115,
+   "genres": [
+    "drama film"
+   ],
+   "imdbId": "tt6642814",
+   "qid": "Q24807297",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Bharath (actor)",
+    "Rajakumaran (director)",
+    "Radhika Prasidhha",
+    "Subiksha",
+    "Bharath Seeni",
+    "A. Venkatesh (director)"
+   ]
+  },
+  {
+   "key": "Sillu Karuppatti",
+   "article": "Sillu Karuppatti",
+   "title": "Sillu Karuppatti",
+   "year": 2019,
+   "releaseDate": "2019-12-27",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Halitha Shameem",
+   "music": "Pradeep Kumar",
+   "runtimeMin": 138,
+   "genres": [],
+   "imdbId": "tt9614988",
+   "qid": "Q65074763",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film opened to critical acclaim on 27 December 2019, and was commercially successful.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Sillu_Karuppatti"
+   },
+   "starring": [
+    "Samuthirakani",
+    "Sunaina",
+    "K. Manikandan",
+    "Nivedhithaa Sathish",
+    "Kravmaga Sreeram",
+    "Leela Samson",
+    "Sara Arjun",
+    "Rahul"
+   ]
+  },
+  {
+   "key": "Gargi (film)",
+   "article": "Gargi (film)",
+   "title": "Gargi",
+   "year": 2022,
+   "releaseDate": "2022-07-15",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Gautham Ramachandran",
+   "music": "Govind Vasantha",
+   "runtimeMin": 137,
+   "genres": [],
+   "imdbId": "tt21261388",
+   "qid": "Q113028851",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Sai Pallavi",
+    "Kaali Venkat"
+   ]
+  },
+  {
+   "key": "My Lord (film)",
+   "article": "My Lord (film)",
+   "title": "My Lord",
+   "year": 2026,
+   "releaseDate": "2026-02-13",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Raju Murugan",
+   "music": "Sean Roldan",
+   "runtimeMin": 149,
+   "genres": [],
+   "imdbId": "tt32864368",
+   "qid": "Q138012526",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "M. Sasikumar",
+    "Chaithra J Achar",
+    "Asha Sharath",
+    "Guru Somasundaram"
+   ]
+  },
+  {
+   "key": "Paruthiveeran",
+   "article": "Paruthiveeran",
+   "title": "Paruthiveeran",
+   "year": 2007,
+   "releaseDate": "2007-02-23",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Ameer",
+   "music": "Yuvan Shankar Raja",
+   "runtimeMin": 162,
+   "genres": [
+    "drama film"
+   ],
+   "imdbId": "tt0458050",
+   "qid": "Q3429450",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "By July, it was declared one of the most commercially successful Tamil films of the year.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Paruthiveeran"
+   },
+   "starring": [
+    "Karthi",
+    "Priyamani"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Aayirathil Oruvan (2010 film)",
+   "article": "Aayirathil Oruvan (2010 film)",
+   "title": "Aayirathil Oruvan",
+   "year": 2010,
+   "releaseDate": "2010-01-14",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Selvaraghavan",
+   "music": "G. V. Prakash Kumar",
+   "runtimeMin": 154,
+   "genres": [
+    "fantasy film",
+    "adventure film"
+   ],
+   "imdbId": "tt1512888",
+   "qid": "Q4662833",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Karthi",
+    "Reema Sen",
+    "Andrea Jeremiah",
+    "R. Parthiban"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Paiyaa",
+   "article": "Paiyaa",
+   "title": "Paiyaa",
+   "year": 2010,
+   "releaseDate": "2010-04-02",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "N. Lingusamy",
+   "music": "Yuvan Shankar Raja",
+   "runtimeMin": 151,
+   "genres": [
+    "action film"
+   ],
+   "imdbId": "tt1496832",
+   "qid": "Q3473406",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film grossed ₹3 crore in the first three days and was declared a commercial success within a few days.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Paiyaa"
+   },
+   "starring": [
+    "Karthi",
+    "Tamannaah Bhatia"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Naan Mahaan Alla (2010 film)",
+   "article": "Naan Mahaan Alla (2010 film)",
+   "title": "Naan Mahaan Alla",
+   "year": 2010,
+   "releaseDate": "2010-08-20",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Suseenthiran",
+   "music": "Yuvan Shankar Raja",
+   "runtimeMin": 131,
+   "genres": [
+    "drama film",
+    "action film"
+   ],
+   "imdbId": "tt1507005",
+   "qid": "Q6956578",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Karthi",
+    "Kajal Aggarwal"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Siruthai",
+   "article": "Siruthai",
+   "title": "Siruthai",
+   "year": 2011,
+   "releaseDate": "2011-01-14",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Siva",
+   "music": "Vidyasagar",
+   "runtimeMin": 160,
+   "genres": [
+    "action film"
+   ],
+   "imdbId": "tt1821607",
+   "qid": "Q3530982",
+   "budget": {
+    "low": 11,
+    "high": 13,
+    "text": "₹11–13 crore"
+   },
+   "gross": {
+    "low": 30,
+    "high": 30,
+    "text": "₹30 crore"
+   },
+   "verdict": {
+    "verdict": "blockbuster",
+    "sentence": "Generally the film got positive responses, and was a blockbuster success at the box office.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Siruthai"
+   },
+   "starring": [
+    "Karthi",
+    "Tamannaah Bhatia",
+    "Santhanam (actor)"
+   ]
+  },
+  {
+   "key": "Saguni",
+   "article": "Saguni",
+   "title": "Saguni",
+   "year": 2012,
+   "releaseDate": "2012-06-22",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Shankar Dayal",
+   "music": "G. V. Prakash Kumar",
+   "runtimeMin": 151,
+   "genres": [
+    "political film"
+   ],
+   "imdbId": "tt2224902",
+   "qid": "Q3473436",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "average",
+    "sentence": "It was released on 22 June 2012 to mixed reviews from critics and had an average run at the box office.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Saguni"
+   },
+   "starring": [
+    "Karthi",
+    "Pranitha Subhash"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Alex Pandian",
+   "article": "Alex Pandian",
+   "title": "Alex Pandian",
+   "year": 2013,
+   "releaseDate": "2013-01-11",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Suraj",
+   "music": "Devi Sri Prasad",
+   "runtimeMin": 162,
+   "genres": [
+    "action film"
+   ],
+   "imdbId": "tt2614032",
+   "qid": "Q4717598",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Karthi",
+    "Anushka Shetty",
+    "Santhanam (actor)",
+    "Milind Soman",
+    "Suman (actor)"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "All in All Azhagu Raja",
+   "article": "All in All Azhagu Raja",
+   "title": "All in All Azhagu Raja",
+   "year": 2013,
+   "releaseDate": "2013-11-02",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "M. Rajesh",
+   "music": "S. Thaman",
+   "runtimeMin": 162,
+   "genres": [
+    "romantic comedy"
+   ],
+   "imdbId": "tt3253476",
+   "qid": "Q4729982",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Karthi",
+    "Prabhu (actor)",
+    "Kajal Aggarwal",
+    "Santhanam (actor)",
+    "Radhika Apte",
+    "Saranya Ponvannan"
+   ]
+  },
+  {
+   "key": "Biriyani (film)",
+   "article": "Biriyani (film)",
+   "title": "Biriyani",
+   "year": 2013,
+   "releaseDate": "2013-12-20",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Venkat Prabhu",
+   "music": "Yuvan Shankar Raja",
+   "runtimeMin": 150,
+   "genres": [
+    "black comedy film"
+   ],
+   "imdbId": "tt2638104",
+   "qid": "Q4916368",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film became a commercial success and recovered its budget at the box-office.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Biriyani_(film)"
+   },
+   "starring": [
+    "Karthi",
+    "Hansika Motwani",
+    "Premgi Amaren"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Madras (film)",
+   "article": "Madras (film)",
+   "title": "Madras",
+   "year": 2014,
+   "releaseDate": "2014-09-26",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Pa. Ranjith",
+   "music": "Santhosh Narayanan",
+   "runtimeMin": 148,
+   "genres": [
+    "crime film"
+   ],
+   "imdbId": "tt3822388",
+   "qid": "Q16249812",
+   "budget": {
+    "low": 15,
+    "high": 15,
+    "text": "₹15 crore"
+   },
+   "gross": {
+    "low": 44,
+    "high": 44,
+    "text": "₹44 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Ranjith's Madras , a critical and commercial success.",
+    "source": "wikipedia-hero",
+    "url": "https://en.wikipedia.org/wiki/Karthi"
+   },
+   "starring": [
+    "Karthi",
+    "Catherine Tresa",
+    "Kalaiyarasan"
+   ]
+  },
+  {
+   "key": "Komban",
+   "article": "Komban",
+   "title": "Komban",
+   "year": 2015,
+   "releaseDate": "2015-04-02",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "M. Muthaiah",
+   "music": "G. V. Prakash Kumar",
+   "runtimeMin": 136,
+   "genres": [
+    "drama film",
+    "action film"
+   ],
+   "imdbId": "tt4546024",
+   "qid": "Q18126905",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Karthi",
+    "Lakshmi Menon (actress)"
+   ]
+  },
+  {
+   "key": "Kaashmora",
+   "article": "Kaashmora",
+   "title": "Kaashmora",
+   "year": 2016,
+   "releaseDate": "2016-10-28",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Gokul",
+   "music": "Santhosh Narayanan",
+   "runtimeMin": 164,
+   "genres": [
+    "comedy horror",
+    "action film"
+   ],
+   "imdbId": "tt5980232",
+   "qid": "Q19892574",
+   "budget": {
+    "low": 60,
+    "high": 60,
+    "text": "₹60 crore"
+   },
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Karthi",
+    "Nayanthara",
+    "Sri Divya"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Kaatru Veliyidai",
+   "article": "Kaatru Veliyidai",
+   "title": "Kaatru Veliyidai",
+   "year": 2017,
+   "releaseDate": "2017-04-07",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Mani Ratnam",
+   "music": "Songs: A. R. Rahman Score: A. R. Rahman Qutub-E-Kripa",
+   "runtimeMin": 140,
+   "genres": [
+    "war film"
+   ],
+   "imdbId": "tt5902484",
+   "qid": "Q27957965",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Karthi",
+    "Aditi Rao Hydari"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Theeran Adhigaaram Ondru",
+   "article": "Theeran Adhigaaram Ondru",
+   "title": "Theeran Adhigaaram Ondru",
+   "year": 2017,
+   "releaseDate": "2017-11-17",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "H. Vinoth",
+   "music": "Ghibran",
+   "runtimeMin": 163,
+   "genres": [
+    "action film",
+    "police procedural",
+    "Masala film"
+   ],
+   "imdbId": "tt7060460",
+   "qid": "Q28753349",
+   "budget": null,
+   "gross": {
+    "low": 97,
+    "high": 97,
+    "text": "₹97Crore"
+   },
+   "verdict": {
+    "verdict": "super_hit",
+    "sentence": "It was a major commercial success, grossing 96 crore.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Theeran_Adhigaaram_Ondru"
+   },
+   "starring": [
+    "Karthi",
+    "Rakul Preet Singh",
+    "Abhimanyu Singh"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Dev (2019 film)",
+   "article": "Dev (2019 film)",
+   "title": "Dev",
+   "year": 2019,
+   "releaseDate": "2019-02-14",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Rajath Ravishankar",
+   "music": "Harris Jayaraj",
+   "runtimeMin": 159,
+   "genres": [
+    "action film",
+    "romantic comedy"
+   ],
+   "imdbId": "tt8751976",
+   "qid": "Q59726485",
+   "budget": {
+    "low": 55,
+    "high": 55,
+    "text": "₹55 crore"
+   },
+   "gross": null,
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "Listed as \"Disaster\" in the blog's 2019 Telugu hits-and-flops list.",
+    "source": "trade-blog",
+    "url": "https://www.mtwikiblog.com/p/telugu-box-office-hit-or-flop-2019.html"
+   },
+   "starring": [
+    "Karthi",
+    "Rakul Preet Singh",
+    "Prakash Raj",
+    "Ramya Krishnan"
+   ]
+  },
+  {
+   "key": "Kaithi (2019 film)",
+   "article": "Kaithi (2019 film)",
+   "title": "Kaithi",
+   "year": 2019,
+   "releaseDate": "2019-10-25",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Lokesh Kanagaraj",
+   "music": "Sam C. S.",
+   "runtimeMin": 146,
+   "genres": [
+    "action film"
+   ],
+   "imdbId": "tt9900782",
+   "qid": "Q65081848",
+   "budget": {
+    "low": 25,
+    "high": 25,
+    "text": "₹25 crore"
+   },
+   "gross": {
+    "low": 105,
+    "high": 105,
+    "text": "₹105 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film received positive reviews from critics and became a box-office success, grossing 105 crore worldwide, making it one of the highest-grossing Tamil films of 2019.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Kaithi_(2019_film)"
+   },
+   "starring": [
+    "Karthi",
+    "Narain (actor)",
+    "Arjun Das"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Thambi (2019 film)",
+   "article": "Thambi (2019 film)",
+   "title": "Thambi",
+   "year": 2019,
+   "releaseDate": "2019-12-20",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Jeethu Joseph",
+   "music": "Govind Vasantha",
+   "runtimeMin": 151,
+   "genres": [],
+   "imdbId": "tt10468636",
+   "qid": "Q85806217",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Thambi was released on 20 December 2019 and received positive reviews from critics, where it became a commercial success.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Thambi_(2019_film)"
+   },
+   "starring": [
+    "Jyothika",
+    "Sathyaraj",
+    "Karthi",
+    "Nikhila Vimal",
+    "Ammu Abhirami"
+   ]
+  },
+  {
+   "key": "Sulthan (2021 film)",
+   "article": "Sulthan (2021 film)",
+   "title": "Sulthan",
+   "year": 2021,
+   "releaseDate": "2021-04-02",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Bakkiyaraj Kannan",
+   "music": "Score: Yuvan Shankar Raja Songs: Vivek–Mervin",
+   "runtimeMin": 155,
+   "genres": [
+    "action film"
+   ],
+   "imdbId": "tt11502940",
+   "qid": "Q105564085",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Listed as \"Flop\" in the blog's 2021 Telugu hits-and-flops list.",
+    "source": "trade-blog",
+    "url": "https://www.mtwikiblog.com/p/telugu-movies-hits-and-flops-2021.html"
+   },
+   "starring": [
+    "Karthi",
+    "Rashmika Mandanna",
+    "Ramachandra Raju"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Viruman",
+   "article": "Viruman",
+   "title": "Viruman",
+   "year": 2022,
+   "releaseDate": "2022-08-12",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "M. Muthaiah",
+   "music": "Yuvan Shankar Raja",
+   "runtimeMin": 151,
+   "genres": [],
+   "imdbId": "tt15327256",
+   "qid": "Q110263876",
+   "budget": null,
+   "gross": {
+    "low": 60,
+    "high": 60,
+    "text": "₹60 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "It was released theatrically on 12 August 2022 and emerged as a commercial success at the box office.This is the last film of Manoj Bharathiraja in an acting role, who died on 25 March 2025.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Viruman"
+   },
+   "starring": [
+    "Karthi",
+    "Aditi Shankar"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Sardar (2022 film)",
+   "article": "Sardar (2022 film)",
+   "title": "Sardar",
+   "year": 2022,
+   "releaseDate": "2022-10-21",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "P. S. Mithran",
+   "music": "G. V. Prakash Kumar",
+   "runtimeMin": 165,
+   "genres": [],
+   "imdbId": "tt14526318",
+   "qid": "Q107016855",
+   "budget": null,
+   "gross": {
+    "low": 100,
+    "high": 100,
+    "text": "₹100 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film was a commercial success, grossing and became one of the highest grossing Tamil films of 2022.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Sardar_(2022_film)"
+   },
+   "starring": [
+    "Karthi",
+    "Raashii Khanna",
+    "Rajisha Vijayan",
+    "Chunky Pandey",
+    "Laila (actress)"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Meiyazhagan",
+   "article": "Meiyazhagan",
+   "title": "Meiyazhagan",
+   "year": 2024,
+   "releaseDate": "2024-09-27",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "C. Prem Kumar",
+   "music": "Govind Vasantha",
+   "runtimeMin": 178,
+   "genres": [],
+   "imdbId": "tt26758372",
+   "qid": "Q126126903",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Karthi",
+    "Arvind Swamy"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Vaa Vaathiyaar",
+   "article": "Vaa Vaathiyaar",
+   "title": "Vaa Vaathiyaar",
+   "year": 2026,
+   "releaseDate": "2026-01-14",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Nalan Kumarasamy",
+   "music": "Santhosh Narayanan",
+   "runtimeMin": 129,
+   "genres": [],
+   "imdbId": "tt26234108",
+   "qid": "Q123495583",
+   "budget": {
+    "low": 40,
+    "high": 40,
+    "text": "₹40 crore"
+   },
+   "gross": {
+    "low": 10,
+    "high": 10,
+    "text": "₹10 crore"
+   },
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "After facing several delays due to legal and financial issues, Vaa Vaathiyaar was released on 14 January 2026, on the occasion of Pongal to mixed reviews from critics and was a box-office bomb.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Vaa_Vaathiyaar"
+   },
+   "starring": [
+    "Karthi",
+    "Krithi Shetty",
+    "Sathyaraj",
+    "Rajkiran"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Sardar 2",
+   "article": "Sardar 2",
+   "title": "Sardar 2",
+   "year": 2026,
+   "releaseDate": "2026-09-10",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "P. S. Mithran",
+   "music": "Sam C. S.",
+   "runtimeMin": 179,
+   "genres": [],
+   "imdbId": "tt28541577",
+   "qid": "Q129255849",
+   "budget": null,
+   "gross": {
+    "low": 23.85,
+    "high": 23.85,
+    "text": "₹23.85 crore"
+   },
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "The film closed below ₹30 crore as it's worldwide lifetime making it a box-office bomb.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Sardar_2"
+   },
+   "starring": [
+    "Karthi",
+    "S. J. Suryah",
+    "Malavika Mohanan",
+    "Ashika Ranganath",
+    "Rajisha Vijayan"
+   ]
+  },
+  {
+   "key": "3BHK",
+   "article": "3BHK",
+   "title": "3BHK",
+   "year": 2025,
+   "releaseDate": "2025-07-04",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Sri Ganesh",
+   "music": "Amrit Ramnath",
+   "runtimeMin": 141,
+   "genres": [],
+   "imdbId": "tt32411272",
+   "qid": "Q134520410",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Siddharth (actor)",
+    "R. Sarathkumar",
+    "Devayani (actress)",
+    "Meetha Raghunath",
+    "Chaithra J Achar"
+   ]
+  },
+  {
+   "key": "Second Show",
+   "article": "Second Show",
+   "title": "Second Show",
+   "year": 2012,
+   "releaseDate": "2012-02-03",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Srinath Rajendran",
+   "music": "Nikhil Rajan Avial",
+   "runtimeMin": 126,
+   "genres": [
+    "crime film"
+   ],
+   "imdbId": "tt2265539",
+   "qid": "Q7443528",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film was a commercial success.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Second_Show"
+   },
+   "starring": [
+    "Dulquer Salmaan",
+    "Sunny Wayne",
+    "Gauthami Nair",
+    "Rohini (actress)",
+    "Sudesh Berry",
+    "Baburaj (actor)"
+   ]
+  },
+  {
+   "key": "Ustad Hotel",
+   "article": "Ustad Hotel",
+   "title": "Ustad Hotel",
+   "year": 2012,
+   "releaseDate": "2012-06-29",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Anwar Rasheed",
+   "music": "Gopi Sunder",
+   "runtimeMin": 150,
+   "genres": [
+    "drama film",
+    "coming-of-age film"
+   ],
+   "imdbId": "tt2218988",
+   "qid": "Q7902166",
+   "budget": null,
+   "gross": {
+    "low": 15,
+    "high": 15,
+    "text": "₹15 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film became a box office success and completed 100 days theatrical run.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Ustad_Hotel"
+   },
+   "starring": [
+    "Dulquer Salmaan",
+    "Thilakan",
+    "Nithya Menen"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Theevram",
+   "article": "Theevram",
+   "title": "Theevram",
+   "year": 2012,
+   "releaseDate": "2012-11-13",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Roopesh Peethambaran",
+   "music": "Roby Abraham",
+   "runtimeMin": null,
+   "genres": [
+    "crime thriller film"
+   ],
+   "imdbId": "tt2568760",
+   "qid": "Q7777740",
+   "budget": {
+    "low": 2,
+    "high": 2,
+    "text": "₹2 crore"
+   },
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Dulquer Salmaan",
+    "Shikha Nair",
+    "Sreenivasan",
+    "Vinay Forrt"
+   ]
+  },
+  {
+   "key": "ABCD: American-Born Confused Desi (2013 film)",
+   "article": "ABCD: American-Born Confused Desi (2013 film)",
+   "title": "ABCD: American-Born Confused Desi",
+   "year": 2013,
+   "releaseDate": "2013-06-14",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Martin Prakkat",
+   "music": "Gopi Sunder",
+   "runtimeMin": 167,
+   "genres": [
+    "comedy film"
+   ],
+   "imdbId": "tt2956300",
+   "qid": "Q4650082",
+   "budget": {
+    "low": 4.5,
+    "high": 4.5,
+    "text": "₹4.5 crore"
+   },
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film became a commercial success.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/ABCD%3A_American-Born_Confused_Desi_(2013_film)"
+   },
+   "starring": [
+    "Dulquer Salman",
+    "Jacob Gregory",
+    "Tovino Thomas",
+    "Aparna Gopinath"
+   ]
+  },
+  {
+   "key": "5 Sundarikal",
+   "article": "5 Sundarikal",
+   "title": "5 Sundarikal",
+   "year": 2013,
+   "releaseDate": "2013-06-21",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Shyju Khalid Sameer Thahir Aashiq Abu Amal Neerad Anwar Rasheed",
+   "music": "Gopi Sundar Bijibal Prashant Pillai Yakzan-Neha",
+   "runtimeMin": 140,
+   "genres": [
+    "romance film"
+   ],
+   "imdbId": "tt3005920",
+   "qid": "Q13422356",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Anikha Surendran",
+    "Chethan Jayalal",
+    "Isha Sharvani",
+    "Kavya Madhavan",
+    "Reenu Mathews",
+    "Asmita Sood",
+    "Nivin Pauly",
+    "Biju Menon",
+    "Jayasurya",
+    "Jinu Ben",
+    "Dulquer Salmaan",
+    "Fahadh Faasil"
+   ]
+  },
+  {
+   "key": "Neelakasham Pachakadal Chuvanna Bhoomi",
+   "article": "Neelakasham Pachakadal Chuvanna Bhoomi",
+   "title": "Neelakasham Pachakadal Chuvanna Bhoomi",
+   "year": 2013,
+   "releaseDate": "2013-08-09",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Sameer Thahir",
+   "music": "Rex Vijayan",
+   "runtimeMin": 137,
+   "genres": [
+    "drama film",
+    "adventure film",
+    "road movie"
+   ],
+   "imdbId": "tt3061202",
+   "qid": "Q6986753",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The movie was a hit at the Kerala box office and has since developed a cult following among the youth of Kerala.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Neelakasham_Pachakadal_Chuvanna_Bhoomi"
+   },
+   "starring": [
+    "Dulquer Salmaan",
+    "Sunny Wayne"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Pattam Pole",
+   "article": "Pattam Pole",
+   "title": "Pattam Pole",
+   "year": 2013,
+   "releaseDate": "2013-10-11",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Alagappan N",
+   "music": "M. Jayachandran",
+   "runtimeMin": null,
+   "genres": [
+    "romantic comedy film"
+   ],
+   "imdbId": "tt3261912",
+   "qid": "Q7148306",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "His last release of the year was Alagappan's Malayalam film Pattam Pole , which was a commercial failure.",
+    "source": "wikipedia-hero",
+    "url": "https://en.wikipedia.org/wiki/Dulquer_Salmaan"
+   },
+   "starring": [
+    "Dulquer Salman",
+    "Malavika Mohanan"
+   ]
+  },
+  {
+   "key": "Salalah Mobiles",
+   "article": "Salalah Mobiles",
+   "title": "Salalah Mobiles",
+   "year": 2014,
+   "releaseDate": "2014-01-24",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Sharath Haridas",
+   "music": "Gopi Sunder",
+   "runtimeMin": null,
+   "genres": [
+    "romance film",
+    "romantic comedy film"
+   ],
+   "imdbId": "tt3164068",
+   "qid": "Q16253831",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Dulquer Salmaan",
+    "Nazriya Nazim",
+    "Jacob Gregory"
+   ]
+  },
+  {
+   "key": "Bangalore Days",
+   "article": "Bangalore Days",
+   "title": "Bangalore Days",
+   "year": 2014,
+   "releaseDate": "2014-05-30",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Anjali Menon",
+   "music": "Gopi Sunder",
+   "runtimeMin": 171,
+   "genres": [
+    "drama film",
+    "romance film"
+   ],
+   "imdbId": "tt3668162",
+   "qid": "Q16837651",
+   "budget": {
+    "low": 8,
+    "high": 8,
+    "text": "₹8 crore"
+   },
+   "gross": {
+    "low": 45,
+    "high": 45,
+    "text": "₹45 crore"
+   },
+   "verdict": {
+    "verdict": "blockbuster",
+    "sentence": "The film was a blockbuster at the box office.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Bangalore_Days"
+   },
+   "starring": [
+    "Nazriya Nazim",
+    "Nivin Pauly",
+    "Dulquer Salmaan",
+    "Fahadh Faasil",
+    "Parvathy Thiruvothu",
+    "Isha Talwar"
+   ]
+  },
+  {
+   "key": "Vikramadithyan",
+   "article": "Vikramadithyan",
+   "title": "Vikramadithyan",
+   "year": 2014,
+   "releaseDate": "2014-07-25",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Lal Jose",
+   "music": "Bijibal",
+   "runtimeMin": 145,
+   "genres": [
+    "drama film"
+   ],
+   "imdbId": "tt3895152",
+   "qid": "Q16255218",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film was a commercial success, grossing approximately 11.5 crores in Kerala.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Vikramadithyan"
+   },
+   "starring": [
+    "Dulquer Salman"
+   ]
+  },
+  {
+   "key": "Njaan",
+   "article": "Njaan",
+   "title": "Njaan",
+   "year": 2014,
+   "releaseDate": "2014-09-19",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Ranjith",
+   "music": "Bijibal",
+   "runtimeMin": null,
+   "genres": [],
+   "imdbId": "tt3837180",
+   "qid": "Q16252509",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Dulquer Salmaan",
+    "Suresh Krishna (actor)",
+    "Saiju Kurup",
+    "Renji Panicker",
+    "Anumol",
+    "Muthumani",
+    "Harish Perady"
+   ]
+  },
+  {
+   "key": "100 Days of Love",
+   "article": "100 Days of Love",
+   "title": "100 Days of Love",
+   "year": 2015,
+   "releaseDate": "2015-03-20",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Jenuse Mohamed",
+   "music": "Score: Bijibal Songs: Govind Vasantha",
+   "runtimeMin": 155,
+   "genres": [
+    "romantic comedy"
+   ],
+   "imdbId": "tt3995348",
+   "qid": "Q18343393",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film received mixed to positive reviews and was a commercial success.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/100_Days_of_Love"
+   },
+   "starring": [
+    "Dulquer Salmaan",
+    "Nithya Menen",
+    "Sekhar Menon",
+    "Aju Varghese"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Charlie (2015 Malayalam film)",
+   "article": "Charlie (2015 Malayalam film)",
+   "title": "Charlie",
+   "year": 2015,
+   "releaseDate": "2015-12-24",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Martin Prakkat",
+   "music": "Gopi Sunder",
+   "runtimeMin": 135,
+   "genres": [
+    "romance film"
+   ],
+   "imdbId": "tt5082014",
+   "qid": "Q21034397",
+   "budget": null,
+   "gross": {
+    "low": 42,
+    "high": 42,
+    "text": "₹42 crores"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film completed a 100-day theatrical run in Kerala and grossed at the Kerala box office.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Charlie_(2015_Malayalam_film)"
+   },
+   "starring": [
+    "Dulquer Salmaan",
+    "Parvathy Thiruvothu",
+    "Aparna Gopinath",
+    "Nedumudi Venu",
+    "Soubin Shahir"
+   ]
+  },
+  {
+   "key": "Kali (2016 film)",
+   "article": "Kali (2016 film)",
+   "title": "Kali",
+   "year": 2016,
+   "releaseDate": "2016-03-26",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Sameer Thahir",
+   "music": "Gopi Sundar",
+   "runtimeMin": 115,
+   "genres": [
+    "action thriller"
+   ],
+   "imdbId": "tt5335128",
+   "qid": "Q23013663",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Kali was released on 26 March 2016 to critical and commercial success.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Kali_(2016_film)"
+   },
+   "starring": [
+    "Dulquer Salmaan",
+    "Sai Pallavi",
+    "Chemban Vinod Jose",
+    "Vinayakan",
+    "Soubin Shahir"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Kammatipaadam",
+   "article": "Kammatipaadam",
+   "title": "Kammatipaadam",
+   "year": 2016,
+   "releaseDate": "2016-05-20",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Rajeev Ravi",
+   "music": "K",
+   "runtimeMin": 175,
+   "genres": [
+    "drama film",
+    "action film"
+   ],
+   "imdbId": "tt5458088",
+   "qid": "Q23762919",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "super_hit",
+    "sentence": "The film was a super hit collecting from Kerala box office, the budget was .",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Kammatipaadam"
+   },
+   "starring": [
+    "Dulquer Salmaan",
+    "Vinayakan",
+    "Shaun Romy",
+    "Manikandan R Achari",
+    "Shine Tom Chacko"
+   ]
+  },
+  {
+   "key": "Annmariya Kalippilaanu",
+   "article": "Annmariya Kalippilaanu",
+   "title": "Annmariya Kalippilaanu",
+   "year": 2016,
+   "releaseDate": "2016-08-05",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Midhun Manuel Thomas",
+   "music": "Songs: Shaan Rahman Background Score: Sooraj S. Kurup",
+   "runtimeMin": 127,
+   "genres": [
+    "sport film"
+   ],
+   "imdbId": "tt5838806",
+   "qid": "Q25999953",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film was a box office success.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Annmariya_Kalippilaanu"
+   },
+   "starring": [
+    "Sara Arjun",
+    "Sunny Wayne",
+    "Aju Varghese",
+    "Siddique (actor)",
+    "Leona Lishoy",
+    "Saiju Kurup"
+   ]
+  },
+  {
+   "key": "Jomonte Suvisheshangal",
+   "article": "Jomonte Suvisheshangal",
+   "title": "Jomonte Suvisheshangal",
+   "year": 2017,
+   "releaseDate": "2017-01-19",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Sathyan Anthikad",
+   "music": "Vidyasagar",
+   "runtimeMin": 156,
+   "genres": [
+    "comedy drama"
+   ],
+   "imdbId": "tt6059074",
+   "qid": "Q27037196",
+   "budget": null,
+   "gross": {
+    "low": 43.67,
+    "high": 43.67,
+    "text": "₹43.67 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "He has since established himself as a leading actor in Indian cinema with several critically and commercially successful films including Ustad Hotel (2012) , ABCD (2013) , Neelakasham Pachakadal Chuvanna Bhoomi (2013) , Vaayai Moodi Pesavum (2014) , Bangalore Days (2014) , Vikram",
+    "source": "wikipedia-hero",
+    "url": "https://en.wikipedia.org/wiki/Dulquer_Salmaan_filmography"
+   },
+   "starring": [
+    "Dulquer Salmaan"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Comrade in America",
+   "article": "Comrade in America",
+   "title": "Comrade in America",
+   "year": 2017,
+   "releaseDate": "2017-05-05",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Amal Neerad",
+   "music": "Gopi Sundar",
+   "runtimeMin": 134,
+   "genres": [
+    "adventure film"
+   ],
+   "imdbId": "tt5925772",
+   "qid": "Q28974067",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "It received mixed to positive reviews from critics and became a box office success.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Comrade_in_America"
+   },
+   "starring": [
+    "Dulquer Salmaan",
+    "Karthika Muralidharan",
+    "Siddique (actor)",
+    "Dileesh Pothan",
+    "Soubin Shahir",
+    "John Vijay",
+    "Chandini Sreedharan"
+   ]
+  },
+  {
+   "key": "Parava (film)",
+   "article": "Parava (film)",
+   "title": "Parava",
+   "year": 2017,
+   "releaseDate": "2017-09-21",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Soubin Shahir",
+   "music": "Songs: Rex Vijayan Background score: Yakzan-Neha Sekhar Menon Rex Vijayan",
+   "runtimeMin": 144,
+   "genres": [],
+   "imdbId": "tt6212984",
+   "qid": "Q25218790",
+   "budget": null,
+   "gross": {
+    "low": 20.27,
+    "high": 20.27,
+    "text": "₹20.27 cr"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film was commercial success.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Parava_(film)"
+   },
+   "starring": [
+    "Amal Shah",
+    "Govind V. Pai",
+    "Shane Nigam",
+    "Dulquer Salmaan"
+   ]
+  },
+  {
+   "key": "Solo (2017 film)",
+   "article": "Solo (2017 film)",
+   "title": "Solo",
+   "year": 2017,
+   "releaseDate": "2017-10-05",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam",
+    "Tamil"
+   ],
+   "director": "Bejoy Nambiar",
+   "music": "Abhinav Bansal Gaurav Godkhindi Sooraj S. Kurup Prashant Pillai Govind Menon",
+   "runtimeMin": 154,
+   "genres": [
+    "anthology film"
+   ],
+   "imdbId": "tt6613814",
+   "qid": "Q27964498",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Dulquer Salmaan",
+    "Sai Dhanshika",
+    "Neha Sharma",
+    "Deepti Sati",
+    "Sruthi Hariharan",
+    "Arthi Venkatesh",
+    "Dino Morea",
+    "Soubin Shahir",
+    "Manoj K. Jayan"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Oru Yamandan Premakadha",
+   "article": "Oru Yamandan Premakadha",
+   "title": "Oru Yamandan Premakadha",
+   "year": 2019,
+   "releaseDate": "2019-04-25",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "B. C. Noufal",
+   "music": "Songs: Nadirshah Background Score: Bijibal",
+   "runtimeMin": 158,
+   "genres": [
+    "comedy film"
+   ],
+   "imdbId": "tt8667334",
+   "qid": "Q55641347",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "average",
+    "sentence": "The film received mixed reviews and was an average grosser at the box office.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Oru_Yamandan_Premakadha"
+   },
+   "starring": [
+    "Dulquer Salmaan",
+    "Salim Kumar",
+    "Soubin Shahir",
+    "Vishnu Unnikrishnan",
+    "Nikhila Vimal",
+    "Samyuktha (actress)"
+   ]
+  },
+  {
+   "key": "Varane Avashyamund",
+   "article": "Varane Avashyamund",
+   "title": "Varane Avashyamund",
+   "year": 2020,
+   "releaseDate": "2020-02-07",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Anoop Sathyan",
+   "music": "Alphons Joseph",
+   "runtimeMin": 145,
+   "genres": [],
+   "imdbId": "tt11531530",
+   "qid": "Q97258346",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film emerged as a commercial success grossing over ₹25 crore becoming the 4th highest grossing Malayalam film of the year.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Varane_Avashyamund"
+   },
+   "starring": [
+    "Suresh Gopi",
+    "Dulquer Salmaan",
+    "Shobana",
+    "Kalyani Priyadarshan"
+   ]
+  },
+  {
+   "key": "Maniyarayile Ashokan",
+   "article": "Maniyarayile Ashokan",
+   "title": "Maniyarayile Ashokan",
+   "year": 2020,
+   "releaseDate": "2020-08-31",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Shamzu Zayba",
+   "music": "Sreehari K. Nair",
+   "runtimeMin": null,
+   "genres": [],
+   "imdbId": "tt11060730",
+   "qid": "Q98447905",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "below_average",
+    "sentence": "As with the rest of the movie, director Shamzu doesn't let this unusual part stick too much and the movie ends as sweetly as the description of the village it began with.\" Sify gave 2 out of 5 and stated \"Maniyarayile Ashokan is a below average comedy-drama which fails to impress",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Maniyarayile_Ashokan"
+   },
+   "starring": [
+    "Jacob Gregory",
+    "Anupama Parameswaran"
+   ]
+  },
+  {
+   "key": "Kurup (film)",
+   "article": "Kurup (film)",
+   "title": "Kurup",
+   "year": 2021,
+   "releaseDate": "2021-11-12",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Srinath Rajendran",
+   "music": "Sushin Shyam",
+   "runtimeMin": 155,
+   "genres": [
+    "biographical film",
+    "crime thriller film"
+   ],
+   "imdbId": "tt7026666",
+   "qid": "Q105102350",
+   "budget": {
+    "low": 35,
+    "high": 35,
+    "text": "₹35 crore"
+   },
+   "gross": {
+    "low": 81,
+    "high": 81,
+    "text": "₹81 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "A critical and commercial success, it grossed over ₹81 crores worldwide, and is among the highest-grossing Malayalam films of all time.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Kurup_(film)"
+   },
+   "starring": [
+    "Dulquer Salmaan",
+    "Indrajith Sukumaran",
+    "Sobhita Dhulipala",
+    "Shine Tom Chacko",
+    "Saiju Kurup"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Salute (2022 Indian film)",
+   "article": "Salute (2022 Indian film)",
+   "title": "Salute",
+   "year": 2022,
+   "releaseDate": "2022-03-17",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Rosshan Andrrews",
+   "music": "Jakes Bejoy",
+   "runtimeMin": 143,
+   "genres": [],
+   "imdbId": "tt13978658",
+   "qid": "Q106609948",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Manoj K. Jayan"
+   ]
+  },
+  {
+   "key": "King of Kotha",
+   "article": "King of Kotha",
+   "title": "King of Kotha",
+   "year": 2023,
+   "releaseDate": "2023-08-24",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Abhilash Joshiy",
+   "music": null,
+   "runtimeMin": 174,
+   "genres": [
+    "action film"
+   ],
+   "imdbId": "tt15134398",
+   "qid": "Q115518140",
+   "budget": {
+    "low": 40,
+    "high": 40,
+    "text": "₹40 crore"
+   },
+   "gross": {
+    "low": 38,
+    "high": 38,
+    "text": "₹38 crore"
+   },
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "King of Kotha grossed in New Zealand, in the United Kingdom, in the United Arab Emirates and in Australia, totaling in international earnings The film was a box office bomb.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/King_of_Kotha"
+   },
+   "starring": [
+    "Dulquer Salmaan",
+    "Shabeer Kallarakkal",
+    "Aishwarya Lakshmi",
+    "Prasanna (actor)",
+    "Gokul Suresh",
+    "Nyla Usha",
+    "Chemban Vinod Jose"
+   ],
+   "teluguRelease": "dubbed"
+  },
+  {
+   "key": "Lokah Chapter 1: Chandra",
+   "article": "Lokah Chapter 1: Chandra",
+   "title": "Lokah Chapter 1: Chandra",
+   "year": 2025,
+   "releaseDate": "2025-08-28",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Dominic Arun",
+   "music": "Jakes Bejoy",
+   "runtimeMin": 150,
+   "genres": [
+    "fantasy film"
+   ],
+   "imdbId": "tt33372494",
+   "qid": "Q134972728",
+   "budget": {
+    "low": 30,
+    "high": 40,
+    "text": "₹30-40 crore"
+   },
+   "gross": {
+    "low": 302,
+    "high": 304,
+    "text": "₹302–304 crore"
+   },
+   "verdict": {
+    "verdict": "blockbuster",
+    "sentence": "The film is also the eighth highest grossing Indian film of all time in the Gulf Countries and second highest grossing Malayalam film in the Gulf Countries.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Lokah_Chapter_1%3A_Chandra"
+   },
+   "starring": [
+    "Kalyani Priyadarshan",
+    "Naslen",
+    "Sandy (choreographer)",
+    "Chandu Salim Kumar",
+    "Arun Kurian",
+    "Dulquer Salmaan"
+   ]
+  },
+  {
+   "key": "I'm Game (film)",
+   "article": "I'm Game (film)",
+   "title": "I'm Game",
+   "year": 2026,
+   "releaseDate": "2026-09-03",
+   "dateApproximate": false,
+   "languages": [
+    "Malayalam"
+   ],
+   "director": "Nahas Hidhayath",
+   "music": "Jakes Bejoy",
+   "runtimeMin": 173,
+   "genres": [],
+   "imdbId": "tt34284946",
+   "qid": "Q140921099",
+   "budget": {
+    "low": 80,
+    "high": 80,
+    "text": "₹80 crore"
+   },
+   "gross": {
+    "low": 48.47,
+    "high": 48.47,
+    "text": "₹48.47 crore"
+   },
+   "verdict": null,
+   "starring": [
+    "Dulquer Salmaan",
+    "Antony Varghese",
+    "Mysskin",
+    "Kayadu Lohar",
+    "Vinay Forrt"
+   ]
+  },
+  {
+   "key": "Vaayai Moodi Pesavum",
+   "article": "Vaayai Moodi Pesavum",
+   "title": "Vaayai Moodi Pesavum",
+   "year": 2014,
+   "releaseDate": "2014-04-25",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Balaji Mohan",
+   "music": "Sean Roldan",
+   "runtimeMin": null,
+   "genres": [
+    "romantic comedy film"
+   ],
+   "imdbId": "tt3465996",
+   "qid": "Q16255056",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Dulquer Salmaan",
+    "Nazriya Nazim"
+   ]
+  },
+  {
+   "key": "Karwaan",
+   "article": "Karwaan",
+   "title": "Karwaan",
+   "year": 2018,
+   "releaseDate": "2018-08-03",
+   "dateApproximate": false,
+   "languages": [
+    "Hindi"
+   ],
+   "director": "Akarsh Khurana",
+   "music": "Prateek Kuhad Anurag Saikia SlowCheetah Imaad Shah",
+   "runtimeMin": 114,
+   "genres": [
+    "drama film"
+   ],
+   "imdbId": "tt7919680",
+   "qid": "Q48672560",
+   "budget": null,
+   "gross": {
+    "low": 26.42,
+    "high": 26.42,
+    "text": "₹26.42 crore"
+   },
+   "verdict": {
+    "verdict": "below_average",
+    "sentence": "The film had a below average opening with 5 – 8 percent occupancy, grossing ₹15 million worldwide on its opening day.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Karwaan"
+   },
+   "starring": [
+    "Dulquer Salmaan",
+    "Irrfan Khan",
+    "Mithila Palkar"
+   ]
+  },
+  {
+   "key": "The Zoya Factor (film)",
+   "article": "The Zoya Factor (film)",
+   "title": "The Zoya Factor",
+   "year": 2019,
+   "releaseDate": "2019-09-19",
+   "dateApproximate": false,
+   "languages": [
+    "Hindi"
+   ],
+   "director": "Abhishek Sharma",
+   "music": "Songs: Shankar–Ehsaan–Loy Score: Indrajit Sharma Parikshit Sharma",
+   "runtimeMin": 134,
+   "genres": [
+    "romantic comedy"
+   ],
+   "imdbId": "tt8304386",
+   "qid": "Q60852854",
+   "budget": {
+    "low": 33,
+    "high": 33,
+    "text": "₹33 crore"
+   },
+   "gross": {
+    "low": 6.96,
+    "high": 6.96,
+    "text": "₹6.96 crore"
+   },
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "With a budget of , the film was a box office disaster.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/The_Zoya_Factor_(film)"
+   },
+   "starring": [
+    "Dulquer Salmaan",
+    "Sonam Kapoor"
+   ]
+  },
+  {
+   "key": "Kannum Kannum Kollaiyadithaal",
+   "article": "Kannum Kannum Kollaiyadithaal",
+   "title": "Kannum Kannum Kollaiyadithaal",
+   "year": 2020,
+   "releaseDate": "2020-02-28",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Desingh Periyasamy",
+   "music": "Songs: Masala Coffee Harshavardhan Rameshwar Background Score: Harshavardhan Ram",
+   "runtimeMin": 160,
+   "genres": [
+    "romantic comedy",
+    "thriller film"
+   ],
+   "imdbId": "tt8042292",
+   "qid": "Q48671740",
+   "budget": null,
+   "gross": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "The film was released on 28 February 2020 and was successful at the box office.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Kannum_Kannum_Kollaiyadithaal"
+   },
+   "starring": [
+    "Dulquer Salmaan",
+    "Ritu Varma",
+    "Rakshan",
+    "Niranjani Ahathian"
+   ]
+  },
+  {
+   "key": "Hey Sinamika",
+   "article": "Hey Sinamika",
+   "title": "Hey Sinamika",
+   "year": 2022,
+   "releaseDate": "2022-03-03",
+   "dateApproximate": false,
+   "languages": [
+    "Tamil"
+   ],
+   "director": "Brinda",
+   "music": "Govind Vasantha",
+   "runtimeMin": 148,
+   "genres": [
+    "romantic comedy"
+   ],
+   "imdbId": "tt11953194",
+   "qid": "Q104821625",
+   "budget": {
+    "low": 15,
+    "high": 15,
+    "text": "₹15 crore"
+   },
+   "gross": {
+    "low": 5,
+    "high": 5,
+    "text": "₹5 crore"
+   },
+   "verdict": null,
+   "starring": [
+    "Dulquer Salmaan",
+    "Aditi Rao Hydari",
+    "Kajal Aggarwal"
+   ]
+  },
+  {
+   "key": "Chup: Revenge of the Artist",
+   "article": "Chup: Revenge of the Artist",
+   "title": "Chup: Revenge of the Artist",
+   "year": 2022,
+   "releaseDate": "2022-09-23",
+   "dateApproximate": false,
+   "languages": [
+    "Hindi"
+   ],
+   "director": "R. Balki",
+   "music": "Score: Aman Pant Songs: Amit Trivedi Sneha Khanwalkar S. D. Burman",
+   "runtimeMin": 135,
+   "genres": [],
+   "imdbId": "tt15654262",
+   "qid": "Q113954234",
+   "budget": {
+    "low": 10,
+    "high": 10,
+    "text": "₹10 crore"
+   },
+   "gross": {
+    "low": 13,
+    "high": 13,
+    "text": "₹13 crore"
+   },
+   "verdict": {
+    "verdict": "average",
+    "sentence": "Chup was released on 23 September 2022 to highly positive reviews from critics and was a modest success at the box office.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Chup%3A_Revenge_of_the_Artist"
+   },
+   "starring": [
+    "Sunny Deol",
+    "Dulquer Salmaan",
+    "Shreya Dhanwanthary",
+    "Pooja Bhatt"
+   ]
+  },
+  {
+   "key": "Lucky Baskhar",
+   "article": "Lucky Baskhar",
+   "title": "Lucky Baskhar",
+   "year": 2024,
+   "releaseDate": "2024-10-31",
+   "dateApproximate": false,
+   "languages": [
+    "Telugu"
+   ],
+   "director": "Venky Atluri",
+   "music": "G. V. Prakash Kumar",
+   "runtimeMin": 151,
+   "genres": [
+    "crime drama film"
+   ],
+   "imdbId": "tt27540542",
+   "qid": "Q125453590",
+   "budget": {
+    "low": 56,
+    "high": 56,
+    "text": "₹56 crore"
+   },
+   "gross": {
+    "low": 111,
+    "high": 111,
+    "text": "₹111 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "He has since established himself as a leading actor in Indian cinema with several critically and commercially successful films including Ustad Hotel (2012) , ABCD (2013) , Neelakasham Pachakadal Chuvanna Bhoomi (2013) , Vaayai Moodi Pesavum (2014) , Bangalore Days (2014) , Vikram",
+    "source": "wikipedia-hero",
+    "url": "https://en.wikipedia.org/wiki/Dulquer_Salmaan_filmography"
+   },
+   "starring": [
+    "Dulquer Salmaan",
+    "Meenakshi Chaudhary"
+   ]
+  },
+  {
+   "key": "Champion (2025 film)",
+   "article": "Champion (2025 film)",
+   "title": "Champion",
+   "year": 2025,
+   "releaseDate": "2025-12-25",
+   "dateApproximate": false,
+   "languages": [
+    "Telugu"
+   ],
+   "director": "Pradeep Advaitham",
+   "music": "Mickey J. Meyer",
+   "runtimeMin": 166,
+   "genres": [],
+   "imdbId": "tt27136041",
+   "qid": "Q136462960",
+   "budget": {
+    "low": 45,
+    "high": 45,
+    "text": "₹45 crore"
+   },
+   "gross": {
+    "low": 11,
+    "high": 11,
+    "text": "₹11 crore"
+   },
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "The film received mixed reviews from critics and was a commercial failure at box office.",
+    "source": "wikipedia-film",
+    "url": "https://en.wikipedia.org/wiki/Champion_(2025_film)"
+   },
+   "starring": [
+    "Roshan Meka",
+    "Anaswara Rajan",
+    "Nandamuri Kalyana Chakravarthy",
+    "Archana (actress)",
+    "Santhosh Prathap",
+    "Ranvir Shorey"
+   ]
+  },
+  {
+   "key": "Aakasamlo Oka Tara",
+   "article": "Aakasamlo Oka Tara",
+   "title": "Aakasamlo Oka Tara",
+   "year": 2026,
+   "releaseDate": "2026-11-20",
+   "dateApproximate": false,
+   "languages": [
+    "Telugu"
+   ],
+   "director": "Pavan Sadineni",
+   "music": "G. V. Prakash Kumar",
+   "runtimeMin": 157,
+   "genres": [],
+   "imdbId": "tt33044571",
+   "qid": "Q130629662",
+   "budget": null,
+   "gross": null,
+   "verdict": null,
+   "starring": [
+    "Dulquer Salmaan",
+    "Satvika Veeravalli"
+   ]
   }
  ],
  "credits": [
@@ -59242,32 +63868,6 @@
    "year": 2026,
    "displayTitle": "Aadarsha Kutumbam House No: 47 - AK47",
    "role": "Chittibabu",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "venkatesh",
-   "film": "Guru (2017 film)",
-   "year": 2017,
-   "displayTitle": "Guru",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "venkatesh",
-   "film": "Sankranthiki Vasthunam",
-   "year": 2025,
-   "displayTitle": "Sankranthiki Vasthunam",
-   "role": "",
    "notes": "",
    "language": "",
    "scope": "lead",
@@ -62728,45 +67328,6 @@
   },
   {
    "hero": "pawan-kalyan",
-   "film": "Johnny (2003 film)",
-   "year": 2003,
-   "displayTitle": "Johnny",
-   "role": "",
-   "notes": "Director, Writer",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "pawan-kalyan",
-   "film": "Gudumba Shankar",
-   "year": 2004,
-   "displayTitle": "Gudumba Shankar",
-   "role": "",
-   "notes": "Screenplay",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "pawan-kalyan",
-   "film": "Sardaar Gabbar Singh",
-   "year": 2016,
-   "displayTitle": "Sardaar Gabbar Singh",
-   "role": "",
-   "notes": "Story, Producer",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "pawan-kalyan",
    "film": "Chal Mohan Ranga",
    "year": 2018,
    "displayTitle": "Chal Mohan Ranga",
@@ -62777,32 +67338,6 @@
    "include": false,
    "excludeReason": "not listed in the film's starring credits",
    "billing": "not in starring list"
-  },
-  {
-   "hero": "pawan-kalyan",
-   "film": "Badri (2000 film)",
-   "year": 2000,
-   "displayTitle": "Badri",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "pawan-kalyan",
-   "film": "Kushi (2001 film)",
-   "year": 2001,
-   "displayTitle": "Kushi",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
   },
   {
    "hero": "pawan-kalyan",
@@ -62819,58 +67354,6 @@
   },
   {
    "hero": "pawan-kalyan",
-   "film": "Gudumba Shankar",
-   "year": 2004,
-   "displayTitle": "Gudumba Shankar",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "pawan-kalyan",
-   "film": "Sardaar Gabbar Singh",
-   "year": 2016,
-   "displayTitle": "Sardaar Gabbar Singh",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "pawan-kalyan",
-   "film": "Agnyaathavaasi",
-   "year": 2018,
-   "displayTitle": "Agnyaathavaasi",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "pawan-kalyan",
-   "film": "Hari Hara Veera Mallu",
-   "year": 2025,
-   "displayTitle": "Hari Hara Veera Mallu",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "pawan-kalyan",
    "film": "Sye Raa Narasimha Reddy",
    "year": 2019,
    "displayTitle": "Sye Raa Narasimha Reddy",
@@ -62881,45 +67364,6 @@
    "include": false,
    "excludeReason": "not listed in the film's starring credits",
    "billing": "not in starring list"
-  },
-  {
-   "hero": "pawan-kalyan",
-   "film": "Kushi (2001 film)",
-   "year": 2001,
-   "displayTitle": "Kushi",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "pawan-kalyan",
-   "film": "Gudumba Shankar",
-   "year": 2004,
-   "displayTitle": "Gudumba Shankar",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "pawan-kalyan",
-   "film": "Panjaa",
-   "year": 2011,
-   "displayTitle": "Panjaa",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
   },
   {
    "hero": "mahesh-babu",
@@ -67905,58 +72349,6 @@
   },
   {
    "hero": "vishnu-manchu",
-   "film": "Vastadu Naa Raju",
-   "year": 2011,
-   "displayTitle": "Vastadu Naa Raju",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "vishnu-manchu",
-   "film": "Denikaina Ready",
-   "year": 2012,
-   "displayTitle": "Denikaina Ready",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "vishnu-manchu",
-   "film": "Doosukeltha",
-   "year": 2013,
-   "displayTitle": "Doosukeltha",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "vishnu-manchu",
-   "film": "Pandavulu Pandavulu Tummeda",
-   "year": 2014,
-   "displayTitle": "Pandavulu Pandavulu Tummeda",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "vishnu-manchu",
    "film": "Current Theega",
    "year": 2014,
    "displayTitle": "Current Theega",
@@ -67970,32 +72362,6 @@
   },
   {
    "hero": "vishnu-manchu",
-   "film": "Anukshanam",
-   "year": 2014,
-   "displayTitle": "Anukshanam",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "vishnu-manchu",
-   "film": "Erra Bus",
-   "year": 2014,
-   "displayTitle": "Erra Bus",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "vishnu-manchu",
    "film": "Singham 123",
    "year": 2015,
    "displayTitle": "Singham 123",
@@ -68006,19 +72372,6 @@
    "include": false,
    "excludeReason": "not listed in the film's starring credits",
    "billing": "not in starring list"
-  },
-  {
-   "hero": "vishnu-manchu",
-   "film": "Dynamite (2015 film)",
-   "year": 2015,
-   "displayTitle": "Dynamite",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
   },
   {
    "hero": "vishnu-manchu",
@@ -68045,19 +72398,6 @@
    "include": true,
    "excludeReason": null,
    "billing": "no starring list (kept, unverified)"
-  },
-  {
-   "hero": "vishnu-manchu",
-   "film": "Mosagallu",
-   "year": 2021,
-   "displayTitle": "Mosagallu",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
   },
   {
    "hero": "vishnu-manchu",
@@ -76495,19 +80835,6 @@
   },
   {
    "hero": "nani",
-   "film": "HIT: The Third Case",
-   "year": 2025,
-   "displayTitle": "HIT: The Third Case",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "nani",
    "film": "Court: State vs a Nobody",
    "year": 2025,
    "displayTitle": "Court: State vs a Nobody",
@@ -78106,84 +82433,6 @@
   },
   {
    "hero": "adivi-sesh",
-   "film": "Karma (2010 film)",
-   "year": 2010,
-   "displayTitle": "Karma",
-   "role": "",
-   "notes": "Dialogues also",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "adivi-sesh",
-   "film": "Kiss (2013 film)",
-   "year": 2013,
-   "displayTitle": "Kiss",
-   "role": "",
-   "notes": "Dialogues also",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "adivi-sesh",
-   "film": "Kshanam",
-   "year": 2016,
-   "displayTitle": "Kshanam",
-   "role": "",
-   "notes": "Screenplay also",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "adivi-sesh",
-   "film": "Goodachari",
-   "year": 2018,
-   "displayTitle": "Goodachari",
-   "role": "",
-   "notes": "Screenplay also",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "adivi-sesh",
-   "film": "Major (film)",
-   "year": 2022,
-   "displayTitle": "Major",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "adivi-sesh",
-   "film": "Dacoit: A Love Story",
-   "year": 2026,
-   "displayTitle": "Dacoit: A Love Story",
-   "role": "",
-   "notes": "Screenplay also",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "adivi-sesh",
    "film": "G2 (film)",
    "year": 2027,
    "displayTitle": "G2",
@@ -79293,8 +83542,7 @@
    "language": "",
    "scope": "lead",
    "include": false,
-   "excludeReason": "not yet released (no release date yet)",
-   "billing": "no starring list (kept, unverified)"
+   "excludeReason": "not yet released"
   },
   {
    "hero": "naveen-chandra",
@@ -79857,9 +84105,8 @@
    "notes": "Bilingual film",
    "language": "TamilTelugu",
    "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
+   "include": false,
+   "excludeReason": "TamilTelugu film"
   },
   {
    "hero": "naveen-chandra",
@@ -80176,58 +84423,6 @@
    "displayTitle": "Telusu Kada",
    "role": "Varun",
    "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "siddhu-jonnalagadda",
-   "film": "Krishna and His Leela",
-   "year": 2020,
-   "displayTitle": "Krishna and His Leela",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "siddhu-jonnalagadda",
-   "film": "Maa Vintha Gaadha Vinuma",
-   "year": 2020,
-   "displayTitle": "Maa Vintha Gaadha Vinuma",
-   "role": "",
-   "notes": "for the songs \"Jaana\" and \"Shayar-E-Ishq\"",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "siddhu-jonnalagadda",
-   "film": "DJ Tillu",
-   "year": 2022,
-   "displayTitle": "DJ Tillu",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "siddhu-jonnalagadda",
-   "film": "Tillu Square",
-   "year": 2024,
-   "displayTitle": "Tillu Square",
-   "role": "",
-   "notes": "for the song \"Oh My Lily\"",
    "language": "",
    "scope": "lead",
    "include": true,
@@ -84212,71 +88407,6 @@
    "excludeReason": "not yet released"
   },
   {
-   "hero": "vishwak-sen",
-   "film": "Vellipomakey",
-   "year": 2018,
-   "displayTitle": "Vellipomakey",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "vishwak-sen",
-   "film": "Ee Nagaraniki Emaindhi",
-   "year": 2019,
-   "displayTitle": "Ee Nagaraniki Emaindhi",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "vishwak-sen",
-   "film": "Falaknuma Das",
-   "year": 2021,
-   "displayTitle": "Falaknuma Das",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "vishwak-sen",
-   "film": "Falaknuma Das",
-   "year": 2021,
-   "displayTitle": "Falaknuma Das",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
-   "hero": "vishwak-sen",
-   "film": "Das Ka Dhamki",
-   "year": 2023,
-   "displayTitle": "Das Ka Dhamki",
-   "role": "",
-   "notes": "",
-   "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
-   "billing": "billed #1"
-  },
-  {
    "hero": "karthikeya",
    "film": "Prematho Mee Karthik",
    "year": 2017,
@@ -88076,6 +92206,2022 @@
    "include": false,
    "excludeReason": "not yet released (no release date yet)",
    "billing": "no starring list (kept, unverified)"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "Bulandi (2000 film)",
+   "year": 2000,
+   "displayTitle": "Bulandi",
+   "role": "Ghajraj Thakur",
+   "notes": "Special appearance",
+   "language": "Hindi",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "Baba (2002 film)",
+   "year": 2002,
+   "displayTitle": "Baba",
+   "role": "Baba, Mahavatar Babaji (Voice-Over)",
+   "notes": "Also producer and screenwriter",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "Chandramukhi",
+   "year": 2005,
+   "displayTitle": "Chandramukhi",
+   "role": "Dr Saravanan, Vettaiyan Raja",
+   "notes": "Tamil Nadu State Film Award for Best Actor",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "Sivaji: The Boss",
+   "year": 2007,
+   "displayTitle": "Sivaji: The Boss",
+   "role": "Sivaji Arumugam (M. G. Ravichandran)",
+   "notes": "",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "Kuselan",
+   "year": 2008,
+   "displayTitle": "Kuselan",
+   "role": "Ashok Kumar",
+   "notes": "Extended cameo",
+   "language": "Tamil",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "Kathanayakudu (2008 film)",
+   "year": 2008,
+   "displayTitle": "Kathanayakudu",
+   "role": "Ashok Kumar",
+   "notes": "Extended cameo",
+   "language": "Telugu",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "Enthiran",
+   "year": 2010,
+   "displayTitle": "Enthiran",
+   "role": "Vaseegaran, Chitti",
+   "notes": "Nominated—Filmfare Award for Best Actor – Tamil",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "Ra.One",
+   "year": 2011,
+   "displayTitle": "Ra.One",
+   "role": "Chitti (Himself)",
+   "notes": "Cameo, computer generated",
+   "language": "Hindi",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "Kochadaiiyaan",
+   "year": 2014,
+   "displayTitle": "Kochadaiiyaan",
+   "role": "Kochadaiiyaan, Ranadheeran, Senadheeran",
+   "notes": "Also playback singer",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "Lingaa",
+   "year": 2014,
+   "displayTitle": "Lingaa",
+   "role": "K. Lingeswaran, Raja Lingeswaran",
+   "notes": "",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "Kabali",
+   "year": 2016,
+   "displayTitle": "Kabali",
+   "role": "Kabaliswaran",
+   "notes": "Nominated—Filmfare Award for Best Actor – Tamil",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "Cinema Veeran",
+   "year": 2017,
+   "displayTitle": "Cinema Veeran",
+   "role": "Narrator",
+   "notes": "Documentary",
+   "language": "Tamil",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "Kaala (2018 film)",
+   "year": 2018,
+   "displayTitle": "Kaala",
+   "role": "Karikaalan Vengaiyan",
+   "notes": "",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "2.0 (film)",
+   "year": 2018,
+   "displayTitle": "2.0",
+   "role": "Vaseegaran, Chitti, Kutty",
+   "notes": "",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "Petta (film)",
+   "year": 2019,
+   "displayTitle": "Petta",
+   "role": "Petta Velan (Kaali)",
+   "notes": "",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "Darbar (film)",
+   "year": 2020,
+   "displayTitle": "Darbar",
+   "role": "Aaditya Arunachalam IPS",
+   "notes": "",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "Annaatthe",
+   "year": 2021,
+   "displayTitle": "Annaatthe",
+   "role": "Kaalaiyan (Annaatthe)",
+   "notes": "",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "Jailer (2023 Tamil film)",
+   "year": 2023,
+   "displayTitle": "Jailer",
+   "role": "\"Tiger\" Muthuvel Pandian",
+   "notes": "",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "Lal Salaam (2024 film)",
+   "year": 2024,
+   "displayTitle": "Lal Salaam",
+   "role": "D. G. Mohideen",
+   "notes": "Extended cameo",
+   "language": "Tamil",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "Vettaiyan",
+   "year": 2024,
+   "displayTitle": "Vettaiyan",
+   "role": "SP V. Athiyan IPS (Vettaiyan)",
+   "notes": "",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "Coolie (2025 film)",
+   "year": 2025,
+   "displayTitle": "Coolie",
+   "role": "Devaraj",
+   "notes": "",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "Jailer 2",
+   "year": 2026,
+   "displayTitle": "Jailer 2",
+   "role": "\"Tiger\" Muthuvel Pandian",
+   "notes": "",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "Dharman",
+   "year": 2027,
+   "displayTitle": "Dharman",
+   "role": "TBA",
+   "notes": "Filming",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "not yet released"
+  },
+  {
+   "hero": "rajinikanth",
+   "film": "unlinked:scope=\"row\"|2028",
+   "year": 2028,
+   "displayTitle": "scope=\"row\"",
+   "role": "TBA",
+   "notes": "Pre-production",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "not yet released"
+  },
+  {
+   "hero": "suriya",
+   "film": "Uyirile Kalanthathu",
+   "year": 2000,
+   "displayTitle": "Uyirile Kalanthathu",
+   "role": "Suriya",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Friends (2001 film)",
+   "year": 2001,
+   "displayTitle": "Friends",
+   "role": "Chandru",
+   "notes": "",
+   "language": "",
+   "scope": "supporting",
+   "include": false,
+   "excludeReason": "billed #2 (supporting role)",
+   "billing": "billed #2"
+  },
+  {
+   "hero": "suriya",
+   "film": "Nandhaa",
+   "year": 2001,
+   "displayTitle": "Nandhaa",
+   "role": "Nandhaa",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Unnai Ninaithu",
+   "year": 2002,
+   "displayTitle": "Unnai Ninaithu",
+   "role": "Suriya",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Sri (2002 film)",
+   "year": 2002,
+   "displayTitle": "Sri",
+   "role": "Sri",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Mounam Pesiyadhe",
+   "year": 2002,
+   "displayTitle": "Mounam Pesiyadhe",
+   "role": "Gautham",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Kaakha Kaakha",
+   "year": 2003,
+   "displayTitle": "Kaakha Kaakha",
+   "role": "Anbuselvan",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Pithamagan",
+   "year": 2003,
+   "displayTitle": "Pithamagan",
+   "role": "Sakthivel",
+   "notes": "",
+   "language": "",
+   "scope": "supporting",
+   "include": false,
+   "excludeReason": "billed #2 (supporting role)",
+   "billing": "billed #2"
+  },
+  {
+   "hero": "suriya",
+   "film": "Perazhagan",
+   "year": 2004,
+   "displayTitle": "Perazhagan",
+   "role": "Chinna (Prem Kumar) and Karthik",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Aayutha Ezhuthu",
+   "year": 2004,
+   "displayTitle": "Aayutha Ezhuthu",
+   "role": "Michael Vasanth",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Maayavi",
+   "year": 2005,
+   "displayTitle": "Maayavi",
+   "role": "Abhes Balayya",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Ghajini (2005 film)",
+   "year": 2005,
+   "displayTitle": "Ghajini",
+   "role": "Sanjay Ramaswamy (Manohar)",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Aaru (film)",
+   "year": 2005,
+   "displayTitle": "Aaru",
+   "role": "Aarumugam (Aaru)",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "June R",
+   "year": 2006,
+   "displayTitle": "June R",
+   "role": "Raja",
+   "notes": "Cameo",
+   "language": "",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "suriya",
+   "film": "Sillunu Oru Kaadhal",
+   "year": 2006,
+   "displayTitle": "Sillunu Oru Kaadhal",
+   "role": "Gautham",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Vel (film)",
+   "year": 2007,
+   "displayTitle": "Vel",
+   "role": "Vetrivel and Vasudevan",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Kuselan",
+   "year": 2008,
+   "displayTitle": "Kuselan",
+   "role": "Himself",
+   "notes": "Guest appearance in the song \"Cinema Cinema\"",
+   "language": "",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "suriya",
+   "film": "Vaaranam Aayiram",
+   "year": 2008,
+   "displayTitle": "Vaaranam Aayiram",
+   "role": "Krishnan and Suriya",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Ayan (film)",
+   "year": 2009,
+   "displayTitle": "Ayan",
+   "role": "Devaraj Velusamy (Deva)",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Aadhavan",
+   "year": 2009,
+   "displayTitle": "Aadhavan",
+   "role": "Madhavan Subramaniam (Aadhavan)",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Singam",
+   "year": 2010,
+   "displayTitle": "Singam",
+   "role": "Durai Singam",
+   "notes": "25th film",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Rakta Charitra 2",
+   "year": 2010,
+   "displayTitle": "Rakta Charitra 2",
+   "role": "Yeturi Suryanarayana Reddy",
+   "notes": "",
+   "language": "",
+   "scope": "supporting",
+   "include": false,
+   "excludeReason": "billed #2 (supporting role)",
+   "billing": "billed #2"
+  },
+  {
+   "hero": "suriya",
+   "film": "Manmadan Ambu",
+   "year": 2010,
+   "displayTitle": "Manmadan Ambu",
+   "role": "Himself",
+   "notes": "Guest appearance in the song \"Oyyale\"",
+   "language": "",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "suriya",
+   "film": "Ko (film)",
+   "year": 2011,
+   "displayTitle": "Ko",
+   "role": "Himself",
+   "notes": "Guest appearance in the song \"Aga Naga\"",
+   "language": "",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "suriya",
+   "film": "Avan Ivan",
+   "year": 2011,
+   "displayTitle": "Avan Ivan",
+   "role": "Himself",
+   "notes": "Guest appearance",
+   "language": "",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "suriya",
+   "film": "7 Aum Arivu",
+   "year": 2011,
+   "displayTitle": "7 Aum Arivu",
+   "role": "Bodhidharma and Aravind",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Maattrraan",
+   "year": 2012,
+   "displayTitle": "Maattrraan",
+   "role": "Akhilan and Vimalan Ramachandran",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Chennaiyil Oru Naal",
+   "year": 2013,
+   "displayTitle": "Chennaiyil Oru Naal",
+   "role": "Himself",
+   "notes": "Guest appearance",
+   "language": "",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "suriya",
+   "film": "Singam II",
+   "year": 2013,
+   "displayTitle": "Singam II",
+   "role": "Durai Singam",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Ninaithathu Yaaro",
+   "year": 2014,
+   "displayTitle": "Ninaithathu Yaaro",
+   "role": "Himself",
+   "notes": "Guest appearance",
+   "language": "",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "suriya",
+   "film": "Anjaan (2014 film)",
+   "year": 2014,
+   "displayTitle": "Anjaan",
+   "role": "Raju Bhai (Krishna)",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Massu Engira Masilamani",
+   "year": 2015,
+   "displayTitle": "Massu Engira Masilamani",
+   "role": "Masilamani (Mass) and Sakthivel (Sakthi)",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Pasanga 2",
+   "year": 2015,
+   "displayTitle": "Pasanga 2",
+   "role": "Dr. Thamizh Nadan",
+   "notes": "",
+   "language": "",
+   "scope": "supporting",
+   "include": false,
+   "excludeReason": "billed #7 (supporting role)",
+   "billing": "billed #7"
+  },
+  {
+   "hero": "suriya",
+   "film": "24 (2016 film)",
+   "year": 2016,
+   "displayTitle": "24",
+   "role": "Athreya, Manikandan and Sethuraman",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Si3 (film)",
+   "year": 2017,
+   "displayTitle": "Si3",
+   "role": "Durai Singam",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Thaanaa Serndha Koottam",
+   "year": 2018,
+   "displayTitle": "Thaanaa Serndha Koottam",
+   "role": "Nachinarkiniyan (Iniyan) / Uthaman",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Kadaikutty Singam",
+   "year": 2018,
+   "displayTitle": "Kadaikutty Singam",
+   "role": "Himself",
+   "notes": "Guest appearance",
+   "language": "",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "suriya",
+   "film": "NGK (film)",
+   "year": 2019,
+   "displayTitle": "NGK",
+   "role": "Nandha Gopalan Kumaran (NGK)",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Kaappaan",
+   "year": 2019,
+   "displayTitle": "Kaappaan",
+   "role": "Kathiravan (Kathir)",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Soorarai Pottru",
+   "year": 2020,
+   "displayTitle": "Soorarai Pottru",
+   "role": "Nedumaaran Rajangam (Maara)",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Jai Bhim (film)",
+   "year": 2021,
+   "displayTitle": "Jai Bhim",
+   "role": "K. Chandru",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Etharkkum Thunindhavan",
+   "year": 2022,
+   "displayTitle": "Etharkkum Thunindhavan",
+   "role": "A. R. Kannabiran",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Vikram (2022 film)",
+   "year": 2022,
+   "displayTitle": "Vikram",
+   "role": "Rolex",
+   "notes": "Cameo",
+   "language": "",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "suriya",
+   "film": "Rocketry: The Nambi Effect",
+   "year": 2022,
+   "displayTitle": "Rocketry: The Nambi Effect",
+   "role": "Himself",
+   "notes": "Guest appearance",
+   "language": "",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "suriya",
+   "film": "Sarfira",
+   "year": 2024,
+   "displayTitle": "Sarfira",
+   "role": "Unnamed businessman",
+   "notes": "Mid-credits cameo; Hindi film",
+   "language": "",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "suriya",
+   "film": "Kanguva",
+   "year": 2024,
+   "displayTitle": "Kanguva",
+   "role": "Kanguva and Francis Theodore",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Retro (film)",
+   "year": 2025,
+   "displayTitle": "Retro",
+   "role": "Paarivel \"Paari\" Kannan (Jada Muni)",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Karuppu (film)",
+   "year": 2026,
+   "displayTitle": "Karuppu",
+   "role": "Karuppuswamy / Saravanan",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Vishwanath & Sons",
+   "year": 2026,
+   "displayTitle": "Vishwanath & Sons",
+   "role": "Sanjay Vishwanath",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "Scene (2026 film)",
+   "year": 2026,
+   "displayTitle": "Scene",
+   "role": "DSP Inbaraj",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "suriya",
+   "film": "unlinked:scope= \"row\"|2027",
+   "year": 2027,
+   "displayTitle": "scope= \"row\"",
+   "role": "TBA",
+   "notes": "Filming",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "not yet released"
+  },
+  {
+   "hero": "suriya",
+   "film": "Kadugu",
+   "year": 2017,
+   "displayTitle": "Kadugu",
+   "role": "",
+   "notes": "",
+   "language": "",
+   "scope": "supporting",
+   "include": false,
+   "excludeReason": "not listed in the film's starring credits",
+   "billing": "not in starring list"
+  },
+  {
+   "hero": "suriya",
+   "film": "Sillu Karuppatti",
+   "year": 2019,
+   "displayTitle": "Sillu Karuppatti",
+   "role": "",
+   "notes": "",
+   "language": "",
+   "scope": "supporting",
+   "include": false,
+   "excludeReason": "not listed in the film's starring credits",
+   "billing": "not in starring list"
+  },
+  {
+   "hero": "suriya",
+   "film": "Gargi (film)",
+   "year": 2022,
+   "displayTitle": "Gargi",
+   "role": "",
+   "notes": "",
+   "language": "",
+   "scope": "supporting",
+   "include": false,
+   "excludeReason": "not listed in the film's starring credits",
+   "billing": "not in starring list"
+  },
+  {
+   "hero": "suriya",
+   "film": "My Lord (film)",
+   "year": 2026,
+   "displayTitle": "My Lord",
+   "role": "",
+   "notes": "",
+   "language": "",
+   "scope": "supporting",
+   "include": false,
+   "excludeReason": "not listed in the film's starring credits",
+   "billing": "not in starring list"
+  },
+  {
+   "hero": "karthi",
+   "film": "Aayutha Ezhuthu",
+   "year": 2004,
+   "displayTitle": "Aayutha Ezhuthu",
+   "role": "Michael's friend",
+   "notes": "Uncredited role; also assistant director",
+   "language": "",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "karthi",
+   "film": "Paruthiveeran",
+   "year": 2007,
+   "displayTitle": "Paruthiveeran",
+   "role": "Paruthiveeran",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Aayirathil Oruvan (2010 film)",
+   "year": 2010,
+   "displayTitle": "Aayirathil Oruvan",
+   "role": "Muthu",
+   "notes": "—Filmfare Award for Best Actor – Tamil",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Paiyaa",
+   "year": 2010,
+   "displayTitle": "Paiyaa",
+   "role": "Shiva",
+   "notes": "—Filmfare Award for Best Actor – Tamil",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Naan Mahaan Alla (2010 film)",
+   "year": 2010,
+   "displayTitle": "Naan Mahaan Alla",
+   "role": "Jeeva Prakasam",
+   "notes": "—Vijay Award for Best Actor",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Siruthai",
+   "year": 2011,
+   "displayTitle": "Siruthai",
+   "role": "DSP Rathnavel Pandian and Rocket Raja",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Ko (film)",
+   "year": 2011,
+   "displayTitle": "Ko",
+   "role": "Himself",
+   "notes": "Guest appearance in song \"Aga Naga\"",
+   "language": "",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "karthi",
+   "film": "Saguni",
+   "year": 2012,
+   "displayTitle": "Saguni",
+   "role": "Kamalakannan",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Alex Pandian",
+   "year": 2013,
+   "displayTitle": "Alex Pandian",
+   "role": "Alex Pandian",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "All in All Azhagu Raja",
+   "year": 2013,
+   "displayTitle": "All in All Azhagu Raja",
+   "role": "Azhagu Raja and Young Muthukrishnan",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Biriyani (film)",
+   "year": 2013,
+   "displayTitle": "Biriyani",
+   "role": "Sugan",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Madras (film)",
+   "year": 2014,
+   "displayTitle": "Madras",
+   "role": "Kaali",
+   "notes": "{{br list",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Madras (film)",
+   "year": 2014,
+   "displayTitle": "Madras",
+   "role": "Kaali",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Komban",
+   "year": 2015,
+   "displayTitle": "Komban",
+   "role": "Kombaiah Pandian (Komban)",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Oopiri",
+   "year": 2016,
+   "displayTitle": "Oopiri",
+   "role": "Seenu",
+   "notes": "—Filmfare Award for Best Actor – Telugu",
+   "language": "",
+   "scope": "supporting",
+   "include": false,
+   "excludeReason": "billed #2 (supporting role)",
+   "billing": "billed #2"
+  },
+  {
+   "hero": "karthi",
+   "film": "Kaashmora",
+   "year": 2016,
+   "displayTitle": "Kaashmora",
+   "role": "Kaashmora and Raj Nayak",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Kaatru Veliyidai",
+   "year": 2017,
+   "displayTitle": "Kaatru Veliyidai",
+   "role": "Varun Chakrapani (VC)",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Theeran Adhigaaram Ondru",
+   "year": 2017,
+   "displayTitle": "Theeran Adhigaaram Ondru",
+   "role": "DSP Theeran Thirumaran",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Kadaikutty Singam",
+   "year": 2018,
+   "displayTitle": "Kadaikutty Singam",
+   "role": "Perunazhi Gunasingam (Kadaikutty Singam)",
+   "notes": "—SIIMA Award for Best Actor in a Leading Role",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Dev (2019 film)",
+   "year": 2019,
+   "displayTitle": "Dev",
+   "role": "Dev Ramalingam",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Kaithi (2019 film)",
+   "year": 2019,
+   "displayTitle": "Kaithi",
+   "role": "Dilli",
+   "notes": "—Tamil Nadu State Film Award Special Prize Won-Norway Tamil Film Festival Award for Best Actor",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Thambi (2019 film)",
+   "year": 2019,
+   "displayTitle": "Thambi",
+   "role": "Saravanan (Vicky)",
+   "notes": "",
+   "language": "",
+   "scope": "supporting",
+   "include": false,
+   "excludeReason": "billed #3 (supporting role)",
+   "billing": "billed #3"
+  },
+  {
+   "hero": "karthi",
+   "film": "Sulthan (2021 film)",
+   "year": 2021,
+   "displayTitle": "Sulthan",
+   "role": "Vikram (Sulthan)",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Viruman",
+   "year": 2022,
+   "displayTitle": "Viruman",
+   "role": "Viruman",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Ponniyin Selvan: I",
+   "year": 2022,
+   "displayTitle": "Ponniyin Selvan: I",
+   "role": "Vallavaraiyan Vandiyadevan",
+   "notes": "—Filmfare Award for Best Actor – Tamil",
+   "language": "",
+   "scope": "supporting",
+   "include": false,
+   "excludeReason": "billed #3 (supporting role)",
+   "billing": "billed #3"
+  },
+  {
+   "hero": "karthi",
+   "film": "Sardar (2022 film)",
+   "year": 2022,
+   "displayTitle": "Sardar",
+   "role": "Inspector Vijayaprakash and Chandra Bose \"Sardar\"",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Ponniyin Selvan: II",
+   "year": 2023,
+   "displayTitle": "Ponniyin Selvan: II",
+   "role": "Vallavaraiyan Vandiyadevan",
+   "notes": "",
+   "language": "",
+   "scope": "supporting",
+   "include": false,
+   "excludeReason": "billed #4 (supporting role)",
+   "billing": "billed #4"
+  },
+  {
+   "hero": "karthi",
+   "film": "Japan (2023 film)",
+   "year": 2023,
+   "displayTitle": "Japan",
+   "role": "Japan Muni",
+   "notes": "25th Film",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Meiyazhagan",
+   "year": 2024,
+   "displayTitle": "Meiyazhagan",
+   "role": "Meiyazhagan",
+   "notes": "- Filmfare Award for Best Supporting Actor - Tamil Won—SIIMA Critics Award for Best Actor",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Kanguva",
+   "year": 2024,
+   "displayTitle": "Kanguva",
+   "role": "Rathaangasan and Commander Ryan",
+   "notes": "Cameo",
+   "language": "",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "karthi",
+   "film": "HIT: The Third Case",
+   "year": 2025,
+   "displayTitle": "HIT: The Third Case",
+   "role": "ACP Veerappan IPS",
+   "notes": "Cameo",
+   "language": "",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "karthi",
+   "film": "Vaa Vaathiyaar",
+   "year": 2026,
+   "displayTitle": "Vaa Vaathiyaar",
+   "role": "Inspector Rameshwaran / MGR",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Sardar 2",
+   "year": 2026,
+   "displayTitle": "Sardar 2",
+   "role": "Agent Vijay Prakash \"Code Red\" and Chandra Bose \"Sardar\"",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "karthi",
+   "film": "Maattrraan",
+   "year": 2012,
+   "displayTitle": "Maattrraan",
+   "role": "Dubbed for Vimal (Suriya) in Telugu dubbed version",
+   "notes": "",
+   "language": "",
+   "scope": "supporting",
+   "include": false,
+   "excludeReason": "not listed in the film's starring credits",
+   "billing": "not in starring list"
+  },
+  {
+   "hero": "karthi",
+   "film": "Vikram (2022 film)",
+   "year": 2022,
+   "displayTitle": "Vikram",
+   "role": "Dilli",
+   "notes": "",
+   "language": "",
+   "scope": "supporting",
+   "include": false,
+   "excludeReason": "not listed in the film's starring credits",
+   "billing": "not in starring list"
+  },
+  {
+   "hero": "karthi",
+   "film": "Mark Antony (2023 film)",
+   "year": 2023,
+   "displayTitle": "Mark Antony",
+   "role": "Narrator",
+   "notes": "",
+   "language": "",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "karthi",
+   "film": "3BHK",
+   "year": 2025,
+   "displayTitle": "3BHK",
+   "role": "Narrator",
+   "notes": "",
+   "language": "",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Second Show",
+   "year": 2012,
+   "displayTitle": "Second Show",
+   "role": "Harilal \"Lalu\"",
+   "notes": "Debut film",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Ustad Hotel",
+   "year": 2012,
+   "displayTitle": "Ustad Hotel",
+   "role": "Faizal \"Faizi\" Abdul Razak",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Theevram",
+   "year": 2012,
+   "displayTitle": "Theevram",
+   "role": "Harsha Vardhan",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "ABCD: American-Born Confused Desi (2013 film)",
+   "year": 2013,
+   "displayTitle": "ABCD: American-Born Confused Desi",
+   "role": "Jones Isaac",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "5 Sundarikal",
+   "year": 2013,
+   "displayTitle": "5 Sundarikal",
+   "role": "Injured stuntman",
+   "notes": "Anthology film; Kullante Bharya segment",
+   "language": "",
+   "scope": "supporting",
+   "include": false,
+   "excludeReason": "billed #11 (supporting role)",
+   "billing": "billed #11"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Neelakasham Pachakadal Chuvanna Bhoomi",
+   "year": 2013,
+   "displayTitle": "Neelakasham Pachakadal Chuvanna Bhoomi",
+   "role": "Kassi",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Pattam Pole",
+   "year": 2013,
+   "displayTitle": "Pattam Pole",
+   "role": "Karthikeyan \"Karthi\"",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Salalah Mobiles",
+   "year": 2014,
+   "displayTitle": "Salalah Mobiles",
+   "role": "Afzal",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Bangalore Days",
+   "year": 2014,
+   "displayTitle": "Bangalore Days",
+   "role": "Arjun \"Aju\"",
+   "notes": "",
+   "language": "",
+   "scope": "supporting",
+   "include": false,
+   "excludeReason": "billed #3 (supporting role)",
+   "billing": "billed #3"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Vikramadithyan",
+   "year": 2014,
+   "displayTitle": "Vikramadithyan",
+   "role": "Adithyan Menon \"Aadhi\"",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Njaan",
+   "year": 2014,
+   "displayTitle": "Njaan",
+   "role": "K. T. N. Kottoor & Ravi Chandrasekhar",
+   "notes": "Dual role",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "100 Days of Love",
+   "year": 2015,
+   "displayTitle": "100 Days of Love",
+   "role": "Balan K. Nair & Rocky K. Nair",
+   "notes": "Dual role",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Charlie (2015 Malayalam film)",
+   "year": 2015,
+   "displayTitle": "Charlie",
+   "role": "Charlie",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Kali (2016 film)",
+   "year": 2016,
+   "displayTitle": "Kali",
+   "role": "Siddharth",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Kammatipaadam",
+   "year": 2016,
+   "displayTitle": "Kammatipaadam",
+   "role": "Krishnan",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Annmariya Kalippilaanu",
+   "year": 2016,
+   "displayTitle": "Annmariya Kalippilaanu",
+   "role": "Angel",
+   "notes": "Cameo",
+   "language": "",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Jomonte Suvisheshangal",
+   "year": 2017,
+   "displayTitle": "Jomonte Suvisheshangal",
+   "role": "Jomon T. Vincent",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Comrade in America",
+   "year": 2017,
+   "displayTitle": "Comrade in America",
+   "role": "Aji \"Ajipan\" Mathew",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Parava (film)",
+   "year": 2017,
+   "displayTitle": "Parava",
+   "role": "Imran",
+   "notes": "Extended Cameo",
+   "language": "",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Solo (2017 film)",
+   "year": 2017,
+   "displayTitle": "Solo",
+   "role": "Shekhar, Trilok, Siva & Rudra Ramachandran",
+   "notes": "Bilingual film; Quadruple role",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Oru Yamandan Premakadha",
+   "year": 2019,
+   "displayTitle": "Oru Yamandan Premakadha",
+   "role": "Mohanlal John Kombanayil alias Lallu",
+   "notes": "",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Varane Avashyamund",
+   "year": 2020,
+   "displayTitle": "Varane Avashyamund",
+   "role": "Bibeesh P. \"Fraud\"",
+   "notes": "Also producer",
+   "language": "",
+   "scope": "supporting",
+   "include": false,
+   "excludeReason": "billed #2 (supporting role)",
+   "billing": "billed #2"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Maniyarayile Ashokan",
+   "year": 2020,
+   "displayTitle": "Maniyarayile Ashokan",
+   "role": "Arjun",
+   "notes": "Cameo; Also producer",
+   "language": "",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Kurup (film)",
+   "year": 2021,
+   "displayTitle": "Kurup",
+   "role": "Sudhakara Kurup / Gopi Krishnan Pillai / Alexander Gelmosby",
+   "notes": "Also producer",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Salute (2022 Indian film)",
+   "year": 2022,
+   "displayTitle": "Salute",
+   "role": "Aravind Karunakaran",
+   "notes": "Also producer",
+   "language": "",
+   "scope": "supporting",
+   "include": false,
+   "excludeReason": "not listed in the film's starring credits",
+   "billing": "not in starring list"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "King of Kotha",
+   "year": 2023,
+   "displayTitle": "King of Kotha",
+   "role": "Raju Madrassi alias \"Kotha Raju\"",
+   "notes": "Also producer",
+   "language": "",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Lokah Chapter 1: Chandra",
+   "year": 2025,
+   "displayTitle": "Lokah Chapter 1: Chandra",
+   "role": "Charlie",
+   "notes": "Cameo; Also producer",
+   "language": "",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "I'm Game (film)",
+   "year": 2026,
+   "displayTitle": "I'm Game",
+   "role": "Dan John",
+   "notes": "Also producer",
+   "language": "",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "no Telugu release found",
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Vaayai Moodi Pesavum",
+   "year": 2014,
+   "displayTitle": "Vaayai Moodi Pesavum",
+   "role": "Aravind",
+   "notes": "Bilingual film; Tamil debut; Shot simultaneously in Malayalam as Samsaaram Arogyathinu Haanikaram",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "Tamil film"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "O Kadhal Kanmani",
+   "year": 2015,
+   "displayTitle": "O Kadhal Kanmani",
+   "role": "Aditya \"Aadhi\" Varadarajan",
+   "notes": "",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "Tamil film"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Mahanati",
+   "year": 2018,
+   "displayTitle": "Mahanati",
+   "role": "Gemini Ganesan",
+   "notes": "",
+   "language": "Telugu",
+   "scope": "supporting",
+   "include": false,
+   "excludeReason": "billed #2 (supporting role)",
+   "billing": "billed #2"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Karwaan",
+   "year": 2018,
+   "displayTitle": "Karwaan",
+   "role": "Avinash Rajpurohit",
+   "notes": "",
+   "language": "Hindi",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "The Zoya Factor (film)",
+   "year": 2019,
+   "displayTitle": "The Zoya Factor",
+   "role": "Nikhil Khoda",
+   "notes": "",
+   "language": "Hindi",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Kannum Kannum Kollaiyadithaal",
+   "year": 2020,
+   "displayTitle": "Kannum Kannum Kollaiyadithaal",
+   "role": "Siddharth",
+   "notes": "",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "Tamil film"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Hey Sinamika",
+   "year": 2022,
+   "displayTitle": "Hey Sinamika",
+   "role": "Yaazhan",
+   "notes": "",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "Tamil film"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Sita Ramam",
+   "year": 2022,
+   "displayTitle": "Sita Ramam",
+   "role": "Lieutenant Ram",
+   "notes": "",
+   "language": "Telugu",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Chup: Revenge of the Artist",
+   "year": 2022,
+   "displayTitle": "Chup: Revenge of the Artist",
+   "role": "Sebastian Gomes aka Danny",
+   "notes": "",
+   "language": "Hindi",
+   "scope": "supporting",
+   "include": false,
+   "excludeReason": "billed #2 (supporting role)",
+   "billing": "billed #2"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Kalki 2898 AD",
+   "year": 2024,
+   "displayTitle": "Kalki 2898 AD",
+   "role": "Captain",
+   "notes": "Cameo",
+   "language": "Telugu",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Lucky Baskhar",
+   "year": 2024,
+   "displayTitle": "Lucky Baskhar",
+   "role": "Baskhar Kumar",
+   "notes": "",
+   "language": "Telugu",
+   "scope": "lead",
+   "include": true,
+   "excludeReason": null,
+   "billing": "billed #1"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Kaantha",
+   "year": 2025,
+   "displayTitle": "Kaantha",
+   "role": "Thiruchengode Kalidasa Mahadevan \"TKM\"",
+   "notes": "Also producer",
+   "language": "Tamil",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "Tamil film"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Champion (2025 film)",
+   "year": 2025,
+   "displayTitle": "Champion",
+   "role": "George C. Williams",
+   "notes": "Cameo",
+   "language": "Telugu",
+   "scope": "cameo",
+   "include": false,
+   "excludeReason": "cameo / special / voice appearance"
+  },
+  {
+   "hero": "dulquer-salmaan",
+   "film": "Aakasamlo Oka Tara",
+   "year": 2026,
+   "displayTitle": "Aakasamlo Oka Tara",
+   "role": "Krishna",
+   "notes": "Post-Production",
+   "language": "Telugu",
+   "scope": "lead",
+   "include": false,
+   "excludeReason": "not yet released"
   }
  ]
 }

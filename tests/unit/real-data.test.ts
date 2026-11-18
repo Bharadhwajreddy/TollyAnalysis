@@ -8,11 +8,14 @@ describe("real dataset (Wikipedia + Wikidata snapshot)", () => {
   const ds = buildRealDataset();
   const out = runEngine(ds, METHODOLOGY);
 
-  it("contains only Telugu heroes and no editorially excluded names", () => {
+  it("contains Telugu heroes plus the listed heroes from other industries, and no editorially excluded names", () => {
     expect(ds.people.length).toBeGreaterThan(50);
-    expect(ds.people.every((p) => p.industry === "telugu")).toBe(true);
+    const others = INITIAL_ROSTER.filter((r) => r.industry !== "telugu");
+    // A hero from another industry must say which language his films come from (they count only when released in Telugu).
+    expect(others.every((r) => !!r.homeLanguage)).toBe(true);
+    expect(others.map((r) => r.slug).sort()).toEqual(["dulquer-salmaan", "karthi", "rajinikanth", "suriya"]);
+    expect(ds.people.every((p) => p.industry === "telugu" || others.some((o) => o.slug === p.slug))).toBe(true);
     for (const n of EDITORIALLY_EXCLUDED_NAMES) expect(ds.people.map((p) => p.displayName)).not.toContain(n);
-    expect(INITIAL_ROSTER.every((r) => r.industry === "telugu")).toBe(true);
   });
 
   it("counts only films released from 2000 onwards", () => {

@@ -115,7 +115,7 @@ describe("demo dataset", () => {
     expect(all.filter((s) => s.isEmerging).map((s) => s.slug)).toContain("mouli-tanuj-prasanth");
     expect(all.filter((s) => !s.isEmerging).length).toBeGreaterThanOrEqual(60);
     for (const name of ["Prabhas", "Nithiin", "Satyadev", "Sree Vishnu", "Sharwanand"]) expect(all.map((s) => s.name)).toContain(name);
-    expect(all.every((s) => s.industry === "telugu")).toBe(true);
+    expect(all.filter((s) => s.industry === "telugu").length).toBeGreaterThanOrEqual(60);
   });
 
   it("plain metrics agree with each other", () => {

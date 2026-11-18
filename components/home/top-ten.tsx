@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element -- tiny local thumbnails */
 import Link from "next/link";
 import { useState } from "react";
+import { ProvisionalMark } from "@/components/tolly/tolly-parts";
 import { ColourBySwitch } from "@/components/ui/colour-by";
 import { ERA_GROUPS, FAMILY_GROUPS, groupOf, type ColourBy } from "@/lib/constants/groups";
 
@@ -15,6 +16,7 @@ export interface TopRow {
   rank: number;
   index: number;
   best: string | null;
+  provisional?: boolean;
 }
 
 const MEDAL = ["#d8a86b", "#c9c2bb", "#c08a5e"];
@@ -54,7 +56,10 @@ export function TopTen({ rows }: { rows: TopRow[] }) {
                 </span>
                 <span className="min-w-0">
                   <span className="flex items-baseline justify-between gap-2">
-                    <span className="truncate text-[15px] font-semibold text-ink group-hover:text-wine">{r.name}</span>
+                    <span className="truncate text-[15px] font-semibold text-ink group-hover:text-wine">
+                      {r.name}
+                      {r.provisional && <ProvisionalMark />}
+                    </span>
                     {r.best && <span className="hidden truncate text-[12px] text-muted sm:block">Best: {r.best}</span>}
                   </span>
                   <span className="mt-1.5 block h-2 overflow-hidden rounded-full bg-surface-2 ring-1 ring-line">

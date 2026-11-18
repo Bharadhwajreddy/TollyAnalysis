@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ERA_GROUPS, FAMILY_GROUPS, groupOf, type ColourBy } from "@/lib/constants/groups";
 import { ColourBySwitch } from "@/components/ui/colour-by";
-import { BandBar, GROUPS } from "./tolly-parts";
+import { BandBar, GROUPS, ProvisionalMark, PROVISIONAL_TIP } from "./tolly-parts";
 
 export interface RankingRow {
   slug: string;
@@ -20,6 +20,8 @@ export interface RankingRow {
   groups: (number | null)[];
   best: string | null;
   followers: string | null;
+  /** A hero from another industry: his box-office record is less complete, so the score is provisional. */
+  provisional?: boolean;
 }
 
 /** The Tolly Index table and top three, with each hero coloured by debut era or film family. */
@@ -58,7 +60,10 @@ export function TollyRanking({ rows }: { rows: RankingRow[] }) {
                 <span className="tabular absolute -bottom-1 -right-1 grid h-7 w-7 place-items-center rounded-full bg-ink text-[13px] font-bold text-white ring-2 ring-surface">{r.rank}</span>
               </span>
               <span className="min-w-0">
-                <span className="block truncate text-[19px] font-bold tracking-tight text-ink">{r.name}</span>
+                <span className="block truncate text-[19px] font-bold tracking-tight text-ink">
+                  {r.name}
+                  {r.provisional && <ProvisionalMark />}
+                </span>
                 <span className="tabular block text-[26px] font-semibold leading-tight" style={{ color: colour(r) }}>
                   {r.index.toFixed(1)}
                   {r.band !== null && <span className="ml-1.5 text-[13px] font-normal text-muted">± {r.band.toFixed(1)}</span>}
@@ -75,7 +80,10 @@ export function TollyRanking({ rows }: { rows: RankingRow[] }) {
           <h2 id="ranking" className="font-serif text-[24px] font-semibold text-ink">
             Hero ranking
           </h2>
-          <p className="text-[12px] text-muted">± shows how sure we are. Every column is out of 100.</p>
+          <p className="text-[12px] text-muted">
+            ± shows how sure we are. Every column is out of 100.
+            {rows.some((r) => r.provisional) && <> Provisional: {PROVISIONAL_TIP.replace(/^Provisional: /, "")}</>}
+          </p>
         </div>
         <div className="scroll-x mt-3 rounded-lg border border-line">
           <table className="w-full min-w-[960px] text-[13.5px]">
@@ -101,6 +109,7 @@ export function TollyRanking({ rows }: { rows: RankingRow[] }) {
                     <Link href={`/hero/${r.slug}#tolly`} className="flex items-center gap-2.5 text-ink hover:text-wine">
                       <Face r={r} size={30} />
                       {r.name}
+                      {r.provisional && <ProvisionalMark />}
                     </Link>
                   </td>
                   <td className="px-2.5 py-2">

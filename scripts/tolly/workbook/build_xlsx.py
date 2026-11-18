@@ -201,7 +201,7 @@ r += 1
 st[f"A{r}"] = "FameOn"
 st[f"B{r}"] = "Fame counts (every ranked hero has a recent follower count, or no account)"
 st[f"C{r}"] = (f"=AND(COUNTIF('Tolly Index Heroes'!$M$2:$M${LH},\"Yes\")>0,"
-               f"SUMPRODUCT(('Tolly Index Heroes'!$M$2:$M${LH}=\"Yes\")*('Tolly Index Heroes'!$AA$2:$AA${LH}=\"\")*(Heroes!$R$2:$R${LH}<>\"Yes\"))=0)")
+               f"SUMPRODUCT(('Tolly Index Heroes'!$M$2:$M${LH}=\"Yes\")*('Tolly Index Heroes'!$AA$2:$AA${LH}=\"\")*(Heroes!$R$2:$R${LH}=\"\"))=0)")
 st[f"D{r}"] = "Calculated: switches fame on for everyone at once, so no two heroes are compared on different bases"
 for c in "ABCD":
     st[f"{c}{r}"].font = f_body
@@ -270,7 +270,7 @@ hcols = [
     ("Career start source", 11, "ctx"), ("Free-licence photo?", 9, "ctx"), ("X followers (context only)", 12, "ctx"), ("X followers as of", 11, "ctx"),
     ("X handle", 16, "ctx"), ("Instagram followers (reported, context only)", 14, "ctx"),
     ("Followers for fame (official platforms added up, counts ≤ 1 year old)", 16, "in"), ("Followers counted as of", 11, "in"),
-    ("No official account? (Yes = scored without fame)", 11, "in"),
+    ("No official account? (Yes = scored without fame; Pending = counts not checked yet, also scored without fame)", 13, "in"),
     ("Films with a known box-office result", 10, "in"), ("…of which hits or better", 9, "in"),
     ("Latest films with a known result", 10, "in"), ("…of which hits or better", 9, "in"), ("Films as lead hero", 9, "in"),
     ("Blockbusters", 9, "in"), ("Films grossing ₹100 crore or more", 10, "in"), ("Total reported gross (₹ crore)", 12, "in"),
@@ -283,7 +283,7 @@ for i, h in enumerate(heroes, start=2):
     row = [h["slug"], h["name"], h["qid"], h["imdb"] or None, h["article"], h["filmography"],
            date.fromisoformat(h["birth"]) if h["birth"] else None, h["birthBy"], h["debut"], h["debutBy"],
            "Yes" if h["photo"] or h["slug"] in site_photos else "No", h["x"], date.fromisoformat(h["xDate"]) if h["xDate"] else None, h["xUser"], h["ig"],
-           h.get("fameFollowers"), date.fromisoformat(h["fameDate"]) if h.get("fameDate") else None, "Yes" if h.get("noAccount") else None]
+           h.get("fameFollowers"), date.fromisoformat(h["fameDate"]) if h.get("fameDate") else None, h.get("noAccount") or None]
     cr = h.get("career")
     row += (
         [cr["judged"], cr["hits"] if cr["judged"] else None, cr["recentJudged"], cr["recentHits"], cr["leadFilms"],
