@@ -5,6 +5,7 @@ import { creditIneligibility } from "@/lib/calculations/eligibility";
 import { METHODOLOGY, type MethodologyVersion } from "@/lib/constants/methodology";
 import { INITIAL_ROSTER } from "@/lib/constants/roster";
 import { generateDemoDataset } from "@/lib/data/demo/generate";
+import { buildRealDataset } from "@/lib/data/real/load";
 import type { Dataset, FilterWindow, Person } from "@/lib/domain/types";
 import { DATA_MODE } from "@/lib/env";
 import { toHeroView, type DashboardData, type DataMeta } from "@/lib/view-models";
@@ -12,6 +13,7 @@ import { toHeroView, type DashboardData, type DataMeta } from "@/lib/view-models
 /**
  * Single entry point for reading benchmark data.
  * - demo: synthetic dataset, computed in-process by the calculation engine.
+ * - real: bundled Wikipedia/Wikidata snapshot, pre-computed at module startup so edge requests use ~0ms CPU.
  * - live: dataset + active methodology loaded from Postgres; hero metrics come from
  *   the latest persisted `hero_metric_snapshots` written by the recalculation job.
  */
@@ -20,14 +22,59 @@ interface Loaded {
   dataset: Dataset;
   methodology: MethodologyVersion;
   engine: EngineOutput;
-  /** Persisted snapshots (live) or engine snapshots (demo). */
+  /** Persisted snapshots (live) or engine snapshots (demo/real). */
   snapshots: Record<FilterWindow, HeroSnapshot[]>;
   calculatedAt: string | null;
 }
 
 // Kept on globalThis so route handlers and pages (separate module instances) share one cache.
-const cache = globalThis as unknown as { __taDemo?: Loaded; __taLive?: { at: number; value: Loaded } | null };
+const cache = globalThis as unknown as {
+  __taDemo?: Loaded;
+  __taDashboard?: DashboardData;
+  __taLive?: { at: number; value: Loaded } | null;
+};
 const LIVE_TTL_MS = 60_000;
+
+function ensureStaticLoaded(): Loaded {
+  if (!cache.__taDemo) {
+    const dataset = DATA_MODE === "real" ? buildRealDataset() : generateDemoDataset();
+    const engine = runEngine(dataset, METHODOLOGY, `${dataset.asOf}T06:00:00Z`);
+    cache.__taDemo = { dataset, methodology: METHODOLOGY, engine, snapshots: engine.snapshots, calculatedAt: engine.calculatedAt };
+  }
+  return cache.__taDemo;
+}
+
+function ensureStaticDashboard(): DashboardData {
+  if (!cache.__taDashboard) {
+    const l = ensureStaticLoaded();
+    const people = new Map(l.dataset.people.map((p) => [p.slug, p]));
+    const roster = new Map(INITIAL_ROSTER.map((r) => [r.slug, r]));
+    const personInfo = (slug: string) => ({
+      family: people.get(slug)?.family ?? roster.get(slug)?.family ?? "other",
+      debutYear: people.get(slug)?.debutYear ?? null,
+    });
+    const windows = Object.fromEntries(
+      (Object.keys(l.snapshots) as FilterWindow[]).map((w) => [
+        w,
+        l.snapshots[w].map((s) => toHeroView(s, personInfo(s.slug))),
+      ]),
+    ) as DashboardData["windows"];
+    cache.__taDashboard = {
+      mode: l.dataset.mode,
+      asOf: l.dataset.asOf,
+      calculatedAt: l.calculatedAt,
+      methodologyId: l.methodology.id,
+      methodologyName: l.methodology.versionName,
+      windows,
+    };
+  }
+  return cache.__taDashboard;
+}
+
+// Pre-warm static dataset and dashboard view model at module startup (uses Cloudflare Workers 1,000ms startup budget instead of 10ms per-request CPU limit).
+if (DATA_MODE !== "live") {
+  ensureStaticDashboard();
+}
 
 export async function load(): Promise<Loaded> {
   if (DATA_MODE === "live") {
@@ -40,16 +87,12 @@ export async function load(): Promise<Loaded> {
     cache.__taLive = { at: Date.now(), value };
     return value;
   }
-  if (!cache.__taDemo) {
-    const dataset = DATA_MODE === "real" ? (await import("@/lib/data/real/load")).buildRealDataset() : generateDemoDataset();
-    const engine = runEngine(dataset, METHODOLOGY, `${dataset.asOf}T06:00:00Z`);
-    cache.__taDemo = { dataset, methodology: METHODOLOGY, engine, snapshots: engine.snapshots, calculatedAt: engine.calculatedAt };
-  }
-  return cache.__taDemo;
+  return ensureStaticLoaded();
 }
 
 export function invalidateCache() {
   cache.__taLive = null;
+  cache.__taDashboard = undefined;
 }
 
 export async function getMeta(): Promise<DataMeta> {
@@ -64,6 +107,9 @@ export async function getMeta(): Promise<DataMeta> {
 }
 
 export async function getDashboardData(): Promise<DashboardData> {
+  if (DATA_MODE !== "live") {
+    return ensureStaticDashboard();
+  }
   const l = await load();
   const meta = await getMeta();
   const people = new Map(l.dataset.people.map((p) => [p.slug, p]));
@@ -76,7 +122,7 @@ export async function getDashboardData(): Promise<DashboardData> {
     (Object.keys(l.snapshots) as FilterWindow[]).map((w) => [
       w,
       l.snapshots[w]
-        .filter((s) => DATA_MODE !== "live" || s.confidence !== "insufficient")
+        .filter((s) => s.confidence !== "insufficient")
         .map((s) => toHeroView(s, personInfo(s.slug))),
     ]),
   ) as DashboardData["windows"];
