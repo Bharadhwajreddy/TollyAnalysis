@@ -12,13 +12,17 @@ A private, dashboard-first benchmarking app for Telugu-cinema **heroes**: named 
 
 ## 1. See it running (no setup)
 
-The quickest path, and it works from a phone:
+The production publication runs on **Cloudflare Workers** at **[https://tollyanalysis.com](https://tollyanalysis.com)** (and `https://www.tollyanalysis.com`), packaged with `@opennextjs/cloudflare` (`opennextjs-cloudflare`) and deployed via Wrangler (`wrangler.jsonc`) with the bundled real-data snapshot (`NEXT_PUBLIC_DATA_MODE=real`).
 
-1. Go to **[vercel.com/new](https://vercel.com/new)** and import this GitHub repository.
-2. Keep all defaults and press **Deploy**. No environment variables are needed: the real-data snapshot is bundled.
-3. Open the URL Vercel gives you.
+To build, preview, or deploy the Cloudflare Worker bundle:
 
-To run locally instead (Node 20.9+):
+```bash
+npm run cf:build     # Compile Next.js App Router output into .open-next/worker.js and .open-next/assets
+npm run preview      # Build and preview locally in the Cloudflare workerd runtime
+npm run deploy       # Build and deploy to Cloudflare Workers (or run: npx wrangler deploy)
+```
+
+To run the Next.js development server locally (Node 20.9+):
 
 ```bash
 npm install

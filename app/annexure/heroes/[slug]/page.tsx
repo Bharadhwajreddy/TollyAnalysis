@@ -8,6 +8,11 @@ import { formatMetric, INDUSTRY_LABEL, METRICS } from "@/lib/constants/metrics";
 import type { HeroMetricKey } from "@/lib/calculations/engine";
 import { getHeroFilms, getHeroSnapshots, getMeta, getPerson } from "@/lib/repositories";
 
+export async function generateStaticParams() {
+  const snapshots = await getHeroSnapshots("all_time", true);
+  return snapshots.map((s) => ({ slug: s.slug }));
+}
+
 export async function generateMetadata(props: PageProps<"/annexure/heroes/[slug]">): Promise<Metadata> {
   const { slug } = await props.params;
   const p = await getPerson(slug);

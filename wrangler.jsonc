@@ -1,0 +1,31 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tolly-analysis",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-05-05",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public"
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "NEXT_PUBLIC_DATA_MODE": "real",
+    "NEXT_PUBLIC_FEATURE_USER_RANKING": "false"
+  },
+  "routes": [
+    {
+      "pattern": "tollyanalysis.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.tollyanalysis.com",
+      "custom_domain": true
+    }
+  ]
+}

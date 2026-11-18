@@ -14,10 +14,21 @@ const playfair = Playfair_Display({ variable: "--font-playfair", subsets: ["lati
 const jetbrains = JetBrains_Mono({ variable: "--font-jetbrains", subsets: ["latin"], weight: ["400", "500"], display: "swap" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://tollyanalysis.com"),
   title: { default: "Tollywood Analysis — Who is Tollywood's biggest hero?", template: "%s · Tollywood Analysis" },
   description:
     "Independent, transparent benchmarks of Telugu-cinema lead actors: performance, audience reception, consistency, momentum and release cadence.",
-  robots: { index: false, follow: false },
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true },
+  openGraph: {
+    title: "Tollywood Analysis — Who is Tollywood's biggest hero?",
+    description:
+      "Independent, transparent benchmarks of Telugu-cinema lead actors: performance, audience reception, consistency, momentum and release cadence.",
+    url: "https://tollyanalysis.com",
+    siteName: "Tollywood Analysis",
+    locale: "en_IN",
+    type: "website",
+  },
 };
 
 export const viewport: Viewport = {

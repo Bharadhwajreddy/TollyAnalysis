@@ -21,6 +21,11 @@ import { rankable } from "@/lib/ranking";
 import { tollyIndexEnabled } from "@/lib/features";
 import { getTollyFilm, getTollyHero, getTollyRanking, tollyMeta } from "@/lib/tolly/view";
 
+export async function generateStaticParams() {
+  const data = await getDashboardData();
+  return data.windows.all_time.map((h) => ({ slug: h.slug }));
+}
+
 export async function generateMetadata(props: PageProps<"/hero/[slug]">): Promise<Metadata> {
   const { slug } = await props.params;
   const p = await getPerson(slug);

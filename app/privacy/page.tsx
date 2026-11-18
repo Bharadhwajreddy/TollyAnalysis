@@ -29,7 +29,7 @@ export default function PrivacyPage() {
               <b>Editors:</b> a sign-in cookie for the small team that reviews corrections.
             </li>
             <li>
-              <b>Server logs:</b> our host (Vercel) keeps standard request logs, such as IP address and browser type, for security and reliability.
+              <b>Server logs:</b> our host (Cloudflare) keeps standard request logs, such as IP address and browser type, for security and reliability.
             </li>
           </ul>
         </Section>
