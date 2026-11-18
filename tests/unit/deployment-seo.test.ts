@@ -423,3 +423,13 @@ describe("Cloudflare edge client IP resolution (FR-004)", () => {
     expect(clientIp(new Headers())).toBe("unknown");
   });
 });
+
+describe("Bing Webmaster verification & IndexNow configuration (FR-008)", () => {
+  it("app/layout.tsx declares the msvalidate.01 Bing verification meta tag and public/ hosts the matching IndexNow key file", () => {
+    expect(metadata.verification?.other?.["msvalidate.01"]).toBe("67320882F622547CD076E83EED0C41E2");
+
+    const key = "966a3d36f9fb496db085a6e167d01f86";
+    const keyFile = readFileSync(resolve(process.cwd(), "public", `${key}.txt`), "utf8").trim();
+    expect(keyFile).toBe(key);
+  });
+});
