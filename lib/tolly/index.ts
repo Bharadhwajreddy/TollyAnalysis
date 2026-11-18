@@ -145,6 +145,8 @@ export interface TollyHeroResult {
   /** Each factor's 0–100 value (null = no data) and its share of the final index in %. */
   factors?: Record<HeroFactorKey, { value: number | null; share: number }>;
   career?: Omit<HeroCareer, "slug"> | null;
+  /** A hero from another industry held out of the ranking until his box-office record is checked. */
+  heldBack?: boolean;
   /** His follower counts are still being checked (a newly added hero). */
   followersPending?: boolean;
   /** Index from his films alone: the audience factor. */

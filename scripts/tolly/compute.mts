@@ -113,6 +113,26 @@ const heroes = scoreHeroes(
   snap.heroes.map((h: { slug: string; name: string }) => ({ slug: h.slug, name: h.name, films: counted.filter((c: { hero: string }) => c.hero === h.slug).map((c: { film: string }) => alias.get(c.film) ?? c.film) })),
   films,
 );
+// Heroes from other industries are held out of the ranking until an editor has checked the box-office
+// result of at least HOLD_CHECKED_SHARE of their counted films (film-verdicts.csv, import-manual.mts).
+const HOLD_CHECKED_SHARE = 0.9;
+const filmByKeySnap = new Map(snap.films.map((f: { key: string; verdict?: { source?: string } | null }) => [f.key, f]));
+const heldBack = new Set<string>();
+for (const r of INITIAL_ROSTER.filter((x) => x.homeLanguage)) {
+  const own = counted.filter((c: { hero: string }) => c.hero === r.slug);
+  const checked = own.filter((c: { film: string }) => (filmByKeySnap.get(c.film) as { verdict?: { source?: string } | null } | undefined)?.verdict?.source === "editor-check").length;
+  if (own.length && checked / own.length < HOLD_CHECKED_SHARE) heldBack.add(r.slug);
+}
+for (const h of heroes) {
+  if (!heldBack.has(h.slug)) continue;
+  h.heldBack = true;
+  if (h.qualified) {
+    h.qualified = false;
+    h.reason = "box-office record being checked";
+    h.index = null;
+    h.band = null;
+  }
+}
 // Fame: official follower counts checked by an editor (import-manual.mts), else the dated press count.
 const editor: Record<string, { counts: HeroFollowers["counts"]; noAccount: boolean }> = existsSync("lib/data/real/hero-followers.json")
   ? read("lib/data/real/hero-followers.json").heroes

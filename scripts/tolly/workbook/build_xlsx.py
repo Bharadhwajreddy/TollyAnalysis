@@ -276,6 +276,7 @@ hcols = [
     ("Blockbusters", 9, "in"), ("Films grossing ₹100 crore or more", 10, "in"), ("Total reported gross (₹ crore)", 12, "in"),
     ("Biggest reported gross (₹ crore)", 12, "in"), ("Average reported gross (₹ crore)", 12, "in"), ("Films with a reported gross", 10, "in"),
     ("Years active", 8, "in"), ("Most films in one year", 9, "in"), ("Typical (median) gap between films (months)", 11, "in"),
+    ("Held back? (Yes = hero from another industry whose box-office record is still being checked; not ranked)", 14, "in"),
 ]
 header(hv, [c[0] for c in hcols], [fill_in if c[2] == "in" else fill_ctx for c in hcols])
 widths(hv, [c[1] for c in hcols])
@@ -291,6 +292,7 @@ for i, h in enumerate(heroes, start=2):
          cr["yearsActive"], cr["peakFilms"], cr["releaseGap"]]
         if cr else [None] * 14
     )
+    row.append("Yes" if h.get("heldBack") else None)
     for j, v in enumerate(row, start=1):
         hv.cell(row=i, column=j, value=v).font = f_input
     hv.cell(row=i, column=7).number_format = "yyyy-mm-dd"
@@ -606,11 +608,11 @@ for i, h in enumerate(heroes, start=2):
         "J": f'=SUMIFS({cs("I")},{CA},A{r},{CF},"Complete")',
         "K": f'=IF(F{r}>0,SUMIFS({cs("H")},{CA},A{r},{CF},"Complete")/F{r},"")',
         "L": f'=IF(F{r}>=2,SQRT(MAX(0,SUMIFS({cs("J")},{CA},A{r},{CF},"Complete")/F{r}-K{r}^2)),"")',
-        "M": f'=IF(AND(C{r}-D{r}>0,F{r}>=HeroMin,N(H{r})>=HeroShare),"Yes","No")',
+        "M": f'=IF(AND(C{r}-D{r}>0,F{r}>=HeroMin,N(H{r})>=HeroShare,Heroes!AG{r}<>"Yes"),"Yes","No")',
         "N": (
-            f'=IF(M{r}="Yes","",IF(C{r}-D{r}=0,"no Telugu lead films counted since 2000",IF(F{r}=0,"no complete films (needs "&HeroMin&")",'
+            f'=IF(M{r}="Yes","",IF(Heroes!AG{r}="Yes","box-office record being checked",IF(C{r}-D{r}=0,"no Telugu lead films counted since 2000",IF(F{r}=0,"no complete films (needs "&HeroMin&")",'
             f'IF(F{r}<HeroMin,"only "&F{r}&" complete film"&IF(F{r}=1,"","s")&" (needs "&HeroMin&")",'
-            f'F{r}&" of "&G{r}&" films complete ("&ROUND(H{r}*100,0)&"%, needs "&HeroShare*100&"%)"))))'
+            f'F{r}&" of "&G{r}&" films complete ("&ROUND(H{r}*100,0)&"%, needs "&HeroShare*100&"%)")))))'
         ),
         "O": f'=IF(M{r}="Yes",ROUND((J{r}+HeroPrior*AllMean)/(I{r}+HeroPrior),1),"")',
         "P": f'=IF(AND(M{r}="Yes",L{r}<>""),ROUND(1.96*L{r}/SQRT(I{r}+HeroPrior),1),"")',
@@ -940,7 +942,7 @@ Hc.section("2 · CAN HE BE RANKED? — two rules, so no hero is ranked on a patc
 Hc.step("ruleA", "H7a", "At least 5 complete films", '=IF({comp}>=HeroMin,"Pass","Fail")', "complete ≥ 5 (HeroMin)", '={comp}&" complete; needs "&HeroMin')
 Hc.step("ruleB", "H7b", "At least 90% of judged films complete", '=IF(N({share})>=HeroShare,"Pass","Fail")', "share ≥ 90% (HeroShare)",
         '=TEXT(N({share}),"0.0%")&"; needs "&TEXT(HeroShare,"0%")')
-Hc.step("ranked", "H7", "RANKED?", '=IF(AND({lead}-{excl}>0,{ruleA}="Pass",{ruleB}="Pass"),"Yes","No")', "Yes only if both rules pass", result=True)
+Hc.step("ranked", "H7", "RANKED?", '=IF(AND({lead}-{excl}>0,{ruleA}="Pass",{ruleB}="Pass",INDEX(Heroes!$AG$2:$AG$@LH@,{hi})<>"Yes"),"Yes","No")', "Yes only if both rules pass and he is not held back (box-office record being checked)", result=True)
 
 Hc.section("3 · HERO TOLLY INDEX — the evidence-weighted average of his complete films, plus 3 'average films'",
            "Each film counts in proportion to its confidence c. Adding k = 3 films at the all-film mean M stops a short career from topping a long, strong one.")

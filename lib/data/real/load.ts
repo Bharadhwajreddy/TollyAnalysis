@@ -92,6 +92,14 @@ const SOURCES: Source[] = [
     reliabilityTier: 3,
   },
   {
+    id: "src-editor",
+    name: "Editor check against trade reports",
+    type: "manual_editorial",
+    baseUrl: "/annexure/sources",
+    licensingNote: "Box-office results checked by an editor against at least one trade report or news article; the link is shown on every film.",
+    reliabilityTier: 2,
+  },
+  {
     id: "src-trade-blog",
     name: "MT Wiki Blog (Telugu hits and flops lists)",
     type: "manual_editorial",
@@ -222,9 +230,9 @@ export function buildRealDataset(): Dataset {
         ev({
           metricType: "trade_verdict",
           valueText: f.verdict.verdict,
-          sourceId: f.verdict.source === "trade-blog" ? "src-trade-blog" : f.verdict.source === "telugu-wikipedia" ? "src-tewiki" : "src-wikipedia",
+          sourceId: f.verdict.source === "editor-check" ? "src-editor" : f.verdict.source === "trade-blog" ? "src-trade-blog" : f.verdict.source === "telugu-wikipedia" ? "src-tewiki" : "src-wikipedia",
           sourceUrl: f.verdict.url ?? url,
-          confidence: f.verdict.source === "wikipedia-film" ? "medium" : "low",
+          confidence: f.verdict.source === "wikipedia-film" || f.verdict.source === "editor-check" ? "medium" : "low",
         }),
       );
   }

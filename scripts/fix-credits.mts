@@ -9,6 +9,8 @@
  *   4. A film listed twice for one hero keeps only the credit that counts.
  *   5. A film from this year or later with no release date counts only if IMDb already has audience
  *      ratings for it (it is out); otherwise it is treated as not yet released.
+ *   0. Box-office results checked by an editor (lib/data/tolly/verdict-overrides.json) replace the
+ *      film's result, gross and budget, and can confirm or rule out a Telugu release.
  *   6. Heroes from other industries (homeLanguage in the roster): a Tamil or Malayalam film counts only
  *      with evidence of a Telugu release: a Telugu title on IMDb or a Telugu Wikipedia article.
  *
@@ -30,6 +32,24 @@ type Credit = { hero: string; film: string; year: number; role: string; notes: s
 const credits: Credit[] = snap.credits;
 const films = new Map<string, { starring: string[]; languages: string[]; releaseDate: string | null; year: number }>(snap.films.map((f: { key: string; starring: string[]; languages: string[]; releaseDate: string | null; year: number }) => [f.key, f]));
 const norm = (t: string) => t.replace(/_/g, " ").trim();
+
+// 0. Editor-checked box-office results (film-verdicts.csv via scripts/tolly/import-manual.mts).
+const overridesPath = "lib/data/tolly/verdict-overrides.json";
+const overrides: Record<string, { result: string | null; gross: { low: number; high: number; text: string } | null; budget: { low: number; high: number; text: string } | null; urls: string[]; teluguRelease: string | null; notes: string | null; checkedOn: string | null }> =
+  existsSync(overridesPath) ? JSON.parse(readFileSync(overridesPath, "utf8")).films : {};
+let overridden = 0;
+for (const f of snap.films as { key: string; verdict: unknown; gross: unknown; budget: unknown; teluguRelease?: string; languages: string[] }[]) {
+  const o = overrides[f.key];
+  if (!o) continue;
+  if (o.result) {
+    f.verdict = { verdict: o.result, sentence: `Checked against trade reports${o.checkedOn ? ` on ${o.checkedOn}` : ""}${o.notes ? `: ${o.notes}` : "."}`, source: "editor-check", url: o.urls[0] ?? null };
+    overridden++;
+  }
+  if (o.gross) f.gross = o.gross;
+  if (o.budget) f.budget = o.budget;
+  if (o.teluguRelease === "dubbed") f.teluguRelease = "dubbed";
+  if ((o.teluguRelease === "original" || o.teluguRelease === "bilingual") && !f.languages.some((l) => /telugu/i.test(l))) f.languages.push("Telugu");
+}
 
 // 1. Clean every film's starring list.
 let cleaned = 0;
@@ -139,7 +159,13 @@ if (undated.length) {
     const f = films.get(c.film);
     const r = raw.get(c.film);
     if (!f || !r || f.languages.some((l) => isCountedLanguage(l))) continue; // Telugu, bilingual or Hindi: counts as it is
-    if ((r.imdbId && teluguTitles.has(r.imdbId)) || teArticle(r.qid)) {
+    if (overrides[c.film]?.teluguRelease === "none") {
+      c.include = false;
+      c.excludeReason = "no Telugu release (checked)";
+      changes.push(`- ${label(c)}  [checked: no Telugu release]`);
+      continue;
+    }
+    if (r.teluguRelease === "dubbed" || (r.imdbId && teluguTitles.has(r.imdbId)) || teArticle(r.qid)) {
       r.teluguRelease = "dubbed";
       continue;
     }
@@ -165,5 +191,5 @@ snap.credits = kept;
 
 // Save first, so a closed output pipe (e.g. piping into head) can never lose the result.
 if (!dry) writeFileSync(path, JSON.stringify(snap, null, 1) + "\n");
-console.log(`starring lists cleaned: ${cleaned}; credits now counted: ${kept.filter((c) => c.include).length}; duplicate rows dropped: ${dropped}${dry ? " (dry run)" : "; snapshot.json updated"}`);
+console.log(`editor-checked box-office results: ${overridden}; starring lists cleaned: ${cleaned}; credits now counted: ${kept.filter((c) => c.include).length}; duplicate rows dropped: ${dropped}${dry ? " (dry run)" : "; snapshot.json updated"}`);
 for (const l of changes.sort()) console.log(l);

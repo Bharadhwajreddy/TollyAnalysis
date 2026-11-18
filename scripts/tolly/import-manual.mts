@@ -3,13 +3,16 @@
  * (docs/data-entry/PROMPT.md) and checks every row before anything is used.
  *
  *   hero-social.csv       → lib/data/real/hero-followers.json   (official follower counts, dated; public facts)
+ *   hero-social*.csv      → (several files allowed, e.g. hero-social-new-heroes.csv; merged by hero_id)
  *   films-to-look-up.csv  → lib/data/tolly/manual-links.json    (IMDb ids found by an editor; ids only)
+ *   film-verdicts.csv     → lib/data/tolly/verdict-overrides.json (box-office results checked against trade
+ *                           reports, with source links; applied by scripts/fix-credits.mts)
  *                         → .cache/tolly/manual-letterboxd.json  (Letterboxd ratings: kept out of the public repo)
  * The filled files themselves are copied to data-private/ (gitignored, included in tolly:snapshot).
  *
  * Usage: npx tsx scripts/tolly/import-manual.mts <folder with the two filled CSV files>
  */
-import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const dir = process.argv[2];
@@ -72,11 +75,11 @@ const known = new Set((snap.heroes as { slug: string }[]).map((h) => h.slug));
 const facts = JSON.parse(readFileSync("lib/data/real/hero-facts.json", "utf8")).heroes as Record<string, { deathDate?: string }>;
 
 // ── Heroes ──
-const heroFile = join(dir, "hero-social.csv");
+const heroFiles = (existsSync(dir) ? readdirSync(dir) : []).filter((f) => /^hero-social.*\.csv$/.test(f)).map((f) => join(dir, f));
 type Count = { platform: "instagram" | "x" | "youtube" | "facebook"; followers: number; date: string; url: string | null };
 const heroes: Record<string, { counts: Count[]; noAccount: boolean; usernames: { instagram: string | null; x: string | null }; notes: string | null }> = {};
-if (existsSync(heroFile)) {
-  for (const r of parseCsv(readFileSync(heroFile, "utf8"))) {
+if (heroFiles.length) {
+  for (const r of heroFiles.flatMap((f) => parseCsv(readFileSync(f, "utf8")))) {
     const slug = r.hero_id;
     if (!known.has(slug)) {
       problems.push(`hero-social: unknown hero_id "${slug}"`);
@@ -106,9 +109,12 @@ if (existsSync(heroFile)) {
     const noAccount = !counts.some((c) => c.platform === "instagram" || c.platform === "x") && (/no (official |verified )?account|not on (instagram|x|social)/i.test(r.notes ?? "") || !!facts[slug]?.deathDate);
     heroes[slug] = { counts, noAccount, usernames: { instagram: r.instagram_username || null, x: r.x_username || null }, notes: r.notes || null };
   }
+  // Merge: heroes not in these files keep their earlier checked counts.
+  const earlier = existsSync("lib/data/real/hero-followers.json") ? JSON.parse(readFileSync("lib/data/real/hero-followers.json", "utf8")).heroes : {};
+  const merged = { ...earlier, ...heroes };
   writeFileSync(
     "lib/data/real/hero-followers.json",
-    JSON.stringify({ source: "Official profiles, checked by an editor on the dates given", heroes: Object.fromEntries(Object.keys(heroes).sort().map((k) => [k, heroes[k]])) }, null, 1) + "\n",
+    JSON.stringify({ source: "Official profiles, checked by an editor on the dates given", heroes: Object.fromEntries(Object.keys(merged).sort().map((k) => [k, merged[k]])) }, null, 1) + "\n",
   );
 }
 
@@ -141,12 +147,52 @@ if (existsSync(filmFile)) {
   writeFileSync(".cache/tolly/manual-letterboxd.json", JSON.stringify(letterboxd, null, 1));
 }
 
+// ── Box-office results checked against trade reports ──
+const verdictFile = join(dir, "film-verdicts.csv");
+const RESULTS = ["blockbuster", "super_hit", "hit", "above_average", "average", "below_average", "flop", "disaster"];
+let verdictsImported = 0;
+if (existsSync(verdictFile)) {
+  const snapFilms = new Set((snap.films as { key: string }[]).map((f) => f.key));
+  const path = "lib/data/tolly/verdict-overrides.json";
+  const out: Record<string, unknown> = existsSync(path) ? JSON.parse(readFileSync(path, "utf8")).films : {};
+  const crore = (s: string) => {
+    const m = s.replace(/[,₹\s]|crores?|cr/gi, "").match(/^(\d+(?:\.\d+)?)(?:[-–](\d+(?:\.\d+)?))?$/);
+    return m ? { low: Number(m[1]), high: Number(m[2] ?? m[1]), text: `₹${s.replace(/[₹]|crores?|cr/gi, "").trim()} crore` } : null;
+  };
+  for (const r of parseCsv(readFileSync(verdictFile, "utf8"))) {
+    const key = r.film_key;
+    if (!snapFilms.has(key)) {
+      problems.push(`film-verdicts: unknown film_key "${key}"`);
+      continue;
+    }
+    const result = (r.verified_result || "").toLowerCase().replace(/[\s-]+/g, "_");
+    const release = (r.telugu_release || "").toLowerCase();
+    if (!result && !release) continue;
+    if (result && !RESULTS.includes(result)) {
+      problems.push(`${key}: result "${r.verified_result}" is not one of ${RESULTS.join(", ")}`);
+      continue;
+    }
+    const urls = [r.source_url_1, r.source_url_2].filter((u) => /^https?:\/\//.test(u || ""));
+    if (result && !urls.length) {
+      problems.push(`${key}: a result needs at least one source link; not used`);
+      continue;
+    }
+    if (release && !["original", "bilingual", "dubbed", "none"].includes(release)) problems.push(`${key}: telugu_release "${r.telugu_release}" should be original, bilingual, dubbed or none`);
+    const gross = r.worldwide_gross_crore ? crore(r.worldwide_gross_crore) : null;
+    const budget = r.budget_crore ? crore(r.budget_crore) : null;
+    if (r.worldwide_gross_crore && !gross) problems.push(`${key}: gross "${r.worldwide_gross_crore}" is not a number of crore`);
+    out[key] = { result: result || null, gross, budget, urls, teluguRelease: release || null, checkedOn: r.checked_on || null, notes: r.notes || null };
+    verdictsImported++;
+  }
+  writeFileSync(path, JSON.stringify({ source: "Box-office results checked by an editor against trade reports (links per film)", films: out }, null, 1) + "\n");
+}
+
 mkdirSync("data-private", { recursive: true });
-for (const f of [heroFile, filmFile]) if (existsSync(f)) copyFileSync(f, join("data-private", f.split("/").pop() as string));
+for (const f of [...heroFiles, filmFile, verdictFile]) if (existsSync(f)) copyFileSync(f, join("data-private", f.split("/").pop() as string));
 
 const withCounts = Object.values(heroes).filter((h) => h.counts.length).length;
 console.log(`heroes: ${Object.keys(heroes).length} rows, ${withCounts} with a follower count, ${Object.values(heroes).filter((h) => h.noAccount).length} with no account`);
-console.log(`films: ${Object.keys(links).length} IMDb ids found, ${Object.keys(letterboxd).length} Letterboxd ratings`);
+console.log(`films: ${Object.keys(links).length} IMDb ids found, ${Object.keys(letterboxd).length} Letterboxd ratings; box-office results imported: ${verdictsImported}`);
 if (problems.length) {
   console.log(`\n${problems.length} rows need a look (they were left out, nothing was guessed):`);
   for (const p of problems) console.log(`  - ${p}`);

@@ -19,6 +19,7 @@ cp lib/data/tolly/heroes.json "$BEFORE"
 
 echo "== 1/4 import and check the filled files"
 npx tsx "$HERE/import-manual.mts" "$DIR"
+npx tsx "$HERE/../fix-credits.mts" > /dev/null
 echo "== 2/4 link films"
 npx tsx "$HERE/link-films.mts" >/dev/null
 echo "== 3/4 compute scores (as of $AS_OF)"

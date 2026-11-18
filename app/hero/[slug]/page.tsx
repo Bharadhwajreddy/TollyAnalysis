@@ -52,6 +52,7 @@ const SOURCE_TEXT: Record<string, string> = {
   "wikipedia-hero": "Wikipedia hero article",
   "telugu-wikipedia": "Telugu Wikipedia",
   "trade-blog": "Trade blog (low confidence)",
+  "editor-check": "Checked against trade reports",
 };
 
 export default async function HeroPage(props: PageProps<"/hero/[slug]">) {

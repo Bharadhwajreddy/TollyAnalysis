@@ -36,7 +36,11 @@ export function TollyHeroCard({ hero, rankedCount, meta, provisional = false }: 
             <>
               <p className="text-[28px] font-semibold leading-none text-muted">Not ranked yet</p>
               <p className="mt-2 text-[13px] text-ink-2">
-                {hero.complete >= 5 && hero.judged > 0 ? `Only ${share}% of his films have audience ratings so far; he needs 90%.` : `He needs at least 5 rated films; he has ${hero.complete}.`}
+                {hero.reason === "box-office record being checked"
+                  ? "His box-office results for Tamil and Malayalam films are being checked against trade reports. He joins the ranking once that is done."
+                  : hero.complete >= 5 && hero.judged > 0
+                    ? `Only ${share}% of his films have audience ratings so far; he needs 90%.`
+                    : `He needs at least 5 rated films; he has ${hero.complete}.`}
               </p>
             </>
           )}

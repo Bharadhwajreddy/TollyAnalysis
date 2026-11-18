@@ -753,3 +753,11 @@ Check each hero's film list on his page and use the corrections form.
 - **Upcoming films** are shown on the hero's page ("Releasing soon" this year, "Next" for later years) but never
   enter the Tolly Index, the Star Score or any chart. A film from this year with no release date counts only
   once IMDb has audience ratings for it.
+
+## Heroes held back until checked
+
+Box-office results for Tamil and Malayalam films are thinner on Wikipedia than for Telugu films, and missing
+flops push a score up. So a hero whose home industry is Tamil or Malayalam (Rajinikanth, Suriya, Karthi,
+Dulquer Salmaan) stays out of the ranking until at least 90% of his counted films have a result checked by an
+editor against trade reports (`docs/data-entry/film-verdicts.csv` → `npm run tolly:update -- <folder>`). His page
+still shows his films and numbers, with a note that the record is being checked.
