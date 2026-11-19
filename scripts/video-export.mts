@@ -9,6 +9,7 @@ const [dir, ...slugs] = process.argv.slice(2);
 const snap = JSON.parse(readFileSync("lib/data/real/snapshot.json", "utf8"));
 const tolly = JSON.parse(readFileSync("lib/data/tolly/heroes.json", "utf8"));
 const tfilms = new Map(JSON.parse(readFileSync("lib/data/tolly/films.json", "utf8")).films.map((f: { key: string }) => [f.key, f]));
+const social = JSON.parse(readFileSync("lib/data/real/hero-followers.json", "utf8")).heroes ?? {};
 const films = new Map(snap.films.map((f: { key: string }) => [f.key, f]));
 const ranked = tolly.heroes.filter((h: { index: number | null }) => h.index !== null).sort((a: { index: number }, b: { index: number }) => b.index - a.index);
 const clean = (t: string) => t.replace(/^unlinked:/, "").replace(/\|\d{4}$/, "").replace(/ \((\d{4} )?(Indian |Telugu |Tamil |Malayalam )?film\)$/, "");
@@ -38,7 +39,9 @@ const out = slugs.map((slug) => {
     return { key: g, value: w ? Math.round((sum / w) * 10) / 10 : null, share: Math.round(share * 10) / 10 };
   });
   const factors = HERO_FACTORS.map((f) => ({ key: f.key, group: f.group, label: f.label, value: h.factors?.[f.key]?.value ?? null, share: h.factors?.[f.key]?.share ?? 0 }));
-  return { slug, name: person.name, groups, factorList: factors, debutYear: h.profile?.debutYear ?? null, index: h.index, rank: ranked.findIndex((x: { slug: string }) => x.slug === slug) + 1, of: ranked.length, career: h.career, factors: h.factors, followers: h.followers, best: h.best, films: list, next: next ? clean((films.get(next.film) as { title: string })?.title ?? next.film) : null };
+  const counts = (social[slug]?.counts ?? []) as { platform: string; followers: number; date: string }[];
+  const latest = (p: string) => counts.filter((c) => c.platform === p).sort((a, b) => b.date.localeCompare(a.date))[0] ?? null;
+  return { slug, name: person.name, groups, instagram: latest("instagram"), x: latest("x"), factorList: factors, debutYear: h.profile?.debutYear ?? null, index: h.index, rank: ranked.findIndex((x: { slug: string }) => x.slug === slug) + 1, of: ranked.length, career: h.career, factors: h.factors, followers: h.followers, best: h.best, films: list, next: next ? clean((films.get(next.film) as { title: string })?.title ?? next.film) : null };
 });
 const faces = readdirSync("public/heroes").filter((f) => f.endsWith(".jpg")).map((f) => f.replace(/\.jpg$/, ""));
 const json = JSON.stringify({ asOf: tolly.meta.asOf ?? null, faces, heroes: out }, null, 1);

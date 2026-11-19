@@ -50,8 +50,8 @@
 <div id="stage">
   <div class="brand" id="brand">TOLLY <b>ANALYSIS</b></div>
 
-  <!-- 0. Clap and burst -->
-  <section class="scene" id="s0">
+  <!-- Last: clap and burst -->
+  <section class="scene" id="s0" style="z-index:3">
     <div id="balls"></div>
     <div id="board">
       <div class="stick" id="stickTop"></div>
@@ -70,16 +70,18 @@
       <div style="font-size:44px;font-weight:900">Tollywood Analysis<span style="color:var(--wine)">.</span></div>
       <div style="margin-top:8px;font-size:13px;letter-spacing:.3em;color:var(--gold);font-weight:700">LIGHTS. CAMERA. NUMBERS.</div>
     </div>
+    <div id="s0cta" style="position:absolute;left:0;right:0;top:760px;text-align:center">
+      <div class="chip" style="background:var(--wine);color:#fff;font-size:22px;padding:12px 26px">Subscribe · Tolly Analysis</div>
+      <div style="margin-top:12px;font-size:14px;color:var(--ink2)">Spotted a mistake? Tell us in the comments.</div>
+    </div>
   </section>
 
   <!-- 1. Who and where he stands -->
   <section class="scene" id="s1"></section>
   <!-- 2. Career graph -->
   <section class="scene" id="s2"></section>
-  <!-- 3. Results tally -->
+  <!-- 3. Key numbers -->
   <section class="scene" id="s3"></section>
-  <!-- 4. Tolly Index breakdown -->
-  <section class="scene" id="s4"></section>
   <!-- 5. Highlights -->
   <section class="scene" id="s5"></section>
   <!-- 6. Next film -->
@@ -106,14 +108,25 @@ const COPY = {
       { title: "HIT", label: "HIT: The First Case", pos: "above", dx: 40 },
       { title: "Paagal", pos: "below" },
       { title: "Gaami", pos: "above" },
-      { title: "Laila", pos: "below" },
-      { title: "Cult", pos: "below", dx: -30 },
+      { title: "Laila", pos: "above", dx: -20 },
+      { title: "Cult", pos: "above", dx: -20, lift: 30 },
     ],
-    graphChip: (h) => `Last 5 films: <b>${last5(h).filter((f) => HIT(f.result)).length} hits</b>`,
+    graphChip: () => `<b>5 films in a row</b> without a hit`,
+    hook: "Can <b style='color:var(--gold)'>ENE Repeat</b> lift him again?",
+    callouts: [
+      { from: "Ee Nagaraniki", to: "HIT", text: "Hat-trick to start!", tone: "good" },
+      { from: "Gangs", to: "Cult", text: "5 misses in a row", tone: "bad" },
+    ],
     graphChipTone: "bad",
     graphLine: "Can <b style='color:var(--gold)'>ENE Repeat</b> bring back the 2018 magic?",
+    highlights: [
+      ["First hit", "Ee Nagaraniki", "Hit · the cult favourite"],
+      ["Best-loved film", "HIT", "score"],
+      ["Biggest box office", "Das Ka Dhamki", "gross"],
+      ["Latest film", "Cult", "Flop · lost its way"],
+    ],
     ifHit: "Back in the green after 5 films without a hit",
-    ifMiss: "A 6th film in a row without a hit",
+    ifMiss: "A 6th miss in a row: a double hat-trick",
   },
   "dulquer-salmaan": {
     color: "#3fb8e0", next: "Aakasamlo Oka Tara", date: "20 Nov", dateLong: "In theatres 20 Nov 2026",
@@ -132,6 +145,7 @@ const COPY = {
     ],
     graphChip: (h) => { const t = h.films.filter((f) => f.kind === "telugu"); return `Straight Telugu films: <b>${t.filter((f) => HIT(f.result)).length} of ${t.length} super hits</b>`; },
     graphChipTone: "good",
+    hook: "Can <b style='color:var(--gold)'>Aakasamlo Oka Tara</b> lift him again?",
     graphLine: "Kaantha and I'm Game slipped. Can <b style='color:var(--gold)'>Aakasamlo Oka Tara</b> lift him again?",
     ifHit: "Another straight-Telugu hit after Sita Ramam and Lucky Baskhar",
     ifMiss: "Three films in a row without a hit",
@@ -154,8 +168,8 @@ const fmt = (n, d = 1) => n.toFixed(d);
 const C = COPY.color;
 
 // Scene timings in seconds: [start, end].
-const S = { s0: [0, 3.4], s1: [3.4, 9], s2: [9, 23], s3: [23, 31], s4: [31, 41], s5: [41, 48.5], s6: [48.5, 57] };
-const DURATION = 57;
+const S = { s1: [0, 5.5], s2: [5.5, 21], s3: [21, 30], s5: [30, 37.5], s6: [37.5, 45.5], s0: [45.5, 52] };
+const DURATION = 52;
 
 // ── 0. Clap ──
 $("bScene").textContent = H.name;
@@ -172,21 +186,19 @@ const flights = faces.map((_, i) => {
   return { x, y };
 });
 
-// ── 1. Hero card ──
+// ── 1. Hook: hero and the new film's poster ──
 $("s1").innerHTML = `
-  <div class="photo" id="s1p" style="width:250px;height:250px;left:145px;top:90px;border-color:${C};background-image:${IMG(H.slug)}"></div>
-  <div id="s1n" class="display" style="position:absolute;left:0;right:0;top:362px;text-align:center;font-size:44px;font-weight:900;color:${C}">${H.name}</div>
-  <div id="s1m" style="position:absolute;left:0;right:0;top:418px;text-align:center;font-size:16px;color:var(--ink2)">Debut ${H.debutYear} · ${H.films.length} ${COPY.sub}</div>
-  <div id="s1c" style="position:absolute;left:0;right:0;top:456px;text-align:center"><span class="chip" style="background:rgba(232,182,90,.15);color:var(--gold);border:1px solid rgba(232,182,90,.5)">Next: ${COPY.next} · ${COPY.dateLong.replace("In theatres ", "")}</span></div>
-  <div class="tile" id="s1t" style="position:absolute;left:30px;right:30px;top:530px;height:250px;padding:22px 24px">
-    <div class="kicker">Tolly Index · today</div>
-    <div style="font-size:14px;color:var(--ink2);margin-top:4px">One score out of 100 for every Telugu hero</div>
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-top:18px">
-      <div><div style="font-size:15px;color:var(--ink2)">Rank</div><div class="display" style="font-size:52px;font-weight:900;line-height:1"><span id="s1r">#${H.rank}</span><span style="font-size:20px;color:var(--muted);font-weight:700"> of ${H.of}</span></div></div>
-      <div id="s1s" class="display" style="font-size:96px;font-weight:900;color:${C};line-height:.9">0.0</div>
-    </div>
-    <div style="margin-top:20px;height:14px;border-radius:7px;background:rgba(255,255,255,.08)"><div id="s1b" style="height:100%;border-radius:7px;background:${C};width:0"></div></div>
-  </div>`;
+  <div class="photo" id="s1p" style="width:150px;height:150px;left:30px;top:76px;border-color:${C};background-image:${IMG(H.slug)}"></div>
+  <div id="s1n" class="display" style="position:absolute;left:198px;top:92px;font-size:38px;font-weight:900;line-height:1;color:${C}">${H.name}</div>
+  <div id="s1m" style="position:absolute;left:198px;top:142px;font-size:15px;color:var(--ink2);line-height:1.4">Debut ${H.debutYear}<br/>${H.films.length} ${COPY.sub}</div>
+  <div id="s1poster" style="position:absolute;left:95px;top:258px;width:350px;height:470px;border-radius:18px;overflow:hidden;border:2px solid rgba(232,182,90,.6);box-shadow:0 20px 60px rgba(0,0,0,.6);
+    background:linear-gradient(160deg,#3a1a10,#140a0c);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+    <img id="s1img" src="posters/${H.slug}.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror="this.remove()" />
+    <div class="kicker" style="font-size:12px">New film</div>
+    <div class="display" style="font-size:48px;font-weight:900;line-height:1;margin-top:10px;color:var(--gold);padding:0 20px">${COPY.next}</div>
+  </div>
+  <div id="s1c" style="position:absolute;left:0;right:0;top:748px;text-align:center"><span class="chip" style="background:var(--gold);color:#1a0d12;font-size:18px">${COPY.dateLong}</span></div>
+  <div id="s1h" class="display" style="position:absolute;left:30px;right:30px;top:800px;text-align:center;font-size:26px;font-weight:800">${COPY.hook ?? ""}</div>`;
 
 // ── 2. Career graph ──
 function star(cx, cy, r, n) {
@@ -243,6 +255,16 @@ const graph = (() => {
       <div style="font-size:14px;font-weight:800;line-height:1.1;text-shadow:0 2px 8px #000">${L.label ?? f.title}</div>
       <div style="font-size:12px;font-weight:700;color:${lv[2]};text-shadow:0 2px 8px #000">${lv[1]} · ${f.year}</div></div>`;
   });
+  (opts.callouts ?? []).forEach((co, k) => {
+    const a = films.findIndex((f) => f.title.startsWith(co.from)), b = films.findIndex((f) => f.title.startsWith(co.to));
+    if (a < 0 || b < 0) return;
+    const xa = sx(when(films[a])) - 8, xb = sx(when(films[b])) + 8;
+    const yy = co.tone === "good" ? Math.min(...films.slice(a, b + 1).map((f) => y(f))) - 140 : Math.max(...films.slice(a, b + 1).map((f) => y(f))) + 14;
+    const col = co.tone === "good" ? "#8fe0a8" : "#ff9d8f";
+    labels += `<div id="s2-c${k}" style="position:absolute;left:${xa}px;top:${yy}px;width:${xb - xa}px;opacity:0">
+      <div style="height:8px;border:2px solid ${col};border-${co.tone === "good" ? "bottom" : "top"}:0;border-radius:4px"></div>
+      <div style="position:absolute;left:50%;transform:translateX(-50%);${co.tone === "good" ? "top:-26px" : "top:10px"};white-space:nowrap;font-size:14px;font-weight:900;color:${col};text-shadow:0 2px 8px #000">${co.text}</div></div>`;
+  });
   const tone = opts.graphChipTone === "good" ? ["rgba(63,174,98,.18)", "#8fe0a8", "rgba(63,174,98,.5)"] : ["rgba(217,83,79,.18)", "#ff9d8f", "rgba(217,83,79,.5)"];
   el.innerHTML = `
     <div class="photo" style="width:92px;height:92px;left:30px;top:70px;border-color:${color};background-image:${IMG(h.slug)}"></div>
@@ -254,47 +276,34 @@ const graph = (() => {
       <span class="chip" style="background:${tone[0]};color:${tone[1]};border:1px solid ${tone[2]}">${opts.graphChip(h)}</span>
       <div style="margin-top:10px;font-size:14px;color:var(--ink2)">${opts.graphLine}</div></div>
     ${opts.legend ? `<div style="position:absolute;left:30px;right:30px;top:178px;text-align:center;font-size:12px;color:var(--ink2)">${opts.legend}</div>` : ""}`;
-  return { films, pts: films.map((f, i) => ({ i, x: sx(when(f)), y: y(f), judged: f.result in LV })).filter((p) => p.judged) };
+  return { films, pts: films.map((f, i) => ({ i, x: sx(when(f)), y: y(f), judged: f.result in LV })).filter((p) => p.judged),
+    callouts: (opts.callouts ?? []).map((co) => films.findIndex((f) => f.title.startsWith(co.to))) };
 })();
 
-// ── 3. Results tally ──
+// ── 3. Key numbers ──
 const judgedFilms = H.films.filter((f) => f.result in LV);
 const hits = judgedFilms.filter((f) => HIT(f.result)).length;
-const counts = LEVELS.map(([k, label, c]) => ({ k, label, c, n: H.films.filter((f) => f.result === k).length })).reverse();
-const noResult = H.films.length - judgedFilms.length;
-const maxN = Math.max(...counts.map((c) => c.n), 1);
+const compact = (n) => (n >= 1e6 ? (n / 1e6).toFixed(n >= 1e7 ? 0 : 2).replace(/\.?0+$/, "") + "M" : n >= 1e3 ? Math.round(n / 1e3) + "K" : String(n));
+const perYear = {}; H.films.forEach((f) => (perYear[f.year] = (perYear[f.year] ?? 0) + 1));
+const busiest = Object.entries(perYear).sort((a, b) => b[1] - a[1] || b[0] - a[0])[0];
+const topFilm = [...H.films].filter((f) => f.gross).sort((a, b) => b.gross - a.gross)[0];
+const NUMS = [
+  [`${Math.round((hits / Math.max(1, judgedFilms.length)) * 100)}%`, "Hit rate", `${hits} hits in ${judgedFilms.length} films with a result`],
+  [`${last5(H).filter((f) => HIT(f.result)).length}/5`, "Hits in his last 5 films", last5(H).map((f) => f.title.split(" ")[0]).join(", ")],
+  [`₹${Math.round(topFilm.gross)} cr`, "Biggest film", `${topFilm.title}, worldwide gross`],
+  [H.instagram ? compact(H.instagram.followers) : "—", "Instagram followers", H.instagram ? "@" + H.instagram.url.split("/").filter(Boolean).pop() : "not collected yet"],
+  [H.x ? compact(H.x.followers) : "—", "X (Twitter) followers", H.x ? "@" + H.x.url.split("/").filter(Boolean).pop() : "not collected yet"],
+  [`${busiest[1]} films`, `Busiest year: ${busiest[0]}`, `${H.films.length} films in ${H.career.yearsActive} years`],
+];
 $("s3").innerHTML = `
-  <div class="kicker" style="position:absolute;top:84px;width:100%;text-align:center">Hits and flops</div>
-  <div class="display" style="position:absolute;top:110px;width:100%;text-align:center;font-size:30px;font-weight:900">${H.films.length} films. <span style="color:${C}">${hits} hits.</span></div>
-  <div id="s3rows" style="position:absolute;left:36px;right:36px;top:180px">
-    ${counts.map((c) => `<div style="display:flex;align-items:center;gap:12px;height:46px">
-      <div style="width:104px;text-align:right;font-size:15px;font-weight:700;color:${c.c}">${c.label}</div>
-      <div style="flex:1;height:26px;border-radius:6px;background:rgba(255,255,255,.05)"><div data-w="${(c.n / maxN) * 100}" style="height:100%;width:0;border-radius:6px;background:${c.c}"></div></div>
-      <div class="display" style="width:34px;font-size:24px;font-weight:900">${c.n}</div></div>`).join("")}
-    ${noResult ? `<div style="text-align:center;margin-top:8px;font-size:13px;color:var(--muted)">+ ${noResult} film${noResult > 1 ? "s" : ""} with no reported result</div>` : ""}
+  <div class="kicker" style="position:absolute;top:84px;width:100%;text-align:center">${H.name} in numbers</div>
+  <div id="s3grid" style="position:absolute;left:30px;right:30px;top:124px;display:grid;grid-template-columns:1fr 1fr;gap:14px">
+    ${NUMS.map(([big, label, note], i) => `<div class="tile" style="height:196px;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:14px">
+      <div class="display" style="font-size:${big.length > 6 ? 40 : 50}px;font-weight:900;line-height:1;color:${i === 1 && big.startsWith("0") ? "#ff9d8f" : i >= 3 && i <= 4 ? "var(--ink)" : C}">${big}</div>
+      <div style="font-size:15px;font-weight:800;margin-top:10px">${label}</div>
+      <div style="font-size:11.5px;color:var(--muted);margin-top:5px;line-height:1.3">${note}</div></div>`).join("")}
   </div>
-  <div id="s3sum" class="tile" style="position:absolute;left:30px;right:30px;top:640px;display:flex;justify-content:space-around;text-align:center">
-    <div><div class="display" style="font-size:40px;font-weight:900;color:${C}">${Math.round((hits / Math.max(1, judgedFilms.length)) * 100)}%</div><div style="font-size:13px;color:var(--ink2)">hit rate (${hits} of ${judgedFilms.length})</div></div>
-    <div><div class="display" style="font-size:40px;font-weight:900">${last5(H).filter((f) => HIT(f.result)).length}/5</div><div style="font-size:13px;color:var(--ink2)">hits in last 5 films</div></div>
-    <div><div class="display" style="font-size:40px;font-weight:900">${H.films.filter((f) => f.result === "super_hit" || f.result === "blockbuster").length}</div><div style="font-size:13px;color:var(--ink2)">super hits or bigger</div></div>
-  </div>`;
-
-// ── 4. Tolly Index breakdown ──
-const GROUPS = { audience: ["Audience", "Do people love his films?"], boxoffice: ["Box office", "How often and how big he hits"], recent: ["Recent form", "How his latest films did"], fame: ["Fame", "Instagram + X followers"], career: ["Career", "Steady, long and busy?"] };
-$("s4").innerHTML = `
-  <div class="kicker" style="position:absolute;top:84px;width:100%;text-align:center">Inside his Tolly Index</div>
-  <div class="display" style="position:absolute;top:110px;width:100%;text-align:center;font-size:30px;font-weight:900">What makes his <span style="color:${C}">${fmt(H.index)}</span>?</div>
-  <div style="position:absolute;top:158px;width:100%;text-align:center;font-size:13px;color:var(--ink2)">Each part is a score out of 100 against all Telugu heroes</div>
-  <div id="s4rows" style="position:absolute;left:30px;right:30px;top:200px">
-    ${H.groups.map((g) => `<div class="tile" style="margin-bottom:12px;padding:12px 16px">
-      <div style="display:flex;justify-content:space-between;align-items:baseline">
-        <div><span style="font-size:18px;font-weight:800;color:var(--g-${g.key})">${GROUPS[g.key][0]}</span><span style="font-size:12.5px;color:var(--muted)"> · ${GROUPS[g.key][1]}</span></div>
-        <div class="display" style="font-size:26px;font-weight:900">${g.value === null ? "—" : `<span data-n="${g.value}">0</span>`}</div>
-      </div>
-      <div style="margin-top:8px;height:10px;border-radius:5px;background:rgba(255,255,255,.07)"><div data-w="${g.value ?? 0}" style="height:100%;width:0;border-radius:5px;background:var(--g-${g.key})"></div></div>
-      <div style="margin-top:5px;font-size:11.5px;color:var(--muted)">${g.value === null ? "Follower count still being collected: not counted yet" : `${Math.round(g.share)}% of his final score`}</div>
-    </div>`).join("")}
-  </div>`;
+  <div style="position:absolute;left:30px;right:30px;top:772px;text-align:center;font-size:12px;color:var(--muted)">Followers as of ${H.instagram ? new Date(H.instagram.date + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }) : "—"}</div>`;
 
 // ── 5. Highlights ──
 const byScore = [...H.films].filter((f) => f.score !== null).sort((a, b) => b.score - a.score)[0];
@@ -302,7 +311,8 @@ const byGross = [...H.films].filter((f) => f.gross).sort((a, b) => b.gross - a.g
 const firstHit = H.films.find((f) => HIT(f.result));
 const latest = [...H.films].reverse().find((f) => f.result in LV);
 const RES = (f) => (LEVELS[LV[f.result]] ?? [null, "No result", "var(--muted)"]);
-const tiles = [
+const pick = (t) => H.films.find((f) => f.title.startsWith(t));
+const tiles = COPY.highlights ? COPY.highlights.map(([k, t, note]) => { const f = pick(t); return [k, f, note === "score" ? `Film score ${fmt(f.score)}` : note === "gross" ? `₹${Math.round(f.gross)} crore worldwide` : note]; }) : [
   ["Best-loved film", byScore, `Film score ${fmt(byScore.score)}`],
   ["Biggest box office", byGross, `₹${Math.round(byGross.gross)} crore worldwide`],
   ["First hit", firstHit, RES(firstHit)[1]],
@@ -333,15 +343,14 @@ $("s6").innerHTML = `
     <div style="text-align:center"><div class="display" id="s6q" style="font-size:54px;font-weight:900;color:var(--gold);display:inline-block">?</div><div style="font-size:13px;color:var(--muted)">next week</div></div>
   </div>
   <div id="s6e" style="position:absolute;left:0;right:0;top:680px;text-align:center">
-    <div style="font-size:16px;color:var(--ink2);margin-bottom:14px">We update his graph after the collections</div>
-    <div class="chip" style="background:var(--wine);color:#fff;font-size:22px;padding:12px 26px">Subscribe · Tolly Analysis</div>
+    <div style="font-size:17px;color:var(--ink2)">Up or down? We update his graph<br/>after this week's collections.</div>
   </div>`;
 
 $("foot").innerHTML = `Tolly Index as of ${new Date(D.asOf + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })} · box office from Wikipedia and trade reports (Sacnilk, Koimoi, Pinkvilla). Lead roles only.<br/>${COPY.credit} Other photos: Wikimedia Commons.`;
 
 // ── Timeline ──
 function sceneAlpha(t, [a, b]) { return Math.min(prog(t, a, a + 0.35), 1 - prog(t, b - 0.35, b)); }
-function setScene(id, t) { const a = id === "s0" ? 1 - prog(t, S.s0[1] - 0.35, S.s0[1]) : sceneAlpha(t, S[id]); $(id).style.opacity = a; $(id).style.visibility = a > 0 ? "visible" : "hidden"; return t - S[id][0]; }
+function setScene(id, t) { const a = id === "s0" ? prog(t, S.s0[0], S.s0[0] + 0.3) : sceneAlpha(t, S[id]); $(id).style.opacity = a; $(id).style.visibility = a > 0 ? "visible" : "hidden"; return t - S[id][0]; }
 function pop(el, p) { el.style.opacity = clamp(p * 1.4); el.style.transform = `scale(${0.6 + 0.4 * back(p)})`; }
 function rise(el, p, px = 16) { el.style.opacity = clamp(p); el.style.transform = `translateY(${(1 - out(p)) * px}px)`; }
 
@@ -363,6 +372,7 @@ function drawGraph(tt, span) {
     const l = $(`s2-l${i}`);
     if (l) rise(l, prog(tt, 0.6 + i * per + 0.2, 0.6 + i * per + 0.6), 8);
   });
+  graph.callouts.forEach((idx, k) => { const el = $(`s2-c${k}`); if (el && idx >= 0) rise(el, prog(tt, 0.6 + idx * per + 0.3, 0.6 + idx * per + 0.8), 8); });
   $("s2-next").setAttribute("opacity", prog(tt, 0.6 + n * per, 0.6 + n * per + 0.6));
   rise($("s2-chip"), prog(tt, 0.6 + n * per + 0.5, 0.6 + n * per + 1.0), 14);
 }
@@ -372,42 +382,32 @@ function render(t) {
   let tt = setScene("s0", t);
   const bIn = out(prog(tt, 0, 0.45));
   $("board").style.transform = `translateY(${(1 - bIn) * -60}px) scale(${0.85 + 0.15 * bIn}) rotate(${tt > 0.75 && tt < 1.0 ? Math.sin((tt - 0.75) * 60) * 2 : 0}deg)`;
-  $("board").style.opacity = clamp(bIn * 1.5) * (1 - prog(tt, 2.5, 3.1));
+  $("board").style.opacity = clamp(bIn * 1.5) * (1 - prog(tt, 2.2, 2.7));
   $("stickTop").style.transform = `rotate(${-28 * (1 - prog(tt, 0.55, 0.75))}deg)`;
   $("flash").style.opacity = tt < 0.75 ? 0 : 1 - prog(tt, 0.75, 1.3);
   faces.forEach((_, i) => {
     const b = $(`ball${i}`), p = out(prog(tt, 0.78 + (i % 6) * 0.03, 1.7 + (i % 6) * 0.03));
     const x = 270 + (flights[i].x - 270) * p, y = 400 + (flights[i].y - 400) * p;
     b.style.left = x + "px"; b.style.top = y + "px";
-    b.style.opacity = tt < 0.78 ? 0 : (i === 0 ? 1 - prog(tt, 2.6, 3.2) : 1 - prog(tt, 1.8, 2.2));
+    b.style.opacity = tt < 0.78 ? 0 : (i === 0 ? 1 : 1 - prog(tt, 2.0, 2.5));
     b.style.transform = `scale(${0.3 + 0.7 * p})`;
   });
-  rise($("s0title"), prog(tt, 2.0, 2.5));
+  rise($("s0title"), prog(tt, 2.3, 2.8));
+  pop($("s0cta"), prog(tt, 2.9, 3.5));
 
   tt = setScene("s1", t);
-  pop($("s1p"), prog(tt, 0.1, 0.7));
-  rise($("s1n"), prog(tt, 0.4, 0.9)); rise($("s1m"), prog(tt, 0.6, 1.1)); rise($("s1c"), prog(tt, 0.8, 1.3));
-  rise($("s1t"), prog(tt, 1.1, 1.6), 30);
-  const sp = out(prog(tt, 1.4, 3.2));
-  $("s1s").textContent = fmt(H.index * sp); $("s1b").style.width = H.index * sp + "%";
+  pop($("s1p"), prog(tt, 0.05, 0.55));
+  rise($("s1n"), prog(tt, 0.2, 0.6)); rise($("s1m"), prog(tt, 0.35, 0.75));
+  const pp = prog(tt, 0.5, 1.2);
+  $("s1poster").style.opacity = clamp(pp * 1.5);
+  $("s1poster").style.transform = `scale(${0.9 + 0.1 * out(pp) + 0.03 * prog(tt, 1.2, 5.5)})`;
+  pop($("s1c"), prog(tt, 1.2, 1.7));
+  rise($("s1h"), prog(tt, 1.9, 2.5));
 
   tt = setScene("s2", t); drawGraph(tt, S.s2[1] - S.s2[0]);
 
   tt = setScene("s3", t);
-  [...$("s3rows").children].forEach((row, i) => {
-    rise(row, prog(tt, 0.3 + i * 0.25, 0.7 + i * 0.25), 10);
-    const bar = row.querySelector("[data-w]");
-    if (bar) bar.style.width = bar.dataset.w * out(prog(tt, 0.4 + i * 0.25, 1.2 + i * 0.25)) + "%";
-  });
-  rise($("s3sum"), prog(tt, 3.0, 3.6), 24);
-
-  tt = setScene("s4", t);
-  [...$("s4rows").children].forEach((row, i) => {
-    const p = out(prog(tt, 0.5 + i * 1.1, 1.4 + i * 1.1));
-    rise(row, prog(tt, 0.4 + i * 1.1, 0.9 + i * 1.1), 14);
-    row.querySelector("[data-w]").style.width = row.querySelector("[data-w]").dataset.w * p + "%";
-    const n = row.querySelector("[data-n]"); if (n) n.textContent = fmt(Number(n.dataset.n) * p);
-  });
+  [...$("s3grid").children].forEach((c, k) => pop(c, prog(tt, 0.3 + k * 0.9, 0.9 + k * 0.9)));
 
   tt = setScene("s5", t);
   [...$("s5grid").children].forEach((c, i) => pop(c, prog(tt, 0.3 + i * 0.9, 0.9 + i * 0.9)));
@@ -420,8 +420,8 @@ function render(t) {
   $("s6q").style.transform = `scale(${1 + 0.12 * Math.sin(tt * 5)})`;
   pop($("s6e"), prog(tt, 4.6, 5.3));
 
-  $("foot").style.opacity = prog(t, 3.2, 3.6);
-  $("brand").style.opacity = prog(t, 3.2, 3.6);
+  $("foot").style.opacity = 1 - prog(t, S.s0[0], S.s0[0] + 0.3);
+  $("brand").style.opacity = 1 - prog(t, S.s0[0], S.s0[0] + 0.3);
 }
 window.render = render;
 window.DURATION = DURATION;

@@ -101,6 +101,18 @@
      "share": 11
     }
    ],
+   "instagram": {
+    "platform": "instagram",
+    "followers": 1409225,
+    "date": "2026-11-08",
+    "url": "https://www.instagram.com/vishwaksens/"
+   },
+   "x": {
+    "platform": "x",
+    "followers": 132839,
+    "date": "2026-11-08",
+    "url": "https://x.com/VishwakSenActor"
+   },
    "factorList": [
     {
      "key": "audience",
@@ -514,6 +526,8 @@
      "share": 12.1
     }
    ],
+   "instagram": null,
+   "x": null,
    "factorList": [
     {
      "key": "audience",
