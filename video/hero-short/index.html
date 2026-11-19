@@ -82,6 +82,10 @@
   <section class="scene" id="s2"></section>
   <!-- 3. Key numbers -->
   <section class="scene" id="s3"></section>
+  <!-- 4. Interesting facts -->
+  <section class="scene" id="s4"></section>
+  <!-- 7. Tolly Index today -->
+  <section class="scene" id="s7"></section>
   <!-- 5. Highlights -->
   <section class="scene" id="s5"></section>
   <!-- 6. Next film -->
@@ -148,6 +152,12 @@ const COPY = {
     hook: "Can <b style='color:var(--gold)'>Aakasamlo Oka Tara</b> bring back the Sita Ramam magic?",
     graphLine: "Kaantha and I'm Game slipped. Can <b style='color:var(--gold)'>Aakasamlo Oka Tara</b> lift him again?",
     ifHit: "Another straight-Telugu hit after Sita Ramam and Lucky Baskhar",
+    facts: [
+      ["12 years", "A film every single year since 2015", "No empty year"],
+      ["10.6 months", "Average gap between his films since 2015", "Steady, never rushed"],
+      ["#2", "Sita Ramam is the 2nd most-loved Telugu film on our list", "Only Baahubali 2 is above it"],
+      ["#4", "Most followed on Instagram among all our heroes", "16M: ahead of Mahesh Babu and Prabhas"],
+    ],
     ifMiss: "Three films in a row without a hit",
   },
 }[slug];
@@ -344,6 +354,28 @@ $("s5").innerHTML = `
   </div>
   <div id="s5note" style="position:absolute;left:30px;right:30px;top:690px;text-align:center;font-size:14px;color:var(--ink2)">Film score: how much audiences rate a film, how many watched it and how long it stays talked about.</div>`;
 
+// ── 4. Interesting facts ──
+if (COPY.facts) $("s4").innerHTML = `
+  <div class="kicker" style="position:absolute;top:84px;width:100%;text-align:center">Interesting facts</div>
+  <div id="s4list" style="position:absolute;left:30px;right:30px;top:124px">
+    ${COPY.facts.map(([big, line, note]) => `<div class="tile" style="display:flex;align-items:center;gap:18px;margin-bottom:14px;padding:18px 20px">
+      <div class="display" style="flex:none;width:150px;font-size:${big.length > 6 ? 30 : 44}px;font-weight:900;line-height:1;color:${C}">${big}</div>
+      <div><div style="font-size:17px;font-weight:800;line-height:1.25">${line}</div><div style="font-size:13px;color:var(--muted);margin-top:4px">${note}</div></div></div>`).join("")}
+  </div>`;
+
+// ── 7. Tolly Index today ──
+$("s7").innerHTML = `
+  <div class="kicker" style="position:absolute;top:110px;width:100%;text-align:center">Tolly Index · today</div>
+  <div class="photo" id="s7p" style="width:170px;height:170px;left:185px;top:150px;border-color:${C};background-image:${IMG(H.slug)}"></div>
+  <div id="s7s" class="display" style="position:absolute;left:0;right:0;top:350px;text-align:center;font-size:120px;font-weight:900;line-height:1;color:${C}">0.0</div>
+  <div id="s7r" style="position:absolute;left:0;right:0;top:480px;text-align:center;font-size:22px;font-weight:800">#${H.rank} of ${H.of} heroes</div>
+  <div style="position:absolute;left:60px;right:60px;top:530px;height:14px;border-radius:7px;background:rgba(255,255,255,.08)"><div id="s7b" style="height:100%;border-radius:7px;background:${C};width:0"></div></div>
+  <div id="s7n" style="position:absolute;left:30px;right:30px;top:590px;text-align:center">
+    <div style="font-size:17px;color:var(--ink2)">After <b style="color:var(--gold)">${COPY.next}</b></div>
+    <div class="display" id="s7q" style="display:inline-block;margin-top:6px;font-size:64px;font-weight:900;color:var(--gold)">?</div>
+    <div style="font-size:15px;color:var(--muted);margin-top:4px">We update it after the collections</div>
+  </div>`;
+
 // ── 6. Next film ──
 $("s6").innerHTML = `
   <div class="kicker" style="position:absolute;top:84px;width:100%;text-align:center">This week</div>
@@ -428,6 +460,17 @@ function render(t) {
   tt = setScene("s5", t);
   [...$("s5grid").children].forEach((c, i) => pop(c, prog(tt, 0.3 + i * 0.9, 0.9 + i * 0.9)));
   rise($("s5note"), prog(tt, 4.2, 4.8));
+
+  tt = setScene("s4", t);
+  if (tt > -90 && COPY.facts) [...$("s4list").children].forEach((c, k) => rise(c, prog(tt, 0.3 + k * 1.2, 0.8 + k * 1.2), 24));
+  tt = setScene("s7", t);
+  if (tt > -90) {
+    pop($("s7p"), prog(tt, 0.1, 0.6));
+    const p7 = out(prog(tt, 0.5, 2.2));
+    $("s7s").textContent = fmt(H.index * p7); $("s7b").style.width = H.index * p7 + "%";
+    rise($("s7r"), prog(tt, 1.6, 2.1)); rise($("s7n"), prog(tt, 2.6, 3.2));
+    $("s7q").style.transform = `scale(${1 + 0.12 * Math.sin(tt * 5)})`;
+  }
 
   tt = setScene("s6", t);
   pop($("s6a"), prog(tt, 0.1, 0.7)); rise($("s6b"), prog(tt, 0.5, 1.0));
