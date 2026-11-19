@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
-import { IMDB_ATTRIBUTION, TMDB_NOTICE } from "@/lib/legal/data-licences";
 
 export const metadata: Metadata = { title: "Terms of use" };
 
@@ -14,15 +13,14 @@ export default function TermsPage() {
       <div className="card mt-6 space-y-5 p-5 text-[14px] leading-relaxed text-ink-2 sm:p-6">
         <Section title="1. What this site is">
           Tollywood Analysis is an independent, non-commercial analysis of Telugu film careers. Its scores, ranks and verdicts (including the Tolly Index and
-          the Star Score) are opinions produced by a published, versioned method from public data. They are not statements of fact about any person, not
+          the Star Score) are opinions produced by a method of our own, built from our research. They are not statements of fact about any person, not
           audited figures, and not financial or investment information. No studio, actor, platform or data provider endorses this site, and it is not affiliated
           with any of them.
         </Section>
         <Section title="2. Where the data comes from">
           Every source and its licence is listed on the <Link href="/annexure/sources" className="text-wine underline">source ledger</Link>, and every photo&apos;s
-          author and licence on <Link href="/annexure/photo-credits" className="text-wine underline">photo credits</Link>. {IMDB_ATTRIBUTION} {TMDB_NOTICE} Film
-          and hero facts come from Wikipedia (CC BY-SA 4.0) and Wikidata (CC0). Raw IMDb and TMDB numbers are used only to compute scores and are never
-          republished here.
+          author and licence on <Link href="/annexure/photo-credits" className="text-wine underline">photo credits</Link>. Raw numbers from data
+          providers are used only to compute scores and are never republished here.
         </Section>
         <Section title="3. Accuracy">
           We check every input and show what is missing rather than guessing, but public data can be wrong or out of date, and scores change when data or the

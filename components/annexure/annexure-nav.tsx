@@ -4,10 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export const ANNEXURE_SECTIONS = [
-  { href: "/annexure/methodology", label: "1. Methodology" },
   { href: "/annexure/registry", label: "2. Hero Registry" },
   { href: "/annexure/heroes", label: "3–4. Hero detail & filmography" },
-  { href: "/annexure/sources", label: "5. Source Ledger" },
+  { href: "/annexure/sources", label: "5. Data credits" },
   { href: "/annexure/coverage", label: "6. Data Coverage" },
   { href: "/annexure/changelog", label: "7. Change Log" },
   { href: "/annexure/corrections", label: "8. Suggest a Correction" },

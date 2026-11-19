@@ -3,6 +3,7 @@ import { compactCount } from "@/lib/data/real/hero-facts";
 import { HERO_FACTORS } from "@/lib/tolly";
 import type { TollyHeroView, TollyMeta } from "@/lib/tolly/view";
 import { GROUPS, groupValue, IndexValue, kpiFact, PILLARS, PillarBar, PROVISIONAL_TIP } from "./tolly-parts";
+import { missingLabel } from "@/lib/tolly/labels";
 
 /** The hero page's Tolly Index section: the score, its five groups, every number behind it, and the films holding him back. */
 export function TollyHeroCard({ hero, rankedCount, meta, provisional = false }: { hero: TollyHeroView; rankedCount: number; meta: TollyMeta; provisional?: boolean }) {
@@ -129,7 +130,7 @@ export function TollyHeroCard({ hero, rankedCount, meta, provisional = false }: 
               <li key={m.title + m.year} className="flex flex-wrap gap-x-3 py-1.5">
                 <span className="tabular w-10 text-muted">{m.year}</span>
                 <span className="font-medium text-ink">{m.title}</span>
-                <span className="text-muted">missing: {m.missing.join(", ")}</span>
+                <span className="text-muted">missing: {m.missing.map(missingLabel).join(", ")}</span>
               </li>
             ))}
           </ul>

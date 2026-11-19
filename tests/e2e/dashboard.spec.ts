@@ -123,7 +123,7 @@ test.describe("Other views", () => {
 });
 
 test.describe("Responsive layout", () => {
-  for (const path of ["/", "/star-score", "/tolly-index", "/heroes", "/hero/prabhas", "/hero/allari-naresh", "/hero/sivaji", "/rankings", "/compare", "/trends", "/methodology", "/annexure", "/annexure/registry", "/annexure/heroes/nani", "/annexure/corrections", "/annexure/sources", "/terms", "/privacy"]) {
+  for (const path of ["/", "/star-score", "/tolly-index", "/heroes", "/hero/prabhas", "/hero/allari-naresh", "/hero/sivaji", "/rankings", "/compare", "/trends", "/methodology", "/annexure", "/annexure/registry", "/annexure/heroes/nani", "/annexure/corrections", "/annexure/sources", "/terms", "/privacy", "/careers", "/contact"]) {
     test(`no horizontal page overflow on ${path}`, async ({ page }) => {
       await page.goto(path);
       const [scrollW, clientW] = await page.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]);
@@ -166,13 +166,24 @@ test.describe("Tolly Index", () => {
     expect(rings).toBeGreaterThan(2); // not one colour for everybody
   });
 
-  test("the how-it-works page holds the method for both scores", async ({ page }) => {
+  test("how it works explains the idea without naming data providers", async ({ page }) => {
     await page.goto("/methodology");
     await expect(page.getByRole("heading", { level: 1 })).toHaveText("How it works");
-    await expect(page.locator("#tolly-index")).toContainText("Three rules keep it fair");
-    await expect(page.locator("#tolly-index")).toContainText("Fifteen numbers make a hero's score");
-    await expect(page.locator("#how")).toContainText("Star Score and the other numbers");
-    await expect(page.getByRole("link", { name: /Sources and data licences/ }).first()).toBeVisible();
+    await expect(page.locator("#tolly-index")).toContainText("our own formula");
+    await expect(page.locator("body")).toContainText("సీక్రెట్ మసాలా");
+    await expect(page.locator("main")).not.toContainText(/IMDb|TMDB|Letterboxd/);
+    await expect(page.getByRole("link", { name: /Data credits/ }).first()).toBeVisible();
+  });
+
+  test("careers and contact pages are linked from the footer", async ({ page }) => {
+    await page.goto("/");
+    const footer = page.locator("footer");
+    await expect(footer).not.toContainText(/IMDb|TMDB/);
+    await footer.getByRole("link", { name: "Careers" }).click();
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Careers");
+    await expect(page.getByRole("form", { name: "Post a job" })).toBeVisible();
+    await page.goto("/contact");
+    await expect(page.getByRole("link", { name: "info@tollyanalysis.com" }).first()).toHaveAttribute("href", "mailto:info@tollyanalysis.com");
   });
 
   test("hero page shows age and profile facts", async ({ page }) => {
@@ -183,10 +194,10 @@ test.describe("Tolly Index", () => {
 });
 
 test.describe("Legal", () => {
-  test("every page credits IMDb and links the terms and privacy policy", async ({ page }) => {
+  test("every page links the data credits, terms and privacy policy", async ({ page }) => {
     await page.goto("/");
     const footer = page.locator("footer");
-    await expect(footer).toContainText("Information courtesy of IMDb (https://www.imdb.com). Used with permission.");
+    await expect(footer.getByRole("link", { name: "Data credits" }).first()).toHaveAttribute("href", "/annexure/sources");
     await expect(footer.getByRole("link", { name: "Privacy policy" })).toHaveAttribute("href", "/privacy");
     await expect(footer.getByRole("link", { name: "Terms of use" })).toHaveAttribute("href", "/terms");
   });

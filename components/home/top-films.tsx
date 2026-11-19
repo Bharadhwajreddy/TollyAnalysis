@@ -68,7 +68,7 @@ function Row({ f, rank, open, onToggle }: { f: TopFilm; rank: number; open: bool
             );
           })}
           <p className="text-[11.5px] leading-snug text-muted">
-            Rating is the IMDb audience rating on a 0–100 scale. Reach and staying power compare it with films released within a year of it.
+            Rating is how much audiences love the film, on a 0–100 scale. Reach and staying power compare it with films released within a year of it.
           </p>
           <p className="flex flex-wrap gap-x-3 text-[12.5px]">
             {f.heroes.map((h) => (

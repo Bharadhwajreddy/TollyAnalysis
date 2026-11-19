@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useMemo, useState } from "react";
+import { missingLabel } from "@/lib/tolly/labels";
 
 export interface FilmRowView {
   id: string;
@@ -182,7 +183,7 @@ export function HeroFilmsTable({ rows, heroName }: { rows: FilmRowView[]; heroNa
                       {r.verdictSource && <span className="mt-1 block text-[10.5px] text-muted">via {r.verdictSource}</span>}
                     </td>
                     {hasTolly && (
-                      <td className="tabular whitespace-nowrap px-2.5 py-2 text-right" title={r.tolly?.missing.length ? `Missing: ${r.tolly.missing.join(", ")}` : undefined}>
+                      <td className="tabular whitespace-nowrap px-2.5 py-2 text-right" title={r.tolly?.missing.length ? `Missing: ${r.tolly.missing.map(missingLabel).join(", ")}` : undefined}>
                         {r.tolly?.index != null ? (
                           <span className={`font-semibold ${r.tolly.status === "complete" ? "text-wine" : "text-muted"}`}>
                             {r.tolly.index.toFixed(1)}
@@ -224,7 +225,7 @@ export function HeroFilmsTable({ rows, heroName }: { rows: FilmRowView[]; heroNa
                               ) : r.tolly.status === "excluded" ? (
                                 "Not a Telugu or Hindi film, so not counted"
                               ) : (
-                                <>Not scored: missing {r.tolly.missing.join(", ")}</>
+                                <>Not scored: missing {r.tolly.missing.map(missingLabel).join(", ")}</>
                               )}
                             </Fact>
                           )}

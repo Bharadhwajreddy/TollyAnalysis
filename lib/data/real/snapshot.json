@@ -5862,7 +5862,12 @@
     "text": "₹13 crore distributors' share",
     "isShare": true
    },
-   "verdict": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Checked against trade reports on 2026-11-18: IBTimes describes it as \"a box office success\" that completed 50 days in several theatres (US gross ~₹6.88 crore after four weeks). Only one source and a modest outlet - please double-check; Great Andhra's review had predicted no extraordinary result. App's current gross text: ₹13 crore distributors' share.",
+    "source": "editor-check",
+    "url": "https://www.ibtimes.co.in/039greeku-veerudu039-box-office-collection-nagarjuna-film-collects-72-14-lakh-in-3-days-overseas-464794"
+   },
    "starring": [
     "Nagarjuna (actor)",
     "Nayanthara"
@@ -6555,17 +6560,17 @@
    "budget": {
     "low": 350,
     "high": 400,
-    "text": "₹350–400 crore"
+    "text": "₹350-400 crore"
    },
    "gross": {
     "low": 514,
     "high": 675,
-    "text": "₹514–675 crore"
+    "text": "₹514-675 crore"
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "The film received generally mixed reviews from critics but became a commercial success.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"received generally mixed reviews from critics but became a commercial success\", highest-grossing Tamil film of 2025 (est. ₹514-675 crore on ₹350-400 crore). Second link: cited Business Today day-1 report (not opened). Telugu: released with a dubbed Telugu version.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Coolie_(2025_film)"
    },
    "starring": [
@@ -8558,7 +8563,12 @@
    "qid": "Q96379012",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Deccan Chronicle (2016): Rajasekhar \"was last seen in Gaddam Gang, which flopped at the box office\". Second link is a review. No figures.",
+    "source": "editor-check",
+    "url": "https://www.deccanchronicle.com/entertainment/tollywood/210616/rajasekhar-turns-villain-for-gopichand.html"
+   },
    "starring": [
     "Rajasekhar (actor)",
     "Sheena Shahabadi"
@@ -8710,7 +8720,12 @@
    "qid": "Q112228432",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "Checked against trade reports on 2026-11-18: Track Tollywood: \"Disastrous start at the box office\" - failed to recover rents in most areas on day one; Sacnilk's page labels it \"DISASTER\" (no figures shown).",
+    "source": "editor-check",
+    "url": "https://tracktollywood.com/dr-rajasekhars-shekar-disastrous-start-at-the-box-office/"
+   },
    "starring": [
     "Rajasekhar (actor)",
     "Athmiya Rajan"
@@ -10631,7 +10646,12 @@
    "qid": "Q30646135",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Hans India: Patel S.I.R. \"flopped big time at the box office\" and Jagapathi Babu regretted signing it. Only one source; no figures.",
+    "source": "editor-check",
+    "url": "https://www.thehansindia.com/posts/index/Cinema/2017-08-14/Shocking-decision-from-Jagapathi-Babu/318988"
+   },
    "starring": [
     "Jagapati Babu",
     "Aamani",
@@ -12058,9 +12078,9 @@
     "text": "₹154 crore"
    },
    "verdict": {
-    "verdict": "hit",
-    "sentence": "The film was the highest-grossing Tamil film of 2014, highest-grossing South Indian film of 2014 and one of the highest grossing Indian films of 2014; despite this, the film suffered major losses due to high production and distribution costs, causing protests by distributors.",
-    "source": "wikipedia-film",
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: highest-grossing Tamil film of 2014 (₹154 crore) \"despite this, the film suffered major losses due to high production and distribution costs\"; worldwide rights sold for ₹135 crore and Tamil Nadu distributors asked for their money back. Distributor losses = flop. The app currently says hit. Only one source. Telugu: dubbed and released in Telugu with the same name.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Lingaa"
    },
    "starring": [
@@ -12440,9 +12460,9 @@
     "text": "₹240 crore"
    },
    "verdict": {
-    "verdict": "super_hit",
-    "sentence": "Its worldwide box office collection reached ₹239.21 crore, establishing it as a major commercial success.",
-    "source": "wikipedia-film",
+    "verdict": "hit",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"grossed an estimated ₹240 crores worldwide against a budget of ₹180 crores, making it a commercial success\" (another passage says \"major commercial success\") - one step apart, took the lower (hit). The app currently says super_hit. Telugu: released in Telugu as \"Peddanna\".",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Annaatthe"
    },
    "starring": [
@@ -19429,11 +19449,16 @@
     "text": "₹55 crore"
    },
    "gross": {
-    "low": 100.52,
-    "high": 100.52,
-    "text": "₹100.52 crore"
+    "low": 92,
+    "high": 92,
+    "text": "₹92 crore"
    },
-   "verdict": null,
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "Checked against trade reports on 2026-11-18: Telugu360 \"Worldwide Closing Collections - Disaster\" (about 65% recovery of an ₹80 crore theatrical valuation; distributors lost ~40%); Hans India calls it a huge flop (closing share ~₹50-54 crore, gross estimate ~₹92 crore). One step apart - took the lower (disaster) per the rules. The app's gross is ₹100.52 crore; budget ₹55 crore is the app's figure.",
+    "source": "editor-check",
+    "url": "https://www.telugu360.com/naa-peru-surya-worldwide-closing-collections-disaster/"
+   },
    "starring": [
     "Allu Arjun",
     "Arjun Sarja",
@@ -23465,7 +23490,12 @@
    "qid": "Q96385347",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "Checked against trade reports on 2026-11-18: Hans India: \"Kapatadhaari becomes a biggest disaster for Sumanth\" - total collections below a typical flop film's first week. Only one source; no figures.",
+    "source": "editor-check",
+    "url": "https://www.thehansindia.com/cinema/tollywood/kapatadhaari-becomes-a-biggest-disaster-for-sumanth-675176"
+   },
    "starring": [
     "Sumanth",
     "Nandita Swetha"
@@ -25194,7 +25224,12 @@
    "qid": "Q20925574",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: M9 News says Laddu Babu 'flopped' (search snippet); Filmibeat Telugu (2021) reports the producer describing losses on it: https://telugu.filmibeat.com/box-office/allari-naresh-laddu-babu-movie-producer-about-movie-budget-losses-101319.html. Please check: M9 is a smaller news site. Other link: https://www.123telugu.com/reviews/review-laddu-babu-disappointing-film.html | Earlier note: No final trade verdict found. 123telugu's review predicted it \"will not work at the Box Office\" (a review, not a result); Hans India reported collections after 5 days but no budget or verdict. Left empty.",
+    "source": "editor-check",
+    "url": "https://www.m9.news/movienews/allari-naresh-brutally-admits-flop-saga/"
+   },
    "starring": [
     "Allari Naresh",
     "Bhumika Chawla"
@@ -25330,7 +25365,12 @@
    "qid": "Q20538724",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "average",
+    "sentence": "Checked against trade reports on 2026-11-18: 123telugu: \"Decent collections for Allari Naresh's James Bond\" - doing decent business and set to break even. Break-even = average. Telugu360 mentions it as the exception among his recent flops. Pages not opened (search snippets).",
+    "source": "editor-check",
+    "url": "https://www.123telugu.com/mnews/decent-collections-for-allari-nareshs-james-bond.html"
+   },
    "starring": [
     "Allari Naresh",
     "Sakshi Chaudhary"
@@ -25354,7 +25394,12 @@
    "qid": "Q101245134",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Telugu360: Selfie Raja \"ended up as a huge dud at the box-office\" and none of his recent films broke even. Only one source (page not opened, search snippet); no figures. Note: IBTimes reported a good first weekend.",
+    "source": "editor-check",
+    "url": "https://www.telugu360.com/allari-naresh-continues-flops/"
+   },
    "starring": [
     "Allari Naresh",
     "Sakshi Chaudhary",
@@ -25381,7 +25426,12 @@
    "qid": "Q28127850",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Telugu360 (Silly Fellows closing report) calls Silly Fellows \"a hat-trick flop\" for Allari Naresh, naming Intlo Deyyam Nakem Bhayam and Meda Meeda Abbayi as the previous flops - so the verdict is implied, not a dedicated report. IBTimes had reported a decent opening. Second link is a review. No figures found.",
+    "source": "editor-check",
+    "url": "https://www.telugu360.com/silly-fellows-worldwide-closing-collections-flop/"
+   },
    "starring": [
     "Allari Naresh",
     "Kruthika Jayakumar",
@@ -25409,7 +25459,12 @@
    "qid": "Q43969243",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Telugu360 names it as one of Allari Naresh's flops before Silly Fellows (\"hat-trick flop\"); 123telugu's review called it a below-average comedy and IBTimes reported a dismal US opening. Implied verdict, no figures.",
+    "source": "editor-check",
+    "url": "https://www.telugu360.com/silly-fellows-worldwide-closing-collections-flop/"
+   },
    "starring": [
     "Allari Naresh",
     "Nikhila Vimal",
@@ -25437,7 +25492,12 @@
    "qid": "Q56562219",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Telugu360 \"Silly Fellows Worldwide Closing Collections: FLOP\" - distributor share a little over ₹3.5 crore against rights valued at ₹5.5 crore (~60% recovery). IBTimes: weak US numbers. No worldwide gross given.",
+    "source": "editor-check",
+    "url": "https://www.telugu360.com/silly-fellows-worldwide-closing-collections-flop/"
+   },
    "starring": [
     "Allari Naresh",
     "Sunil (actor)",
@@ -25591,8 +25651,17 @@
     "high": 10,
     "text": "₹10 crore"
    },
-   "gross": null,
-   "verdict": null,
+   "gross": {
+    "low": 9.35,
+    "high": 9.35,
+    "text": "₹9.35 crore"
+   },
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Sacnilk: final worldwide gross ~₹9.35 crore (no verdict given); budget ₹10 crore is the app's current figure. Deccan Chronicle quoted a distributor saying it was \"losing steam in many centres\" after a dismal opening. Gross below budget = flop, but no source states a verdict outright - please check.",
+    "source": "editor-check",
+    "url": "https://www.sacnilk.com/movie/Aa_Okkati_Adakku_2024"
+   },
    "starring": [
     "Allari Naresh",
     "Faria Abdullah"
@@ -25616,7 +25685,12 @@
    "qid": "Q131293603",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: 123telugu: \"Bachchala Malli disappoints at the box office\" - never crossed ₹1 crore a day and was removed from screens; Sacnilk: lifetime ~₹3.6 crore India net (verdict field N/A). No budget found.",
+    "source": "editor-check",
+    "url": "https://www.123telugu.com/mnews/bachchala-malli-disappoints-at-the-box-office.html"
+   },
    "starring": [
     "Allari Naresh",
     "Amritha Aiyer"
@@ -25639,8 +25713,17 @@
    "imdbId": "tt36218322",
    "qid": "Q136992585",
    "budget": null,
-   "gross": null,
-   "verdict": null,
+   "gross": {
+    "low": 3.18,
+    "high": 3.18,
+    "text": "₹3.18 crore"
+   },
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "Checked against trade reports on 2026-11-18: Telugu360 lists Allari Naresh's 12A Railway Colony as \"a disaster\" in its 2025 round-up; Sacnilk: worldwide gross ~₹3.18 crore (India only), ₹2.82 crore net, week 2 almost nil. No budget found.",
+    "source": "editor-check",
+    "url": "https://www.telugu360.com/2025-is-disastrous-for-these-tollywood-stars/"
+   },
    "starring": [
     "Allari Naresh",
     "Kamakshi Bhaskarla"
@@ -25663,8 +25746,17 @@
    "imdbId": null,
    "qid": "Q16253532",
    "budget": null,
-   "gross": null,
-   "verdict": null,
+   "gross": {
+    "low": 5.56,
+    "high": 5.56,
+    "text": "₹5.56 crore"
+   },
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: 2026 release (listed on trade sites as \"Ramba Oorvasi Menaka\"). Track Tollywood put its hit mark at ₹10 crore worldwide gross; it ended its run at about ₹5.56 crore India gross over 22 days (Sacnilk similar). Well short of break-even = flop. Both links are the same outlet; budget not found.",
+    "source": "editor-check",
+    "url": "https://tracktollywood.com/ramba-oorvasi-menaka-budget-hit-or-flop-weekend-collection/"
+   },
    "starring": [
     "Allari Naresh",
     "Surbhi",
@@ -27141,7 +27233,12 @@
    "qid": "Q106390614",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Hans India: it \"failed big time at the box office\" and later called it \"a big flop\"; overseas reports expected a big disaster. Could be disaster; took flop as stated. Both links are the same outlet; no figures.",
+    "source": "editor-check",
+    "url": "https://www.thehansindia.com/posts/index/Cinema/2017-11-10/Okkadu-Migiladu-Movie-Review/338628"
+   },
    "starring": [
     "Manchu Manoj",
     "Anisha Ambrose",
@@ -30198,8 +30295,17 @@
    "imdbId": "tt33183872",
    "qid": "Q139665874",
    "budget": null,
-   "gross": null,
-   "verdict": null,
+   "gross": {
+    "low": 1.5,
+    "high": 1.5,
+    "text": "₹1.5 crore"
+   },
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: 2026 release. Great Andhra: \"Is Sivaji blaming politics for his film's flop?\" - very poor reviews and extremely low first-weekend numbers; Sacnilk: ~₹1.5 crore worldwide after 13 days (\"commercial disappointment\").",
+    "source": "editor-check",
+    "url": "https://www.greatandhra.com/movies/news/is-sivaji-blaming-politics-for-his-films-flop-153370"
+   },
    "starring": [
     "Sivaji",
     "Laya (actress)",
@@ -32361,7 +32467,12 @@
    "qid": "Q22251985",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Great Andhra: Krishnashtami fell well short of ₹10 crore and was \"the biggest ever flop for Dil Raju\" per trade estimates; IBTimes: weak US opening. Could be disaster; took flop as stated.",
+    "source": "editor-check",
+    "url": "https://www.greatandhra.com/movies/news/can-trivikram-put-him-back-on-track-86644"
+   },
    "starring": [
     "Sunil (actor)",
     "Nikki Galrani"
@@ -32387,7 +32498,12 @@
    "qid": "Q27230217",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Telugu360 reported a poor show for Eedu Gold Ehe in the Telugu states (no overseas release). Only one source; no figures - please check.",
+    "source": "editor-check",
+    "url": "https://www.telugu360.com/overseas-boxoffice-premam-strong-others-fall-flat/"
+   },
    "starring": [
     "Sunil (actor)",
     "Sushma Raj",
@@ -32412,7 +32528,12 @@
    "qid": "Q30673239",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Checked against trade reports on 2026-11-18: Deccan Chronicle: \"Finally, comedian-turned-actor Sunil gets a hit!\"; IBTimes: ~₹12.25 crore worldwide gross in the first weekend. Note: Great Andhra called it \"a miserable flop\" overseas (overseas only).",
+    "source": "editor-check",
+    "url": "https://www.deccanchronicle.com/entertainment/tollywood/120816/finally-comedian-turned-actor-sunil-gets-a-hit.html"
+   },
    "starring": [
     "Sunil (actor)",
     "Mannara Chopra"
@@ -32438,7 +32559,12 @@
    "qid": "Q65322152",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Deccan Chronicle: Ungarala Rambabu \"has been added to the list of flops in the actor's portfolio\". Only one source; no figures.",
+    "source": "editor-check",
+    "url": "https://www.deccanchronicle.com/entertainment/tollywood/200917/sunil-to-blame-for-flop-film.html"
+   },
    "starring": [
     "Sunil (actor)",
     "Miya (actress)",
@@ -32465,7 +32591,12 @@
    "qid": "Q48671804",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Great Andhra: 2 Countries was a non-starter, likely the biggest flop of Sunil's career; Telugu360 lists it as a flop alongside Ungarala Rambabu. Could be disaster; took flop. No figures.",
+    "source": "editor-check",
+    "url": "https://www.greatandhra.com/movies/news/can-trivikram-put-him-back-on-track-86644"
+   },
    "starring": [
     "Sunil (actor)",
     "Manisha Raj"
@@ -32953,9 +33084,18 @@
    "genres": [],
    "imdbId": "tt22410680",
    "qid": "Q115666224",
-   "budget": null,
+   "budget": {
+    "low": 10,
+    "high": 10,
+    "text": "₹10 crore"
+   },
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "Checked against trade reports on 2026-11-18: Telugu360: \"Urvasivo Rakshasivo is a Disaster\"; Sacnilk: budget ~₹10 crore, week-one India net ~₹4.76 crore.",
+    "source": "editor-check",
+    "url": "https://www.telugu360.com/weekend-box-office-update-kantara-leads-urvasivo-rakshasivo-is-a-disaster/"
+   },
    "starring": [
     "Allu Sirish",
     "Anu Emmanuel",
@@ -33466,11 +33606,16 @@
    "qid": "Q130418878",
    "budget": null,
    "gross": {
-    "low": 8.05,
-    "high": 8.05,
-    "text": "₹8.05 crore"
+    "low": 7.6,
+    "high": 7.6,
+    "text": "₹7.60 crore"
    },
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Track Tollywood: \"Swag stumbles - heading towards a flop\", yet another box-office failure; Sacnilk: total gross ~₹7.6 crore (₹6.86 crore net). No budget found.",
+    "source": "editor-check",
+    "url": "https://tracktollywood.com/swag-stumbles-heading-towards-a-flop/"
+   },
    "starring": [
     "Sree Vishnu",
     "Meera Jasmine",
@@ -33538,11 +33683,16 @@
    "qid": "Q130375724",
    "budget": null,
    "gross": {
-    "low": 10,
-    "high": 10,
-    "text": "₹10 crore"
+    "low": 5.53,
+    "high": 5.53,
+    "text": "₹5.53 crore"
    },
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Koimoi: likely to wrap up below ₹6 crore (₹5.53 crore gross, ₹4.69 crore net after 23 days) and called it \"a dud\"; Great Andhra: \"Another flop for Satyadev?\". No budget found.",
+    "source": "editor-check",
+    "url": "https://www.koimoi.com/box-office/zebra-box-office-collection-23-days-satyadev-starrer-likely-to-wrap-up-below-6-crores/"
+   },
    "starring": [
     "Satyadev (actor)",
     "Dhananjaya (actor)",
@@ -33765,18 +33915,18 @@
    "budget": {
     "low": 200,
     "high": 220,
-    "text": "₹200–220 crore"
+    "text": "₹200-220 crore"
    },
    "gross": {
     "low": 605,
     "high": 650,
-    "text": "₹605–650 crore"
+    "text": "₹605-650 crore"
    },
    "verdict": {
-    "verdict": "super_hit",
-    "sentence": "The sequel, Jailer 2, was released on 15 October 2026, which was also a major box office success and became the highest grossing Tamil film of all time.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Jailer_(2023_Tamil_film)"
+    "verdict": "blockbuster",
+    "sentence": "Checked against trade reports on 2026-11-18: Sacnilk: \"Mega Blockbuster Jailer\" (final worldwide ~₹604.5 crore, verdict All-Time Blockbuster); Wikipedia: highest-grossing Tamil film of 2023, est. ₹605-650 crore on ₹200-220 crore (~3x). Sacnilk found via web search, page not opened. Telugu: the Telugu version earned over ₹100 crore in 18 days (Wikipedia).",
+    "source": "editor-check",
+    "url": "https://www.sacnilk.com/news/Mega_Blockbuster_Jailer_Final_Worldwide_Box_Office_Collection_and_Records"
    },
    "starring": [
     "Rajinikanth",
@@ -33842,8 +33992,8 @@
    "gross": null,
    "verdict": {
     "verdict": "disaster",
-    "sentence": "The film was heavily panned by critics and became a box-office bomb.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"heavily panned by critics and became a box-office bomb\" (no figures). Only one source. Telugu version not confirmed on Wikipedia - left empty.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Japan_(2023_film)"
    },
    "starring": [
@@ -35052,9 +35202,22 @@
    "genres": [],
    "imdbId": null,
    "qid": null,
-   "budget": null,
-   "gross": null,
-   "verdict": null,
+   "budget": {
+    "low": 15,
+    "high": 15,
+    "text": "₹15 crore"
+   },
+   "gross": {
+    "low": 21.8,
+    "high": 21.8,
+    "text": "₹21.80 crore"
+   },
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Checked against trade reports on 2026-11-18: Kanam is the Tamil version of the bilingual \"Oke Oka Jeevitham\" (2022). Sacnilk: \"proves to be a word of mouth hit\", broke even in about nine days, worldwide gross ~₹21.8 crore on ₹15 crore; Great Andhra: crossed half a million dollars in the US. Figures are for both versions together.",
+    "source": "editor-check",
+    "url": "https://www.sacnilk.com/news/Box_Office_Sharwanands_Oke_Oka_Jeevitham_Proves_To_Be_A_Word_of_Mouth_Hit"
+   },
    "starring": []
   },
   {
@@ -36904,7 +37067,12 @@
    "qid": "Q16342052",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Great Andhra: Happy Happy Ga \"failing to wow the crowds\", listed among Varun Sandesh's flops (Deccan Chronicle: his last success was Yemaindi Ee Vela, 2010). Only one source; no figures.",
+    "source": "editor-check",
+    "url": "https://www.greatandhra.com/movies/gossip/varun-sandesh-rs-80-lac-despite-flops-21244"
+   },
    "starring": [
     "Varun Sandesh",
     "Vega Tamotia",
@@ -40269,7 +40437,12 @@
     "high": 22.3,
     "text": "₹22.3 crore"
    },
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: IBTimes: \"Naga Chaitanya delivers another dud after SRA\" (day 3); reports say it ended as a flop, with only ~38% of distributors' investment recovered in the opening weekend. Gross ₹22.3 crore and budget ₹30 crore are the app's figures.",
+    "source": "editor-check",
+    "url": "https://www.ibtimes.co.in/savyasachi-box-office-collection-day-3-naga-chaitanya-delivers-another-dud-after-sra-784793"
+   },
    "starring": [
     "Naga Chaitanya",
     "R. Madhavan",
@@ -40812,7 +40985,12 @@
    "qid": "Q19882052",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Deccan Chronicle interview: Nara Rohit said Appatlo Okadundevadu \"got a lot of appreciation, but was not commercially viable\". Interpreted as flop - the hero's own words, not a trade report; please check.",
+    "source": "editor-check",
+    "url": "https://www.deccanchronicle.com/entertainment/tollywood/220818/im-only-looking-for-good-content-naara-rohith.html"
+   },
    "starring": [
     "Nara Rohit",
     "Sree Vishnu",
@@ -40905,7 +41083,12 @@
    "qid": "Q42530916",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Deccan Chronicle interview: Nara Rohit said \"though the film failed miserably, I tried something new\" about Balakrishnudu. The hero's own words, not a trade report.",
+    "source": "editor-check",
+    "url": "https://www.deccanchronicle.com/entertainment/tollywood/220818/im-only-looking-for-good-content-naara-rohith.html"
+   },
    "starring": [
     "Nara Rohit",
     "Regina Cassandra",
@@ -40965,7 +41148,12 @@
     "high": 12.3,
     "text": "₹12.3 crore"
    },
-   "verdict": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Checked against trade reports on 2026-11-18: IBTimes: \"Sree Vishnu scores his 3rd hit film\" (₹3+ crore worldwide gross in the first weekend); reports say the ₹2.25 crore budget was recovered before release. Hans India first-weekend report.",
+    "source": "editor-check",
+    "url": "https://www.ibtimes.co.in/needi-naadi-oke-katha-3-day-box-office-collection-sree-vishnu-scores-his-3rd-hit-film-765091"
+   },
    "starring": [
     "Sree Vishnu",
     "Satna Titus"
@@ -41021,8 +41209,17 @@
    "imdbId": "tt28479388",
    "qid": "Q126979267",
    "budget": null,
-   "gross": null,
-   "verdict": null,
+   "gross": {
+    "low": 0.28,
+    "high": 0.28,
+    "text": "₹0.28 crore"
+   },
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "Checked against trade reports on 2026-11-18: Sacnilk: ~₹0.28 crore worldwide (₹0.23 crore India net); Track Tollywood/123telugu describe it as a flop that \"ended up as a massive disaster\".",
+    "source": "editor-check",
+    "url": "https://www.sacnilk.com/movie/Prathinidhi_2_2024"
+   },
    "starring": [
     "Nara Rohit",
     "Siri Lella"
@@ -41681,9 +41878,18 @@
    ],
    "imdbId": "tt7822758",
    "qid": "Q56452532",
-   "budget": null,
+   "budget": {
+    "low": 60,
+    "high": 60,
+    "text": "₹60 crore"
+   },
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Sacnilk labels the trilingual (Aranya / Kaadan / Haathi Mere Saathi) a flop - budget ₹60 crore, India net ~₹7-8.5 crore across versions. Only one source.",
+    "source": "editor-check",
+    "url": "https://www.sacnilk.com/movie/Haathi_Mere_Saathi_2020"
+   },
    "starring": [
     "Rana Daggubati",
     "Vishnu Vishal",
@@ -41782,12 +41988,12 @@
    "gross": {
     "low": 250,
     "high": 253,
-    "text": "₹250–253 crore"
+    "text": "₹250-253 crore"
    },
    "verdict": {
     "verdict": "disaster",
-    "sentence": "Although emerging as the third highest-grossing Tamil film of 2024 and the seventeenth highest-grossing Tamil film of all time, it was a Box-office bomb.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: despite being the third highest-grossing Tamil film of 2024 \"it was a Box-office bomb\" (₹250-253 crore on a ₹300 crore budget); Lyca reportedly asked Rajinikanth to compensate losses (Times of India). Telugu: dubbed Telugu version (Wikipedia mentions it for the streaming release; it was also in theatres - not stated there).",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Vettaiyan"
    },
    "starring": [
@@ -42075,11 +42281,16 @@
     "text": "₹8 crore"
    },
    "gross": {
-    "low": 10,
-    "high": 10,
-    "text": "₹10 crore"
+    "low": 21.48,
+    "high": 21.48,
+    "text": "₹21.48 crore"
    },
-   "verdict": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Checked against trade reports on 2026-11-18: Hans India closing report: worldwide gross ~₹21.48 crore, share ~₹12.03 crore after five weeks; IBTimes 2019 ranking: share ₹11.66 crore against ₹10 crore rights (116.6%), status \"hit\". Telugu360 called it \"above average\" at 11 days (earlier). Budget ₹8 crore from Wikipedia (which shows est. ₹10 crore gross).",
+    "source": "editor-check",
+    "url": "https://www.thehansindia.com/cinema/tollywood/adivi-seshs-evaru-closing-collections-report-566356"
+   },
    "starring": [
     "Adivi Sesh",
     "Naveen Chandra",
@@ -43422,7 +43633,12 @@
    "qid": "Q21646011",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Great Andhra trade report: \"Abbayitho Ammayi starring Naga Shourya however failed at the box-office ... another flop in his career\". Only one source; no figures.",
+    "source": "editor-check",
+    "url": "https://www.greatandhra.com/movies/news/trade-talk-decent-week-71828"
+   },
    "starring": [
     "Naga Shourya",
     "Pallak Lalwani",
@@ -43745,9 +43961,18 @@
    "genres": [],
    "imdbId": "tt10087728",
    "qid": "Q117230947",
-   "budget": null,
+   "budget": {
+    "low": 10,
+    "high": 10,
+    "text": "₹10 crore"
+   },
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Sacnilk: India net ~₹2.53 crore against an approximate ₹10 crore budget (no verdict given). Result based on those figures - please check.",
+    "source": "editor-check",
+    "url": "https://www.sacnilk.com/movie/Phalana_Abbayi_Phalana_Ammayi_2023"
+   },
    "starring": [
     "Naga Shaurya",
     "Malvika Nair"
@@ -44447,8 +44672,17 @@
    "imdbId": "tt32813915",
    "qid": "Q133573209",
    "budget": null,
-   "gross": null,
-   "verdict": null,
+   "gross": {
+    "low": 0.29,
+    "high": 0.29,
+    "text": "₹0.29 crore"
+   },
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "Checked against trade reports on 2026-11-18: Sacnilk: worldwide gross ~₹0.29 crore (₹0.26 crore India net), collections fell to almost nothing within a week. No written verdict found and no budget, but the total is negligible - please check. Nothing on Wikipedia.",
+    "source": "editor-check",
+    "url": "https://www.sacnilk.com/movie/Shanmukha_2025"
+   },
    "starring": [
     "Aadi Saikumar",
     "Avika Gor"
@@ -44503,8 +44737,17 @@
    "imdbId": null,
    "qid": null,
    "budget": null,
-   "gross": null,
-   "verdict": null,
+   "gross": {
+    "low": 0.19,
+    "high": 0.19,
+    "text": "₹0.19 crore"
+   },
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "Checked against trade reports on 2026-11-18: 2026 release (2 Oct). Sacnilk: worldwide gross ~₹0.19 crore after the first week (₹0.16 crore net); its digital rights reportedly sold for ₹7 crore (123telugu), which is non-theatrical. No written verdict found - result based on the negligible theatrical total, please check.",
+    "source": "editor-check",
+    "url": "https://www.sacnilk.com/movie/SI_Yugandhar_2026"
+   },
    "starring": []
   },
   {
@@ -45426,7 +45669,12 @@
    "qid": "Q133833412",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: 123telugu: released in April 2025, \"failed to make an impact at the box office\" (now on Prime Video). Only one source; no figures.",
+    "source": "editor-check",
+    "url": "https://www.123telugu.com/mnews/ott-release-naveen-chandras-28-degree-celsius-now-streaming-on-amazon-prime-video.html"
+   },
    "starring": [
     "Naveen Chandra",
     "Shalini Vadnikatti"
@@ -46184,14 +46432,19 @@
    "budget": {
     "low": 25,
     "high": 30,
-    "text": "₹25–30 crore"
+    "text": "₹25-30 crore"
    },
    "gross": {
     "low": 16.1,
     "high": 16.1,
     "text": "₹16.1 crore"
    },
-   "verdict": null,
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "Checked against trade reports on 2026-11-18: Telugu360 \"Antariksham Worldwide Closing Collections - Disaster\": worldwide distributor share ~₹7.6 crore against theatrical rights of ₹19 crore (about 40% recovery); Hans India final report similar; IBTimes called it Varun Tej's third disaster. Gross and budget are the app's figures.",
+    "source": "editor-check",
+    "url": "https://www.telugu360.com/antariksham-worldwide-closing-collections-tollywood/"
+   },
    "starring": [
     "Varun Tej",
     "Aditi Rao Hydari",
@@ -46259,7 +46512,12 @@
     "high": 20,
     "text": "₹20 crore"
    },
-   "verdict": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Checked against trade reports on 2026-11-18: Reports describe Brochevarevarura (2019) as a super hit / huge hit at the box office (Hans India collections report). One step range (hit vs super_hit), took the lower. No total figure found.",
+    "source": "editor-check",
+    "url": "https://www.thehansindia.com/cinema/tollywood/brochevarevaru-ra-box-office-collections-report--546330"
+   },
    "starring": [
     "Sree Vishnu",
     "Nivetha Thomas",
@@ -46837,7 +47095,12 @@
    "qid": "Q21646170",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Checked against trade reports on 2026-11-18: Deccan Chronicle (\"Timely break for Sudheer Babu\"): after a two-year dry spell he \"got a good break\" with Bhale Manchi Roju; IBTimes reported it beat Soukyam and MMAK in its opening weekend. No final figures; one step judgement (hit) - please check.",
+    "source": "editor-check",
+    "url": "https://www.deccanchronicle.com/151230/entertainment-tollywood/article/timely-break-sudheer-babu"
+   },
    "starring": [
     "Sudheer Babu",
     "Wamiqa Gabbi",
@@ -47071,7 +47334,12 @@
    "qid": "Q108208213",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Hans India: rights sold for ~₹11.5 crore, theatrical share only ~₹4.11 crore in week one; Track Tollywood: poor ratings and average word of mouth, little recovery after the opening weekend. Share well below rights = flop.",
+    "source": "editor-check",
+    "url": "https://www.thehansindia.com/cinema/tollywood/week-one-collections-sridevi-soda-center-704922"
+   },
    "starring": [
     "Sudheer Babu",
     "Anandhi (actress)"
@@ -47160,8 +47428,17 @@
    "imdbId": "tt28115572",
    "qid": "Q130479159",
    "budget": null,
-   "gross": null,
-   "verdict": null,
+   "gross": {
+    "low": 1.04,
+    "high": 1.04,
+    "text": "₹1.04 crore"
+   },
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "Checked against trade reports on 2026-11-18: Hans India calls Maa Nanna Superhero \"a box office disaster\"; Track Tollywood says it ran into deficits from day two (flop). One step apart - took the lower (disaster). Sacnilk: ~₹1.04 crore India net.",
+    "source": "editor-check",
+    "url": "https://www.thehansindia.com/cinema/dasara-box-office-disappoints-telugu-audience-915043"
+   },
    "starring": [
     "Sudheer Babu",
     "Sayaji Shinde",
@@ -47434,7 +47711,12 @@
    "qid": "Q101245404",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "Checked against trade reports on 2026-11-18: Great Andhra: \"Fashion Designer ends up a big disaster\" - so little turnout over the first weekend that many centres switched to nett-free from Monday. Only one source; no figures.",
+    "source": "editor-check",
+    "url": "https://www.greatandhra.com/movies/box-office/fashion-designer-ends-up-a-big-disaster-82270"
+   },
    "starring": [
     "Sumanth Ashwin",
     "Anisha Ambrose",
@@ -48173,10 +48455,14 @@
    "gross": {
     "low": 11,
     "high": 11,
-    "text": "₹11 crore distributors' share",
-    "isShare": true
+    "text": "₹11 crore"
    },
-   "verdict": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Checked against trade reports on 2026-11-18: Deccan Chronicle: the debut \"created wonders at the box-office\" and made Raj Tarun an overnight star; a later DC piece says it grossed more than ₹11 crore. IBTimes: got off to a good start over the holiday release. No budget found.",
+    "source": "editor-check",
+    "url": "https://www.deccanchronicle.com/150711/entertainment-tollywood/article/can-avika-gor-raj-tarun-deliver-again"
+   },
    "starring": [
     "Avika Gor",
     "Raj Tarun"
@@ -48441,7 +48727,12 @@
    "qid": "Q54319709",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Hans India (2018): Raju Gadu \"failed to entertain the audience\" and was a box-office failure, part of a run of flops. Only one source; no figures.",
+    "source": "editor-check",
+    "url": "https://www.thehansindia.com/posts/index/Cinema/2018-07-24/Whats-Next-For-Raj-Tarun/400731"
+   },
    "starring": [
     "Raj Tarun",
     "Amyra Dastur",
@@ -48469,7 +48760,12 @@
    "qid": "Q65319939",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Hans India (July 2018): Lover \"left no trace at the box office\" and was expected to be another flop in his career. Same outlet for both links; no figures.",
+    "source": "editor-check",
+    "url": "https://www.thehansindia.com/posts/index/Cinema/2018-07-24/Whats-Next-For-Raj-Tarun/400731"
+   },
    "starring": [
     "Raj Tarun",
     "Riddhi Kumar"
@@ -48661,7 +48957,12 @@
    "qid": "Q128872324",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Deccan Chronicle: Purushothamudu \"failed to perform well at the box office\"; Track Tollywood: \"Raj Tarun two films make no noise\" (Purushothamudu and Tiragabadara Saami). No figures.",
+    "source": "editor-check",
+    "url": "https://www.deccanchronicle.com/entertainment/tollywood/raj-tarun-battles-personal-and-professional-turmoil-amid-allegations-and-film-failure-1813612"
+   },
    "starring": [
     "Raj Tarun",
     "Hassini Sudhir"
@@ -48685,7 +48986,12 @@
    "qid": "Q128304570",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Track Tollywood: \"Raj Tarun two films make no noise\" - Tiragabadara Saami also flopped at the box office (2024). Only one source; no figures.",
+    "source": "editor-check",
+    "url": "https://tracktollywood.com/raj-tarun-two-films-make-no-noise/"
+   },
    "starring": [
     "Raj Tarun",
     "Malvi Malhotra"
@@ -49373,11 +49679,16 @@
     "text": "₹25 crore"
    },
    "gross": {
-    "low": 65,
-    "high": 65,
-    "text": "₹65 crore"
+    "low": 33.89,
+    "high": 33.89,
+    "text": "₹33.89 crore"
    },
-   "verdict": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Checked against trade reports on 2026-11-18: IBTimes: \"SDT film makes 100% recovery and turns hit\" in six days; Hans India 22-day report: ~₹33.89 crore worldwide (₹29.5 crore AP/TS). No final closing figure found.",
+    "source": "editor-check",
+    "url": "https://www.ibtimes.co.in/prathi-roju-pandage-6-day-box-office-collection-sdt-film-makes-100-recovery-turns-hit-810814"
+   },
    "starring": [
     "Sai Dharam Tej",
     "Raashii Khanna",
@@ -49490,7 +49801,12 @@
    "qid": "Q22075002",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Deccan Chronicle: Bellamkonda Sreenivas said he cried after his second film (Speedunnodu) flopped; IBTimes counts it among his box-office failures before Jaya Janaki Nayaka. No final figures.",
+    "source": "editor-check",
+    "url": "https://www.deccanchronicle.com/entertainment/tollywood/060817/i-cried-for-the-first-time-after-my-second-film-flopped-says-bellamkonda-sreenivas.html"
+   },
    "starring": [
     "Bellamkonda Sreenivas",
     "Sonarika Bhadoria",
@@ -50134,13 +50450,22 @@
    "genres": [],
    "imdbId": "tt32327480",
    "qid": "Q133779825",
-   "budget": null,
+   "budget": {
+    "low": 5,
+    "high": 5,
+    "text": "₹5 crore"
+   },
    "gross": {
     "low": 5.65,
     "high": 5.65,
     "text": "₹5.65 crore"
    },
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Koimoi: set to \"wrap up with a losing verdict\" - India net ~₹2.73 crore against a ₹5 crore budget; Deccan Chronicle: opened to a \"disastrous response\".",
+    "source": "editor-check",
+    "url": "https://www.koimoi.com/box-office/sarangapani-jathakam-box-office-collection-day-12-priyadarshi-pulikondas-film-sees-no-substantial-growth-to-wrap-up-soon/"
+   },
    "starring": [
     "Priyadarshi Pulikonda",
     "Roopa Koduvayur",
@@ -50485,7 +50810,12 @@
    "qid": "Q123135762",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Track Tollywood: Martin Luther King \"did not work well at the box office\" and reached OTT early; Sacnilk has no figures. Telugu remake of Mandela (2023).",
+    "source": "editor-check",
+    "url": "https://tracktollywood.com/martin-luther-king-is-now-streaming-on-ott/"
+   },
    "starring": [
     "Sampoornesh Babu",
     "Naresh (actor)",
@@ -51358,9 +51688,22 @@
    "genres": [],
    "imdbId": "tt15081946",
    "qid": "Q109519494",
-   "budget": null,
-   "gross": null,
-   "verdict": null,
+   "budget": {
+    "low": 7,
+    "high": 7,
+    "text": "₹7 crore"
+   },
+   "gross": {
+    "low": 3.65,
+    "high": 3.65,
+    "text": "₹3.65 crore"
+   },
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: 123telugu lists Manchi Rojulochaie among Santosh Sobhan's \"big flops\"; Sacnilk: worldwide gross ~₹3.65 crore on an approximate ₹7 crore budget.",
+    "source": "editor-check",
+    "url": "https://www.123telugu.com/mnews/young-hero-faces-his-sixth-flop-in-a-row-needs-to-change-his-game.html"
+   },
    "starring": [
     "Santosh Sobhan",
     "Mehreen Pirzada",
@@ -51385,7 +51728,12 @@
    "qid": "Q119882839",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: 123telugu lists Like, Share & Subscribe among Santosh Sobhan's \"big flops\"; Sacnilk: ~₹1.49 crore in the first week.",
+    "source": "editor-check",
+    "url": "https://www.123telugu.com/mnews/young-hero-faces-his-sixth-flop-in-a-row-needs-to-change-his-game.html"
+   },
    "starring": [
     "Santosh Sobhan",
     "Faria Abdullah"
@@ -51490,7 +51838,12 @@
    "qid": "Q121878848",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: 123telugu lists Prem Kumar (2023) among Santosh Sobhan's \"big flops\". Only one source; no figures.",
+    "source": "editor-check",
+    "url": "https://www.123telugu.com/mnews/young-hero-faces-his-sixth-flop-in-a-row-needs-to-change-his-game.html"
+   },
    "starring": [
     "Santosh Sobhan",
     "Rashi Singh"
@@ -51514,11 +51867,16 @@
    "qid": "Q138298877",
    "budget": null,
    "gross": {
-    "low": 14,
-    "high": 14,
-    "text": "₹14 crore"
+    "low": 14.27,
+    "high": 14.27,
+    "text": "₹14.27 crore"
    },
-   "verdict": null,
+   "verdict": {
+    "verdict": "super_hit",
+    "sentence": "Checked against trade reports on 2026-11-18: 2026 release. Koimoi's 2026 Tollywood verdict table lists Couple Friendly at ~₹14.27 crore worldwide with verdict \"SUPER HIT\"; Sacnilk shows ~₹11.74 crore worldwide by day 13 (its verdict still pending, performance \"modest\"). Single verdict source - please check the lead actor and budget.",
+    "source": "editor-check",
+    "url": "https://www.koimoi.com/box-office/hits-flops/tollywood-telugu-box-office-collection-verdicts/"
+   },
    "starring": [
     "Santosh Sobhan",
     "Manasa Varanasi"
@@ -52508,7 +52866,12 @@
    "qid": "Q110996013",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: 123telugu: \"Kiran Abbavaram's Sebastian struggling at the box office\" - very low occupancy, bad reviews and dull word of mouth pushed it out of theatres quickly. No figures; only one source - please check.",
+    "source": "editor-check",
+    "url": "https://www.123telugu.com/mnews/kiran-abbavarams-sebastian-struggling-at-the-box-office.html"
+   },
    "starring": [
     "Kiran Abbavaram",
     "Nuveksha"
@@ -53740,7 +54103,12 @@
    "qid": "Q60737589",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: IBTimes: three days in, the director wrote an open letter accepting the film's failure; it \"failed to strike a chord with the audience\". Second link is a review. No figures.",
+    "source": "editor-check",
+    "url": "https://www.ibtimes.co.in/mithai-3-day-box-office-collection-prashant-kumars-emotional-open-letter-accept-its-failure-792645"
+   },
    "starring": [
     "Rahul Ramakrishna",
     "Priyadarshi Pullikonda"
@@ -53958,7 +54326,12 @@
    "qid": "Q127605831",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: 123telugu: Darling \"ended up being a massive flop at the box office\" (and found no OTT buyer); Sacnilk: ~₹2.13 crore India net after 14 days.",
+    "source": "editor-check",
+    "url": "https://www.123telugu.com/mnews/no-takers-for-darling-on-ott.html"
+   },
    "starring": [
     "Priyadarshi Pulikonda",
     "Nabha Natesh"
@@ -54132,7 +54505,12 @@
     "high": 90,
     "text": "₹90 crore"
    },
-   "verdict": null,
+   "verdict": {
+    "verdict": "above_average",
+    "sentence": "Checked against trade reports on 2026-11-18: Behindwoods Chennai box-office report (4 Feb 2018, week 4): 'Chennai city verdict: Above Average' (Chennai total Rs 6.99 crore). Chennai city only, read from search snippet; single source. | Earlier note: No verdict or budget on Wikipedia (est. ₹90 crore gross) - left empty. Telugu: dubbed and released as \"Gang\" the same day (Suriya dubbed his own Telugu voice for the first time).",
+    "source": "editor-check",
+    "url": "https://m.behindwoods.com/tamil-movies/thaanaa-serndha-koottam/thaanaa-serndha-koottam-box-office-feb-04.html"
+   },
    "starring": [
     "Suriya",
     "Karthik (actor)",
@@ -54549,7 +54927,12 @@
    "qid": "Q125491235",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Great Andhra: Suhas's recent films including Sriranga Neethulu \"have all failed at the box office\". Only one source; no figures.",
+    "source": "editor-check",
+    "url": "https://www.greatandhra.com/movies/news/young-hero-battles-a-string-of-flops-147663"
+   },
    "starring": [
     "Suhas Pagolu",
     "Ruhani Sharma",
@@ -54575,7 +54958,12 @@
    "qid": "Q125888134",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "Checked against trade reports on 2026-11-18: Sacnilk's 2024 Tollywood tracker lists Prasanna Vadanam at ~₹1.69 crore net with verdict \"Disaster\"; Great Andhra counts it among his failures.",
+    "source": "editor-check",
+    "url": "https://www.sacnilk.com/entertainmenttopbar/Tollywood_Box_Office_2024"
+   },
    "starring": [
     "Suhas (Telugu actor)",
     "Payal Radhakrishna",
@@ -54603,7 +54991,12 @@
    "qid": "Q131177794",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Great Andhra lists Gorre Puranam among Suhas's films that \"failed at the box office\". Only one source; no figures.",
+    "source": "editor-check",
+    "url": "https://www.greatandhra.com/movies/news/young-hero-battles-a-string-of-flops-147663"
+   },
    "starring": [
     "Suhas (Telugu actor)",
     "Posani Krishna Murali",
@@ -54630,11 +55023,16 @@
    "qid": "Q130611919",
    "budget": null,
    "gross": {
-    "low": 5.5,
-    "high": 5.5,
-    "text": "₹5.50 crore (9 days)"
+    "low": 2.22,
+    "high": 2.22,
+    "text": "₹2.22 crore"
    },
-   "verdict": null,
+   "verdict": {
+    "verdict": "disaster",
+    "sentence": "Checked against trade reports on 2026-11-18: Sacnilk: worldwide gross ~₹2.22 crore (₹2 crore net), result marked \"DISASTER\"; Great Andhra counts it among his failures.",
+    "source": "editor-check",
+    "url": "https://www.sacnilk.com/movie/Janaka_Aithe_Ganaka_2024"
+   },
    "starring": [
     "Suhas Pagolu",
     "Sangeerthana Vipin",
@@ -54691,7 +55089,12 @@
    "qid": "Q135321361",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Great Andhra: Oh Bhama Ayyo Rama (2025) \"too failed to make an impact\". Only one source; no figures.",
+    "source": "editor-check",
+    "url": "https://www.greatandhra.com/movies/news/young-hero-battles-a-string-of-flops-147663"
+   },
    "starring": [
     "Suhas (Telugu actor)",
     "Malavika Manoj"
@@ -54952,8 +55355,17 @@
    "imdbId": "tt38907371",
    "qid": "Q140619787",
    "budget": null,
-   "gross": null,
-   "verdict": null,
+   "gross": {
+    "low": 2.41,
+    "high": 2.41,
+    "text": "₹2.41 crore"
+   },
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: 2026 release. 123telugu calls Oh..! Sukumari a \"flop film\" (it sank further on day 2); Sacnilk: ~₹2.41 crore worldwide gross. Note: 123telugu frames it as Aishwarya Rajesh's film.",
+    "source": "editor-check",
+    "url": "https://www.123telugu.com/mnews/oh-sukumari-ott-release-aishwarya-rajeshs-flop-film-locks-premiere-date-hk.html"
+   },
    "starring": [
     "Thiruveer",
     "Aishwarya Rajesh"
@@ -55147,7 +55559,12 @@
    "qid": "Q128600711",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: 123telugu calls it \"Allu Sirish's flop film\" (released 2 Aug 2024, failed to make an impact). Only one source; no figures.",
+    "source": "editor-check",
+    "url": "https://www.123telugu.com/mnews/allu-sirishs-flop-film-locks-world-television-premiere-date.html"
+   },
    "starring": [
     "Allu Sirish",
     "Gayatri Bhardwaj",
@@ -56871,8 +57288,8 @@
    "gross": null,
    "verdict": {
     "verdict": "flop",
-    "sentence": "First released in 2002 with more than 100 days in theatres, the film was met with mixed critical reviews and was a box-office failure, resulting in Rajinikanth reimbursing distributors for their losses.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"a box-office failure, resulting in Rajinikanth reimbursing distributors\" (100+ days run); Onmanorama: \"Once a flop, Rajini's Baba...\" (2022 re-release did well - not counted). Telugu: Telugu dubbing rights bought by Allu Aravind (Wikipedia) - Telugu release implied, not explicitly stated.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Baba_(2002_film)"
    },
    "starring": [
@@ -56910,12 +57327,12 @@
    "gross": {
     "low": 60,
     "high": 90,
-    "text": "₹60–90 crore"
+    "text": "₹60-90 crore"
    },
    "verdict": {
-    "verdict": "hit",
-    "sentence": "Chandramukhi was a box office success, selling 20 million tickets worldwide and earning 150 million in salary and profit share for Rajinikanth.",
-    "source": "wikipedia-film",
+    "verdict": "blockbuster",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"a major box office success, the highest grossing Tamil film of the year with a theatrical run of 890 days\", quoting a review calling it \"the box-office hit of the year\"; est. ₹60-90 crore on ₹19 crore (3-5x). Second link: cited Tribune article (not opened). Telugu version not named on the English Wikipedia page - left empty (please confirm).",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Chandramukhi"
    },
    "starring": [
@@ -56951,22 +57368,23 @@
     "text": "₹60 crore"
    },
    "gross": {
-    "low": 150,
-    "high": 150,
-    "text": "₹150 crore"
+    "low": 125,
+    "high": 160,
+    "text": "₹125-160 crore"
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "Released on 15 June 2007, Sivaji received positive reviews from critics and became a commercial success by grossing ₹125-160 crore worldwide.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Sivaji%3A_The_Boss"
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"became a commercial success by grossing ₹125-160 crore worldwide\", first Indian film to gross ₹150 crore and the highest-grossing Indian film at release (budget ₹60 crore, ~2.5x). Some later news stories call it a blockbuster; kept Wikipedia's stated verdict. Telugu: a Telugu dubbed version existed (Wikipedia mentions scene changes for it).",
+    "source": "editor-check",
+    "url": "https://en.wikipedia.org/wiki/Sivaji:_The_Boss"
    },
    "starring": [
     "Rajinikanth",
     "Shriya Saran",
     "Vivek (actor)",
     "Suman (actor)"
-   ]
+   ],
+   "teluguRelease": "dubbed"
   },
   {
    "key": "Kuselan",
@@ -57029,18 +57447,18 @@
    "budget": {
     "low": 132,
     "high": 150,
-    "text": "₹132–150 crore"
+    "text": "₹132-150 crore"
    },
    "gross": {
     "low": 283,
     "high": 320,
-    "text": "₹283–320 crore"
+    "text": "₹283-320 crore"
    },
    "verdict": {
-    "verdict": "hit",
-    "sentence": "It is currently 16th highest-grossing Tamil film worldwide.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Enthiran"
+    "verdict": "blockbuster",
+    "sentence": "Checked against trade reports on 2026-11-18: Sacnilk lists it as an \"All Time Blockbuster\" (worldwide ~₹291 crore, budget ₹132 crore); Wikipedia: \"the highest-grossing Indian film of 2010\" (est. ₹283-320 crore on ₹132-150 crore). Sacnilk found via web search, page not opened. Telugu: dubbed Telugu version released as \"Robo\".",
+    "source": "editor-check",
+    "url": "https://www.sacnilk.com/movie/Enthiran"
    },
    "starring": [
     "Rajinikanth",
@@ -57120,15 +57538,15 @@
     "text": "₹125 crore"
    },
    "gross": {
-    "low": 85,
-    "high": 85,
-    "text": "₹85 crores"
+    "low": 30,
+    "high": 30,
+    "text": "₹30 crore"
    },
    "verdict": {
     "verdict": "disaster",
-    "sentence": "The film was declared a hit at the box office in Tamil, while the Telugu version settled with an average verdict, and the Hindi and remaining versions being declared as failures. it had bumper opening weekend and grossed but the hype slowly faded and the film eventually bombed at",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Kochadaiiyaan"
+    "sentence": "Checked against trade reports on 2026-11-19.",
+    "source": "editor-check",
+    "url": "https://koimoi.com/box-office/revisiting-rajinikanth-starrer-kochadaiiyaans-failure-an-experimental-animated-film-a-box-office-deficit-of-95-crores"
    },
    "starring": [
     "Rajinikanth",
@@ -57160,15 +57578,15 @@
     "text": "₹100 crore"
    },
    "gross": {
-    "low": 320,
-    "high": 320,
-    "text": "₹320 crore"
+    "low": 286,
+    "high": 286,
+    "text": "₹286 crore"
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "The movie became the highest grossing Tamil movie of 2016, highest grossing South Indian movie of 2016 and 3rd highest grossing Indian movie of 2016.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Kabali"
+    "sentence": "Checked against trade reports on 2026-11-19: Major commercial success; worldwide gross disputed (₹286–499 crore). Lower figure and result used.",
+    "source": "editor-check",
+    "url": "https://www.ibtimes.co.in/kabali-box-office-collection-rajinikanth-starrer-beats-7-big-records-baahubali-bahubali-688964"
    },
    "starring": [
     "Rajinikanth",
@@ -57232,8 +57650,8 @@
    },
    "verdict": {
     "verdict": "average",
-    "sentence": "The film grossed and was average at the box office.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"grossed ₹160 crore and was average at the box office\" (budget ₹140 crore). India Today: the producers said \"Kaala is not a flop, reports are wrong\" - flop reports existed; average is the stated Wikipedia verdict. Telugu version not mentioned on Wikipedia - left empty.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Kaala_(2018_film)"
    },
    "starring": [
@@ -57268,18 +57686,18 @@
    "budget": {
     "low": 400,
     "high": 600,
-    "text": "₹400–600 crore"
+    "text": "₹400-600 crore"
    },
    "gross": {
     "low": 699,
     "high": 800,
-    "text": "₹699–800 crore"
+    "text": "₹699-800 crore"
    },
    "verdict": {
-    "verdict": "hit",
-    "sentence": "Indian scientists and wildlife experts, too, called out the conspiracy theory, which forms the core idea of the film. 2.0 became the highest-grossing Indian film of 2018 and second highest-grossing Tamil film of all time.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/2.0_(film)"
+    "verdict": "average",
+    "sentence": "Checked against trade reports on 2026-11-18: Sacnilk's verdict is \"Average\" (budget ₹543 crore); Wikipedia: highest-grossing Indian film of 2018, est. ₹699-800 crore on ₹400-600 crore, with no verdict word. Reports say much of the cost was recovered from rights sold before release. The app currently says hit. Sacnilk found via web search, page not opened. Telugu: released the same day in a dubbed Telugu version.",
+    "source": "editor-check",
+    "url": "https://www.sacnilk.com/news/20_Box_Office_Collection_All_Language_India_Overseas_Worldwide"
    },
    "starring": [
     "Rajinikanth",
@@ -57314,12 +57732,12 @@
    "gross": {
     "low": 220,
     "high": 240,
-    "text": "₹220–240 crore"
+    "text": "₹220-240 crore"
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "The film grossed over 200 crore against a budget of 160 crore, thus becoming one of the highest-grossing Tamil films of all time and the second highest-grossing Tamil film of 2019.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"grossed over ₹200 crore against a budget of ₹160 crore\", one of the highest-grossing Tamil films of 2019; India Today day-18 headline: \"Rajinikanth film is a massive hit\". Telugu version not mentioned on Wikipedia - left empty.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Petta_(film)"
    },
    "starring": [
@@ -57353,7 +57771,7 @@
    "budget": {
     "low": 190,
     "high": 240,
-    "text": "₹190–240 crore"
+    "text": "₹190-240 crore"
    },
    "gross": {
     "low": 250,
@@ -57361,10 +57779,10 @@
     "text": "₹250 crore"
    },
    "verdict": {
-    "verdict": "hit",
-    "sentence": "The film met with mixed reviews upon release with praise for Rajinikanth’s performance and grossed 250 crore at the box office, making it the highest-grossing Tamil film of 2020 and 4th highest-grossing Indian film of 2020.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Darbar_(film)"
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Hindustan Times (cited by Wikipedia): \"Darbar box office: Film ends up as a colossal flop, distributors plan to approach Rajinikanth\"; The Week: the director sought police protection from distributors. Wikipedia itself only says it grossed ₹250 crore (budget ₹190-240 crore). The app currently says hit. HT wording could mean disaster; took flop. Telugu version not mentioned on Wikipedia - left empty.",
+    "source": "editor-check",
+    "url": "https://www.hindustantimes.com/regional-movies/darbar-box-office-film-ends-up-as-a-colossal-flop-distributors-plan-to-approach-rajinikanth/story-j7miLvAkLvmFHhqd59cuLM.html"
    },
    "starring": [
     "Rajinikanth",
@@ -57433,7 +57851,7 @@
    "budget": {
     "low": 250,
     "high": 350,
-    "text": "₹250–350 crore"
+    "text": "₹250-350 crore"
    },
    "gross": {
     "low": 826.74,
@@ -57442,8 +57860,8 @@
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "The film received generally positive reviews from critics and was a box-office success.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: 2026 release. Wikipedia: \"was a box-office success\", highest-grossing Tamil film of all time (₹826.74 crore on ₹250-350 crore, 2.4-3.3x); the Jailer article calls it \"a major box office success\" - kept hit (stated wording), could be higher. Only Wikipedia checked. Telugu: dubbed Telugu version (named for the streaming release).",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Jailer_2"
    },
    "starring": [
@@ -57590,8 +58008,8 @@
    "gross": null,
    "verdict": {
     "verdict": "hit",
-    "sentence": "The film was released on 10 May 2002 and became a commercial success.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"released on 10 May 2002 and became a commercial success\" (no figures). Only one source. No Telugu version found on Wikipedia.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Unnai_Ninaithu"
    },
    "starring": [
@@ -57622,8 +58040,8 @@
    "gross": null,
    "verdict": {
     "verdict": "flop",
-    "sentence": "Sri was a commercial failure, and Shrutika mentioned that she lacked someone to guide her in acting.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"Sri was a commercial failure\" (no figures). Only one source. No Telugu version found on Wikipedia.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Sri_(2002_film)"
    },
    "starring": [
@@ -57663,7 +58081,8 @@
     "Nandaa",
     "Trisha Krishnan",
     "Neha Pendse"
-   ]
+   ],
+   "teluguRelease": "dubbed"
   },
   {
    "key": "Kaakha Kaakha",
@@ -57688,8 +58107,8 @@
    "gross": null,
    "verdict": {
     "verdict": "hit",
-    "sentence": "The film was released on 1 August 2003 and became a commercial success, winning four Filmfare Awards South, two Tamil Nadu State Film Awards and three ITFA Awards.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"became a commercial success ... running for over 100 days in theatres\" (no figures). Only one source. Telugu: remade as \"Gharshana\" (2004), no Telugu dub found - so none.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Kaakha_Kaakha"
    },
    "starring": [
@@ -57785,7 +58204,12 @@
    "qid": "Q2820123",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"became a commercial success at the box office\" (no figures). Only one source. Telugu: the dubbed Telugu version \"Yuva\" released the same day, 21 May 2004.",
+    "source": "editor-check",
+    "url": "https://en.wikipedia.org/wiki/Aayutha_Ezhuthu"
+   },
    "starring": [
     "Suriya",
     "R. Madhavan",
@@ -57859,9 +58283,9 @@
     "text": "₹50 crore"
    },
    "verdict": {
-    "verdict": "hit",
-    "sentence": "Ghajini was a commercial success and became among the highest grossing Tamil films of that year.",
-    "source": "wikipedia-film",
+    "verdict": "super_hit",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"became a major commercial success\" (₹50 crore on a ₹7 crore budget) and among the highest-grossing Tamil films of 2005. The app currently says hit. Only one source. Telugu: the dubbed Telugu version (4 Nov 2005) \"was also successful and did better business than many straight Telugu films\".",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Ghajini_(2005_film)"
    },
    "starring": [
@@ -57896,8 +58320,8 @@
    "gross": null,
    "verdict": {
     "verdict": "hit",
-    "sentence": "It was not well-received by critics but became a commercial success.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"not well-received by critics but became a commercial success\" (no figures). Second link: cited Sify opening report (not opened). Telugu version not mentioned on Wikipedia - left empty.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Aaru_(film)"
    },
    "starring": [
@@ -57954,12 +58378,18 @@
    "qid": "Q3429157",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "average",
+    "sentence": "Checked against trade reports on 2026-11-18: Behindwoods article on A. R. Rahman's films lists 'Box-office Result: Sillunu Oru Kaadhal, 2006, Avg.' (read from search snippet). Single source. | Earlier note: No box-office result on Wikipedia. Telugu: \"later dubbed and released in Telugu as Nuvvu Nenu Prema\" (Wikipedia).",
+    "source": "editor-check",
+    "url": "https://www.behindwoods.com/tamil-movie-articles/movies-04/ar-rahman-1.html"
+   },
    "starring": [
     "Suriya",
     "Jyothika",
     "Bhumika Chawla"
-   ]
+   ],
+   "teluguRelease": "dubbed"
   },
   {
    "key": "Vel (film)",
@@ -57983,8 +58413,8 @@
    "gross": null,
    "verdict": {
     "verdict": "hit",
-    "sentence": "Vel was released on 8 November 2007, coinciding with Diwali, and became a commercial success.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"released on 8 November 2007, coinciding with Diwali, and became a commercial success\" (no figures). Second link is a cited review, not a box-office source. Telugu: dubbed as \"Deva\" (Shalimar Movies bought the rights).",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Vel_(film)"
    },
    "starring": [
@@ -58017,8 +58447,8 @@
    "gross": null,
    "verdict": {
     "verdict": "hit",
-    "sentence": "Further, the film also became a commercial success, eventually becoming the biggest hit in Suriya's career at that time.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"became a commercial success, eventually becoming the biggest hit in Suriya's career at that time\" (no figures). Second link: cited Rediff article (not opened). Telugu: \"Surya S/O Krishnan\" released the same day (14 Nov 2008).",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Vaaranam_Aayiram"
    },
    "starring": [
@@ -58059,8 +58489,8 @@
    },
    "verdict": {
     "verdict": "blockbuster",
-    "sentence": "Ayan was declared as the solo blockbuster of 2009 in Tamil cinema, collecting about worldwide and became the highest grossing Tamil film of the year.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"declared as the solo blockbuster of 2009 in Tamil cinema, collecting about ₹80 crore worldwide\" (budget ₹15 crore); Times of India lists it among \"five blockbuster films of Suriya\". Telugu: dubbed as \"Veedokkade\" (sold to Bellamkonda Suresh).",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Ayan_(film)"
    },
    "starring": [
@@ -58096,8 +58526,8 @@
    "gross": null,
    "verdict": {
     "verdict": "hit",
-    "sentence": "Aadhavan was released on 17 October 2009 and became commercially successful.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"released on 17 October 2009 and became commercially successful\" (budget ₹30 crore, no gross). Only one source. Telugu: dubbed as \"Ghatikudu\".",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Aadhavan"
    },
    "starring": [
@@ -58136,8 +58566,8 @@
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "According to The Times of India, it grossed around worldwide and was the second highest-grossing Tamil film of the year behind Enthiran.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia (citing Times of India): grossed around ₹90 crore worldwide on ₹15 crore, second highest-grossing Tamil film of 2010. No explicit verdict word, so hit - the 6x return could justify a higher grade, please check. Telugu: dubbed as \"Yamudu\", released 2 July 2010.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Singam"
    },
    "starring": [
@@ -58302,17 +58732,17 @@
    "budget": {
     "low": 80,
     "high": 85,
-    "text": "₹80–85 crore"
+    "text": "₹80-85 crore"
    },
    "gross": {
     "low": 100,
     "high": 109,
-    "text": "₹100–109 crore"
+    "text": "₹100-109 crore"
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "Indian film trades considered the film a commercial success, despite a high budget and distribution price. 7 Aum Arivu grossed an estimated – worldwide in its lifetime; it was reported to be Suriya's first film to cross 100 crore at the box office.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"Indian film trades considered the film a commercial success, despite a high budget and distribution price\" (₹100-109 crore on ₹80-85 crore); cited Sify \"Top 10 Tamil grossers of 2011\". Note: Wikipedia also cites a Sify list \"2011 - Films which disappointed us this year\". Telugu: dubbed as \"7th Sense\", wide AP release.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/7_Aum_Arivu"
    },
    "starring": [
@@ -58343,7 +58773,12 @@
    "qid": "Q3083040",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "above_average",
+    "sentence": "Checked against trade reports on 2026-11-18: Behindwoods Chennai box-office report (11 Nov 2012, week 5): 'Verdict: Above Average' (Chennai total Rs 7.60 crore). Chennai city only, read from search snippet; single source. | Earlier note: No box-office result on Wikipedia - left empty. Telugu: dubbed Telugu version \"Brothers\" (Telugu soundtrack released by Aditya Music; Karthi dubbed a role in the Telugu version).",
+    "source": "editor-check",
+    "url": "https://www.behindwoods.com/tamil-movies/maattrraan/maattrraan-box-office-nov-11.html"
+   },
    "starring": [
     "Suriya",
     "Kajal Aggarwal",
@@ -58420,9 +58855,9 @@
     "text": "₹136 crore"
    },
    "verdict": {
-    "verdict": "super_hit",
-    "sentence": "According to Sify.com, the film stayed inside the top five positions at Chennai box office continuously for eight weeks after its release and was declared a 'Superhit'.",
-    "source": "wikipedia-film",
+    "verdict": "hit",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"became a commercial success\", second highest-grossing Tamil film of 2013 (₹136 crore on ₹45 crore); Behindwoods' Chennai tracking declared it a \"Superhit\". One step apart, took the lower (hit). The app currently says super_hit. Telugu: dubbed version \"Singam\" (aka Yamudu II) released the same day.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Singam_II"
    },
    "starring": [
@@ -58480,9 +58915,9 @@
    "budget": null,
    "gross": null,
    "verdict": {
-    "verdict": "disaster",
-    "sentence": "This delayed release led to a loss of and the film subsequently became a box-office bomb pushing the production house into further financial crisis.",
-    "source": "wikipedia-film",
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"The film's underperformance caused Lingusamy's production house Thirrupathi Brothers to experience significant financial problems\" (no total gross). Underperformance with producer losses = flop; the app currently says disaster (one step lower). Only one source. Telugu: dubbed as \"Sikandar\".",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Anjaan_(2014_film)"
    },
    "starring": [
@@ -58601,8 +59036,8 @@
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "The film was a critical and commercial success, and won two awards at the 64th National Film Awards Best Cinematography and Best Production Design.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"a critical and commercial success\" (est. ₹100 crore on ₹70 crore); Times of India calls it a \"blockbuster\" in a later feature - kept Wikipedia's wording (hit). Telugu: a considerable part of its revenue came from the Telugu version.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/24_(2016_film)"
    },
    "starring": [
@@ -58674,7 +59109,12 @@
     "high": 70,
     "text": "₹70 crore"
    },
-   "verdict": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Checked against trade reports on 2026-11-18: No verdict sentence on Wikipedia; est. ₹70 crore on a ₹25 crore budget (2.8x). The News Minute: it \"emerges as the biggest grosser in Karthi's career\". Telugu: Telugu version \"Chinna Babu\" (The News Minute reported a slow start in the Telugu states).",
+    "source": "editor-check",
+    "url": "https://en.wikipedia.org/wiki/Kadaikutty_Singam"
+   },
    "starring": [
     "Karthi",
     "Sayyeshaa",
@@ -58742,10 +59182,10 @@
     "text": "₹100 crore"
    },
    "verdict": {
-    "verdict": "hit",
-    "sentence": "In its opening weekend, the film collected in Tamil Nadu, which at the time made it one of the highest-grossing opening weekends in Tamil film history.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Kaappaan"
+    "verdict": "above_average",
+    "sentence": "Checked against trade reports on 2026-11-18: Behindwoods Chennai box-office report (6 Oct 2019, week 3): 'Chennai city verdict: Above Average' (Chennai total Rs 5.33 crore). Chennai city only, read from search snippet; single source. Please check: app says hit. | Earlier note: No verdict sentence on Wikipedia; ₹100 crore on a ₹75 crore budget (about 1.3x) would be closer to average than hit - left empty rather than guess (the app currently says hit). Telugu: dubbed version \"Bandobast\" released simultaneously.",
+    "source": "editor-check",
+    "url": "https://www.behindwoods.com/tamil-movies/kaappaan/kaappaan-box-office-oct-06.html"
    },
    "starring": [
     "Suriya",
@@ -58807,7 +59247,7 @@
    "gross": {
     "low": 71.4,
     "high": 200,
-    "text": "₹71.4–200 crore"
+    "text": "₹71.4-200 crore"
    },
    "verdict": {
     "verdict": "hit",
@@ -58949,7 +59389,7 @@
    "budget": {
     "low": 300,
     "high": 350,
-    "text": "₹300–350 crore"
+    "text": "₹300-350 crore"
    },
    "gross": {
     "low": 106,
@@ -58958,8 +59398,8 @@
    },
    "verdict": {
     "verdict": "disaster",
-    "sentence": "The film grossed 106 crore, making it a box-office disaster.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"grossed ₹106 crore, making it a box-office disaster\" (budget est. ₹300-350 crore); Hindustan Times lists it among the big-budget films that failed in 2024. Telugu: dubbed Telugu version (released in 10 languages; also streaming in Telugu).",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Kanguva"
    },
    "starring": [
@@ -58988,17 +59428,17 @@
    "budget": {
     "low": 60,
     "high": 65,
-    "text": "₹60–65 crore"
+    "text": "₹60-65 crore"
    },
    "gross": {
     "low": 80,
     "high": 250,
-    "text": "₹80–250 crore"
+    "text": "₹80-250 crore"
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "In India, Retro was released alongside HIT: The Third Case, Raid 2 and Tourist Family.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"emerged as a significant commercial success, grossing ₹80-250 crore worldwide against a budget of ₹60-65 crore\" (the gross range is very wide); Daily Thanthi: Suriya donated the film's profits (₹10 crore) to the Agaram Foundation. Telugu: dubbed Telugu version (dialogues by Hanumaan Choudary).",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Retro_(film)"
    },
    "starring": [
@@ -59028,17 +59468,17 @@
    "budget": {
     "low": 130,
     "high": 140,
-    "text": "₹130–140 crore"
+    "text": "₹130-140 crore"
    },
    "gross": {
     "low": 296.44,
     "high": 363,
-    "text": "₹296.44–363 crore"
+    "text": "₹296.44-363 crore"
    },
    "verdict": {
     "verdict": "super_hit",
-    "sentence": "The film was a massive commercial success, grossing worldwide and became the highest-grossing film in Suriya's career and also the third highest-grossing Tamil film of 2026.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: 2026 release. Wikipedia: \"a massive commercial success, grossing ₹296.44-363 crore worldwide\" on est. ₹130-140 crore, Suriya's highest-grossing film. Telugu: dubbed as \"Veerabhadrudu\" (Deccan Chronicle: it collected ₹12 crore in Telugu).",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Karuppu_(film)"
    },
    "starring": [
@@ -59068,7 +59508,7 @@
    "gross": {
     "low": 200,
     "high": 260,
-    "text": "₹200–260 crore"
+    "text": "₹200-260 crore"
    },
    "verdict": {
     "verdict": "hit",
@@ -59280,9 +59720,9 @@
    "budget": null,
    "gross": null,
    "verdict": {
-    "verdict": "hit",
-    "sentence": "By July, it was declared one of the most commercially successful Tamil films of the year.",
-    "source": "wikipedia-film",
+    "verdict": "super_hit",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"a huge commercial success, running successfully for more than one year in theatres ... one of the most commercially successful Tamil films of the year\" (no gross figure). Second link: cited Sify report (opening only; not opened). The app currently says hit. No Telugu version found on Wikipedia.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Paruthiveeran"
    },
    "starring": [
@@ -59312,7 +59752,12 @@
    "qid": "Q4662833",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "average",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: declared \"average\" in Tamil and a \"hit\" in Telugu; the cited Sify headline says \"AO is super hit in Telugu\". Result given is the overall (Tamil) verdict; the Telugu dub did better. Telugu: dubbed as \"Yuganiki Okkadu\".",
+    "source": "editor-check",
+    "url": "https://en.wikipedia.org/wiki/Aayirathil_Oruvan_(2010_film)"
+   },
    "starring": [
     "Karthi",
     "Reema Sen",
@@ -59342,9 +59787,9 @@
    "budget": null,
    "gross": null,
    "verdict": {
-    "verdict": "hit",
-    "sentence": "The film grossed ₹3 crore in the first three days and was declared a commercial success within a few days.",
-    "source": "wikipedia-film",
+    "verdict": "blockbuster",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"became a blockbuster box office success\" (₹3 crore in first three days). Second link: cited IndiaGlitz report on record collections of the Telugu version (not opened). Telugu: dubbed as \"Awara\", released 21 May 2010.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Paiyaa"
    },
    "starring": [
@@ -59374,7 +59819,12 @@
    "qid": "Q6956578",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "hit",
+    "sentence": "Checked against trade reports on 2026-11-18: Behindwoods Chennai box-office top ten (Sep 2010) states \"Verdict: Hit\" (its text also calls it a blockbuster; the stated verdict field is used). Single source. Telugu version not confirmed.",
+    "source": "editor-check",
+    "url": "http://www.behindwoods.com/tamil-movies-slide-shows/movie-4/top-ten-movies-sep-06/tamil-cinema-topten-movie-naan-mahaan-alla.html"
+   },
    "starring": [
     "Karthi",
     "Kajal Aggarwal"
@@ -59402,7 +59852,7 @@
    "budget": {
     "low": 11,
     "high": 13,
-    "text": "₹11–13 crore"
+    "text": "₹11-13 crore"
    },
    "gross": {
     "low": 30,
@@ -59411,8 +59861,8 @@
    },
    "verdict": {
     "verdict": "blockbuster",
-    "sentence": "Generally the film got positive responses, and was a blockbuster success at the box office.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"a blockbuster success at the box office\", ₹30 crore on ₹11-13 crore. Only one source. Telugu: it is a remake of the Telugu film Vikramarkudu; no Telugu dub found.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Siruthai"
    },
    "starring": [
@@ -59443,9 +59893,9 @@
    "gross": null,
    "verdict": {
     "verdict": "average",
-    "sentence": "It was released on 22 June 2012 to mixed reviews from critics and had an average run at the box office.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Saguni"
+    "sentence": "Checked against trade reports on 2026-11-18: Behindwoods' Chennai box-office tracking rated it \"Above Average\" and past break-even; Wikipedia copies describe an \"average run\" - one step apart, took the lower (average). Chennai-only tracking, no worldwide figure. Telugu: the Telugu version (\"Shakuni\") released on 5 June per Wikipedia; Telugu rights bought by Bellamkonda Suresh.",
+    "source": "editor-check",
+    "url": "https://www.behindwoods.com/tamil-movies/saguni/saguni-box-office-jul-29.html"
    },
    "starring": [
     "Karthi",
@@ -59473,7 +59923,12 @@
    "qid": "Q4717598",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "below_average",
+    "sentence": "Checked against trade reports on 2026-11-18: Behindwoods Chennai box-office report, week 3 (3 Feb 2013): 'Verdict: Below Average' (Chennai total Rs 4.36 crore). Chennai city only, read from search snippet; single source. Other link: https://en.wikipedia.org/wiki/Alex_Pandian | Earlier note: No trade verdict found: Wikipedia has no result sentence (only a critic calling it a \"disaster\", which is a review, not box office); figures found online conflict (₹20 crore vs ₹42 crore). Left empty. Telugu: dubbed as \"Bad Boy\", released 22 March 2013 in 300+ theatres.",
+    "source": "editor-check",
+    "url": "https://www.behindwoods.com/tamil-movies/alex-pandian/alex-pandian-box-office-feb-03.html"
+   },
    "starring": [
     "Karthi",
     "Anushka Shetty",
@@ -59503,7 +59958,12 @@
    "qid": "Q4729982",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Behindwoods Chennai box-office report (week of 24 Nov 2013) states 'Verdict: Flop'. Chennai city only, single source. | Earlier note: No Telugu version found on Wikipedia. No box-office information on Wikipedia.",
+    "source": "editor-check",
+    "url": "https://www.behindwoods.com/tamil-movies/all-in-all-azhagu-raja/all-in-all-azhagu-raja-box-office-nov-24.html"
+   },
    "starring": [
     "Karthi",
     "Prabhu (actor)",
@@ -59534,9 +59994,9 @@
    "budget": null,
    "gross": null,
    "verdict": {
-    "verdict": "hit",
-    "sentence": "The film became a commercial success and recovered its budget at the box-office.",
-    "source": "wikipedia-film",
+    "verdict": "average",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"became a commercial success and recovered its budget at the box-office\" - recovering the budget reads as average rather than hit, so took the lower step. Only one source. Telugu version not confirmed (Wikipedia mentions only early reports of a Tamil-Telugu bilingual) - left empty.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Biriyani_(film)"
    },
    "starring": [
@@ -59576,9 +60036,9 @@
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "Ranjith's Madras , a critical and commercial success.",
-    "source": "wikipedia-hero",
-    "url": "https://en.wikipedia.org/wiki/Karthi"
+    "sentence": "Checked against trade reports on 2026-11-18: Duplicate row of Madras (2014) - same answer as the row above: no verdict sentence on Wikipedia; result based on its infobox figures (₹44 crore on ₹15 crore, about 3x). No Telugu version found.",
+    "source": "editor-check",
+    "url": "https://en.wikipedia.org/wiki/Madras_(film)"
    },
    "starring": [
     "Karthi",
@@ -59607,7 +60067,12 @@
    "qid": "Q18126905",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "above_average",
+    "sentence": "Checked against trade reports on 2026-11-18: Behindwoods Chennai box-office report, week 5 (3 May 2015): 'Chennai city verdict: Above Average' (Chennai total Rs 2.91 crore). Chennai city only, read from search snippet; single source. | Earlier note: No Telugu version found on Wikipedia. No box-office information on Wikipedia.",
+    "source": "editor-check",
+    "url": "https://www.behindwoods.com/tamil-movies/komban/komban-box-office-may-03.html"
+   },
    "starring": [
     "Karthi",
     "Lakshmi Menon (actress)"
@@ -59638,7 +60103,12 @@
     "text": "₹60 crore"
    },
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "average",
+    "sentence": "Checked against trade reports on 2026-11-18: Behindwoods' Chennai box-office tracking rated it \"Average\" after four weeks (Chennai city only); IBTimes reported ~₹31.6 crore worldwide in the opening weekend, then a steep drop. No final worldwide gross found. Budget ₹60 crore (Wikipedia). Telugu: the dubbed Telugu version opened with ~₹4.5 crore gross in AP/Telangana on day one (IBTimes).",
+    "source": "editor-check",
+    "url": "https://m.behindwoods.com/tamil-movies/kaashmora/kaashmora-box-office-nov-20.html"
+   },
    "starring": [
     "Karthi",
     "Nayanthara",
@@ -59666,7 +60136,12 @@
    "qid": "Q27957965",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "average",
+    "sentence": "Checked against trade reports on 2026-11-18: Behindwoods Chennai box-office report (23 Apr 2017): 'Chennai city verdict: Average' (Chennai total Rs 2.55 crore). Chennai city only, read from search snippet; single source. | Earlier note: No box-office result or figures on Wikipedia (only reviews). Left empty. Telugu: dubbed as \"Cheliyaa\" and released in theatres simultaneously with the Tamil original (Wikipedia).",
+    "source": "editor-check",
+    "url": "https://m.behindwoods.com/tamil-movies/kaatru-veliyidai/kaatru-veliyidai-box-office-apr-23.html"
+   },
    "starring": [
     "Karthi",
     "Aditi Rao Hydari"
@@ -59697,12 +60172,12 @@
    "gross": {
     "low": 97,
     "high": 97,
-    "text": "₹97Crore"
+    "text": "₹97 crore"
    },
    "verdict": {
     "verdict": "super_hit",
-    "sentence": "It was a major commercial success, grossing 96 crore.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"a major commercial success, grossing ₹96 crore\" (est. ₹97 crore, at the time Karthi's highest grosser). Second link: cited Behindwoods box-office report (not opened). Telugu version not confirmed on Wikipedia - left empty.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Theeran_Adhigaaram_Ondru"
    },
    "starring": [
@@ -59739,16 +60214,17 @@
    "gross": null,
    "verdict": {
     "verdict": "disaster",
-    "sentence": "Listed as \"Disaster\" in the blog's 2019 Telugu hits-and-flops list.",
-    "source": "trade-blog",
-    "url": "https://www.mtwikiblog.com/p/telugu-box-office-hit-or-flop-2019.html"
+    "sentence": "Checked against trade reports on 2026-11-19.",
+    "source": "editor-check",
+    "url": "https://boxoffice.sacnilk.com/news/Dev_Box_Office_Collection_Day_Wise_Worldwide"
    },
    "starring": [
     "Karthi",
     "Rakul Preet Singh",
     "Prakash Raj",
     "Ramya Krishnan"
-   ]
+   ],
+   "teluguRelease": "dubbed"
   },
   {
    "key": "Kaithi (2019 film)",
@@ -59780,8 +60256,8 @@
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "The film received positive reviews from critics and became a box-office success, grossing 105 crore worldwide, making it one of the highest-grossing Tamil films of 2019.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"became a box-office success, grossing ₹105 crore worldwide\" on a ₹25 crore budget (over 4x), one of 2019's highest-grossing Tamil films. The wording says hit; the 4x return could justify super_hit - kept the stated verdict. Only one source. Telugu: dubbed and released as \"Khaidi\" (later on Aha).",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Kaithi_(2019_film)"
    },
    "starring": [
@@ -59844,10 +60320,10 @@
    "budget": null,
    "gross": null,
    "verdict": {
-    "verdict": "flop",
-    "sentence": "Listed as \"Flop\" in the blog's 2021 Telugu hits-and-flops list.",
-    "source": "trade-blog",
-    "url": "https://www.mtwikiblog.com/p/telugu-movies-hits-and-flops-2021.html"
+    "verdict": "average",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"became an average venture at the box office, mainly because of theatre closures due to the COVID-19 pandemic\". The app currently says flop (trade blog). Only one source. No Telugu version found on Wikipedia.",
+    "source": "editor-check",
+    "url": "https://en.wikipedia.org/wiki/Sulthan_(2021_film)"
    },
    "starring": [
     "Karthi",
@@ -59880,8 +60356,8 @@
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "It was released theatrically on 12 August 2022 and emerged as a commercial success at the box office.This is the last film of Manoj Bharathiraja in an acting role, who died on 25 March 2025.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"emerged as a commercial success at the box office\", est. ₹60 crore. Only one source. No Telugu version found on Wikipedia.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Viruman"
    },
    "starring": [
@@ -59914,8 +60390,8 @@
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "The film was a commercial success, grossing and became one of the highest grossing Tamil films of 2022.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"a commercial success, grossing ₹100 crore\"; Cinema Express: \"Sardar crosses one hundred crores at the box office\" (headline). Telugu: released in Telugu under the same title; Telugu-states rights bought by Annapurna Studios.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Sardar_(2022_film)"
    },
    "starring": [
@@ -59943,8 +60419,16 @@
    "genres": [],
    "imdbId": "tt26758372",
    "qid": "Q126126903",
-   "budget": null,
-   "gross": null,
+   "budget": {
+    "low": 35,
+    "high": 35,
+    "text": "₹35 crore"
+   },
+   "gross": {
+    "low": 51.43,
+    "high": 51.43,
+    "text": "₹51.43 crore"
+   },
    "verdict": null,
    "starring": [
     "Karthi",
@@ -59980,8 +60464,8 @@
    },
    "verdict": {
     "verdict": "disaster",
-    "sentence": "After facing several delays due to legal and financial issues, Vaa Vaathiyaar was released on 14 January 2026, on the occasion of Pongal to mixed reviews from critics and was a box-office bomb.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: 2026 release. Wikipedia: est. ₹10 crore on a ₹40 crore budget, described as a box-office failure; Times Now: \"becomes lowest earning film in his career\". Telugu: dubbed version \"Annagaru Vostaru\" released directly on Amazon Prime Video (28 Jan 2026).",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Vaa_Vaathiyaar"
    },
    "starring": [
@@ -60016,8 +60500,8 @@
    },
    "verdict": {
     "verdict": "disaster",
-    "sentence": "The film closed below ₹30 crore as it's worldwide lifetime making it a box-office bomb.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: 2026 release. Wikipedia: \"a box-office bomb\", closed below ₹30 crore worldwide (est. ₹23.85 crore); India Today: \"the outright rejection of Karthi's Rs 100-crore Sardar 2\". Telugu: dubbed Telugu version streaming on Amazon Prime Video from 1 Oct 2026 (Wikipedia); no Telugu theatrical release mentioned.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Sardar_2"
    },
    "starring": [
@@ -60026,7 +60510,8 @@
     "Malavika Mohanan",
     "Ashika Ranganath",
     "Rajisha Vijayan"
-   ]
+   ],
+   "teluguRelease": "dubbed"
   },
   {
    "key": "3BHK",
@@ -60077,9 +60562,9 @@
    "gross": null,
    "verdict": {
     "verdict": "hit",
-    "sentence": "The film was a commercial success.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Second_Show"
+    "sentence": "Checked against trade reports on 2026-11-18: IBTimes India (2021): Second Show \"emerged as a huge hit at the box-office\" (read from search snippet of the article). Single source. No Telugu version found.",
+    "source": "editor-check",
+    "url": "https://www.ibtimes.co.in/dulquer-salmaan-completes-9-years-mollywood-pens-heartfelt-message-832795"
    },
    "starring": [
     "Dulquer Salmaan",
@@ -60186,9 +60671,9 @@
    "gross": null,
    "verdict": {
     "verdict": "hit",
-    "sentence": "The film became a commercial success.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/ABCD%3A_American-Born_Confused_Desi_(2013_film)"
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"became a commercial success\", about ₹12.5 crore from Kerala alone (no worldwide figure), 101-day run; budget ₹4.5 crore. Only one source. Telugu: it was remade in Telugu in 2019 (Allu Sirish), not dubbed - so no Telugu version of this film.",
+    "source": "editor-check",
+    "url": "https://en.wikipedia.org/wiki/ABCD:_American-Born_Confused_Desi_(2013_film)"
    },
    "starring": [
     "Dulquer Salman",
@@ -60392,8 +60877,8 @@
    "gross": null,
    "verdict": {
     "verdict": "hit",
-    "sentence": "The film was a commercial success, grossing approximately 11.5 crores in Kerala.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"a commercial success, grossing approximately ₹11.5 crores in Kerala\" (Kerala only, no worldwide figure). Second link: cited IBTimes opening report (headline only, not opened). No Telugu version found on Wikipedia.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Vikramadithyan"
    },
    "starring": [
@@ -60451,7 +60936,7 @@
    "gross": null,
    "verdict": {
     "verdict": "hit",
-    "sentence": "Checked against trade reports on 2026-11-18.",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"was a commercial success\" (no gross figure). Second link: cited Indian Express 2015 round-up (not opened). Telugu: Wikipedia says it was dubbed into Telugu (alongside Kannada, Tamil, Bengali, Hindi) - the article implies YouTube/TV releases, not theatres; please check.",
     "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/100_Days_of_Love"
    },
@@ -60485,7 +60970,7 @@
    "gross": {
     "low": 42,
     "high": 42,
-    "text": "₹42 crores"
+    "text": "₹42 crore"
    },
    "verdict": {
     "verdict": "hit",
@@ -60556,11 +61041,15 @@
    "imdbId": "tt5458088",
    "qid": "Q23762919",
    "budget": null,
-   "gross": null,
+   "gross": {
+    "low": 15,
+    "high": 15,
+    "text": "₹15 crore"
+   },
    "verdict": {
-    "verdict": "super_hit",
-    "sentence": "The film was a super hit collecting from Kerala box office, the budget was .",
-    "source": "wikipedia-film",
+    "verdict": "hit",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia calls it \"a super hit collecting ₹15 crore\"; the cited Indian Express headline says it \"strikes gold\" - picked the lower step (hit). ₹15 crore may be Kerala-only. No Telugu version found on Wikipedia.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Kammatipaadam"
    },
    "starring": [
@@ -60632,7 +61121,7 @@
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "Checked against trade reports on 2026-11-18.",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: est. ₹43.67 crore worldwide (₹24 crore Kerala); no explicit verdict sentence. Cited IBTimes: \"becomes his solo biggest grosser\" in 60 days (headline). Telugu: the Telugu version \"Andamaina Jeevitham\" was released on Amazon Prime Video (per Wikipedia).",
     "source": "editor-check",
     "url": "https://filmibeat.com/malayalam/news/2017/dulquer-salmaan-s-journey-at-the-box-office-5-biggest-hits-of-the-actor-254347.html"
    },
@@ -60663,8 +61152,8 @@
    "gross": null,
    "verdict": {
     "verdict": "hit",
-    "sentence": "It received mixed to positive reviews from critics and became a box office success.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"became a box office success\" (no figures). Only one source. No Telugu version found on Wikipedia.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Comrade_in_America"
    },
    "starring": [
@@ -60774,8 +61263,8 @@
    "gross": null,
    "verdict": {
     "verdict": "average",
-    "sentence": "The film received mixed reviews and was an average grosser at the box office.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: \"an average grosser at the box office\" (no figures). Only one source. No Telugu version found on Wikipedia.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Oru_Yamandan_Premakadha"
    },
    "starring": [
@@ -60944,7 +61433,7 @@
    },
    "verdict": {
     "verdict": "disaster",
-    "sentence": "Checked against trade reports on 2026-11-18.",
+    "sentence": "Checked against trade reports on 2026-11-18: Result left empty: the Wikipedia article says both \"underperformed at box office\" and that it was a box-office bomb (est. ₹38 crore on a ₹40 crore budget) - more than one step apart, and no independent trade verdict found. Telugu: dubbed Telugu version on Disney+ Hotstar from 29 Sep 2023 (theatrical Telugu dub was also planned).",
     "source": "editor-check",
     "url": "https://www.republicworld.com/entertainment/king-of-kotha-incurs-huge-loss-as-dulquer-salmaans-film-bombs-at-box-office-articleshow"
    },
@@ -61139,7 +61628,7 @@
    },
    "verdict": {
     "verdict": "disaster",
-    "sentence": "Checked against trade reports on 2026-11-18.",
+    "sentence": "Checked against trade reports on 2026-11-18: Hindi film. Wikipedia: \"a major box office disaster\", ₹6.96 crore worldwide on a ₹33 crore budget. Second link: Bollywood Hungama box-office page cited by Wikipedia (not opened).",
     "source": "editor-check",
     "url": "https://www.sacnilk.com/quicknews/The_Zoya_Factor_Day_7_Box_Office_Collection?hl=en"
    },
@@ -92628,8 +93117,8 @@
    "notes": "",
    "language": "",
    "scope": "lead",
-   "include": false,
-   "excludeReason": "no Telugu release found",
+   "include": true,
+   "excludeReason": null,
    "billing": "billed #1"
   },
   {
@@ -92744,8 +93233,8 @@
    "notes": "",
    "language": "",
    "scope": "lead",
-   "include": false,
-   "excludeReason": "no Telugu release found",
+   "include": true,
+   "excludeReason": null,
    "billing": "billed #1"
   },
   {
@@ -93278,8 +93767,8 @@
    "notes": "",
    "language": "",
    "scope": "lead",
-   "include": true,
-   "excludeReason": null,
+   "include": false,
+   "excludeReason": "no Telugu release (checked)",
    "billing": "billed #1"
   },
   {
@@ -93511,8 +94000,8 @@
    "notes": "",
    "language": "",
    "scope": "lead",
-   "include": false,
-   "excludeReason": "no Telugu release found",
+   "include": true,
+   "excludeReason": null,
    "billing": "billed #1"
   },
   {
@@ -93550,8 +94039,8 @@
    "notes": "",
    "language": "",
    "scope": "lead",
-   "include": true,
-   "excludeReason": null,
+   "include": false,
+   "excludeReason": "no Telugu release (checked)",
    "billing": "billed #1"
   },
   {
@@ -93563,8 +94052,8 @@
    "notes": "",
    "language": "",
    "scope": "lead",
-   "include": true,
-   "excludeReason": null,
+   "include": false,
+   "excludeReason": "no Telugu release (checked)",
    "billing": "billed #1"
   },
   {
@@ -93678,8 +94167,8 @@
    "notes": "",
    "language": "",
    "scope": "lead",
-   "include": false,
-   "excludeReason": "no Telugu release found",
+   "include": true,
+   "excludeReason": null,
    "billing": "billed #1"
   },
   {
@@ -93806,8 +94295,8 @@
    "notes": "",
    "language": "",
    "scope": "lead",
-   "include": true,
-   "excludeReason": null,
+   "include": false,
+   "excludeReason": "no Telugu release (checked)",
    "billing": "billed #1"
   },
   {
