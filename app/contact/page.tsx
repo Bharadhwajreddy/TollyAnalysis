@@ -14,8 +14,8 @@ export default function ContactPage() {
           If anything on the site is wrong, if you think we should update something, or if something isn&apos;t working, please mail us. We&apos;ll work on it as soon as
           possible.
         </p>
-        <p lang="te" className="mt-3 text-[16px] leading-relaxed text-ink-2">
-          ఏదైనా తప్పు ఉన్నా, ఏదైనా అప్‌డేట్ చేయాలనిపించినా, ఏదైనా పని చేయకపోయినా, ఏదేమైనా సరే మెయిల్ చేయండి. వీలైనంత త్వరగా చూసుకుంటాం. కలిసి ఇంకా బెటర్ చేద్దాం! 🙏
+        <p className="mt-3 text-[16px] leading-relaxed text-ink-2">
+          Edhaina thappu unna, edhaina update cheyyalanipinchina, edhaina pani cheyyakapoyina, edhemaina sare mail cheyandi. Veelainantha thvaraga chusukuntaam. Kalisi inka better cheddham! 🙏
         </p>
         <a href={`mailto:${CONTACT_EMAIL}`} className="mt-5 inline-block rounded-full bg-wine px-5 py-2.5 text-[15px] font-semibold text-white hover:opacity-90">
           {CONTACT_EMAIL}

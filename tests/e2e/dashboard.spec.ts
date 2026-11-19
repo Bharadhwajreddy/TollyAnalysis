@@ -170,9 +170,17 @@ test.describe("Tolly Index", () => {
     await page.goto("/methodology");
     await expect(page.getByRole("heading", { level: 1 })).toHaveText("How it works");
     await expect(page.locator("#tolly-index")).toContainText("our own formula");
-    await expect(page.locator("body")).toContainText("సీక్రెట్ మసాలా");
+    await expect(page.locator("body")).toContainText("secret masala");
     await expect(page.locator("main")).not.toContainText(/IMDb|TMDB|Letterboxd/);
     await expect(page.getByRole("link", { name: /Data credits/ }).first()).toBeVisible();
+  });
+
+  test("top films can be ranked by box office, and both lists keep to films made in Telugu", async ({ page }) => {
+    await page.goto("/");
+    await page.getByRole("tab", { name: "Biggest box office" }).click();
+    await expect(page.locator("section:has(#top-films) ol").first()).toContainText("Baahubali 2");
+    await page.getByRole("tab", { name: "Most loved" }).click();
+    await expect(page.locator("section:has(#top-films)")).not.toContainText("Jai Bhim");
   });
 
   test("careers and contact pages are linked from the footer", async ({ page }) => {

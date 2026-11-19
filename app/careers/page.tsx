@@ -12,8 +12,8 @@ export default function CareersPage() {
 
       <section aria-labelledby="openings" className="card mt-8 p-5 sm:p-6">
         <h2 id="openings" className="font-serif text-[22px] font-semibold text-ink">Openings</h2>
-        <p lang="te" className="mt-2 text-[16px] leading-relaxed text-ink-2">
-          ఫ్యూచర్ లో వెబ్‌సైట్ పెద్దగా అయ్యి, ఫిల్మ్స్ లో కనెక్షన్స్ ద్వారా ఏమైనా ఆఫర్స్ వస్తే ఇక్కడే పెడతాం. కానీ ప్రస్తుతానికి ఏమీ లేవు, సారీ! 🙏
+        <p className="mt-2 text-[16px] leading-relaxed text-ink-2">
+          Future lo website peddaga ayyi, films lo connections dwara emaina offers vasthe ikkade pedathaam. Kaani prasthuthaniki emi levu, sorry! 🙏
         </p>
         <p className="mt-2 text-[14px] text-muted">No openings right now. When film offers come our way, they&apos;ll be listed here first.</p>
       </section>
@@ -21,8 +21,8 @@ export default function CareersPage() {
       <section aria-labelledby="us" className="cinema mt-6 rounded-2xl p-6 sm:p-8">
         <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#d8a86b]">About us</p>
         <h2 id="us" className="mt-2 font-serif text-[24px] font-semibold text-white">A small request</h2>
-        <p lang="te" className="mt-3 text-[16px] leading-relaxed text-[#f3e7dc]">
-          మేము జర్మనీలో Automotive Engineering మాస్టర్స్ చదువుతున్న స్టూడెంట్స్. మీరు ఏమైనా రెఫరల్స్ ఇవ్వగలిగితే దయచేసి మెయిల్ చేయండి, మా CV షేర్ చేస్తాం.
+        <p className="mt-3 text-[16px] leading-relaxed text-[#f3e7dc]">
+          Memu Germany lo Automotive Engineering Masters chaduvuthunna students. Meeru emaina referrals ivvagaligithe please mail cheyandi, maa CV share chesthaam.
         </p>
         <p className="mt-2 text-[14px] text-[#cbbdb2]">
           We&apos;re Automotive Engineering master&apos;s students in Germany. If you can refer us for a role, please write to us and we&apos;ll send our CVs.
@@ -34,14 +34,14 @@ export default function CareersPage() {
 
       <section aria-labelledby="post" className="card mt-6 p-5 sm:p-6">
         <h2 id="post" className="font-serif text-[22px] font-semibold text-ink">Working in movies? Post your job here</h2>
-        <p lang="te" className="mt-2 text-[15.5px] leading-relaxed text-ink-2">
-          మీరు సినిమాల్లో పని చేస్తుంటే, ఏ రోల్ కి అయినా ఓపెనింగ్ ఉంటే ఈ ఫారం ఫిల్ చేయండి. మీ జాబ్ ని ఇక్కడ పోస్ట్ చేస్తాం.
+        <p className="mt-2 text-[15.5px] leading-relaxed text-ink-2">
+          Meeru cinemallo pani chesthunte, e role ki ayina opening unte ee form fill cheyandi. Mee job ni ikkada post chesthaam.
         </p>
         <p className="mb-4 mt-1 text-[14px] text-muted">If you have an opening in any department of film-making, fill in this form and we&apos;ll post it here, free.</p>
         <JobForm />
       </section>
 
-      <p lang="te" className="mt-8 text-center font-serif text-[22px] font-semibold text-ink">అందరికీ మా ప్రణామములు 🙏</p>
+      <p className="mt-8 text-center font-serif text-[22px] font-semibold text-ink">Andhariki maa Pranamulu 🙏</p>
     </div>
   );
 }

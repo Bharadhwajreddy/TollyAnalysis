@@ -7,6 +7,7 @@ import { AllGraphs } from "@/components/home/all-graphs";
 import { HeadToHead, type DuelHero } from "@/components/home/head-to-head";
 import { HeroSearch } from "@/components/home/hero-search";
 import { TopFilms } from "@/components/home/top-films";
+import { topGrossingTeluguFilms, topLovedTeluguFilms } from "@/lib/tolly/top";
 import { TopTen, type TopRow } from "@/components/home/top-ten";
 import { CountUp } from "@/components/ui/count-up";
 import { HomeCharts, type ChartHero } from "@/components/home/home-charts";
@@ -16,7 +17,7 @@ import { compactCount } from "@/lib/data/real/hero-facts";
 import { DATA_MODE } from "@/lib/env";
 import { tollyIndexEnabled, userRankingEnabled } from "@/lib/features";
 import { getDashboardData } from "@/lib/repositories";
-import { getTollyHero, getTollyRanking, getTopTollyFilms, tollyMeta } from "@/lib/tolly/view";
+import { getTollyHero, getTollyRanking, tollyMeta } from "@/lib/tolly/view";
 
 const MEDAL = ["#d8a86b", "#c9c2bb", "#c08a5e"];
 const delay = (s: number) => ({ "--d": `${s}s` }) as CSSProperties;
@@ -82,7 +83,8 @@ export default async function HomePage() {
   const names = new Map(all.map((h) => [h.slug, h.name]));
   const top10 = ranked.slice(0, 10);
   const podium = [ranked[1], ranked[0], ranked[2]].filter(Boolean);
-  const films = getTopTollyFilms(25);
+  const films = topLovedTeluguFilms(25);
+  const grossing = topGrossingTeluguFilms(25);
   const followed = [...ranked].filter((h) => h.followers).sort((a, b) => (b.followers?.total ?? 0) - (a.followers?.total ?? 0));
   // Ratios need a few films behind them, as on the Star Score page.
   const MIN_JUDGED = 5;
@@ -234,10 +236,10 @@ export default async function HomePage() {
           <section aria-labelledby="top-films" className="card reveal p-4 sm:p-6">
             <p className="section-kicker">Films</p>
             <h2 id="top-films" className="mt-1 font-serif text-[22px] font-semibold text-ink">
-              Top-scored films
+              Top films
             </h2>
             <p className="mt-0.5 text-[12.5px] text-ink-2">
-              Scored out of 100 on audience rating, reach and staying power. Tap a film to see why.{" "}
+              The most-loved films and the biggest box-office hits. Tap a loved film to see why.{" "}
               <Link href="/methodology#tolly-index" className="font-medium text-wine hover:underline">
                 How?
               </Link>
@@ -253,6 +255,7 @@ export default async function HomePage() {
                 stay: f.stay,
                 heroes: f.heroes.map((slug) => ({ slug, name: names.get(slug) ?? slug })),
               }))}
+              grossing={grossing.map((f) => ({ ...f, heroes: f.heroes.map((slug) => ({ slug, name: names.get(slug) ?? slug })) }))}
             />
           </section>
 

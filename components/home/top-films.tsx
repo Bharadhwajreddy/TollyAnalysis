@@ -14,6 +14,17 @@ export interface TopFilm {
   heroes: { slug: string; name: string }[];
 }
 
+export interface GrossFilm {
+  key: string;
+  title: string;
+  year: number;
+  gross: number;
+  result: string | null;
+  heroes: { slug: string; name: string }[];
+}
+
+const RESULT: Record<string, string> = { blockbuster: "Blockbuster", super_hit: "Super hit", hit: "Hit", above_average: "Above average", average: "Average", below_average: "Below average", flop: "Flop", disaster: "Disaster" };
+
 const PARTS = [
   { key: "rating", label: "Audience rating", weight: "50%", color: "var(--wine)" },
   { key: "reach", label: "Reach", weight: "30%", color: "#00798c" },
@@ -83,19 +94,65 @@ function Row({ f, rank, open, onToggle }: { f: TopFilm; rank: number; open: bool
   );
 }
 
+function GrossRow({ f, rank }: { f: GrossFilm; rank: number }) {
+  return (
+    <li className="grid grid-cols-[22px_1fr_auto] items-baseline gap-2 px-1.5 py-2.5">
+      <span className="tabular text-[12.5px] text-muted">{rank}</span>
+      <span className="min-w-0">
+        <span className="block truncate text-[14.5px] font-semibold text-ink">
+          {f.title} <span className="font-normal text-muted">({f.year})</span>
+        </span>
+        <span className="block truncate text-[12.5px] text-ink-2">
+          {f.heroes.map((h, i) => (
+            <span key={h.slug}>
+              {i > 0 && ", "}
+              <Link href={`/hero/${h.slug}`} className="hover:text-wine hover:underline">{h.name}</Link>
+            </span>
+          ))}
+          {f.result && <span className="text-muted"> · {RESULT[f.result] ?? f.result}</span>}
+        </span>
+      </span>
+      <span className="tabular text-[15px] font-bold text-wine">₹{Math.round(f.gross).toLocaleString("en-IN")} cr</span>
+    </li>
+  );
+}
+
 /** The home page's film list: the top five, a tap opens any film's breakdown, and "Show more" grows it to the full list. */
-export function TopFilms({ films, initial = 5 }: { films: TopFilm[]; initial?: number }) {
+export function TopFilms({ films, grossing = [], initial = 5 }: { films: TopFilm[]; grossing?: GrossFilm[]; initial?: number }) {
   const [more, setMore] = useState(false);
   const [open, setOpen] = useState<string | null>(null);
+  const [tab, setTab] = useState<"loved" | "gross">("loved");
   const toggle = (k: string) => setOpen((o) => (o === k ? null : k));
+  const count = tab === "loved" ? films.length : grossing.length;
   return (
     <div>
-      <ol className="mt-3 divide-y divide-line">
+      {grossing.length > 0 && (
+        <div role="tablist" aria-label="Film lists" className="mt-3 inline-flex rounded-full border border-line bg-surface-2 p-0.5 text-[13px]">
+          {([["loved", "Most loved"], ["gross", "Biggest box office"]] as const).map(([k, label]) => (
+            <button key={k} type="button" role="tab" aria-selected={tab === k} onClick={() => { setTab(k); setMore(false); setOpen(null); }}
+              className={`rounded-full px-3.5 py-1 font-semibold transition-colors ${tab === k ? "bg-wine text-white" : "text-ink-2 hover:text-ink"}`}>
+              {label}
+            </button>
+          ))}
+        </div>
+      )}
+      <p className="mt-2 text-[12px] text-muted">
+        {tab === "loved" ? "Ranked by film score: how much audiences love a film, how many watched it and how long it is talked about. Not by collections." : "Ranked by reported worldwide gross (the lower figure when reports differ)."} Films made in Telugu only.
+      </p>
+      {tab === "gross" ? (
+        <ol className="mt-2 divide-y divide-line">
+          {grossing.slice(0, more ? grossing.length : initial).map((f, i) => (
+            <GrossRow key={f.key} f={f} rank={i + 1} />
+          ))}
+        </ol>
+      ) : (
+      <ol className="mt-2 divide-y divide-line">
         {films.slice(0, initial).map((f, i) => (
           <Row key={f.key} f={f} rank={i + 1} open={open === f.key} onToggle={() => toggle(f.key)} />
         ))}
       </ol>
-      {films.length > initial && (
+      )}
+      {tab === "loved" && films.length > initial && (
         <>
           <Reveal open={more} id="more-films">
             <ol start={initial + 1} className="divide-y divide-line border-t border-line">
@@ -114,6 +171,12 @@ export function TopFilms({ films, initial = 5 }: { films: TopFilm[]; initial?: n
             {more ? "Show fewer" : `Show the top ${films.length}`}
           </button>
         </>
+      )}
+      {tab === "gross" && count > initial && (
+        <button type="button" onClick={() => setMore((m) => !m)} aria-expanded={more}
+          className="mt-3 w-full rounded-full border border-line py-2 text-[13px] font-semibold text-wine transition-colors hover:border-wine hover:bg-wine-soft/50">
+          {more ? "Show fewer" : `Show the top ${count}`}
+        </button>
       )}
     </div>
   );
