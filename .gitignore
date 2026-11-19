@@ -60,3 +60,4 @@ video/**/*.mp4
 video/**/frames/
 video/**/still-*.png
 video/**/posters/*.jpg
+video/**/voice/*.wav
