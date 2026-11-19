@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=540, initial-scale=1" />
+<title>Hero short</title>
+<!--
+  A 9:16 YouTube Short about one hero, from the Tolly Index data (data.js, made by scripts/video-export.mts).
+  Open index.html?hero=<slug> to watch it play, or render it:
+    node video/render.cjs video/hero-short out.mp4 30 --query hero=<slug>
+  Every frame is a pure function of time: render(t).
+-->
+<style>
+  :root {
+    --bg: #12080c; --bg2: #2a0f1a; --ink: #f6efe8; --ink2: #cbbcb0; --muted: #8e7f75; --line: rgba(246,239,232,.12);
+    --wine: #c2335f; --gold: #e8b65a;
+    --r0: #8e2a2a; --r1: #d9534f; --r2: #e0855b; --r3: #e2ac45; --r4: #c1c24a; --r5: #7cc35a; --r6: #3fae62; --r7: #2a8f52;
+    --g-audience: #c2335f; --g-boxoffice: #2a78d6; --g-recent: #1baf7a; --g-fame: #d39a2c; --g-career: #9a8f88;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 540px; height: 960px; overflow: hidden; background: var(--bg); }
+  body { font-family: "Inter", "Inter Display", system-ui, sans-serif; color: var(--ink); font-variant-numeric: lining-nums tabular-nums; }
+  #stage { position: relative; width: 540px; height: 960px; overflow: hidden;
+    background: radial-gradient(120% 70% at 50% 0%, #4a1426 0%, var(--bg2) 38%, var(--bg) 80%); }
+  .scene { position: absolute; inset: 0; opacity: 0; }
+  .display { font-family: "Inter Display", "Inter", sans-serif; letter-spacing: -0.02em; }
+  .kicker { font-size: 13px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
+  .brand { position: absolute; top: 22px; left: 0; right: 0; text-align: center; font-size: 12px; font-weight: 700; letter-spacing: .3em; color: var(--ink2); z-index: 5; }
+  .brand b { color: var(--wine); }
+  .foot { position: absolute; bottom: 18px; left: 22px; right: 22px; text-align: center; font-size: 10px; color: var(--muted); line-height: 1.4; z-index: 5; }
+  .photo { position: absolute; border-radius: 50%; background-size: cover; background-position: center 18%; border: 5px solid; box-shadow: 0 14px 40px rgba(0,0,0,.55); }
+  .chip { display: inline-block; padding: 7px 14px; border-radius: 999px; font-size: 15px; font-weight: 700; }
+  .tile { border-radius: 18px; background: rgba(255,255,255,.05); border: 1px solid var(--line); padding: 14px 16px; }
+  /* Clapperboard */
+  #board { position: absolute; left: 120px; top: 300px; width: 300px; }
+  .stick { height: 34px; border-radius: 6px; border: 2px solid #f6efe8;
+    background: repeating-linear-gradient(-55deg, #f6efe8 0 22px, #17090e 22px 44px); }
+  #stickTop { transform-origin: 6px 34px; }
+  .slate { margin-top: 6px; border: 2px solid #f6efe8; border-radius: 8px; background: #1a0d12; }
+  .slate .row { border-bottom: 1px solid rgba(246,239,232,.25); padding: 8px 14px; }
+  .slate .row:last-child { border-bottom: 0; }
+  .slate small { display: block; font-size: 10px; letter-spacing: .2em; color: var(--gold); font-weight: 700; }
+  .slate span { font-size: 19px; font-weight: 700; }
+  .ball { position: absolute; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%; border: 2px solid var(--gold); background-size: cover; background-position: center 18%; box-shadow: 0 6px 18px rgba(0,0,0,.5); }
+  #flash { position: absolute; inset: 0; background: radial-gradient(circle at 50% 40%, rgba(255,240,220,.9), rgba(255,240,220,0) 60%); opacity: 0; }
+  svg text { font-family: "Inter", sans-serif; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="brand" id="brand">TOLLY <b>ANALYSIS</b></div>
+
+  <!-- 0. Clap and burst -->
+  <section class="scene" id="s0">
+    <div id="balls"></div>
+    <div id="board">
+      <div class="stick" id="stickTop"></div>
+      <div class="slate">
+        <div class="stick" style="border:0;border-radius:4px 4px 0 0;height:26px"></div>
+        <div class="row"><small>PROD.</small><span>Tolly Analysis</span></div>
+        <div class="row"><small>SCENE</small><span id="bScene"></span></div>
+        <div class="row" style="display:flex;gap:0;padding:0">
+          <div style="flex:1;padding:8px 14px;border-right:1px solid rgba(246,239,232,.25)"><small>TAKE</small><span id="bTake"></span></div>
+          <div style="flex:1;padding:8px 14px"><small>RELEASE</small><span id="bDate"></span></div>
+        </div>
+      </div>
+    </div>
+    <div id="flash"></div>
+    <div id="s0title" class="display" style="position:absolute;left:0;right:0;top:640px;text-align:center">
+      <div style="font-size:44px;font-weight:900">Tollywood Analysis<span style="color:var(--wine)">.</span></div>
+      <div style="margin-top:8px;font-size:13px;letter-spacing:.3em;color:var(--gold);font-weight:700">LIGHTS. CAMERA. NUMBERS.</div>
+    </div>
+  </section>
+
+  <!-- 1. Who and where he stands -->
+  <section class="scene" id="s1"></section>
+  <!-- 2. Career graph -->
+  <section class="scene" id="s2"></section>
+  <!-- 3. Results tally -->
+  <section class="scene" id="s3"></section>
+  <!-- 4. Tolly Index breakdown -->
+  <section class="scene" id="s4"></section>
+  <!-- 5. Highlights -->
+  <section class="scene" id="s5"></section>
+  <!-- 6. Next film -->
+  <section class="scene" id="s6"></section>
+
+  <div class="foot" id="foot"></div>
+</div>
+<script src="data.js"></script>
+<script>
+const D = window.DATA;
+const slug = new URLSearchParams(location.search).get("hero") || "vishwak-sen";
+const H = D.heroes.find((h) => h.slug === slug);
+const IMG = (s) => `url(../../public/heroes/${s}.jpg)`;
+
+/** What the voice-over talks about, per hero. Titles are matched by prefix. */
+const COPY = {
+  "vishwak-sen": {
+    color: "#ff7a3d", next: "ENE Repeat", date: "19 Nov", dateLong: "In theatres 19 Nov 2026",
+    credit: "Photo: Arif Minhaz (CC BY-SA 4.0), via Wikimedia Commons.",
+    sub: "Telugu films as lead",
+    labels: [
+      { title: "Ee Nagaraniki", label: "Ee Nagaraniki Emaindhi", pos: "above", dx: -20, lift: 40 },
+      { title: "Falaknuma", label: "Falaknuma Das", pos: "below", dx: 10 },
+      { title: "HIT", label: "HIT: The First Case", pos: "above", dx: 40 },
+      { title: "Paagal", pos: "below" },
+      { title: "Gaami", pos: "above" },
+      { title: "Laila", pos: "below" },
+      { title: "Cult", pos: "below", dx: -30 },
+    ],
+    graphChip: (h) => `Last 5 films: <b>${last5(h).filter((f) => HIT(f.result)).length} hits</b>`,
+    graphChipTone: "bad",
+    graphLine: "Can <b style='color:var(--gold)'>ENE Repeat</b> bring back the 2018 magic?",
+    ifHit: "Back in the green after 5 films without a hit",
+    ifMiss: "A 6th film in a row without a hit",
+  },
+  "dulquer-salmaan": {
+    color: "#3fb8e0", next: "Aakasamlo Oka Tara", date: "20 Nov", dateLong: "In theatres 20 Nov 2026",
+    credit: "Photo: Bollywood Hungama (CC BY 3.0), via Wikimedia Commons.",
+    sub: "films released in Telugu (incl. dubbed)",
+    legend: "★ made in Telugu &nbsp;·&nbsp; ● dubbed into Telugu &nbsp;·&nbsp; ◆ Hindi",
+    markTelugu: true,
+    labels: [
+      { title: "Ustad Hotel", pos: "above", dx: 25 },
+      { title: "OK Bangaram", pos: "above", dx: 20, lift: 40 },
+      { title: "Zoya", label: "The Zoya Factor", pos: "below", dx: -10 },
+      { title: "Sita Ramam", pos: "above", dx: -40 },
+      { title: "King of Kotha", pos: "below" },
+      { title: "Lucky Baskhar", pos: "above", dx: 20, lift: 40 },
+      { title: "Kaantha", pos: "below", dx: -30 },
+    ],
+    graphChip: (h) => { const t = h.films.filter((f) => f.kind === "telugu"); return `Straight Telugu films: <b>${t.filter((f) => HIT(f.result)).length} of ${t.length} super hits</b>`; },
+    graphChipTone: "good",
+    graphLine: "Kaantha and I'm Game slipped. Can <b style='color:var(--gold)'>Aakasamlo Oka Tara</b> lift him again?",
+    ifHit: "Another straight-Telugu hit after Sita Ramam and Lucky Baskhar",
+    ifMiss: "Three films in a row without a hit",
+  },
+}[slug];
+
+const LEVELS = [
+  ["disaster", "Disaster", "var(--r0)"], ["flop", "Flop", "var(--r1)"], ["below_average", "Below avg", "var(--r2)"], ["average", "Average", "var(--r3)"],
+  ["above_average", "Above avg", "var(--r4)"], ["hit", "Hit", "var(--r5)"], ["super_hit", "Super hit", "var(--r6)"], ["blockbuster", "Blockbuster", "var(--r7)"],
+];
+const LV = Object.fromEntries(LEVELS.map((l, i) => [l[0], i]));
+const HIT = (r) => r === "hit" || r === "super_hit" || r === "blockbuster";
+const last5 = (h) => h.films.filter((f) => f.result in LV).slice(-5);
+const $ = (id) => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const out = (x) => 1 - Math.pow(1 - clamp(x), 3);
+const back = (x) => { x = clamp(x); const c = 1.7; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const fmt = (n, d = 1) => n.toFixed(d);
+const C = COPY.color;
+
+// Scene timings in seconds: [start, end].
+const S = { s0: [0, 3.4], s1: [3.4, 9], s2: [9, 23], s3: [23, 31], s4: [31, 41], s5: [41, 48.5], s6: [48.5, 57] };
+const DURATION = 57;
+
+// ── 0. Clap ──
+$("bScene").textContent = H.name;
+$("bTake").textContent = COPY.next;
+if (COPY.next.length > 12) $("bTake").style.fontSize = "14px";
+$("bDate").textContent = COPY.date;
+const faces = [H.slug, ...D.faces.filter((s) => s !== H.slug)].slice(0, 34);
+$("balls").innerHTML = faces.map((s, i) => `<div class="ball" id="ball${i}" style="background-image:${IMG(s)};${i === 0 ? `width:96px;height:96px;margin:-48px 0 0 -48px;border-color:${C};border-width:4px` : ""}"></div>`).join("");
+const flights = faces.map((_, i) => {
+  if (i === 0) return { x: 270, y: 170 };
+  const a = i * 2.39996 + 0.6, r = 0.6 + 0.4 * (((i * 7) % faces.length) / faces.length);
+  let x = 270 + Math.cos(a) * r * 300, y = 420 + Math.sin(a) * r * 470;
+  if (y > 600 && y < 720) y += 130; // keep the title clear
+  return { x, y };
+});
+
+// ── 1. Hero card ──
+$("s1").innerHTML = `
+  <div class="photo" id="s1p" style="width:250px;height:250px;left:145px;top:90px;border-color:${C};background-image:${IMG(H.slug)}"></div>
+  <div id="s1n" class="display" style="position:absolute;left:0;right:0;top:362px;text-align:center;font-size:44px;font-weight:900;color:${C}">${H.name}</div>
+  <div id="s1m" style="position:absolute;left:0;right:0;top:418px;text-align:center;font-size:16px;color:var(--ink2)">Debut ${H.debutYear} · ${H.films.length} ${COPY.sub}</div>
+  <div id="s1c" style="position:absolute;left:0;right:0;top:456px;text-align:center"><span class="chip" style="background:rgba(232,182,90,.15);color:var(--gold);border:1px solid rgba(232,182,90,.5)">Next: ${COPY.next} · ${COPY.dateLong.replace("In theatres ", "")}</span></div>
+  <div class="tile" id="s1t" style="position:absolute;left:30px;right:30px;top:530px;height:250px;padding:22px 24px">
+    <div class="kicker">Tolly Index · today</div>
+    <div style="font-size:14px;color:var(--ink2);margin-top:4px">One score out of 100 for every Telugu hero</div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-top:18px">
+      <div><div style="font-size:15px;color:var(--ink2)">Rank</div><div class="display" style="font-size:52px;font-weight:900;line-height:1"><span id="s1r">#${H.rank}</span><span style="font-size:20px;color:var(--muted);font-weight:700"> of ${H.of}</span></div></div>
+      <div id="s1s" class="display" style="font-size:96px;font-weight:900;color:${C};line-height:.9">0.0</div>
+    </div>
+    <div style="margin-top:20px;height:14px;border-radius:7px;background:rgba(255,255,255,.08)"><div id="s1b" style="height:100%;border-radius:7px;background:${C};width:0"></div></div>
+  </div>`;
+
+// ── 2. Career graph ──
+function star(cx, cy, r, n) {
+  let p = "";
+  for (let i = 0; i < n * 2; i++) { const a = (Math.PI * i) / n - Math.PI / 2, rr = i % 2 ? r * 0.45 : r; p += `${i ? "L" : "M"}${(cx + rr * Math.cos(a)).toFixed(1)},${(cy + rr * Math.sin(a)).toFixed(1)}`; }
+  return p + "Z";
+}
+const graph = (() => {
+  const el = $("s2"), h = H, opts = COPY, color = C;
+  const W = 540, top = 205, Hh = 470, left = 92, right = 34;
+  const films = h.films;
+  const when = (f) => { const d = new Date((f.date ?? `${f.year}-07-01`) + "T00:00:00Z"); return d.getUTCFullYear() + (d - Date.UTC(d.getUTCFullYear(), 0, 1)) / 31557600000; };
+  const x0 = Math.floor(when(films[0])), lastT = when(films[films.length - 1]), nextT = lastT + 0.45, x1 = Math.ceil(nextT + 0.05);
+  const sx = (t) => left + ((t - x0) / (x1 - x0)) * (W - left - right);
+  const rowH = Hh / 8.4;
+  const sy = (lv) => top + Hh - 26 - lv * rowH;
+  const noY = top + Hh + 14;
+  const y = (f) => (f.result in LV ? sy(LV[f.result]) : noY);
+  const judged = films.filter((f) => f.result in LV);
+  const d = judged.map((f, i) => `${i ? "L" : "M"}${sx(when(f)).toFixed(1)},${y(f).toFixed(1)}`).join(" ");
+  let g = `<svg width="540" height="960" style="position:absolute;inset:0">`;
+  LEVELS.forEach(([k, label, c], i) => {
+    g += `<line x1="${left}" x2="${W - right}" y1="${sy(i)}" y2="${sy(i)}" stroke="rgba(246,239,232,.10)" stroke-dasharray="${k === "average" ? "0" : "2 5"}"/>`;
+    g += `<text x="${left - 10}" y="${sy(i)}" dy=".34em" text-anchor="end" font-size="12.5" font-weight="700" fill="${c}">${label}</text>`;
+  });
+  g += `<text x="${left - 10}" y="${noY}" dy=".34em" text-anchor="end" font-size="11" fill="var(--muted)">No result</text>`;
+  for (let yr = x0; yr <= x1; yr++) if ((yr - x0) % (x1 - x0 > 9 ? 2 : 1) === 0) g += `<text x="${sx(yr)}" y="${noY + 34}" text-anchor="middle" font-size="12" fill="var(--muted)">${yr}</text>`;
+  g += `<path id="s2-path" d="${d}" fill="none" stroke="${color}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity=".9"/>`;
+  const last = judged[judged.length - 1];
+  g += `<g id="s2-next" opacity="0"><line x1="${sx(when(last))}" y1="${y(last)}" x2="${sx(nextT)}" y2="${sy(4)}" stroke="${color}" stroke-width="2.5" stroke-dasharray="5 5"/>
+        <circle cx="${sx(nextT)}" cy="${sy(4)}" r="17" fill="var(--bg)" stroke="var(--gold)" stroke-width="3" stroke-dasharray="4 3"/>
+        <text x="${sx(nextT)}" y="${sy(4)}" dy=".36em" text-anchor="middle" font-size="20" font-weight="900" fill="var(--gold)">?</text>
+        <text x="${sx(nextT)}" y="${sy(4) - 30}" text-anchor="end" font-size="15" font-weight="800" fill="var(--gold)">${COPY.next}</text></g>`;
+  films.forEach((f, i) => {
+    const c = f.result in LV ? LEVELS[LV[f.result]][2] : "var(--bg)";
+    const cx = sx(when(f)), cy = y(f);
+    const shape = f.kind === "telugu" && opts.markTelugu
+      ? `<path d="${star(cx, cy, 11, 5)}" fill="${c}" stroke="#fff" stroke-width="1.6"/>`
+      : f.kind === "hindi" && opts.markTelugu
+        ? `<rect x="${cx - 6.5}" y="${cy - 6.5}" width="13" height="13" transform="rotate(45 ${cx} ${cy})" fill="${c}" stroke="#fff" stroke-width="1.5"/>`
+        : `<circle cx="${cx}" cy="${cy}" r="7" fill="${c}" stroke="${f.result in LV ? "#fff" : "var(--muted)"}" stroke-width="${f.result in LV ? 1.6 : 2}"/>`;
+    g += `<g id="s2-d${i}" opacity="0" style="transform-origin:${cx}px ${cy}px">${shape}</g>`;
+  });
+  g += `</svg>`;
+  let labels = "";
+  opts.labels.forEach((L) => {
+    const i = films.findIndex((f) => f.title.startsWith(L.title));
+    if (i < 0) return;
+    const f = films[i], px = sx(when(f)), py = y(f);
+    const lv = LEVELS[LV[f.result]] ?? [null, "No result", "var(--muted)"];
+    const above = L.pos !== "below", w = 132;
+    const lx = clamp(px - w / 2 + (L.dx ?? 0), 10, W - w - 10);
+    labels += `<div id="s2-l${i}" style="position:absolute;left:${lx}px;top:${above ? py - 52 - (L.lift ?? 0) : py + 16 + (L.lift ?? 0)}px;width:${w}px;text-align:center;opacity:0">
+      <div style="font-size:14px;font-weight:800;line-height:1.1;text-shadow:0 2px 8px #000">${L.label ?? f.title}</div>
+      <div style="font-size:12px;font-weight:700;color:${lv[2]};text-shadow:0 2px 8px #000">${lv[1]} · ${f.year}</div></div>`;
+  });
+  const tone = opts.graphChipTone === "good" ? ["rgba(63,174,98,.18)", "#8fe0a8", "rgba(63,174,98,.5)"] : ["rgba(217,83,79,.18)", "#ff9d8f", "rgba(217,83,79,.5)"];
+  el.innerHTML = `
+    <div class="photo" style="width:92px;height:92px;left:30px;top:70px;border-color:${color};background-image:${IMG(h.slug)}"></div>
+    <div style="position:absolute;left:138px;top:78px" class="kicker">Career graph</div>
+    <div class="display" style="position:absolute;left:138px;top:100px;font-size:32px;font-weight:900;color:${color}">${h.name}</div>
+    <div style="position:absolute;left:138px;top:142px;font-size:14px;color:var(--ink2)">Every film's box-office result</div>
+    ${g}${labels}
+    <div id="s2-chip" style="position:absolute;left:30px;right:30px;top:768px;text-align:center;opacity:0">
+      <span class="chip" style="background:${tone[0]};color:${tone[1]};border:1px solid ${tone[2]}">${opts.graphChip(h)}</span>
+      <div style="margin-top:10px;font-size:14px;color:var(--ink2)">${opts.graphLine}</div></div>
+    ${opts.legend ? `<div style="position:absolute;left:30px;right:30px;top:178px;text-align:center;font-size:12px;color:var(--ink2)">${opts.legend}</div>` : ""}`;
+  return { films, pts: films.map((f, i) => ({ i, x: sx(when(f)), y: y(f), judged: f.result in LV })).filter((p) => p.judged) };
+})();
+
+// ── 3. Results tally ──
+const judgedFilms = H.films.filter((f) => f.result in LV);
+const hits = judgedFilms.filter((f) => HIT(f.result)).length;
+const counts = LEVELS.map(([k, label, c]) => ({ k, label, c, n: H.films.filter((f) => f.result === k).length })).reverse();
+const noResult = H.films.length - judgedFilms.length;
+const maxN = Math.max(...counts.map((c) => c.n), 1);
+$("s3").innerHTML = `
+  <div class="kicker" style="position:absolute;top:84px;width:100%;text-align:center">Hits and flops</div>
+  <div class="display" style="position:absolute;top:110px;width:100%;text-align:center;font-size:30px;font-weight:900">${H.films.length} films. <span style="color:${C}">${hits} hits.</span></div>
+  <div id="s3rows" style="position:absolute;left:36px;right:36px;top:180px">
+    ${counts.map((c) => `<div style="display:flex;align-items:center;gap:12px;height:46px">
+      <div style="width:104px;text-align:right;font-size:15px;font-weight:700;color:${c.c}">${c.label}</div>
+      <div style="flex:1;height:26px;border-radius:6px;background:rgba(255,255,255,.05)"><div data-w="${(c.n / maxN) * 100}" style="height:100%;width:0;border-radius:6px;background:${c.c}"></div></div>
+      <div class="display" style="width:34px;font-size:24px;font-weight:900">${c.n}</div></div>`).join("")}
+    ${noResult ? `<div style="text-align:center;margin-top:8px;font-size:13px;color:var(--muted)">+ ${noResult} film${noResult > 1 ? "s" : ""} with no reported result</div>` : ""}
+  </div>
+  <div id="s3sum" class="tile" style="position:absolute;left:30px;right:30px;top:640px;display:flex;justify-content:space-around;text-align:center">
+    <div><div class="display" style="font-size:40px;font-weight:900;color:${C}">${Math.round((hits / Math.max(1, judgedFilms.length)) * 100)}%</div><div style="font-size:13px;color:var(--ink2)">hit rate (${hits} of ${judgedFilms.length})</div></div>
+    <div><div class="display" style="font-size:40px;font-weight:900">${last5(H).filter((f) => HIT(f.result)).length}/5</div><div style="font-size:13px;color:var(--ink2)">hits in last 5 films</div></div>
+    <div><div class="display" style="font-size:40px;font-weight:900">${H.films.filter((f) => f.result === "super_hit" || f.result === "blockbuster").length}</div><div style="font-size:13px;color:var(--ink2)">super hits or bigger</div></div>
+  </div>`;
+
+// ── 4. Tolly Index breakdown ──
+const GROUPS = { audience: ["Audience", "Do people love his films?"], boxoffice: ["Box office", "How often and how big he hits"], recent: ["Recent form", "How his latest films did"], fame: ["Fame", "Instagram + X followers"], career: ["Career", "Steady, long and busy?"] };
+$("s4").innerHTML = `
+  <div class="kicker" style="position:absolute;top:84px;width:100%;text-align:center">Inside his Tolly Index</div>
+  <div class="display" style="position:absolute;top:110px;width:100%;text-align:center;font-size:30px;font-weight:900">What makes his <span style="color:${C}">${fmt(H.index)}</span>?</div>
+  <div style="position:absolute;top:158px;width:100%;text-align:center;font-size:13px;color:var(--ink2)">Each part is a score out of 100 against all Telugu heroes</div>
+  <div id="s4rows" style="position:absolute;left:30px;right:30px;top:200px">
+    ${H.groups.map((g) => `<div class="tile" style="margin-bottom:12px;padding:12px 16px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <div><span style="font-size:18px;font-weight:800;color:var(--g-${g.key})">${GROUPS[g.key][0]}</span><span style="font-size:12.5px;color:var(--muted)"> · ${GROUPS[g.key][1]}</span></div>
+        <div class="display" style="font-size:26px;font-weight:900">${g.value === null ? "—" : `<span data-n="${g.value}">0</span>`}</div>
+      </div>
+      <div style="margin-top:8px;height:10px;border-radius:5px;background:rgba(255,255,255,.07)"><div data-w="${g.value ?? 0}" style="height:100%;width:0;border-radius:5px;background:var(--g-${g.key})"></div></div>
+      <div style="margin-top:5px;font-size:11.5px;color:var(--muted)">${g.value === null ? "Follower count still being collected: not counted yet" : `${Math.round(g.share)}% of his final score`}</div>
+    </div>`).join("")}
+  </div>`;
+
+// ── 5. Highlights ──
+const byScore = [...H.films].filter((f) => f.score !== null).sort((a, b) => b.score - a.score)[0];
+const byGross = [...H.films].filter((f) => f.gross).sort((a, b) => b.gross - a.gross)[0];
+const firstHit = H.films.find((f) => HIT(f.result));
+const latest = [...H.films].reverse().find((f) => f.result in LV);
+const RES = (f) => (LEVELS[LV[f.result]] ?? [null, "No result", "var(--muted)"]);
+const tiles = [
+  ["Best-loved film", byScore, `Film score ${fmt(byScore.score)}`],
+  ["Biggest box office", byGross, `₹${Math.round(byGross.gross)} crore worldwide`],
+  ["First hit", firstHit, RES(firstHit)[1]],
+  ["Latest film", latest, RES(latest)[1]],
+];
+$("s5").innerHTML = `
+  <div class="kicker" style="position:absolute;top:84px;width:100%;text-align:center">Career highlights</div>
+  <div style="position:absolute;left:30px;right:30px;top:130px;display:grid;grid-template-columns:1fr 1fr;gap:14px" id="s5grid">
+    ${tiles.map(([k, f, note]) => `<div class="tile" style="height:250px;display:flex;flex-direction:column;justify-content:space-between;padding:18px">
+      <div class="kicker" style="font-size:11px;letter-spacing:.16em">${k}</div>
+      <div><div class="display" style="font-size:25px;font-weight:900;line-height:1.1">${f.title}</div><div style="font-size:15px;color:var(--ink2);margin-top:6px">${f.year}</div></div>
+      <div style="font-size:15px;font-weight:800;color:${k.includes("Biggest") || k.includes("loved") ? C : RES(f)[2]}">${note}</div></div>`).join("")}
+  </div>
+  <div id="s5note" style="position:absolute;left:30px;right:30px;top:690px;text-align:center;font-size:14px;color:var(--ink2)">Film score: how much audiences rate a film, how many watched it and how long it stays talked about.</div>`;
+
+// ── 6. Next film ──
+$("s6").innerHTML = `
+  <div class="kicker" style="position:absolute;top:84px;width:100%;text-align:center">This week</div>
+  <div class="display" id="s6a" style="position:absolute;left:30px;right:30px;top:112px;text-align:center;font-size:40px;font-weight:900;line-height:1.05;color:var(--gold)">${COPY.next}</div>
+  <div id="s6b" style="position:absolute;left:0;right:0;top:${COPY.next.length > 14 ? 210 : 165}px;text-align:center;font-size:16px;color:var(--ink2)">${COPY.dateLong}</div>
+  <div id="s6c" style="position:absolute;left:30px;right:30px;top:260px">
+    <div class="tile" style="margin-bottom:14px;border-color:rgba(63,174,98,.5)"><div style="font-size:14px;font-weight:800;color:#8fe0a8">IF IT'S A HIT</div><div style="font-size:19px;font-weight:700;margin-top:4px">${COPY.ifHit}</div></div>
+    <div class="tile" style="border-color:rgba(217,83,79,.5)"><div style="font-size:14px;font-weight:800;color:#ff9d8f">IF IT MISSES</div><div style="font-size:19px;font-weight:700;margin-top:4px">${COPY.ifMiss}</div></div>
+  </div>
+  <div id="s6d" style="position:absolute;left:30px;right:30px;top:500px;display:flex;align-items:center;justify-content:center;gap:22px">
+    <div style="text-align:center"><div class="display" style="font-size:54px;font-weight:900;color:${C}">${fmt(H.index)}</div><div style="font-size:13px;color:var(--muted)">today · #${H.rank}</div></div>
+    <div class="display" style="font-size:40px;color:var(--muted)">→</div>
+    <div style="text-align:center"><div class="display" id="s6q" style="font-size:54px;font-weight:900;color:var(--gold);display:inline-block">?</div><div style="font-size:13px;color:var(--muted)">next week</div></div>
+  </div>
+  <div id="s6e" style="position:absolute;left:0;right:0;top:680px;text-align:center">
+    <div style="font-size:16px;color:var(--ink2);margin-bottom:14px">We update his graph after the collections</div>
+    <div class="chip" style="background:var(--wine);color:#fff;font-size:22px;padding:12px 26px">Subscribe · Tolly Analysis</div>
+  </div>`;
+
+$("foot").innerHTML = `Tolly Index as of ${new Date(D.asOf + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })} · box office from Wikipedia and trade reports (Sacnilk, Koimoi, Pinkvilla). Lead roles only.<br/>${COPY.credit} Other photos: Wikimedia Commons.`;
+
+// ── Timeline ──
+function sceneAlpha(t, [a, b]) { return Math.min(prog(t, a, a + 0.35), 1 - prog(t, b - 0.35, b)); }
+function setScene(id, t) { const a = id === "s0" ? 1 - prog(t, S.s0[1] - 0.35, S.s0[1]) : sceneAlpha(t, S[id]); $(id).style.opacity = a; $(id).style.visibility = a > 0 ? "visible" : "hidden"; return t - S[id][0]; }
+function pop(el, p) { el.style.opacity = clamp(p * 1.4); el.style.transform = `scale(${0.6 + 0.4 * back(p)})`; }
+function rise(el, p, px = 16) { el.style.opacity = clamp(p); el.style.transform = `translateY(${(1 - out(p)) * px}px)`; }
+
+function drawGraph(tt, span) {
+  const n = graph.films.length, per = (span - 2.8) / n;
+  const path = $("s2-path"), len = path.getTotalLength();
+  path.style.strokeDasharray = len;
+  const pts = graph.pts, cum = [0];
+  for (let k = 1; k < pts.length; k++) cum.push(cum[k - 1] + Math.hypot(pts[k].x - pts[k - 1].x, pts[k].y - pts[k - 1].y));
+  const at = (k) => 0.6 + pts[k].i * per + 0.2;
+  let drawn = 0;
+  for (let k = 1; k < pts.length; k++) {
+    if (tt >= at(k)) drawn = cum[k];
+    else { if (tt > at(k - 1)) drawn = cum[k - 1] + (cum[k] - cum[k - 1]) * (tt - at(k - 1)) / (at(k) - at(k - 1)); break; }
+  }
+  path.style.strokeDashoffset = len * (1 - clamp(cum[cum.length - 1] ? drawn / cum[cum.length - 1] : 1));
+  graph.films.forEach((f, i) => {
+    pop($(`s2-d${i}`), prog(tt, 0.6 + i * per, 0.6 + i * per + 0.45));
+    const l = $(`s2-l${i}`);
+    if (l) rise(l, prog(tt, 0.6 + i * per + 0.2, 0.6 + i * per + 0.6), 8);
+  });
+  $("s2-next").setAttribute("opacity", prog(tt, 0.6 + n * per, 0.6 + n * per + 0.6));
+  rise($("s2-chip"), prog(tt, 0.6 + n * per + 0.5, 0.6 + n * per + 1.0), 14);
+}
+
+function render(t) {
+  // 0. Clap: the board drops in, the stick claps shut at 0.75 s, the photos burst out.
+  let tt = setScene("s0", t);
+  const bIn = out(prog(tt, 0, 0.45));
+  $("board").style.transform = `translateY(${(1 - bIn) * -60}px) scale(${0.85 + 0.15 * bIn}) rotate(${tt > 0.75 && tt < 1.0 ? Math.sin((tt - 0.75) * 60) * 2 : 0}deg)`;
+  $("board").style.opacity = clamp(bIn * 1.5) * (1 - prog(tt, 2.5, 3.1));
+  $("stickTop").style.transform = `rotate(${-28 * (1 - prog(tt, 0.55, 0.75))}deg)`;
+  $("flash").style.opacity = tt < 0.75 ? 0 : 1 - prog(tt, 0.75, 1.3);
+  faces.forEach((_, i) => {
+    const b = $(`ball${i}`), p = out(prog(tt, 0.78 + (i % 6) * 0.03, 1.7 + (i % 6) * 0.03));
+    const x = 270 + (flights[i].x - 270) * p, y = 400 + (flights[i].y - 400) * p;
+    b.style.left = x + "px"; b.style.top = y + "px";
+    b.style.opacity = tt < 0.78 ? 0 : (i === 0 ? 1 - prog(tt, 2.6, 3.2) : 1 - prog(tt, 1.8, 2.2));
+    b.style.transform = `scale(${0.3 + 0.7 * p})`;
+  });
+  rise($("s0title"), prog(tt, 2.0, 2.5));
+
+  tt = setScene("s1", t);
+  pop($("s1p"), prog(tt, 0.1, 0.7));
+  rise($("s1n"), prog(tt, 0.4, 0.9)); rise($("s1m"), prog(tt, 0.6, 1.1)); rise($("s1c"), prog(tt, 0.8, 1.3));
+  rise($("s1t"), prog(tt, 1.1, 1.6), 30);
+  const sp = out(prog(tt, 1.4, 3.2));
+  $("s1s").textContent = fmt(H.index * sp); $("s1b").style.width = H.index * sp + "%";
+
+  tt = setScene("s2", t); drawGraph(tt, S.s2[1] - S.s2[0]);
+
+  tt = setScene("s3", t);
+  [...$("s3rows").children].forEach((row, i) => {
+    rise(row, prog(tt, 0.3 + i * 0.25, 0.7 + i * 0.25), 10);
+    const bar = row.querySelector("[data-w]");
+    if (bar) bar.style.width = bar.dataset.w * out(prog(tt, 0.4 + i * 0.25, 1.2 + i * 0.25)) + "%";
+  });
+  rise($("s3sum"), prog(tt, 3.0, 3.6), 24);
+
+  tt = setScene("s4", t);
+  [...$("s4rows").children].forEach((row, i) => {
+    const p = out(prog(tt, 0.5 + i * 1.1, 1.4 + i * 1.1));
+    rise(row, prog(tt, 0.4 + i * 1.1, 0.9 + i * 1.1), 14);
+    row.querySelector("[data-w]").style.width = row.querySelector("[data-w]").dataset.w * p + "%";
+    const n = row.querySelector("[data-n]"); if (n) n.textContent = fmt(Number(n.dataset.n) * p);
+  });
+
+  tt = setScene("s5", t);
+  [...$("s5grid").children].forEach((c, i) => pop(c, prog(tt, 0.3 + i * 0.9, 0.9 + i * 0.9)));
+  rise($("s5note"), prog(tt, 4.2, 4.8));
+
+  tt = setScene("s6", t);
+  pop($("s6a"), prog(tt, 0.1, 0.7)); rise($("s6b"), prog(tt, 0.5, 1.0));
+  [...$("s6c").children].forEach((c, i) => rise(c, prog(tt, 1.2 + i * 0.9, 1.8 + i * 0.9), 20));
+  rise($("s6d"), prog(tt, 3.2, 3.8));
+  $("s6q").style.transform = `scale(${1 + 0.12 * Math.sin(tt * 5)})`;
+  pop($("s6e"), prog(tt, 4.6, 5.3));
+
+  $("foot").style.opacity = prog(t, 3.2, 3.6);
+  $("brand").style.opacity = prog(t, 3.2, 3.6);
+}
+window.render = render;
+window.DURATION = DURATION;
+window.ready = true;
+
+if (!/render=1/.test(location.search)) {
+  let start = performance.now();
+  document.addEventListener("click", () => (start = performance.now()));
+  const loop = (now) => { render(((now - start) / 1000) % (DURATION + 1)); requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+} else render(0);
+</script>
+</body>
+</html>

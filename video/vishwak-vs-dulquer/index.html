@@ -231,9 +231,10 @@ const s4 = careerScene($("s4"), Q, "var(--dq)", {
 
 // ── Scene 5: head-to-head rows ──
 const pct = (a, b) => (b ? Math.round((a / b) * 100) : 0);
+const hitRate = (h) => { const j = h.films.filter((f) => f.result in LV); return pct(j.filter((f) => HIT(f.result)).length, j.length); };
 const ROWS = [
   { label: "Tolly Index", v: V.index, q: Q.index, f: (x) => fmt(x) },
-  { label: "Hit rate (hits ÷ films with a result)", v: pct(V.career.hits, V.career.judged), q: pct(Q.career.hits, Q.career.judged), f: (x) => x + "%", sv: `${V.career.hits}/${V.career.judged}`, sq: `${Q.career.hits}/${Q.career.judged}` },
+  { label: "Hit rate (hits ÷ films with a result)", v: hitRate(V), q: hitRate(Q), f: (x) => x + "%" },
   { label: "Hits in last 5 films", v: vLast.filter((f) => HIT(f.result)).length, q: qLast.filter((f) => HIT(f.result)).length, f: (x) => x + "/5" },
   { label: "Biggest film, worldwide gross", v: V.career.topGross, q: Q.career.topGross, f: (x) => "₹" + Math.round(x) + " cr" },
   { label: "Total gross (films with a report)", v: V.career.totalGross, q: Q.career.totalGross, f: (x) => "₹" + Math.round(x) + " cr" },

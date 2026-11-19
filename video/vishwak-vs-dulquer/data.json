@@ -1,9 +1,214 @@
 {
  "asOf": "2026-11-18",
+ "faces": [
+  "aadi-saikumar",
+  "adivi-sesh",
+  "akhil-akkineni",
+  "allari-naresh",
+  "allu-arjun",
+  "allu-sirish",
+  "balakrishna",
+  "bellamkonda-sreenivas",
+  "chiranjeevi",
+  "dulquer-salmaan",
+  "gopichand",
+  "jagapathi-babu",
+  "jr-ntr",
+  "kalyaan-dhev",
+  "kalyan-ram",
+  "karthi",
+  "karthikeya",
+  "kiran-abbavaram",
+  "mahesh-babu",
+  "manchu-manoj",
+  "mohan-babu",
+  "naga-chaitanya",
+  "naga-shaurya",
+  "nagarjuna",
+  "nani",
+  "nara-rohit",
+  "navdeep",
+  "naveen-chandra",
+  "naveen-polishetty",
+  "nikhil-siddhartha",
+  "nithiin",
+  "pawan-kalyan",
+  "prabhas",
+  "priyadarshi",
+  "raj-tarun",
+  "rajasekhar",
+  "rajendra-prasad",
+  "rajinikanth",
+  "ram-charan",
+  "ram-pothineni",
+  "rana-daggubati",
+  "ravi-teja",
+  "sai-durgha-tej",
+  "sampoornesh-babu",
+  "santosh-sobhan",
+  "satyadev",
+  "sharwanand",
+  "sree-vishnu",
+  "sri-simha",
+  "srikanth",
+  "srinivas-avasarala",
+  "sudheer-babu",
+  "sumanth-ashwin",
+  "sumanth",
+  "sundeep-kishan",
+  "sunil",
+  "suriya",
+  "sushanth",
+  "teja-sajja",
+  "thiruveer",
+  "uday-kiran",
+  "varun-sandesh",
+  "varun-tej",
+  "venkatesh",
+  "venu-thottempudi",
+  "vijay-deverakonda",
+  "vishnu-manchu",
+  "vishwak-sen"
+ ],
  "heroes": [
   {
    "slug": "vishwak-sen",
    "name": "Vishwak Sen",
+   "groups": [
+    {
+     "key": "audience",
+     "value": 57.3,
+     "share": 37
+    },
+    {
+     "key": "boxoffice",
+     "value": 26.7,
+     "share": 35
+    },
+    {
+     "key": "recent",
+     "value": 28.3,
+     "share": 7
+    },
+    {
+     "key": "fame",
+     "value": 54.7,
+     "share": 10
+    },
+    {
+     "key": "career",
+     "value": 23.8,
+     "share": 11
+    }
+   ],
+   "factorList": [
+    {
+     "key": "audience",
+     "group": "audience",
+     "label": "Audience score of his films",
+     "value": 57.3,
+     "share": 37
+    },
+    {
+     "key": "success",
+     "group": "boxoffice",
+     "label": "Success ratio",
+     "value": 37.9,
+     "share": 9
+    },
+    {
+     "key": "hits",
+     "group": "boxoffice",
+     "label": "Hit films",
+     "value": 30.6,
+     "share": 6
+    },
+    {
+     "key": "blockbusters",
+     "group": "boxoffice",
+     "label": "Blockbusters",
+     "value": 25,
+     "share": 4
+    },
+    {
+     "key": "bigFilms",
+     "group": "boxoffice",
+     "label": "₹100-crore films",
+     "value": 22.6,
+     "share": 3
+    },
+    {
+     "key": "totalGross",
+     "group": "boxoffice",
+     "label": "Total box office",
+     "value": 32.3,
+     "share": 6
+    },
+    {
+     "key": "topGross",
+     "group": "boxoffice",
+     "label": "Biggest film",
+     "value": 3.2,
+     "share": 3
+    },
+    {
+     "key": "avgGross",
+     "group": "boxoffice",
+     "label": "Box office per film",
+     "value": 9.7,
+     "share": 4
+    },
+    {
+     "key": "recent",
+     "group": "recent",
+     "label": "Recent success",
+     "value": 28.3,
+     "share": 7
+    },
+    {
+     "key": "fame",
+     "group": "fame",
+     "label": "Fame",
+     "value": 54.7,
+     "share": 10
+    },
+    {
+     "key": "consistency",
+     "group": "career",
+     "label": "Consistency",
+     "value": 10.2,
+     "share": 4
+    },
+    {
+     "key": "films",
+     "group": "career",
+     "label": "Films as lead",
+     "value": 31.5,
+     "share": 3
+    },
+    {
+     "key": "years",
+     "group": "career",
+     "label": "Years active",
+     "value": 10.2,
+     "share": 2
+    },
+    {
+     "key": "peak",
+     "group": "career",
+     "label": "Busiest year",
+     "value": 59.3,
+     "share": 1
+    },
+    {
+     "key": "gap",
+     "group": "career",
+     "label": "Release pace",
+     "value": 47.2,
+     "share": 1
+    }
+   ],
+   "debutYear": 2017,
    "index": 40.6,
    "rank": 53,
    "of": 55,
@@ -282,6 +487,141 @@
   {
    "slug": "dulquer-salmaan",
    "name": "Dulquer Salmaan",
+   "groups": [
+    {
+     "key": "audience",
+     "value": 71,
+     "share": 41.1
+    },
+    {
+     "key": "boxoffice",
+     "value": 56.6,
+     "share": 38.8
+    },
+    {
+     "key": "recent",
+     "value": 56.8,
+     "share": 7.8
+    },
+    {
+     "key": "fame",
+     "value": null,
+     "share": 0
+    },
+    {
+     "key": "career",
+     "value": 41.3,
+     "share": 12.1
+    }
+   ],
+   "factorList": [
+    {
+     "key": "audience",
+     "group": "audience",
+     "label": "Audience score of his films",
+     "value": 71,
+     "share": 41.1
+    },
+    {
+     "key": "success",
+     "group": "boxoffice",
+     "label": "Success ratio",
+     "value": 57.2,
+     "share": 10
+    },
+    {
+     "key": "hits",
+     "group": "boxoffice",
+     "label": "Hit films",
+     "value": 69.4,
+     "share": 6.7
+    },
+    {
+     "key": "blockbusters",
+     "group": "boxoffice",
+     "label": "Blockbusters",
+     "value": 25,
+     "share": 4.4
+    },
+    {
+     "key": "bigFilms",
+     "group": "boxoffice",
+     "label": "₹100-crore films",
+     "value": 64.5,
+     "share": 3.3
+    },
+    {
+     "key": "totalGross",
+     "group": "boxoffice",
+     "label": "Total box office",
+     "value": 61.3,
+     "share": 6.7
+    },
+    {
+     "key": "topGross",
+     "group": "boxoffice",
+     "label": "Biggest film",
+     "value": 51.6,
+     "share": 3.3
+    },
+    {
+     "key": "avgGross",
+     "group": "boxoffice",
+     "label": "Box office per film",
+     "value": 58.1,
+     "share": 4.4
+    },
+    {
+     "key": "recent",
+     "group": "recent",
+     "label": "Recent success",
+     "value": 56.8,
+     "share": 7.8
+    },
+    {
+     "key": "fame",
+     "group": "fame",
+     "label": "Fame",
+     "value": null,
+     "share": 0
+    },
+    {
+     "key": "consistency",
+     "group": "career",
+     "label": "Consistency",
+     "value": 52.8,
+     "share": 4.4
+    },
+    {
+     "key": "films",
+     "group": "career",
+     "label": "Films as lead",
+     "value": 38.9,
+     "share": 3.3
+    },
+    {
+     "key": "years",
+     "group": "career",
+     "label": "Years active",
+     "value": 40.7,
+     "share": 2.2
+    },
+    {
+     "key": "peak",
+     "group": "career",
+     "label": "Busiest year",
+     "value": 24.1,
+     "share": 1.1
+    },
+    {
+     "key": "gap",
+     "group": "career",
+     "label": "Release pace",
+     "value": 20.4,
+     "share": 1.1
+    }
+   ],
+   "debutYear": 2012,
    "index": 60.6,
    "rank": 13,
    "of": 55,
@@ -511,7 +851,7 @@
      "kind": "dubbed",
      "result": "hit",
      "checked": true,
-     "gross": 81,
+     "gross": 78,
      "grossText": "₹78-81 crore",
      "score": 75.7
     },
@@ -547,7 +887,7 @@
      "kind": "telugu",
      "result": "super_hit",
      "checked": true,
-     "gross": 120,
+     "gross": 107,
      "grossText": "₹107-120 crore",
      "score": 84.1
     },
