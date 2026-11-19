@@ -51,6 +51,24 @@ for (const f of snap.films as { key: string; verdict: unknown; gross: unknown; b
   if ((o.teluguRelease === "original" || o.teluguRelease === "bilingual") && !f.languages.some((l) => /telugu/i.test(l))) f.languages.push("Telugu");
 }
 
+// 0b. A "gross" that is really a distributors' share is flagged as one (the verdict calculation uses
+// shares; the gross totals do not). A net figure or a first-days total is not a worldwide gross at all:
+// keep its text for context and drop it as gross.
+const SHARE = /\bshare\b/i;
+const PARTIAL = /\bnet\b|\(\s*\d+\s*days?\s*\)|days?\s+collection/i;
+let notGross = 0;
+for (const f of snap.films as { gross: { text: string; isShare?: boolean } | null; grossNote?: string }[]) {
+  if (!f.gross) continue;
+  if (SHARE.test(f.gross.text)) {
+    if (!f.gross.isShare) notGross++;
+    f.gross.isShare = true;
+  } else if (PARTIAL.test(f.gross.text)) {
+    f.grossNote = f.gross.text;
+    f.gross = null;
+    notGross++;
+  }
+}
+
 // 1. Clean every film's starring list.
 let cleaned = 0;
 for (const f of films.values()) {
@@ -200,5 +218,5 @@ snap.credits = kept;
 
 // Save first, so a closed output pipe (e.g. piping into head) can never lose the result.
 if (!dry) writeFileSync(path, JSON.stringify(snap, null, 1) + "\n");
-console.log(`editor-checked box-office results: ${overridden}; starring lists cleaned: ${cleaned}; credits now counted: ${kept.filter((c) => c.include).length}; duplicate rows dropped: ${dropped}${dry ? " (dry run)" : "; snapshot.json updated"}`);
+console.log(`editor-checked box-office results: ${overridden}; share/net figures set aside: ${notGross}; starring lists cleaned: ${cleaned}; credits now counted: ${kept.filter((c) => c.include).length}; duplicate rows dropped: ${dropped}${dry ? " (dry run)" : "; snapshot.json updated"}`);
 for (const l of changes.sort()) console.log(l);

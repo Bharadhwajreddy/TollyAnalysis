@@ -216,7 +216,9 @@ export function buildRealDataset(): Dataset {
       ...over,
     });
     // Ranges are stored as low–high; the engine uses the conservative low end for money.
-    if (f.gross && !f.gross.isShare)
+    // A dubbed film's worldwide gross is mostly its home-language run: it keeps its verdict but adds
+    // nothing to the hero's box-office totals.
+    if (f.gross && !f.gross.isShare && !dubbed)
       commercial.push(ev({ metricType: "worldwide_gross", amountLowMinor: croreToMinor(f.gross.low), amountHighMinor: croreToMinor(f.gross.low), valueText: f.gross.text }));
     if (f.budget)
       commercial.push(ev({ metricType: "production_budget", amountLowMinor: croreToMinor(f.budget.high), amountHighMinor: croreToMinor(f.budget.high), valueText: f.budget.text }));

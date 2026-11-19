@@ -1,5 +1,5 @@
 window.DATA = {
- "asOf": "2026-11-18",
+ "asOf": "2026-11-19",
  "faces": [
   "aadi-saikumar",
   "adivi-sesh",
@@ -77,17 +77,17 @@ window.DATA = {
    "groups": [
     {
      "key": "audience",
-     "value": 57.3,
+     "value": 57.4,
      "share": 37
     },
     {
      "key": "boxoffice",
-     "value": 26.7,
+     "value": 27,
      "share": 35
     },
     {
      "key": "recent",
-     "value": 28.3,
+     "value": 27.5,
      "share": 7
     },
     {
@@ -97,7 +97,7 @@ window.DATA = {
     },
     {
      "key": "career",
-     "value": 23.8,
+     "value": 24.1,
      "share": 11
     }
    ],
@@ -118,63 +118,63 @@ window.DATA = {
      "key": "audience",
      "group": "audience",
      "label": "Audience score of his films",
-     "value": 57.3,
+     "value": 57.4,
      "share": 37
     },
     {
      "key": "success",
      "group": "boxoffice",
      "label": "Success ratio",
-     "value": 37.9,
+     "value": 37.1,
      "share": 9
     },
     {
      "key": "hits",
      "group": "boxoffice",
      "label": "Hit films",
-     "value": 30.6,
+     "value": 26.4,
      "share": 6
     },
     {
      "key": "blockbusters",
      "group": "boxoffice",
      "label": "Blockbusters",
-     "value": 25,
+     "value": 24.5,
      "share": 4
     },
     {
      "key": "bigFilms",
      "group": "boxoffice",
      "label": "₹100-crore films",
-     "value": 22.6,
+     "value": 23.4,
      "share": 3
     },
     {
      "key": "totalGross",
      "group": "boxoffice",
      "label": "Total box office",
-     "value": 32.3,
+     "value": 34.4,
      "share": 6
     },
     {
      "key": "topGross",
      "group": "boxoffice",
      "label": "Biggest film",
-     "value": 3.2,
+     "value": 9.4,
      "share": 3
     },
     {
      "key": "avgGross",
      "group": "boxoffice",
      "label": "Box office per film",
-     "value": 9.7,
+     "value": 12.5,
      "share": 4
     },
     {
      "key": "recent",
      "group": "recent",
      "label": "Recent success",
-     "value": 28.3,
+     "value": 27.5,
      "share": 7
     },
     {
@@ -188,42 +188,42 @@ window.DATA = {
      "key": "consistency",
      "group": "career",
      "label": "Consistency",
-     "value": 10.2,
+     "value": 10.9,
      "share": 4
     },
     {
      "key": "films",
      "group": "career",
      "label": "Films as lead",
-     "value": 31.5,
+     "value": 30.9,
      "share": 3
     },
     {
      "key": "years",
      "group": "career",
      "label": "Years active",
-     "value": 10.2,
+     "value": 10,
      "share": 2
     },
     {
      "key": "peak",
      "group": "career",
      "label": "Busiest year",
-     "value": 59.3,
+     "value": 60.9,
      "share": 1
     },
     {
      "key": "gap",
      "group": "career",
      "label": "Release pace",
-     "value": 47.2,
+     "value": 48.2,
      "share": 1
     }
    ],
    "debutYear": 2017,
-   "index": 40.6,
-   "rank": 53,
-   "of": 55,
+   "index": 40.7,
+   "rank": 49,
+   "of": 56,
    "career": {
     "slug": "vishwak-sen",
     "judged": 12,
@@ -243,39 +243,39 @@ window.DATA = {
    },
    "factors": {
     "audience": {
-     "value": 57.3,
+     "value": 57.4,
      "share": 37
     },
     "success": {
-     "value": 37.9,
+     "value": 37.1,
      "share": 9
     },
     "hits": {
-     "value": 30.6,
+     "value": 26.4,
      "share": 6
     },
     "blockbusters": {
-     "value": 25,
+     "value": 24.5,
      "share": 4
     },
     "bigFilms": {
-     "value": 22.6,
+     "value": 23.4,
      "share": 3
     },
     "totalGross": {
-     "value": 32.3,
+     "value": 34.4,
      "share": 6
     },
     "topGross": {
-     "value": 3.2,
+     "value": 9.4,
      "share": 3
     },
     "avgGross": {
-     "value": 9.7,
+     "value": 12.5,
      "share": 4
     },
     "recent": {
-     "value": 28.3,
+     "value": 27.5,
      "share": 7
     },
     "fame": {
@@ -283,23 +283,23 @@ window.DATA = {
      "share": 10
     },
     "consistency": {
-     "value": 10.2,
+     "value": 10.9,
      "share": 4
     },
     "films": {
-     "value": 31.5,
+     "value": 30.9,
      "share": 3
     },
     "years": {
-     "value": 10.2,
+     "value": 10,
      "share": 2
     },
     "peak": {
-     "value": 59.3,
+     "value": 60.9,
      "share": 1
     },
     "gap": {
-     "value": 47.2,
+     "value": 48.2,
      "share": 1
     }
    },
@@ -321,7 +321,7 @@ window.DATA = {
     {
      "title": "Ori Devuda",
      "year": 2022,
-     "index": 63.2
+     "index": 63.5
     }
    ],
    "films": [
@@ -359,7 +359,7 @@ window.DATA = {
      "checked": false,
      "gross": 12,
      "grossText": "₹12 crores",
-     "score": 55.3
+     "score": 55.1
     },
     {
      "key": "HIT: The First Case",
@@ -383,7 +383,7 @@ window.DATA = {
      "checked": true,
      "gross": 20.6,
      "grossText": "₹20.60 crore",
-     "score": 53.7
+     "score": 53.9
     },
     {
      "key": "Ashoka Vanamlo Arjuna Kalyanam",
@@ -395,7 +395,7 @@ window.DATA = {
      "checked": true,
      "gross": 9.03,
      "grossText": "₹9.03 crore",
-     "score": 60.4
+     "score": 60.9
     },
     {
      "key": "Ori Devuda",
@@ -407,7 +407,7 @@ window.DATA = {
      "checked": true,
      "gross": 10.43,
      "grossText": "₹10.43 crore",
-     "score": 63.2
+     "score": 63.5
     },
     {
      "key": "Das Ka Dhamki",
@@ -419,7 +419,7 @@ window.DATA = {
      "checked": true,
      "gross": 22.8,
      "grossText": "₹22.8 crore",
-     "score": 50.2
+     "score": 50.6
     },
     {
      "key": "Gaami",
@@ -431,7 +431,7 @@ window.DATA = {
      "checked": true,
      "gross": 21,
      "grossText": "₹21 crore",
-     "score": 51.5
+     "score": 51.7
     },
     {
      "key": "Gangs of Godavari",
@@ -443,7 +443,7 @@ window.DATA = {
      "checked": true,
      "gross": 19.84,
      "grossText": "₹19.84 crore",
-     "score": 42
+     "score": 42.3
     },
     {
      "key": "Mechanic Rocky",
@@ -455,7 +455,7 @@ window.DATA = {
      "checked": true,
      "gross": 10.87,
      "grossText": "₹10.87 crore",
-     "score": 52.4
+     "score": 52.6
     },
     {
      "key": "Laila (2025 film)",
@@ -502,223 +502,236 @@ window.DATA = {
    "groups": [
     {
      "key": "audience",
-     "value": 71,
-     "share": 41.1
+     "value": 70.9,
+     "share": 37
     },
     {
      "key": "boxoffice",
-     "value": 56.6,
-     "share": 38.8
+     "value": 57.1,
+     "share": 35
     },
     {
      "key": "recent",
-     "value": 56.8,
-     "share": 7.8
+     "value": 56.1,
+     "share": 7
     },
     {
      "key": "fame",
-     "value": null,
-     "share": 0
+     "value": 81.6,
+     "share": 10
     },
     {
      "key": "career",
-     "value": 41.3,
-     "share": 12.1
+     "value": 35.8,
+     "share": 11
     }
    ],
-   "instagram": null,
-   "x": null,
+   "instagram": {
+    "platform": "instagram",
+    "followers": 15949892,
+    "date": "2026-11-18",
+    "url": "https://www.instagram.com/dqsalmaan/"
+   },
+   "x": {
+    "platform": "x",
+    "followers": 2421138,
+    "date": "2026-11-18",
+    "url": "https://x.com/dulQuer"
+   },
    "factorList": [
     {
      "key": "audience",
      "group": "audience",
      "label": "Audience score of his films",
-     "value": 71,
-     "share": 41.1
+     "value": 70.9,
+     "share": 37
     },
     {
      "key": "success",
      "group": "boxoffice",
      "label": "Success ratio",
-     "value": 57.2,
-     "share": 10
+     "value": 59.5,
+     "share": 9
     },
     {
      "key": "hits",
      "group": "boxoffice",
      "label": "Hit films",
-     "value": 69.4,
-     "share": 6.7
+     "value": 70,
+     "share": 6
     },
     {
      "key": "blockbusters",
      "group": "boxoffice",
      "label": "Blockbusters",
-     "value": 25,
-     "share": 4.4
+     "value": 24.5,
+     "share": 4
     },
     {
      "key": "bigFilms",
      "group": "boxoffice",
      "label": "₹100-crore films",
-     "value": 64.5,
-     "share": 3.3
+     "value": 65.6,
+     "share": 3
     },
     {
      "key": "totalGross",
      "group": "boxoffice",
      "label": "Total box office",
-     "value": 61.3,
-     "share": 6.7
+     "value": 56.3,
+     "share": 6
     },
     {
      "key": "topGross",
      "group": "boxoffice",
      "label": "Biggest film",
-     "value": 51.6,
-     "share": 3.3
+     "value": 53.1,
+     "share": 3
     },
     {
      "key": "avgGross",
      "group": "boxoffice",
      "label": "Box office per film",
-     "value": 58.1,
-     "share": 4.4
+     "value": 62.5,
+     "share": 4
     },
     {
      "key": "recent",
      "group": "recent",
      "label": "Recent success",
-     "value": 56.8,
-     "share": 7.8
+     "value": 56.1,
+     "share": 7
     },
     {
      "key": "fame",
      "group": "fame",
      "label": "Fame",
-     "value": null,
-     "share": 0
+     "value": 81.6,
+     "share": 10
     },
     {
      "key": "consistency",
      "group": "career",
      "label": "Consistency",
-     "value": 52.8,
-     "share": 4.4
+     "value": 40,
+     "share": 4
     },
     {
      "key": "films",
      "group": "career",
      "label": "Films as lead",
-     "value": 38.9,
-     "share": 3.3
+     "value": 34.5,
+     "share": 3
     },
     {
      "key": "years",
      "group": "career",
      "label": "Years active",
-     "value": 40.7,
-     "share": 2.2
+     "value": 38.2,
+     "share": 2
     },
     {
      "key": "peak",
      "group": "career",
      "label": "Busiest year",
-     "value": 24.1,
-     "share": 1.1
+     "value": 24.5,
+     "share": 1
     },
     {
      "key": "gap",
      "group": "career",
      "label": "Release pace",
-     "value": 20.4,
-     "share": 1.1
+     "value": 29.1,
+     "share": 1
     }
    ],
    "debutYear": 2012,
-   "index": 60.6,
-   "rank": 13,
-   "of": 55,
+   "index": 62.2,
+   "rank": 14,
+   "of": 56,
    "career": {
     "slug": "dulquer-salmaan",
-    "judged": 15,
+    "judged": 14,
     "hits": 9,
     "recentJudged": 5,
     "recentHits": 3,
-    "leadFilms": 16,
+    "leadFilms": 15,
     "blockbusters": 0,
     "bigFilms": 2,
-    "totalGross": 554.9,
+    "totalGross": 275.7,
     "topGross": 107,
-    "avgGross": 50.4,
-    "grossFilms": 11,
+    "avgGross": 55.1,
+    "grossFilms": 5,
     "yearsActive": 15,
     "peakFilms": 2,
-    "releaseGap": 11.3
+    "releaseGap": 10.6
    },
    "factors": {
     "audience": {
-     "value": 71,
-     "share": 41.1
+     "value": 70.9,
+     "share": 37
     },
     "success": {
-     "value": 57.2,
-     "share": 10
+     "value": 59.5,
+     "share": 9
     },
     "hits": {
-     "value": 69.4,
-     "share": 6.7
+     "value": 70,
+     "share": 6
     },
     "blockbusters": {
-     "value": 25,
-     "share": 4.4
+     "value": 24.5,
+     "share": 4
     },
     "bigFilms": {
-     "value": 64.5,
-     "share": 3.3
+     "value": 65.6,
+     "share": 3
     },
     "totalGross": {
-     "value": 61.3,
-     "share": 6.7
+     "value": 56.3,
+     "share": 6
     },
     "topGross": {
-     "value": 51.6,
-     "share": 3.3
+     "value": 53.1,
+     "share": 3
     },
     "avgGross": {
-     "value": 58.1,
-     "share": 4.4
+     "value": 62.5,
+     "share": 4
     },
     "recent": {
-     "value": 56.8,
-     "share": 7.8
+     "value": 56.1,
+     "share": 7
     },
     "fame": {
-     "value": null,
-     "share": 0
+     "value": 81.6,
+     "share": 10
     },
     "consistency": {
-     "value": 52.8,
-     "share": 4.4
+     "value": 40,
+     "share": 4
     },
     "films": {
-     "value": 38.9,
-     "share": 3.3
+     "value": 34.5,
+     "share": 3
     },
     "years": {
-     "value": 40.7,
-     "share": 2.2
+     "value": 38.2,
+     "share": 2
     },
     "peak": {
-     "value": 24.1,
-     "share": 1.1
+     "value": 24.5,
+     "share": 1
     },
     "gap": {
-     "value": 20.4,
-     "share": 1.1
+     "value": 29.1,
+     "share": 1
     }
    },
-   "followers": null,
+   "followers": {
+    "total": 18371030,
+    "asOf": "2026-11-18"
+   },
    "best": [
     {
      "title": "Sita Ramam",
@@ -748,18 +761,6 @@ window.DATA = {
      "gross": 15,
      "grossText": "₹15 crore",
      "score": 87.5
-    },
-    {
-     "key": "Neelakasham Pachakadal Chuvanna Bhoomi",
-     "title": "Neelakasham Pachakadal Chuvanna Bhoomi",
-     "year": 2013,
-     "date": "2013-08-09",
-     "kind": "dubbed",
-     "result": "above_average",
-     "checked": true,
-     "gross": null,
-     "grossText": null,
-     "score": 73.2
     },
     {
      "key": "100 Days of Love",
@@ -843,7 +844,7 @@ window.DATA = {
      "checked": true,
      "gross": 6.96,
      "grossText": "₹6.96 crore",
-     "score": 58.2
+     "score": 58.1
     },
     {
      "key": "Kannum Kannum Kollaiyadithaal",
@@ -867,7 +868,7 @@ window.DATA = {
      "checked": true,
      "gross": 78,
      "grossText": "₹78-81 crore",
-     "score": 75.7
+     "score": 75.8
     },
     {
      "key": "Sita Ramam",
@@ -891,7 +892,7 @@ window.DATA = {
      "checked": true,
      "gross": 38,
      "grossText": "₹38 crore",
-     "score": 68.9
+     "score": 69
     },
     {
      "key": "Lucky Baskhar",

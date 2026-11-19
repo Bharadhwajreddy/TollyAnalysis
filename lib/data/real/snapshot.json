@@ -17511,11 +17511,7 @@
    "imdbId": "tt12915716",
    "qid": "Q105605280",
    "budget": null,
-   "gross": {
-    "low": 174,
-    "high": 174,
-    "text": "₹174 crore net ''Deccan Chronicle'', and ''News18''."
-   },
+   "gross": null,
    "verdict": {
     "verdict": "disaster",
     "sentence": "It emerged as a box office bomb, though it became the second-highest grossing Telugu film of 2023.",
@@ -17528,7 +17524,8 @@
     "Kriti Sanon",
     "Sunny Singh (actor)",
     "Devdatta Nage"
-   ]
+   ],
+   "grossNote": "₹174 crore net ''Deccan Chronicle'', and ''News18''."
   },
   {
    "key": "Kalki 2898 AD",
@@ -36002,11 +35999,7 @@
    "imdbId": "tt13199716",
    "qid": "Q105102687",
    "budget": null,
-   "gross": {
-    "low": 14,
-    "high": 14,
-    "text": "₹14 crore (3 days)"
-   },
+   "gross": null,
    "verdict": {
     "verdict": "flop",
     "sentence": "It received generally mixed reviews and became a flop in the box office.",
@@ -36018,7 +36011,8 @@
     "Rakul Preet Singh",
     "Priya Prakash Varrier",
     "Simran Choudhary"
-   ]
+   ],
+   "grossNote": "₹14 crore (3 days)"
   },
   {
    "key": "Rang De",
@@ -37096,11 +37090,7 @@
    "imdbId": "tt1791689",
    "qid": "Q8052056",
    "budget": null,
-   "gross": {
-    "low": 10,
-    "high": 10,
-    "text": "₹10 crore (50 Days Collection)"
-   },
+   "gross": null,
    "verdict": {
     "verdict": "hit",
     "sentence": "The film was declared as a hit and collected in a fifty-day run at box office.",
@@ -37112,7 +37102,8 @@
     "Nisha Agarwal",
     "Nisha Shah",
     "Shashank (actor)"
-   ]
+   ],
+   "grossNote": "₹10 crore (50 Days Collection)"
   },
   {
    "key": "Kudirithe Kappu Coffee",
@@ -43866,11 +43857,7 @@
    "imdbId": "tt11430262",
    "qid": "Q85420608",
    "budget": null,
-   "gross": {
-    "low": 13.65,
-    "high": 13.65,
-    "text": "₹13.65 crore (5 days)"
-   },
+   "gross": null,
    "verdict": {
     "verdict": "hit",
     "sentence": "Deccan Chronicle said, \"Naga Shaurya does his small role neatly.\" His 2020 action thriller film, Aswathama with Mehreen Pirzada, produced by his home banner Ira Creations, was a profitable venture.",
@@ -43881,7 +43868,8 @@
     "Naga Shourya",
     "Jisshu Sengupta",
     "Mehreen Pirzada"
-   ]
+   ],
+   "grossNote": "₹13.65 crore (5 days)"
   },
   {
    "key": "Varudu Kaavalenu",

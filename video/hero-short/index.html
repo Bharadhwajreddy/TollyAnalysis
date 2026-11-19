@@ -137,7 +137,7 @@ const COPY = {
     labels: [
       { title: "Ustad Hotel", pos: "above", dx: 25 },
       { title: "OK Bangaram", pos: "above", dx: 20, lift: 40 },
-      { title: "Zoya", label: "The Zoya Factor", pos: "below", dx: -10 },
+      { title: "The Zoya", label: "The Zoya Factor", pos: "below", dx: -10 },
       { title: "Sita Ramam", pos: "above", dx: -40 },
       { title: "King of Kotha", pos: "below" },
       { title: "Lucky Baskhar", pos: "above", dx: 20, lift: 40 },
@@ -145,7 +145,7 @@ const COPY = {
     ],
     graphChip: (h) => { const t = h.films.filter((f) => f.kind === "telugu"); return `Straight Telugu films: <b>${t.filter((f) => HIT(f.result)).length} of ${t.length} super hits</b>`; },
     graphChipTone: "good",
-    hook: "Can <b style='color:var(--gold)'>Aakasamlo Oka Tara</b> lift him again?",
+    hook: "Can <b style='color:var(--gold)'>Aakasamlo Oka Tara</b> bring back the Sita Ramam magic?",
     graphLine: "Kaantha and I'm Game slipped. Can <b style='color:var(--gold)'>Aakasamlo Oka Tara</b> lift him again?",
     ifHit: "Another straight-Telugu hit after Sita Ramam and Lucky Baskhar",
     ifMiss: "Three films in a row without a hit",
@@ -173,7 +173,9 @@ let DURATION = 52;
 // ?S=e1,e2,... sets each scene's end time (seconds), in play order, to fit a voice-over.
 const ends = new URLSearchParams(location.search).get("S");
 if (ends) {
-  const order = ["s1", "s2", "s3", "s5", "s6", "s0"], e = ends.split(",").map(Number);
+  // ?scenes=s1,s2,s3,s0 plays only those scenes, in that order (a shorter cut).
+  const order = (new URLSearchParams(location.search).get("scenes") ?? "s1,s2,s3,s5,s6,s0").split(","), e = ends.split(",").map(Number);
+  for (const k of Object.keys(S)) if (!order.includes(k)) delete S[k];
   order.forEach((k, i) => (S[k] = [i ? e[i - 1] : 0, e[i]]));
   DURATION = e[e.length - 1];
 }
@@ -296,11 +298,18 @@ const busiest = Object.entries(perYear).sort((a, b) => b[1] - a[1] || b[0] - a[0
 const topFilm = [...H.films].filter((f) => f.gross).sort((a, b) => b.gross - a.gross)[0];
 const NUMS = [
   [`${Math.round((hits / Math.max(1, judgedFilms.length)) * 100)}%`, "Hit rate", `${hits} hits in ${judgedFilms.length} films with a result`],
-  [`${last5(H).filter((f) => HIT(f.result)).length}/5`, "Hits in his last 5 films", last5(H).map((f) => f.title.split(" ")[0]).join(", ")],
+  [`${last5(H).filter((f) => HIT(f.result)).length}/5`, "Hits in his last 5 films", (() => {
+    const h = last5(H).filter((f) => HIT(f.result));
+    if (h.length) return h.length <= 2 ? h.map((f) => f.title).join(" and ") : `${h.length} of his latest 5`;
+    const lastHit = [...H.films].reverse().find((f) => HIT(f.result));
+    return lastHit ? `No hit since ${lastHit.title} (${lastHit.year})` : "No hits yet";
+  })()],
   [`₹${Math.round(topFilm.gross)} cr`, "Biggest film", `${topFilm.title}, worldwide gross`],
   [H.instagram ? compact(H.instagram.followers) : "—", "Instagram followers", H.instagram ? "@" + H.instagram.url.split("/").filter(Boolean).pop() : "not collected yet"],
   [H.x ? compact(H.x.followers) : "—", "X (Twitter) followers", H.x ? "@" + H.x.url.split("/").filter(Boolean).pop() : "not collected yet"],
-  [`${busiest[1]} films`, `Busiest year: ${busiest[0]}`, `${H.films.length} films in ${H.career.yearsActive} years`],
+  H.films.some((f) => f.kind === "dubbed")
+    ? (() => { const t = H.films.filter((f) => f.kind === "telugu"); return [`${t.filter((f) => HIT(f.result)).length}/${t.length}`, "Straight Telugu films that hit", t.map((f) => f.title).join(", ")]; })()
+    : [`${busiest[1]} films`, `Busiest year: ${busiest[0]}`, `${H.films.length} films in ${H.career.yearsActive} years`],
 ];
 $("s3").innerHTML = `
   <div class="kicker" style="position:absolute;top:84px;width:100%;text-align:center">${H.name} in numbers</div>
@@ -357,7 +366,7 @@ $("foot").innerHTML = `Tolly Index as of ${new Date(D.asOf + "T00:00:00Z").toLoc
 
 // ── Timeline ──
 function sceneAlpha(t, [a, b]) { return Math.min(prog(t, a, a + 0.35), 1 - prog(t, b - 0.35, b)); }
-function setScene(id, t) { const a = id === "s0" ? prog(t, S.s0[0], S.s0[0] + 0.3) : sceneAlpha(t, S[id]); $(id).style.opacity = a; $(id).style.visibility = a > 0 ? "visible" : "hidden"; return t - S[id][0]; }
+function setScene(id, t) { if (!S[id]) { $(id).style.opacity = 0; $(id).style.visibility = "hidden"; return -99; } const a = id === "s0" ? prog(t, S.s0[0], S.s0[0] + 0.3) : sceneAlpha(t, S[id]); $(id).style.opacity = a; $(id).style.visibility = a > 0 ? "visible" : "hidden"; return t - S[id][0]; }
 function pop(el, p) { el.style.opacity = clamp(p * 1.4); el.style.transform = `scale(${0.6 + 0.4 * back(p)})`; }
 function rise(el, p, px = 16) { el.style.opacity = clamp(p); el.style.transform = `translateY(${(1 - out(p)) * px}px)`; }
 

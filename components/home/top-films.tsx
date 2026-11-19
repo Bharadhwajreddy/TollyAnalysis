@@ -23,8 +23,6 @@ export interface GrossFilm {
   heroes: { slug: string; name: string }[];
 }
 
-const RESULT: Record<string, string> = { blockbuster: "Blockbuster", super_hit: "Super hit", hit: "Hit", above_average: "Above average", average: "Average", below_average: "Below average", flop: "Flop", disaster: "Disaster" };
-
 const PARTS = [
   { key: "rating", label: "Audience rating", weight: "50%", color: "var(--wine)" },
   { key: "reach", label: "Reach", weight: "30%", color: "#00798c" },
@@ -109,7 +107,6 @@ function GrossRow({ f, rank }: { f: GrossFilm; rank: number }) {
               <Link href={`/hero/${h.slug}`} className="hover:text-wine hover:underline">{h.name}</Link>
             </span>
           ))}
-          {f.result && <span className="text-muted"> · {RESULT[f.result] ?? f.result}</span>}
         </span>
       </span>
       <span className="tabular text-[15px] font-bold text-wine">₹{Math.round(f.gross).toLocaleString("en-IN")} cr</span>
