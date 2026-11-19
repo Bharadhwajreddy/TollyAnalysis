@@ -145,7 +145,7 @@ const COPY = {
       { title: "Sita Ramam", pos: "above", dx: -40 },
       { title: "King of Kotha", pos: "below" },
       { title: "Lucky Baskhar", pos: "above", dx: 20, lift: 40 },
-      { title: "Kaantha", pos: "below", dx: -30 },
+      { title: "Kaantha", pos: "below", dx: 45 },
     ],
     graphChip: (h) => { const t = h.films.filter((f) => f.kind === "telugu"); return `Straight Telugu films: <b>${t.filter((f) => HIT(f.result)).length} of ${t.length} super hits</b>`; },
     graphChipTone: "good",
@@ -155,7 +155,6 @@ const COPY = {
     facts: [
       ["12 years", "A film every single year since 2015", "No empty year"],
       ["10.6 months", "Average gap between his films since 2015", "Steady, never rushed"],
-      ["#2", "Sita Ramam is the 2nd most-loved Telugu film on our list", "Only Baahubali 2 is above it"],
       ["#4", "Most followed on Instagram among all our heroes", "16M: ahead of Mahesh Babu and Prabhas"],
     ],
     ifMiss: "Three films in a row without a hit",
@@ -238,27 +237,40 @@ const graph = (() => {
   const y = (f) => (f.result in LV ? sy(LV[f.result]) : noY);
   const judged = films.filter((f) => f.result in LV);
   const d = judged.map((f, i) => `${i ? "L" : "M"}${sx(when(f)).toFixed(1)},${y(f).toFixed(1)}`).join(" ");
-  let g = `<svg width="540" height="960" style="position:absolute;inset:0">`;
+  let g = `<svg width="540" height="960" style="position:absolute;inset:0">
+    <defs>
+      <linearGradient id="s2-area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${color}" stop-opacity=".35"/><stop offset="1" stop-color="${color}" stop-opacity="0"/></linearGradient>
+      <filter id="s2-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    </defs>`;
+  // Three zones instead of eight lines: hit (hit and up), middle, flop (flop and down).
+  const zone = (from, to, fill, tag, tagColor) => {
+    const yTop = sy(to) - rowH / 2, yBot = sy(from) + rowH / 2;
+    g += `<rect x="${left}" y="${yTop}" width="${W - left - right}" height="${yBot - yTop}" rx="10" fill="${fill}"/>`;
+  };
+  zone(5, 7, "rgba(63,174,98,.10)", "HIT ZONE", "#8fe0a8");
+  zone(2, 4, "rgba(226,172,69,.06)", "", "#e2ac45");
+  zone(0, 1, "rgba(217,83,79,.10)", "FLOP ZONE", "#ff9d8f");
   LEVELS.forEach(([k, label, c], i) => {
-    g += `<line x1="${left}" x2="${W - right}" y1="${sy(i)}" y2="${sy(i)}" stroke="rgba(246,239,232,.10)" stroke-dasharray="${k === "average" ? "0" : "2 5"}"/>`;
-    g += `<text x="${left - 10}" y="${sy(i)}" dy=".34em" text-anchor="end" font-size="12.5" font-weight="700" fill="${c}">${label}</text>`;
+    g += `<text x="${left - 10}" y="${sy(i)}" dy=".34em" text-anchor="end" font-size="12" font-weight="700" fill="${c}">${label}</text>`;
   });
   g += `<text x="${left - 10}" y="${noY}" dy=".34em" text-anchor="end" font-size="11" fill="var(--muted)">No result</text>`;
   for (let yr = x0; yr <= x1; yr++) if ((yr - x0) % (x1 - x0 > 9 ? 2 : 1) === 0) g += `<text x="${sx(yr)}" y="${noY + 34}" text-anchor="middle" font-size="12" fill="var(--muted)">${yr}</text>`;
-  g += `<path id="s2-path" d="${d}" fill="none" stroke="${color}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity=".9"/>`;
+  const first = judged[0], lastJ = judged[judged.length - 1];
+  g += `<path id="s2-area" d="${d} L${sx(when(lastJ)).toFixed(1)},${sy(0) + rowH / 2} L${sx(when(first)).toFixed(1)},${sy(0) + rowH / 2} Z" fill="url(#s2-area)" opacity="0"/>`;
+  g += `<path id="s2-path" d="${d}" fill="none" stroke="${color}" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>`;
   const last = judged[judged.length - 1];
   g += `<g id="s2-next" opacity="0"><line x1="${sx(when(last))}" y1="${y(last)}" x2="${sx(nextT)}" y2="${sy(4)}" stroke="${color}" stroke-width="2.5" stroke-dasharray="5 5"/>
         <circle cx="${sx(nextT)}" cy="${sy(4)}" r="17" fill="var(--bg)" stroke="var(--gold)" stroke-width="3" stroke-dasharray="4 3"/>
         <text x="${sx(nextT)}" y="${sy(4)}" dy=".36em" text-anchor="middle" font-size="20" font-weight="900" fill="var(--gold)">?</text>
-        <text x="${sx(nextT)}" y="${sy(4) - 30}" text-anchor="end" font-size="15" font-weight="800" fill="var(--gold)">${COPY.next}</text></g>`;
+        <text x="${sx(nextT) + 8}" y="${sy(4) + 40}" text-anchor="end" font-size="14" font-weight="800" fill="var(--gold)">${COPY.next}</text></g>`;
   films.forEach((f, i) => {
     const c = f.result in LV ? LEVELS[LV[f.result]][2] : "var(--bg)";
     const cx = sx(when(f)), cy = y(f);
     const shape = f.kind === "telugu" && opts.markTelugu
-      ? `<path d="${star(cx, cy, 11, 5)}" fill="${c}" stroke="#fff" stroke-width="1.6"/>`
+      ? `<path d="${star(cx, cy, 13, 5)}" fill="${c}" stroke="#fff" stroke-width="1.8"${HIT(f.result) ? ' filter="url(#s2-glow)"' : ""}/>`
       : f.kind === "hindi" && opts.markTelugu
         ? `<rect x="${cx - 6.5}" y="${cy - 6.5}" width="13" height="13" transform="rotate(45 ${cx} ${cy})" fill="${c}" stroke="#fff" stroke-width="1.5"/>`
-        : `<circle cx="${cx}" cy="${cy}" r="7" fill="${c}" stroke="${f.result in LV ? "#fff" : "var(--muted)"}" stroke-width="${f.result in LV ? 1.6 : 2}"/>`;
+        : `<circle cx="${cx}" cy="${cy}" r="8.5" fill="${c}" stroke="${f.result in LV ? "#fff" : "var(--muted)"}" stroke-width="${f.result in LV ? 2 : 2}"${HIT(f.result) ? ' filter="url(#s2-glow)"' : ""}/>`;
     g += `<g id="s2-d${i}" opacity="0" style="transform-origin:${cx}px ${cy}px">${shape}</g>`;
   });
   g += `</svg>`;
@@ -270,9 +282,10 @@ const graph = (() => {
     const lv = LEVELS[LV[f.result]] ?? [null, "No result", "var(--muted)"];
     const above = L.pos !== "below", w = 132;
     const lx = clamp(px - w / 2 + (L.dx ?? 0), 10, W - w - 10);
-    labels += `<div id="s2-l${i}" style="position:absolute;left:${lx}px;top:${above ? py - 52 - (L.lift ?? 0) : py + 16 + (L.lift ?? 0)}px;width:${w}px;text-align:center;opacity:0">
-      <div style="font-size:14px;font-weight:800;line-height:1.1;text-shadow:0 2px 8px #000">${L.label ?? f.title}</div>
-      <div style="font-size:12px;font-weight:700;color:${lv[2]};text-shadow:0 2px 8px #000">${lv[1]} · ${f.year}</div></div>`;
+    labels += `<div id="s2-l${i}" style="position:absolute;left:${lx}px;top:${above ? py - 58 - (L.lift ?? 0) : py + 16 + (L.lift ?? 0)}px;width:${w}px;display:flex;justify-content:center;opacity:0">
+      <div style="padding:4px 9px;border-radius:9px;background:rgba(18,8,12,.82);border:1px solid rgba(246,239,232,.14);border-left:3px solid ${lv[2]};box-shadow:0 6px 16px rgba(0,0,0,.45);text-align:left">
+      <div style="font-size:13px;font-weight:800;line-height:1.15">${L.label ?? f.title}</div>
+      <div style="font-size:11px;font-weight:700;color:${lv[2]}">${lv[1]} · ${f.year}</div></div></div>`;
   });
   (opts.callouts ?? []).forEach((co, k) => {
     const a = films.findIndex((f) => f.title.startsWith(co.from)), b = films.findIndex((f) => f.title.startsWith(co.to));
@@ -321,15 +334,47 @@ const NUMS = [
     ? (() => { const t = H.films.filter((f) => f.kind === "telugu"); return [`${t.filter((f) => HIT(f.result)).length}/${t.length}`, "Straight Telugu films that hit", t.map((f) => f.title).join(", ")]; })()
     : [`${busiest[1]} films`, `Busiest year: ${busiest[0]}`, `${H.films.length} films in ${H.career.yearsActive} years`],
 ];
+const rate = Math.round((hits / Math.max(1, judgedFilms.length)) * 100);
+const L5 = last5(H);
+const handle = (u) => "@" + u.split("/").filter(Boolean).pop();
+const telFilms = H.films.filter((f) => f.kind === "telugu");
+const R = 62, CIRC = 2 * Math.PI * R;
 $("s3").innerHTML = `
   <div class="kicker" style="position:absolute;top:84px;width:100%;text-align:center">${H.name} in numbers</div>
-  <div id="s3grid" style="position:absolute;left:30px;right:30px;top:124px;display:grid;grid-template-columns:1fr 1fr;gap:14px">
-    ${NUMS.map(([big, label, note], i) => `<div class="tile" style="height:196px;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:14px">
-      <div class="display" style="font-size:${big.length > 6 ? 40 : 50}px;font-weight:900;line-height:1;color:${i === 1 && big.startsWith("0") ? "#ff9d8f" : i >= 3 && i <= 4 ? "var(--ink)" : C}">${big}</div>
-      <div style="font-size:15px;font-weight:800;margin-top:10px">${label}</div>
-      <div style="font-size:11.5px;color:var(--muted);margin-top:5px;line-height:1.3">${note}</div></div>`).join("")}
+  <div id="s3a" class="tile" style="position:absolute;left:30px;right:30px;top:120px;height:180px;display:flex;align-items:center;gap:22px;padding:18px 22px">
+    <svg width="150" height="150" viewBox="0 0 150 150" style="flex:none">
+      <circle cx="75" cy="75" r="${R}" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="14"/>
+      <circle id="s3ring" cx="75" cy="75" r="${R}" fill="none" stroke="${C}" stroke-width="14" stroke-linecap="round" transform="rotate(-90 75 75)" stroke-dasharray="${CIRC}" stroke-dashoffset="${CIRC}"/>
+      <text id="s3rate" x="75" y="75" dy=".35em" text-anchor="middle" font-family="Inter Display, Inter" font-size="36" font-weight="900" fill="#f6efe8">0%</text>
+    </svg>
+    <div><div style="font-size:24px;font-weight:900" class="display">Hit rate</div>
+      <div style="font-size:15px;color:var(--ink2);margin-top:4px">${hits} hits in ${judgedFilms.length} films with a result</div></div>
   </div>
-  <div style="position:absolute;left:30px;right:30px;top:772px;text-align:center;font-size:12px;color:var(--muted)">Followers as of ${H.instagram ? new Date(H.instagram.date + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }) : "—"}</div>`;
+  <div id="s3b" class="tile" style="position:absolute;left:30px;right:30px;top:318px;padding:16px 18px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:16px;font-weight:800">Last 5 films</div>
+      <div class="display" style="font-size:22px;font-weight:900;color:${L5.some((f) => HIT(f.result)) ? C : "#ff9d8f"}">${L5.filter((f) => HIT(f.result)).length} hit${L5.filter((f) => HIT(f.result)).length === 1 ? "" : "s"}</div></div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      ${L5.map((f) => { const lv = LEVELS[LV[f.result]]; return `<div style="flex:1;min-width:0;text-align:center"><div data-dot style="height:12px;border-radius:6px;background:${lv[2]}"></div>
+        <div style="font-size:11px;font-weight:700;margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${f.title}</div><div style="font-size:10.5px;color:${lv[2]};font-weight:700">${lv[1]}</div></div>`; }).join("")}
+    </div>
+  </div>
+  <div id="s3c" class="tile" style="position:absolute;left:30px;right:30px;top:466px;height:104px;display:flex;align-items:center;justify-content:space-between;padding:16px 20px">
+    <div><div style="font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.12em">BIGGEST FILM</div><div class="display" style="font-size:22px;font-weight:900;margin-top:4px">${topFilm.title}</div></div>
+    <div class="display" style="font-size:40px;font-weight:900;color:${C}">₹<span id="s3g">0</span> cr</div>
+  </div>
+  <div id="s3d" style="position:absolute;left:30px;right:30px;top:588px;display:grid;grid-template-columns:1fr 1fr;gap:14px">
+    ${[["IG", "Instagram", H.instagram, "linear-gradient(135deg,#f9ce34,#ee2a7b,#6228d7)"], ["𝕏", "X (Twitter)", H.x, "#000"]].map(([ic, name, acc, bg]) => `
+    <div class="tile" style="display:flex;align-items:center;gap:12px;padding:14px">
+      <div style="flex:none;width:44px;height:44px;border-radius:12px;background:${bg};display:flex;align-items:center;justify-content:center;font-weight:900;font-size:17px;border:1px solid rgba(255,255,255,.2)">${ic}</div>
+      <div><div class="display" data-count="${acc?.followers ?? 0}" style="font-size:28px;font-weight:900;line-height:1">${acc ? "0" : "—"}</div><div style="font-size:12px;color:var(--ink2);margin-top:3px">${name}${acc ? " · " + handle(acc.url) : ""}</div></div>
+    </div>`).join("")}
+  </div>
+  ${H.films.some((f) => f.kind === "dubbed") ? `
+  <div id="s3e" class="tile" style="position:absolute;left:30px;right:30px;top:690px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between">
+    <div><div style="font-size:16px;font-weight:800">Straight Telugu films</div><div style="font-size:12px;color:var(--ink2);margin-top:3px">${telFilms.map((f) => f.title).join(" · ")}</div></div>
+    <div style="display:flex;gap:4px">${telFilms.map((f) => `<svg width="30" height="30" viewBox="0 0 30 30"><path d="${star(15, 15, 13, 5)}" fill="${HIT(f.result) ? "#3fae62" : "rgba(255,255,255,.12)"}" stroke="${HIT(f.result) ? "#fff" : "rgba(255,255,255,.3)"}" stroke-width="1.4"/></svg>`).join("")}</div>
+  </div>` : ""}
+  <div style="position:absolute;left:30px;right:30px;top:${H.films.some((f) => f.kind === "dubbed") ? 790 : 700}px;text-align:center;font-size:12px;color:var(--muted)">Followers as of ${H.instagram ? new Date(H.instagram.date + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }) : "—"}</div>`;
 
 // ── 5. Highlights ──
 const byScore = [...H.films].filter((f) => f.score !== null).sort((a, b) => b.score - a.score)[0];
@@ -414,7 +459,9 @@ function drawGraph(tt, span) {
     if (tt >= at(k)) drawn = cum[k];
     else { if (tt > at(k - 1)) drawn = cum[k - 1] + (cum[k] - cum[k - 1]) * (tt - at(k - 1)) / (at(k) - at(k - 1)); break; }
   }
-  path.style.strokeDashoffset = len * (1 - clamp(cum[cum.length - 1] ? drawn / cum[cum.length - 1] : 1));
+  const fracDrawn = clamp(cum[cum.length - 1] ? drawn / cum[cum.length - 1] : 1);
+  path.style.strokeDashoffset = len * (1 - fracDrawn);
+  $("s2-area").setAttribute("opacity", fracDrawn >= 0.999 ? out(prog(tt, 0.6 + graph.films.length * per, 1.4 + graph.films.length * per)) : 0);
   graph.films.forEach((f, i) => {
     pop($(`s2-d${i}`), prog(tt, 0.6 + i * per, 0.6 + i * per + 0.45));
     const l = $(`s2-l${i}`);
@@ -455,7 +502,18 @@ function render(t) {
   tt = setScene("s2", t); drawGraph(tt, S.s2[1] - S.s2[0]);
 
   tt = setScene("s3", t);
-  [...$("s3grid").children].forEach((c, k) => pop(c, prog(tt, 0.3 + k * 0.9, 0.9 + k * 0.9)));
+  if (tt > -90) {
+    rise($("s3a"), prog(tt, 0.2, 0.7), 20);
+    const pr = out(prog(tt, 0.5, 1.9));
+    $("s3ring").setAttribute("stroke-dashoffset", CIRC * (1 - (rate / 100) * pr)); $("s3rate").textContent = Math.round(rate * pr) + "%";
+    rise($("s3b"), prog(tt, 1.4, 1.9), 20);
+    [...$("s3b").querySelectorAll("[data-dot]")].forEach((d, k) => { d.style.transform = `scaleX(${out(prog(tt, 1.7 + k * 0.18, 2.1 + k * 0.18))})`; });
+    rise($("s3c"), prog(tt, 2.8, 3.3), 20);
+    $("s3g").textContent = Math.round(topFilm.gross * out(prog(tt, 3.0, 4.2)));
+    rise($("s3d"), prog(tt, 4.0, 4.5), 20);
+    $("s3d").querySelectorAll("[data-count]").forEach((el) => { const n = Number(el.dataset.count); if (n) el.textContent = compact(Math.round(n * out(prog(tt, 4.2, 5.4)))); });
+    if ($("s3e")) rise($("s3e"), prog(tt, 5.2, 5.7), 20);
+  }
 
   tt = setScene("s5", t);
   [...$("s5grid").children].forEach((c, i) => pop(c, prog(tt, 0.3 + i * 0.9, 0.9 + i * 0.9)));
