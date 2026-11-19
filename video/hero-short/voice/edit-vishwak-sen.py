@@ -4,13 +4,13 @@ V = "/tmp/claude-0/-home-user/cfdbb0be-0be4-55cb-9b15-6957269073b0/scratchpad/vo
 SPEED = 1.08
 # (scene, recording, start, end): times in the original recordings.
 KEEP = [
-  ("s1", "r3", 4.00, 8.70),     # ee vaaram mana Vishwak Sen bro ENE Repeat tho vastunnadu
-  ("s1", "r3", 13.55, 16.50),   # Vishwak Sen career ela undo ee video lo chuddam
+  ("s1", "r3", 1.25, 16.50),    # banisalandariki pranamalu; ENE Repeat; mana careers baaga levu kabatti Vishwak career chuddam
   ("s2", "r3", 17.30, 49.70),   # hit hat-trick, Falaknuma Das, Paagal down, Gaami ... lepukuntadu
   ("s3", "r3", 53.65, 74.85),   # hit rate, biggest film Das Ka Dhamki 23 cr, Instagram, 2024 busy year
   ("s5", "r3", 79.20, 88.70),   # Das Ka Dhamki, Cult boltha kottindi, mari ela untundo chudali
   ("s6", "r2", 88.85, 93.20),   # em maruthundo ela maruthundo chudali, hit aina flop aina
   ("s6", "r2", 99.45, 117.75),  # Tolly Index 40.6, next week, success meet ayyaka graph update chesi video pedatham
+  ("s0", "r2", 118.40, 131.50), # memu khaaliga undi Tolly Analysis chesam, website lo detailed ga
   ("s0", "r2", 132.90, 150.70), # tappulunte comment, we will do better, subscribe, thank you bye
 ]
 def speech(f, a, b):
@@ -39,7 +39,7 @@ for i, p in enumerate(parts):
         idx = 0 if p[0] == "r2" else 1
         filt.append(f"[{idx}:a]atrim={p[1]}:{p[2]},asetpts=PTS-STARTPTS,afade=t=in:d=0.02,afade=t=out:st={p[2]-p[1]-0.03:.3f}:d=0.03[p{i}]")
     labels.append(f"[p{i}]")
-filt.append("".join(labels) + f"concat=n={len(parts)}:v=0:a=1,highpass=f=80,afftdn=nf=-28,acompressor=threshold=-22dB:ratio=3:attack=10:release=150,atempo={SPEED},loudnorm=I=-14:TP=-1.5:LRA=9,aresample=48000[out]")
+filt.append("".join(labels) + f"concat=n={len(parts)}:v=0:a=1,highpass=f=80,afftdn=nf=-28,acompressor=threshold=-22dB:ratio=3:attack=10:release=150,atempo={SPEED},acompressor=threshold=-18dB:ratio=4:attack=5:release=120:makeup=4dB,loudnorm=I=-10:TP=-1.0:LRA=7,alimiter=limit=0.95,aresample=48000[out]")
 open(f"{V}/graph.txt","w").write(";\n".join(filt))
 subprocess.run(["ffmpeg","-loglevel","error","-y","-i",f"{V}/r2.wav","-i",f"{V}/r3.wav","-filter_complex_script",f"{V}/graph.txt","-map","[out]","-ac","1",f"{V}/voice.wav"],check=True)
 scaled = {k: [round(v[0]/SPEED,2), round(v[1]/SPEED,2)] for k, v in scenes.items()}
