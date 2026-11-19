@@ -154,6 +154,15 @@ if (undated.length) {
   const home = new Map(INITIAL_ROSTER.filter((h) => h.homeLanguage).map((h) => [h.slug, h.homeLanguage as string]));
   const raw = new Map<string, { imdbId: string | null; qid: string | null; teluguRelease?: string }>(snap.films.map((f: { key: string; imdbId: string | null; qid: string | null }) => [f.key, f]));
   if (!cast.teluguTitles) console.log("IMDb Telugu titles not downloaded yet (run npm run tolly:cast): other-industry films checked on Telugu Wikipedia only");
+  // An editor-checked Telugu release brings back a film left out only for its language.
+  for (const c of credits) {
+    const rel = overrides[c.film]?.teluguRelease;
+    if (!home.has(c.hero) || c.include || !rel || rel === "none") continue;
+    if (!/^(no Telugu release found|no Telugu release \(checked\)|(Tamil|Malayalam) film)$/.test(c.excludeReason ?? "")) continue;
+    c.include = true;
+    c.excludeReason = null;
+    changes.push(`+ ${label(c)}  [checked: ${rel} Telugu release]`);
+  }
   for (const c of credits) {
     if (!home.has(c.hero) || !c.include) continue;
     const f = films.get(c.film);

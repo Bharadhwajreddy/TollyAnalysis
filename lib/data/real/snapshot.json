@@ -7822,13 +7822,21 @@
    "genres": [],
    "imdbId": "tt22486094",
    "qid": "Q115165632",
-   "budget": null,
-   "gross": null,
+   "budget": {
+    "low": 10,
+    "high": 10,
+    "text": "₹10 crore"
+   },
+   "gross": {
+    "low": 10.43,
+    "high": 10.43,
+    "text": "₹10.43 crore"
+   },
    "verdict": {
-    "verdict": "disaster",
-    "sentence": "Listed as \"Disaster\" in the blog's 2022 Telugu hits-and-flops list.",
-    "source": "trade-blog",
-    "url": "https://www.mtwikiblog.com/p/telugu-movies-hits-and-flops-2022.html"
+    "verdict": "below_average",
+    "sentence": "Checked against trade reports on 2026-11-18.",
+    "source": "editor-check",
+    "url": "https://sacnilk.com/movie/Ori_Devuda_2022"
    },
    "starring": [
     "Vishwak Sen",
@@ -23519,9 +23527,9 @@
    },
    "verdict": {
     "verdict": "super_hit",
-    "sentence": "In nine days, the film has collected a total gross of $1 million at the United States box office.<The film collected a worldwide gross of crore in 10 days, and emerged as a major commercial success at the box office.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Sita_Ramam"
+    "sentence": "Checked against trade reports on 2026-11-18: Sacnilk: blockbuster; Wikipedia: super hit. Lower result used.",
+    "source": "editor-check",
+    "url": "https://sacnilk.com/movie/Sita_Ramam_2022"
    },
    "starring": [
     "Dulquer Salmaan",
@@ -33488,7 +33496,11 @@
    "genres": [],
    "imdbId": "tt27191250",
    "qid": "Q128100830",
-   "budget": null,
+   "budget": {
+    "low": 20,
+    "high": 20,
+    "text": "₹20 crore"
+   },
    "gross": {
     "low": 10.87,
     "high": 10.87,
@@ -33496,9 +33508,9 @@
    },
    "verdict": {
     "verdict": "flop",
-    "sentence": "It received mixed reviews from critics and audiences and failed at the box office.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Mechanic_Rocky"
+    "sentence": "Checked against trade reports on 2026-11-18.",
+    "source": "editor-check",
+    "url": "https://koimoi.com/box-office/mechanic-rocky-worldwide-box-office-closing-collection-vishwak-sen-starrer-wraps-up-its-dismal-theatrical-run-below-11-crores/amp"
    },
    "starring": [
     "Vishwak Sen",
@@ -39647,17 +39659,21 @@
    "genres": [],
    "imdbId": "tt11490170",
    "qid": "Q96380091",
-   "budget": null,
+   "budget": {
+    "low": 6.2,
+    "high": 6.2,
+    "text": "₹6.2 crore"
+   },
    "gross": {
     "low": 12.6,
     "high": 12.6,
-    "text": "₹12.60 crore"
+    "text": "₹12.6 crore"
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "The First Case was released theatrically on 28 February 2020 to positive reviews from audience and critics, and became a commercial success at the box office.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/HIT%3A_The_First_Case"
+    "sentence": "Checked against trade reports on 2026-11-18: Profitable for its producers.",
+    "source": "editor-check",
+    "url": "https://en.wikipedia.org/wiki/HIT:_The_First_Case"
    },
    "starring": [
     "Vishwak Sen",
@@ -39816,20 +39832,21 @@
     "text": "₹6 crore"
    },
    "gross": {
-    "low": 46.2,
-    "high": 46.2,
-    "text": "₹46.20crore"
+    "low": 56,
+    "high": 56,
+    "text": "₹56 crore"
    },
    "verdict": {
-    "verdict": "blockbuster",
-    "sentence": "The film became a blockbuster at the box office, performing extremely well in Indian multiplexes and overseas.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/O_Kadhal_Kanmani"
+    "verdict": "super_hit",
+    "sentence": "Checked against trade reports on 2026-11-18: Telugu dub: OK Bangaram (Nani voiced Dulquer). Wikipedia: blockbuster. Lower result used.",
+    "source": "editor-check",
+    "url": "https://en.wikipedia.com/wiki/OK_Kanmani"
    },
    "starring": [
     "Dulquer Salman",
     "Nithya Menen"
-   ]
+   ],
+   "teluguRelease": "dubbed"
   },
   {
    "key": "The Lion King (2019 film)",
@@ -41792,7 +41809,8 @@
    "releaseDate": "2025-11-14",
    "dateApproximate": false,
    "languages": [
-    "Tamil"
+    "Tamil",
+    "Telugu"
    ],
    "director": "Selvamani Selvaraj",
    "music": null,
@@ -41801,16 +41819,21 @@
    "imdbId": "tt28508934",
    "qid": "Q135901971",
    "budget": {
-    "low": 40,
+    "low": 35,
     "high": 40,
-    "text": "₹40 crore"
+    "text": "₹35-40 crore"
    },
    "gross": {
-    "low": 35,
-    "high": 38.6,
-    "text": "₹35-38.6 crore"
+    "low": 35.35,
+    "high": 35.35,
+    "text": "₹35.35 crore"
    },
-   "verdict": null,
+   "verdict": {
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Released in Tamil and Telugu together.",
+    "source": "editor-check",
+    "url": "https://www.koimoi.com/box-office/kaantha-box-office-closing-collection-dulquer-salmaan-starrer-ends-its-disappointing-run-with-a-deficit-of-43/"
+   },
    "starring": [
     "Dulquer Salman",
     "P. Samuthirakani",
@@ -51616,10 +51639,10 @@
     "text": "₹20.60 crore"
    },
    "verdict": {
-    "verdict": "average",
-    "sentence": "The film was released on 14 August 2021 and was a moderate success at the box office.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Paagal"
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Sacnilk: flop; Wikipedia figures also show a loss.",
+    "source": "editor-check",
+    "url": "https://sacnilk.com/movie/Paagal_2021"
    },
    "starring": [
     "Vishwak Sen",
@@ -51644,12 +51667,16 @@
    "imdbId": "tt15373594",
    "qid": "Q111168741",
    "budget": null,
-   "gross": null,
+   "gross": {
+    "low": 9.03,
+    "high": 9.03,
+    "text": "₹9.03 crore"
+   },
    "verdict": {
     "verdict": "average",
-    "sentence": "Listed as \"Average\" in the blog's 2022 Telugu hits-and-flops list.",
-    "source": "trade-blog",
-    "url": "https://www.mtwikiblog.com/p/telugu-movies-hits-and-flops-2022.html"
+    "sentence": "Checked against trade reports on 2026-11-18: India gross only.",
+    "source": "editor-check",
+    "url": "https://sacnilk.com/movie/Ashoka_Vanamlo_Arjuna_Kalyanam_2022"
    },
    "starring": [
     "Vishwak Sen",
@@ -51701,15 +51728,15 @@
    "qid": "Q117066128",
    "budget": null,
    "gross": {
-    "low": 23.2,
-    "high": 23.2,
-    "text": "₹23.20 crores"
+    "low": 22.8,
+    "high": 22.8,
+    "text": "₹22.8 crore"
    },
    "verdict": {
-    "verdict": "hit",
-    "sentence": "Das Ka Dhamki was released on 22 March 2023 to mixed reviews from critics and became a commercial success at the box office.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Das_Ka_Dhamki"
+    "verdict": "above_average",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia says hit; trade reports show it around break-even. Lower result used.",
+    "source": "editor-check",
+    "url": "https://sacnilk.com/news/Das_Ka_Dhamki_2023_Box_Office_Collection_Day_Wise_Worldwide"
    },
    "starring": [
     "Vishwak Sen",
@@ -51767,15 +51794,15 @@
     "text": "₹6 crore"
    },
    "gross": {
-    "low": 22,
-    "high": 22,
-    "text": "₹22 crore"
+    "low": 21,
+    "high": 21,
+    "text": "₹21 crore"
    },
    "verdict": {
-    "verdict": "super_hit",
-    "sentence": "It released on 8 March 2024 to positive reviews from critics and audiences, with critics praising the cast's performances, concept, production design and technical aspects.The film was a major commercial success at the box-office by grossing over ₹22 crore against the budget of ₹",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Gaami"
+    "verdict": "hit",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia says super hit; one outlet calls it a flop. Small budget, in profit.",
+    "source": "editor-check",
+    "url": "https://filmibeat.com/telugu/news/2024/gaami-box-office-collection-worldwide-vishwak-sens-adventure-thriller-achieves-break-even-enters-388121.html"
    },
    "starring": [
     "Vishwak Sen",
@@ -51804,15 +51831,15 @@
    "qid": "Q124320664",
    "budget": null,
    "gross": {
-    "low": 20,
-    "high": 20,
-    "text": "₹20 crore"
+    "low": 19.84,
+    "high": 19.84,
+    "text": "₹19.84 crore"
    },
    "verdict": {
-    "verdict": "hit",
-    "sentence": "Despite receiving negative reviews from critics and audiences, it was a commercial success at the box office.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Gangs_of_Godavari"
+    "verdict": "above_average",
+    "sentence": "Checked against trade reports on 2026-11-18: Semi-hit / break-even.",
+    "source": "editor-check",
+    "url": "https://thehansindia.com/cinema/tollywood/gangs-of-godavari-box-office-collection-vishwak-sens-film-earns-rs-1970-crores-worldwide-885480"
    },
    "starring": [
     "Vishwak Sen",
@@ -51844,9 +51871,9 @@
    },
    "verdict": {
     "verdict": "disaster",
-    "sentence": "Produced on a production budget of ₹18 crore, the film was a critical and commercial failure, grossing over only ₹4 crore, becoming a career-high disaster for Vishwak Sen.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Laila_(2025_film)"
+    "sentence": "Checked against trade reports on 2026-11-18.",
+    "source": "editor-check",
+    "url": "https://koimoi.com/box-office/laila-box-office-collection-day-6-vishwak-sen-starrer-struggles-yet-to-earn-4-crores"
    },
    "starring": [
     "Vishwak Sen",
@@ -51875,15 +51902,15 @@
     "text": "₹25 crore"
    },
    "gross": {
-    "low": 13.5,
-    "high": 13.5,
-    "text": "₹13.50 crore"
+    "low": 13.76,
+    "high": 13.76,
+    "text": "₹13.76 crore"
    },
    "verdict": {
     "verdict": "flop",
-    "sentence": "It was a commercial failure at the box office.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Funky_(film)"
+    "sentence": "Checked against trade reports on 2026-11-18.",
+    "source": "editor-check",
+    "url": "https://www.koimoi.com/box-office/funky-box-office-closing-collection-vishwak-sen-kayadu-lohar-starrer-wraps-up-below-15-crore-gross/"
    },
    "starring": [
     "Vishwak Sen",
@@ -51913,10 +51940,10 @@
     "text": "₹6.47 crore"
    },
    "verdict": {
-    "verdict": "hit",
-    "sentence": "The blog's film page gives the verdict \"Hit\".",
-    "source": "trade-blog",
-    "url": "https://www.mtwikiblog.com/2026/10/cult-telugu-movie-2026-budget-hit-flop.html"
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-18: Earlier listed as a hit by a trade blog; trade reports show a weak run.",
+    "source": "editor-check",
+    "url": "https://www.koimoi.com/box-office/cult-box-office-collection-day-7-vishwak-sens-film-scores-41-less-than-funky-in-opening-week/"
    },
    "starring": [
     "Vishwak Sen",
@@ -60090,8 +60117,8 @@
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "The film became a box office success and completed 100 days theatrical run.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18: Telugu dub: Jathaga.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/Ustad_Hotel"
    },
    "starring": [
@@ -60229,10 +60256,10 @@
    "budget": null,
    "gross": null,
    "verdict": {
-    "verdict": "hit",
-    "sentence": "The movie was a hit at the Kerala box office and has since developed a cult following among the youth of Kerala.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Neelakasham_Pachakadal_Chuvanna_Bhoomi"
+    "verdict": "above_average",
+    "sentence": "Checked against trade reports on 2026-11-18: Wikipedia: hit in Kerala; Filmibeat: decent run. Lower result used.",
+    "source": "editor-check",
+    "url": "https://www.wikipedia.org/wiki/Neelakasham_Pachakadal_Chuvanna_Bhoomi"
    },
    "starring": [
     "Dulquer Salmaan",
@@ -60424,8 +60451,8 @@
    "gross": null,
    "verdict": {
     "verdict": "hit",
-    "sentence": "The film received mixed to positive reviews and was a commercial success.",
-    "source": "wikipedia-film",
+    "sentence": "Checked against trade reports on 2026-11-18.",
+    "source": "editor-check",
     "url": "https://en.wikipedia.org/wiki/100_Days_of_Love"
    },
    "starring": [
@@ -60495,10 +60522,10 @@
    "budget": null,
    "gross": null,
    "verdict": {
-    "verdict": "hit",
-    "sentence": "Kali was released on 26 March 2016 to critical and commercial success.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Kali_(2016_film)"
+    "verdict": "super_hit",
+    "sentence": "Checked against trade reports on 2026-11-18: Telugu dub: Hey Pillagada.",
+    "source": "editor-check",
+    "url": "https://filmibeat.com/malayalam/news/2016/box-office-2016-blockbusters-and-super-hits-action-hero-biju-kali-224019.html"
    },
    "starring": [
     "Dulquer Salmaan",
@@ -60605,9 +60632,9 @@
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "He has since established himself as a leading actor in Indian cinema with several critically and commercially successful films including Ustad Hotel (2012) , ABCD (2013) , Neelakasham Pachakadal Chuvanna Bhoomi (2013) , Vaayai Moodi Pesavum (2014) , Bangalore Days (2014) , Vikram",
-    "source": "wikipedia-hero",
-    "url": "https://en.wikipedia.org/wiki/Dulquer_Salmaan_filmography"
+    "sentence": "Checked against trade reports on 2026-11-18.",
+    "source": "editor-check",
+    "url": "https://filmibeat.com/malayalam/news/2017/dulquer-salmaan-s-journey-at-the-box-office-5-biggest-hits-of-the-actor-254347.html"
    },
    "starring": [
     "Dulquer Salmaan"
@@ -60706,7 +60733,12 @@
    "qid": "Q27964498",
    "budget": null,
    "gross": null,
-   "verdict": null,
+   "verdict": {
+    "verdict": "average",
+    "sentence": "Checked against trade reports on 2026-11-18: Strong Kerala start, then fell; Telugu dub Athade did poorly.",
+    "source": "editor-check",
+    "url": "https://filmibeat.com/malayalam/news/2017/solo-box-office-36-days-kerala-collections-269484.html"
+   },
    "starring": [
     "Dulquer Salmaan",
     "Sai Dhanshika",
@@ -60840,15 +60872,15 @@
     "text": "₹35 crore"
    },
    "gross": {
-    "low": 81,
+    "low": 78,
     "high": 81,
-    "text": "₹81 crore"
+    "text": "₹78-81 crore"
    },
    "verdict": {
     "verdict": "hit",
-    "sentence": "A critical and commercial success, it grossed over ₹81 crores worldwide, and is among the highest-grossing Malayalam films of all time.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Kurup_(film)"
+    "sentence": "Checked against trade reports on 2026-11-18: Sacnilk: super hit; Wikipedia: hit. Lower result used.",
+    "source": "editor-check",
+    "url": "https://www.sacnilk.com/movie/Kurup_2021"
    },
    "starring": [
     "Dulquer Salmaan",
@@ -60901,9 +60933,9 @@
    "imdbId": "tt15134398",
    "qid": "Q115518140",
    "budget": {
-    "low": 40,
-    "high": 40,
-    "text": "₹40 crore"
+    "low": 50,
+    "high": 50,
+    "text": "₹50 crore"
    },
    "gross": {
     "low": 38,
@@ -60912,9 +60944,9 @@
    },
    "verdict": {
     "verdict": "disaster",
-    "sentence": "King of Kotha grossed in New Zealand, in the United Kingdom, in the United Arab Emirates and in Australia, totaling in international earnings The film was a box office bomb.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/King_of_Kotha"
+    "sentence": "Checked against trade reports on 2026-11-18.",
+    "source": "editor-check",
+    "url": "https://www.republicworld.com/entertainment/king-of-kotha-incurs-huge-loss-as-dulquer-salmaans-film-bombs-at-box-office-articleshow"
    },
    "starring": [
     "Dulquer Salmaan",
@@ -60996,14 +61028,20 @@
     "high": 48.47,
     "text": "₹48.47 crore"
    },
-   "verdict": null,
+   "verdict": {
+    "verdict": "below_average",
+    "sentence": "Checked against trade reports on 2026-11-18: Released in Malayalam, Telugu, Tamil and Hindi. Underperformed; no final verdict published.",
+    "source": "editor-check",
+    "url": "https://www.newsbytesapp.com/news/entertainment/salmaan-accepts-responsibility-as-im-game-underperforms-at-box-office/tldr"
+   },
    "starring": [
     "Dulquer Salmaan",
     "Antony Varghese",
     "Mysskin",
     "Kayadu Lohar",
     "Vinay Forrt"
-   ]
+   ],
+   "teluguRelease": "dubbed"
   },
   {
    "key": "Vaayai Moodi Pesavum",
@@ -61049,7 +61087,11 @@
    ],
    "imdbId": "tt7919680",
    "qid": "Q48672560",
-   "budget": null,
+   "budget": {
+    "low": 23,
+    "high": 23,
+    "text": "₹23 crore"
+   },
    "gross": {
     "low": 26.42,
     "high": 26.42,
@@ -61057,9 +61099,9 @@
    },
    "verdict": {
     "verdict": "below_average",
-    "sentence": "The film had a below average opening with 5 – 8 percent occupancy, grossing ₹15 million worldwide on its opening day.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Karwaan"
+    "sentence": "Checked against trade reports on 2026-11-18: Sacnilk: average; Bollywood Hungama: flop. Middle result used.",
+    "source": "editor-check",
+    "url": "https://sacnilk.com/movie/Karwaan_2018"
    },
    "starring": [
     "Dulquer Salmaan",
@@ -61086,9 +61128,9 @@
    "imdbId": "tt8304386",
    "qid": "Q60852854",
    "budget": {
-    "low": 33,
-    "high": 33,
-    "text": "₹33 crore"
+    "low": 30,
+    "high": 30,
+    "text": "₹30 crore"
    },
    "gross": {
     "low": 6.96,
@@ -61097,9 +61139,9 @@
    },
    "verdict": {
     "verdict": "disaster",
-    "sentence": "With a budget of , the film was a box office disaster.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/The_Zoya_Factor_(film)"
+    "sentence": "Checked against trade reports on 2026-11-18.",
+    "source": "editor-check",
+    "url": "https://www.sacnilk.com/quicknews/The_Zoya_Factor_Day_7_Box_Office_Collection?hl=en"
    },
    "starring": [
     "Dulquer Salmaan",
@@ -61128,17 +61170,18 @@
    "budget": null,
    "gross": null,
    "verdict": {
-    "verdict": "hit",
-    "sentence": "The film was released on 28 February 2020 and was successful at the box office.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Kannum_Kannum_Kollaiyadithaal"
+    "verdict": "super_hit",
+    "sentence": "Checked against trade reports on 2026-11-18: Telugu release: Kanulu Kanulanu Dochayante.",
+    "source": "editor-check",
+    "url": "https://filmibeat.com/tamil/news/2020/kannum-kannum-kollaiyadithaal-final-box-office-verdict-dulquer-salman-thriller-becomes-a-superhit-295958.html"
    },
    "starring": [
     "Dulquer Salmaan",
     "Ritu Varma",
     "Rakshan",
     "Niranjani Ahathian"
-   ]
+   ],
+   "teluguRelease": "dubbed"
   },
   {
    "key": "Hey Sinamika",
@@ -61238,15 +61281,15 @@
     "text": "₹56 crore"
    },
    "gross": {
-    "low": 111,
-    "high": 111,
-    "text": "₹111 crore"
+    "low": 107,
+    "high": 120,
+    "text": "₹107-120 crore"
    },
    "verdict": {
-    "verdict": "hit",
-    "sentence": "He has since established himself as a leading actor in Indian cinema with several critically and commercially successful films including Ustad Hotel (2012) , ABCD (2013) , Neelakasham Pachakadal Chuvanna Bhoomi (2013) , Vaayai Moodi Pesavum (2014) , Bangalore Days (2014) , Vikram",
-    "source": "wikipedia-hero",
-    "url": "https://en.wikipedia.org/wiki/Dulquer_Salmaan_filmography"
+    "verdict": "super_hit",
+    "sentence": "Checked against trade reports on 2026-11-18: Sacnilk and Gulte: blockbuster; Pinkvilla: super hit. Lower result used.",
+    "source": "editor-check",
+    "url": "https://www.pinkvilla.com/entertainment/box-office/lucky-baskhar-final-box-office-collection-worldwide-dulquer-salmaan-and-meenakshi-chaudhary-starrer-ends-theatrical-run-at-rs-107-crore-1360214"
    },
    "starring": [
     "Dulquer Salmaan",
@@ -94045,8 +94088,8 @@
    "notes": "Also producer",
    "language": "",
    "scope": "lead",
-   "include": false,
-   "excludeReason": "no Telugu release found",
+   "include": true,
+   "excludeReason": null,
    "billing": "billed #1"
   },
   {
@@ -94070,8 +94113,8 @@
    "notes": "",
    "language": "Tamil",
    "scope": "lead",
-   "include": false,
-   "excludeReason": "Tamil film"
+   "include": true,
+   "excludeReason": null
   },
   {
    "hero": "dulquer-salmaan",
@@ -94121,8 +94164,8 @@
    "notes": "",
    "language": "Tamil",
    "scope": "lead",
-   "include": false,
-   "excludeReason": "Tamil film"
+   "include": true,
+   "excludeReason": null
   },
   {
    "hero": "dulquer-salmaan",
@@ -94196,8 +94239,8 @@
    "notes": "Also producer",
    "language": "Tamil",
    "scope": "lead",
-   "include": false,
-   "excludeReason": "Tamil film"
+   "include": true,
+   "excludeReason": null
   },
   {
    "hero": "dulquer-salmaan",

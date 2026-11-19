@@ -1,0 +1,437 @@
+{
+ "source": "Box-office results checked by an editor against trade reports (links per film)",
+ "films": {
+  "HIT: The First Case": {
+   "result": "hit",
+   "gross": {
+    "low": 12.6,
+    "high": 12.6,
+    "text": "₹12.6 crore"
+   },
+   "budget": {
+    "low": 6.2,
+    "high": 6.2,
+    "text": "₹6.2 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/HIT:_The_First_Case",
+    "https://www.123telugu.com/mnews/makers-of-hit-the-first-case-are-happy-with-the-result.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Profitable for its producers."
+  },
+  "Paagal": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://sacnilk.com/movie/Paagal_2021",
+    "https://en.wikipedia.com/wiki/Paagal"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Sacnilk: flop; Wikipedia figures also show a loss."
+  },
+  "Ashoka Vanamlo Arjuna Kalyanam": {
+   "result": "average",
+   "gross": {
+    "low": 9.03,
+    "high": 9.03,
+    "text": "₹9.03 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://sacnilk.com/movie/Ashoka_Vanamlo_Arjuna_Kalyanam_2022",
+    "https://telugucinema.com/news/ashoka-vanamlo-arjuna-kalyanam-takes-decent-openings"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "India gross only."
+  },
+  "Ori Devuda": {
+   "result": "below_average",
+   "gross": {
+    "low": 10.43,
+    "high": 10.43,
+    "text": "₹10.43 crore"
+   },
+   "budget": {
+    "low": 10,
+    "high": 10,
+    "text": "₹10 crore"
+   },
+   "urls": [
+    "https://sacnilk.com/movie/Ori_Devuda_2022",
+    "https://xappie.com/boxoffice-article/ori-devuda-box-office-collection-day-7-vishwak-sen-starrer-has-a-largely-forgettable-performance-at-the-box-office-45755"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": null
+  },
+  "Das Ka Dhamki": {
+   "result": "above_average",
+   "gross": {
+    "low": 22.8,
+    "high": 22.8,
+    "text": "₹22.8 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://sacnilk.com/news/Das_Ka_Dhamki_2023_Box_Office_Collection_Day_Wise_Worldwide",
+    "https://telanganatoday.com/das-ka-dhamki-box-office-collections-for-4-days-revealed"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia says hit; trade reports show it around break-even. Lower result used."
+  },
+  "Gaami": {
+   "result": "hit",
+   "gross": {
+    "low": 21,
+    "high": 21,
+    "text": "₹21 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://filmibeat.com/telugu/news/2024/gaami-box-office-collection-worldwide-vishwak-sens-adventure-thriller-achieves-break-even-enters-388121.html",
+    "https://telanganatoday.com/gaami-the-crowdfunding-mini-budget-film-is-now-making-profits-at-the-box-office"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia says super hit; one outlet calls it a flop. Small budget, in profit."
+  },
+  "Gangs of Godavari": {
+   "result": "above_average",
+   "gross": {
+    "low": 19.84,
+    "high": 19.84,
+    "text": "₹19.84 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://thehansindia.com/cinema/tollywood/gangs-of-godavari-box-office-collection-vishwak-sens-film-earns-rs-1970-crores-worldwide-885480",
+    "https://www.sacnilk.com/movie/Gangs_of_Godavari_2024"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Semi-hit / break-even."
+  },
+  "Mechanic Rocky": {
+   "result": "flop",
+   "gross": {
+    "low": 10.87,
+    "high": 10.87,
+    "text": "₹10.87 crore"
+   },
+   "budget": {
+    "low": 20,
+    "high": 20,
+    "text": "₹20 crore"
+   },
+   "urls": [
+    "https://koimoi.com/box-office/mechanic-rocky-worldwide-box-office-closing-collection-vishwak-sen-starrer-wraps-up-its-dismal-theatrical-run-below-11-crores/amp",
+    "https://telugucinema.com/news/weekend-bo-mechanic-rocky-fails-zebra-shows-growth"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": null
+  },
+  "Laila (2025 film)": {
+   "result": "disaster",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://koimoi.com/box-office/laila-box-office-collection-day-6-vishwak-sen-starrer-struggles-yet-to-earn-4-crores",
+    "https://koimoi.com/?p=1147306"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": null
+  },
+  "Funky (film)": {
+   "result": "flop",
+   "gross": {
+    "low": 13.76,
+    "high": 13.76,
+    "text": "₹13.76 crore"
+   },
+   "budget": {
+    "low": 25,
+    "high": 25,
+    "text": "₹25 crore"
+   },
+   "urls": [
+    "https://www.koimoi.com/box-office/funky-box-office-closing-collection-vishwak-sen-kayadu-lohar-starrer-wraps-up-below-15-crore-gross/",
+    "https://www.pinkvilla.com/entertainment/box-office/funky-box-office-collections-opening-week-vishwak-sen-and-kayadu-lohar-starrer-collects-over-rs-8-crore-nears-theatrical-run-1400921"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": null
+  },
+  "Cult (2026 Telugu film)": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.koimoi.com/box-office/cult-box-office-collection-day-7-vishwak-sens-film-scores-41-less-than-funky-in-opening-week/",
+    "https://www.deccanchronicle.com/amp/entertainment/tollywood/vishwak-sens-cult-logs-dismal-openings-2000546"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Earlier listed as a hit by a trade blog; trade reports show a weak run."
+  },
+  "Ustad Hotel": {
+   "result": "hit",
+   "gross": {
+    "low": 15,
+    "high": 15,
+    "text": "₹15 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Ustad_Hotel",
+    "https://www.ibtimes.co.in/dulquer-salmaan-nithya-menens-ustad-hotel-becomes-jathaga-telugu-649397"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Telugu dub: Jathaga."
+  },
+  "Neelakasham Pachakadal Chuvanna Bhoomi": {
+   "result": "above_average",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.wikipedia.org/wiki/Neelakasham_Pachakadal_Chuvanna_Bhoomi",
+    "https://filmibeat.com/malayalam/news/2016/3-years-of-neelakasham-pachakadal-chuvanna-bhoomi-236879.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: hit in Kerala; Filmibeat: decent run. Lower result used."
+  },
+  "100 Days of Love": {
+   "result": "hit",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/100_Days_of_Love",
+    "https://www.khaleejtimes.com/entertainment/100-days-of-love-hits-the-bulls-eye?amp=1"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": null
+  },
+  "Kali (2016 film)": {
+   "result": "super_hit",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://filmibeat.com/malayalam/news/2016/box-office-2016-blockbusters-and-super-hits-action-hero-biju-kali-224019.html",
+    "https://www.onmanorama.com/entertainment/entertainment-news/kali-dulquer-salmaan-sai-pallavi-movie-box-office-report.amp.html"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Telugu dub: Hey Pillagada."
+  },
+  "Jomonte Suvisheshangal": {
+   "result": "hit",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://filmibeat.com/malayalam/news/2017/dulquer-salmaan-s-journey-at-the-box-office-5-biggest-hits-of-the-actor-254347.html",
+    "https://www.ibtimes.co.in/kerala-box-office-heres-jomonte-suvisheshangal-munthirivallikal-thalirkkumbol-collection-report-713074"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": null
+  },
+  "Solo (2017 film)": {
+   "result": "average",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://filmibeat.com/malayalam/news/2017/solo-box-office-36-days-kerala-collections-269484.html",
+    "https://www.thenewsminute.com/flix/dulquer-s-solo-released-telugu-athade-83592"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Strong Kerala start, then fell; Telugu dub Athade did poorly."
+  },
+  "Karwaan": {
+   "result": "below_average",
+   "gross": {
+    "low": 26.42,
+    "high": 26.42,
+    "text": "₹26.42 crore"
+   },
+   "budget": {
+    "low": 23,
+    "high": 23,
+    "text": "₹23 crore"
+   },
+   "urls": [
+    "https://sacnilk.com/movie/Karwaan_2018",
+    "https://www.bollywoodhungama.com/movie/karwaan/box-office/"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Sacnilk: average; Bollywood Hungama: flop. Middle result used."
+  },
+  "The Zoya Factor (film)": {
+   "result": "disaster",
+   "gross": null,
+   "budget": {
+    "low": 30,
+    "high": 30,
+    "text": "₹30 crore"
+   },
+   "urls": [
+    "https://www.sacnilk.com/quicknews/The_Zoya_Factor_Day_7_Box_Office_Collection?hl=en",
+    "https://cinestaan.com/articles/2019/sep/24/22633/box-office-dream-girl-is-on-the-verge-of-reaching-the-rs100-crore-mark"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": null
+  },
+  "Kurup (film)": {
+   "result": "hit",
+   "gross": {
+    "low": 78,
+    "high": 81,
+    "text": "₹78-81 crore"
+   },
+   "budget": {
+    "low": 35,
+    "high": 35,
+    "text": "₹35 crore"
+   },
+   "urls": [
+    "https://www.sacnilk.com/movie/Kurup_2021",
+    "https://wikipedia.com/wiki/Kurup_(film)"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Sacnilk: super hit; Wikipedia: hit. Lower result used."
+  },
+  "Sita Ramam": {
+   "result": "super_hit",
+   "gross": null,
+   "budget": {
+    "low": 25,
+    "high": 25,
+    "text": "₹25 crore"
+   },
+   "urls": [
+    "https://sacnilk.com/movie/Sita_Ramam_2022",
+    "https://en.wikipedia.org/wiki/Sita_Ramam"
+   ],
+   "teluguRelease": "original",
+   "checkedOn": "2026-11-18",
+   "notes": "Sacnilk: blockbuster; Wikipedia: super hit. Lower result used."
+  },
+  "King of Kotha": {
+   "result": "disaster",
+   "gross": {
+    "low": 38,
+    "high": 38,
+    "text": "₹38 crore"
+   },
+   "budget": {
+    "low": 50,
+    "high": 50,
+    "text": "₹50 crore"
+   },
+   "urls": [
+    "https://www.republicworld.com/entertainment/king-of-kotha-incurs-huge-loss-as-dulquer-salmaans-film-bombs-at-box-office-articleshow",
+    "https://www.filmibeat.com/top-listing/king-of-kotha-box-office-collection-hit-or-flop-review-and-budget-4-1727.html"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": null
+  },
+  "Lucky Baskhar": {
+   "result": "super_hit",
+   "gross": {
+    "low": 107,
+    "high": 120,
+    "text": "₹107-120 crore"
+   },
+   "budget": {
+    "low": 56,
+    "high": 56,
+    "text": "₹56 crore"
+   },
+   "urls": [
+    "https://www.pinkvilla.com/entertainment/box-office/lucky-baskhar-final-box-office-collection-worldwide-dulquer-salmaan-and-meenakshi-chaudhary-starrer-ends-theatrical-run-at-rs-107-crore-1360214",
+    "https://www.gulte.com/box-office/325701/lucky-baskhar-overseas-full-run-gross-3-065-million-blockbuster"
+   ],
+   "teluguRelease": "original",
+   "checkedOn": "2026-11-18",
+   "notes": "Sacnilk and Gulte: blockbuster; Pinkvilla: super hit. Lower result used."
+  },
+  "O Kadhal Kanmani": {
+   "result": "super_hit",
+   "gross": {
+    "low": 56,
+    "high": 56,
+    "text": "₹56 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.com/wiki/OK_Kanmani",
+    "https://www.business-standard.com/article/news-ians/mani-ratnam-s-o-kadhal-kanmani-mints-over-rs-14-crore-115042100265_1.html"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Telugu dub: OK Bangaram (Nani voiced Dulquer). Wikipedia: blockbuster. Lower result used."
+  },
+  "Kannum Kannum Kollaiyadithaal": {
+   "result": "super_hit",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://filmibeat.com/tamil/news/2020/kannum-kannum-kollaiyadithaal-final-box-office-verdict-dulquer-salman-thriller-becomes-a-superhit-295958.html",
+    "https://www.ibtimes.co.in/box-office-collection-dulquer-salmaans-kkk-draupathi-overpower-thappad-bheesma-chennai-814418"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Telugu release: Kanulu Kanulanu Dochayante."
+  },
+  "Kaantha": {
+   "result": "flop",
+   "gross": {
+    "low": 35.35,
+    "high": 35.35,
+    "text": "₹35.35 crore"
+   },
+   "budget": {
+    "low": 35,
+    "high": 40,
+    "text": "₹35-40 crore"
+   },
+   "urls": [
+    "https://www.koimoi.com/box-office/kaantha-box-office-closing-collection-dulquer-salmaan-starrer-ends-its-disappointing-run-with-a-deficit-of-43/",
+    "https://sacnilk.com/news/Kaantha_OTT_ReleaseCheck_Out_Box_Office_Closing_Collections_and_OTT_Details"
+   ],
+   "teluguRelease": "bilingual",
+   "checkedOn": "2026-11-18",
+   "notes": "Released in Tamil and Telugu together."
+  },
+  "I'm Game (film)": {
+   "result": "below_average",
+   "gross": {
+    "low": 48.47,
+    "high": 48.47,
+    "text": "₹48.47 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://www.newsbytesapp.com/news/entertainment/salmaan-accepts-responsibility-as-im-game-underperforms-at-box-office/tldr",
+    "https://www.theweek.in/news/entertainment/2026/09/10/im-game-day-8-box-office-collection-dulquer-salmaans-thriller-falls-sharply-as-second-week-begins.html"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Released in Malayalam, Telugu, Tamil and Hindi. Underperformed; no final verdict published."
+  }
+ }
+}

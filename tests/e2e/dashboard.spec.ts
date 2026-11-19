@@ -229,6 +229,18 @@ test.describe("Home page", () => {
     expect(errors).toEqual([]);
   });
 
+  test("the career graph shows every film and names it on hover or tap", async ({ page }) => {
+    await page.goto("/hero/vishwak-sen");
+    const graph = page.getByRole("img", { name: /Vishwak Sen: box-office result of every lead film/ });
+    await graph.scrollIntoViewIfNeeded();
+    const dots = graph.getByRole("button");
+    expect(await dots.count()).toBeGreaterThanOrEqual(10);
+    await graph.getByRole("button", { name: /^Gaami, 2024: Hit$/ }).focus();
+    await expect(page.getByRole("tooltip")).toContainText("Gaami");
+    // The next announced film is drawn at the end.
+    await expect(graph).toContainText("ENE Repeat");
+  });
+
   test("find your hero opens his page", async ({ page }) => {
     await page.goto("/");
     const box = page.getByRole("combobox", { name: "Find a hero" });

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { HeroStarBreakdown } from "@/components/dashboard/star-breakdown";
 import { HeroAvatar } from "@/components/hero/hero-avatar";
+import { CareerChart, type CareerPoint } from "@/components/hero/career-chart";
 import { HeroYearChart } from "@/components/hero/hero-year-chart";
 import { HeroFilmsTable, type FilmRowView } from "@/components/hero/hero-films-table";
 import { TollyHeroCard } from "@/components/tolly/tolly-hero-card";
@@ -172,6 +173,22 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
   const nextFilm = [...excluded]
     .filter((e) => /not yet released/i.test(e.reason ?? "") && !/[="]/.test(e.title))
     .sort((a, b) => (a.year ?? 9999) - (b.year ?? 9999))[0];
+  const cleanTitle = (t: string) => t.replace(/^unlinked:/, "").replace(/\|\d{4}$/, "").replace(/ \((\d{4} )?(Indian |Telugu |Tamil |Malayalam )?film\)$/, "");
+  const careerPoints: CareerPoint[] = films
+    .filter((f) => f.year)
+    .map((f) => {
+      const r = rows.find((x) => x.id === f.filmId)!;
+      return {
+        id: f.filmId,
+        title: f.title,
+        date: f.releaseDate ?? null,
+        year: f.year as number,
+        result: f.commercial.verdict ?? f.commercial.label ?? null,
+        gross: r.grossText ?? (r.gross ? formatMetric("topGross", r.gross) : null),
+        score: r.tolly?.index ?? null,
+        note: r.verdict === "recent" ? "Recent release: the result may still change." : r.verdictSource ? `Result: ${r.verdictSource}` : null,
+      };
+    });
   const first = dated[dated.length - 1];
   const firstHit = [...dated].reverse().find((r) => r.verdict === "hit" || r.verdict === "blockbuster");
   const firstBlockbuster = [...dated].reverse().find((r) => r.verdict === "blockbuster");
@@ -428,6 +445,15 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
               </li>
             ))}
           </ul>
+        </section>
+
+        {/* Career graph */}
+        <section className="card p-4 sm:p-6 lg:col-span-2" aria-labelledby="career">
+          <h2 id="career" className="font-serif text-[22px] font-semibold text-ink">Career graph</h2>
+          <p className="mt-0.5 text-[13px] text-ink-2">Every film as a dot, from disaster at the bottom to blockbuster at the top. Point at a dot to see the film.</p>
+          <div className="mt-3">
+            <CareerChart points={careerPoints} name={hero.name} next={nextFilm ? { title: cleanTitle(nextFilm.title), year: nextFilm.year } : null} />
+          </div>
         </section>
 
         {/* Year by year */}
