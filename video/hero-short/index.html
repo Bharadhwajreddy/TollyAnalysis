@@ -72,7 +72,8 @@
     </div>
     <div id="s0cta" style="position:absolute;left:0;right:0;top:760px;text-align:center">
       <div class="chip" style="background:var(--wine);color:#fff;font-size:22px;padding:12px 26px">Subscribe · Tolly Analysis</div>
-      <div style="margin-top:12px;font-size:14px;color:var(--ink2)">Spotted a mistake? Tell us in the comments.</div>
+      <div style="margin-top:12px;font-size:16px;font-weight:800;color:var(--gold)">Which hero next? Comment cheyyandi 👇</div>
+      <div style="margin-top:6px;font-size:14px;color:var(--ink2)">Spotted a mistake? Tell us in the comments.</div>
     </div>
   </section>
 
@@ -149,6 +150,8 @@ const COPY = {
     ],
     graphChip: (h) => { const t = h.films.filter((f) => f.kind === "telugu"); return `Straight Telugu films: <b>${t.filter((f) => HIT(f.result)).length} of ${t.length} super hits</b>`; },
     graphChipTone: "good",
+    portraitPoster: true,
+    extraPosters: true,
     hook: "Can <b style='color:var(--gold)'>Aakasamlo Oka Tara</b> bring back the Sita Ramam magic?",
     graphLine: "Kaantha and I'm Game slipped. Can <b style='color:var(--gold)'>Aakasamlo Oka Tara</b> lift him again?",
     ifHit: "Another straight-Telugu hit after Sita Ramam and Lucky Baskhar",
@@ -209,7 +212,7 @@ $("s1").innerHTML = `
   <div class="photo" id="s1p" style="width:150px;height:150px;left:30px;top:76px;border-color:${C};background-image:${IMG(H.slug)}"></div>
   <div id="s1n" class="display" style="position:absolute;left:198px;top:92px;font-size:38px;font-weight:900;line-height:1;color:${C}">${H.name}</div>
   <div id="s1m" style="position:absolute;left:198px;top:142px;font-size:15px;color:var(--ink2);line-height:1.4">Debut ${H.debutYear}<br/>${H.films.length} ${COPY.sub}</div>
-  <div id="s1poster" style="position:absolute;left:30px;top:300px;width:480px;height:316px;border-radius:18px;overflow:hidden;border:2px solid rgba(232,182,90,.6);box-shadow:0 20px 60px rgba(0,0,0,.6);
+  <div id="s1poster" style="position:absolute;${COPY.portraitPoster ? "left:120px;top:236px;width:300px;height:376px" : "left:30px;top:300px;width:480px;height:316px"};border-radius:18px;overflow:hidden;border:2px solid rgba(232,182,90,.6);box-shadow:0 20px 60px rgba(0,0,0,.6);
     background:linear-gradient(160deg,#3a1a10,#140a0c);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
     <img id="s1img" src="posters/${H.slug}.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror="this.remove()" />
     <div class="kicker" style="font-size:12px">New film</div>
@@ -410,12 +413,15 @@ if (COPY.facts) $("s4").innerHTML = `
 
 // ── 7. Tolly Index today ──
 $("s7").innerHTML = `
+  ${COPY.extraPosters ? `<div style="position:absolute;inset:-40px;background:url(posters/${H.slug}-3.jpg) center 20%/cover;filter:blur(14px) brightness(.35) saturate(1.2)"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,8,12,.55),rgba(18,8,12,.85))"></div>` : ""}
   <div class="kicker" style="position:absolute;top:110px;width:100%;text-align:center">Tolly Index · today</div>
   <div class="photo" id="s7p" style="width:170px;height:170px;left:185px;top:150px;border-color:${C};background-image:${IMG(H.slug)}"></div>
   <div id="s7s" class="display" style="position:absolute;left:0;right:0;top:350px;text-align:center;font-size:120px;font-weight:900;line-height:1;color:${C}">0.0</div>
   <div id="s7r" style="position:absolute;left:0;right:0;top:480px;text-align:center;font-size:22px;font-weight:800">#${H.rank} of ${H.of} heroes</div>
   <div style="position:absolute;left:60px;right:60px;top:530px;height:14px;border-radius:7px;background:rgba(255,255,255,.08)"><div id="s7b" style="height:100%;border-radius:7px;background:${C};width:0"></div></div>
-  <div id="s7n" style="position:absolute;left:30px;right:30px;top:590px;text-align:center">
+  ${COPY.extraPosters ? `<img id="s7img" src="posters/${H.slug}-2.jpg" style="position:absolute;left:60px;top:598px;width:110px;height:137px;object-fit:cover;border-radius:10px;border:2px solid rgba(232,182,90,.7);box-shadow:0 10px 30px rgba(0,0,0,.6)" onerror="this.remove()"/>` : ""}
+  <div id="s7n" style="position:absolute;left:${COPY.extraPosters ? 170 : 30}px;right:30px;top:590px;text-align:center">
     <div style="font-size:17px;color:var(--ink2)">After <b style="color:var(--gold)">${COPY.next}</b></div>
     <div class="display" id="s7q" style="display:inline-block;margin-top:6px;font-size:64px;font-weight:900;color:var(--gold)">?</div>
     <div style="font-size:15px;color:var(--muted);margin-top:4px">We update it after the collections</div>
@@ -526,7 +532,7 @@ function render(t) {
     pop($("s7p"), prog(tt, 0.1, 0.6));
     const p7 = out(prog(tt, 0.5, 2.2));
     $("s7s").textContent = fmt(H.index * p7); $("s7b").style.width = H.index * p7 + "%";
-    rise($("s7r"), prog(tt, 1.6, 2.1)); rise($("s7n"), prog(tt, 2.6, 3.2));
+    rise($("s7r"), prog(tt, 1.6, 2.1)); rise($("s7n"), prog(tt, 2.6, 3.2)); if ($("s7img")) rise($("s7img"), prog(tt, 2.6, 3.2));
     $("s7q").style.transform = `scale(${1 + 0.12 * Math.sin(tt * 5)})`;
   }
 
