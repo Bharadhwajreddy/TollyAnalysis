@@ -8791,15 +8791,15 @@
     "text": "₹45 crore"
    },
    "gross": {
-    "low": 43,
-    "high": 43,
-    "text": "₹43 crore"
+    "low": 18.02,
+    "high": 18.02,
+    "text": "₹18.02 crore"
    },
    "verdict": {
-    "verdict": "hit",
-    "sentence": "The blog's film page gives the verdict \"Hit\".",
-    "source": "trade-blog",
-    "url": "https://www.mtwikiblog.com/2026/04/biker-telugu-movie-2026-budget-hit-or.html"
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-23: About ₹18 crore worldwide after 4 weeks; earlier ₹43 crore figure was wrong.",
+    "source": "editor-check",
+    "url": "https://www.sacnilk.com/quicknews/Biker_2026_Box_Office_Collection_Day_28"
    },
    "starring": [
     "Sharwanand",
@@ -33805,10 +33805,10 @@
     "text": "₹36 crore"
    },
    "verdict": {
-    "verdict": "above_average",
-    "sentence": "It received positive reviews and turned out to be a decent hit praising the direction, Sharwanand's and Naresh's performances.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Nari_Nari_Naduma_Murari_(2026_film)"
+    "verdict": "hit",
+    "sentence": "Checked against trade reports on 2026-11-23: Pinkvilla: clean hit; Filmibeat: superhit. Lower result used.",
+    "source": "editor-check",
+    "url": "https://www.pinkvilla.com/entertainment/box-office/nari-nari-naduma-murari-final-worldwide-box-office-collections-sharwanand-starrer-rom-com-closes-theatrical-run-at-impressive-rs-36-crore-globally-1400692"
    },
    "starring": [
     "Sharwanand",
@@ -34887,10 +34887,10 @@
     "text": "₹28.35 crore"
    },
    "verdict": {
-    "verdict": "above_average",
-    "sentence": "It also done decent business in other parts of the globe, where it is estimated to have grossed ₹2 crore.",
-    "source": "wikipedia-film",
-    "url": "https://en.wikipedia.org/wiki/Express_Raja"
+    "verdict": "hit",
+    "sentence": "Checked against trade reports on 2026-11-23: Filmibeat: super hit; Wikipedia: above average. Middle result used.",
+    "source": "editor-check",
+    "url": "https://www.filmibeat.com/telugu/news/2017/sharwanand-s-successful-streak-continues-268484.html"
    },
    "starring": [
     "Sharwanand",
@@ -35072,10 +35072,10 @@
     "text": "₹11.9–12 crore"
    },
    "verdict": {
-    "verdict": "above_average",
-    "sentence": "Listed as \"Semi Hit\" in the blog's Sharwanand filmography.",
-    "source": "trade-blog",
-    "url": "https://www.mtwikiblog.com/p/sharwanand-filmography.html"
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-23: One of six flops in a row before Oke Oka Jeevitham; theatrical rights sold for ₹21 crore.",
+    "source": "editor-check",
+    "url": "https://newstap.in/cinema/sharwanand-scores-a-hit-after-6-consecutive-flop-1438173"
    },
    "starring": [
     "Sharwanand",
@@ -35101,10 +35101,10 @@
    "budget": null,
    "gross": null,
    "verdict": {
-    "verdict": "average",
-    "sentence": "Listed as \"Average\" in the blog's Sharwanand filmography.",
-    "source": "trade-blog",
-    "url": "https://www.mtwikiblog.com/p/sharwanand-filmography.html"
+    "verdict": "flop",
+    "sentence": "Checked against trade reports on 2026-11-23: One of six flops in a row before Oke Oka Jeevitham.",
+    "source": "editor-check",
+    "url": "https://newstap.in/cinema/sharwanand-scores-a-hit-after-6-consecutive-flop-1438173"
    },
    "starring": [
     "Sharwanand",
@@ -35235,15 +35235,15 @@
    "qid": "Q126453793",
    "budget": null,
    "gross": {
-    "low": 21.85,
-    "high": 21.85,
-    "text": "₹21.85 crore"
+    "low": 21.43,
+    "high": 21.43,
+    "text": "₹21.43 crore"
    },
    "verdict": {
-    "verdict": "hit",
-    "sentence": "The blog's film page gives the verdict \"Hit\".",
-    "source": "trade-blog",
-    "url": "https://www.mtwikiblog.com/2024/06/Manamey-Telugu-Movie-Box-Office-Hit-or-Flop.html"
+    "verdict": "below_average",
+    "sentence": "Checked against trade reports on 2026-11-23: No official verdict; fell after the opening weekend.",
+    "source": "editor-check",
+    "url": "https://sacnilk.com/movie/Manamey_2024"
    },
    "starring": [
     "Sharwanand",
@@ -79104,9 +79104,9 @@
    "role": "Adhi alias \"Kutlu\"",
    "notes": "Telugu-Tamil bilingual film",
    "language": "",
-   "scope": "lead",
-   "include": true,
-   "excludeReason": null,
+   "scope": "supporting",
+   "include": false,
+   "excludeReason": "Editorial: Tamil version of Oke Oka Jeevitham, which already counts",
    "billing": "no starring list (kept, unverified)"
   },
   {

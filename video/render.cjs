@@ -2,7 +2,7 @@
 /**
  * Renders a video page (video/<name>/index.html, which exposes render(t) and DURATION) to MP4:
  * one screenshot per frame at 1080×1920, then ffmpeg with a silent audio track (YouTube Shorts friendly).
- * Usage: node video/render.cjs video/<name> [out.mp4] [fps] [--query key=value] [--still t1,t2,...]
+ * Usage: node video/render.cjs video/<name> [out.mp4] [fps] [--size WxH] [--query key=value] [--still t1,t2,...]
  */
 const { chromium } = require("playwright");
 const { execFileSync } = require("node:child_process");
@@ -17,7 +17,9 @@ const path = require("node:path");
   const queryArg = process.argv.indexOf("--query");
   const query = queryArg > 0 ? "&" + process.argv[queryArg + 1] : "";
   const browser = await chromium.launch();
-  const page = await browser.newPage({ viewport: { width: 540, height: 960 }, deviceScaleFactor: 2 });
+  const sizeArg = process.argv.indexOf("--size");
+  const [vw, vh] = sizeArg > 0 ? process.argv[sizeArg + 1].split("x").map(Number) : [540, 960];
+  const page = await browser.newPage({ viewport: { width: vw, height: vh }, deviceScaleFactor: 2 });
   await page.goto("file://" + path.join(dir, "index.html") + "?render=1" + query);
   await page.waitForFunction(() => window.ready === true);
   await page.evaluate(() => document.fonts.ready);

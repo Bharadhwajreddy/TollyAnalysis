@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-19",
+ "asOf": "2026-11-23",
  "faces": [
   "aadi-saikumar",
   "adivi-sesh",
@@ -77,7 +77,7 @@
    "groups": [
     {
      "key": "audience",
-     "value": 57.4,
+     "value": 57,
      "share": 37
     },
     {
@@ -97,7 +97,7 @@
     },
     {
      "key": "career",
-     "value": 24.1,
+     "value": 25.4,
      "share": 11
     }
    ],
@@ -118,7 +118,7 @@
      "key": "audience",
      "group": "audience",
      "label": "Audience score of his films",
-     "value": 57.4,
+     "value": 57,
      "share": 37
     },
     {
@@ -188,7 +188,7 @@
      "key": "consistency",
      "group": "career",
      "label": "Consistency",
-     "value": 10.9,
+     "value": 14.5,
      "share": 4
     },
     {
@@ -243,7 +243,7 @@
    },
    "factors": {
     "audience": {
-     "value": 57.4,
+     "value": 57,
      "share": 37
     },
     "success": {
@@ -283,7 +283,7 @@
      "share": 10
     },
     "consistency": {
-     "value": 10.9,
+     "value": 14.5,
      "share": 4
     },
     "films": {
@@ -512,7 +512,7 @@
     },
     {
      "key": "recent",
-     "value": 56.1,
+     "value": 56,
      "share": 7
     },
     {
@@ -522,7 +522,7 @@
     },
     {
      "key": "career",
-     "value": 35.8,
+     "value": 35.9,
      "share": 11
     }
    ],
@@ -599,7 +599,7 @@
      "key": "recent",
      "group": "recent",
      "label": "Recent success",
-     "value": 56.1,
+     "value": 56,
      "share": 7
     },
     {
@@ -641,7 +641,7 @@
      "key": "gap",
      "group": "career",
      "label": "Release pace",
-     "value": 29.1,
+     "value": 30.9,
      "share": 1
     }
    ],
@@ -700,7 +700,7 @@
      "share": 4
     },
     "recent": {
-     "value": 56.1,
+     "value": 56,
      "share": 7
     },
     "fame": {
@@ -724,7 +724,7 @@
      "share": 1
     },
     "gap": {
-     "value": 29.1,
+     "value": 30.9,
      "share": 1
     }
    },
@@ -932,6 +932,546 @@
     }
    ],
    "next": "Aakasamlo Oka Tara"
+  },
+  {
+   "slug": "sharwanand",
+   "name": "Sharwanand",
+   "groups": [
+    {
+     "key": "audience",
+     "value": 56.7,
+     "share": 37
+    },
+    {
+     "key": "boxoffice",
+     "value": 50,
+     "share": 35
+    },
+    {
+     "key": "recent",
+     "value": 41.8,
+     "share": 7
+    },
+    {
+     "key": "fame",
+     "value": 53.4,
+     "share": 10
+    },
+    {
+     "key": "career",
+     "value": 48.3,
+     "share": 11
+    }
+   ],
+   "instagram": {
+    "platform": "instagram",
+    "followers": 1365461,
+    "date": "2026-11-08",
+    "url": "https://www.instagram.com/imsharwanand/"
+   },
+   "x": null,
+   "factorList": [
+    {
+     "key": "audience",
+     "group": "audience",
+     "label": "Audience score of his films",
+     "value": 56.7,
+     "share": 37
+    },
+    {
+     "key": "success",
+     "group": "boxoffice",
+     "label": "Success ratio",
+     "value": 47.5,
+     "share": 9
+    },
+    {
+     "key": "hits",
+     "group": "boxoffice",
+     "label": "Hit films",
+     "value": 76.4,
+     "share": 6
+    },
+    {
+     "key": "blockbusters",
+     "group": "boxoffice",
+     "label": "Blockbusters",
+     "value": 80.9,
+     "share": 4
+    },
+    {
+     "key": "bigFilms",
+     "group": "boxoffice",
+     "label": "₹100-crore films",
+     "value": 23.4,
+     "share": 3
+    },
+    {
+     "key": "totalGross",
+     "group": "boxoffice",
+     "label": "Total box office",
+     "value": 43.8,
+     "share": 6
+    },
+    {
+     "key": "topGross",
+     "group": "boxoffice",
+     "label": "Biggest film",
+     "value": 31.3,
+     "share": 3
+    },
+    {
+     "key": "avgGross",
+     "group": "boxoffice",
+     "label": "Box office per film",
+     "value": 28.1,
+     "share": 4
+    },
+    {
+     "key": "recent",
+     "group": "recent",
+     "label": "Recent success",
+     "value": 41.8,
+     "share": 7
+    },
+    {
+     "key": "fame",
+     "group": "fame",
+     "label": "Fame",
+     "value": 53.4,
+     "share": 10
+    },
+    {
+     "key": "consistency",
+     "group": "career",
+     "label": "Consistency",
+     "value": 20,
+     "share": 4
+    },
+    {
+     "key": "films",
+     "group": "career",
+     "label": "Films as lead",
+     "value": 74.5,
+     "share": 3
+    },
+    {
+     "key": "years",
+     "group": "career",
+     "label": "Years active",
+     "value": 70,
+     "share": 2
+    },
+    {
+     "key": "peak",
+     "group": "career",
+     "label": "Busiest year",
+     "value": 60.9,
+     "share": 1
+    },
+    {
+     "key": "gap",
+     "group": "career",
+     "label": "Release pace",
+     "value": 26.4,
+     "share": 1
+    }
+   ],
+   "debutYear": 2004,
+   "index": 52,
+   "rank": 25,
+   "of": 56,
+   "career": {
+    "slug": "sharwanand",
+    "judged": 23,
+    "hits": 11,
+    "recentJudged": 5,
+    "recentHits": 2,
+    "leadFilms": 24,
+    "blockbusters": 2,
+    "bigFilms": 0,
+    "totalGross": 226.2,
+    "topGross": 45.3,
+    "avgGross": 25.1,
+    "grossFilms": 9,
+    "yearsActive": 23,
+    "peakFilms": 3,
+    "releaseGap": 10.8
+   },
+   "factors": {
+    "audience": {
+     "value": 56.7,
+     "share": 37
+    },
+    "success": {
+     "value": 47.5,
+     "share": 9
+    },
+    "hits": {
+     "value": 76.4,
+     "share": 6
+    },
+    "blockbusters": {
+     "value": 80.9,
+     "share": 4
+    },
+    "bigFilms": {
+     "value": 23.4,
+     "share": 3
+    },
+    "totalGross": {
+     "value": 43.8,
+     "share": 6
+    },
+    "topGross": {
+     "value": 31.3,
+     "share": 3
+    },
+    "avgGross": {
+     "value": 28.1,
+     "share": 4
+    },
+    "recent": {
+     "value": 41.8,
+     "share": 7
+    },
+    "fame": {
+     "value": 53.4,
+     "share": 10
+    },
+    "consistency": {
+     "value": 20,
+     "share": 4
+    },
+    "films": {
+     "value": 74.5,
+     "share": 3
+    },
+    "years": {
+     "value": 70,
+     "share": 2
+    },
+    "peak": {
+     "value": 60.9,
+     "share": 1
+    },
+    "gap": {
+     "value": 26.4,
+     "share": 1
+    }
+   },
+   "followers": {
+    "total": 1365461,
+    "asOf": "2026-11-08"
+   },
+   "best": [
+    {
+     "title": "Prasthanam",
+     "year": 2010,
+     "index": 78.5
+    },
+    {
+     "title": "Gamyam",
+     "year": 2008,
+     "index": 75.4
+    },
+    {
+     "title": "Padi Padi Leche Manasu",
+     "year": 2018,
+     "index": 66.6
+    }
+   ],
+   "films": [
+    {
+     "key": "unlinked:Aidho Tareekhu|2004",
+     "title": "Aidho Tareekhu",
+     "year": 2004,
+     "date": null,
+     "kind": "other",
+     "result": null,
+     "checked": false,
+     "gross": null,
+     "grossText": null,
+     "score": null
+    },
+    {
+     "key": "Amma Cheppindi",
+     "title": "Amma Cheppindi",
+     "year": 2006,
+     "date": "2006-07-28",
+     "kind": "telugu",
+     "result": "hit",
+     "checked": false,
+     "gross": null,
+     "grossText": null,
+     "score": 45.4
+    },
+    {
+     "key": "Veedhi",
+     "title": "Veedhi",
+     "year": 2006,
+     "date": "2006-08-10",
+     "kind": "telugu",
+     "result": "average",
+     "checked": false,
+     "gross": null,
+     "grossText": null,
+     "score": 43.7
+    },
+    {
+     "key": "Gamyam",
+     "title": "Gamyam",
+     "year": 2008,
+     "date": "2008-02-29",
+     "kind": "telugu",
+     "result": "hit",
+     "checked": false,
+     "gross": null,
+     "grossText": "₹11 crore distributors' share",
+     "score": 75.4
+    },
+    {
+     "key": "Raju Maharaju",
+     "title": "Raju Maharaju",
+     "year": 2009,
+     "date": "2009-06-19",
+     "kind": "telugu",
+     "result": "hit",
+     "checked": false,
+     "gross": null,
+     "grossText": null,
+     "score": 47.4
+    },
+    {
+     "key": "Prasthanam",
+     "title": "Prasthanam",
+     "year": 2010,
+     "date": "2010-04-16",
+     "kind": "telugu",
+     "result": "above_average",
+     "checked": false,
+     "gross": null,
+     "grossText": null,
+     "score": 78.5
+    },
+    {
+     "key": "Andari Banduvaya",
+     "title": "Andari Banduvaya",
+     "year": 2010,
+     "date": "2010-05-14",
+     "kind": "telugu",
+     "result": "flop",
+     "checked": false,
+     "gross": null,
+     "grossText": null,
+     "score": 47.9
+    },
+    {
+     "key": "Nuvva Nena",
+     "title": "Nuvva Nena",
+     "year": 2012,
+     "date": "2012-03-16",
+     "kind": "telugu",
+     "result": "flop",
+     "checked": false,
+     "gross": null,
+     "grossText": null,
+     "score": 47.5
+    },
+    {
+     "key": "Ko Antey Koti",
+     "title": "Ko Antey Koti",
+     "year": 2012,
+     "date": "2012-12-28",
+     "kind": "telugu",
+     "result": "average",
+     "checked": false,
+     "gross": null,
+     "grossText": null,
+     "score": 40.4
+    },
+    {
+     "key": "Run Raja Run",
+     "title": "Run Raja Run",
+     "year": 2014,
+     "date": "2014-08-01",
+     "kind": "telugu",
+     "result": "blockbuster",
+     "checked": false,
+     "gross": null,
+     "grossText": "₹12 crore distributors' share",
+     "score": 66.3
+    },
+    {
+     "key": "Malli Malli Idi Rani Roju",
+     "title": "Malli Malli Idi Rani Roju",
+     "year": 2015,
+     "date": "2015-02-06",
+     "kind": "telugu",
+     "result": "hit",
+     "checked": false,
+     "gross": null,
+     "grossText": null,
+     "score": 61.7
+    },
+    {
+     "key": "Express Raja",
+     "title": "Express Raja",
+     "year": 2016,
+     "date": "2016-01-14",
+     "kind": "telugu",
+     "result": "hit",
+     "checked": true,
+     "gross": 28.35,
+     "grossText": "₹28.35 crore",
+     "score": 57.8
+    },
+    {
+     "key": "Sathamanam Bhavati",
+     "title": "Sathamanam Bhavati",
+     "year": 2017,
+     "date": "2017-01-14",
+     "kind": "telugu",
+     "result": "hit",
+     "checked": false,
+     "gross": null,
+     "grossText": null,
+     "score": 62.1
+    },
+    {
+     "key": "Radha (2017 film)",
+     "title": "Radha",
+     "year": 2017,
+     "date": "2017-05-12",
+     "kind": "telugu",
+     "result": "hit",
+     "checked": false,
+     "gross": 27,
+     "grossText": "₹27 crore",
+     "score": 42.5
+    },
+    {
+     "key": "Mahanubhavudu",
+     "title": "Mahanubhavudu",
+     "year": 2017,
+     "date": "2017-09-29",
+     "kind": "telugu",
+     "result": "blockbuster",
+     "checked": false,
+     "gross": 45.3,
+     "grossText": "₹45.3 crore",
+     "score": 50.8
+    },
+    {
+     "key": "Padi Padi Leche Manasu",
+     "title": "Padi Padi Leche Manasu",
+     "year": 2018,
+     "date": "2018-12-21",
+     "kind": "telugu",
+     "result": "flop",
+     "checked": false,
+     "gross": 12,
+     "grossText": "₹12 crore",
+     "score": 66.6
+    },
+    {
+     "key": "Ranarangam",
+     "title": "Ranarangam",
+     "year": 2019,
+     "date": "2019-08-15",
+     "kind": "telugu",
+     "result": "flop",
+     "checked": false,
+     "gross": null,
+     "grossText": null,
+     "score": 51.6
+    },
+    {
+     "key": "Jaanu (2020 film)",
+     "title": "Jaanu",
+     "year": 2020,
+     "date": "2020-02-07",
+     "kind": "telugu",
+     "result": "flop",
+     "checked": true,
+     "gross": 11.9,
+     "grossText": "₹11.9–12 crore",
+     "score": 64.7
+    },
+    {
+     "key": "Sreekaram",
+     "title": "Sreekaram",
+     "year": 2021,
+     "date": "2021-03-11",
+     "kind": "telugu",
+     "result": "flop",
+     "checked": true,
+     "gross": null,
+     "grossText": null,
+     "score": 58.8
+    },
+    {
+     "key": "Maha Samudram",
+     "title": "Maha Samudram",
+     "year": 2021,
+     "date": "2021-10-14",
+     "kind": "telugu",
+     "result": "disaster",
+     "checked": false,
+     "gross": null,
+     "grossText": null,
+     "score": 51.3
+    },
+    {
+     "key": "Oke Oka Jeevitham",
+     "title": "Oke Oka Jeevitham",
+     "year": 2022,
+     "date": "2022-09-09",
+     "kind": "telugu",
+     "result": "hit",
+     "checked": false,
+     "gross": 26.15,
+     "grossText": "₹26.15 crore",
+     "score": 65.7
+    },
+    {
+     "key": "Manamey",
+     "title": "Manamey",
+     "year": 2024,
+     "date": "2024-06-07",
+     "kind": "telugu",
+     "result": "below_average",
+     "checked": true,
+     "gross": 21.43,
+     "grossText": "₹21.43 crore",
+     "score": 49.6
+    },
+    {
+     "key": "Nari Nari Naduma Murari (2026 film)",
+     "title": "Nari Nari Naduma Murari",
+     "year": 2026,
+     "date": "2026-01-14",
+     "kind": "telugu",
+     "result": "hit",
+     "checked": true,
+     "gross": 36,
+     "grossText": "₹36 crore",
+     "score": 53.1
+    },
+    {
+     "key": "Biker (film)",
+     "title": "Biker",
+     "year": 2026,
+     "date": "2026-04-03",
+     "kind": "telugu",
+     "result": "flop",
+     "checked": true,
+     "gross": 18.02,
+     "grossText": "₹18.02 crore",
+     "score": 42.8
+    }
+   ],
+   "next": null
   }
  ]
 }

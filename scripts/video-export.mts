@@ -23,7 +23,7 @@ const out = slugs.map((slug) => {
       const f = films.get(c.film) as { title: string; year: number; releaseDate: string | null; languages: string[]; gross: { text: string; low: number; high: number } | null; verdict: { verdict: string; source: string } | null; teluguRelease?: string };
       const t = tfilms.get(c.film) as { title: string; index: number | null } | undefined;
       const kind = f.teluguRelease === "dubbed" ? "dubbed" : f.languages.some((l) => /telugu/i.test(l)) ? "telugu" : f.languages.some((l) => /hindi/i.test(l)) ? "hindi" : "other";
-      return { key: c.film, title: clean(t?.title ?? f.title), year: f.year, date: f.releaseDate, kind, result: f.verdict?.verdict ?? null, checked: f.verdict?.source === "editor-check", gross: f.gross?.low ?? null, grossText: f.gross?.text ?? null, score: t?.index ?? null };
+      return { key: c.film, title: clean(t?.title ?? f.title), year: f.year, date: f.releaseDate, kind, result: f.verdict?.verdict ?? null, checked: f.verdict?.source === "editor-check", gross: f.gross && !(f.gross as { isShare?: boolean }).isShare ? f.gross.low : null, grossText: f.gross?.text ?? null, score: t?.index ?? null };
     })
     .sort((a: { date: string | null; year: number }, b: { date: string | null; year: number }) => (a.date ?? `${a.year}-07-01`).localeCompare(b.date ?? `${b.year}-07-01`));
   const next = snap.credits.find((c: { hero: string; excludeReason: string }) => c.hero === slug && /not yet released/.test(c.excludeReason ?? ""));

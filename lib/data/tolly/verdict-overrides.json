@@ -2637,6 +2637,94 @@
    "teluguRelease": null,
    "checkedOn": "2026-11-18",
    "notes": "Great Andhra: Happy Happy Ga \"failing to wow the crowds\", listed among Varun Sandesh's flops (Deccan Chronicle: his last success was Yemaindi Ee Vela, 2010). Only one source; no figures."
+  },
+  "Jaanu (2020 film)": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://newstap.in/cinema/sharwanand-scores-a-hit-after-6-consecutive-flop-1438173",
+    "https://www.123telugu.com/mnews/jaanu-disappoints-the-us-trade.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-23",
+   "notes": "One of six flops in a row before Oke Oka Jeevitham; theatrical rights sold for ₹21 crore."
+  },
+  "Sreekaram": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://newstap.in/cinema/sharwanand-scores-a-hit-after-6-consecutive-flop-1438173",
+    "https://www.gulte.com/movienews/127737/whats-wrong-with-sharwa"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-23",
+   "notes": "One of six flops in a row before Oke Oka Jeevitham."
+  },
+  "Manamey": {
+   "result": "below_average",
+   "gross": {
+    "low": 21.43,
+    "high": 21.43,
+    "text": "₹21.43 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://sacnilk.com/movie/Manamey_2024",
+    "https://www.filmibeat.com/telugu/news/2024/manamey-box-office-collection-prediction-day-5-sharwanand-krithi-shettys-film-falls-flat-at-tick-401013.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-23",
+   "notes": "No official verdict; fell after the opening weekend."
+  },
+  "Biker (film)": {
+   "result": "flop",
+   "gross": {
+    "low": 18.02,
+    "high": 18.02,
+    "text": "₹18.02 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://www.sacnilk.com/quicknews/Biker_2026_Box_Office_Collection_Day_28",
+    "https://andhravilas.net/biker-movie-collections-break-even-target/"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-23",
+   "notes": "About ₹18 crore worldwide after 4 weeks; earlier ₹43 crore figure was wrong."
+  },
+  "Nari Nari Naduma Murari (2026 film)": {
+   "result": "hit",
+   "gross": {
+    "low": 36,
+    "high": 36,
+    "text": "₹36 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://www.pinkvilla.com/entertainment/box-office/nari-nari-naduma-murari-final-worldwide-box-office-collections-sharwanand-starrer-rom-com-closes-theatrical-run-at-impressive-rs-36-crore-globally-1400692",
+    "https://filmibeat.com/telugu/news/2026/nari-nari-naduma-murari-box-office-collection-day-18-sharwanands-film-is-a-superhit-500339.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-23",
+   "notes": "Pinkvilla: clean hit; Filmibeat: superhit. Lower result used."
+  },
+  "Express Raja": {
+   "result": "hit",
+   "gross": {
+    "low": 28.35,
+    "high": 28.35,
+    "text": "₹28.35 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://www.filmibeat.com/telugu/news/2017/sharwanand-s-successful-streak-continues-268484.html",
+    "https://en.wikipedia.org/wiki/Express_Raja"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-23",
+   "notes": "Filmibeat: super hit; Wikipedia: above average. Middle result used."
   }
  }
 }

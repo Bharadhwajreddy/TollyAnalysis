@@ -8,6 +8,7 @@
  * but wrong for supporting, antagonist and extended-cameo parts, listed here.
  */
 export const EXCLUDED_CREDITS: Record<string, { film: string; reason: string }[]> = {
+  sharwanand: [{ film: "unlinked:Kanam|2022", reason: "Tamil version of Oke Oka Jeevitham, which already counts" }],
   "rana-daggubati": [
     { film: "The Ghazi Attack", reason: "Hindi version of Ghazi, which already counts" },
     { film: "Baahubali: The Beginning", reason: "antagonist role, not a co-lead" },

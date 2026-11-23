@@ -1,7 +1,7 @@
 {
  "meta": {
   "version": "tolly-v3.0",
-  "asOf": "2026-11-19",
+  "asOf": "2026-11-23",
   "weights": {
    "rating": 0.5,
    "voice": 0,
@@ -134,7 +134,7 @@
    "gap": 1
   },
   "heroRules": {
-   "successPrior": 0.4619516562220233,
+   "successPrior": 0.4614695340501792,
    "successPriorFilms": 5,
    "recentPriorFilms": 2,
    "minGrossFilms": 3,
@@ -148,14 +148,14 @@
    "pendingHeroes": []
   },
   "sources": {
-   "imdb": "IMDb non-commercial datasets (title.basics, title.ratings, title.principals, title.akas), 2026-11-19",
+   "imdb": "IMDb non-commercial datasets (title.basics, title.ratings, title.principals, title.akas), 2026-11-23",
    "wikidata": "Wikidata query service (CC0): films by cast, release dates, languages, IMDb ids, language editions",
    "wikipedia": "Wikimedia page views via the MediaWiki API, English + Telugu, 2026-09-18 to 2026-11-17"
   },
   "films": {
    "total": 1407,
-   "complete": 1215,
-   "provisional": 98,
+   "complete": 1217,
+   "provisional": 96,
    "incomplete": 93,
    "excluded": 1
   },
@@ -631,7 +631,7 @@
    "judged": 27,
    "qualified": true,
    "reason": null,
-   "index": 71.8,
+   "index": 71.9,
    "band": 1.3,
    "best": [
     {
@@ -691,7 +691,7 @@
      "share": 9
     },
     "hits": {
-     "value": 80.9,
+     "value": 81.8,
      "share": 6
     },
     "blockbusters": {
@@ -739,7 +739,7 @@
      "share": 1
     },
     "gap": {
-     "value": 32.7,
+     "value": 34.5,
      "share": 1
     }
    },
@@ -765,7 +765,7 @@
    "judged": 23,
    "qualified": true,
    "reason": null,
-   "index": 71.7,
+   "index": 71.8,
    "band": 1.4,
    "best": [
     {
@@ -825,7 +825,7 @@
      "share": 9
     },
     "hits": {
-     "value": 80.9,
+     "value": 81.8,
      "share": 6
     },
     "blockbusters": {
@@ -861,7 +861,7 @@
      "share": 4
     },
     "films": {
-     "value": 73.6,
+     "value": 74.5,
      "share": 3
     },
     "years": {
@@ -983,7 +983,7 @@
      "share": 0
     },
     "recent": {
-     "value": 56.1,
+     "value": 56,
      "share": 8.3
     },
     "fame": {
@@ -1033,7 +1033,7 @@
    "judged": 18,
    "qualified": true,
    "reason": null,
-   "index": 66.7,
+   "index": 66.8,
    "band": 1.4,
    "best": [
     {
@@ -1089,11 +1089,11 @@
      "share": 37
     },
     "success": {
-     "value": 55.5,
+     "value": 55.4,
      "share": 9
     },
     "hits": {
-     "value": 75.5,
+     "value": 76.4,
      "share": 6
     },
     "blockbusters": {
@@ -1117,7 +1117,7 @@
      "share": 4
     },
     "recent": {
-     "value": 56.1,
+     "value": 56,
      "share": 7
     },
     "fame": {
@@ -1227,7 +1227,7 @@
      "share": 9
     },
     "hits": {
-     "value": 80.9,
+     "value": 81.8,
      "share": 6
     },
     "blockbusters": {
@@ -1263,7 +1263,7 @@
      "share": 4
     },
     "films": {
-     "value": 73.6,
+     "value": 74.5,
      "share": 3
     },
     "years": {
@@ -1435,7 +1435,7 @@
    "judged": 32,
    "qualified": true,
    "reason": null,
-   "index": 65.2,
+   "index": 65.1,
    "band": 1.4,
    "best": [
     {
@@ -1527,7 +1527,7 @@
      "share": 10
     },
     "consistency": {
-     "value": 12.7,
+     "value": 10.9,
      "share": 4
     },
     "films": {
@@ -2060,7 +2060,7 @@
      "share": 4
     },
     "recent": {
-     "value": 56.1,
+     "value": 56,
      "share": 7
     },
     "fame": {
@@ -2084,7 +2084,7 @@
      "share": 1
     },
     "gap": {
-     "value": 29.1,
+     "value": 30.9,
      "share": 1
     }
    },
@@ -2194,7 +2194,7 @@
      "share": 4
     },
     "recent": {
-     "value": 56.1,
+     "value": 56,
      "share": 7
     },
     "fame": {
@@ -2304,7 +2304,7 @@
      "share": 9
     },
     "hits": {
-     "value": 75.5,
+     "value": 76.4,
      "share": 6
     },
     "blockbusters": {
@@ -2328,7 +2328,7 @@
      "share": 4
     },
     "recent": {
-     "value": 56.1,
+     "value": 56,
      "share": 7
     },
     "fame": {
@@ -2520,7 +2520,7 @@
    "judged": 56,
    "qualified": true,
    "reason": null,
-   "index": 56.9,
+   "index": 57,
    "band": 0.9,
    "best": [
     {
@@ -2621,7 +2621,7 @@
      "share": 11.9
     },
     "consistency": {
-     "value": 78.2,
+     "value": 80,
      "share": 4.8
     },
     "films": {
@@ -2663,7 +2663,7 @@
    "judged": 10,
    "qualified": true,
    "reason": null,
-   "index": 55.8,
+   "index": 55.7,
    "band": 2.3,
    "best": [
     {
@@ -2755,7 +2755,7 @@
      "share": 10
     },
     "consistency": {
-     "value": 14.5,
+     "value": 12.7,
      "share": 4
     },
     "films": {
@@ -2783,149 +2783,6 @@
     "birthDate": "1989-05-09",
     "birthDateBy": "wikidata",
     "debutYear": 2011,
-    "debutYearBy": "wikidata",
-    "hasFreePhoto": true
-   }
-  },
-  {
-   "slug": "sharwanand",
-   "name": "Sharwanand",
-   "films": 24,
-   "excluded": 0,
-   "provisional": 2,
-   "complete": 21,
-   "judged": 22,
-   "qualified": true,
-   "reason": null,
-   "index": 55.2,
-   "band": 1.6,
-   "best": [
-    {
-     "title": "Prasthanam",
-     "year": 2010,
-     "index": 78.5
-    },
-    {
-     "title": "Gamyam",
-     "year": 2008,
-     "index": 75.4
-    },
-    {
-     "title": "Padi Padi Leche Manasu",
-     "year": 2018,
-     "index": 66.6
-    }
-   ],
-   "spread": 10.6,
-   "pillars": {
-    "rating": 60.9,
-    "reach": 51.4,
-    "stay": 52.5
-   },
-   "missing": [
-    {
-     "title": "Aidho Tareekhu",
-     "year": 2004,
-     "missing": [
-      "IMDb title",
-      "release year from a second source"
-     ]
-    }
-   ],
-   "filmIndex": 56.7,
-   "followers": {
-    "total": 1365461,
-    "asOf": "2026-11-08"
-   },
-   "fame": 53.4,
-   "followersPending": false,
-   "career": {
-    "slug": "sharwanand",
-    "judged": 24,
-    "hits": 12,
-    "recentJudged": 5,
-    "recentHits": 4,
-    "leadFilms": 25,
-    "blockbusters": 2,
-    "bigFilms": 0,
-    "totalGross": 273.4,
-    "topGross": 45.3,
-    "avgGross": 27.3,
-    "grossFilms": 10,
-    "yearsActive": 23,
-    "peakFilms": 3,
-    "releaseGap": 9.7
-   },
-   "factors": {
-    "audience": {
-     "value": 56.7,
-     "share": 37
-    },
-    "success": {
-     "value": 49.3,
-     "share": 9
-    },
-    "hits": {
-     "value": 80.9,
-     "share": 6
-    },
-    "blockbusters": {
-     "value": 80.9,
-     "share": 4
-    },
-    "bigFilms": {
-     "value": 23.4,
-     "share": 3
-    },
-    "totalGross": {
-     "value": 53.1,
-     "share": 6
-    },
-    "topGross": {
-     "value": 31.3,
-     "share": 3
-    },
-    "avgGross": {
-     "value": 28.1,
-     "share": 4
-    },
-    "recent": {
-     "value": 70.3,
-     "share": 7
-    },
-    "fame": {
-     "value": 53.4,
-     "share": 10
-    },
-    "consistency": {
-     "value": 20,
-     "share": 4
-    },
-    "films": {
-     "value": 76.4,
-     "share": 3
-    },
-    "years": {
-     "value": 70,
-     "share": 2
-    },
-    "peak": {
-     "value": 60.9,
-     "share": 1
-    },
-    "gap": {
-     "value": 35.5,
-     "share": 1
-    }
-   },
-   "profile": {
-    "slug": "sharwanand",
-    "imdb": [
-     "nm2319565"
-    ],
-    "birthDate": "1984-03-06",
-    "birthDateBy": "wikidata",
-    "debutYear": 2004,
     "debutYearBy": "wikidata",
     "hasFreePhoto": true
    }
@@ -3060,7 +2917,7 @@
      "share": 0
     },
     "recent": {
-     "value": 56.1,
+     "value": 56,
      "share": 8.3
     },
     "fame": {
@@ -3068,7 +2925,7 @@
      "share": 11.9
     },
     "consistency": {
-     "value": 80,
+     "value": 81.8,
      "share": 4.8
     },
     "films": {
@@ -3203,7 +3060,7 @@
      "share": 4
     },
     "recent": {
-     "value": 56.1,
+     "value": 56,
      "share": 7
     },
     "fame": {
@@ -3253,7 +3110,7 @@
    "judged": 19,
    "qualified": true,
    "reason": null,
-   "index": 53.3,
+   "index": 53.5,
    "band": 2,
    "best": [
     {
@@ -3317,7 +3174,7 @@
      "share": 37
     },
     "success": {
-     "value": 56,
+     "value": 55.9,
      "share": 9
     },
     "hits": {
@@ -3333,7 +3190,7 @@
      "share": 3
     },
     "totalGross": {
-     "value": 50,
+     "value": 53.1,
      "share": 6
     },
     "topGross": {
@@ -3345,7 +3202,7 @@
      "share": 4
     },
     "recent": {
-     "value": 56.1,
+     "value": 56,
      "share": 7
     },
     "fame": {
@@ -3529,7 +3386,7 @@
    "judged": 30,
    "qualified": true,
    "reason": null,
-   "index": 51.9,
+   "index": 52.1,
    "band": 1.4,
    "best": [
     {
@@ -3601,7 +3458,7 @@
      "share": 3
     },
     "totalGross": {
-     "value": 43.8,
+     "value": 46.9,
      "share": 6
     },
     "topGross": {
@@ -3654,6 +3511,149 @@
    }
   },
   {
+   "slug": "sharwanand",
+   "name": "Sharwanand",
+   "films": 24,
+   "excluded": 0,
+   "provisional": 2,
+   "complete": 21,
+   "judged": 22,
+   "qualified": true,
+   "reason": null,
+   "index": 52,
+   "band": 1.6,
+   "best": [
+    {
+     "title": "Prasthanam",
+     "year": 2010,
+     "index": 78.5
+    },
+    {
+     "title": "Gamyam",
+     "year": 2008,
+     "index": 75.4
+    },
+    {
+     "title": "Padi Padi Leche Manasu",
+     "year": 2018,
+     "index": 66.6
+    }
+   ],
+   "spread": 10.6,
+   "pillars": {
+    "rating": 60.9,
+    "reach": 51.4,
+    "stay": 52.5
+   },
+   "missing": [
+    {
+     "title": "Aidho Tareekhu",
+     "year": 2004,
+     "missing": [
+      "IMDb title",
+      "release year from a second source"
+     ]
+    }
+   ],
+   "filmIndex": 56.7,
+   "followers": {
+    "total": 1365461,
+    "asOf": "2026-11-08"
+   },
+   "fame": 53.4,
+   "followersPending": false,
+   "career": {
+    "slug": "sharwanand",
+    "judged": 23,
+    "hits": 11,
+    "recentJudged": 5,
+    "recentHits": 2,
+    "leadFilms": 24,
+    "blockbusters": 2,
+    "bigFilms": 0,
+    "totalGross": 226.2,
+    "topGross": 45.3,
+    "avgGross": 25.1,
+    "grossFilms": 9,
+    "yearsActive": 23,
+    "peakFilms": 3,
+    "releaseGap": 10.8
+   },
+   "factors": {
+    "audience": {
+     "value": 56.7,
+     "share": 37
+    },
+    "success": {
+     "value": 47.5,
+     "share": 9
+    },
+    "hits": {
+     "value": 76.4,
+     "share": 6
+    },
+    "blockbusters": {
+     "value": 80.9,
+     "share": 4
+    },
+    "bigFilms": {
+     "value": 23.4,
+     "share": 3
+    },
+    "totalGross": {
+     "value": 43.8,
+     "share": 6
+    },
+    "topGross": {
+     "value": 31.3,
+     "share": 3
+    },
+    "avgGross": {
+     "value": 28.1,
+     "share": 4
+    },
+    "recent": {
+     "value": 41.8,
+     "share": 7
+    },
+    "fame": {
+     "value": 53.4,
+     "share": 10
+    },
+    "consistency": {
+     "value": 20,
+     "share": 4
+    },
+    "films": {
+     "value": 74.5,
+     "share": 3
+    },
+    "years": {
+     "value": 70,
+     "share": 2
+    },
+    "peak": {
+     "value": 60.9,
+     "share": 1
+    },
+    "gap": {
+     "value": 26.4,
+     "share": 1
+    }
+   },
+   "profile": {
+    "slug": "sharwanand",
+    "imdb": [
+     "nm2319565"
+    ],
+    "birthDate": "1984-03-06",
+    "birthDateBy": "wikidata",
+    "debutYear": 2004,
+    "debutYearBy": "wikidata",
+    "hasFreePhoto": true
+   }
+  },
+  {
    "slug": "adivi-sesh",
    "name": "Adivi Sesh",
    "films": 11,
@@ -3663,7 +3663,7 @@
    "judged": 10,
    "qualified": true,
    "reason": null,
-   "index": 51.3,
+   "index": 51.2,
    "band": 3.2,
    "best": [
     {
@@ -3719,7 +3719,7 @@
      "share": 37
     },
     "success": {
-     "value": 66.5,
+     "value": 66.4,
      "share": 9
     },
     "hits": {
@@ -3797,7 +3797,7 @@
    "judged": 21,
    "qualified": true,
    "reason": null,
-   "index": 50.8,
+   "index": 51,
    "band": 1.1,
    "best": [
     {
@@ -3869,7 +3869,7 @@
      "share": 3
     },
     "totalGross": {
-     "value": 46.9,
+     "value": 50,
      "share": 6
     },
     "topGross": {
@@ -3905,7 +3905,7 @@
      "share": 1
     },
     "gap": {
-     "value": 29.1,
+     "value": 30.9,
      "share": 1
     }
    },
@@ -3996,7 +3996,7 @@
      "share": 44
     },
     "success": {
-     "value": 54.3,
+     "value": 54.2,
      "share": 10.7
     },
     "hits": {
@@ -4324,7 +4324,7 @@
      "share": 1.2
     },
     "gap": {
-     "value": 29.1,
+     "value": 30.9,
      "share": 1.2
     }
    },
@@ -4467,7 +4467,7 @@
      "share": 1.2
     },
     "gap": {
-     "value": 35.5,
+     "value": 36.4,
      "share": 1.2
     }
    },
@@ -5257,7 +5257,7 @@
      "share": 44
     },
     "success": {
-     "value": 66.4,
+     "value": 66.3,
      "share": 10.7
     },
     "hits": {
@@ -5309,7 +5309,7 @@
      "share": 1.2
     },
     "gap": {
-     "value": 25.5,
+     "value": 26.4,
      "share": 1.2
     }
    },
@@ -5687,7 +5687,7 @@
      "share": 4
     },
     "recent": {
-     "value": 56.1,
+     "value": 56,
      "share": 7
     },
     "fame": {
@@ -6012,9 +6012,9 @@
    "name": "Satyadev",
    "films": 12,
    "excluded": 0,
-   "provisional": 2,
-   "complete": 9,
-   "judged": 10,
+   "provisional": 1,
+   "complete": 10,
+   "judged": 11,
    "qualified": true,
    "reason": null,
    "index": 43.6,
@@ -6026,21 +6026,21 @@
      "index": 60.4
     },
     {
+     "title": "Zebra",
+     "year": 2024,
+     "index": 56.4
+    },
+    {
      "title": "Thimmarusu",
      "year": 2021,
      "index": 50.3
-    },
-    {
-     "title": "Godse",
-     "year": 2022,
-     "index": 49.6
     }
    ],
-   "spread": 6.5,
+   "spread": 6.9,
    "pillars": {
-    "rating": 57.3,
-    "reach": 37.8,
-    "stay": 27.9
+    "rating": 57.7,
+    "reach": 39.3,
+    "stay": 30.3
    },
    "missing": [
     {
@@ -6051,7 +6051,7 @@
      ]
     }
    ],
-   "filmIndex": 48.9,
+   "filmIndex": 49.5,
    "followers": {
     "total": 1038522,
     "asOf": "2026-11-08"
@@ -6077,7 +6077,7 @@
    },
    "factors": {
     "audience": {
-     "value": 48.9,
+     "value": 49.5,
      "share": 44
     },
     "success": {
@@ -6117,7 +6117,7 @@
      "share": 11.9
     },
     "consistency": {
-     "value": 81.8,
+     "value": 76.4,
      "share": 4.8
     },
     "films": {
@@ -6824,13 +6824,13 @@
    "name": "Vishwak Sen",
    "films": 14,
    "excluded": 0,
-   "provisional": 4,
-   "complete": 10,
-   "judged": 10,
+   "provisional": 3,
+   "complete": 11,
+   "judged": 11,
    "qualified": true,
    "reason": null,
    "index": 40.7,
-   "band": 2.3,
+   "band": 2.1,
    "best": [
     {
      "title": "HIT: The First Case",
@@ -6848,14 +6848,14 @@
      "index": 63.5
     }
    ],
-   "spread": 11.4,
+   "spread": 11,
    "pillars": {
-    "rating": 59.8,
-    "reach": 49.6,
-    "stay": 65.7
+    "rating": 59.5,
+    "reach": 49.8,
+    "stay": 63.7
    },
    "missing": [],
-   "filmIndex": 57.4,
+   "filmIndex": 57,
    "followers": {
     "total": 1542064,
     "asOf": "2026-11-08"
@@ -6881,7 +6881,7 @@
    },
    "factors": {
     "audience": {
-     "value": 57.4,
+     "value": 57,
      "share": 37
     },
     "success": {
@@ -6921,7 +6921,7 @@
      "share": 10
     },
     "consistency": {
-     "value": 10.9,
+     "value": 14.5,
      "share": 4
     },
     "films": {
@@ -6963,7 +6963,7 @@
    "judged": 6,
    "qualified": true,
    "reason": null,
-   "index": 40.5,
+   "index": 40.6,
    "band": 2.4,
    "best": [
     {
@@ -7016,7 +7016,7 @@
      "share": 50
     },
     "success": {
-     "value": 41.4,
+     "value": 41.3,
      "share": 12.2
     },
     "hits": {
@@ -7052,7 +7052,7 @@
      "share": 0
     },
     "consistency": {
-     "value": 76.4,
+     "value": 78.2,
      "share": 5.4
     },
     "films": {
@@ -7284,7 +7284,7 @@
      "share": 44
     },
     "success": {
-     "value": 53.9,
+     "value": 53.8,
      "share": 10.7
     },
     "hits": {
@@ -7362,7 +7362,7 @@
    "judged": 8,
    "qualified": true,
    "reason": null,
-   "index": 39,
+   "index": 38.9,
    "band": 2.2,
    "best": [
     {
@@ -7418,7 +7418,7 @@
      "share": 37
     },
     "success": {
-     "value": 25.5,
+     "value": 25.4,
      "share": 9
     },
     "hits": {
@@ -8088,7 +8088,7 @@
      "share": 0
     },
     "success": {
-     "value": 53.9,
+     "value": 53.8,
      "share": 34.6
     },
     "hits": {
@@ -8400,7 +8400,7 @@
      "share": 0
     },
     "recent": {
-     "value": 56.1,
+     "value": 56,
      "share": 26.9
     },
     "fame": {
@@ -8522,7 +8522,7 @@
      "share": 0
     },
     "success": {
-     "value": 57.4,
+     "value": 57.3,
      "share": 34.6
     },
     "hits": {
@@ -8550,7 +8550,7 @@
      "share": 0
     },
     "recent": {
-     "value": 56.1,
+     "value": 56,
      "share": 26.9
     },
     "fame": {
@@ -8964,7 +8964,7 @@
      "share": 0
     },
     "success": {
-     "value": 48.3,
+     "value": 48.2,
      "share": 34.6
     },
     "hits": {
@@ -9439,7 +9439,7 @@
      "share": 0
     },
     "success": {
-     "value": 48.3,
+     "value": 48.2,
      "share": 34.6
     },
     "hits": {
@@ -9467,7 +9467,7 @@
      "share": 0
     },
     "recent": {
-     "value": 56.1,
+     "value": 56,
      "share": 26.9
     },
     "fame": {
@@ -9724,7 +9724,7 @@
      "share": 0
     },
     "success": {
-     "value": 66.5,
+     "value": 66.4,
      "share": 56.3
     },
     "hits": {
@@ -10063,7 +10063,7 @@
      "share": 0
     },
     "success": {
-     "value": 33.2,
+     "value": 33.1,
      "share": 56.3
     },
     "hits": {
@@ -10754,7 +10754,7 @@
      "share": 0
     },
     "success": {
-     "value": 61.6,
+     "value": 61.5,
      "share": 56.3
     },
     "hits": {
