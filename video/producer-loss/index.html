@@ -88,8 +88,8 @@ const VOICE_AT = 0.2;                     // the voice track starts here
 const v1 = (x) => VOICE_AT + (x - 0.30);   // take-1 time → video time
 const v2 = (x) => VOICE_AT + 19.49 + (x - 20.45); // take-2 time → video time
 // Scenes: [start, end] in video seconds, cut on the voice.
-const S = { s0: [0, v1(2.72)], s1: [-10, -9], f5: [v1(2.72), v1(6.18)], f4: [v1(6.18), v1(9.12)], f3: [v1(9.12), v1(13.08)], f2: [v1(13.08), v1(16.72)], f1: [v1(16.72), 23.3], s9: [23.3, 28] };
-const DURATION = 28;
+const S = { s0: [0, v1(2.72)], s1: [-10, -9], f5: [v1(2.72), v1(6.18)], f4: [v1(6.18), v1(9.12)], f3: [v1(9.12), v1(13.08)], f2: [v1(13.08), v1(16.72)], f1: [v1(16.72), 22.6], s9: [22.6, 25] };
+const DURATION = 25;
 // Subtitles: [start, text]; <b> marks the highlighted words. Each line stays until the next one.
 const SUBS = [
   [v1(2.80), "<b>DOUBLE ISMART</b>"], [v1(3.60), "VALLA <b>POORI CHARMI</b> 😄"], [v1(4.66), "KI <b>70 CRORES</b>"], [v1(5.62), "LOSS VASTHE"],
@@ -205,8 +205,8 @@ function render(t) {
 
   // leaderboard
   tt = scene("s9", t);
-  [...$("board").children].forEach((r, k) => { rise(r, prog(tt, 0.2 + k * 0.35, 0.5 + k * 0.35), 20); const i = r.querySelector("[data-w]"); i.style.width = i.dataset.w * out(prog(tt, 0.3 + k * 0.35, 1.0 + k * 0.35)) + "%"; });
-  pop($("cta"), prog(tt, 2.4, 2.9));
+  [...$("board").children].forEach((r, k) => { rise(r, prog(tt, 0.1, 0.35), 20); const i = r.querySelector("[data-w]"); i.style.width = i.dataset.w * out(prog(tt, 0.15, 0.8)) + "%"; });
+  pop($("cta"), prog(tt, 0.6, 1.0));
 
   // flash on each scene cut
   const cuts = [S.f5[0], S.f4[0], S.f3[0], S.f2[0], S.f1[0], S.s9[0]];
