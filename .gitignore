@@ -61,3 +61,5 @@ video/**/frames/
 video/**/still-*.png
 video/**/posters/*.jpg
 video/**/voice/*.wav
+video/producer-loss/assets/*
+!video/producer-loss/assets/anton.woff2
