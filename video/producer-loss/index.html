@@ -41,8 +41,12 @@
 
   <!-- meme -->
   <section class="scene" id="s0">
-    <div class="a" id="s0t" style="position:absolute;top:150px;width:100%;text-align:center;font-size:58px;color:var(--gold);text-shadow:0 6px 0 #000">PRODUCER KI SHOCK!</div>
-    <div id="s0v" style="position:absolute;left:20px;top:300px;width:500px;height:232px;border-radius:18px;overflow:hidden;border:3px solid var(--gold);box-shadow:0 20px 60px rgba(0,0,0,.7)">
+    <div id="s0t" style="position:absolute;top:96px;left:0;right:0;text-align:center">
+      <div class="a" data-w style="font-size:44px;color:var(--ink2);text-shadow:0 5px 0 #000">PRODUCERS KI</div>
+      <div class="a" data-w style="font-size:92px;line-height:.95;color:var(--gold);text-shadow:0 8px 0 #5a1020">THADI GUDDA</div>
+      <div class="a" data-w style="font-size:44px;text-shadow:0 5px 0 #000">KAPPINA CINEMALU</div></div>
+    <div id="s0c" style="position:absolute;top:590px;left:0;right:0;text-align:center"><span style="display:inline-block;padding:9px 18px;border-radius:999px;background:rgba(255,77,94,.15);border:1.5px solid rgba(255,77,94,.6);color:#ffb3ba;font-weight:800;font-size:16px">TOP 5 · Budget vs worldwide gross 💸</span></div>
+    <div id="s0v" style="position:absolute;left:20px;top:330px;width:500px;height:232px;border-radius:18px;overflow:hidden;border:3px solid var(--gold);box-shadow:0 20px 60px rgba(0,0,0,.7)">
       <div id="meme" style="position:relative;width:100%;height:100%"></div>
     </div>
   </section>
@@ -80,15 +84,14 @@ const FILMS = [
   { rank: 2, id: "game-changer", title: "Game Changer", year: 2025, budget: 350, gross: 195, say: 14.84 },
   { rank: 1, id: "rajasaab", title: "The RajaSaab", year: 2026, budget: 400, gross: 208.38, say: 18.84 },
 ];
-const VOICE_AT = 2.1;                     // the voice track starts here
+const VOICE_AT = 0.2;                     // the voice track starts here
 const v1 = (x) => VOICE_AT + (x - 0.30);   // take-1 time → video time
 const v2 = (x) => VOICE_AT + 19.49 + (x - 20.45); // take-2 time → video time
 // Scenes: [start, end] in video seconds, cut on the voice.
-const S = { s0: [0, 2.15], s1: [2.1, v1(2.72)], f5: [v1(2.72), v1(6.18)], f4: [v1(6.18), v1(9.12)], f3: [v1(9.12), v1(13.08)], f2: [v1(13.08), v1(16.72)], f1: [v1(16.72), 25.2], s9: [25.2, 30] };
-const DURATION = 30;
+const S = { s0: [0, v1(2.72)], s1: [-10, -9], f5: [v1(2.72), v1(6.18)], f4: [v1(6.18), v1(9.12)], f3: [v1(9.12), v1(13.08)], f2: [v1(13.08), v1(16.72)], f1: [v1(16.72), 23.3], s9: [23.3, 28] };
+const DURATION = 28;
 // Subtitles: [start, text]; <b> marks the highlighted words. Each line stays until the next one.
 const SUBS = [
-  [v1(0.30), "PRODUCERS KI"], [v1(1.10), "<b>THADI GUDDA</b>"], [v1(1.56), "KAPPINA <b>CINEMALU</b>"], [v1(2.45), ""],
   [v1(2.80), "<b>DOUBLE ISMART</b>"], [v1(3.60), "VALLA <b>POORI CHARMI</b> 😄"], [v1(4.66), "KI <b>70 CRORES</b>"], [v1(5.62), "LOSS VASTHE"],
   [v1(6.26), "<b>ANIMATED</b>"], [v1(7.05), "<b>RAMAYANAM</b>"], [v1(7.55), "<b>107 CRORES</b>"], [v1(8.56), "LOSS ICHINDI"],
   [v1(9.24), "DHEENIKI GATTI"], [v1(9.96), "POTI ISTHU"], [v1(10.44), "<b>HARI HARA VEERA MALLU</b>"], [v1(11.30), "<b>136 CRORES</b>"], [v1(12.30), "LOSS ISTHE"], [v1(12.95), ""],
@@ -160,7 +163,8 @@ function render(t) {
   let tt = scene("s0", t);
   const fr = Math.min(60, Math.max(1, Math.floor(tt * 30) + 1));
   MEME.forEach((im, k) => (im.style.visibility = k === fr - 1 ? "visible" : "hidden"));
-  pop($("s0t"), prog(tt, 0.05, 0.35), 1.6);
+  document.querySelectorAll("#s0t [data-w]").forEach((el, k) => pop(el, prog(t, v1([0.30, 1.10, 1.56][k]) - 0.05, v1([0.30, 1.10, 1.56][k]) + 0.25), k === 1 ? 2 : 0.4));
+  rise($("s0c"), prog(t, v1(2.0), v1(2.3)));
   $("s0v").style.transform = `scale(${1 + 0.04 * Math.sin(tt * 3)}) rotate(${Math.sin(tt * 2.2) * 1.2}deg)`;
 
   // 1. title
@@ -205,7 +209,7 @@ function render(t) {
   pop($("cta"), prog(tt, 2.4, 2.9));
 
   // flash on each scene cut
-  const cuts = [S.s1[0], S.f5[0], S.f4[0], S.f3[0], S.f2[0], S.f1[0], S.s9[0]];
+  const cuts = [S.f5[0], S.f4[0], S.f3[0], S.f2[0], S.f1[0], S.s9[0]];
   const lastCut = Math.max(...cuts.filter((c) => c <= t), -9);
   $("flash").style.opacity = 0.35 * (1 - prog(t, lastCut, lastCut + 0.18));
   $("stage").style.transform = shake ? `translate(${Math.sin(t * 90) * shake}px, ${Math.cos(t * 70) * shake * 0.6}px)` : "none";
@@ -213,7 +217,7 @@ function render(t) {
   // subtitles: pop in per line
   let line = null; for (const s of SUBS) if (s[0] <= t) line = s;
   const sub = $("sub");
-  if (line && line[1] && t < 24.5) { sub.innerHTML = line[1]; const p = prog(t, line[0], line[0] + 0.12); sub.style.opacity = 1; sub.style.transform = `scale(${0.82 + 0.18 * back(p)})`; }
+  if (line && line[1] && t < S.s9[0] - 0.3) { sub.innerHTML = line[1]; const p = prog(t, line[0], line[0] + 0.12); sub.style.opacity = 1; sub.style.transform = `scale(${0.82 + 0.18 * back(p)})`; }
   else sub.style.opacity = 0;
   $("foot").style.opacity = t > S.f5[0] ? 1 : 0;
 }
