@@ -40,7 +40,8 @@
     "tolly:workbook": "bash scripts/tolly/workbook/build.sh",
     "tolly:import": "tsx scripts/tolly/import-manual.mts",
     "photos:thumbs": "tsx scripts/hero-thumbs.mts",
-    "tolly:update": "bash scripts/tolly/update.sh"
+    "tolly:update": "bash scripts/tolly/update.sh",
+    "releases:update": "tsx scripts/releases.mts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",

@@ -11,6 +11,8 @@ import { topGrossingTeluguFilms, topLovedTeluguFilms } from "@/lib/tolly/top";
 import { TopTen, type TopRow } from "@/components/home/top-ten";
 import { CountUp } from "@/components/ui/count-up";
 import { HomeCharts, type ChartHero } from "@/components/home/home-charts";
+import { ReleasesChart } from "@/components/releases/releases-chart";
+import { releaseCounts } from "@/lib/releases";
 import { FanRanking } from "@/components/ranking/fan-ranking";
 import { GROUPS, groupFact, groupValue, PROVISIONAL_TIP } from "@/components/tolly/tolly-parts";
 import { compactCount } from "@/lib/data/real/hero-facts";
@@ -88,6 +90,7 @@ export default async function HomePage() {
   const followed = [...ranked].filter((h) => h.followers).sort((a, b) => (b.followers?.total ?? 0) - (a.followers?.total ?? 0));
   // Ratios need a few films behind them, as on the Star Score page.
   const MIN_JUDGED = 5;
+  const releases = releaseCounts();
   const chart: ChartHero[] = all.map((h) => {
     const t = getTollyHero(h.slug);
     const sr = h.m.overallSuccessRatio;
@@ -294,6 +297,27 @@ export default async function HomePage() {
         </h2>
         <div className="mt-4">
           <HomeCharts heroes={chart} />
+        </div>
+      </section>
+
+      {/* Releases per year, drawn as it scrolls into view */}
+      <section aria-labelledby="home-releases" className="card reveal mt-4 p-4 sm:p-6">
+        <div className="flex flex-wrap items-end justify-between gap-2">
+          <div>
+            <p className="section-kicker">Every Friday</p>
+            <h2 id="home-releases" className="mt-1 font-serif text-[26px] font-semibold leading-tight text-ink sm:text-[30px]">
+              How many Telugu films release each year?
+            </h2>
+            <p className="mt-1 text-[13.5px] text-ink-2">
+              {releases[releases.length - 1].total} so far in {releases[releases.length - 1].year}, including films straight to OTT and films dubbed into Telugu.
+            </p>
+          </div>
+          <Link href="/releases" className="text-[14px] font-semibold text-wine hover:underline">
+            See every film →
+          </Link>
+        </div>
+        <div className="mt-4">
+          <ReleasesChart data={releases} height={280} linkYears />
         </div>
       </section>
 

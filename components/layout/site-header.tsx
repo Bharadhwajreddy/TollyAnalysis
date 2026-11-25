@@ -20,6 +20,7 @@ const NAV = [
     : []),
   { href: "/heroes", label: "Heroes" },
   { href: "/directors", label: "Directors" },
+  { href: "/releases", label: "Releases" },
   { href: "/rankings", label: "Rankings" },
   { href: "/compare", label: "Compare" },
   { href: "/trends", label: "Trends" },

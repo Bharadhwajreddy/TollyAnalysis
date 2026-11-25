@@ -274,6 +274,17 @@ test.describe("Home page", () => {
     await expect(page.getByRole("link", { name: "Jr NTR" }).first()).toHaveAttribute("href", "/hero/jr-ntr");
   });
 
+  test("releases: a line per year with each year's film list", async ({ page }) => {
+    await page.goto("/releases");
+    await expect(page.getByRole("img", { name: "Telugu releases per year since 2000" })).toBeVisible();
+    expect(await page.getByTestId("release-list").locator("li").count()).toBeGreaterThan(50);
+    await page.getByRole("img", { name: "Telugu releases per year since 2000" }).getByRole("link", { name: /^2020: / }).click();
+    await expect(page).toHaveURL(/year=2020/);
+    await expect(page.getByRole("heading", { name: /2020 releases/ })).toBeVisible();
+    await page.getByRole("link", { name: "Telugu, direct to OTT" }).click();
+    await expect(page.getByTestId("release-list")).toContainText("Middle Class Melodies");
+  });
+
   test("find your hero opens his page", async ({ page }) => {
     await page.goto("/");
     const box = page.getByRole("combobox", { name: "Find a hero" });
