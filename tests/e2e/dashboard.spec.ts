@@ -260,6 +260,20 @@ test.describe("Home page", () => {
     await expect(graph).toContainText("ENE Repeat");
   });
 
+  test("directors are ranked by hit rate and each has a career graph", async ({ page }) => {
+    await page.goto("/");
+    await page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: "Directors" }).click();
+    await expect(page).toHaveURL(/\/directors$/);
+    const rows = page.getByTestId("director-table").locator("tbody tr");
+    expect(await rows.count()).toBeGreaterThan(30);
+    await page.getByTestId("director-table").getByRole("link", { name: /S\. S\. Rajamouli/ }).click();
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("S. S. Rajamouli");
+    const graph = page.getByRole("img", { name: /S\. S\. Rajamouli: box-office result of every lead film/ });
+    await graph.scrollIntoViewIfNeeded();
+    expect(await graph.getByRole("button").count()).toBeGreaterThanOrEqual(10);
+    await expect(page.getByRole("link", { name: "Jr NTR" }).first()).toHaveAttribute("href", "/hero/jr-ntr");
+  });
+
   test("find your hero opens his page", async ({ page }) => {
     await page.goto("/");
     const box = page.getByRole("combobox", { name: "Find a hero" });

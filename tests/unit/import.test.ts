@@ -95,6 +95,12 @@ describe("lead-credit billing", () => {
     expect(check("venkatesh", ["Venkatesh (actor)", "Pawan Kalyan", "Shriya Saran"])).toEqual({ pos: 0, coLead: false });
     expect(check("pawan-kalyan", ["Venkatesh (actor)", "Pawan Kalyan", "Shriya Saran"])).toEqual({ pos: 1, coLead: true });
   });
+  it("does not match a one-word name to a longer name that starts with it", () => {
+    const c = makeBilling([{ slug: "vijay", names: ["Vijay", "Vijay (actor)"] }, { slug: "varun-sandesh", names: ["Varun Sandesh"] }], ["Vijay (actor)"]);
+    expect(c("vijay", ["Vijay Shankar", "Varun Sandesh"]).pos).toBe(-1);
+    expect(c("varun-sandesh", ["Vijay Shankar", "Varun Sandesh"])).toEqual({ pos: 1, coLead: false });
+    expect(c("vijay", ["Vijay (actor)", "Samantha"]).pos).toBe(0);
+  });
   it("does not count a hero billed after a non-roster name, or a strict-billing actor who is not first", () => {
     expect(check("pawan-kalyan", ["Some Heroine", "Pawan Kalyan"])).toEqual({ pos: 1, coLead: false });
     expect(check("sunil", ["Venkatesh (actor)", "Sunil (actor)"])).toEqual({ pos: 1, coLead: false });

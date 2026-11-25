@@ -131,7 +131,7 @@ export function BandBar({ index, band, min = 40, max = 80, color = "var(--wine)"
   );
 }
 
-export const PROVISIONAL_TIP = "Provisional: box-office results for Tamil and Malayalam films are less complete, so this score may be too high.";
+export const PROVISIONAL_TIP = "Provisional: box-office results for Tamil, Malayalam and Kannada films are less complete, so this score may be too high.";
 
 /** Small marker for a provisional score. */
 export function ProvisionalMark() {

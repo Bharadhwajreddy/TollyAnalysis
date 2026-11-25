@@ -29,7 +29,7 @@ export interface RosterCandidate {
    * Heroes from another industry whose films reach Telugu audiences: films in this language count
    * when there is evidence of a Telugu release (original, bilingual or dubbed); see scripts/fix-credits.mts.
    */
-  homeLanguage?: "Tamil" | "Malayalam";
+  homeLanguage?: "Tamil" | "Malayalam" | "Kannada";
 }
 
 /** Actors who moved into character roles; see `strictBilling`. */
@@ -167,6 +167,21 @@ export const INITIAL_ROSTER: RosterCandidate[] = [
   h("suriya", "Suriya", "tamil", 2000, ["Suriya", "Suriya (actor)"], { homeLanguage: "Tamil" }),
   h("karthi", "Karthi", "tamil", 2007, ["Karthi", "Karthi (actor)"], { homeLanguage: "Tamil" }),
   h("dulquer-salmaan", "Dulquer Salmaan", "malayalam", 2012, "Dulquer Salmaan", { homeLanguage: "Malayalam" }),
+  h("dhanush", "Dhanush", "tamil", 2002, "Dhanush", { homeLanguage: "Tamil" }),
+  h("vijay", "Vijay", "tamil", 2000, ["Vijay (actor)"], { homeLanguage: "Tamil" }),
+  h("kamal-haasan", "Kamal Haasan", "tamil", 2000, "Kamal Haasan", { homeLanguage: "Tamil", status: "living_legacy" }),
+  h("vikram", "Vikram", "tamil", 2000, ["Vikram (actor)"], { homeLanguage: "Tamil" }),
+  h("ajith-kumar", "Ajith Kumar", "tamil", 2000, "Ajith Kumar", { homeLanguage: "Tamil" }),
+  h("vijay-sethupathi", "Vijay Sethupathi", "tamil", 2010, "Vijay Sethupathi", { homeLanguage: "Tamil" }),
+  h("sivakarthikeyan", "Sivakarthikeyan", "tamil", 2012, "Sivakarthikeyan", { homeLanguage: "Tamil" }),
+  h("vishal", "Vishal", "tamil", 2004, ["Vishal (actor)"], { homeLanguage: "Tamil" }),
+  h("siddharth", "Siddharth", "tamil", 2003, ["Siddharth (actor)"], { homeLanguage: "Tamil" }),
+  h("mohanlal", "Mohanlal", "malayalam", 2000, "Mohanlal", { homeLanguage: "Malayalam", status: "living_legacy" }),
+  h("mammootty", "Mammootty", "malayalam", 2000, "Mammootty", { homeLanguage: "Malayalam", status: "living_legacy" }),
+  h("fahadh-faasil", "Fahadh Faasil", "malayalam", 2009, "Fahadh Faasil", { homeLanguage: "Malayalam" }),
+  h("prithviraj-sukumaran", "Prithviraj Sukumaran", "malayalam", 2002, "Prithviraj Sukumaran", { homeLanguage: "Malayalam" }),
+  h("yash", "Yash", "kannada", 2008, ["Yash (actor)"], { homeLanguage: "Kannada" }),
+  h("sudeep", "Kichcha Sudeep", "kannada", 2001, ["Sudeep", "Kichcha Sudeepa"], { homeLanguage: "Kannada" }),
 ];
 
 /** Names that must never appear in the seed roster without a new editorial decision. */

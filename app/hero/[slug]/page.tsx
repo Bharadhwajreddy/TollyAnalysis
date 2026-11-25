@@ -21,6 +21,7 @@ import { getDashboardData, getHeroExcluded, getHeroFilms, getPerson } from "@/li
 import { rankable } from "@/lib/ranking";
 import { tollyIndexEnabled } from "@/lib/features";
 import { getTollyFilm, getTollyHero, getTollyRanking, tollyMeta } from "@/lib/tolly/view";
+import { directorSlug, getDirectors } from "@/lib/directors";
 
 export async function generateMetadata(props: PageProps<"/hero/[slug]">): Promise<Metadata> {
   const { slug } = await props.params;
@@ -60,7 +61,8 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
   const { slug } = await props.params;
   const person = await getPerson(slug);
   if (!person) notFound();
-  const [data, films, excluded] = await Promise.all([getDashboardData(), getHeroFilms(slug), getHeroExcluded(slug)]);
+  const [data, films, excluded, directors] = await Promise.all([getDashboardData(), getHeroFilms(slug), getHeroExcluded(slug), getDirectors()]);
+  const directorPages = new Set(directors.map((d) => d.slug));
   const hero = data.windows.all_time.find((h) => h.slug === slug);
   if (!hero) notFound();
   const cohort = data.windows.all_time.filter((h) => !h.isEmerging || h.slug === slug);
@@ -114,6 +116,7 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
       approximate: f.details?.dateApproximate ?? false,
       year: f.year,
       director: f.details?.director ?? null,
+      directorSlug: ((s) => (s && directorPages.has(s) ? s : null))(directorSlug(f.details?.director)),
       music: f.details?.music ?? null,
       runtimeMin: f.details?.runtimeMin ?? null,
       genres: f.details?.genres ?? [],
@@ -249,7 +252,7 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
         <div className="grid lg:grid-cols-[1fr_300px]">
           <div className="px-5 py-7 sm:px-9 sm:py-9">
             <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#e8c79c]">
-              {hero.industry === "telugu" ? "Telugu film hero" : `${hero.industry === "tamil" ? "Tamil" : "Malayalam"} film hero · counts his films released in Telugu`}
+              {hero.industry === "telugu" ? "Telugu film hero" : `${{ tamil: "Tamil", malayalam: "Malayalam", kannada: "Kannada", hindi: "Hindi" }[hero.industry] ?? "Indian"} film hero · counts his films released in Telugu`}
             </p>
             <div className="mt-2 flex flex-wrap items-center gap-3">
               <h1 className="font-serif text-[40px] font-bold leading-none tracking-tight text-white sm:text-[60px]">{hero.name}</h1>

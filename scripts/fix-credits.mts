@@ -11,7 +11,7 @@
  *      ratings for it (it is out); otherwise it is treated as not yet released.
  *   0. Box-office results checked by an editor (lib/data/tolly/verdict-overrides.json) replace the
  *      film's result, gross and budget, and can confirm or rule out a Telugu release.
- *   6. Heroes from other industries (homeLanguage in the roster): a Tamil or Malayalam film counts only
+ *   6. Heroes from other industries (homeLanguage in the roster): a Tamil, Malayalam or Kannada film counts only
  *      with evidence of a Telugu release: a Telugu title on IMDb or a Telugu Wikipedia article.
  *
  * Usage: npx tsx scripts/fix-credits.mts [--dry]

@@ -65,12 +65,18 @@ export function withoutComments(names: string[]): string[] {
 
 export function makeBilling(heroes: BillingHero[], articleTitles: Iterable<string>) {
   const articles = new Set(articleTitles);
-  const aliasesOf = new Map(heroes.map((h) => [h.slug, h.names.map(squash).filter((x) => x.length >= 3)]));
+  const words = (x: string) => x.replace(/\([^)]*\)/g, "").trim().split(/\s+/).filter(Boolean).length;
+  const aliasesOf = new Map(heroes.map((h) => [h.slug, h.names.filter((n) => squash(n).length >= 3).map((n) => ({ s: squash(n), w: words(n) }))]));
   const strictOf = new Map(heroes.map((h) => [h.slug, !!h.strict]));
   const isHero = (entry: string, slug: string) => {
     const e = squash(entry);
     if (e.length < 3) return false;
-    return (aliasesOf.get(slug) ?? []).some((a) => e === a || (e.length >= 5 && (a.startsWith(e) || e.startsWith(a))) || (e.length >= 8 && Math.abs(e.length - a.length) <= 2 && editDistance(e, a) <= 2));
+    const ew = words(entry);
+    // A one-word name never prefix-matches a longer name: "Vijay" is not "Vijay Sethupathi" or "Vijay Shankar".
+    const prefixOk = (aw: number) => (aw > 1 && ew > 1) || aw === ew;
+    return (aliasesOf.get(slug) ?? []).some(
+      ({ s: a, w: aw }) => e === a || (e.length >= 5 && prefixOk(aw) && (a.startsWith(e) || e.startsWith(a))) || (e.length >= 8 && Math.abs(e.length - a.length) <= 2 && editDistance(e, a) <= 2),
+    );
   };
   const rosterSlugOf = (entry: string) => heroes.find((h) => isHero(entry, h.slug))?.slug;
   /** Position (0-based, -1 = not listed) and whether he is a co-lead billed straight after other roster heroes. */

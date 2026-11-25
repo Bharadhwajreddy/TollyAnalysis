@@ -36,6 +36,23 @@ export const EXCLUDED_CREDITS: Record<string, { film: string; reason: string }[]
     { film: "Kingdom (2025 film)", reason: "supporting role in a Vijay Deverakonda film" },
   ],
   "taraka-ratna": [{ film: "Raja Cheyyi Vesthe", reason: "antagonist role in a Nara Rohit film" }],
+  // Heroes from other industries (added November 2026).
+  "kamal-haasan": [
+    { film: "Mumbai Xpress (2005 Hindi film)", reason: "Hindi version of Mumbai Xpress, which already counts" },
+    { film: "unlinked:Vishwaroop|2013", reason: "Hindi version of Vishwaroopam, which already counts" },
+    { film: "unlinked:Vishwaroop II|2018", reason: "Hindi version of Vishwaroopam II, which already counts" },
+  ],
+  "vijay-sethupathi": [
+    { film: "Sye Raa Narasimha Reddy", reason: "supporting role in a Chiranjeevi film" },
+    { film: "Master (2021 film)", reason: "antagonist role in a Vijay film" },
+    { film: "Vikram (2022 film)", reason: "antagonist role in a Kamal Haasan film" },
+    { film: "Michael (2023 film)", reason: "supporting role in a Sundeep Kishan film" },
+  ],
+  sudeep: [{ film: "Sye Raa Narasimha Reddy", reason: "supporting role in a Chiranjeevi film" }],
+  siddharth: [{ film: "Indian 2", reason: "supporting role in a Kamal Haasan film" }],
+  mohanlal: [{ film: "Kaappaan", reason: "supporting role in a Suriya film" }],
+  "fahadh-faasil": [{ film: "Vettaiyan", reason: "supporting role in a Rajinikanth film" }],
+  "prithviraj-sukumaran": [{ film: "L2: Empuraan", reason: "supporting role in a Mohanlal film (he directed it)" }],
 };
 
 /**

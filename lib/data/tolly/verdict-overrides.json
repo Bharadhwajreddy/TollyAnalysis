@@ -2725,6 +2725,26 @@
    "teluguRelease": null,
    "checkedOn": "2026-11-23",
    "notes": "Filmibeat: super hit; Wikipedia: above average. Middle result used."
+  },
+  "Eega": {
+   "result": "super_hit",
+   "gross": {
+    "low": 125,
+    "high": 130,
+    "text": "₹125–130 crore"
+   },
+   "budget": {
+    "low": 30,
+    "high": 40,
+    "text": "₹30–40 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Eega",
+    "https://www.business-standard.com/article/companies/eega-flies-high-at-box-office-112071000084_1.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-25",
+   "notes": "About 3× its budget worldwide; the earlier \"average\" was read from a sentence about the Hindi dub Makkhi."
   }
  }
 }

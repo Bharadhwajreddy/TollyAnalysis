@@ -24,7 +24,7 @@ export default async function HeroesPage(props: PageProps<"/heroes">) {
     <div className="mx-auto max-w-7xl px-4 sm:px-6">
       <div className="pt-8">
         <h1 className="font-serif text-[34px] font-bold tracking-tight text-ink sm:text-[44px]">All heroes</h1>
-        <p className="mt-1 max-w-2xl text-[15px] text-ink-2">{heroes.length} Telugu heroes. Open a card to see his films.</p>
+        <p className="mt-1 max-w-2xl text-[15px] text-ink-2">{heroes.length} heroes: Telugu stars, plus Tamil, Malayalam and Kannada stars whose films release in Telugu. Open a card to see his films.</p>
         <nav aria-label="Sort heroes" className="mt-4 flex flex-wrap gap-1.5 text-[13px]">
           {Object.entries(SORTS).map(([k, v]) => (
             <Link

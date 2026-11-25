@@ -10,6 +10,8 @@ export interface FilmRowView {
   approximate: boolean;
   year: number | null;
   director: string | null;
+  /** Set when the director has a page (/director/<slug>). */
+  directorSlug?: string | null;
   music: string | null;
   runtimeMin: number | null;
   genres: string[];
@@ -197,7 +199,15 @@ export function HeroFilmsTable({ rows, heroName }: { rows: FilmRowView[]; heroNa
                     <td className="tabular px-2.5 py-2 text-right" title={r.grossText ?? undefined}>{cr(r.gross)}</td>
                     <td className="tabular px-2.5 py-2 text-right" title={r.budgetText ?? undefined}>{cr(r.budget)}</td>
                     <td className="tabular px-2.5 py-2 text-right font-semibold">{r.multiple ? `${r.multiple}×` : "—"}</td>
-                    <td className="min-w-[120px] px-2.5 py-2">{r.director ?? "—"}</td>
+                    <td className="min-w-[120px] px-2.5 py-2">
+                      {r.director && r.directorSlug ? (
+                        <a href={`/director/${r.directorSlug}`} className="text-wine hover:underline">
+                          {r.director}
+                        </a>
+                      ) : (
+                        (r.director ?? "—")
+                      )}
+                    </td>
                     <td className="min-w-[120px] px-2.5 py-2">{r.music ?? "—"}</td>
                     <td className="tabular px-2.5 py-2 text-right">{r.runtimeMin ? `${r.runtimeMin} min` : "—"}</td>
                     <td className="min-w-[120px] px-2.5 py-2 text-[11.5px]">{r.genres.length ? r.genres.join(", ") : "—"}</td>
