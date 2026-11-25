@@ -13,7 +13,7 @@
  * Usage: npx tsx scripts/releases.mts            (all years; re-downloads only the current year's page)
  *        npx tsx scripts/releases.mts --refresh  (re-download every year)
  */
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { parseCsv } from "@/lib/csv";
 import { editDistance } from "@/lib/import/billing";
 import { firstLink, parseWikitables, plainText } from "@/lib/import/wikitext";
@@ -68,12 +68,16 @@ const monthOf = (cell: string) => {
   const i = MONTHS.findIndex((m) => letters.startsWith(m));
   return i < 0 ? null : i + 1;
 };
-// A streaming service named as a producer, or a reference announcing an OTT premiere.
+// Direct-to-OTT only on explicit wording in the row's references. Not enough on its own: a streaming service
+// among the producers (ETV Win co-produced Little Hearts, a theatrical hit), or "OTT release" news, which is
+// usually about the streaming date after a theatrical run.
 const SERVICES = "Aha|'Aha'|Netflix|Amazon Prime(?: Video)?|Prime Video|ZEE5|Zee5|Disney\\+ ?Hotstar|Hotstar|SonyLIV|Sony LIV|ETV Win|JioCinema|JioHotstar";
 const OTT = new RegExp(
-  `direct[- ]to[- ]OTT|direct OTT|OTT (?:release|premiere|debut)|out on OTT|(?:streams?|premieres?|releases?|released|premiered)(?: directly)? on (?:${SERVICES})|\\[\\[(?:Aha \\(streaming service\\)|ZEE5|Netflix|Amazon Prime Video|SonyLIV|ETV Win)[|\\]]`,
+  `direct[- ]to[- ](?:OTT|digital|streaming)|direct (?:OTT|digital|streaming)|skip(?:s|ped|ping)? (?:a |the )?theatrical|(?:premiere|release)s? directly on|(?:to|will) (?:premiere|release) on (?:${SERVICES})|premieres? on (?:${SERVICES})`,
   "i",
 );
+/** Wording that says the film was in theatres: overrides any OTT hint in the same row. */
+const THEATRES = /\b(?:theatres|theaters|theatrical(?! rights)|big screens?|in cinemas|box office)\b/i;
 const castOf = (cell: string) =>
   plainText(cell.replace(/\{\{\s*(?:hlist|ubl|unbulleted list|plainlist)\s*\|([^}]*)\}\}/gi, (_, x: string) => x.split("|").filter((p) => !/=/.test(p)).join(", ")))
     .split(/\s*,\s*|\s*\n\s*|\*\s*/)
@@ -102,7 +106,7 @@ function parseYear(year: number, text: string): Release[] {
         title,
         date,
         year,
-        kind: OTT.test(row.join(" ")) ? "ott" : "theatrical",
+        kind: OTT.test(row.join(" ")) && !THEATRES.test(row.join(" ")) ? "ott" : "theatrical",
         language: null,
         director: plainText(row[di] ?? "") || null,
         cast: ci >= 0 ? castOf(row[ci] ?? "").slice(0, 6) : [],
@@ -210,6 +214,35 @@ if (existsSync(MANUAL)) {
   }
 }
 
+// 4. Checked release types (lib/data/releases/checked/*.csv, from docs/data-entry/releases-check.csv): a person
+// confirmed theatrical / OTT / not released and the date. These win over everything above.
+const CHECKED_DIR = "lib/data/releases/checked";
+let checked = 0;
+if (existsSync(CHECKED_DIR)) {
+  for (const file of readdirSync(CHECKED_DIR).filter((f) => f.endsWith(".csv")).sort()) {
+    for (const r of parseCsv(readFileSync(`${CHECKED_DIR}/${file}`, "utf8"))) {
+      const kind = (r.verified_kind || "").trim().toLowerCase().replace(/[\s-]+/g, "_");
+      if (!kind || !/^https?:\/\//.test(r.source_url || "")) continue; // needs a source
+      const year = Number(r.year);
+      const i = all.findIndex((x) => x.year === year && norm(x.title) === norm(r.title || ""));
+      if (i < 0) {
+        console.log(`  ! ${file}: "${r.title}" (${r.year}) not found`);
+        continue;
+      }
+      if (kind === "not_released" || kind === "duplicate" || kind === "not_telugu") {
+        all.splice(i, 1);
+      } else if (["theatrical", "ott", "dubbed"].includes(kind)) {
+        all[i].kind = kind as Kind;
+        if (/^\d{4}-\d{2}-\d{2}$/.test(r.verified_date || "")) all[i].date = r.verified_date;
+      } else {
+        console.log(`  ! ${file}: "${r.title}" has verified_kind "${r.verified_kind}"`);
+        continue;
+      }
+      checked++;
+    }
+  }
+}
+
 all.sort((a, b) => (a.date ?? `${a.year}-12-31`).localeCompare(b.date ?? `${b.year}-12-31`) || a.title.localeCompare(b.title));
 mkdirSync("lib/data/releases", { recursive: true });
 writeFileSync(
@@ -229,4 +262,4 @@ writeFileSync(
   ) + "\n",
 );
 const released = all.filter((r) => (r.date ?? `${r.year}-12-31`) <= TODAY);
-console.log(`\nSaved ${OUT}: ${all.length} films (${released.length} released by ${TODAY}); ${fromData} added from our film data, ${manual} manual rows.`);
+console.log(`\nSaved ${OUT}: ${all.length} films (${released.length} released by ${TODAY}); ${fromData} added from our film data, ${manual} manual rows, ${checked} checked rows.`);

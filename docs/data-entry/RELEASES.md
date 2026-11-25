@@ -23,7 +23,11 @@ Every week, after Friday's releases:
    (earlier years come from the cache in `.cache/releases/`; add `-- --refresh` to re-read every year), merges
    our film data and `manual.csv`, and writes `lib/data/releases/releases.json`.
 
-3. **Check and publish:** open `/releases`, look at this week's films, then commit `lib/data/releases/` and
+3. **Release-type checks** done by the browsing agent (`PROMPT-RELEASES.md`) go in
+   `lib/data/releases/checked/`; they win over the automatic guess. Only films whose sources explicitly say
+   "direct to OTT" are marked OTT automatically.
+
+4. **Check and publish:** open `/releases`, look at this week's films, then commit `lib/data/releases/` and
    deploy.
 
 What counts: Telugu films released in theatres or straight to OTT from 2000 on, and films dubbed into Telugu
