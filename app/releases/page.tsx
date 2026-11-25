@@ -96,6 +96,54 @@ export default async function ReleasesPage(props: PageProps<"/releases">) {
         <ReleasesChart data={counts} selected={year} linkYears />
       </section>
 
+      <details className="card mt-4 p-4 sm:p-5" data-testid="release-check">
+        <summary className="cursor-pointer text-[15px] font-semibold text-ink">How the total adds up, year by year</summary>
+        <p className="mt-2 max-w-3xl text-[13px] text-ink-2">
+          Start from Wikipedia&apos;s list of Telugu films for the year (the dashed line), add the Telugu films that list misses,
+          add the films dubbed into Telugu: that is the &ldquo;All releases&rdquo; line. A count of the Wikipedia lists alone gives
+          the first column.
+        </p>
+        <div className="mt-3 overflow-x-auto">
+          <table className="w-full min-w-[520px] text-[13px]">
+            <thead>
+              <tr className="border-b border-line text-left text-[11.5px] uppercase tracking-wide text-muted">
+                <th className="py-2 pr-3 font-semibold">Year</th>
+                <th className="py-2 pr-3 text-right font-semibold">Wikipedia list</th>
+                <th className="py-2 pr-3 text-right font-semibold">+ Telugu films it misses</th>
+                <th className="py-2 pr-3 text-right font-semibold">+ Dubbed into Telugu</th>
+                <th className="py-2 text-right font-semibold">= All releases</th>
+              </tr>
+            </thead>
+            <tbody className="tabular">
+              {[...counts].reverse().map((c) => (
+                <tr key={c.year} className="border-b border-line/50">
+                  <td className="py-1.5 pr-3">
+                    <Link href={href(c.year, null)} scroll={false} className="text-wine hover:underline">
+                      {c.year}
+                    </Link>
+                    {c.partial && <span className="text-muted"> (so far)</span>}
+                  </td>
+                  <td className="py-1.5 pr-3 text-right">{c.wikipedia}</td>
+                  <td className="py-1.5 pr-3 text-right text-ink-2">{c.extra ? `+${c.extra}` : "—"}</td>
+                  <td className="py-1.5 pr-3 text-right text-ink-2">{c.dubbed ? `+${c.dubbed}` : "—"}</td>
+                  <td className="py-1.5 text-right font-semibold text-ink">{c.total}</td>
+                </tr>
+              ))}
+              <tr className="font-semibold text-ink">
+                <td className="py-2 pr-3">Since 2000</td>
+                <td className="py-2 pr-3 text-right">{counts.reduce((s, c) => s + c.wikipedia, 0).toLocaleString("en-IN")}</td>
+                <td className="py-2 pr-3 text-right">+{counts.reduce((s, c) => s + c.extra, 0)}</td>
+                <td className="py-2 pr-3 text-right">+{counts.reduce((s, c) => s + c.dubbed, 0)}</td>
+                <td className="py-2 text-right">{all.toLocaleString("en-IN")}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-2 text-[12px] text-muted">
+          A film listed twice on one year&apos;s Wikipedia page is counted once here.
+        </p>
+      </details>
+
       <section id="list" className="mt-8 scroll-mt-24" aria-labelledby="list-title">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>

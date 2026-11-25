@@ -11,17 +11,21 @@ export interface YearPoint {
   theatrical: number;
   ott: number;
   dubbed: number;
+  wikipedia: number;
+  extra: number;
   partial: boolean;
 }
 
 /** Fixed order and colours (validated for colour-vision separation and 3:1 contrast on the card surface). */
 const SERIES = [
   { key: "total", label: "All releases", color: "#4a3aa7", width: 3 },
+  // Reference line for checking: the plain count of Wikipedia's yearly list (dashed, neutral).
+  { key: "wikipedia", label: "Wikipedia list only", color: "#7d6d65", width: 2, dash: "5 5" },
   { key: "theatrical", label: "Telugu, in theatres", color: "#a3284f", width: 2 },
   { key: "dubbed", label: "Dubbed into Telugu", color: "#b98200", width: 2 },
   { key: "ott", label: "Telugu, direct to OTT", color: "#00879e", width: 2 },
-] as const;
-type Key = (typeof SERIES)[number]["key"];
+] as { key: "total" | "wikipedia" | "theatrical" | "dubbed" | "ott"; label: string; color: string; width: number; dash?: string }[];
+type Key = "total" | "wikipedia" | "theatrical" | "dubbed" | "ott";
 
 /**
  * Releases per year as lines that draw themselves the first time the chart scrolls into view (instantly for
@@ -112,7 +116,7 @@ export function ReleasesChart({ data, height = 320, selected, linkYears = false,
         <ul className="mb-2 flex flex-wrap gap-x-4 gap-y-1 text-[12.5px] text-ink-2" aria-label="Legend">
           {SERIES.map((s) => (
             <li key={s.key} className="flex items-center gap-1.5">
-              <span aria-hidden className="inline-block h-[3px] w-4 rounded" style={{ background: s.color }} />
+              <span aria-hidden className="inline-block h-0 w-4" style={{ borderTop: `${s.dash ? 2 : 3}px ${s.dash ? "dashed" : "solid"} ${s.color}` }} />
               {s.label}
             </li>
           ))}
@@ -147,9 +151,11 @@ export function ReleasesChart({ data, height = 320, selected, linkYears = false,
               stroke={s.color}
               strokeWidth={s.width}
               strokeLinejoin="round"
-              strokeLinecap="round"
-              pathLength={1}
-              style={{ strokeDasharray: 1, strokeDashoffset: drawn ? 0 : 1, transition: `stroke-dashoffset 1.6s cubic-bezier(.2,.7,.2,1) ${si * 0.18}s` }}
+              strokeLinecap={s.dash ? "butt" : "round"}
+              {...(s.dash
+                ? // A dashed line fades in (the draw-in trick needs the dash pattern itself).
+                  { strokeDasharray: s.dash, style: { opacity: drawn ? 1 : 0, transition: `opacity .8s ease ${1.2 + si * 0.18}s` } }
+                : { pathLength: 1, style: { strokeDasharray: 1, strokeDashoffset: drawn ? 0 : 1, transition: `stroke-dashoffset 1.6s cubic-bezier(.2,.7,.2,1) ${si * 0.18}s` } })}
             />
           ))}
           {/* The current year is still running: an open dot. */}

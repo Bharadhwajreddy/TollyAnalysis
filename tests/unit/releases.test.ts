@@ -10,6 +10,7 @@ describe("Telugu releases by year", () => {
     expect(counts[counts.length - 1].partial).toBe(true);
     for (const c of counts) {
       expect(c.total).toBe(c.theatrical + c.ott + c.dubbed);
+      expect(c.total).toBe(c.wikipedia + c.extra + c.dubbed);
       expect(c.total).toBeGreaterThan(40);
     }
   });

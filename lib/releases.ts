@@ -20,6 +20,10 @@ export interface YearCount {
   theatrical: number;
   ott: number;
   dubbed: number;
+  /** Films on Wikipedia's "List of Telugu films of <year>" alone (what a count of that page gives). */
+  wikipedia: number;
+  /** Telugu films the list misses, added from our film data or by hand. */
+  extra: number;
   /** The current year: counted up to today only. */
   partial: boolean;
 }
@@ -43,6 +47,8 @@ export function releaseCounts(): YearCount[] {
       theatrical: list.filter((r) => r.kind === "theatrical").length,
       ott: list.filter((r) => r.kind === "ott").length,
       dubbed: list.filter((r) => r.kind === "dubbed").length,
+      wikipedia: list.filter((r) => r.source === "wikipedia-list").length,
+      extra: list.filter((r) => r.source !== "wikipedia-list" && r.kind !== "dubbed").length,
       partial: y === thisYear,
     });
   }
