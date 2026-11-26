@@ -95,7 +95,7 @@ export function HeroTable({
           Download CSV ({heroes.length})
         </button>
       </div>
-      <div className="scroll-x -mx-4 border-y border-line sm:mx-0 sm:rounded-lg sm:border">
+      <div className="scroll-x -mx-4 border-y border-line sm:mx-0 sm:rounded-lg sm:border" tabIndex={0} role="region" aria-label="Hero metrics table">
         <table className="w-full min-w-[1100px] border-collapse text-[13px]">
           <thead className="bg-surface-2">
             <tr>

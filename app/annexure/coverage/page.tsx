@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import { getCoverage, getDashboardData } from "@/lib/repositories";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Annexure · Data Coverage" };
+export const metadata: Metadata = pageMetadata({
+  title: "Annexure · Data Coverage",
+  description:
+    "Data coverage and missing-value audit across all Telugu lead films and heroes: scored, provisional, OTT, dubbed and disputed commercial evidence.",
+  path: "/annexure/coverage",
+});
 
 function Stat({ label, value, total, note }: { label: string; value: number; total: number; note?: string }) {
   const pct = total ? Math.round((value / total) * 100) : 0;

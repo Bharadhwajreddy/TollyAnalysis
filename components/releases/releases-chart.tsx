@@ -122,8 +122,14 @@ export function ReleasesChart({ data, height = 320, selected, linkYears = false,
           ))}
         </ul>
       )}
-      <div ref={ref} className="relative" onMouseLeave={() => (setHover(null), setTip(null))}>
-        <svg width={width} height={height} role="img" aria-label="Telugu releases per year since 2000" className="block select-none">
+      <div
+        ref={ref}
+        role="figure"
+        aria-label="Telugu releases per year since 2000"
+        className="relative"
+        onMouseLeave={() => (setHover(null), setTip(null))}
+      >
+        <svg width={width} height={height} className="block select-none">
           {ticks.map((t) => (
             <g key={t}>
               <line x1={left} x2={left + plotW} y1={sy(t)} y2={sy(t)} stroke="var(--line)" strokeDasharray={t ? "2 4" : undefined} />

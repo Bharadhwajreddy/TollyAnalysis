@@ -2,8 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { INDUSTRY_COLOR } from "@/lib/constants/colors";
 import { getRegistry } from "@/lib/repositories";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Annexure · Hero detail" };
+export const metadata: Metadata = pageMetadata({
+  title: "Annexure · Hero Detail & Filmography Index",
+  description:
+    "Browse film-by-film evidence, audience ratings, commercial verdicts, coverage percentages and source links for every hero tracked on Tollywood Analysis.",
+  path: "/annexure/heroes",
+});
 
 export default async function HeroIndexPage() {
   const registry = (await getRegistry()).filter((p) => p.eligibleLeadFilms > 0).sort((a, b) => a.name.localeCompare(b.name));

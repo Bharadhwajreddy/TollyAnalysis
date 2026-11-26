@@ -15,7 +15,6 @@ export const STATIC_ROUTES = [
   "/compare",
   "/trends",
   "/methodology",
-  "/annexure/methodology",
   "/annexure/registry",
   "/annexure/heroes",
   "/annexure/sources",

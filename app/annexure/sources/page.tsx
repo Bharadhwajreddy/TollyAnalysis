@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import { DATA_SOURCES, IMDB_ATTRIBUTION, TMDB_NOTICE } from "@/lib/legal/data-licences";
 import { getSources } from "@/lib/repositories";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Data credits" };
+export const metadata: Metadata = pageMetadata({
+  title: "Annexure · Data Credits & Sources",
+  description:
+    "Every public source and licence behind Tollywood Analysis benchmarks — Wikipedia, Wikidata, Wikimedia Commons, IMDb, TMDB and trade reports.",
+  path: "/annexure/sources",
+});
 
 const TYPE_LABEL: Record<string, string> = {
   official_api: "Official API",

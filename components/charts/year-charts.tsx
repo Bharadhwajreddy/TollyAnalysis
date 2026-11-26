@@ -48,9 +48,9 @@ export function StackedYearColumns({
   const y = (v: number) => M.top + plotH - (v / max) * plotH;
 
   return (
-    <div ref={ref} className="relative" onMouseLeave={() => setTip(null)}>
+    <div ref={ref} role="figure" aria-label={ariaLabel} className="relative" onMouseLeave={() => setTip(null)}>
       {width > 0 && (
-        <svg width={width} height={height} role="img" aria-label={ariaLabel}>
+        <svg width={width} height={height}>
           {countTicks(max).map((t) => (
             <g key={t}>
               <line x1={M.left} x2={width - M.right} y1={y(t)} y2={y(t)} stroke={t === 0 ? "var(--axis)" : "var(--grid)"} />
@@ -153,13 +153,11 @@ export function YearLines({
   const hoverRow = hover === null ? null : rows[hover];
 
   return (
-    <div ref={ref} className="relative">
+    <div ref={ref} role="figure" aria-label={ariaLabel} className="relative">
       {width > 0 && rows.length > 0 && (
         <svg
           width={width}
           height={height}
-          role="img"
-          aria-label={ariaLabel}
           onMouseMove={(e) => {
             const box = e.currentTarget.getBoundingClientRect();
             const px = e.clientX - box.left;

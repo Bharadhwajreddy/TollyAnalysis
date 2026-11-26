@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import type { HeroMetricKey } from "@/lib/calculations/engine";
 import { INDUSTRY_COLOR } from "@/lib/constants/colors";
@@ -28,10 +29,17 @@ const ALL_METRICS: HeroMetricKey[] = [
   "filmsPerYear",
 ];
 
-export function Rankings({ data, initialMetric }: { data: DashboardData; initialMetric: HeroMetricKey }) {
+export function RankingsView({
+  data,
+  metric,
+  onMetricChange,
+}: {
+  data: DashboardData;
+  metric: HeroMetricKey;
+  onMetricChange?: (m: HeroMetricKey) => void;
+}) {
   const [period, setPeriod] = useState<FilterWindow>("all_time");
   const [emerging, setEmerging] = useState(false);
-  const [metric, setMetric] = useState<HeroMetricKey>(initialMetric);
 
   const heroes = useMemo(() => data.windows[period].filter((h) => emerging || !h.isEmerging), [data, period, emerging]);
   const ranked = rankBy(heroes, metric);
@@ -47,7 +55,7 @@ export function Rankings({ data, initialMetric }: { data: DashboardData; initial
           options={(Object.keys(WINDOW_LABEL) as FilterWindow[]).map((w) => ({ value: w, label: WINDOW_LABEL[w] }))}
         />
         <Toggle checked={emerging} onChange={setEmerging} label="Include emerging heroes" />
-        <span className="tabular text-xs text-muted sm:ml-auto">{heroes.length} heroes</span>
+        <span className="tabular text-xs text-ink-2 sm:ml-auto">{heroes.length} heroes</span>
       </div>
 
       <ChartCard
@@ -58,7 +66,7 @@ export function Rankings({ data, initialMetric }: { data: DashboardData; initial
           <MetricPicker
             label="Ranking metric"
             value={metric}
-            onChange={setMetric}
+            onChange={(m) => onMetricChange?.(m)}
             options={ALL_METRICS.map((k) => ({ value: k, label: METRICS[k].short === "HPI" ? "Performance Index" : METRICS[k].short }))}
           />
         }
@@ -91,17 +99,24 @@ export function Rankings({ data, initialMetric }: { data: DashboardData; initial
           {ALL_METRICS.map((k) => (
             <div key={k} className="card p-4">
               <div className="flex items-baseline justify-between gap-2">
-                <button type="button" onClick={() => { setMetric(k); window.scrollTo({ top: 0 }); }} className="text-left text-sm font-semibold text-ink hover:text-wine">
+                <button
+                  type="button"
+                  onClick={() => {
+                    onMetricChange?.(k);
+                    window.scrollTo({ top: 0 });
+                  }}
+                  className="text-left text-sm font-semibold text-ink hover:text-wine"
+                >
                   {METRICS[k].label}
                 </button>
-                <span className="text-[11px] text-muted">{METRICS[k].higherIsBetter ? "higher is better" : "lower is better"}</span>
+                <span className="text-[11px] text-ink-2">{METRICS[k].higherIsBetter ? "higher is better" : "lower is better"}</span>
               </div>
               <ol className="mt-2 space-y-1">
                 {rankBy(heroes, k)
                   .slice(0, 5)
                   .map((h, i) => (
                     <li key={h.slug} className="flex items-center gap-2 text-[13px]">
-                      <span className="tabular w-4 text-right text-[11px] text-muted">{i + 1}</span>
+                      <span className="tabular w-4 text-right text-[11px] text-ink-2">{i + 1}</span>
                       <span aria-hidden className="h-2 w-2 rounded-full" style={{ background: INDUSTRY_COLOR[h.industry] }} />
                       <Link href={`/annexure/heroes/${h.slug}`} className="truncate text-ink hover:text-wine">
                         {h.name}
@@ -115,5 +130,26 @@ export function Rankings({ data, initialMetric }: { data: DashboardData; initial
         </div>
       </section>
     </div>
+  );
+}
+
+export function Rankings({ data }: { data: DashboardData }) {
+  const searchParams = useSearchParams();
+  const requested = searchParams.get("metric") ?? "starScore";
+  const urlMetric = (requested in METRICS ? requested : "starScore") as HeroMetricKey;
+
+  const [selection, setSelection] = useState<{ fromUrl: HeroMetricKey; value: HeroMetricKey }>(() => ({
+    fromUrl: urlMetric,
+    value: urlMetric,
+  }));
+
+  const metric = selection.fromUrl === urlMetric ? selection.value : urlMetric;
+
+  return (
+    <RankingsView
+      data={data}
+      metric={metric}
+      onMetricChange={(next) => setSelection({ fromUrl: urlMetric, value: next })}
+    />
   );
 }

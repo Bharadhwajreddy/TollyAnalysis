@@ -42,6 +42,15 @@ import { metadata as methodologyMetadata } from "@/app/methodology/page";
 import { metadata as annexureMetadata } from "@/app/annexure/page";
 import { metadata as careersMetadata } from "@/app/careers/page";
 import { metadata as contactMetadata } from "@/app/contact/page";
+import { metadata as privacyMetadata } from "@/app/privacy/page";
+import { metadata as termsMetadata } from "@/app/terms/page";
+import { metadata as annexureSourcesMetadata } from "@/app/annexure/sources/page";
+import { metadata as annexureRegistryMetadata } from "@/app/annexure/registry/page";
+import { metadata as annexureCoverageMetadata } from "@/app/annexure/coverage/page";
+import { metadata as annexureChangelogMetadata } from "@/app/annexure/changelog/page";
+import { metadata as annexureCorrectionsMetadata } from "@/app/annexure/corrections/page";
+import { metadata as annexurePhotoCreditsMetadata } from "@/app/annexure/photo-credits/page";
+import { metadata as annexureHeroesMetadata } from "@/app/annexure/heroes/page";
 import { clientIp } from "@/lib/security/rate-limit";
 import {
   absoluteUrl,
@@ -183,10 +192,14 @@ describe("Public search-engine indexing & canonical metadata (FR-002)", () => {
 
   it("app/sitemap.ts emits canonical https://tollyanalysis.com URLs for static routes, hero profiles, director profiles, and annexure pages", async () => {
     expect(BASE_URL).toBe("https://tollyanalysis.com");
-    expect(STATIC_ROUTES.length).toBeGreaterThanOrEqual(22);
+    expect(STATIC_ROUTES.length).toBeGreaterThanOrEqual(21);
+    expect((STATIC_ROUTES as readonly string[]).includes("/annexure/methodology")).toBe(false);
 
     const entries = await sitemap();
     const urls = new Set(entries.map((entry) => entry.url));
+
+    // Excluded redirecting routes must not appear in sitemap
+    expect(urls.has("https://tollyanalysis.com/annexure/methodology")).toBe(false);
 
     // Static routes
     expect(urls.has("https://tollyanalysis.com")).toBe(true);
@@ -429,6 +442,35 @@ describe("Rich SEO metadata & Schema.org JSON-LD architecture (lib/seo.ts)", () 
         url: `https://tollyanalysis.com${path}`,
         siteName: "Tollywood Analysis",
         locale: "en_IN",
+      });
+    }
+
+    const legalAndAnnexureRoutes: Array<[string, typeof privacyMetadata]> = [
+      ["/privacy", privacyMetadata],
+      ["/terms", termsMetadata],
+      ["/annexure/sources", annexureSourcesMetadata],
+      ["/annexure/registry", annexureRegistryMetadata],
+      ["/annexure/coverage", annexureCoverageMetadata],
+      ["/annexure/changelog", annexureChangelogMetadata],
+      ["/annexure/corrections", annexureCorrectionsMetadata],
+      ["/annexure/photo-credits", annexurePhotoCreditsMetadata],
+      ["/annexure/heroes", annexureHeroesMetadata],
+    ];
+
+    for (const [path, meta] of legalAndAnnexureRoutes) {
+      const titleText =
+        typeof meta.title === "string"
+          ? meta.title
+          : meta.title && typeof meta.title === "object" && "absolute" in meta.title
+            ? meta.title.absolute
+            : "";
+      expect(typeof titleText).toBe("string");
+      expect(titleText.trim().length).toBeGreaterThan(0);
+      expect(typeof meta.description).toBe("string");
+      expect((meta.description as string).trim().length).toBeGreaterThan(30);
+      expect(meta.alternates?.canonical).toBe(path);
+      expect(meta.openGraph).toMatchObject({
+        url: `https://tollyanalysis.com${path}`,
       });
     }
 

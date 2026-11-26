@@ -28,24 +28,33 @@ interface Loaded {
 }
 
 // Kept on globalThis so route handlers and pages (separate module instances) share one cache.
-const cache = globalThis as unknown as {
-  __taDemo?: Loaded;
-  __taDashboard?: DashboardData;
-  __taLive?: { at: number; value: Loaded } | null;
+// Lazily populated on first data access so cold Worker imports for static ASSETS or light routes
+// do not burn CPU/RAM building the entire dataset/dashboard upfront.
+interface TollyCache {
+  demo?: Loaded;
+  dashboard?: DashboardData;
+  live?: { at: number; value: Loaded } | null;
+  livePromise?: Promise<Loaded> | null;
+}
+
+const g = globalThis as unknown as {
+  __tollyCache?: TollyCache;
+  __tollyDirectorsCache?: unknown;
 };
+const cache: TollyCache = (g.__tollyCache ??= {});
 const LIVE_TTL_MS = 60_000;
 
 function ensureStaticLoaded(): Loaded {
-  if (!cache.__taDemo) {
+  if (!cache.demo) {
     const dataset = DATA_MODE === "real" ? buildRealDataset() : generateDemoDataset();
     const engine = runEngine(dataset, METHODOLOGY, `${dataset.asOf}T06:00:00Z`);
-    cache.__taDemo = { dataset, methodology: METHODOLOGY, engine, snapshots: engine.snapshots, calculatedAt: engine.calculatedAt };
+    cache.demo = { dataset, methodology: METHODOLOGY, engine, snapshots: engine.snapshots, calculatedAt: engine.calculatedAt };
   }
-  return cache.__taDemo;
+  return cache.demo;
 }
 
 function ensureStaticDashboard(): DashboardData {
-  if (!cache.__taDashboard) {
+  if (!cache.dashboard) {
     const l = ensureStaticLoaded();
     const people = new Map(l.dataset.people.map((p) => [p.slug, p]));
     const roster = new Map(INITIAL_ROSTER.map((r) => [r.slug, r]));
@@ -59,7 +68,7 @@ function ensureStaticDashboard(): DashboardData {
         l.snapshots[w].map((s) => toHeroView(s, personInfo(s.slug))),
       ]),
     ) as DashboardData["windows"];
-    cache.__taDashboard = {
+    cache.dashboard = {
       mode: l.dataset.mode,
       asOf: l.dataset.asOf,
       calculatedAt: l.calculatedAt,
@@ -68,31 +77,36 @@ function ensureStaticDashboard(): DashboardData {
       windows,
     };
   }
-  return cache.__taDashboard;
-}
-
-// Pre-warm static dataset and dashboard view model at module startup (uses Cloudflare Workers 1,000ms startup budget instead of 10ms per-request CPU limit).
-if (DATA_MODE !== "live") {
-  ensureStaticDashboard();
+  return cache.dashboard;
 }
 
 export async function load(): Promise<Loaded> {
   if (DATA_MODE === "live") {
     // Live data must be read per request, never frozen into the static build.
     await connection();
-    const hit = cache.__taLive;
+    const hit = cache.live;
     if (hit && Date.now() - hit.at < LIVE_TTL_MS) return hit.value;
-    const { loadLive } = await import("./live");
-    const value = await loadLive();
-    cache.__taLive = { at: Date.now(), value };
-    return value;
+    if (!cache.livePromise) {
+      cache.livePromise = import("./live")
+        .then(({ loadLive }) => loadLive())
+        .then((value) => {
+          cache.live = { at: Date.now(), value };
+          return value;
+        })
+        .finally(() => {
+          cache.livePromise = null;
+        });
+    }
+    return cache.livePromise;
   }
   return ensureStaticLoaded();
 }
 
 export function invalidateCache() {
-  cache.__taLive = null;
-  cache.__taDashboard = undefined;
+  cache.live = null;
+  cache.livePromise = null;
+  cache.dashboard = undefined;
+  g.__tollyDirectorsCache = undefined;
 }
 
 export async function getMeta(): Promise<DataMeta> {

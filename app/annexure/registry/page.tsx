@@ -4,8 +4,14 @@ import { INDUSTRY_COLOR } from "@/lib/constants/colors";
 import { INDUSTRY_LABEL } from "@/lib/constants/metrics";
 import { EDITORIALLY_EXCLUDED_NAMES } from "@/lib/constants/roster";
 import { getRegistry } from "@/lib/repositories";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Annexure · Hero Registry" };
+export const metadata: Metadata = pageMetadata({
+  title: "Annexure · Hero Registry",
+  description:
+    "Master registry of every actor checked for Tollywood Analysis: approved lead-film counts, roster tiers and excluded cameos or supporting roles.",
+  path: "/annexure/registry",
+});
 
 const TIER = {
   default: { label: "Default roster", cls: "bg-wine-soft text-wine" },

@@ -32,7 +32,7 @@ const PARTS = [
 /** Opens and closes with a height animation (grid rows 0fr → 1fr), without measuring anything. */
 function Reveal({ open, children, id }: { open: boolean; children: React.ReactNode; id?: string }) {
   return (
-    <div id={id} className="grid transition-[grid-template-rows,opacity] duration-300 ease-out" style={{ gridTemplateRows: open ? "1fr" : "0fr", opacity: open ? 1 : 0 }} aria-hidden={!open}>
+    <div id={id} className="grid transition-[grid-template-rows,opacity] duration-300 ease-out" style={{ gridTemplateRows: open ? "1fr" : "0fr", opacity: open ? 1 : 0 }} aria-hidden={!open} inert={!open}>
       <div className="min-h-0 overflow-hidden">{children}</div>
     </div>
   );

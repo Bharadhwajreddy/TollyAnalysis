@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Privacy policy" };
+export const metadata: Metadata = pageMetadata({
+  title: "Privacy Policy",
+  description:
+    "Privacy policy for Tollywood Analysis: no visitor accounts, no tracking scripts or ads, and how submitted corrections and DPDP 2023 rights are handled.",
+  path: "/privacy",
+});
 
 const UPDATED = "7 November 2026";
 

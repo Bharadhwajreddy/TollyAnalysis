@@ -123,7 +123,7 @@ test.describe("Other views", () => {
 });
 
 test.describe("Responsive layout", () => {
-  for (const path of ["/", "/star-score", "/tolly-index", "/heroes", "/hero/prabhas", "/hero/allari-naresh", "/hero/sivaji", "/rankings", "/compare", "/trends", "/methodology", "/annexure", "/annexure/registry", "/annexure/heroes/nani", "/annexure/corrections", "/annexure/sources", "/terms", "/privacy", "/careers", "/contact"]) {
+  for (const path of ["/", "/star-score", "/tolly-index", "/heroes", "/hero/prabhas", "/hero/allari-naresh", "/hero/sivaji", "/hero/dulquer-salmaan", "/directors", "/director/s-s-rajamouli", "/releases", "/rankings", "/compare", "/trends", "/methodology", "/annexure", "/annexure/registry", "/annexure/heroes/nani", "/annexure/corrections", "/annexure/sources", "/terms", "/privacy", "/careers", "/contact"]) {
     test(`no horizontal page overflow on ${path}`, async ({ page }) => {
       await page.goto(path);
       const [scrollW, clientW] = await page.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]);
@@ -250,7 +250,7 @@ test.describe("Home page", () => {
 
   test("the career graph shows every film and names it on hover or tap", async ({ page }) => {
     await page.goto("/hero/vishwak-sen");
-    const graph = page.getByRole("img", { name: /Vishwak Sen: box-office result of every lead film/ });
+    const graph = page.getByRole("figure", { name: /Vishwak Sen: box-office result of every lead film/ });
     await graph.scrollIntoViewIfNeeded();
     const dots = graph.getByRole("button");
     expect(await dots.count()).toBeGreaterThanOrEqual(10);
@@ -268,7 +268,7 @@ test.describe("Home page", () => {
     expect(await rows.count()).toBeGreaterThan(30);
     await page.getByTestId("director-table").getByRole("link", { name: /S\. S\. Rajamouli/ }).click();
     await expect(page.getByRole("heading", { level: 1 })).toHaveText("S. S. Rajamouli");
-    const graph = page.getByRole("img", { name: /S\. S\. Rajamouli: box-office result of every lead film/ });
+    const graph = page.getByRole("figure", { name: /S\. S\. Rajamouli: box-office result of every lead film/ });
     await graph.scrollIntoViewIfNeeded();
     expect(await graph.getByRole("button").count()).toBeGreaterThanOrEqual(10);
     await expect(page.getByRole("link", { name: "Jr NTR" }).first()).toHaveAttribute("href", "/hero/jr-ntr");
@@ -276,9 +276,9 @@ test.describe("Home page", () => {
 
   test("releases: a line per year with each year's film list", async ({ page }) => {
     await page.goto("/releases");
-    await expect(page.getByRole("img", { name: "Telugu releases per year since 2000" })).toBeVisible();
+    await expect(page.getByRole("figure", { name: "Telugu releases per year since 2000" })).toBeVisible();
     expect(await page.getByTestId("release-list").locator("li").count()).toBeGreaterThan(50);
-    await page.getByRole("img", { name: "Telugu releases per year since 2000" }).getByRole("link", { name: /^2020: / }).click();
+    await page.getByRole("figure", { name: "Telugu releases per year since 2000" }).getByRole("link", { name: /^2020: / }).click();
     await expect(page).toHaveURL(/year=2020/);
     await expect(page.getByRole("heading", { name: /2020 releases/ })).toBeVisible();
     await page.getByRole("link", { name: "Telugu, direct to OTT" }).click();

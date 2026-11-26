@@ -1,12 +1,9 @@
+import { useId } from "react";
 import { initialsOf } from "@/components/hero/hero-avatar";
 
-/** Shared clip path for circular portraits inside SVG charts. Render once per <svg>. */
+/** Kept for caller compatibility; each SvgAvatar scopes its own clipPath id via useId. */
 export function AvatarClipDef() {
-  return (
-    <clipPath id="avatar-clip" clipPathUnits="objectBoundingBox">
-      <circle cx="0.5" cy="0.5" r="0.5" />
-    </clipPath>
-  );
+  return null;
 }
 
 /** Circular portrait (or initials) centred at cx, cy with a coloured ring. */
@@ -27,20 +24,29 @@ export function SvgAvatar({
   color: string;
   selected?: boolean;
 }) {
+  const rawId = useId();
+  const clipId = `avatar-clip-${rawId.replace(/[^a-zA-Z0-9_-]/g, "")}`;
   return (
     <g>
       <circle cx={cx} cy={cy} r={r + 2.5} fill={selected ? "var(--ink)" : color} />
       <circle cx={cx} cy={cy} r={r + 0.5} fill="var(--surface)" />
       {photo ? (
-        <image
-          href={photo}
-          x={cx - r}
-          y={cy - r}
-          width={r * 2}
-          height={r * 2}
-          preserveAspectRatio="xMidYMin slice"
-          clipPath="url(#avatar-clip)"
-        />
+        <>
+          <defs>
+            <clipPath id={clipId} clipPathUnits="objectBoundingBox">
+              <circle cx="0.5" cy="0.5" r="0.5" />
+            </clipPath>
+          </defs>
+          <image
+            href={photo}
+            x={cx - r}
+            y={cy - r}
+            width={r * 2}
+            height={r * 2}
+            preserveAspectRatio="xMidYMin slice"
+            clipPath={`url(#${clipId})`}
+          />
+        </>
       ) : (
         <>
           <circle cx={cx} cy={cy} r={r} fill={color} />

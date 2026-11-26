@@ -1,10 +1,10 @@
 # Tollywood Analysis
 
-A private, dashboard-first benchmarking app for Telugu-cinema **heroes**: named leaderboards, release-cadence and audience charts, a labelled performance scatter, a sortable table, side-by-side comparison, and a separate **Annexure** with film-level evidence, methodology, sources, coverage, change log and a correction workflow.
+A dashboard-first benchmarking app for Telugu-cinema **heroes and directors**: named leaderboards (**Tolly Index** and **Star Score**), a 2000–present Telugu **Releases** archive, release-cadence and audience charts, a labelled performance scatter, a sortable table, side-by-side comparison, and a separate **Annexure** with film-level evidence, methodology, sources, coverage, change log and a correction workflow.
 
 ![Heroes dashboard](docs/screenshots/dashboard-desktop.png)
 
-> **Real data is on by default.** The app ships a snapshot built from **Wikipedia** (filmographies, release dates, budgets, worldwide grosses, box-office verdict sentences) and **Wikidata** (identifiers, runtimes, languages, recorded X follower counts). Only Telugu heroes and only films released from **1 January 2000** count. Every number links back to its source. Lead roles are auto-classified from billing order and are marked *pending editorial check*; use the correction form if one is wrong.
+> **Real data is on by default.** The app ships a snapshot built from **Wikipedia** (filmographies, release dates, budgets, worldwide grosses, box-office verdict sentences) and **Wikidata** (identifiers, runtimes, languages, recorded X follower counts). Tracks **89 active roster heroes** (Telugu heroes plus major Tamil, Malayalam, and Kannada stars whose films released in Telugu — originals, bilinguals, or Telugu dubs) and **593 Telugu-cinema directors** across films released from **1 January 2000** onward. Every number links back to its source. Lead roles are auto-classified from billing order and are marked *pending editorial check*; use the correction form if one is wrong.
 >
 > Set `NEXT_PUBLIC_DATA_MODE=demo` for the old synthetic dataset (marked `DEMO DATA`), or `live` to read Postgres.
 
@@ -12,7 +12,7 @@ A private, dashboard-first benchmarking app for Telugu-cinema **heroes**: named 
 
 ## 1. See it running (no setup)
 
-The production publication runs on **Cloudflare Workers** at **[https://tollyanalysis.com](https://tollyanalysis.com)** (and `https://www.tollyanalysis.com`), packaged with `@opennextjs/cloudflare` (`opennextjs-cloudflare`) and deployed via Wrangler (`wrangler.jsonc`) with the bundled real-data snapshot (`NEXT_PUBLIC_DATA_MODE=real`).
+The production publication runs on **Cloudflare Workers** at **[https://tollyanalysis.com](https://tollyanalysis.com)** (and `https://www.tollyanalysis.com`), packaged with `@opennextjs/cloudflare` (`opennextjs-cloudflare`), deployed via Wrangler (`wrangler.jsonc`) with the bundled real-data snapshot (`NEXT_PUBLIC_DATA_MODE=real`), and continuously tested & deployed from `main` via GitHub Actions (`.github/workflows/deploy.yml`) with post-deploy IndexNow submission (`scripts/indexnow-ping.mjs`).
 
 To build, preview, or deploy the Cloudflare Worker bundle:
 
@@ -31,20 +31,24 @@ npm run dev          # http://localhost:3000
 
 ## 2. What is in the app
 
-A short top navigation (Overview, Heroes, Rankings, Compare, Trends, Inside the data) and **one scrolling overview page**: cinema banner with the top three heroes → filters → headline numbers → photo leaderboard (**Star Score** by default; success ratio, hits, blockbusters, total box office, plus "More measures") with tie-aware ranks → top-5 lists → career atlas → "Go deeper": two **Pareto (best trade-off) charts** with changeable axes and a "find a hero" list, plus collapsible box-office, release-pace, recent-form and career-reach sections → "Every hero, every metric" table with CSV → **“How we calculate everything”** and "About this snapshot".
+A top navigation (`Home`, `Tolly Index`, `Star Score`, `Heroes`, `Directors`, `Releases`, `Rankings`, `Compare`, `Trends`, and `How it works`) and **one scrolling overview page**: cinema banner with the top three heroes → filters → headline numbers → photo leaderboard (**Star Score** by default; success ratio, hits, blockbusters, total box office, plus "More measures") with tie-aware ranks → top-5 lists → career atlas → "Go deeper": two **Pareto (best trade-off) charts** with changeable axes and a "find a hero" list, plus collapsible box-office, release-pace, recent-form and career-reach sections → "Every hero, every metric" table with CSV → **"How we calculate everything"** and "About this snapshot".
 
 - Bars are coloured by **debut era** or by **film family** (Mega, Nandamuri, Akkineni, Daggubati, Ghattamaneni, Manchu, other); switch with *Colour by*, and tap a legend item to hide a group.
 - Every bar, dot and table row shows the hero's photo (free-licensed, from Wikimedia Commons; initials when none exists).
 - **Tap** a hero to highlight him everywhere; **double-tap / double-click** to open his own page (`/hero/<name>`): banner with his headline numbers, the **Star Score part by part**, highlights, career milestones, results bar, year-by-year chart, comparison against the median hero, every statistic with his rank, and a large sortable table of every film (result with its source, worldwide gross, budget, gross ÷ budget, director, music, runtime, genre, language, billing) where each row opens its evidence; plus the appearances that were not counted and why. `/heroes` lists every hero as a card.
-- Ratios and averages only rank heroes with at least 5 judged films, so a 3-for-3 newcomer can't top the chart.
+- Ratios and averages only rank heroes with at least 5 judged films (and directors with at least 4 judged films), so a newcomer with a small sample cannot top the chart.
 
 | Page | What it shows |
 |---|---|
-| `/` | The single-page dashboard described above |
-| `/hero/<slug>` | One hero's page |
-| `/compare`, `/trends`, `/rankings` | Extra views, linked from the footer and hero pages |
+| `/` | Home dashboard (leads with the Tolly Index when enabled, or the Star Score overview) |
+| `/tolly-index`, `/star-score` | Dedicated Tolly Index and Star Score leaderboards & career dashboards |
+| `/heroes`, `/hero/<slug>` | Full hero directory and per-hero career & filmography evidence pages |
+| `/directors`, `/director/<slug>` | Director hit-rate leaderboard and 593 per-director Telugu filmography pages |
+| `/releases` | Year-by-year archive of 3,376 Telugu feature releases since 2000 |
+| `/compare`, `/trends`, `/rankings` | Side-by-side comparison, career trends, and sortable rankings |
 | `/methodology` | Every formula, weight and threshold, plus what is deliberately excluded |
-| `/annexure/…` | Film-level evidence: methodology, registry, per-hero evidence, sources, coverage, change log, corrections, photo credits |
+| `/annexure/…` | Film-level evidence: registry, per-hero evidence, sources, coverage, change log, corrections, photo credits |
+| `/careers`, `/contact`, `/terms`, `/privacy` | Editorial/data roles, contact information, terms of use, and privacy policy |
 | `/admin` | Editorial admin (sign-in with `ADMIN_TOKEN`) |
 
 ### Fans' ranking (off by default)
@@ -68,26 +72,26 @@ Visitors pick their top three heroes (3/2/1 points), one ballot per device (http
 
 | Order | Source | Films (current snapshot) |
 |---|---|---|
-| 1 | The film's English Wikipedia article: box-office section first, then lead, then reception (plot, cast, music, awards skipped; quotes, critics, remakes, other films and speculation ignored; "was not a success" reads as a flop) | 584 |
-| 2 | The hero's English Wikipedia article ("commercial successes such as *Kithakithalu*, *Gamyam*…"; contrasting clauses read separately) | 49 |
-| 3 | The film's Telugu Wikipedia article (విజయవంతమైంది, ఫ్లాప్, negations) | 18 |
-| 4 | mtwikiblog.com yearly and per-hero "hits and flops" lists — **low confidence**, used only when Wikipedia is silent; agreed with Wikipedia on 66 of 67 overlapping films | 270 |
-| — | Worldwide gross ÷ budget when no verdict exists: ≥3× Blockbuster, 2–3× Hit, 1–2× Average, <1× Flop | 9 |
+| 1 | The film's English Wikipedia article: box-office section first, then lead, then reception (plot, cast, music, awards skipped; quotes, critics, remakes, other films and speculation ignored; "was not a success" reads as a flop) | 755 |
+| 2 | Editor check against trade reports or news articles (every film links its citation) | 152 |
+| 3 | The hero's English Wikipedia article ("commercial successes such as *Kithakithalu*, *Gamyam*…"; contrasting clauses read separately) | 62 |
+| 4 | The film's Telugu Wikipedia article (విజయవంతమైంది, ఫ్లాప్, negations) | 19 |
+| 5 | mtwikiblog.com yearly and per-hero "hits and flops" lists — **low confidence**, used only when Wikipedia and editor checks are silent | 279 |
 
-Of 1,305 counted films, **925 (71%) have a result**, 16 are direct-to-OTT (no box office), 5 are too recent (released in the last 120 days) and 359 small films are "not reported" anywhere we read — they are never counted as flops. Every film row on a hero's page names its source and links to it.
+Of **1,688** counted films across 89 active roster heroes, **1,267 (75%) have a verdict**, **27** without a verdict are direct-to-OTT (28 OTT counted films total), **4** are too recent (released in the last 120 days before snapshot) and **390** smaller films are "not reported" anywhere we read — they are never counted as flops. Every film row on a hero's page names its source and links to it.
 
 **Star Score.** One number out of 100 combining every KPI (`lib/calculations/star.ts`): success ratio 20%, hit films 15%, total box office 15%, blockbusters 10%, recent success 10%, social reach 10%, biggest film 5%, box office per film 5%, films as lead 10% (+ fans' votes 5% when the fans' ranking is on). Counts and money are percentile ranks among heroes; ratios are blended toward the typical hero for small samples; social reach is X + Instagram on a log scale. Missing parts are left out (weight shared out), money parts need ≥ 3 films with a reported gross, and the score is withheld below 50% weight coverage.
 
 **Known limits.**
 - Audience ratings need a free TMDb key (`FEATURE_TMDB`). IMDb is never scraped.
-- X followers: Wikidata, mostly Feb 2023 (32 heroes). Instagram: one dated press report (`lib/data/real/reported-social.ts`, 6 heroes) until the Meta Graph API is configured. Instagram is never scraped.
-- About 30% of films have a reported gross; totals are "as reported", not complete trade figures.
-- 8 heroes have no free-licensed portrait on Commons and show initials (Vishnu Manchu, Tarun, Sivaji, Siddhu Jonnalagadda, Anand Deverakonda, Suhas, Taraka Ratna, Srihari). A TMDb key would allow attributed profile photos.
+- X followers: Wikidata (45 active heroes). Instagram: one dated press report (`lib/data/real/reported-social.ts`, 6 heroes) until the Meta Graph API is configured. Instagram is never scraped.
+- About **35%** of counted films (589 of 1,688) have a reported gross; totals are "as reported", not complete trade figures.
+- **6** active heroes have no free-licensed portrait on Commons and show initials (Tarun, Sivaji, Suhas, Taraka Ratna, Srihari, Mouli Tanuj Prasanth). A TMDb key would allow attributed profile photos.
 
 ## 4. Go live with a database (Supabase)
 
-1. **Create a Supabase project** at [supabase.com](https://supabase.com). Copy **Project Settings → Database → Connection string → URI**. On Vercel, use the *Transaction pooler* URI (port 6543).
-2. **Set environment variables** (Vercel → Project → Settings → Environment Variables, or `.env.local` locally). See [`.env.example`](.env.example):
+1. **Create a Supabase project** at [supabase.com](https://supabase.com). Copy **Project Settings → Database → Connection string → URI**. For serverless/edge workers on Cloudflare Workers, use the *Transaction pooler* URI (port 6543).
+2. **Set environment variables** (Cloudflare Worker secrets via `wrangler secret put` / Cloudflare Dashboard, or `.env.local` locally). See [`.env.example`](.env.example):
    - `DATABASE_URL` = your connection string
    - `ADMIN_TOKEN` = a long random string (`node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`)
    - `NEXT_PUBLIC_DATA_MODE` = `live` (keep `real` until the database has data)
@@ -157,25 +161,27 @@ npm run check        # lint + typecheck + test + build
 Set `CHROMIUM_PATH=/path/to/chrome` to run Playwright with a preinstalled browser.
 
 ```
-app/                 pages (dashboard, rankings, compare, trends, methodology, annexure, admin) and API routes
-components/          charts (ranked bars, labelled scatter with d3-force labels, year charts), dashboard, annexure, admin, ui
+app/                 pages (home, tolly-index, star-score, heroes, directors, releases, rankings, compare, trends, methodology, annexure, careers, contact, admin) and API routes
+components/          charts (ranked bars, labelled scatter with d3-force labels, year charts), dashboard, directors, releases, annexure, admin, ui
 lib/calculations/    pure, unit-tested scoring engine (Bayesian rating, film score, hero indices, cadence, confidence)
 lib/data/real/       bundled Wikipedia + Wikidata snapshot and its loader
+lib/data/releases/   2000–present Telugu feature release archive
 lib/data/demo/       deterministic synthetic demo dataset (fictional titles only)
 lib/import/          wikitext, money and verdict parsers used by the importer
 lib/providers/       TMDb, IMDb (disabled), Instagram, X, YouTube, Facebook, Wikidata adapters
 lib/repositories/    demo/live data access, corrections store
+lib/seo.ts           canonical metadata and Schema.org JSON-LD graph builders
 db/schema, db/migrations, db/supabase/rls.sql, db/repository.ts, db/admin.ts
-scripts/             data:import, photos:fetch, db:migrate, db:seed, db:recalculate
+scripts/             data:import, photos:fetch, db:migrate, db:seed, db:recalculate, indexnow-ping.mjs
 tests/unit, tests/e2e
 ```
 
-Stack: Next.js 16 (App Router), TypeScript strict, Tailwind CSS 4, Drizzle ORM + Postgres (Supabase), Zod, TanStack Table, React Hook Form, d3-force, Vitest, Playwright, GitHub Actions.
+Stack: Next.js 16 (App Router), TypeScript strict, Tailwind CSS 4, OpenNext Cloudflare (`@opennextjs/cloudflare`), Wrangler 4, Drizzle ORM + Postgres (Supabase), Zod, TanStack Table, React Hook Form, d3-force, Vitest, Playwright, GitHub Actions.
 
 ## 9. Known gaps / next steps
 
 - Admin sign-in uses a single `ADMIN_TOKEN` session (httpOnly signed cookie). Switching to Supabase Auth user accounts is the planned next step; RLS already blocks public writes.
-- The public correction rate limit is in-memory (per server instance). Use a shared store if you scale out.
-- 8 heroes have no free-licensed portrait yet and show initials. Adding a properly licensed photo (for example via TMDb once licensed) fixes that.
+- The public correction rate limit is in-memory (per Worker isolate). Use a shared store if you scale out.
+- 6 active heroes have no free-licensed portrait yet and show initials. Adding a properly licensed photo (for example via TMDb once licensed) fixes that.
 - Lead-role classification is automatic; review it in the admin console and add overrides to `lib/constants/editorial.ts`.
-- Heroines, directors and comedians are not built yet; the data model (`people`, `role_scope`) is ready for them.
+- Directors are live (`/directors` and `/director/[slug]`); heroines and comedians are not built yet, though the database schema (`people`, `role_scope`) is ready for them.

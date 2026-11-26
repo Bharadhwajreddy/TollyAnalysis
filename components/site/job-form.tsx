@@ -41,7 +41,7 @@ export function JobForm() {
             placeholder={f.placeholder}
             value={v[f.key] ?? ""}
             onChange={(e) => setV({ ...v, [f.key]: e.target.value })}
-            className="mt-1 w-full rounded-lg border border-line bg-surface px-3 py-2 text-[14.5px] text-ink outline-none focus:border-wine"
+            className="mt-1 w-full rounded-lg border border-line bg-surface px-3 py-2 text-[14.5px] text-ink focus:border-wine"
           />
         </label>
       ))}
@@ -53,7 +53,7 @@ export function JobForm() {
           placeholder="What the work is, dates, pay if you want to share it"
           value={details}
           onChange={(e) => setDetails(e.target.value)}
-          className="mt-1 w-full rounded-lg border border-line bg-surface px-3 py-2 text-[14.5px] text-ink outline-none focus:border-wine"
+          className="mt-1 w-full rounded-lg border border-line bg-surface px-3 py-2 text-[14.5px] text-ink focus:border-wine"
         />
       </label>
       <button type="submit" className="rounded-full bg-wine px-5 py-2 text-[14px] font-semibold text-white hover:opacity-90">

@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Terms of use" };
+export const metadata: Metadata = pageMetadata({
+  title: "Terms of Use",
+  description:
+    "Terms of use for Tollywood Analysis: independent non-commercial film career benchmarks, data licences, permissible editorial quoting and removal requests.",
+  path: "/terms",
+});
 
 const UPDATED = "7 November 2026";
 

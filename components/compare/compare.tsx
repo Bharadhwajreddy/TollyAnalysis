@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useMemo, useState, useTransition } from "react";
 import type { HeroMetricKey } from "@/lib/calculations/engine";
 import { formatMetric, INDUSTRY_LABEL, METRICS, WINDOW_LABEL } from "@/lib/constants/metrics";
 import type { FilterWindow } from "@/lib/domain/types";
@@ -25,34 +25,37 @@ const METRIC_ORDER: HeroMetricKey[] = [
   "filmsPerYear",
 ];
 
-export function Compare({ data, initial }: { data: DashboardData; initial: string[] }) {
-  const router = useRouter();
-  const pathname = usePathname();
-  const [period, setPeriod] = useState<FilterWindow>("all_time");
-  // Each hero keeps its colour slot while others are added or removed.
-  const [slots, setSlots] = useState<(string | null)[]>(() => {
-    const valid = initial.filter((s) => data.windows.all_time.some((h) => h.slug === s)).slice(0, 4);
-    return [0, 1, 2, 3].map((i) => valid[i] ?? null);
-  });
+function toSlots(data: DashboardData, slugs: string[]): (string | null)[] {
+  const valid = slugs.filter((s) => data.windows.all_time.some((h) => h.slug === s)).slice(0, 4);
+  return [0, 1, 2, 3].map((i) => valid[i] ?? null);
+}
 
+export function CompareView({
+  data,
+  slots,
+  period,
+  onPeriodChange,
+  onSlotsChange,
+}: {
+  data: DashboardData;
+  slots: (string | null)[];
+  period: FilterWindow;
+  onPeriodChange: (next: FilterWindow) => void;
+  onSlotsChange: (next: (string | null)[]) => void;
+}) {
   const heroesBySlug = useMemo(() => new Map(data.windows[period].map((h) => [h.slug, h])), [data, period]);
   const chosen = slots
     .map((slug, i) => (slug ? { slug, color: SLOT_COLORS[i], hero: heroesBySlug.get(slug) ?? null } : null))
     .filter((x): x is { slug: string; color: string; hero: HeroView | null } => x !== null);
 
-  const sync = (next: (string | null)[]) => {
-    setSlots(next);
-    const q = next.filter(Boolean).join(",");
-    router.replace(q ? `${pathname}?heroes=${q}` : pathname, { scroll: false });
-  };
   const add = (slug: string) => {
     const i = slots.indexOf(null);
     if (i === -1 || slots.includes(slug)) return;
     const next = [...slots];
     next[i] = slug;
-    sync(next);
+    onSlotsChange(next);
   };
-  const remove = (slug: string) => sync(slots.map((s) => (s === slug ? null : s)));
+  const remove = (slug: string) => onSlotsChange(slots.map((s) => (s === slug ? null : s)));
 
   const available = data.windows.all_time.filter((h) => !slots.includes(h.slug)).sort((a, b) => a.name.localeCompare(b.name));
 
@@ -68,7 +71,7 @@ export function Compare({ data, initial }: { data: DashboardData; initial: strin
                 type="button"
                 onClick={() => remove(c.slug)}
                 aria-label={`Remove ${c.hero?.name ?? c.slug}`}
-                className="grid h-6 w-6 place-items-center rounded-full text-muted hover:bg-surface-2 hover:text-ink"
+                className="grid h-6 w-6 place-items-center rounded-full text-ink-2 hover:bg-surface-2 hover:text-ink"
               >
                 ×
               </button>
@@ -96,7 +99,7 @@ export function Compare({ data, initial }: { data: DashboardData; initial: strin
         <Segmented
           label="Period"
           value={period}
-          onChange={setPeriod}
+          onChange={onPeriodChange}
           options={(Object.keys(WINDOW_LABEL) as FilterWindow[]).map((w) => ({ value: w, label: WINDOW_LABEL[w] }))}
         />
       </div>
@@ -104,7 +107,7 @@ export function Compare({ data, initial }: { data: DashboardData; initial: strin
       {chosen.length < 2 ? (
         <div className="card p-8 text-center">
           <p className="text-[15px] font-medium text-ink">Pick 2–4 heroes to compare side by side.</p>
-          <p className="mt-1 text-sm text-muted">
+          <p className="mt-1 text-sm text-ink-2">
             Use “Add hero” above, or tick heroes in the <Link href="/star-score#table" className="text-wine underline">dashboard table</Link>.
           </p>
         </div>
@@ -123,7 +126,7 @@ export function Compare({ data, initial }: { data: DashboardData; initial: strin
                     <h3 className="text-sm font-semibold text-ink" title={meta.definition}>
                       {meta.label}
                     </h3>
-                    <span className="text-[11px] text-muted">{meta.higherIsBetter ? "higher is better" : "lower is better"}</span>
+                    <span className="text-[11px] text-ink-2">{meta.higherIsBetter ? "higher is better" : "lower is better"}</span>
                   </div>
                   <ul className="mt-3 space-y-2">
                     {chosen.map((c, i) => {
@@ -156,7 +159,7 @@ export function Compare({ data, initial }: { data: DashboardData; initial: strin
             <h2 id="cmp-table" className="text-base font-semibold text-ink">
               Side-by-side detail
             </h2>
-            <div className="scroll-x mt-3">
+            <div className="scroll-x mt-3" tabIndex={0} aria-label="Hero comparison metrics table">
               <table className="w-full min-w-[560px] text-[13px]">
                 <thead>
                   <tr className="border-b border-line text-left text-[11px] uppercase tracking-wide text-ink-2">
@@ -198,7 +201,7 @@ export function Compare({ data, initial }: { data: DashboardData; initial: strin
                 </tbody>
               </table>
             </div>
-            <p className="mt-3 text-xs text-muted">
+            <p className="mt-3 text-xs text-ink-2">
               “—” means not enough evidence in this period (never zero). Bold marks the best value in each metric card.
             </p>
           </section>
@@ -206,6 +209,55 @@ export function Compare({ data, initial }: { data: DashboardData; initial: strin
       )}
     </div>
   );
+}
+
+export function CompareStatic({ data, defaultInitial }: { data: DashboardData; defaultInitial: string[] }) {
+  const slots = useMemo(() => toSlots(data, defaultInitial), [data, defaultInitial]);
+  return (
+    <CompareView
+      data={data}
+      slots={slots}
+      period="all_time"
+      onPeriodChange={() => {}}
+      onSlotsChange={() => {}}
+    />
+  );
+}
+
+export function Compare({ data, defaultInitial }: { data: DashboardData; defaultInitial: string[] }) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [period, setPeriod] = useState<FilterWindow>("all_time");
+  const [isPending, startTransition] = useTransition();
+
+  const urlKey = searchParams.get("heroes") ?? "";
+  const urlInitial = useMemo(() => {
+    const parsed = urlKey
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean)
+      .slice(0, 4);
+    return parsed.length > 0 ? parsed : defaultInitial;
+  }, [urlKey, defaultInitial]);
+
+  // Each hero keeps its colour slot while others are added or removed.
+  const [slotState, setSlotState] = useState<{ url: string; slots: (string | null)[] }>(() => ({
+    url: urlKey,
+    slots: toSlots(data, urlInitial),
+  }));
+
+  const slots = isPending || slotState.url === urlKey ? slotState.slots : toSlots(data, urlInitial);
+
+  const sync = (next: (string | null)[]) => {
+    const q = next.filter(Boolean).join(",");
+    setSlotState({ url: q, slots: next });
+    startTransition(() => {
+      router.replace(q ? `${pathname}?heroes=${q}` : pathname, { scroll: false });
+    });
+  };
+
+  return <CompareView data={data} slots={slots} period={period} onPeriodChange={setPeriod} onSlotsChange={sync} />;
 }
 
 function Row({ label, cells }: { label: string; cells: string[] }) {

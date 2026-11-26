@@ -117,7 +117,7 @@ export function HeroFilmsTable({ rows, heroName }: { rows: FilmRowView[]; heroNa
             onClick={() => setFilter(v)}
             className={`rounded-full border px-3 py-1 font-medium ${filter === v ? "border-wine bg-wine text-white" : "border-line text-ink-2 hover:border-ink-2"}`}
           >
-            {l} <span className="tabular opacity-70">{countOf(v)}</span>
+            {l} <span className={`tabular ${filter === v ? "text-white/90" : "text-muted"}`}>{countOf(v)}</span>
           </button>
         ))}
         <button
@@ -128,7 +128,7 @@ export function HeroFilmsTable({ rows, heroName }: { rows: FilmRowView[]; heroNa
           {open.size ? "Close all details" : "Open all details"}
         </button>
       </div>
-      <div className="scroll-x rounded-lg border border-line">
+      <div className="scroll-x rounded-lg border border-line" tabIndex={0} role="region" aria-label={`${heroName} filmography table`}>
         {/* The 3 leftmost columns hold the essentials; the rest scroll sideways on phones. */}
         <table className="w-full min-w-[1320px] text-[12.5px]">
           <thead className="bg-surface-2 text-[10.5px] uppercase tracking-wide text-ink-2">

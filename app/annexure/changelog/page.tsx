@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import { getChangeLog } from "@/lib/repositories";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Annexure · Change Log" };
+export const metadata: Metadata = pageMetadata({
+  title: "Annexure · Change Log",
+  description:
+    "Append-only editorial change log of dataset imports, methodology updates, roster exclusions and approved public corrections on Tollywood Analysis.",
+  path: "/annexure/changelog",
+});
 export const dynamic = "force-dynamic";
 
 export default async function ChangeLogPage() {

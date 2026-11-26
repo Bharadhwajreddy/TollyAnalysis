@@ -81,7 +81,7 @@ export function FilmographyTable({ rows }: { rows: FilmEvidenceRow[] }) {
         <span className="tabular ml-auto text-xs text-muted">{filtered.length} titles</span>
       </div>
 
-      <div className="scroll-x mt-3 rounded-lg border border-line">
+      <div className="scroll-x mt-3 rounded-lg border border-line" tabIndex={0} role="region" aria-label="Filmography evidence table">
         <table className="w-full min-w-[1100px] text-[12.5px]">
           <thead className="bg-surface-2 text-left text-[10.5px] uppercase tracking-wide text-ink-2">
             <tr>

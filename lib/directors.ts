@@ -1,4 +1,5 @@
 import "server-only";
+import { DATA_MODE } from "@/lib/env";
 import { load } from "@/lib/repositories";
 
 /**
@@ -113,17 +114,31 @@ export function compareDirectors(a: Director, b: Director) {
   );
 }
 
-let cached: Director[] | null = null;
+interface DirectorsCache {
+  at: number;
+  value?: Director[];
+  promise?: Promise<Director[]>;
+}
 
-export async function getDirectors(): Promise<Director[]> {
-  if (cached) return cached;
+const g = globalThis as unknown as { __tollyDirectorsCache?: DirectorsCache };
+const LIVE_TTL_MS = 60_000;
+
+async function computeDirectors(): Promise<Director[]> {
   const l = await load();
   const people = new Map(l.dataset.people.map((p) => [p.id, p]));
   const leadsByFilm = new Map<string, { slug: string; name: string }[]>();
   for (const [personId, rows] of l.engine.heroFilms) {
     const p = people.get(personId);
     if (!p) continue;
-    for (const r of rows) leadsByFilm.set(r.filmId, [...(leadsByFilm.get(r.filmId) ?? []), { slug: p.slug, name: p.displayName }]);
+    const entry = { slug: p.slug, name: p.displayName };
+    for (const r of rows) {
+      let arr = leadsByFilm.get(r.filmId);
+      if (!arr) {
+        arr = [];
+        leadsByFilm.set(r.filmId, arr);
+      }
+      arr.push(entry);
+    }
   }
 
   const byDirector = new Map<string, DirectorFilm[]>();
@@ -154,7 +169,12 @@ export async function getDirectors(): Promise<Director[]> {
       wiki: f.details?.wikiArticle ? `https://en.wikipedia.org/wiki/${encodeURIComponent(f.details.wikiArticle.replace(/ /g, "_"))}` : null,
     };
     // The same film can sit under two keys (one per hero's filmography, e.g. "RRR" and "RRR (film)"): count it once.
-    const list = byDirector.get(name) ?? [];
+    let list = byDirector.get(name);
+    if (!list) {
+      list = [film];
+      byDirector.set(name, list);
+      continue;
+    }
     const twin = list.find((x) => x.year === film.year && x.title.toLowerCase() === film.title.toLowerCase());
     if (twin) {
       for (const h of film.heroes) if (!twin.heroes.some((x) => x.slug === h.slug)) twin.heroes.push(h);
@@ -163,7 +183,7 @@ export async function getDirectors(): Promise<Director[]> {
       if (twin.result === null && film.result !== null) Object.assign(twin, { result: film.result, outcome: film.outcome });
       continue;
     }
-    byDirector.set(name, [...list, film]);
+    list.push(film);
   }
 
   const out: Director[] = [...byDirector].map(([name, list]) => {
@@ -206,8 +226,25 @@ export async function getDirectors(): Promise<Director[]> {
 
   const ranked = out.filter((d) => d.ranked).sort(compareDirectors);
   ranked.forEach((d, i) => (d.rank = i + 1));
-  cached = [...ranked, ...out.filter((d) => !d.ranked).sort((a, b) => b.films.length - a.films.length || compareDirectors(a, b))];
-  return cached;
+  return [...ranked, ...out.filter((d) => !d.ranked).sort((a, b) => b.films.length - a.films.length || compareDirectors(a, b))];
+}
+
+export async function getDirectors(): Promise<Director[]> {
+  const entry = (g.__tollyDirectorsCache ??= { at: 0 });
+  const fresh = DATA_MODE !== "live" || Date.now() - entry.at < LIVE_TTL_MS;
+  if (entry.value && fresh) return entry.value;
+  if (!entry.promise) {
+    entry.promise = computeDirectors()
+      .then((res) => {
+        entry.value = res;
+        entry.at = Date.now();
+        return res;
+      })
+      .finally(() => {
+        entry.promise = undefined;
+      });
+  }
+  return entry.promise;
 }
 
 export async function getDirector(slug: string): Promise<Director | null> {

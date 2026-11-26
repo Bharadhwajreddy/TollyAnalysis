@@ -6,9 +6,11 @@ import {
   decodeXmlEntities,
   DEFAULT_BASE_HOST,
   DEFAULT_KEY,
+  DEFAULT_TIMEOUT_MS,
   fetchSitemapWithRetry,
   MAX_INDEXNOW_BATCH_SIZE,
   parseSitemapUrls,
+  runCli,
   submitIndexNow,
 } from "@/scripts/indexnow-ping.mjs";
 
@@ -354,7 +356,7 @@ describe("GitHub Actions Production Deploy Workflow (.github/workflows/deploy.ym
     expect(wrangler.vars?.NEXT_PUBLIC_FEATURE_USER_RANKING).toBe("false");
   });
 
-  it("deploys via cloudflare/wrangler-action@v4 with command: deploy and required Cloudflare secrets", () => {
+  it("deploys via cloudflare/wrangler-action@v4 with pinned wranglerVersion, command: deploy, and required Cloudflare secrets", () => {
     const jobs = asRecord(deploy.jobs);
     const deployJob = asRecord(jobs.deploy) as unknown as WorkflowJob;
     const steps = deployJob.steps ?? [];
@@ -365,10 +367,17 @@ describe("GitHub Actions Production Deploy Workflow (.github/workflows/deploy.ym
     expect(wranglerIdx).toBeGreaterThan(buildIdx);
     expect(deployRaw).not.toContain("cloudflare/wrangler-action@v3");
 
+    const pkg = JSON.parse(readFileSync(resolve(process.cwd(), "package.json"), "utf8")) as {
+      devDependencies?: Record<string, string>;
+    };
+    const expectedWrangler = pkg.devDependencies?.wrangler?.replace(/^[\^~]/, "");
+    expect(expectedWrangler).toBe("4.164.0");
+
     const wranglerStep = steps[wranglerIdx];
     expect(wranglerStep.with).toEqual({
       apiToken: "${{ secrets.CLOUDFLARE_API_TOKEN }}",
       accountId: "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}",
+      wranglerVersion: "4.164.0",
       command: "deploy",
     });
     expect(String(wranglerStep.with?.command ?? "")).not.toContain("npx");
@@ -549,9 +558,11 @@ describe("IndexNow Submission Script (scripts/indexnow-ping.mjs) — FR-011", ()
     });
   });
 
-  it("fetchSitemapWithRetry retries transient 503 responses and succeeds on recovery", async () => {
+  it("fetchSitemapWithRetry retries transient 503 responses, passes AbortSignal, and succeeds on recovery", async () => {
     let calls = 0;
-    const fetchMock = vi.fn<typeof fetch>(async () => {
+    const seenSignals: Array<AbortSignal | null | undefined> = [];
+    const fetchMock = vi.fn<typeof fetch>(async (_input, init) => {
+      seenSignals.push(init?.signal);
       calls += 1;
       if (calls < 3) {
         return new Response("Edge warming", { status: 503 });
@@ -566,10 +577,190 @@ describe("IndexNow Submission Script (scripts/indexnow-ping.mjs) — FR-011", ()
       fetchFn: fetchMock,
       retries: 3,
       delayMs: 10,
+      timeoutMs: 5000,
       sleepFn: async () => {},
     });
 
     expect(calls).toBe(3);
+    expect(seenSignals).toHaveLength(3);
+    for (const sig of seenSignals) {
+      expect(sig).toBeInstanceOf(AbortSignal);
+      expect(sig?.aborted).toBe(false);
+    }
     expect(parseSitemapUrls(xml)).toEqual(["https://tollyanalysis.com"]);
+  });
+
+  it("submitIndexNow and fetchSitemapWithRetry attach AbortSignal.timeout and validate timeoutMs bounds", async () => {
+    expect(DEFAULT_TIMEOUT_MS).toBe(15000);
+
+    const fetchMock = vi.fn<typeof fetch>(async () => new Response(null, { status: 202 }));
+    await submitIndexNow({
+      urls: ["https://tollyanalysis.com/heroes"],
+      fetchFn: fetchMock,
+      timeoutMs: 8000,
+    });
+
+    const [, initCalled] = fetchMock.mock.calls[0];
+    expect(initCalled?.signal).toBeInstanceOf(AbortSignal);
+    expect(initCalled?.signal?.aborted).toBe(false);
+
+    await expect(
+      submitIndexNow({
+        urls: ["https://tollyanalysis.com/heroes"],
+        fetchFn: fetchMock,
+        timeoutMs: 0,
+      })
+    ).rejects.toThrow(RangeError);
+
+    await expect(
+      fetchSitemapWithRetry({
+        fetchFn: fetchMock,
+        timeoutMs: -1,
+      })
+    ).rejects.toThrow(RangeError);
+  });
+
+  it("runCli() executes end-to-end happy path: fetches sitemap, parses URLs, submits IndexNow batch with AbortSignal, and logs summary", async () => {
+    const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+      <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        <url><loc>https://tollyanalysis.com</loc></url>
+        <url><loc>https://tollyanalysis.com/heroes</loc></url>
+        <url><loc>https://tollyanalysis.com/directors</loc></url>
+        <url><loc>https://evil.example.com/ignored</loc></url>
+      </urlset>`;
+
+    const fetchMock = vi.fn<typeof fetch>(async (input, init) => {
+      const url = String(input);
+      expect(init?.signal).toBeInstanceOf(AbortSignal);
+      if (url === "https://tollyanalysis.com/sitemap.xml") {
+        return new Response(sitemapXml, { status: 200 });
+      }
+      if (url === "https://api.indexnow.org/indexnow") {
+        return new Response(null, { status: 202 });
+      }
+      throw new Error(`Unexpected URL: ${url}`);
+    });
+    const logMock = vi.fn<(...args: unknown[]) => void>();
+    const warnMock = vi.fn<(...args: unknown[]) => void>();
+
+    const result = await runCli(
+      {
+        INDEXNOW_SITEMAP_URL: "https://tollyanalysis.com/sitemap.xml",
+        INDEXNOW_BASE_URL: "https://tollyanalysis.com",
+        INDEXNOW_HOST: "tollyanalysis.com",
+        INDEXNOW_KEY: DEFAULT_KEY,
+        INDEXNOW_ENDPOINT: "https://api.indexnow.org/indexnow",
+      },
+      {
+        fetchFn: fetchMock,
+        log: logMock,
+        warn: warnMock,
+        timeoutMs: 4000,
+        delayMs: 0,
+      }
+    );
+
+    expect(result).toEqual({
+      ok: true,
+      submitted: 3,
+      batches: 1,
+      statuses: [202],
+    });
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    const [, postInit] = fetchMock.mock.calls[1];
+    expect(postInit?.method).toBe("POST");
+    expect(JSON.parse(String(postInit?.body))).toEqual({
+      host: "tollyanalysis.com",
+      key: DEFAULT_KEY,
+      keyLocation: `https://tollyanalysis.com/${DEFAULT_KEY}.txt`,
+      urlList: [
+        "https://tollyanalysis.com",
+        "https://tollyanalysis.com/heroes",
+        "https://tollyanalysis.com/directors",
+      ],
+    });
+    expect(logMock).toHaveBeenCalledTimes(1);
+    expect(logMock).toHaveBeenCalledWith(
+      "IndexNow submitted 3 URLs in 1 batch(es) (HTTP 202)."
+    );
+    expect(warnMock).not.toHaveBeenCalled();
+  });
+
+  it("runCli() handles transient sitemap 503 retry recovery, missing/empty sitemap errors, and persistent HTTP failures", async () => {
+    // 1. Transient 503 on sitemap followed by recovery -> warns and completes
+    let attempt = 0;
+    const retryFetch = vi.fn<typeof fetch>(async (input, init) => {
+      expect(init?.signal).toBeInstanceOf(AbortSignal);
+      const url = String(input);
+      if (url.endsWith("/sitemap.xml")) {
+        attempt += 1;
+        if (attempt === 1) {
+          return new Response("Warming up", { status: 503 });
+        }
+        return new Response(
+          "<urlset><url><loc>https://tollyanalysis.com/releases</loc></url></urlset>",
+          { status: 200 }
+        );
+      }
+      return new Response("OK", { status: 200 });
+    });
+    const logMock = vi.fn<(...args: unknown[]) => void>();
+    const warnMock = vi.fn<(...args: unknown[]) => void>();
+
+    const recovered = await runCli(
+      {},
+      {
+        fetchFn: retryFetch,
+        log: logMock,
+        warn: warnMock,
+        retries: 2,
+        delayMs: 1,
+        sleepFn: async () => {},
+      }
+    );
+    expect(recovered).toEqual({ ok: true, submitted: 1, batches: 1, statuses: [200] });
+    expect(warnMock).toHaveBeenCalledTimes(1);
+    expect(warnMock.mock.calls[0][0]).toContain("HTTP 503");
+    expect(logMock).toHaveBeenCalledWith(
+      "IndexNow submitted 1 URLs in 1 batch(es) (HTTP 200)."
+    );
+
+    // 2. Empty or foreign-only sitemap -> warns and throws without calling IndexNow
+    const emptySitemapFetch = vi.fn<typeof fetch>(
+      async () => new Response("<urlset></urlset>", { status: 200 })
+    );
+    const emptyLog = vi.fn<(...args: unknown[]) => void>();
+    const emptyWarn = vi.fn<(...args: unknown[]) => void>();
+    await expect(
+      runCli(
+        {},
+        {
+          fetchFn: emptySitemapFetch,
+          log: emptyLog,
+          warn: emptyWarn,
+          retries: 1,
+          delayMs: 0,
+        }
+      )
+    ).rejects.toThrow(/No valid URLs found in sitemap/);
+    expect(emptySitemapFetch).toHaveBeenCalledTimes(1);
+    expect(emptyWarn).toHaveBeenCalledTimes(1);
+    expect(emptyLog).not.toHaveBeenCalled();
+
+    // 3. Exhausted sitemap HTTP 404 -> throws cleanly without calling IndexNow
+    const notFoundFetch = vi.fn<typeof fetch>(
+      async () => new Response("Not Found", { status: 404 })
+    );
+    await expect(
+      runCli({
+        fetchFn: notFoundFetch,
+        log: vi.fn<(...args: unknown[]) => void>(),
+        warn: vi.fn<(...args: unknown[]) => void>(),
+        retries: 2,
+        delayMs: 1,
+        sleepFn: async () => {},
+      })
+    ).rejects.toThrow(/HTTP 404/);
+    expect(notFoundFetch).toHaveBeenCalledTimes(2);
   });
 });

@@ -74,7 +74,7 @@ export function TollyHeroCard({ hero, rankedCount, meta, provisional = false }: 
           {hero.factors && hero.qualified && (
             <details className="rounded-lg border border-line bg-surface-2/50 px-3 py-2">
               <summary className="cursor-pointer text-[13px] font-semibold text-ink">All {HERO_FACTORS.length} numbers behind the score</summary>
-              <div className="scroll-x mt-2">
+              <div className="scroll-x mt-2" tabIndex={0} role="region" aria-label="Tolly Index factor breakdown table">
                 <table className="w-full min-w-[520px] text-[12.5px]">
                   <thead className="text-left text-[10.5px] uppercase tracking-wide text-ink-2">
                     <tr>
@@ -145,8 +145,11 @@ function GroupRows({ hero, group }: { hero: TollyHeroView; group: (typeof GROUPS
   return (
     <>
       <tr>
-        <th colSpan={4} scope="colgroup" className="pb-1 pt-3 text-left text-[11px] font-semibold uppercase tracking-wide" style={{ color: g.color }}>
-          {g.label}
+        <th colSpan={4} scope="colgroup" className="pb-1 pt-3 text-left text-[11px] font-semibold uppercase tracking-wide text-ink">
+          <span className="inline-flex items-center gap-1.5">
+            <span aria-hidden className="h-2 w-2 shrink-0 rounded-full" style={{ background: g.color }} />
+            {g.label}
+          </span>
         </th>
       </tr>
       {HERO_FACTORS.filter((f) => f.group === group).map((f) => {

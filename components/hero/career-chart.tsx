@@ -44,7 +44,7 @@ export function CareerChart({ points, next, name, height = 300 }: { points: Care
   if (!sorted.length) return <p className="text-sm text-muted">No dated films.</p>;
 
   const narrow = width < 480;
-  const left = narrow ? 70 : 96;
+  const left = narrow ? 76 : 104;
   const right = 18;
   const top = 14;
   const strip = 34;
@@ -86,20 +86,28 @@ export function CareerChart({ points, next, name, height = 300 }: { points: Care
   };
 
   return (
-    <div ref={ref} className="relative" onPointerLeave={() => { setTip(null); setActive(null); }}>
-      <svg width={width} height={height} role="img" aria-label={`${name}: box-office result of every lead film, in release order`} className="block select-none">
+    <div
+      ref={ref}
+      role="figure"
+      aria-label={`${name}: box-office result of every lead film, in release order`}
+      className="relative"
+      onPointerLeave={() => { setTip(null); setActive(null); }}
+    >
+      <svg width={width} height={height} className="block select-none">
         {RESULT_LEVELS.map((l, i) => (
           <g key={l.key}>
             <line x1={left} x2={width - right} y1={sy(i)} y2={sy(i)} stroke="var(--color-line, #e5ded4)" strokeDasharray={l.key === "average" ? "0" : "2 4"} />
-            <text x={left - 8} y={sy(i)} dy="0.32em" textAnchor="end" fontSize={narrow ? 10 : 11} fill={l.color} fontWeight={600}>
+            <circle cx={left - 6} cy={sy(i)} r={3} fill={l.color} aria-hidden="true" />
+            <text x={left - 13} y={sy(i)} dy="0.32em" textAnchor="end" fontSize={narrow ? 10 : 11} fill="var(--color-ink-2, #5b4b45)" fontWeight={600}>
               {narrow ? l.label.replace("Below average", "Below avg").replace("Above average", "Above avg") : l.label}
             </text>
           </g>
         ))}
-        <text x={left - 8} y={stripY} dy="0.32em" textAnchor="end" fontSize={narrow ? 10 : 11} fill={NO_RESULT}>No result</text>
+        <circle cx={left - 6} cy={stripY} r={3} fill="var(--color-surface, #fff)" stroke={NO_RESULT} strokeWidth={1.5} aria-hidden="true" />
+        <text x={left - 13} y={stripY} dy="0.32em" textAnchor="end" fontSize={narrow ? 10 : 11} fill="var(--color-muted, #665851)">No result</text>
         <line x1={left} x2={width - right} y1={stripY} y2={stripY} stroke="var(--color-line, #e5ded4)" strokeDasharray="1 5" />
         {years.filter((_, i) => i % step === 0).map((yr) => (
-          <text key={yr} x={sx(yr)} y={height - 6} textAnchor="middle" fontSize={11} fill="var(--color-muted, #8a8178)" className="num">{yr}</text>
+          <text key={yr} x={sx(yr)} y={height - 6} textAnchor="middle" fontSize={11} fill="var(--color-muted, #665851)" className="num">{yr}</text>
         ))}
         <path d={path} fill="none" stroke="var(--color-ink-2, #5b524a)" strokeWidth={1.8} strokeLinejoin="round" opacity={0.55} />
         {nextX !== null && judged.length > 0 && (

@@ -7,6 +7,7 @@ export const DEFAULT_HOST = "tollyanalysis.com";
 export const DEFAULT_SITEMAP_URL = "https://tollyanalysis.com/sitemap.xml";
 export const DEFAULT_INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow";
 export const MAX_INDEXNOW_BATCH_SIZE = 10000;
+export const DEFAULT_TIMEOUT_MS = 15_000;
 
 /** @type {Record<string, string>} */
 const XML_ENTITY_MAP = {
@@ -147,6 +148,7 @@ async function safeErrorSnippet(response, keyToRedact) {
  * @param {string} [options.keyLocation]
  * @param {string} [options.endpoint=DEFAULT_INDEXNOW_ENDPOINT]
  * @param {typeof fetch} [options.fetchFn=globalThis.fetch]
+ * @param {number} [options.timeoutMs=DEFAULT_TIMEOUT_MS]
  * @returns {Promise<{ ok: true; submitted: number; batches: number; statuses: number[] }>}
  */
 export async function submitIndexNow({
@@ -156,6 +158,7 @@ export async function submitIndexNow({
   keyLocation,
   endpoint = DEFAULT_INDEXNOW_ENDPOINT,
   fetchFn = globalThis.fetch,
+  timeoutMs = DEFAULT_TIMEOUT_MS,
 } = {}) {
   if (!Array.isArray(urls)) {
     throw new TypeError("submitIndexNow requires `urls` to be an array of strings.");
@@ -175,6 +178,10 @@ export async function submitIndexNow({
 
   if (typeof fetchFn !== "function") {
     throw new TypeError("submitIndexNow requires a valid fetchFn function.");
+  }
+
+  if (typeof timeoutMs !== "number" || !Number.isFinite(timeoutMs) || timeoutMs <= 0) {
+    throw new RangeError("submitIndexNow requires `timeoutMs` to be a positive finite number.");
   }
 
   /** @type {string[]} */
@@ -214,6 +221,7 @@ export async function submitIndexNow({
         "content-type": "application/json; charset=utf-8",
       },
       body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(timeoutMs),
     });
 
     if (response.status !== 200 && response.status !== 202) {
@@ -244,7 +252,9 @@ export async function submitIndexNow({
  * @param {typeof fetch} [options.fetchFn=globalThis.fetch]
  * @param {number} [options.retries=3]
  * @param {number} [options.delayMs=2000]
+ * @param {number} [options.timeoutMs=DEFAULT_TIMEOUT_MS]
  * @param {(ms: number) => Promise<void>} [options.sleepFn]
+ * @param {(message: string) => void} [options.warn]
  * @returns {Promise<string>}
  */
 export async function fetchSitemapWithRetry({
@@ -252,10 +262,16 @@ export async function fetchSitemapWithRetry({
   fetchFn = globalThis.fetch,
   retries = 3,
   delayMs = 2000,
+  timeoutMs = DEFAULT_TIMEOUT_MS,
   sleepFn = (ms) => new Promise((resolvePromise) => setTimeout(resolvePromise, ms)),
+  warn,
 } = {}) {
   if (typeof fetchFn !== "function") {
     throw new TypeError("fetchSitemapWithRetry requires a valid fetchFn function.");
+  }
+
+  if (typeof timeoutMs !== "number" || !Number.isFinite(timeoutMs) || timeoutMs <= 0) {
+    throw new RangeError("fetchSitemapWithRetry requires `timeoutMs` to be a positive finite number.");
   }
 
   const attempts = Math.max(1, retries);
@@ -268,6 +284,7 @@ export async function fetchSitemapWithRetry({
         headers: {
           accept: "application/xml, text/xml;q=0.9, */*;q=0.8",
         },
+        signal: AbortSignal.timeout(timeoutMs),
       });
       if (response.ok) {
         return await response.text();
@@ -279,8 +296,14 @@ export async function fetchSitemapWithRetry({
       lastError = error;
     }
 
-    if (attempt < attempts && delayMs > 0) {
-      await sleepFn(delayMs * attempt);
+    if (attempt < attempts) {
+      const reason = lastError instanceof Error ? lastError.message : String(lastError);
+      warn?.(
+        `Sitemap fetch attempt ${attempt}/${attempts} failed (${reason}); retrying...`
+      );
+      if (delayMs > 0) {
+        await sleepFn(delayMs * attempt);
+      }
     }
   }
 
@@ -292,25 +315,86 @@ export async function fetchSitemapWithRetry({
 /**
  * CLI entrypoint: fetch live sitemap, extract verified URLs, and submit to IndexNow.
  *
- * @param {NodeJS.ProcessEnv} [env=process.env]
+ * @typedef {Record<string, string | undefined>} IndexNowEnv
+ *
+ * @typedef {object} RunCliOptions
+ * @property {typeof fetch} [fetchFn=globalThis.fetch]
+ * @property {(message?: unknown, ...optionalParams: unknown[]) => void} [log=console.log]
+ * @property {(message?: unknown, ...optionalParams: unknown[]) => void} [warn=console.warn]
+ * @property {number} [timeoutMs=DEFAULT_TIMEOUT_MS]
+ * @property {number} [retries=3]
+ * @property {number} [delayMs=2000]
+ * @property {(ms: number) => Promise<void>} [sleepFn]
+ * @property {IndexNowEnv} [env]
+ *
+ * @param {IndexNowEnv | RunCliOptions} [envOrOptions=process.env]
+ * @param {RunCliOptions} [options={}]
  * @returns {Promise<{ ok: true; submitted: number; batches: number; statuses: number[] }>}
  */
-export async function runCli(env = process.env) {
+export async function runCli(envOrOptions = process.env, options = {}) {
+  const isOptionsFirstArg =
+    envOrOptions !== null &&
+    typeof envOrOptions === "object" &&
+    ("fetchFn" in envOrOptions ||
+      "log" in envOrOptions ||
+      "warn" in envOrOptions ||
+      "timeoutMs" in envOrOptions ||
+      "retries" in envOrOptions ||
+      "delayMs" in envOrOptions ||
+      "sleepFn" in envOrOptions ||
+      "env" in envOrOptions);
+
+  /** @type {IndexNowEnv} */
+  const env = isOptionsFirstArg
+    ? (/** @type {RunCliOptions} */ (envOrOptions).env ?? process.env)
+    : /** @type {IndexNowEnv} */ (envOrOptions ?? process.env);
+
+  /** @type {RunCliOptions} */
+  const resolvedOptions = isOptionsFirstArg
+    ? /** @type {RunCliOptions} */ (envOrOptions)
+    : options;
+
+  const {
+    fetchFn = globalThis.fetch,
+    log = console.log,
+    warn = console.warn,
+    timeoutMs = DEFAULT_TIMEOUT_MS,
+    retries = 3,
+    delayMs = 2000,
+    sleepFn,
+  } = resolvedOptions;
+
   const sitemapUrl = env.INDEXNOW_SITEMAP_URL || DEFAULT_SITEMAP_URL;
   const baseHost = env.INDEXNOW_BASE_URL || DEFAULT_BASE_HOST;
   const host = env.INDEXNOW_HOST || DEFAULT_HOST;
   const key = env.INDEXNOW_KEY || DEFAULT_KEY;
   const endpoint = env.INDEXNOW_ENDPOINT || DEFAULT_INDEXNOW_ENDPOINT;
 
-  const xml = await fetchSitemapWithRetry({ sitemapUrl });
+  const xml = await fetchSitemapWithRetry({
+    sitemapUrl,
+    fetchFn,
+    retries,
+    delayMs,
+    timeoutMs,
+    sleepFn,
+    warn,
+  });
   const urls = parseSitemapUrls(xml, baseHost);
 
   if (urls.length === 0) {
+    warn(`IndexNow skipped: no valid URLs found in sitemap (${sitemapUrl}) for ${baseHost}.`);
     throw new Error(`No valid URLs found in sitemap (${sitemapUrl}) for ${baseHost}.`);
   }
 
-  const result = await submitIndexNow({ urls, key, host, endpoint });
-  console.log(
+  const result = await submitIndexNow({
+    urls,
+    key,
+    host,
+    endpoint,
+    fetchFn,
+    timeoutMs,
+  });
+  log(
     `IndexNow submitted ${result.submitted} URLs in ${result.batches} batch(es) (HTTP ${result.statuses.join(", ")}).`
   );
   return result;

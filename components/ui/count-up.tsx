@@ -42,7 +42,8 @@ export function CountUp({ value, className }: { value: string; className?: strin
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
   return (
-    <span ref={ref} className={className} aria-label={value}>
+    <span ref={ref} className={className}>
+      <span className="sr-only">{value}</span>
       <span aria-hidden>{shown}</span>
     </span>
   );

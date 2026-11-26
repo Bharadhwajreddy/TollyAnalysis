@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { PageHeader } from "@/components/layout/page-header";
-import { Rankings } from "@/components/rankings/rankings";
-import type { HeroMetricKey } from "@/lib/calculations/engine";
-import { METRICS } from "@/lib/constants/metrics";
+import { Rankings, RankingsView } from "@/components/rankings/rankings";
 import { getDashboardData } from "@/lib/repositories";
 import { pageMetadata } from "@/lib/seo";
 
@@ -19,10 +18,7 @@ export const metadata: Metadata = pageMetadata({
   ],
 });
 
-export default async function RankingsPage(props: PageProps<"/rankings">) {
-  const sp = await props.searchParams;
-  const requested = typeof sp.metric === "string" ? sp.metric : "starScore";
-  const metric = (requested in METRICS ? requested : "starScore") as HeroMetricKey;
+export default async function RankingsPage() {
   const data = await getDashboardData();
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -31,7 +27,9 @@ export default async function RankingsPage(props: PageProps<"/rankings">) {
         subtitle="Pick a measure to rank every hero."
         meta={data}
       />
-      <Rankings data={data} initialMetric={metric} />
+      <Suspense fallback={<RankingsView data={data} metric="starScore" />}>
+        <Rankings data={data} />
+      </Suspense>
     </div>
   );
 }

@@ -51,7 +51,7 @@ export default async function HeroDetailPage(props: PageProps<"/annexure/heroes/
             <h2 id="hero-metrics" className="text-base font-semibold text-ink">All-time metrics with evidence coverage</h2>
             <ConfidenceBadge grade={snap.confidence} />
           </div>
-          <div className="scroll-x mt-3">
+          <div className="scroll-x mt-3" tabIndex={0} role="region" aria-label={`${person.displayName} all-time metrics table`}>
             <table className="w-full min-w-[640px] text-[13px]">
               <thead className="text-left text-[11px] uppercase tracking-wide text-ink-2">
                 <tr className="border-b border-line">

@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import { CorrectionForm } from "@/components/annexure/correction-form";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Annexure · Suggest a Correction" };
+export const metadata: Metadata = pageMetadata({
+  title: "Annexure · Suggest a Correction",
+  description:
+    "Submit a sourced correction to Tollywood Analysis film credits, verdicts, box-office figures or hero details. Every submission stays private until reviewed.",
+  path: "/annexure/corrections",
+});
 
 export default async function CorrectionsPage(props: PageProps<"/annexure/corrections">) {
   const sp = await props.searchParams;

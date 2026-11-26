@@ -64,9 +64,12 @@ export function TollyRanking({ rows }: { rows: RankingRow[] }) {
                   {r.name}
                   {r.provisional && <ProvisionalMark />}
                 </span>
-                <span className="tabular block text-[26px] font-semibold leading-tight" style={{ color: colour(r) }}>
-                  {r.index.toFixed(1)}
-                  {r.band !== null && <span className="ml-1.5 text-[13px] font-normal text-muted">± {r.band.toFixed(1)}</span>}
+                <span className="tabular flex items-center gap-2 text-[26px] font-semibold leading-tight text-ink">
+                  <span aria-hidden className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: colour(r) }} />
+                  <span>
+                    {r.index.toFixed(1)}
+                    {r.band !== null && <span className="ml-1.5 text-[13px] font-normal text-muted">± {r.band.toFixed(1)}</span>}
+                  </span>
                 </span>
                 {r.best && <span className="block truncate text-[12.5px] text-ink-2">Best: {r.best}</span>}
               </span>
@@ -85,7 +88,7 @@ export function TollyRanking({ rows }: { rows: RankingRow[] }) {
             {rows.some((r) => r.provisional) && <> Provisional: {PROVISIONAL_TIP.replace(/^Provisional: /, "")}</>}
           </p>
         </div>
-        <div className="scroll-x mt-3 rounded-lg border border-line">
+        <div className="scroll-x mt-3 rounded-lg border border-line" tabIndex={0} role="region" aria-label="Hero ranking table">
           <table className="w-full min-w-[960px] text-[13.5px]">
             <thead className="bg-surface-2 text-[10.5px] uppercase tracking-wide text-ink-2">
               <tr>
@@ -113,9 +116,10 @@ export function TollyRanking({ rows }: { rows: RankingRow[] }) {
                     </Link>
                   </td>
                   <td className="px-2.5 py-2">
-                    <span className="tabular whitespace-nowrap">
-                      <span className="font-semibold" style={{ color: colour(r) }}>{r.index.toFixed(1)}</span>
-                      {r.band !== null && <span className="ml-1 text-[12px] text-muted">± {r.band.toFixed(1)}</span>}
+                    <span className="tabular inline-flex items-center gap-1.5 whitespace-nowrap">
+                      <span aria-hidden className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: colour(r) }} />
+                      <span className="font-semibold text-ink">{r.index.toFixed(1)}</span>
+                      {r.band !== null && <span className="text-[12px] text-muted">± {r.band.toFixed(1)}</span>}
                     </span>
                   </td>
                   <td className="px-2.5 py-2">

@@ -23,7 +23,7 @@ const RESULT = new Map<string, { label: string; color: string }>(RESULT_LEVELS.m
 
 function Stat({ label, value, note }: { label: string; value: string; note?: string }) {
   return (
-    <div className="rounded-xl bg-white/[0.07] px-3.5 py-3">
+    <div className="min-w-0 rounded-xl bg-white/[0.07] px-3.5 py-3">
       <p className="text-[11px] font-semibold uppercase tracking-wide text-[#e8c79c]">{label}</p>
       <p className="tabular mt-1 text-[24px] font-semibold leading-none text-white">{value}</p>
       {note && <p className="mt-1 text-[11.5px] text-[#d9cbc0]">{note}</p>}
@@ -106,9 +106,9 @@ export default async function DirectorPage(props: PageProps<"/director/[slug]">)
       </section>
 
       <section className="mt-8 grid gap-6 lg:grid-cols-[1fr_320px]">
-        <div>
+        <div className="min-w-0">
           <h2 className="font-serif text-[24px] font-bold text-ink">Films</h2>
-          <div className="card mt-3 overflow-x-auto">
+          <div className="card mt-3 overflow-x-auto" tabIndex={0} role="region" aria-label={`${d.name} films table`}>
             <table className="w-full min-w-[560px] text-[13.5px]">
               <thead>
                 <tr className="border-b border-line text-left text-[11.5px] uppercase tracking-wide text-muted">
@@ -154,7 +154,7 @@ export default async function DirectorPage(props: PageProps<"/director/[slug]">)
             </table>
           </div>
         </div>
-        <aside>
+        <aside className="min-w-0">
           <h2 className="font-serif text-[24px] font-bold text-ink">Heroes worked with</h2>
           <ul className="card mt-3 divide-y divide-line/60">
             {d.heroes.map((h) => (

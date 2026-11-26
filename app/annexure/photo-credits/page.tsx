@@ -2,8 +2,14 @@ import type { Metadata } from "next";
 import { HeroAvatar } from "@/components/hero/hero-avatar";
 import { INITIAL_ROSTER } from "@/lib/constants/roster";
 import { HERO_PHOTOS } from "@/lib/constants/photos";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Photo credits" };
+export const metadata: Metadata = pageMetadata({
+  title: "Photo Credits",
+  description:
+    "Wikimedia Commons portrait attributions, authors and Creative Commons or public-domain licences for every hero photograph on Tollywood Analysis.",
+  path: "/annexure/photo-credits",
+});
 
 export default function PhotoCreditsPage() {
   const withPhoto = INITIAL_ROSTER.filter((h) => HERO_PHOTOS[h.slug]);
