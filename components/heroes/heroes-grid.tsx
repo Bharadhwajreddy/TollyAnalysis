@@ -28,6 +28,7 @@ export function HeroesGridView({ heroes, sort }: { heroes: HeroView[]; sort: Sor
       <nav aria-label="Sort heroes" className="mt-4 flex flex-wrap gap-1.5 text-[13px]">
         {Object.entries(SORTS).map(([k, v]) => (
           <Link
+            prefetch={false}
             key={k}
             href={k === "star" ? "/heroes" : `/heroes?sort=${k}`}
             scroll={false}
@@ -43,7 +44,7 @@ export function HeroesGridView({ heroes, sort }: { heroes: HeroView[]; sort: Sor
           const fam = FAMILY_GROUPS.find((g) => g.key === h.family);
           return (
             <li key={h.slug}>
-              <Link href={`/hero/${h.slug}`} className="card flex h-full items-center gap-3 p-3 transition-shadow hover:shadow-md">
+              <Link prefetch={false} href={`/hero/${h.slug}`} className="card flex h-full items-center gap-3 p-3 transition-shadow hover:shadow-md">
                 <HeroAvatar name={h.name} photo={h.photo} industry={h.industry} color={groupOf(h, "era").color} size={64} />
                 <span className="min-w-0 flex-1">
                   <span className="flex items-center gap-1.5">

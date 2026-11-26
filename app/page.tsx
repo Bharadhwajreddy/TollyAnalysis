@@ -178,7 +178,7 @@ export default async function HomePage() {
               const first = place === 0;
               return (
                 <li key={h.slug} className="min-w-0">
-                  <Link href={`/hero/${h.slug}`} className="group block text-center">
+                  <Link prefetch={false} href={`/hero/${h.slug}`} className="group block text-center">
                     <span className="rise block" style={delay(0.35 + (first ? 0.3 : place === 1 ? 0.15 : 0))}>
                       <span className="inline-block transition-transform duration-200 group-hover:-translate-y-1.5">
                         <span className="hidden sm:inline-block">
@@ -284,7 +284,7 @@ export default async function HomePage() {
               <ol className="mt-3 space-y-2.5">
                 {followed.slice(0, 5).map((h) => (
                   <li key={h.slug}>
-                    <Link href={`/hero/${h.slug}`} className="group grid grid-cols-[32px_1fr_auto] items-center gap-3">
+                    <Link prefetch={false} href={`/hero/${h.slug}`} className="group grid grid-cols-[32px_1fr_auto] items-center gap-3">
                       <Face name={h.name} thumb={thumbs.get(h.slug) ?? null} size={32} />
                       <span className="min-w-0">
                         <span className="block truncate text-[14px] font-semibold text-ink group-hover:text-wine">{h.name}</span>
@@ -373,7 +373,7 @@ export default async function HomePage() {
         <ul className="mt-4 grid grid-cols-4 gap-x-2 gap-y-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12">
           {wall.slice(0, 24).map((h) => (
             <li key={h.slug} className="min-w-0">
-              <Link href={`/hero/${h.slug}`} className="group block text-center">
+              <Link prefetch={false} href={`/hero/${h.slug}`} className="group block text-center">
                 <span className="inline-block transition-transform duration-200 group-hover:-translate-y-1 group-hover:scale-105">
                   <Face name={h.name} thumb={h.thumb} size={60} />
                 </span>
@@ -392,7 +392,7 @@ export default async function HomePage() {
         <ul className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {EXPLORE.map((e) => (
             <li key={e.href}>
-              <Link href={e.href} className="card lift group flex h-full flex-col p-5 hover:border-wine/40">
+              <Link prefetch={false} href={e.href} className="card lift group flex h-full flex-col p-5 hover:border-wine/40">
                 <span className="grid h-10 w-10 place-items-center rounded-full bg-wine-soft text-wine">
                   <svg aria-hidden viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <path d={e.icon} />

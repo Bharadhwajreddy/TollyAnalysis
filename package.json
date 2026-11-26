@@ -42,9 +42,10 @@
     "photos:thumbs": "tsx scripts/hero-thumbs.mts",
     "tolly:update": "bash scripts/tolly/update.sh",
     "releases:update": "tsx scripts/releases.mts",
-    "cf:build": "node scripts/export-releases-years.mjs && opennextjs-cloudflare build",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "cf:build": "node scripts/export-releases-years.mjs && opennextjs-cloudflare build && node scripts/build-static-cache-manifest.mjs",
+    "edge:manifest": "node scripts/build-static-cache-manifest.mjs",
+    "preview": "npm run cf:build && opennextjs-cloudflare preview",
+    "deploy": "npm run cf:build && opennextjs-cloudflare deploy",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {

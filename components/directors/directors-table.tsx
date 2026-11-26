@@ -54,6 +54,7 @@ export function DirectorsTableView({ ranked, sort }: { ranked: DirectorRow[]; so
       <nav aria-label="Sort directors" className="mt-8 flex flex-wrap gap-1.5 text-[13px]">
         {Object.entries(SORTS).map(([k, v]) => (
           <Link
+            prefetch={false}
             key={k}
             href={k === "rank" ? "/directors" : `/directors?sort=${k}`}
             scroll={false}
@@ -65,7 +66,7 @@ export function DirectorsTableView({ ranked, sort }: { ranked: DirectorRow[]; so
         ))}
       </nav>
 
-      <div className="card mt-3 overflow-x-auto" tabIndex={0} aria-label="Directors ranking table">
+      <div className="card mt-3 overflow-x-auto" tabIndex={0} role="region" aria-label="Directors ranking table">
         <table className="w-full min-w-[760px] text-[13.5px]" data-testid="director-table">
           <thead>
             <tr className="border-b border-line text-left text-[11.5px] uppercase tracking-wide text-ink-2">
@@ -84,7 +85,7 @@ export function DirectorsTableView({ ranked, sort }: { ranked: DirectorRow[]; so
               <tr key={d.slug} className="border-b border-line/60 last:border-0 hover:bg-wine/[0.03]">
                 <td className="tabular px-3 py-2.5 text-ink-2">{d.rank}</td>
                 <td className="px-3 py-2.5">
-                  <Link href={`/director/${d.slug}`} className="flex items-center gap-2.5 font-semibold text-ink hover:text-wine">
+                  <Link prefetch={false} href={`/director/${d.slug}`} className="flex items-center gap-2.5 font-semibold text-ink hover:text-wine">
                     <Initials name={d.name} />
                     <span>
                       {d.name}

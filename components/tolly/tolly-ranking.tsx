@@ -54,7 +54,7 @@ export function TollyRanking({ rows }: { rows: RankingRow[] }) {
       <ol aria-label="Top three heroes" className="mt-4 grid gap-3 sm:grid-cols-3">
         {rows.slice(0, 3).map((r) => (
           <li key={r.slug}>
-            <Link href={`/hero/${r.slug}#tolly`} className="card flex items-center gap-4 border-l-4 p-4 transition-colors hover:border-wine/40" style={{ borderLeftColor: colour(r) }}>
+            <Link prefetch={false} href={`/hero/${r.slug}#tolly`} className="card flex items-center gap-4 border-l-4 p-4 transition-colors hover:border-wine/40" style={{ borderLeftColor: colour(r) }}>
               <span className="relative shrink-0">
                 <Face r={r} size={72} />
                 <span className="tabular absolute -bottom-1 -right-1 grid h-7 w-7 place-items-center rounded-full bg-ink text-[13px] font-bold text-white ring-2 ring-surface">{r.rank}</span>
@@ -109,7 +109,7 @@ export function TollyRanking({ rows }: { rows: RankingRow[] }) {
                 <tr key={r.slug} className="border-t border-line">
                   <td className="tabular px-2.5 py-2 text-muted">{r.rank}</td>
                   <td className="px-2.5 py-1.5 font-medium">
-                    <Link href={`/hero/${r.slug}#tolly`} className="flex items-center gap-2.5 text-ink hover:text-wine">
+                    <Link prefetch={false} href={`/hero/${r.slug}#tolly`} className="flex items-center gap-2.5 text-ink hover:text-wine">
                       <Face r={r} size={30} />
                       {r.name}
                       {r.provisional && <ProvisionalMark />}

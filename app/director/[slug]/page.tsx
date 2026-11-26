@@ -61,7 +61,7 @@ export default async function DirectorPage(props: PageProps<"/director/[slug]">)
     <div className="mx-auto max-w-7xl px-4 pb-16 sm:px-6">
       {seo && <JsonLd data={seo.jsonLd} />}
       <div className="pt-5">
-        <Link href="/directors" className="text-sm font-medium text-wine hover:underline">
+        <Link prefetch={false} href="/directors" className="text-sm font-medium text-wine hover:underline">
           ← All directors
         </Link>
       </div>
@@ -130,7 +130,7 @@ export default async function DirectorPage(props: PageProps<"/director/[slug]">)
                         {f.heroes.map((h, i) => (
                           <span key={h.slug}>
                             {i > 0 && ", "}
-                            <Link href={`/hero/${h.slug}`} className="text-ink-2 hover:text-wine">
+                            <Link prefetch={false} href={`/hero/${h.slug}`} className="text-ink-2 hover:text-wine">
                               {h.name}
                             </Link>
                           </span>
@@ -159,7 +159,7 @@ export default async function DirectorPage(props: PageProps<"/director/[slug]">)
           <ul className="card mt-3 divide-y divide-line/60">
             {d.heroes.map((h) => (
               <li key={h.slug} className="flex items-center justify-between px-3.5 py-2.5 text-[13.5px]">
-                <Link href={`/hero/${h.slug}`} className="font-medium text-ink hover:text-wine">
+                <Link prefetch={false} href={`/hero/${h.slug}`} className="font-medium text-ink hover:text-wine">
                   {h.name}
                 </Link>
                 <span className="tabular text-muted">

@@ -113,6 +113,7 @@ export function CompareView({
         </div>
       ) : (
         <>
+          <h2 className="sr-only">Side-by-side metrics</h2>
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
             {METRIC_ORDER.map((k) => {
               const meta = METRICS[k];
@@ -159,7 +160,7 @@ export function CompareView({
             <h2 id="cmp-table" className="text-base font-semibold text-ink">
               Side-by-side detail
             </h2>
-            <div className="scroll-x mt-3" tabIndex={0} aria-label="Hero comparison metrics table">
+            <div className="scroll-x mt-3" tabIndex={0} role="region" aria-label="Hero comparison metrics table">
               <table className="w-full min-w-[560px] text-[13px]">
                 <thead>
                   <tr className="border-b border-line text-left text-[11px] uppercase tracking-wide text-ink-2">

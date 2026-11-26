@@ -152,7 +152,7 @@ export function ReleasesExplorerView({
           list misses, add the films dubbed into Telugu: that is the &ldquo;All releases&rdquo; line. A count of the
           Wikipedia lists alone gives the first column.
         </p>
-        <div className="mt-3 overflow-x-auto" tabIndex={0} aria-label="Year-by-year release totals">
+        <div className="mt-3 overflow-x-auto" tabIndex={0} role="region" aria-label="Year-by-year release totals">
           <table className="w-full min-w-[520px] text-[13px]">
             <thead>
               <tr className="border-b border-line text-left text-[11.5px] uppercase tracking-wide text-ink-2">
@@ -167,7 +167,7 @@ export function ReleasesExplorerView({
               {[...counts].reverse().map((c) => (
                 <tr key={c.year} className="border-b border-line/50">
                   <td className="py-1.5 pr-3">
-                    <Link href={href(c.year, null)} scroll={false} className="text-wine hover:underline">
+                    <Link prefetch={false} href={href(c.year, null)} scroll={false} className="text-wine hover:underline">
                       {c.year}
                     </Link>
                     {c.partial && <span className="text-ink-2"> (so far)</span>}
@@ -244,6 +244,7 @@ export function ReleasesExplorerView({
         <nav aria-label="Filter by type" className="mt-3 flex flex-wrap gap-1.5 text-[13px]">
           {([null, "theatrical", "ott", "dubbed"] as (ReleaseKind | null)[]).map((t) => (
             <Link
+              prefetch={false}
               key={t ?? "all"}
               href={href(year, t)}
               scroll={false}

@@ -329,7 +329,7 @@ describe("GitHub Actions Production Deploy Workflow (.github/workflows/deploy.ym
     const deployJob = asRecord(jobs.deploy) as unknown as WorkflowJob;
     const steps = deployJob.steps ?? [];
 
-    const buildIdx = steps.findIndex((s) => s.run === "npx opennextjs-cloudflare build");
+    const buildIdx = steps.findIndex((s) => s.run === "npm run cf:build");
     expect(buildIdx).toBeGreaterThan(-1);
 
     const buildStep = steps[buildIdx];
@@ -361,7 +361,7 @@ describe("GitHub Actions Production Deploy Workflow (.github/workflows/deploy.ym
     const deployJob = asRecord(jobs.deploy) as unknown as WorkflowJob;
     const steps = deployJob.steps ?? [];
 
-    const buildIdx = steps.findIndex((s) => s.run === "npx opennextjs-cloudflare build");
+    const buildIdx = steps.findIndex((s) => s.run === "npm run cf:build");
     const wranglerIdx = steps.findIndex((s) => s.uses === "cloudflare/wrangler-action@v4");
 
     expect(wranglerIdx).toBeGreaterThan(buildIdx);

@@ -51,7 +51,7 @@ export default async function DirectorsPage() {
       <ol className="mt-6 grid gap-3 sm:grid-cols-3">
         {top.map((d) => (
           <li key={d.slug}>
-            <Link href={`/director/${d.slug}`} className="cinema block h-full rounded-2xl p-5 transition-shadow hover:shadow-lg">
+            <Link prefetch={false} href={`/director/${d.slug}`} className="cinema block h-full rounded-2xl p-5 transition-shadow hover:shadow-lg">
               <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#e8c79c]">#{d.rank}</p>
               <p className="mt-1 font-serif text-[24px] font-bold leading-tight text-white">{d.name}</p>
               <p className="tabular mt-3 text-[34px] font-semibold leading-none text-white">{pct(d.hitRate)}</p>
@@ -79,7 +79,7 @@ export default async function DirectorsPage() {
         <ul className="mt-3 grid gap-x-6 gap-y-1 text-[13px] sm:grid-cols-2 lg:grid-cols-3">
           {rest.map((d) => (
             <li key={d.slug}>
-              <Link href={`/director/${d.slug}`} className="text-ink hover:text-wine">
+              <Link prefetch={false} href={`/director/${d.slug}`} className="text-ink hover:text-wine">
                 {d.name}
               </Link>{" "}
               <span className="text-ink-2">

@@ -31,7 +31,7 @@ export default async function RegistryPage() {
       <p className="mt-2 text-xs text-muted">
         Editorially excluded from the roster and seed data: {EDITORIALLY_EXCLUDED_NAMES.join(", ")} (see Change Log).
       </p>
-      <div className="card scroll-x mt-5">
+      <div className="card scroll-x mt-5" tabIndex={0} role="region" aria-label="Hero registry table">
         <table className="w-full min-w-[720px] text-[13px]">
           <thead className="bg-surface-2 text-left text-[11px] uppercase tracking-wide text-ink-2">
             <tr>
@@ -47,7 +47,7 @@ export default async function RegistryPage() {
             {registry.map((p) => (
               <tr key={p.slug} className="border-t border-line align-top">
                 <td className="px-3 py-2">
-                  <Link href={`/annexure/heroes/${p.slug}`} className="font-medium text-ink hover:text-wine">
+                  <Link prefetch={false} href={`/annexure/heroes/${p.slug}`} className="font-medium text-ink hover:text-wine">
                     {p.name}
                   </Link>
                 </td>

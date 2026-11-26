@@ -29,7 +29,7 @@ export default async function SourcesPage() {
       <p className="mt-1.5 max-w-3xl text-[15px] text-ink-2">
         Every source feeding the benchmarks, how it may be used, and how many claims currently rely on it.
       </p>
-      <div className="card scroll-x mt-5">
+      <div className="card scroll-x mt-5" tabIndex={0} role="region" aria-label="Data sources table">
         <table className="w-full min-w-[720px] text-[13px]">
           <thead className="bg-surface-2 text-left text-[11px] uppercase tracking-wide text-ink-2">
             <tr>
@@ -67,7 +67,7 @@ export default async function SourcesPage() {
         Where every number on this site comes from, the licence it is used under, and the conditions that come with it. Raw IMDb and TMDB numbers are never
         shown or published: they only feed the Tolly Index.
       </p>
-      <div className="card scroll-x mt-3">
+      <div className="card scroll-x mt-3" tabIndex={0} role="region" aria-label="Data licences table">
         <table className="w-full min-w-[720px] text-[13px]">
           <thead className="bg-surface-2 text-left text-[11px] uppercase tracking-wide text-ink-2">
             <tr>

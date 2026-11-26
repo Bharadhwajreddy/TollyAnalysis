@@ -47,7 +47,7 @@ export function TopTen({ rows }: { rows: TopRow[] }) {
           const c = groupOf(r, by).color;
           return (
             <li key={r.slug}>
-              <Link href={`/hero/${r.slug}`} className="group grid grid-cols-[26px_44px_1fr_auto] items-center gap-3 rounded-xl px-2 py-2 transition-colors hover:bg-wine-soft/60 sm:grid-cols-[28px_48px_1fr_auto] sm:px-3">
+              <Link prefetch={false} href={`/hero/${r.slug}`} className="group grid grid-cols-[26px_44px_1fr_auto] items-center gap-3 rounded-xl px-2 py-2 transition-colors hover:bg-wine-soft/60 sm:grid-cols-[28px_48px_1fr_auto] sm:px-3">
                 <span className="tabular grid h-6 w-6 place-items-center rounded-full text-[12px] font-bold" style={i < 3 ? { background: MEDAL[i], color: "#2b1c1a" } : { color: "var(--muted)" }}>
                   {r.rank}
                 </span>

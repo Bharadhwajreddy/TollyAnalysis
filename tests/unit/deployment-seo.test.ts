@@ -107,7 +107,7 @@ describe("Cloudflare Workers & OpenNext packaging (FR-001)", () => {
 
     expect(config.$schema).toBe("node_modules/wrangler/config-schema.json");
     expect(config.name).toBe("tolly-analysis");
-    expect(config.main).toBe(".open-next/worker.js");
+    expect(config.main).toBe("./worker.ts");
     expect(config.compatibility_date).toBe("2025-05-05");
     expect(config.compatibility_flags).toEqual(
       expect.arrayContaining(["nodejs_compat", "global_fetch_strictly_public"])

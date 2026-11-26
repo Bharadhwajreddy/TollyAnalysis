@@ -249,7 +249,7 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
     <div className="mx-auto max-w-7xl px-4 sm:px-6">
       {seo && <JsonLd data={seo.jsonLd} />}
       <div className="pt-5">
-        <Link href="/heroes" className="text-sm font-medium text-wine hover:underline">
+        <Link prefetch={false} href="/heroes" className="text-sm font-medium text-wine hover:underline">
           ← All heroes
         </Link>
       </div>
@@ -377,7 +377,7 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
             {label}
           </a>
         ))}
-        <Link href={`/compare?heroes=${slug}`} className="whitespace-nowrap rounded-md px-3 py-2 text-[13.5px] font-medium text-ink-2 hover:bg-surface hover:text-wine">
+        <Link prefetch={false} href={`/compare?heroes=${slug}`} className="whitespace-nowrap rounded-md px-3 py-2 text-[13.5px] font-medium text-ink-2 hover:bg-surface hover:text-wine">
           Compare ↗
         </Link>
       </nav>
@@ -561,13 +561,13 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
       )}
 
       <div className="mt-4 flex flex-wrap gap-3 text-sm">
-        <Link href={`/compare?heroes=${slug}`} className="rounded-md border border-line bg-surface px-3 py-2 font-medium text-ink hover:border-ink-2">
+        <Link prefetch={false} href={`/compare?heroes=${slug}`} className="rounded-md border border-line bg-surface px-3 py-2 font-medium text-ink hover:border-ink-2">
           Compare {hero.name} with others
         </Link>
-        <Link href={`/annexure/corrections?hero=${encodeURIComponent(hero.name)}`} className="rounded-md border border-line bg-surface px-3 py-2 font-medium text-ink hover:border-ink-2">
+        <Link prefetch={false} href={`/annexure/corrections?hero=${encodeURIComponent(hero.name)}`} className="rounded-md border border-line bg-surface px-3 py-2 font-medium text-ink hover:border-ink-2">
           Suggest a correction
         </Link>
-        <Link href="/methodology#how" className="rounded-md border border-line bg-surface px-3 py-2 font-medium text-ink hover:border-ink-2">
+        <Link prefetch={false} href="/methodology#how" className="rounded-md border border-line bg-surface px-3 py-2 font-medium text-ink hover:border-ink-2">
           How these numbers are calculated
         </Link>
       </div>

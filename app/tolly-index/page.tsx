@@ -122,7 +122,7 @@ export default async function TollyIndexPage() {
           <ul className="mt-3 divide-y divide-line text-[13px]">
             {unranked.map((h) => (
               <li key={h.slug} className="flex flex-wrap items-baseline gap-x-3 py-1.5">
-                <Link href={`/hero/${h.slug}#tolly`} className="font-medium text-ink hover:text-wine hover:underline">
+                <Link prefetch={false} href={`/hero/${h.slug}#tolly`} className="font-medium text-ink hover:text-wine hover:underline">
                   {h.name}
                 </Link>
                 <span className="tabular text-muted">{h.judged ? `${h.complete} of ${h.judged} films rated` : "no films to rate yet"}</span>

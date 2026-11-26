@@ -81,7 +81,7 @@ function Row({ f, rank, open, onToggle }: { f: TopFilm; rank: number; open: bool
           </p>
           <p className="flex flex-wrap gap-x-3 text-[12.5px]">
             {f.heroes.map((h) => (
-              <Link key={h.slug} href={`/hero/${h.slug}#films`} className="font-medium text-wine hover:underline">
+              <Link prefetch={false} key={h.slug} href={`/hero/${h.slug}#films`} className="font-medium text-wine hover:underline">
                 {h.name}&apos;s films →
               </Link>
             ))}
@@ -104,7 +104,7 @@ function GrossRow({ f, rank }: { f: GrossFilm; rank: number }) {
           {f.heroes.map((h, i) => (
             <span key={h.slug}>
               {i > 0 && ", "}
-              <Link href={`/hero/${h.slug}`} className="hover:text-wine hover:underline">{h.name}</Link>
+              <Link prefetch={false} href={`/hero/${h.slug}`} className="hover:text-wine hover:underline">{h.name}</Link>
             </span>
           ))}
         </span>

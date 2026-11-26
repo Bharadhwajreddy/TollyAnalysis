@@ -47,7 +47,7 @@ export default async function CoveragePage() {
       </div>
 
       <h2 className="mt-8 text-lg font-semibold text-ink">Coverage by hero (all time, lowest first)</h2>
-      <div className="card scroll-x mt-3">
+      <div className="card scroll-x mt-3" tabIndex={0} role="region" aria-label="Coverage by hero table">
         <table className="w-full min-w-[620px] text-[13px]">
           <thead className="bg-surface-2 text-left text-[11px] uppercase tracking-wide text-ink-2">
             <tr>
