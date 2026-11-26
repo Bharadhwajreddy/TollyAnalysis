@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { getDirectors } from "@/lib/directors";
 import { getDashboardData, getRegistry } from "@/lib/repositories";
 
 export const BASE_URL = "https://tollyanalysis.com";
@@ -8,6 +9,8 @@ export const STATIC_ROUTES = [
   "/tolly-index",
   "/star-score",
   "/heroes",
+  "/directors",
+  "/releases",
   "/rankings",
   "/compare",
   "/trends",
@@ -20,12 +23,14 @@ export const STATIC_ROUTES = [
   "/annexure/changelog",
   "/annexure/corrections",
   "/annexure/photo-credits",
+  "/careers",
+  "/contact",
   "/terms",
   "/privacy",
 ] as const;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [dashboard, registry] = await Promise.all([getDashboardData(), getRegistry()]);
+  const [dashboard, registry, directors] = await Promise.all([getDashboardData(), getRegistry(), getDirectors()]);
   const lastModified = dashboard.asOf ? new Date(`${dashboard.asOf}T06:00:00Z`) : new Date();
 
   const entries = new Map<string, MetadataRoute.Sitemap[number]>();
@@ -62,6 +67,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified,
         changeFrequency: "monthly",
         priority: 0.65,
+      });
+    }
+  }
+
+  for (const director of directors) {
+    if (!director.slug) continue;
+    const url = `${BASE_URL}/director/${director.slug}`;
+    if (!entries.has(url)) {
+      entries.set(url, {
+        url,
+        lastModified,
+        changeFrequency: "monthly",
+        priority: 0.75,
       });
     }
   }

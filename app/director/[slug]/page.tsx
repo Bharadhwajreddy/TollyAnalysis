@@ -4,11 +4,17 @@ import { notFound } from "next/navigation";
 import { CareerChart, type CareerPoint } from "@/components/hero/career-chart";
 import { RESULT_LEVELS } from "@/lib/constants/results";
 import { getDirector, getDirectors } from "@/lib/directors";
+import { getDirectorSeo, JsonLd } from "@/lib/seo";
+
+export async function generateStaticParams() {
+  const directors = await getDirectors();
+  return directors.map((d) => ({ slug: d.slug }));
+}
 
 export async function generateMetadata(props: PageProps<"/director/[slug]">): Promise<Metadata> {
   const { slug } = await props.params;
-  const d = await getDirector(slug);
-  return { title: d ? `${d.name} (director)` : "Director not found" };
+  const seo = await getDirectorSeo(slug);
+  return seo ? seo.metadata : { title: "Director not found", robots: { index: false, follow: false } };
 }
 
 const pct = (x: number | null) => (x === null ? "—" : `${Math.round(x * 100)}%`);
@@ -27,9 +33,9 @@ function Stat({ label, value, note }: { label: string; value: string; note?: str
 
 export default async function DirectorPage(props: PageProps<"/director/[slug]">) {
   const { slug } = await props.params;
-  const d = await getDirector(slug);
+  const [d, allDirectors, seo] = await Promise.all([getDirector(slug), getDirectors(), getDirectorSeo(slug)]);
   if (!d) notFound();
-  const rankedCount = (await getDirectors()).filter((x) => x.ranked).length;
+  const rankedCount = allDirectors.filter((x) => x.ranked).length;
 
   const points: CareerPoint[] = d.films.map((f) => ({
     id: f.id,
@@ -53,6 +59,7 @@ export default async function DirectorPage(props: PageProps<"/director/[slug]">)
 
   return (
     <div className="mx-auto max-w-7xl px-4 pb-16 sm:px-6">
+      {seo && <JsonLd data={seo.jsonLd} />}
       <div className="pt-5">
         <Link href="/directors" className="text-sm font-medium text-wine hover:underline">
           ← All directors

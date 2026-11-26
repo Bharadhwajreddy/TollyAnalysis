@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
 import { getDirectors, MIN_JUDGED, type Director } from "@/lib/directors";
+import { directorsJsonLd, directorsMetadata, JsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Directors" };
+export const metadata: Metadata = directorsMetadata;
 
 const pct = (x: number | null) => (x === null ? "—" : `${Math.round(x * 100)}%`);
 const crore = (x: number) => (x >= 1000 ? `₹${(x / 1000).toFixed(2)}k cr` : `₹${Math.round(x).toLocaleString("en-IN")} cr`);
@@ -28,7 +29,7 @@ function Initials({ name }: { name: string }) {
 export default async function DirectorsPage(props: PageProps<"/directors">) {
   const sp = await props.searchParams;
   const sort = (typeof sp.sort === "string" && sp.sort in SORTS ? sp.sort : "rank") as keyof typeof SORTS;
-  const all = await getDirectors();
+  const [all, jsonLd] = await Promise.all([getDirectors(), directorsJsonLd()]);
   const ranked = all.filter((d) => d.ranked);
   const rest = all.filter((d) => !d.ranked);
   const fn = SORTS[sort].fn;
@@ -37,6 +38,7 @@ export default async function DirectorsPage(props: PageProps<"/directors">) {
 
   return (
     <div className="mx-auto max-w-7xl px-4 pb-16 sm:px-6">
+      <JsonLd data={jsonLd} />
       <PageHeader
         eyebrow="Directors"
         title="Telugu directors, by hit rate"

@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
 import { CONTACT_EMAIL } from "@/lib/constants/site";
+import { contactJsonLd, contactMetadata, JsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Contact us", description: "Found a mistake, have an idea, or something isn't working? Write to us." };
+export const metadata: Metadata = contactMetadata;
 
 export default function ContactPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 sm:px-6">
+      <JsonLd data={contactJsonLd()} />
       <PageHeader title="Contact us" subtitle="Let's make it better together." />
       <section className="card mt-8 p-5 sm:p-6">
         <p className="text-[15.5px] leading-relaxed text-ink-2">

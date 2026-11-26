@@ -20,8 +20,10 @@ import { formatMetric } from "@/lib/constants/metrics";
 import { HERO_PHOTOS, heroPhoto } from "@/lib/constants/photos";
 import { heroFacts } from "@/lib/data/real/hero-facts";
 import { socialHandles } from "@/lib/data/real/load";
+import { getDirectors, type DirectorFilm } from "@/lib/directors";
 import { tollyIndexEnabled, userRankingEnabled } from "@/lib/features";
 import { rankBy } from "@/lib/ranking";
+import { releaseCounts, releasesAsOf } from "@/lib/releases";
 import { getDashboardData, getHeroFilms, getPerson, type FilmEvidenceRow } from "@/lib/repositories";
 import { getTollyHero, getTollyRanking, tollyMeta } from "@/lib/tolly/view";
 import type { HeroView } from "@/lib/view-models";
@@ -73,9 +75,12 @@ export function absoluteUrl(path = "/"): string {
 }
 
 export const heroPath = (slug: string) => `/hero/${slug}`;
+export const directorPath = (slug: string) => `/director/${slug}`;
 export const annexureHeroPath = (slug: string) => `/annexure/heroes/${slug}`;
 /** Stable `@id` of a hero's Person node, shared by every page that mentions him. */
 export const personId = (slug: string) => `${absoluteUrl(heroPath(slug))}#person`;
+/** Stable `@id` of a director's Person node. */
+export const directorId = (slug: string) => `${absoluteUrl(directorPath(slug))}#person`;
 
 export function wikipediaUrl(article: string | null | undefined): string | null {
   return article ? `https://en.wikipedia.org/wiki/${encodeURIComponent(article.replace(/ /g, "_"))}` : null;
@@ -790,4 +795,323 @@ export function methodologyFaq(mode: "demo" | "live" | "real"): { question: stri
     });
   }
   return out;
+}
+
+// ---------------------------------------------------------------------------------------------
+// Directors, releases, careers and contact
+// ---------------------------------------------------------------------------------------------
+
+export interface DirectorSeo {
+  slug: string;
+  name: string;
+  path: string;
+  title: string;
+  description: string;
+  metadata: Metadata;
+  jsonLd: JsonLdGraph;
+}
+
+function directorMovieNode(f: DirectorFilm, dirId: string): JsonLdNode {
+  const verdict = f.result ? (VERDICT_LABEL[f.result] ?? f.result) : null;
+  const facts = [
+    f.gross !== null ? `Reported worldwide gross ₹${Math.round(f.gross).toLocaleString("en-IN")} cr` : null,
+    verdict ? `verdict: ${verdict}` : null,
+  ].filter(Boolean);
+  return {
+    "@type": "Movie",
+    name: f.title,
+    datePublished: f.date ?? String(f.year),
+    ...(f.wiki ? { url: f.wiki } : {}),
+    inLanguage: "te",
+    director: { "@id": dirId },
+    ...(f.heroes.length
+      ? {
+          actor: f.heroes.map((h) => ({
+            "@type": "Person",
+            "@id": personId(h.slug),
+            name: h.name,
+            url: absoluteUrl(heroPath(h.slug)),
+          })),
+        }
+      : {}),
+    ...(facts.length ? { description: `${facts.join(", ")}.` } : {}),
+  };
+}
+
+/**
+ * Search metadata and Knowledge-Graph JSON-LD for /director/[slug]:
+ * WebPage (ProfilePage) + Person + BreadcrumbList + ItemList of notable directed films.
+ */
+export async function getDirectorSeo(slug: string): Promise<DirectorSeo | null> {
+  const [data, all] = await Promise.all([getDashboardData(), getDirectors()]);
+  const d = all.find((x) => x.slug === slug);
+  if (!d) return null;
+
+  const rankedCount = all.filter((x) => x.ranked).length;
+  const path = directorPath(slug);
+  const id = directorId(slug);
+  const title = `${d.name} Telugu Movies, Hit Rate, Box Office & Career Graph`;
+  const span = d.firstYear === d.lastYear ? `${d.firstYear}` : `${d.firstYear}–${d.lastYear}`;
+
+  const parts: string[] = [`${d.films.length} Telugu ${d.films.length === 1 ? "film" : "films"} (${span})`];
+  if (d.hitRate !== null && d.judged > 0) {
+    parts.push(
+      `${Math.round(d.hitRate * 100)}% hit rate (${d.hits} ${d.hits === 1 ? "hit" : "hits"} in ${d.judged} judged ${d.judged === 1 ? "film" : "films"}${
+        d.blockbusters ? `, incl. ${d.blockbusters} ${d.blockbusters === 1 ? "blockbuster" : "blockbusters"}` : ""
+      })`,
+    );
+  }
+  if (d.grossFilms > 0) {
+    parts.push(`₹${Math.round(d.totalGross).toLocaleString("en-IN")} cr reported worldwide box office`);
+  }
+  const rankClause = d.ranked && d.rank ? ` Ranked #${d.rank} of ${rankedCount} Telugu directors.` : "";
+  const description = `${d.name} director box office record: ${parts.join(", ")}.${rankClause} Career graph, film verdicts and hero collaborations.`;
+
+  const hitPart = d.hitRate !== null ? `${Math.round(d.hitRate * 100)}% hit rate` : `${d.films.length} ${d.films.length === 1 ? "film" : "films"}`;
+  const rankPart = d.ranked && d.rank ? `Director #${d.rank}` : null;
+  const socialTitle = [d.name, rankPart, hitPart].filter(Boolean).join(" · ") + ` | ${SITE_NAME}`;
+
+  const keywords = [
+    `${d.name} Telugu movies`,
+    `${d.name} hit rate`,
+    `${d.name} hits and flops`,
+    `${d.name} box office collection`,
+    `${d.name} filmography`,
+    `${d.name} career graph`,
+    "Telugu film directors",
+    "Tollywood",
+  ];
+
+  const personNode: JsonLdNode = {
+    "@type": "Person",
+    "@id": id,
+    name: d.name,
+    url: absoluteUrl(path),
+    mainEntityOfPage: { "@id": `${absoluteUrl(path)}#webpage` },
+    description,
+    jobTitle: "Film Director",
+    knowsAbout: ["Telugu cinema", "Tollywood"],
+    nationality: { "@type": "Country", name: "India" },
+  };
+
+  const notableFilms = [...d.films]
+    .sort((a, b) => (b.gross ?? -1) - (a.gross ?? -1) || (b.outcome === "hit" ? 1 : 0) - (a.outcome === "hit" ? 1 : 0) || b.year - a.year)
+    .slice(0, 10);
+
+  const filmList: JsonLdNode | null = notableFilms.length
+    ? {
+        "@type": "ItemList",
+        "@id": `${absoluteUrl(path)}#notable-films`,
+        name: `${d.name}: notable Telugu films`,
+        numberOfItems: notableFilms.length,
+        itemListOrder: "https://schema.org/ItemListOrderDescending",
+        itemListElement: notableFilms.map((f, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          item: directorMovieNode(f, id),
+        })),
+      }
+    : null;
+
+  const crumbs: Crumb[] = [
+    { name: "Home", path: "/" },
+    { name: "Directors", path: "/directors" },
+    { name: d.name, path },
+  ];
+
+  const jsonLd = jsonLdGraph(
+    webPageJsonLd({ path, name: `${title} · ${SITE_NAME}`, description, type: "ProfilePage", aboutId: id, dateModified: data.asOf, breadcrumb: true }),
+    personNode,
+    breadcrumbJsonLd(crumbs, path),
+    filmList,
+  );
+
+  return {
+    slug,
+    name: d.name,
+    path,
+    title,
+    description,
+    metadata: pageMetadata({ title, description, path, keywords, socialTitle, type: "profile", twitterCard: "summary" }),
+    jsonLd,
+  };
+}
+
+export const DIRECTORS_DESCRIPTION =
+  "Every Telugu cinema director since 2000 ranked by box-office hit rate, hits, blockbusters and reported worldwide gross across Tollywood lead films.";
+
+export const directorsMetadata: Metadata = pageMetadata({
+  title: "Telugu Film Directors — Hit Rate, Box Office & Career Rankings",
+  description: DIRECTORS_DESCRIPTION,
+  path: "/directors",
+  keywords: [
+    "Telugu film directors",
+    "Tollywood directors hit rate",
+    "Telugu directors box office ranking",
+    "S. S. Rajamouli hit rate",
+    "Trivikram Srinivas hit rate",
+  ],
+});
+
+/** JSON-LD graph for /directors: CollectionPage + BreadcrumbList + ItemList of top ranked directors. */
+export async function directorsJsonLd(limit = 25): Promise<JsonLdGraph> {
+  const [data, all] = await Promise.all([getDashboardData(), getDirectors()]);
+  const ranked = all.filter((d) => d.ranked);
+  const top = (limit ? ranked.slice(0, limit) : ranked).map(
+    (d): ListEntry => ({
+      name: d.name,
+      path: directorPath(d.slug),
+      id: directorId(d.slug),
+      description: `${d.hitRate !== null ? `${Math.round(d.hitRate * 100)}% hit rate` : `${d.films.length} films`} · ${d.hits} hits in ${d.judged} films`,
+    }),
+  );
+
+  return jsonLdGraph(
+    webPageJsonLd({
+      path: "/directors",
+      name: `Telugu Film Directors — Hit Rate, Box Office & Career Rankings · ${SITE_NAME}`,
+      description: DIRECTORS_DESCRIPTION,
+      type: "CollectionPage",
+      dateModified: data.asOf,
+      breadcrumb: true,
+    }),
+    breadcrumbJsonLd(
+      [
+        { name: "Home", path: "/" },
+        { name: "Directors", path: "/directors" },
+      ],
+      "/directors",
+    ),
+    top.length
+      ? itemListJsonLd({
+          name: "Top Telugu film directors by hit rate",
+          description: `Telugu cinema directors ranked by box-office hit rate (${ranked.length} ranked directors).`,
+          path: "/directors",
+          entries: top,
+        })
+      : null,
+  );
+}
+
+export const RELEASES_DESCRIPTION =
+  "Complete year-by-year catalog of Telugu cinema releases since 2000: theatrical releases, direct-to-OTT films and films dubbed into Telugu, updated weekly.";
+
+export const releasesMetadata: Metadata = pageMetadata({
+  title: "Telugu Movie Releases by Year — Theatrical, OTT & Dubbed",
+  description: RELEASES_DESCRIPTION,
+  path: "/releases",
+  keywords: [
+    "Telugu movie releases by year",
+    "Telugu films list",
+    "Tollywood theatrical releases",
+    "Telugu OTT movies list",
+    "Dubbed Telugu movies",
+  ],
+});
+
+/** JSON-LD graph for /releases: CollectionPage + Dataset + BreadcrumbList. */
+export function releasesJsonLd(): JsonLdGraph {
+  const counts = releaseCounts();
+  const total = counts.reduce((s, c) => s + c.total, 0);
+  const datasetId = `${absoluteUrl("/releases")}#dataset`;
+  const datasetNode: JsonLdNode = {
+    "@type": "Dataset",
+    "@id": datasetId,
+    name: "Telugu cinema releases by year (2000 to present)",
+    description: `${total.toLocaleString("en-IN")} Telugu film releases since 2000 up to ${releasesAsOf}, classified into theatrical releases, direct-to-OTT releases and films dubbed into Telugu.`,
+    url: absoluteUrl("/releases"),
+    keywords: ["Telugu cinema", "Tollywood releases", "theatrical releases", "Telugu OTT releases", "dubbed Telugu films"],
+    creator: { "@id": ORGANIZATION_ID },
+    publisher: { "@id": ORGANIZATION_ID },
+    inLanguage: SITE_LANGUAGE,
+    isAccessibleForFree: true,
+    license: absoluteUrl("/terms"),
+    dateModified: releasesAsOf,
+    temporalCoverage: `2000-01-01/${releasesAsOf}`,
+    spatialCoverage: { "@type": "Place", name: "India" },
+    variableMeasured: [
+      "Total releases per year",
+      "Theatrical Telugu releases",
+      "Direct-to-OTT Telugu releases",
+      "Films dubbed into Telugu",
+    ].map((name) => ({ "@type": "PropertyValue", name })),
+    isBasedOn: ["https://en.wikipedia.org/"],
+  };
+
+  return jsonLdGraph(
+    webPageJsonLd({
+      path: "/releases",
+      name: `Telugu Movie Releases by Year — Theatrical, OTT & Dubbed · ${SITE_NAME}`,
+      description: RELEASES_DESCRIPTION,
+      type: "CollectionPage",
+      aboutId: datasetId,
+      dateModified: releasesAsOf,
+      breadcrumb: true,
+    }),
+    datasetNode,
+    breadcrumbJsonLd(
+      [
+        { name: "Home", path: "/" },
+        { name: "Releases", path: "/releases" },
+      ],
+      "/releases",
+    ),
+  );
+}
+
+export const CAREERS_DESCRIPTION =
+  "Jobs and film-department openings in Telugu cinema, plus how to reach the Automotive Engineering students behind Tollywood Analysis.";
+
+export const careersMetadata: Metadata = pageMetadata({
+  title: "Careers — Jobs in Telugu Cinema",
+  description: CAREERS_DESCRIPTION,
+  path: "/careers",
+  keywords: ["Telugu cinema jobs", "Tollywood careers", "film production openings", "Tollywood Analysis team"],
+});
+
+export function careersJsonLd(): JsonLdGraph {
+  return jsonLdGraph(
+    webPageJsonLd({
+      path: "/careers",
+      name: `Careers — Jobs in Telugu Cinema · ${SITE_NAME}`,
+      description: CAREERS_DESCRIPTION,
+      breadcrumb: true,
+    }),
+    breadcrumbJsonLd(
+      [
+        { name: "Home", path: "/" },
+        { name: "Careers", path: "/careers" },
+      ],
+      "/careers",
+    ),
+  );
+}
+
+export const CONTACT_DESCRIPTION =
+  "Found a mistake in box-office numbers, have an idea, or want to report a broken feature on Tollywood Analysis? Write to us or submit a sourced correction.";
+
+export const contactMetadata: Metadata = pageMetadata({
+  title: "Contact Us — Corrections, Ideas & Feedback",
+  description: CONTACT_DESCRIPTION,
+  path: "/contact",
+  keywords: ["Contact Tollywood Analysis", "report box office error", "Telugu film data correction"],
+});
+
+export function contactJsonLd(): JsonLdGraph {
+  return jsonLdGraph(
+    webPageJsonLd({
+      path: "/contact",
+      name: `Contact Us — Corrections, Ideas & Feedback · ${SITE_NAME}`,
+      description: CONTACT_DESCRIPTION,
+      type: "ContactPage",
+      breadcrumb: true,
+    }),
+    breadcrumbJsonLd(
+      [
+        { name: "Home", path: "/" },
+        { name: "Contact us", path: "/contact" },
+      ],
+      "/contact",
+    ),
+  );
 }

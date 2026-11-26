@@ -26,21 +26,33 @@ import {
   generateMetadata as generateAnnexureHeroMetadata,
   generateStaticParams as generateAnnexureHeroStaticParams,
 } from "@/app/annexure/heroes/[slug]/page";
+import {
+  generateMetadata as generateDirectorMetadata,
+  generateStaticParams as generateDirectorStaticParams,
+} from "@/app/director/[slug]/page";
 import { metadata as tollyIndexMetadata } from "@/app/tolly-index/page";
 import { metadata as starScoreMetadata } from "@/app/star-score/page";
 import { metadata as heroesMetadata } from "@/app/heroes/page";
+import { metadata as directorsMetadata } from "@/app/directors/page";
+import { metadata as releasesMetadata } from "@/app/releases/page";
 import { metadata as rankingsMetadata } from "@/app/rankings/page";
 import { metadata as compareMetadata } from "@/app/compare/page";
 import { metadata as trendsMetadata } from "@/app/trends/page";
 import { metadata as methodologyMetadata } from "@/app/methodology/page";
 import { metadata as annexureMetadata } from "@/app/annexure/page";
+import { metadata as careersMetadata } from "@/app/careers/page";
+import { metadata as contactMetadata } from "@/app/contact/page";
 import { clientIp } from "@/lib/security/rate-limit";
 import {
   absoluteUrl,
   breadcrumbJsonLd,
+  careersJsonLd,
+  contactJsonLd,
   datasetJsonLd,
+  directorsJsonLd,
   faqJsonLd,
   getAnnexureHeroSeo,
+  getDirectorSeo,
   getHeroSeo,
   getHomeSeo,
   heroSameAs,
@@ -50,6 +62,7 @@ import {
   methodologyFaq,
   organizationJsonLd,
   pageMetadata,
+  releasesJsonLd,
   serializeJsonLd,
   SITE_NAME,
   SITE_URL,
@@ -168,9 +181,9 @@ describe("Public search-engine indexing & canonical metadata (FR-002)", () => {
     expect(robotsConfig.sitemap).toBe("https://tollyanalysis.com/sitemap.xml");
   });
 
-  it("app/sitemap.ts emits canonical https://tollyanalysis.com URLs for static routes, hero profiles, and annexure pages", async () => {
+  it("app/sitemap.ts emits canonical https://tollyanalysis.com URLs for static routes, hero profiles, director profiles, and annexure pages", async () => {
     expect(BASE_URL).toBe("https://tollyanalysis.com");
-    expect(STATIC_ROUTES.length).toBeGreaterThanOrEqual(18);
+    expect(STATIC_ROUTES.length).toBeGreaterThanOrEqual(22);
 
     const entries = await sitemap();
     const urls = new Set(entries.map((entry) => entry.url));
@@ -180,13 +193,23 @@ describe("Public search-engine indexing & canonical metadata (FR-002)", () => {
     expect(urls.has("https://tollyanalysis.com/tolly-index")).toBe(true);
     expect(urls.has("https://tollyanalysis.com/star-score")).toBe(true);
     expect(urls.has("https://tollyanalysis.com/heroes")).toBe(true);
+    expect(urls.has("https://tollyanalysis.com/directors")).toBe(true);
+    expect(urls.has("https://tollyanalysis.com/releases")).toBe(true);
+    expect(urls.has("https://tollyanalysis.com/careers")).toBe(true);
+    expect(urls.has("https://tollyanalysis.com/contact")).toBe(true);
     expect(urls.has("https://tollyanalysis.com/methodology")).toBe(true);
     expect(urls.has("https://tollyanalysis.com/privacy")).toBe(true);
     expect(urls.has("https://tollyanalysis.com/terms")).toBe(true);
 
-    // Dynamic hero profile routes
+    // Dynamic hero profile routes (including newly added South Indian heroes)
     expect(urls.has("https://tollyanalysis.com/hero/prabhas")).toBe(true);
     expect(urls.has("https://tollyanalysis.com/hero/allari-naresh")).toBe(true);
+    expect(urls.has("https://tollyanalysis.com/hero/dulquer-salmaan")).toBe(true);
+    expect(urls.has("https://tollyanalysis.com/hero/rajinikanth")).toBe(true);
+    expect(urls.has("https://tollyanalysis.com/hero/vijay")).toBe(true);
+
+    // Dynamic director profile routes
+    expect(urls.has("https://tollyanalysis.com/director/s-s-rajamouli")).toBe(true);
 
     // Dynamic annexure hero routes
     expect(urls.has("https://tollyanalysis.com/annexure/heroes/prabhas")).toBe(true);
@@ -332,16 +355,70 @@ describe("Rich SEO metadata & Schema.org JSON-LD architecture (lib/seo.ts)", () 
     );
   });
 
+  it("per-director generateMetadata and getDirectorSeo emit canonical, data-driven description, Person/BreadcrumbList/ItemList JSON-LD, and safe fallback", async () => {
+    const rajamouliMeta = await generateDirectorMetadata({
+      params: Promise.resolve({ slug: "s-s-rajamouli" }),
+      searchParams: Promise.resolve({}),
+    } as never);
+    const rajamouliSeo = await getDirectorSeo("s-s-rajamouli");
+
+    expect(rajamouliSeo).not.toBeNull();
+    expect(rajamouliMeta.title).toBe("S. S. Rajamouli Telugu Movies, Hit Rate, Box Office & Career Graph");
+    expect(rajamouliMeta.alternates?.canonical).toBe("/director/s-s-rajamouli");
+    expect(rajamouliMeta.description).toContain("S. S. Rajamouli director box office record:");
+    expect(rajamouliMeta.description).toContain("Telugu films");
+    expect(rajamouliMeta.description).toContain("% hit rate");
+    expect(rajamouliMeta.description).toContain("reported worldwide box office");
+    expect(rajamouliMeta.openGraph).toMatchObject({
+      type: "profile",
+      url: "https://tollyanalysis.com/director/s-s-rajamouli",
+      siteName: "Tollywood Analysis",
+      locale: "en_IN",
+    });
+
+    const graph = rajamouliSeo!.jsonLd["@graph"];
+    const personNode = graph.find((n) => n["@type"] === "Person");
+    const breadcrumbNode = graph.find((n) => n["@type"] === "BreadcrumbList");
+    const itemListNode = graph.find((n) => n["@type"] === "ItemList");
+
+    expect(personNode).toBeDefined();
+    expect(personNode?.name).toBe("S. S. Rajamouli");
+    expect(personNode?.jobTitle).toBe("Film Director");
+    expect(personNode?.knowsAbout).toEqual(["Telugu cinema", "Tollywood"]);
+    expect(personNode?.mainEntityOfPage).toEqual({ "@id": "https://tollyanalysis.com/director/s-s-rajamouli#webpage" });
+    expect(breadcrumbNode).toBeDefined();
+    expect((breadcrumbNode?.itemListElement as Array<{ name: string }>).map((c) => c.name)).toEqual(["Home", "Directors", "S. S. Rajamouli"]);
+    expect(itemListNode).toBeDefined();
+    expect((itemListNode?.numberOfItems as number)).toBeGreaterThan(0);
+
+    const serialized = serializeJsonLd(rajamouliSeo!.jsonLd);
+    expect(serialized).not.toContain("<");
+    expect(serialized).not.toContain(">");
+    expect(JSON.parse(serialized)).toEqual(rajamouliSeo!.jsonLd);
+
+    expect(await getDirectorSeo("non-existent-director")).toBeNull();
+    const missingMeta = await generateDirectorMetadata({
+      params: Promise.resolve({ slug: "non-existent-director" }),
+      searchParams: Promise.resolve({}),
+    } as never);
+    expect(missingMeta.title).toBe("Director not found");
+    expect(missingMeta.robots).toEqual({ index: false, follow: false });
+  });
+
   it("core route metadata exports explicit per-page canonicals, descriptions, OpenGraph URLs, and structured-data entries", async () => {
     const routes: Array<[string, typeof tollyIndexMetadata]> = [
       ["/tolly-index", tollyIndexMetadata],
       ["/star-score", starScoreMetadata],
       ["/heroes", heroesMetadata],
+      ["/directors", directorsMetadata],
+      ["/releases", releasesMetadata],
       ["/rankings", rankingsMetadata],
       ["/compare", compareMetadata],
       ["/trends", trendsMetadata],
       ["/methodology", methodologyMetadata],
       ["/annexure", annexureMetadata],
+      ["/careers", careersMetadata],
+      ["/contact", contactMetadata],
     ];
 
     for (const [path, meta] of routes) {
@@ -351,8 +428,26 @@ describe("Rich SEO metadata & Schema.org JSON-LD architecture (lib/seo.ts)", () 
       expect(meta.openGraph).toMatchObject({
         url: `https://tollyanalysis.com${path}`,
         siteName: "Tollywood Analysis",
+        locale: "en_IN",
       });
     }
+
+    const directorsGraph = await directorsJsonLd();
+    expect(directorsGraph["@graph"].map((n) => n["@type"])).toEqual(
+      expect.arrayContaining(["CollectionPage", "BreadcrumbList", "ItemList"])
+    );
+
+    const releasesGraph = releasesJsonLd();
+    expect(releasesGraph["@graph"].map((n) => n["@type"])).toEqual(
+      expect.arrayContaining(["CollectionPage", "Dataset", "BreadcrumbList"])
+    );
+
+    expect(careersJsonLd()["@graph"].map((n) => n["@type"])).toEqual(
+      expect.arrayContaining(["WebPage", "BreadcrumbList"])
+    );
+    expect(contactJsonLd()["@graph"].map((n) => n["@type"])).toEqual(
+      expect.arrayContaining(["ContactPage", "BreadcrumbList"])
+    );
 
     const tollyEntries = await tollyIndexEntries();
     const starEntries = await starScoreEntries();
@@ -389,6 +484,15 @@ describe("Build-time SSG pre-rendering for dynamic hero routes (FR-003)", () => 
     const slugs = new Set(params.map((p) => p.slug));
     expect(slugs.has("prabhas")).toBe(true);
     expect(slugs.has("nani")).toBe(true);
+  });
+
+  it("app/director/[slug]/page.tsx generateStaticParams() returns >50 director slugs including s-s-rajamouli", async () => {
+    const params = await generateDirectorStaticParams();
+    expect(Array.isArray(params)).toBe(true);
+    expect(params.length).toBeGreaterThan(50);
+
+    const slugs = new Set(params.map((p) => p.slug));
+    expect(slugs.has("s-s-rajamouli")).toBe(true);
   });
 });
 

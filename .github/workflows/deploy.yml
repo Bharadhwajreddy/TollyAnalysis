@@ -1,0 +1,82 @@
+name: Deploy Production
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    name: Verify Quality & CI Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Run TypeScript typecheck
+        run: npm run typecheck
+
+      - name: Run unit tests
+        run: npm run test
+
+      - name: Verify demo Next.js build (CI parity)
+        run: npm run build
+        env:
+          NEXT_PUBLIC_DATA_MODE: "demo"
+          NEXT_TELEMETRY_DISABLED: "1"
+
+  deploy:
+    name: Build & Deploy Cloudflare Worker
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: verify
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build OpenNext Cloudflare bundle (real data mode)
+        run: npx opennextjs-cloudflare build
+        env:
+          NEXT_PUBLIC_DATA_MODE: "real"
+          NEXT_PUBLIC_FEATURE_USER_RANKING: "false"
+          NEXT_TELEMETRY_DISABLED: "1"
+
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
+
+      - name: Submit live sitemap URLs to IndexNow
+        continue-on-error: true
+        run: node scripts/indexnow-ping.mjs

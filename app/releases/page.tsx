@@ -3,8 +3,9 @@ import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
 import { ReleasesChart } from "@/components/releases/releases-chart";
 import { KIND_LABEL, releaseCounts, releasesAsOf, releasesOf, type Release, type ReleaseKind } from "@/lib/releases";
+import { JsonLd, releasesJsonLd, releasesMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Telugu releases by year" };
+export const metadata: Metadata = releasesMetadata;
 
 const KIND_STYLE: Record<ReleaseKind, { dot: string; short: string }> = {
   theatrical: { dot: "#a3284f", short: "Theatres" },
@@ -73,8 +74,11 @@ export default async function ReleasesPage(props: PageProps<"/releases">) {
   }
   const href = (y: number, t: ReleaseKind | null) => `/releases?year=${y}${t ? `&type=${t}` : ""}#list`;
 
+  const jsonLd = releasesJsonLd();
+
   return (
     <div className="mx-auto max-w-7xl px-4 pb-16 sm:px-6">
+      <JsonLd data={jsonLd} />
       <PageHeader
         eyebrow="Releases"
         title="Telugu releases, year by year"

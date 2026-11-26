@@ -26,6 +26,14 @@ _Avoid_: Clan, dynasty, camp
 The historical period in which a Hero first appeared as a principal lead, used to segment peer cohorts across decades.
 _Avoid_: Generation, batch, age group
 
+**Director**:
+A credited film director who helmed one or more Telugu Eligible Films with benchmarked Heroes from 1 January 2000 onward.
+_Avoid_: Filmmaker, creator, helmer
+
+**Release Ledger**:
+The annual inventory of Telugu theatrical, direct-to-OTT, and Tamil/Malayalam/Kannada dubbed feature releases from 1 January 2000 onward tracked by release type and verified catalog source.
+_Avoid_: Movie calendar, launch list, schedule
+
 ### Scoring & Evidence
 
 **Star Score**:

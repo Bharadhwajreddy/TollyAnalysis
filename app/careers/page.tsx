@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/layout/page-header";
 import { JobForm } from "@/components/site/job-form";
 import { CONTACT_EMAIL } from "@/lib/constants/site";
+import { careersJsonLd, careersMetadata, JsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Careers", description: "Jobs in Telugu cinema, and a word about us." };
+export const metadata: Metadata = careersMetadata;
 
 export default function CareersPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 sm:px-6">
+      <JsonLd data={careersJsonLd()} />
       <PageHeader title="Careers" subtitle="Jobs in films, posted here. And a small request from us." />
 
       <section aria-labelledby="openings" className="card mt-8 p-5 sm:p-6">
