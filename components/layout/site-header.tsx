@@ -19,6 +19,8 @@ const NAV = [
       ]
     : []),
   { href: "/heroes", label: "Heroes" },
+  { href: "/directors", label: "Directors" },
+  { href: "/releases", label: "Releases" },
   { href: "/rankings", label: "Rankings" },
   { href: "/compare", label: "Compare" },
   { href: "/trends", label: "Trends" },
@@ -26,7 +28,7 @@ const NAV = [
 
 export function SiteHeader() {
   const path = usePathname();
-  const active = (href: string) => (href === "/" ? path === "/" : path === href || path.startsWith(`${href}/`) || (href === "/heroes" && path.startsWith("/hero/")));
+  const active = (href: string) => (href === "/" ? path === "/" : path === href || path.startsWith(`${href}/`) || (href === "/heroes" && path.startsWith("/hero/")) || (href === "/directors" && path.startsWith("/director/")));
   const info = path === "/methodology" || path.startsWith("/annexure") || path === "/terms" || path === "/privacy";
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-surface/95 backdrop-blur supports-[backdrop-filter]:bg-surface/85">

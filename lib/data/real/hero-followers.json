@@ -221,6 +221,28 @@
    },
    "notes": "Facebook not checked (needs a Facebook sign-in)"
   },
+  "dulquer-salmaan": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 15949892,
+     "date": "2026-11-18",
+     "url": "https://www.instagram.com/dqsalmaan/"
+    },
+    {
+     "platform": "x",
+     "followers": 2421138,
+     "date": "2026-11-18",
+     "url": "https://x.com/dulQuer"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "dqsalmaan",
+    "x": "dulQuer"
+   },
+   "notes": "Both profiles show the verified badge; instagram_followers / x_followers are the exact counts from the profile pages; YouTube and Facebook not checked"
+  },
   "gopichand": {
    "counts": [
     {
@@ -317,6 +339,28 @@
     "x": "NANDAMURIKALYAN"
    },
    "notes": "Facebook not checked (needs a Facebook sign-in)"
+  },
+  "karthi": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 4684403,
+     "date": "2026-11-18",
+     "url": "https://www.instagram.com/karthi_offl/"
+    },
+    {
+     "platform": "x",
+     "followers": 3555693,
+     "date": "2026-11-18",
+     "url": "https://x.com/Karthi_Offl"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "karthi_offl",
+    "x": "Karthi_Offl"
+   },
+   "notes": "Both profiles show the verified badge; instagram_followers / x_followers are the exact counts from the profile pages; YouTube and Facebook not checked"
   },
   "karthikeya": {
    "counts": [
@@ -754,6 +798,28 @@
    },
    "notes": "Instagram: no verified account found in search; X: no verified account found in search; Facebook not checked (needs a Facebook sign-in)"
   },
+  "rajinikanth": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 1415461,
+     "date": "2026-11-18",
+     "url": "https://www.instagram.com/rajinikanth/"
+    },
+    {
+     "platform": "x",
+     "followers": 6187052,
+     "date": "2026-11-18",
+     "url": "https://x.com/rajinikanth"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "rajinikanth",
+    "x": "rajinikanth"
+   },
+   "notes": "Instagram bio: \"The Official Account of Superstar Rajinikanth\"; Both profiles show the verified badge; instagram_followers / x_followers are the exact counts from the profile pages; YouTube and Facebook not checked"
+  },
   "ram-charan": {
    "counts": [
     {
@@ -1173,6 +1239,28 @@
     "x": null
    },
    "notes": "Instagram: no verified account found in search; X: no verified account found in search; Facebook not checked (needs a Facebook sign-in)"
+  },
+  "suriya": {
+   "counts": [
+    {
+     "platform": "instagram",
+     "followers": 11260964,
+     "date": "2026-11-18",
+     "url": "https://www.instagram.com/actorsuriya/"
+    },
+    {
+     "platform": "x",
+     "followers": 9184540,
+     "date": "2026-11-18",
+     "url": "https://x.com/Suriya_offl"
+    }
+   ],
+   "noAccount": false,
+   "usernames": {
+    "instagram": "actorsuriya",
+    "x": "Suriya_offl"
+   },
+   "notes": "Both profiles show the verified badge; instagram_followers / x_followers are the exact counts from the profile pages; YouTube and Facebook not checked"
   },
   "sushanth": {
    "counts": [],

@@ -1,0 +1,2750 @@
+{
+ "source": "Box-office results checked by an editor against trade reports (links per film)",
+ "films": {
+  "HIT: The First Case": {
+   "result": "hit",
+   "gross": {
+    "low": 12.6,
+    "high": 12.6,
+    "text": "₹12.6 crore"
+   },
+   "budget": {
+    "low": 6.2,
+    "high": 6.2,
+    "text": "₹6.2 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/HIT:_The_First_Case",
+    "https://www.123telugu.com/mnews/makers-of-hit-the-first-case-are-happy-with-the-result.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Profitable for its producers."
+  },
+  "Paagal": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://sacnilk.com/movie/Paagal_2021",
+    "https://en.wikipedia.com/wiki/Paagal"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Sacnilk: flop; Wikipedia figures also show a loss."
+  },
+  "Ashoka Vanamlo Arjuna Kalyanam": {
+   "result": "average",
+   "gross": {
+    "low": 9.03,
+    "high": 9.03,
+    "text": "₹9.03 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://sacnilk.com/movie/Ashoka_Vanamlo_Arjuna_Kalyanam_2022",
+    "https://telugucinema.com/news/ashoka-vanamlo-arjuna-kalyanam-takes-decent-openings"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "India gross only."
+  },
+  "Ori Devuda": {
+   "result": "below_average",
+   "gross": {
+    "low": 10.43,
+    "high": 10.43,
+    "text": "₹10.43 crore"
+   },
+   "budget": {
+    "low": 10,
+    "high": 10,
+    "text": "₹10 crore"
+   },
+   "urls": [
+    "https://sacnilk.com/movie/Ori_Devuda_2022",
+    "https://xappie.com/boxoffice-article/ori-devuda-box-office-collection-day-7-vishwak-sen-starrer-has-a-largely-forgettable-performance-at-the-box-office-45755"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": null
+  },
+  "Das Ka Dhamki": {
+   "result": "above_average",
+   "gross": {
+    "low": 22.8,
+    "high": 22.8,
+    "text": "₹22.8 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://sacnilk.com/news/Das_Ka_Dhamki_2023_Box_Office_Collection_Day_Wise_Worldwide",
+    "https://telanganatoday.com/das-ka-dhamki-box-office-collections-for-4-days-revealed"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia says hit; trade reports show it around break-even. Lower result used."
+  },
+  "Gaami": {
+   "result": "hit",
+   "gross": {
+    "low": 21,
+    "high": 21,
+    "text": "₹21 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://filmibeat.com/telugu/news/2024/gaami-box-office-collection-worldwide-vishwak-sens-adventure-thriller-achieves-break-even-enters-388121.html",
+    "https://telanganatoday.com/gaami-the-crowdfunding-mini-budget-film-is-now-making-profits-at-the-box-office"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia says super hit; one outlet calls it a flop. Small budget, in profit."
+  },
+  "Gangs of Godavari": {
+   "result": "above_average",
+   "gross": {
+    "low": 19.84,
+    "high": 19.84,
+    "text": "₹19.84 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://thehansindia.com/cinema/tollywood/gangs-of-godavari-box-office-collection-vishwak-sens-film-earns-rs-1970-crores-worldwide-885480",
+    "https://www.sacnilk.com/movie/Gangs_of_Godavari_2024"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Semi-hit / break-even."
+  },
+  "Mechanic Rocky": {
+   "result": "flop",
+   "gross": {
+    "low": 10.87,
+    "high": 10.87,
+    "text": "₹10.87 crore"
+   },
+   "budget": {
+    "low": 20,
+    "high": 20,
+    "text": "₹20 crore"
+   },
+   "urls": [
+    "https://koimoi.com/box-office/mechanic-rocky-worldwide-box-office-closing-collection-vishwak-sen-starrer-wraps-up-its-dismal-theatrical-run-below-11-crores/amp",
+    "https://telugucinema.com/news/weekend-bo-mechanic-rocky-fails-zebra-shows-growth"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": null
+  },
+  "Laila (2025 film)": {
+   "result": "disaster",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://koimoi.com/box-office/laila-box-office-collection-day-6-vishwak-sen-starrer-struggles-yet-to-earn-4-crores",
+    "https://koimoi.com/?p=1147306"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": null
+  },
+  "Funky (film)": {
+   "result": "flop",
+   "gross": {
+    "low": 13.76,
+    "high": 13.76,
+    "text": "₹13.76 crore"
+   },
+   "budget": {
+    "low": 25,
+    "high": 25,
+    "text": "₹25 crore"
+   },
+   "urls": [
+    "https://www.koimoi.com/box-office/funky-box-office-closing-collection-vishwak-sen-kayadu-lohar-starrer-wraps-up-below-15-crore-gross/",
+    "https://www.pinkvilla.com/entertainment/box-office/funky-box-office-collections-opening-week-vishwak-sen-and-kayadu-lohar-starrer-collects-over-rs-8-crore-nears-theatrical-run-1400921"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": null
+  },
+  "Cult (2026 Telugu film)": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.koimoi.com/box-office/cult-box-office-collection-day-7-vishwak-sens-film-scores-41-less-than-funky-in-opening-week/",
+    "https://www.deccanchronicle.com/amp/entertainment/tollywood/vishwak-sens-cult-logs-dismal-openings-2000546"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Earlier listed as a hit by a trade blog; trade reports show a weak run."
+  },
+  "Ustad Hotel": {
+   "result": "hit",
+   "gross": {
+    "low": 15,
+    "high": 15,
+    "text": "₹15 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Ustad_Hotel",
+    "https://www.ibtimes.co.in/dulquer-salmaan-nithya-menens-ustad-hotel-becomes-jathaga-telugu-649397"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Telugu dub: Jathaga."
+  },
+  "Neelakasham Pachakadal Chuvanna Bhoomi": {
+   "result": "above_average",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.wikipedia.org/wiki/Neelakasham_Pachakadal_Chuvanna_Bhoomi",
+    "https://filmibeat.com/malayalam/news/2016/3-years-of-neelakasham-pachakadal-chuvanna-bhoomi-236879.html"
+   ],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: hit in Kerala; Filmibeat: decent run. Lower result used."
+  },
+  "100 Days of Love": {
+   "result": "hit",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/100_Days_of_Love",
+    "https://www.khaleejtimes.com/entertainment/100-days-of-love-hits-the-bulls-eye?amp=1"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"was a commercial success\" (no gross figure). Second link: cited Indian Express 2015 round-up (not opened). Telugu: Wikipedia says it was dubbed into Telugu (alongside Kannada, Tamil, Bengali, Hindi) - the article implies YouTube/TV releases, not theatres; please check."
+  },
+  "Kali (2016 film)": {
+   "result": "super_hit",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://filmibeat.com/malayalam/news/2016/box-office-2016-blockbusters-and-super-hits-action-hero-biju-kali-224019.html",
+    "https://www.onmanorama.com/entertainment/entertainment-news/kali-dulquer-salmaan-sai-pallavi-movie-box-office-report.amp.html"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Telugu dub: Hey Pillagada."
+  },
+  "Jomonte Suvisheshangal": {
+   "result": "hit",
+   "gross": {
+    "low": 43.67,
+    "high": 43.67,
+    "text": "₹43.67 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://filmibeat.com/malayalam/news/2017/dulquer-salmaan-s-journey-at-the-box-office-5-biggest-hits-of-the-actor-254347.html",
+    "https://www.ibtimes.co.in/kerala-box-office-heres-jomonte-suvisheshangal-munthirivallikal-thalirkkumbol-collection-report-713074"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: est. ₹43.67 crore worldwide (₹24 crore Kerala); no explicit verdict sentence. Cited IBTimes: \"becomes his solo biggest grosser\" in 60 days (headline). Telugu: the Telugu version \"Andamaina Jeevitham\" was released on Amazon Prime Video (per Wikipedia)."
+  },
+  "Solo (2017 film)": {
+   "result": "average",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://filmibeat.com/malayalam/news/2017/solo-box-office-36-days-kerala-collections-269484.html",
+    "https://www.thenewsminute.com/flix/dulquer-s-solo-released-telugu-athade-83592"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Strong Kerala start, then fell; Telugu dub Athade did poorly."
+  },
+  "Karwaan": {
+   "result": "below_average",
+   "gross": {
+    "low": 26.42,
+    "high": 26.42,
+    "text": "₹26.42 crore"
+   },
+   "budget": {
+    "low": 23,
+    "high": 23,
+    "text": "₹23 crore"
+   },
+   "urls": [
+    "https://sacnilk.com/movie/Karwaan_2018",
+    "https://www.bollywoodhungama.com/movie/karwaan/box-office/"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Sacnilk: average; Bollywood Hungama: flop. Middle result used."
+  },
+  "The Zoya Factor (film)": {
+   "result": "disaster",
+   "gross": {
+    "low": 6.96,
+    "high": 6.96,
+    "text": "₹6.96 crore"
+   },
+   "budget": {
+    "low": 30,
+    "high": 30,
+    "text": "₹30 crore"
+   },
+   "urls": [
+    "https://www.sacnilk.com/quicknews/The_Zoya_Factor_Day_7_Box_Office_Collection?hl=en",
+    "https://cinestaan.com/articles/2019/sep/24/22633/box-office-dream-girl-is-on-the-verge-of-reaching-the-rs100-crore-mark"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Hindi film. Wikipedia: \"a major box office disaster\", ₹6.96 crore worldwide on a ₹33 crore budget. Second link: Bollywood Hungama box-office page cited by Wikipedia (not opened)."
+  },
+  "Kurup (film)": {
+   "result": "hit",
+   "gross": {
+    "low": 78,
+    "high": 81,
+    "text": "₹78-81 crore"
+   },
+   "budget": {
+    "low": 35,
+    "high": 35,
+    "text": "₹35 crore"
+   },
+   "urls": [
+    "https://www.sacnilk.com/movie/Kurup_2021",
+    "https://wikipedia.com/wiki/Kurup_(film)"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Sacnilk: super hit; Wikipedia: hit. Lower result used."
+  },
+  "Sita Ramam": {
+   "result": "super_hit",
+   "gross": {
+    "low": 100,
+    "high": 100,
+    "text": "₹100 crore"
+   },
+   "budget": {
+    "low": 25,
+    "high": 25,
+    "text": "₹25 crore"
+   },
+   "urls": [
+    "https://sacnilk.com/movie/Sita_Ramam_2022",
+    "https://en.wikipedia.org/wiki/Sita_Ramam"
+   ],
+   "teluguRelease": "original",
+   "checkedOn": "2026-11-18",
+   "notes": "Sacnilk: blockbuster; Wikipedia: super hit. Lower result used."
+  },
+  "King of Kotha": {
+   "result": "disaster",
+   "gross": {
+    "low": 38,
+    "high": 38,
+    "text": "₹38 crore"
+   },
+   "budget": {
+    "low": 50,
+    "high": 50,
+    "text": "₹50 crore"
+   },
+   "urls": [
+    "https://www.republicworld.com/entertainment/king-of-kotha-incurs-huge-loss-as-dulquer-salmaans-film-bombs-at-box-office-articleshow",
+    "https://www.filmibeat.com/top-listing/king-of-kotha-box-office-collection-hit-or-flop-review-and-budget-4-1727.html"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Result left empty: the Wikipedia article says both \"underperformed at box office\" and that it was a box-office bomb (est. ₹38 crore on a ₹40 crore budget) - more than one step apart, and no independent trade verdict found. Telugu: dubbed Telugu version on Disney+ Hotstar from 29 Sep 2023 (theatrical Telugu dub was also planned)."
+  },
+  "Lucky Baskhar": {
+   "result": "super_hit",
+   "gross": {
+    "low": 107,
+    "high": 120,
+    "text": "₹107-120 crore"
+   },
+   "budget": {
+    "low": 56,
+    "high": 56,
+    "text": "₹56 crore"
+   },
+   "urls": [
+    "https://www.pinkvilla.com/entertainment/box-office/lucky-baskhar-final-box-office-collection-worldwide-dulquer-salmaan-and-meenakshi-chaudhary-starrer-ends-theatrical-run-at-rs-107-crore-1360214",
+    "https://www.gulte.com/box-office/325701/lucky-baskhar-overseas-full-run-gross-3-065-million-blockbuster"
+   ],
+   "teluguRelease": "original",
+   "checkedOn": "2026-11-18",
+   "notes": "Sacnilk and Gulte: blockbuster; Pinkvilla: super hit. Lower result used."
+  },
+  "O Kadhal Kanmani": {
+   "result": "super_hit",
+   "gross": {
+    "low": 56,
+    "high": 56,
+    "text": "₹56 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.com/wiki/OK_Kanmani",
+    "https://www.business-standard.com/article/news-ians/mani-ratnam-s-o-kadhal-kanmani-mints-over-rs-14-crore-115042100265_1.html"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Telugu dub: OK Bangaram (Nani voiced Dulquer). Wikipedia: blockbuster. Lower result used."
+  },
+  "Kannum Kannum Kollaiyadithaal": {
+   "result": "super_hit",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://filmibeat.com/tamil/news/2020/kannum-kannum-kollaiyadithaal-final-box-office-verdict-dulquer-salman-thriller-becomes-a-superhit-295958.html",
+    "https://www.ibtimes.co.in/box-office-collection-dulquer-salmaans-kkk-draupathi-overpower-thappad-bheesma-chennai-814418"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Telugu release: Kanulu Kanulanu Dochayante."
+  },
+  "Kaantha": {
+   "result": "flop",
+   "gross": {
+    "low": 35.35,
+    "high": 35.35,
+    "text": "₹35.35 crore"
+   },
+   "budget": {
+    "low": 35,
+    "high": 40,
+    "text": "₹35-40 crore"
+   },
+   "urls": [
+    "https://www.koimoi.com/box-office/kaantha-box-office-closing-collection-dulquer-salmaan-starrer-ends-its-disappointing-run-with-a-deficit-of-43/",
+    "https://sacnilk.com/news/Kaantha_OTT_ReleaseCheck_Out_Box_Office_Closing_Collections_and_OTT_Details"
+   ],
+   "teluguRelease": "bilingual",
+   "checkedOn": "2026-11-18",
+   "notes": "Released in Tamil and Telugu together."
+  },
+  "I'm Game (film)": {
+   "result": "below_average",
+   "gross": {
+    "low": 48.47,
+    "high": 48.47,
+    "text": "₹48.47 crore"
+   },
+   "budget": {
+    "low": 80,
+    "high": 80,
+    "text": "₹80 crore"
+   },
+   "urls": [
+    "https://www.newsbytesapp.com/news/entertainment/salmaan-accepts-responsibility-as-im-game-underperforms-at-box-office/tldr",
+    "https://www.theweek.in/news/entertainment/2026/09/10/im-game-day-8-box-office-collection-dulquer-salmaans-thriller-falls-sharply-as-second-week-begins.html"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Released in Malayalam, Telugu, Tamil and Hindi. Underperformed; no final verdict published."
+  },
+  "Second Show": {
+   "result": "hit",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.ibtimes.co.in/dulquer-salmaan-completes-9-years-mollywood-pens-heartfelt-message-832795"
+   ],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "IBTimes India (2021): Second Show \"emerged as a huge hit at the box-office\" (read from search snippet of the article). Single source. No Telugu version found."
+  },
+  "Theevram": {
+   "result": null,
+   "gross": null,
+   "budget": null,
+   "urls": [],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "No Telugu version found: Wikipedia mentions none. No box-office information on Wikipedia (budget ₹2 crore only)."
+  },
+  "ABCD: American-Born Confused Desi (2013 film)": {
+   "result": "hit",
+   "gross": null,
+   "budget": {
+    "low": 4.5,
+    "high": 4.5,
+    "text": "₹4.5 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/ABCD:_American-Born_Confused_Desi_(2013_film)"
+   ],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"became a commercial success\", about ₹12.5 crore from Kerala alone (no worldwide figure), 101-day run; budget ₹4.5 crore. Only one source. Telugu: it was remade in Telugu in 2019 (Allu Sirish), not dubbed - so no Telugu version of this film."
+  },
+  "Pattam Pole": {
+   "result": null,
+   "gross": null,
+   "budget": null,
+   "urls": [],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "No Telugu version found: Wikipedia mentions none. No box-office information on Wikipedia."
+  },
+  "Salalah Mobiles": {
+   "result": null,
+   "gross": null,
+   "budget": null,
+   "urls": [],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "No Telugu version found on Wikipedia. Box office: Wikipedia only says ~₹4 crore in two weeks, citing a blog - not enough for a result."
+  },
+  "Vikramadithyan": {
+   "result": "hit",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Vikramadithyan",
+    "https://www.ibtimes.co.in/vikramadithyan-box-office-earns-3-10-crore-3-days-kerala-all-set-make-it-big-this-festive-605523"
+   ],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"a commercial success, grossing approximately ₹11.5 crores in Kerala\" (Kerala only, no worldwide figure). Second link: cited IBTimes opening report (headline only, not opened). No Telugu version found on Wikipedia."
+  },
+  "Njaan": {
+   "result": null,
+   "gross": null,
+   "budget": null,
+   "urls": [],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "No Telugu version found on Wikipedia. No box-office information on Wikipedia."
+  },
+  "Charlie (2015 Malayalam film)": {
+   "result": null,
+   "gross": {
+    "low": 42,
+    "high": 42,
+    "text": "₹42 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Charlie_(2015_Malayalam_film)",
+    "http://english.manoramaonline.com/entertainment/entertainment-news/kerala-box-office-collection-pavada-leads-two-countries-charlie-running.html"
+   ],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "Sources disagree strongly - result left empty: the Wikipedia article contains \"a box office bomb because of its poor story\" but also says it grossed ₹42 crore worldwide (₹2 crore first day in Kerala), which reads like a big success; the \"bomb\" sentence looks like an unsourced edit. Cited Manorama report on its Kerala run (not opened). No Telugu version found on Wikipedia."
+  },
+  "Kammatipaadam": {
+   "result": "hit",
+   "gross": {
+    "low": 15,
+    "high": 15,
+    "text": "₹15 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Kammatipaadam",
+    "http://indianexpress.com/article/entertainment/regional/kammati-paadam-box-office-collections-dulquer-salmaan-movie-strikes-gold-2823298/"
+   ],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia calls it \"a super hit collecting ₹15 crore\"; the cited Indian Express headline says it \"strikes gold\" - picked the lower step (hit). ₹15 crore may be Kerala-only. No Telugu version found on Wikipedia."
+  },
+  "Comrade in America": {
+   "result": "hit",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Comrade_in_America"
+   ],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"became a box office success\" (no figures). Only one source. No Telugu version found on Wikipedia."
+  },
+  "Oru Yamandan Premakadha": {
+   "result": "average",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Oru_Yamandan_Premakadha"
+   ],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"an average grosser at the box office\" (no figures). Only one source. No Telugu version found on Wikipedia."
+  },
+  "Paruthiveeran": {
+   "result": "super_hit",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Paruthiveeran",
+    "https://web.archive.org/web/20110701160042/http://www.sify.com/movies/paruthiveeran-super-opening-news-tamil-kkfveiebigf.html"
+   ],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"a huge commercial success, running successfully for more than one year in theatres ... one of the most commercially successful Tamil films of the year\" (no gross figure). Second link: cited Sify report (opening only; not opened). The app currently says hit. No Telugu version found on Wikipedia."
+  },
+  "Aayirathil Oruvan (2010 film)": {
+   "result": "average",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Aayirathil_Oruvan_(2010_film)",
+    "https://web.archive.org/web/20110224053417/https://www.sify.com/movies/ao-is-a-super-hit-in-telugu-news-tamil-kkfqTSfbddc.html"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: declared \"average\" in Tamil and a \"hit\" in Telugu; the cited Sify headline says \"AO is super hit in Telugu\". Result given is the overall (Tamil) verdict; the Telugu dub did better. Telugu: dubbed as \"Yuganiki Okkadu\"."
+  },
+  "Paiyaa": {
+   "result": "blockbuster",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Paiyaa",
+    "http://www.indiaglitz.com/channels/telugu/article/55930.html"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"became a blockbuster box office success\" (₹3 crore in first three days). Second link: cited IndiaGlitz report on record collections of the Telugu version (not opened). Telugu: dubbed as \"Awara\", released 21 May 2010."
+  },
+  "Naan Mahaan Alla (2010 film)": {
+   "result": "hit",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "http://www.behindwoods.com/tamil-movies-slide-shows/movie-4/top-ten-movies-sep-06/tamil-cinema-topten-movie-naan-mahaan-alla.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Behindwoods Chennai box-office top ten (Sep 2010) states \"Verdict: Hit\" (its text also calls it a blockbuster; the stated verdict field is used). Single source. Telugu version not confirmed."
+  },
+  "Siruthai": {
+   "result": "blockbuster",
+   "gross": {
+    "low": 30,
+    "high": 30,
+    "text": "₹30 crore"
+   },
+   "budget": {
+    "low": 11,
+    "high": 13,
+    "text": "₹11-13 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Siruthai"
+   ],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"a blockbuster success at the box office\", ₹30 crore on ₹11-13 crore. Only one source. Telugu: it is a remake of the Telugu film Vikramarkudu; no Telugu dub found."
+  },
+  "Saguni": {
+   "result": "average",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.behindwoods.com/tamil-movies/saguni/saguni-box-office-jul-29.html",
+    "https://en.wikipedia.org/wiki/Saguni"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Behindwoods' Chennai box-office tracking rated it \"Above Average\" and past break-even; Wikipedia copies describe an \"average run\" - one step apart, took the lower (average). Chennai-only tracking, no worldwide figure. Telugu: the Telugu version (\"Shakuni\") released on 5 June per Wikipedia; Telugu rights bought by Bellamkonda Suresh."
+  },
+  "Alex Pandian": {
+   "result": "below_average",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.behindwoods.com/tamil-movies/alex-pandian/alex-pandian-box-office-feb-03.html",
+    "https://www.moviebuff.com/bad-boy-2013-telugu"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Behindwoods Chennai box-office report, week 3 (3 Feb 2013): 'Verdict: Below Average' (Chennai total Rs 4.36 crore). Chennai city only, read from search snippet; single source. Other link: https://en.wikipedia.org/wiki/Alex_Pandian | Earlier note: No trade verdict found: Wikipedia has no result sentence (only a critic calling it a \"disaster\", which is a review, not box office); figures found online conflict (₹20 crore vs ₹42 crore). Left empty. Telugu: dubbed as \"Bad Boy\", released 22 March 2013 in 300+ theatres."
+  },
+  "Biriyani (film)": {
+   "result": "average",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Biriyani_(film)"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"became a commercial success and recovered its budget at the box-office\" - recovering the budget reads as average rather than hit, so took the lower step. Only one source. Telugu version not confirmed (Wikipedia mentions only early reports of a Tamil-Telugu bilingual) - left empty."
+  },
+  "All in All Azhagu Raja": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.behindwoods.com/tamil-movies/all-in-all-azhagu-raja/all-in-all-azhagu-raja-box-office-nov-24.html"
+   ],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "Behindwoods Chennai box-office report (week of 24 Nov 2013) states 'Verdict: Flop'. Chennai city only, single source. | Earlier note: No Telugu version found on Wikipedia. No box-office information on Wikipedia."
+  },
+  "Madras (film)": {
+   "result": "hit",
+   "gross": {
+    "low": 44,
+    "high": 44,
+    "text": "₹44 crore"
+   },
+   "budget": {
+    "low": 15,
+    "high": 15,
+    "text": "₹15 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Madras_(film)"
+   ],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "Duplicate row of Madras (2014) - same answer as the row above: no verdict sentence on Wikipedia; result based on its infobox figures (₹44 crore on ₹15 crore, about 3x). No Telugu version found."
+  },
+  "Komban": {
+   "result": "above_average",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.behindwoods.com/tamil-movies/komban/komban-box-office-may-03.html"
+   ],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "Behindwoods Chennai box-office report, week 5 (3 May 2015): 'Chennai city verdict: Above Average' (Chennai total Rs 2.91 crore). Chennai city only, read from search snippet; single source. | Earlier note: No Telugu version found on Wikipedia. No box-office information on Wikipedia."
+  },
+  "Kaashmora": {
+   "result": "average",
+   "gross": null,
+   "budget": {
+    "low": 60,
+    "high": 60,
+    "text": "₹60 crore"
+   },
+   "urls": [
+    "https://m.behindwoods.com/tamil-movies/kaashmora/kaashmora-box-office-nov-20.html",
+    "https://www.ibtimes.co.in/kashmora-3-day-box-office-collection-karthis-film-fails-beat-opening-weekend-record-oopiri-702037"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Behindwoods' Chennai box-office tracking rated it \"Average\" after four weeks (Chennai city only); IBTimes reported ~₹31.6 crore worldwide in the opening weekend, then a steep drop. No final worldwide gross found. Budget ₹60 crore (Wikipedia). Telugu: the dubbed Telugu version opened with ~₹4.5 crore gross in AP/Telangana on day one (IBTimes)."
+  },
+  "Kaatru Veliyidai": {
+   "result": "average",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://m.behindwoods.com/tamil-movies/kaatru-veliyidai/kaatru-veliyidai-box-office-apr-23.html",
+    "https://en.wikipedia.org/wiki/Kaatru_Veliyidai"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Behindwoods Chennai box-office report (23 Apr 2017): 'Chennai city verdict: Average' (Chennai total Rs 2.55 crore). Chennai city only, read from search snippet; single source. | Earlier note: No box-office result or figures on Wikipedia (only reviews). Left empty. Telugu: dubbed as \"Cheliyaa\" and released in theatres simultaneously with the Tamil original (Wikipedia)."
+  },
+  "Theeran Adhigaaram Ondru": {
+   "result": "super_hit",
+   "gross": {
+    "low": 97,
+    "high": 97,
+    "text": "₹97 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Theeran_Adhigaaram_Ondru",
+    "https://m.behindwoods.com/tamil-movies/theeran-adhigaram-ondru/theeran-adhigaram-ondru-box-office-dec-17.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"a major commercial success, grossing ₹96 crore\" (est. ₹97 crore, at the time Karthi's highest grosser). Second link: cited Behindwoods box-office report (not opened). Telugu version not confirmed on Wikipedia - left empty."
+  },
+  "Kadaikutty Singam": {
+   "result": "hit",
+   "gross": {
+    "low": 70,
+    "high": 70,
+    "text": "₹70 crore"
+   },
+   "budget": {
+    "low": 25,
+    "high": 25,
+    "text": "₹25 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Kadaikutty_Singam",
+    "https://www.thenewsminute.com/flix/kadai-kutty-singam-emerges-biggest-grosser-karthi-s-career-85592"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "No verdict sentence on Wikipedia; est. ₹70 crore on a ₹25 crore budget (2.8x). The News Minute: it \"emerges as the biggest grosser in Karthi's career\". Telugu: Telugu version \"Chinna Babu\" (The News Minute reported a slow start in the Telugu states)."
+  },
+  "Kaithi (2019 film)": {
+   "result": "hit",
+   "gross": {
+    "low": 105,
+    "high": 105,
+    "text": "₹105 crore"
+   },
+   "budget": {
+    "low": 25,
+    "high": 25,
+    "text": "₹25 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Kaithi_(2019_film)"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"became a box-office success, grossing ₹105 crore worldwide\" on a ₹25 crore budget (over 4x), one of 2019's highest-grossing Tamil films. The wording says hit; the 4x return could justify super_hit - kept the stated verdict. Only one source. Telugu: dubbed and released as \"Khaidi\" (later on Aha)."
+  },
+  "Dev (2019 film)": {
+   "result": "disaster",
+   "gross": null,
+   "budget": {
+    "low": 55,
+    "high": 55,
+    "text": "₹55 crore"
+   },
+   "urls": [
+    "https://boxoffice.sacnilk.com/news/Dev_Box_Office_Collection_Day_Wise_Worldwide",
+    "https://www.filmibeat.com/tamil/news/2019/tamil-movies-2019-half-yearly-box-office-report-ngk-mr-local-other-major-disappointments-287407.html"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-19",
+   "notes": null
+  },
+  "Sulthan (2021 film)": {
+   "result": "average",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Sulthan_(2021_film)"
+   ],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"became an average venture at the box office, mainly because of theatre closures due to the COVID-19 pandemic\". The app currently says flop (trade blog). Only one source. No Telugu version found on Wikipedia."
+  },
+  "Viruman": {
+   "result": "hit",
+   "gross": {
+    "low": 60,
+    "high": 60,
+    "text": "₹60 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Viruman"
+   ],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"emerged as a commercial success at the box office\", est. ₹60 crore. Only one source. No Telugu version found on Wikipedia."
+  },
+  "Sardar (2022 film)": {
+   "result": "hit",
+   "gross": {
+    "low": 100,
+    "high": 100,
+    "text": "₹100 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Sardar_(2022_film)",
+    "https://www.cinemaexpress.com/tamil/news/2022/nov/07/sardar-crosses-one-hundred-crores-at-the-box-office-36342.html"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"a commercial success, grossing ₹100 crore\"; Cinema Express: \"Sardar crosses one hundred crores at the box office\" (headline). Telugu: released in Telugu under the same title; Telugu-states rights bought by Annapurna Studios."
+  },
+  "Japan (2023 film)": {
+   "result": "disaster",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Japan_(2023_film)"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"heavily panned by critics and became a box-office bomb\" (no figures). Only one source. Telugu version not confirmed on Wikipedia - left empty."
+  },
+  "Meiyazhagan": {
+   "result": null,
+   "gross": {
+    "low": 51.43,
+    "high": 51.43,
+    "text": "₹51.43 crore"
+   },
+   "budget": {
+    "low": 35,
+    "high": 35,
+    "text": "₹35 crore"
+   },
+   "urls": [
+    "https://sacnilk.com/movie/Meiyazhagan_2024",
+    "https://koimoi.com/box-office/meiyazhagan-box-office-worldwide-30-days-karthi-starrer-slows-down-post-its-ott-release-to-wrap-up-soon"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Sources disagree by more than one step - result left empty: Sacnilk labels the Tamil version a \"SuperHit\" (worldwide ~₹51.43 crore), while Koimoi said it might lose the hit verdict and not recover its ₹35 crore budget. No verdict on Wikipedia. Telugu: dubbed as \"Sathyam Sundaram\", released in theatres 28 Sep 2024 (Cinejosh, Sacnilk ~₹7.5 crore net). Telugu: Sathyam Sundaram. Tamil verdict disputed (Sacnilk super hit; Koimoi doubts recovery): result left empty."
+  },
+  "Vaa Vaathiyaar": {
+   "result": "disaster",
+   "gross": {
+    "low": 10,
+    "high": 10,
+    "text": "₹10 crore"
+   },
+   "budget": {
+    "low": 40,
+    "high": 40,
+    "text": "₹40 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Vaa_Vaathiyaar",
+    "https://www.timesnownews.com/entertainment-news/tamil/karthis-vaa-vaathiyaar-becomes-lowest-earning-film-in-his-career-what-went-wrong-experts-weigh-in-exclusive-article-153528176"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "2026 release. Wikipedia: est. ₹10 crore on a ₹40 crore budget, described as a box-office failure; Times Now: \"becomes lowest earning film in his career\". Telugu: dubbed version \"Annagaru Vostaru\" released directly on Amazon Prime Video (28 Jan 2026)."
+  },
+  "Sardar 2": {
+   "result": "disaster",
+   "gross": {
+    "low": 23.85,
+    "high": 23.85,
+    "text": "₹23.85 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Sardar_2",
+    "https://www.indiatoday.in/movies/regional-cinema/story/the-outright-rejection-of-karthi-rs-100-crore-sardar-2-what-went-so-wrong-2994918-2026-09-15"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "2026 release. Wikipedia: \"a box-office bomb\", closed below ₹30 crore worldwide (est. ₹23.85 crore); India Today: \"the outright rejection of Karthi's Rs 100-crore Sardar 2\". Telugu: dubbed Telugu version streaming on Amazon Prime Video from 1 Oct 2026 (Wikipedia); no Telugu theatrical release mentioned."
+  },
+  "Baba (2002 film)": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Baba_(2002_film)",
+    "https://www.onmanorama.com/entertainment/entertainment-news/2022/12/19/rajinikanth-movie-baba-released-after-20-years-hit.html"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"a box-office failure, resulting in Rajinikanth reimbursing distributors\" (100+ days run); Onmanorama: \"Once a flop, Rajini's Baba...\" (2022 re-release did well - not counted). Telugu: Telugu dubbing rights bought by Allu Aravind (Wikipedia) - Telugu release implied, not explicitly stated."
+  },
+  "Chandramukhi": {
+   "result": "blockbuster",
+   "gross": {
+    "low": 60,
+    "high": 90,
+    "text": "₹60-90 crore"
+   },
+   "budget": {
+    "low": 19,
+    "high": 19,
+    "text": "₹19 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Chandramukhi",
+    "https://www.tribuneindia.com/2005/20050501/spectrum/main5.htm"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"a major box office success, the highest grossing Tamil film of the year with a theatrical run of 890 days\", quoting a review calling it \"the box-office hit of the year\"; est. ₹60-90 crore on ₹19 crore (3-5x). Second link: cited Tribune article (not opened). Telugu version not named on the English Wikipedia page - left empty (please confirm)."
+  },
+  "Sivaji: The Boss": {
+   "result": "hit",
+   "gross": {
+    "low": 125,
+    "high": 160,
+    "text": "₹125-160 crore"
+   },
+   "budget": {
+    "low": 60,
+    "high": 60,
+    "text": "₹60 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Sivaji:_The_Boss",
+    "https://ndtv.in/bollywood/rajinikanths-sivaji-the-boss-is-first-100-crore-earning-movie-of-tamil-cinema-but-do-you-know-the-meaning-of-boss-4409331"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"became a commercial success by grossing ₹125-160 crore worldwide\", first Indian film to gross ₹150 crore and the highest-grossing Indian film at release (budget ₹60 crore, ~2.5x). Some later news stories call it a blockbuster; kept Wikipedia's stated verdict. Telugu: a Telugu dubbed version existed (Wikipedia mentions scene changes for it)."
+  },
+  "Enthiran": {
+   "result": "blockbuster",
+   "gross": {
+    "low": 283,
+    "high": 320,
+    "text": "₹283-320 crore"
+   },
+   "budget": {
+    "low": 132,
+    "high": 150,
+    "text": "₹132-150 crore"
+   },
+   "urls": [
+    "https://www.sacnilk.com/movie/Enthiran",
+    "https://en.wikipedia.org/wiki/Enthiran"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Sacnilk lists it as an \"All Time Blockbuster\" (worldwide ~₹291 crore, budget ₹132 crore); Wikipedia: \"the highest-grossing Indian film of 2010\" (est. ₹283-320 crore on ₹132-150 crore). Sacnilk found via web search, page not opened. Telugu: dubbed Telugu version released as \"Robo\"."
+  },
+  "Kochadaiiyaan": {
+   "result": "disaster",
+   "gross": {
+    "low": 30,
+    "high": 30,
+    "text": "₹30 crore"
+   },
+   "budget": {
+    "low": 125,
+    "high": 125,
+    "text": "₹125 crore"
+   },
+   "urls": [
+    "https://koimoi.com/box-office/revisiting-rajinikanth-starrer-kochadaiiyaans-failure-an-experimental-animated-film-a-box-office-deficit-of-95-crores",
+    "https://www.indiatvnews.com/entertainment/regional-cinema/rajinikanth-s-biggest-flop-film-kochadaiiyaan-failed-at-box-office-despite-deepika-padukone-s-peak-stardom-2025-04-16-985757"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-19",
+   "notes": null
+  },
+  "Lingaa": {
+   "result": "flop",
+   "gross": {
+    "low": 154,
+    "high": 154,
+    "text": "₹154 crore"
+   },
+   "budget": {
+    "low": 100,
+    "high": 100,
+    "text": "₹100 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Lingaa"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: highest-grossing Tamil film of 2014 (₹154 crore) \"despite this, the film suffered major losses due to high production and distribution costs\"; worldwide rights sold for ₹135 crore and Tamil Nadu distributors asked for their money back. Distributor losses = flop. The app currently says hit. Only one source. Telugu: dubbed and released in Telugu with the same name."
+  },
+  "Kabali": {
+   "result": "hit",
+   "gross": {
+    "low": 286,
+    "high": 286,
+    "text": "₹286 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://www.ibtimes.co.in/kabali-box-office-collection-rajinikanth-starrer-beats-7-big-records-baahubali-bahubali-688964",
+    "https://en.wikipedia.org/wiki/Kabali"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-19",
+   "notes": "Major commercial success; worldwide gross disputed (₹286–499 crore). Lower figure and result used."
+  },
+  "Kaala (2018 film)": {
+   "result": "average",
+   "gross": {
+    "low": 159.6,
+    "high": 159.6,
+    "text": "₹159.6 crore"
+   },
+   "budget": {
+    "low": 140,
+    "high": 140,
+    "text": "₹140 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Kaala_(2018_film)",
+    "https://www.indiatoday.in/movies/regional-cinema/story/rajinikanth-s-kaala-is-not-a-flop-reports-are-wrong-wunderbar-films-1280469-2018-07-08"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"grossed ₹160 crore and was average at the box office\" (budget ₹140 crore). India Today: the producers said \"Kaala is not a flop, reports are wrong\" - flop reports existed; average is the stated Wikipedia verdict. Telugu version not mentioned on Wikipedia - left empty."
+  },
+  "2.0 (film)": {
+   "result": "average",
+   "gross": {
+    "low": 699,
+    "high": 800,
+    "text": "₹699-800 crore"
+   },
+   "budget": {
+    "low": 400,
+    "high": 600,
+    "text": "₹400-600 crore"
+   },
+   "urls": [
+    "https://www.sacnilk.com/news/20_Box_Office_Collection_All_Language_India_Overseas_Worldwide",
+    "https://en.wikipedia.org/wiki/2.0_(film)"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Sacnilk's verdict is \"Average\" (budget ₹543 crore); Wikipedia: highest-grossing Indian film of 2018, est. ₹699-800 crore on ₹400-600 crore, with no verdict word. Reports say much of the cost was recovered from rights sold before release. The app currently says hit. Sacnilk found via web search, page not opened. Telugu: released the same day in a dubbed Telugu version."
+  },
+  "Petta (film)": {
+   "result": "hit",
+   "gross": {
+    "low": 220,
+    "high": 240,
+    "text": "₹220-240 crore"
+   },
+   "budget": {
+    "low": 160,
+    "high": 160,
+    "text": "₹160 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Petta_(film)",
+    "https://www.indiatoday.in/movies/regional-cinema/story/petta-box-office-collection-day-18-rajinikanth-film-is-a-massive-hit-1440146-2019-01-27"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"grossed over ₹200 crore against a budget of ₹160 crore\", one of the highest-grossing Tamil films of 2019; India Today day-18 headline: \"Rajinikanth film is a massive hit\". Telugu version not mentioned on Wikipedia - left empty."
+  },
+  "Darbar (film)": {
+   "result": "flop",
+   "gross": {
+    "low": 250,
+    "high": 250,
+    "text": "₹250 crore"
+   },
+   "budget": {
+    "low": 190,
+    "high": 240,
+    "text": "₹190-240 crore"
+   },
+   "urls": [
+    "https://www.hindustantimes.com/regional-movies/darbar-box-office-film-ends-up-as-a-colossal-flop-distributors-plan-to-approach-rajinikanth/story-j7miLvAkLvmFHhqd59cuLM.html",
+    "https://www.theweek.in/news/entertainment/2020/02/06/darbar-director-murugadoss-seeks-police-protection-from-distributors.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Hindustan Times (cited by Wikipedia): \"Darbar box office: Film ends up as a colossal flop, distributors plan to approach Rajinikanth\"; The Week: the director sought police protection from distributors. Wikipedia itself only says it grossed ₹250 crore (budget ₹190-240 crore). The app currently says hit. HT wording could mean disaster; took flop. Telugu version not mentioned on Wikipedia - left empty."
+  },
+  "Annaatthe": {
+   "result": "hit",
+   "gross": {
+    "low": 240,
+    "high": 240,
+    "text": "₹240 crore"
+   },
+   "budget": {
+    "low": 180,
+    "high": 180,
+    "text": "₹180 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Annaatthe",
+    "https://www.news18.com/news/movies/year-ender-2021-master-to-annaatthe-highest-grossing-tamil-movies-of-2021-4604261.html"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"grossed an estimated ₹240 crores worldwide against a budget of ₹180 crores, making it a commercial success\" (another passage says \"major commercial success\") - one step apart, took the lower (hit). The app currently says super_hit. Telugu: released in Telugu as \"Peddanna\"."
+  },
+  "Jailer (2023 Tamil film)": {
+   "result": "blockbuster",
+   "gross": {
+    "low": 605,
+    "high": 650,
+    "text": "₹605-650 crore"
+   },
+   "budget": {
+    "low": 200,
+    "high": 220,
+    "text": "₹200-220 crore"
+   },
+   "urls": [
+    "https://www.sacnilk.com/news/Mega_Blockbuster_Jailer_Final_Worldwide_Box_Office_Collection_and_Records",
+    "https://en.wikipedia.org/wiki/Jailer_(2023_Tamil_film)"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Sacnilk: \"Mega Blockbuster Jailer\" (final worldwide ~₹604.5 crore, verdict All-Time Blockbuster); Wikipedia: highest-grossing Tamil film of 2023, est. ₹605-650 crore on ₹200-220 crore (~3x). Sacnilk found via web search, page not opened. Telugu: the Telugu version earned over ₹100 crore in 18 days (Wikipedia)."
+  },
+  "Vettaiyan": {
+   "result": "disaster",
+   "gross": {
+    "low": 250,
+    "high": 253,
+    "text": "₹250-253 crore"
+   },
+   "budget": {
+    "low": 300,
+    "high": 300,
+    "text": "₹300 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Vettaiyan",
+    "https://timesofindia.indiatimes.com/entertainment/tamil/movies/news/will-rajinikanth-compensate-for-vettaiyans-box-office-performance-heres-what-we-know-/articleshow/114379319.cms"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: despite being the third highest-grossing Tamil film of 2024 \"it was a Box-office bomb\" (₹250-253 crore on a ₹300 crore budget); Lyca reportedly asked Rajinikanth to compensate losses (Times of India). Telugu: dubbed Telugu version (Wikipedia mentions it for the streaming release; it was also in theatres - not stated there)."
+  },
+  "Coolie (2025 film)": {
+   "result": "hit",
+   "gross": {
+    "low": 514,
+    "high": 675,
+    "text": "₹514-675 crore"
+   },
+   "budget": {
+    "low": 350,
+    "high": 400,
+    "text": "₹350-400 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Coolie_(2025_film)",
+    "https://www.businesstoday.in/trending/box-office/story/coolie-vs-war-2-box-office-collection-day-1-rajinikanths-film-mints-rs65-crore-hrithik-roshan-starrer-lags-behind-pathaan-in-india-489561-2025-08-15"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"received generally mixed reviews from critics but became a commercial success\", highest-grossing Tamil film of 2025 (est. ₹514-675 crore on ₹350-400 crore). Second link: cited Business Today day-1 report (not opened). Telugu: released with a dubbed Telugu version."
+  },
+  "Jailer 2": {
+   "result": "hit",
+   "gross": {
+    "low": 826.74,
+    "high": 826.74,
+    "text": "₹826.74 crore"
+   },
+   "budget": {
+    "low": 250,
+    "high": 350,
+    "text": "₹250-350 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Jailer_2"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "2026 release. Wikipedia: \"was a box-office success\", highest-grossing Tamil film of all time (₹826.74 crore on ₹250-350 crore, 2.4-3.3x); the Jailer article calls it \"a major box office success\" - kept hit (stated wording), could be higher. Only Wikipedia checked. Telugu: dubbed Telugu version (named for the streaming release)."
+  },
+  "Uyirile Kalanthathu": {
+   "result": null,
+   "gross": null,
+   "budget": null,
+   "urls": [],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "No Telugu version found on Wikipedia. No box-office information on Wikipedia."
+  },
+  "Unnai Ninaithu": {
+   "result": "hit",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Unnai_Ninaithu"
+   ],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"released on 10 May 2002 and became a commercial success\" (no figures). Only one source. No Telugu version found on Wikipedia."
+  },
+  "Sri (2002 film)": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Sri_(2002_film)"
+   ],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"Sri was a commercial failure\" (no figures). Only one source. No Telugu version found on Wikipedia."
+  },
+  "Mounam Pesiyadhe": {
+   "result": null,
+   "gross": null,
+   "budget": null,
+   "urls": [],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Telugu: remade in Telugu as \"Aadanthe Ado Type\" (2003) and later dubbed into Telugu as \"Kanchu\" (2013), per Wikipedia. No box-office result on Wikipedia (only a critic calling it \"above average\")."
+  },
+  "Kaakha Kaakha": {
+   "result": "hit",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Kaakha_Kaakha"
+   ],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"became a commercial success ... running for over 100 days in theatres\" (no figures). Only one source. Telugu: remade as \"Gharshana\" (2004), no Telugu dub found - so none."
+  },
+  "Perazhagan": {
+   "result": null,
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Perazhagan"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "No box-office result on the film's Wikipedia page (the app's \"blockbuster\" comes from Suriya's own article) - left empty. Telugu: dubbed as \"Sundarangadu\", released 26 Nov 2004 (Wikipedia)."
+  },
+  "Aayutha Ezhuthu": {
+   "result": "hit",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Aayutha_Ezhuthu"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"became a commercial success at the box office\" (no figures). Only one source. Telugu: the dubbed Telugu version \"Yuva\" released the same day, 21 May 2004."
+  },
+  "Ghajini (2005 film)": {
+   "result": "super_hit",
+   "gross": {
+    "low": 50,
+    "high": 50,
+    "text": "₹50 crore"
+   },
+   "budget": {
+    "low": 7,
+    "high": 7,
+    "text": "₹7 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Ghajini_(2005_film)"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"became a major commercial success\" (₹50 crore on a ₹7 crore budget) and among the highest-grossing Tamil films of 2005. The app currently says hit. Only one source. Telugu: the dubbed Telugu version (4 Nov 2005) \"was also successful and did better business than many straight Telugu films\"."
+  },
+  "Aaru (film)": {
+   "result": "hit",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Aaru_(film)",
+    "https://web.archive.org/web/20140109033033/http://www.sify.com/movies/aaru-opening-big-news-tamil-kkfvxzjbhii.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"not well-received by critics but became a commercial success\" (no figures). Second link: cited Sify opening report (not opened). Telugu version not mentioned on Wikipedia - left empty."
+  },
+  "Maayavi": {
+   "result": null,
+   "gross": null,
+   "budget": null,
+   "urls": [],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "No Telugu version found on Wikipedia. No box-office information on Wikipedia."
+  },
+  "Sillunu Oru Kaadhal": {
+   "result": "average",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.behindwoods.com/tamil-movie-articles/movies-04/ar-rahman-1.html"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Behindwoods article on A. R. Rahman's films lists 'Box-office Result: Sillunu Oru Kaadhal, 2006, Avg.' (read from search snippet). Single source. | Earlier note: No box-office result on Wikipedia. Telugu: \"later dubbed and released in Telugu as Nuvvu Nenu Prema\" (Wikipedia)."
+  },
+  "Vel (film)": {
+   "result": "hit",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Vel_(film)",
+    "https://www.rediff.com/movies/2007/nov/08vel.htm"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"released on 8 November 2007, coinciding with Diwali, and became a commercial success\" (no figures). Second link is a cited review, not a box-office source. Telugu: dubbed as \"Deva\" (Shalimar Movies bought the rights)."
+  },
+  "Vaaranam Aayiram": {
+   "result": "hit",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Vaaranam_Aayiram",
+    "http://inhome.rediff.com/movies/2008/nov/14its-surya-all-the-way.htm"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"became a commercial success, eventually becoming the biggest hit in Suriya's career at that time\" (no figures). Second link: cited Rediff article (not opened). Telugu: \"Surya S/O Krishnan\" released the same day (14 Nov 2008)."
+  },
+  "Ayan (film)": {
+   "result": "blockbuster",
+   "gross": {
+    "low": 80,
+    "high": 80,
+    "text": "₹80 crore"
+   },
+   "budget": {
+    "low": 15,
+    "high": 15,
+    "text": "₹15 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Ayan_(film)",
+    "https://timesofindia.indiatimes.com/entertainment/tamil/movies/news/from-kaakha-kaakha-to-singam-five-blockbuster-films-of-suriya-that-made-him-a-bankable-star/etphotostory/75759356.cms"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"declared as the solo blockbuster of 2009 in Tamil cinema, collecting about ₹80 crore worldwide\" (budget ₹15 crore); Times of India lists it among \"five blockbuster films of Suriya\". Telugu: dubbed as \"Veedokkade\" (sold to Bellamkonda Suresh)."
+  },
+  "Aadhavan": {
+   "result": "hit",
+   "gross": null,
+   "budget": {
+    "low": 30,
+    "high": 30,
+    "text": "₹30 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Aadhavan"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"released on 17 October 2009 and became commercially successful\" (budget ₹30 crore, no gross). Only one source. Telugu: dubbed as \"Ghatikudu\"."
+  },
+  "Singam": {
+   "result": "hit",
+   "gross": {
+    "low": 90,
+    "high": 90,
+    "text": "₹90 crore"
+   },
+   "budget": {
+    "low": 15,
+    "high": 15,
+    "text": "₹15 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Singam",
+    "https://timesofindia.indiatimes.com/entertainment/tamil/movies/news/decadeofroaringsingam-here-are-some-interesting-facts-about-suriyas-action-packed-cop-drama/articleshow/76063205.cms"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia (citing Times of India): grossed around ₹90 crore worldwide on ₹15 crore, second highest-grossing Tamil film of 2010. No explicit verdict word, so hit - the 6x return could justify a higher grade, please check. Telugu: dubbed as \"Yamudu\", released 2 July 2010."
+  },
+  "7 Aum Arivu": {
+   "result": "hit",
+   "gross": {
+    "low": 100,
+    "high": 109,
+    "text": "₹100-109 crore"
+   },
+   "budget": {
+    "low": 80,
+    "high": 85,
+    "text": "₹80-85 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/7_Aum_Arivu",
+    "https://web.archive.org/web/20120108065644/http://www.sify.com/movies/top-10-tamil-grossers-of-2011-news-tamil-lm3mOLjjccd.html"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"Indian film trades considered the film a commercial success, despite a high budget and distribution price\" (₹100-109 crore on ₹80-85 crore); cited Sify \"Top 10 Tamil grossers of 2011\". Note: Wikipedia also cites a Sify list \"2011 - Films which disappointed us this year\". Telugu: dubbed as \"7th Sense\", wide AP release."
+  },
+  "Maattrraan": {
+   "result": "above_average",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.behindwoods.com/tamil-movies/maattrraan/maattrraan-box-office-nov-11.html",
+    "https://en.wikipedia.org/wiki/Maattrraan"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Behindwoods Chennai box-office report (11 Nov 2012, week 5): 'Verdict: Above Average' (Chennai total Rs 7.60 crore). Chennai city only, read from search snippet; single source. | Earlier note: No box-office result on Wikipedia - left empty. Telugu: dubbed Telugu version \"Brothers\" (Telugu soundtrack released by Aditya Music; Karthi dubbed a role in the Telugu version)."
+  },
+  "Singam II": {
+   "result": "hit",
+   "gross": {
+    "low": 136,
+    "high": 136,
+    "text": "₹136 crore"
+   },
+   "budget": {
+    "low": 45,
+    "high": 45,
+    "text": "₹45 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Singam_II",
+    "http://www.behindwoods.com/tamil-movies/singam-2/singam-2-box-office-aug-11.html"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"became a commercial success\", second highest-grossing Tamil film of 2013 (₹136 crore on ₹45 crore); Behindwoods' Chennai tracking declared it a \"Superhit\". One step apart, took the lower (hit). The app currently says super_hit. Telugu: dubbed version \"Singam\" (aka Yamudu II) released the same day."
+  },
+  "Anjaan (2014 film)": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Anjaan_(2014_film)"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"The film's underperformance caused Lingusamy's production house Thirrupathi Brothers to experience significant financial problems\" (no total gross). Underperformance with producer losses = flop; the app currently says disaster (one step lower). Only one source. Telugu: dubbed as \"Sikandar\"."
+  },
+  "Massu Engira Masilamani": {
+   "result": null,
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.behindwoods.com/tamil-movies/massu-engira-masilamani/massu-engira-masilamani-box-office-jun-14.html",
+    "http://www.ibtimes.co.in/highest-grossing-tamil-movies-2015-top-10-films-that-kept-cash-registers-ringing-box-office-659394"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Behindwoods Chennai report week 3 (14 Jun 2015) says 'Below Average' but 'the final verdict would be known next week' - interim, not used. Other link: https://en.wikipedia.org/wiki/Massu_Engira_Masilamani | Earlier note: No verdict on Wikipedia; figures conflict (infobox ₹147 crore vs body text ~₹79 crore worldwide from Tamil and Telugu versions; budget ₹55 crore). Listed among the top 10 Tamil grossers of 2015 (IBTimes). Left empty. Telugu: released with a Telugu version (Wikipedia counts its gross)."
+  },
+  "24 (2016 film)": {
+   "result": "hit",
+   "gross": {
+    "low": 100,
+    "high": 100,
+    "text": "₹100 crore"
+   },
+   "budget": {
+    "low": 70,
+    "high": 70,
+    "text": "₹70 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/24_(2016_film)",
+    "https://timesofindia.indiatimes.com/entertainment/tamil/movies/did-you-know/did-you-know-vikram-was-the-first-choice-for-suriyas-blockbuster-film-24/articleshow/76385446.cms"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"a critical and commercial success\" (est. ₹100 crore on ₹70 crore); Times of India calls it a \"blockbuster\" in a later feature - kept Wikipedia's wording (hit). Telugu: a considerable part of its revenue came from the Telugu version."
+  },
+  "Thaanaa Serndha Koottam": {
+   "result": "above_average",
+   "gross": {
+    "low": 90,
+    "high": 90,
+    "text": "₹90 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://m.behindwoods.com/tamil-movies/thaanaa-serndha-koottam/thaanaa-serndha-koottam-box-office-feb-04.html",
+    "https://en.wikipedia.org/wiki/Thaanaa_Serndha_Koottam"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Behindwoods Chennai box-office report (4 Feb 2018, week 4): 'Chennai city verdict: Above Average' (Chennai total Rs 6.99 crore). Chennai city only, read from search snippet; single source. | Earlier note: No verdict or budget on Wikipedia (est. ₹90 crore gross) - left empty. Telugu: dubbed and released as \"Gang\" the same day (Suriya dubbed his own Telugu voice for the first time)."
+  },
+  "Kaappaan": {
+   "result": "above_average",
+   "gross": {
+    "low": 100,
+    "high": 100,
+    "text": "₹100 crore"
+   },
+   "budget": {
+    "low": 75,
+    "high": 75,
+    "text": "₹75 crore"
+   },
+   "urls": [
+    "https://www.behindwoods.com/tamil-movies/kaappaan/kaappaan-box-office-oct-06.html",
+    "https://en.wikipedia.org/wiki/Kaappaan"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Behindwoods Chennai box-office report (6 Oct 2019, week 3): 'Chennai city verdict: Above Average' (Chennai total Rs 5.33 crore). Chennai city only, read from search snippet; single source. Please check: app says hit. | Earlier note: No verdict sentence on Wikipedia; ₹100 crore on a ₹75 crore budget (about 1.3x) would be closer to average than hit - left empty rather than guess (the app currently says hit). Telugu: dubbed version \"Bandobast\" released simultaneously."
+  },
+  "Soorarai Pottru": {
+   "result": null,
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Soorarai_Pottru"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Direct-to-OTT: released on Amazon Prime Video on 12 Nov 2020 (theatrical release cancelled by COVID-19) - no box-office result possible. Telugu: released simultaneously in Telugu as \"Aakasam Nee Haddhu\"."
+  },
+  "Jai Bhim (film)": {
+   "result": null,
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Jai_Bhim_(film)"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Direct-to-OTT: released on Amazon Prime Video on 2 Nov 2021 - no box-office result possible. Telugu: dubbed into Telugu (with Hindi, Malayalam, Kannada) for the streaming release."
+  },
+  "Etharkkum Thunindhavan": {
+   "result": null,
+   "gross": {
+    "low": 71.4,
+    "high": 200,
+    "text": "₹71.4-200 crore"
+   },
+   "budget": {
+    "low": 75,
+    "high": 75,
+    "text": "₹75 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Etharkkum_Thunindhavan",
+    "https://timesofindia.indiatimes.com/entertainment/tamil/movies/box-office/etharkkum-thunindhavan-box-office-collection-day-5-suriyas-action-entertainer-enters-into-an-elite-100-crore-club/articleshow/90220105.cms"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "No verdict on Wikipedia and its gross range is too wide to judge (est. ₹71.4-200 crore on ₹75 crore); Times of India said it entered the ₹100 crore club by day 5 (headline). Left empty (the app currently says hit). Telugu: dubbed Telugu version (Suriya voiced it himself)."
+  },
+  "Kanguva": {
+   "result": "disaster",
+   "gross": {
+    "low": 106,
+    "high": 106,
+    "text": "₹106 crore"
+   },
+   "budget": {
+    "low": 300,
+    "high": 350,
+    "text": "₹300-350 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Kanguva",
+    "https://www.hindustantimes.com/entertainment/others/ht-rewind-from-kanguva-to-bade-miyan-chote-miyan-big-budget-indian-films-that-failed-at-the-box-office-in-2024-101735214910124.html"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"grossed ₹106 crore, making it a box-office disaster\" (budget est. ₹300-350 crore); Hindustan Times lists it among the big-budget films that failed in 2024. Telugu: dubbed Telugu version (released in 10 languages; also streaming in Telugu)."
+  },
+  "Retro (film)": {
+   "result": "hit",
+   "gross": {
+    "low": 80,
+    "high": 250,
+    "text": "₹80-250 crore"
+   },
+   "budget": {
+    "low": 60,
+    "high": 65,
+    "text": "₹60-65 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Retro_(film)",
+    "https://www.dailythanthi.com/cinema/cinemanews/suriya-donates-profits-from-retro-to-agaram-foundation-1156582"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "Wikipedia: \"emerged as a significant commercial success, grossing ₹80-250 crore worldwide against a budget of ₹60-65 crore\" (the gross range is very wide); Daily Thanthi: Suriya donated the film's profits (₹10 crore) to the Agaram Foundation. Telugu: dubbed Telugu version (dialogues by Hanumaan Choudary)."
+  },
+  "Karuppu (film)": {
+   "result": "super_hit",
+   "gross": {
+    "low": 296.44,
+    "high": 363,
+    "text": "₹296.44-363 crore"
+   },
+   "budget": {
+    "low": 130,
+    "high": 140,
+    "text": "₹130-140 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Karuppu_(film)",
+    "https://deccanchronicle.com/entertainment/tollywood/suriyas-veerabhadrudu-clocks-rs-12-crore-in-telugu--1958782"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "2026 release. Wikipedia: \"a massive commercial success, grossing ₹296.44-363 crore worldwide\" on est. ₹130-140 crore, Suriya's highest-grossing film. Telugu: dubbed as \"Veerabhadrudu\" (Deccan Chronicle: it collected ₹12 crore in Telugu)."
+  },
+  "Vishwanath & Sons": {
+   "result": null,
+   "gross": {
+    "low": 200,
+    "high": 260,
+    "text": "₹200-260 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://en.wikipedia.org/wiki/Vishwanath_%26_Sons",
+    "https://indianexpress.com/article/entertainment/tamil/vishwanath-and-sons-box-office-collection-day-2-live-updates-suriya-film-earns-rs-74-crore-10835245/"
+   ],
+   "teluguRelease": "dubbed",
+   "checkedOn": "2026-11-18",
+   "notes": "2026 release. Mixed signals - result left empty: Wikipedia says it grossed over ₹200 crore (fourth highest-grossing Tamil film of 2026) but also that \"in Tamil Nadu, it was considered an underperformer\"; no budget given. Telugu: released in Tamil and Telugu, the Telugu version dubbed."
+  },
+  "Scene (2026 film)": {
+   "result": null,
+   "gross": {
+    "low": 247.85,
+    "high": 247.85,
+    "text": "₹247.85 crore"
+   },
+   "budget": {
+    "low": 30,
+    "high": 30,
+    "text": "₹30 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Scene_(2026_film)"
+   ],
+   "teluguRelease": "none",
+   "checkedOn": "2026-11-18",
+   "notes": "Released 6 Nov 2026 - still in theatres, too early for a final result. Wikipedia currently shows est. ₹247.85 crore on an est. ₹30 crore budget. No Telugu version found on Wikipedia."
+  },
+  "Laddu Babu": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.m9.news/movienews/allari-naresh-brutally-admits-flop-saga/",
+    "https://www.thehansindia.com/posts/index/cinema/2014-04-23/laddu-babu-5th-day-box-office-collection/92539"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "M9 News says Laddu Babu 'flopped' (search snippet); Filmibeat Telugu (2021) reports the producer describing losses on it: https://telugu.filmibeat.com/box-office/allari-naresh-laddu-babu-movie-producer-about-movie-budget-losses-101319.html. Please check: M9 is a smaller news site. Other link: https://www.123telugu.com/reviews/review-laddu-babu-disappointing-film.html | Earlier note: No final trade verdict found. 123telugu's review predicted it \"will not work at the Box Office\" (a review, not a result); Hans India reported collections after 5 days but no budget or verdict. Left empty."
+  },
+  "James Bond (2015 film)": {
+   "result": "average",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.123telugu.com/mnews/decent-collections-for-allari-nareshs-james-bond.html",
+    "https://www.telugu360.com/allari-naresh-continues-flops/"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "123telugu: \"Decent collections for Allari Naresh's James Bond\" - doing decent business and set to break even. Break-even = average. Telugu360 mentions it as the exception among his recent flops. Pages not opened (search snippets)."
+  },
+  "Selfie Raja": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.telugu360.com/allari-naresh-continues-flops/"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Telugu360: Selfie Raja \"ended up as a huge dud at the box-office\" and none of his recent films broke even. Only one source (page not opened, search snippet); no figures. Note: IBTimes reported a good first weekend."
+  },
+  "Intlo Deyyam Nakem Bhayam": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.telugu360.com/silly-fellows-worldwide-closing-collections-flop/",
+    "https://www.123telugu.com/telugu/reviews/intlo-deyyam-nakem-bhayam-movie-review-in-telugu.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Telugu360 (Silly Fellows closing report) calls Silly Fellows \"a hat-trick flop\" for Allari Naresh, naming Intlo Deyyam Nakem Bhayam and Meda Meeda Abbayi as the previous flops - so the verdict is implied, not a dedicated report. IBTimes had reported a decent opening. Second link is a review. No figures found."
+  },
+  "Meda Meeda Abbayi": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.telugu360.com/silly-fellows-worldwide-closing-collections-flop/",
+    "https://www.123telugu.com/reviews/meda-meedha-abbayi-telugu-movie-review.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Telugu360 names it as one of Allari Naresh's flops before Silly Fellows (\"hat-trick flop\"); 123telugu's review called it a below-average comedy and IBTimes reported a dismal US opening. Implied verdict, no figures."
+  },
+  "Silly Fellows": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.telugu360.com/silly-fellows-worldwide-closing-collections-flop/",
+    "https://www.ibtimes.co.in/us-box-office-collection-geetha-govindam-fares-better-manu-silly-fellows-premaku-rain-check-780133"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Telugu360 \"Silly Fellows Worldwide Closing Collections: FLOP\" - distributor share a little over ₹3.5 crore against rights valued at ₹5.5 crore (~60% recovery). IBTimes: weak US numbers. No worldwide gross given."
+  },
+  "Aa Okkati Adakku (2024 film)": {
+   "result": "flop",
+   "gross": {
+    "low": 9.35,
+    "high": 9.35,
+    "text": "₹9.35 crore"
+   },
+   "budget": {
+    "low": 10,
+    "high": 10,
+    "text": "₹10 crore"
+   },
+   "urls": [
+    "https://www.sacnilk.com/movie/Aa_Okkati_Adakku_2024",
+    "https://www.deccanchronicle.com/entertainment/aa-okkati-adakku-clocks-mere-rs-3-crores-losing-steam-892665"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Sacnilk: final worldwide gross ~₹9.35 crore (no verdict given); budget ₹10 crore is the app's current figure. Deccan Chronicle quoted a distributor saying it was \"losing steam in many centres\" after a dismal opening. Gross below budget = flop, but no source states a verdict outright - please check."
+  },
+  "Bachchala Malli": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.123telugu.com/mnews/bachchala-malli-disappoints-at-the-box-office.html",
+    "https://www.sacnilk.com/movie/Bachhala_Malli_2024"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "123telugu: \"Bachchala Malli disappoints at the box office\" - never crossed ₹1 crore a day and was removed from screens; Sacnilk: lifetime ~₹3.6 crore India net (verdict field N/A). No budget found."
+  },
+  "12A Railway Colony": {
+   "result": "disaster",
+   "gross": {
+    "low": 3.18,
+    "high": 3.18,
+    "text": "₹3.18 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://www.telugu360.com/2025-is-disastrous-for-these-tollywood-stars/",
+    "https://www.sacnilk.com/news/12A_Railway_Colony_2025_Box_Office_Collection_Day_Wise_Worldwide"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Telugu360 lists Allari Naresh's 12A Railway Colony as \"a disaster\" in its 2025 round-up; Sacnilk: worldwide gross ~₹3.18 crore (India only), ₹2.82 crore net, week 2 almost nil. No budget found."
+  },
+  "Rambha Urvasi Menaka": {
+   "result": "flop",
+   "gross": {
+    "low": 5.56,
+    "high": 5.56,
+    "text": "₹5.56 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://tracktollywood.com/ramba-oorvasi-menaka-budget-hit-or-flop-weekend-collection/",
+    "https://tracktollywood.com/box-office-collection/ramba-oorvasi-menaka/"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "2026 release (listed on trade sites as \"Ramba Oorvasi Menaka\"). Track Tollywood put its hit mark at ₹10 crore worldwide gross; it ended its run at about ₹5.56 crore India gross over 22 days (Sacnilk similar). Well short of break-even = flop. Both links are the same outlet; budget not found."
+  },
+  "Naa Peru Surya": {
+   "result": "disaster",
+   "gross": {
+    "low": 92,
+    "high": 92,
+    "text": "₹92 crore"
+   },
+   "budget": {
+    "low": 55,
+    "high": 55,
+    "text": "₹55 crore"
+   },
+   "urls": [
+    "https://www.telugu360.com/naa-peru-surya-worldwide-closing-collections-disaster/",
+    "https://www.thehansindia.com/posts/index/cinema/2018-06-14/naa-peru-surya-closing-collections/389081"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Telugu360 \"Worldwide Closing Collections - Disaster\" (about 65% recovery of an ₹80 crore theatrical valuation; distributors lost ~40%); Hans India calls it a huge flop (closing share ~₹50-54 crore, gross estimate ~₹92 crore). One step apart - took the lower (disaster) per the rules. The app's gross is ₹100.52 crore; budget ₹55 crore is the app's figure."
+  },
+  "Savyasachi (2018 film)": {
+   "result": "flop",
+   "gross": {
+    "low": 22.3,
+    "high": 22.3,
+    "text": "₹22.3 crore"
+   },
+   "budget": {
+    "low": 30,
+    "high": 30,
+    "text": "₹30 crore"
+   },
+   "urls": [
+    "https://www.ibtimes.co.in/savyasachi-box-office-collection-day-3-naga-chaitanya-delivers-another-dud-after-sra-784793",
+    "https://thehansindia.com/posts/index/Tollywood/2018-11-10/Savyasachi-First-Week-Box-Office-Collections-Report/439888"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "IBTimes: \"Naga Chaitanya delivers another dud after SRA\" (day 3); reports say it ended as a flop, with only ~38% of distributors' investment recovered in the opening weekend. Gross ₹22.3 crore and budget ₹30 crore are the app's figures."
+  },
+  "Greeku Veerudu": {
+   "result": "hit",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.ibtimes.co.in/039greeku-veerudu039-box-office-collection-nagarjuna-film-collects-72-14-lakh-in-3-days-overseas-464794"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "IBTimes describes it as \"a box office success\" that completed 50 days in several theatres (US gross ~₹6.88 crore after four weeks). Only one source and a modest outlet - please double-check; Great Andhra's review had predicted no extraordinary result. App's current gross text: ₹13 crore distributors' share."
+  },
+  "Antariksham 9000 KMPH": {
+   "result": "disaster",
+   "gross": {
+    "low": 16.1,
+    "high": 16.1,
+    "text": "₹16.1 crore"
+   },
+   "budget": {
+    "low": 25,
+    "high": 30,
+    "text": "₹25-30 crore"
+   },
+   "urls": [
+    "https://www.telugu360.com/antariksham-worldwide-closing-collections-tollywood/",
+    "https://www.thehansindia.com/posts/index/cinema/2019-01-08/antariksham-final-box-office-report/471564"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Telugu360 \"Antariksham Worldwide Closing Collections - Disaster\": worldwide distributor share ~₹7.6 crore against theatrical rights of ₹19 crore (about 40% recovery); Hans India final report similar; IBTimes called it Varun Tej's third disaster. Gross and budget are the app's figures."
+  },
+  "Shanmukha (film)": {
+   "result": "disaster",
+   "gross": {
+    "low": 0.29,
+    "high": 0.29,
+    "text": "₹0.29 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://www.sacnilk.com/movie/Shanmukha_2025"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Sacnilk: worldwide gross ~₹0.29 crore (₹0.26 crore India net), collections fell to almost nothing within a week. No written verdict found and no budget, but the total is negligible - please check. Nothing on Wikipedia."
+  },
+  "unlinked:SI Yugandhar|2026": {
+   "result": "disaster",
+   "gross": {
+    "low": 0.19,
+    "high": 0.19,
+    "text": "₹0.19 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://www.sacnilk.com/movie/SI_Yugandhar_2026"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "2026 release (2 Oct). Sacnilk: worldwide gross ~₹0.19 crore after the first week (₹0.16 crore net); its digital rights reportedly sold for ₹7 crore (123telugu), which is non-theatrical. No written verdict found - result based on the negligible theatrical total, please check."
+  },
+  "Evaru": {
+   "result": "hit",
+   "gross": {
+    "low": 21.48,
+    "high": 21.48,
+    "text": "₹21.48 crore"
+   },
+   "budget": {
+    "low": 8,
+    "high": 8,
+    "text": "₹8 crore"
+   },
+   "urls": [
+    "https://www.thehansindia.com/cinema/tollywood/adivi-seshs-evaru-closing-collections-report-566356",
+    "https://www.ibtimes.co.in/tollywood-box-office-report-2019-highest-grossing-telugu-movies-year-810648"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Hans India closing report: worldwide gross ~₹21.48 crore, share ~₹12.03 crore after five weeks; IBTimes 2019 ranking: share ₹11.66 crore against ₹10 crore rights (116.6%), status \"hit\". Telugu360 called it \"above average\" at 11 days (earlier). Budget ₹8 crore from Wikipedia (which shows est. ₹10 crore gross)."
+  },
+  "Urvasivo Rakshasivo": {
+   "result": "disaster",
+   "gross": null,
+   "budget": {
+    "low": 10,
+    "high": 10,
+    "text": "₹10 crore"
+   },
+   "urls": [
+    "https://www.telugu360.com/weekend-box-office-update-kantara-leads-urvasivo-rakshasivo-is-a-disaster/",
+    "https://www.sacnilk.com/movie/Urvasivo_Rakshasivo_2022"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Telugu360: \"Urvasivo Rakshasivo is a Disaster\"; Sacnilk: budget ~₹10 crore, week-one India net ~₹4.76 crore."
+  },
+  "Buddy (2024 film)": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.123telugu.com/mnews/allu-sirishs-flop-film-locks-world-television-premiere-date.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "123telugu calls it \"Allu Sirish's flop film\" (released 2 Aug 2024, failed to make an impact). Only one source; no figures."
+  },
+  "Speedunnodu": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.deccanchronicle.com/entertainment/tollywood/060817/i-cried-for-the-first-time-after-my-second-film-flopped-says-bellamkonda-sreenivas.html",
+    "https://www.ibtimes.co.in/jaya-janaki-nayaka-10-day-box-office-collection-bellamkonda-sreenivas-3rd-film-tank-739495"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Deccan Chronicle: Bellamkonda Sreenivas said he cried after his second film (Speedunnodu) flopped; IBTimes counts it among his box-office failures before Jaya Janaki Nayaka. No final figures."
+  },
+  "Patel S. I. R.": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.thehansindia.com/posts/index/Cinema/2017-08-14/Shocking-decision-from-Jagapathi-Babu/318988"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Hans India: Patel S.I.R. \"flopped big time at the box office\" and Jagapathi Babu regretted signing it. Only one source; no figures."
+  },
+  "Sebastian P.C. 524": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.123telugu.com/mnews/kiran-abbavarams-sebastian-struggling-at-the-box-office.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "123telugu: \"Kiran Abbavaram's Sebastian struggling at the box office\" - very low occupancy, bad reviews and dull word of mouth pushed it out of theatres quickly. No figures; only one source - please check."
+  },
+  "Okkadu Migiladu": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.thehansindia.com/posts/index/Cinema/2017-11-10/Okkadu-Migiladu-Movie-Review/338628",
+    "https://www.thehansindia.com/posts/index/Cinema/2018-03-27/Manchu-Manojs-Next-With-Newcomer/369834"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Hans India: it \"failed big time at the box office\" and later called it \"a big flop\"; overseas reports expected a big disaster. Could be disaster; took flop as stated. Both links are the same outlet; no figures."
+  },
+  "Abbayitho Ammayi": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.greatandhra.com/movies/news/trade-talk-decent-week-71828"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Great Andhra trade report: \"Abbayitho Ammayi starring Naga Shourya however failed at the box-office ... another flop in his career\". Only one source; no figures."
+  },
+  "Phalana Abbayi Phalana Ammayi": {
+   "result": "flop",
+   "gross": null,
+   "budget": {
+    "low": 10,
+    "high": 10,
+    "text": "₹10 crore"
+   },
+   "urls": [
+    "https://www.sacnilk.com/movie/Phalana_Abbayi_Phalana_Ammayi_2023"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Sacnilk: India net ~₹2.53 crore against an approximate ₹10 crore budget (no verdict given). Result based on those figures - please check."
+  },
+  "Appatlo Okadundevadu": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.deccanchronicle.com/entertainment/tollywood/220818/im-only-looking-for-good-content-naara-rohith.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Deccan Chronicle interview: Nara Rohit said Appatlo Okadundevadu \"got a lot of appreciation, but was not commercially viable\". Interpreted as flop - the hero's own words, not a trade report; please check."
+  },
+  "Balakrishnudu": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.deccanchronicle.com/entertainment/tollywood/220818/im-only-looking-for-good-content-naara-rohith.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Deccan Chronicle interview: Nara Rohit said \"though the film failed miserably, I tried something new\" about Balakrishnudu. The hero's own words, not a trade report."
+  },
+  "Prathinidhi 2": {
+   "result": "disaster",
+   "gross": {
+    "low": 0.28,
+    "high": 0.28,
+    "text": "₹0.28 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://www.sacnilk.com/movie/Prathinidhi_2_2024",
+    "https://tracktollywood.com/prathinidhi-2-hits-ott-streaming-details/"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Sacnilk: ~₹0.28 crore worldwide (₹0.23 crore India net); Track Tollywood/123telugu describe it as a flop that \"ended up as a massive disaster\"."
+  },
+  "28 Degree Celsius": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.123telugu.com/mnews/ott-release-naveen-chandras-28-degree-celsius-now-streaming-on-amazon-prime-video.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "123telugu: released in April 2025, \"failed to make an impact at the box office\" (now on Prime Video). Only one source; no figures."
+  },
+  "Mithai (film)": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.ibtimes.co.in/mithai-3-day-box-office-collection-prashant-kumars-emotional-open-letter-accept-its-failure-792645",
+    "https://www.123telugu.com/reviews/mithai-telugu-movie-review.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "IBTimes: three days in, the director wrote an open letter accepting the film's failure; it \"failed to strike a chord with the audience\". Second link is a review. No figures."
+  },
+  "Darling (2024 film)": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.123telugu.com/mnews/no-takers-for-darling-on-ott.html",
+    "https://www.sacnilk.com/movie/Darling_2024"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "123telugu: Darling \"ended up being a massive flop at the box office\" (and found no OTT buyer); Sacnilk: ~₹2.13 crore India net after 14 days."
+  },
+  "Sarangapani Jathakam": {
+   "result": "flop",
+   "gross": null,
+   "budget": {
+    "low": 5,
+    "high": 5,
+    "text": "₹5 crore"
+   },
+   "urls": [
+    "https://www.koimoi.com/box-office/sarangapani-jathakam-box-office-collection-day-12-priyadarshi-pulikondas-film-sees-no-substantial-growth-to-wrap-up-soon/",
+    "https://www.deccanchronicle.com/entertainment/sarangapani-jathakam-opens-to-disastrous-response-1875231"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Koimoi: set to \"wrap up with a losing verdict\" - India net ~₹2.73 crore against a ₹5 crore budget; Deccan Chronicle: opened to a \"disastrous response\"."
+  },
+  "Uyyala Jampala": {
+   "result": "hit",
+   "gross": {
+    "low": 11,
+    "high": 11,
+    "text": "₹11 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://www.deccanchronicle.com/150711/entertainment-tollywood/article/can-avika-gor-raj-tarun-deliver-again",
+    "https://www.ibtimes.co.in/039uyyala-jampala039-box-office-romantic-entertainer-gets-off-to-good-start-531816"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Deccan Chronicle: the debut \"created wonders at the box-office\" and made Raj Tarun an overnight star; a later DC piece says it grossed more than ₹11 crore. IBTimes: got off to a good start over the holiday release. No budget found."
+  },
+  "Raju Gadu": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.thehansindia.com/posts/index/Cinema/2018-07-24/Whats-Next-For-Raj-Tarun/400731"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Hans India (2018): Raju Gadu \"failed to entertain the audience\" and was a box-office failure, part of a run of flops. Only one source; no figures."
+  },
+  "Lover (2018 film)": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.thehansindia.com/posts/index/Cinema/2018-07-24/Whats-Next-For-Raj-Tarun/400731",
+    "https://www.thehansindia.com/posts/index/cinema/2018-07-23/tfi-box-office-latest-movies-report/400443"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Hans India (July 2018): Lover \"left no trace at the box office\" and was expected to be another flop in his career. Same outlet for both links; no figures."
+  },
+  "Purushothamudu": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.deccanchronicle.com/entertainment/tollywood/raj-tarun-battles-personal-and-professional-turmoil-amid-allegations-and-film-failure-1813612",
+    "https://tracktollywood.com/raj-tarun-two-films-make-no-noise/"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Deccan Chronicle: Purushothamudu \"failed to perform well at the box office\"; Track Tollywood: \"Raj Tarun two films make no noise\" (Purushothamudu and Tiragabadara Saami). No figures."
+  },
+  "Tiragabadara Saami": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://tracktollywood.com/raj-tarun-two-films-make-no-noise/"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Track Tollywood: \"Raj Tarun two films make no noise\" - Tiragabadara Saami also flopped at the box office (2024). Only one source; no figures."
+  },
+  "Gaddam Gang": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.deccanchronicle.com/entertainment/tollywood/210616/rajasekhar-turns-villain-for-gopichand.html",
+    "https://www.123telugu.com/reviews/gaddam-gang-telugu-movie-review.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Deccan Chronicle (2016): Rajasekhar \"was last seen in Gaddam Gang, which flopped at the box office\". Second link is a review. No figures."
+  },
+  "Shekhar (film)": {
+   "result": "disaster",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://tracktollywood.com/dr-rajasekhars-shekar-disastrous-start-at-the-box-office/",
+    "https://www.sacnilk.com/movie/Shekar_2022"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Track Tollywood: \"Disastrous start at the box office\" - failed to recover rents in most areas on day one; Sacnilk's page labels it \"DISASTER\" (no figures shown)."
+  },
+  "Kaadan": {
+   "result": "flop",
+   "gross": null,
+   "budget": {
+    "low": 60,
+    "high": 60,
+    "text": "₹60 crore"
+   },
+   "urls": [
+    "https://www.sacnilk.com/movie/Haathi_Mere_Saathi_2020"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Sacnilk labels the trilingual (Aranya / Kaadan / Haathi Mere Saathi) a flop - budget ₹60 crore, India net ~₹7-8.5 crore across versions. Only one source."
+  },
+  "Prati Roju Pandage": {
+   "result": "hit",
+   "gross": {
+    "low": 33.89,
+    "high": 33.89,
+    "text": "₹33.89 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://www.ibtimes.co.in/prathi-roju-pandage-6-day-box-office-collection-sdt-film-makes-100-recovery-turns-hit-810814",
+    "https://www.thehansindia.com/cinema/tollywood/prati-roju-pandage-movie-22-days-box-office-collection-report-596867"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "IBTimes: \"SDT film makes 100% recovery and turns hit\" in six days; Hans India 22-day report: ~₹33.89 crore worldwide (₹29.5 crore AP/TS). No final closing figure found."
+  },
+  "Martin Luther King (film)": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://tracktollywood.com/martin-luther-king-is-now-streaming-on-ott/",
+    "https://www.sacnilk.com/movie/Martin_Luther_King_2023"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Track Tollywood: Martin Luther King \"did not work well at the box office\" and reached OTT early; Sacnilk has no figures. Telugu remake of Mandela (2023)."
+  },
+  "Manchi Rojulochaie": {
+   "result": "flop",
+   "gross": {
+    "low": 3.65,
+    "high": 3.65,
+    "text": "₹3.65 crore"
+   },
+   "budget": {
+    "low": 7,
+    "high": 7,
+    "text": "₹7 crore"
+   },
+   "urls": [
+    "https://www.123telugu.com/mnews/young-hero-faces-his-sixth-flop-in-a-row-needs-to-change-his-game.html",
+    "https://www.sacnilk.com/movie/Manchi_Rojulochaie_2021"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "123telugu lists Manchi Rojulochaie among Santosh Sobhan's \"big flops\"; Sacnilk: worldwide gross ~₹3.65 crore on an approximate ₹7 crore budget."
+  },
+  "Like, Share & Subscribe": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.123telugu.com/mnews/young-hero-faces-his-sixth-flop-in-a-row-needs-to-change-his-game.html",
+    "https://www.sacnilk.com/movie/Like,_Share_and_Subscribe_2022"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "123telugu lists Like, Share & Subscribe among Santosh Sobhan's \"big flops\"; Sacnilk: ~₹1.49 crore in the first week."
+  },
+  "Prem Kumar (film)": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.123telugu.com/mnews/young-hero-faces-his-sixth-flop-in-a-row-needs-to-change-his-game.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "123telugu lists Prem Kumar (2023) among Santosh Sobhan's \"big flops\". Only one source; no figures."
+  },
+  "Couple Friendly": {
+   "result": "super_hit",
+   "gross": {
+    "low": 14.27,
+    "high": 14.27,
+    "text": "₹14.27 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://www.koimoi.com/box-office/hits-flops/tollywood-telugu-box-office-collection-verdicts/",
+    "https://www.sacnilk.com/movie/Couple_Friendly_2026"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "2026 release. Koimoi's 2026 Tollywood verdict table lists Couple Friendly at ~₹14.27 crore worldwide with verdict \"SUPER HIT\"; Sacnilk shows ~₹11.74 crore worldwide by day 13 (its verdict still pending, performance \"modest\"). Single verdict source - please check the lead actor and budget."
+  },
+  "Zebra (film)": {
+   "result": "flop",
+   "gross": {
+    "low": 5.53,
+    "high": 5.53,
+    "text": "₹5.53 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://www.koimoi.com/box-office/zebra-box-office-collection-23-days-satyadev-starrer-likely-to-wrap-up-below-6-crores/",
+    "https://www.greatandhra.com/movies/news/buzz-another-flop-for-satyadev-142267"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Koimoi: likely to wrap up below ₹6 crore (₹5.53 crore gross, ₹4.69 crore net after 23 days) and called it \"a dud\"; Great Andhra: \"Another flop for Satyadev?\". No budget found."
+  },
+  "unlinked:Kanam|2022": {
+   "result": "hit",
+   "gross": {
+    "low": 21.8,
+    "high": 21.8,
+    "text": "₹21.80 crore"
+   },
+   "budget": {
+    "low": 15,
+    "high": 15,
+    "text": "₹15 crore"
+   },
+   "urls": [
+    "https://www.sacnilk.com/news/Box_Office_Sharwanands_Oke_Oka_Jeevitham_Proves_To_Be_A_Word_of_Mouth_Hit",
+    "https://www.greatandhra.com/movies/news/us-bo-ooj-grosses-half-million-dollars-123901"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Kanam is the Tamil version of the bilingual \"Oke Oka Jeevitham\" (2022). Sacnilk: \"proves to be a word of mouth hit\", broke even in about nine days, worldwide gross ~₹21.8 crore on ₹15 crore; Great Andhra: crossed half a million dollars in the US. Figures are for both versions together."
+  },
+  "Sampradayini Suppini Suddapoosani": {
+   "result": "flop",
+   "gross": {
+    "low": 1.5,
+    "high": 1.5,
+    "text": "₹1.5 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://www.greatandhra.com/movies/news/is-sivaji-blaming-politics-for-his-films-flop-153370",
+    "https://sacnilk.com/quicknews/Sampradayini_Suppini_Suddapoosani_2026_Box_Office_Collection_Day_Wise_Worldwide"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "2026 release. Great Andhra: \"Is Sivaji blaming politics for his film's flop?\" - very poor reviews and extremely low first-weekend numbers; Sacnilk: ~₹1.5 crore worldwide after 13 days (\"commercial disappointment\")."
+  },
+  "Needi Naadi Oke Katha": {
+   "result": "hit",
+   "gross": null,
+   "budget": {
+    "low": 2.25,
+    "high": 2.25,
+    "text": "₹2.25 crore"
+   },
+   "urls": [
+    "https://www.ibtimes.co.in/needi-naadi-oke-katha-3-day-box-office-collection-sree-vishnu-scores-his-3rd-hit-film-765091",
+    "https://www.thehansindia.com/posts/index/Cinema/2018-03-26/Needi-Naadi-Oke-Katha-First-Weekend-Box-Office-Collections-Report/369513"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "IBTimes: \"Sree Vishnu scores his 3rd hit film\" (₹3+ crore worldwide gross in the first weekend); reports say the ₹2.25 crore budget was recovered before release. Hans India first-weekend report."
+  },
+  "Brochevarevarura": {
+   "result": "hit",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.thehansindia.com/cinema/tollywood/brochevarevaru-ra-box-office-collections-report--546330"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Reports describe Brochevarevarura (2019) as a super hit / huge hit at the box office (Hans India collections report). One step range (hit vs super_hit), took the lower. No total figure found."
+  },
+  "Swag (film)": {
+   "result": "flop",
+   "gross": {
+    "low": 7.6,
+    "high": 7.6,
+    "text": "₹7.60 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://tracktollywood.com/swag-stumbles-heading-towards-a-flop/",
+    "https://www.sacnilk.com/movie/SWAG_2024"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Track Tollywood: \"Swag stumbles - heading towards a flop\", yet another box-office failure; Sacnilk: total gross ~₹7.6 crore (₹6.86 crore net). No budget found."
+  },
+  "Bhale Manchi Roju": {
+   "result": "hit",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.deccanchronicle.com/151230/entertainment-tollywood/article/timely-break-sudheer-babu"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Deccan Chronicle (\"Timely break for Sudheer Babu\"): after a two-year dry spell he \"got a good break\" with Bhale Manchi Roju; IBTimes reported it beat Soukyam and MMAK in its opening weekend. No final figures; one step judgement (hit) - please check."
+  },
+  "Sridevi Soda Center": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.thehansindia.com/cinema/tollywood/week-one-collections-sridevi-soda-center-704922",
+    "https://tracktollywood.com/sridevi-soda-center-box-office-status/"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Hans India: rights sold for ~₹11.5 crore, theatrical share only ~₹4.11 crore in week one; Track Tollywood: poor ratings and average word of mouth, little recovery after the opening weekend. Share well below rights = flop."
+  },
+  "Maa Nanna Superhero": {
+   "result": "disaster",
+   "gross": {
+    "low": 1.04,
+    "high": 1.04,
+    "text": "₹1.04 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://www.thehansindia.com/cinema/dasara-box-office-disappoints-telugu-audience-915043",
+    "https://tracktollywood.com/sudheer-babu-dejected-with-maa-nanna-super-hero/"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Hans India calls Maa Nanna Superhero \"a box office disaster\"; Track Tollywood says it ran into deficits from day two (flop). One step apart - took the lower (disaster). Sacnilk: ~₹1.04 crore India net."
+  },
+  "Sriranga Neethulu": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.greatandhra.com/movies/news/young-hero-battles-a-string-of-flops-147663"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Great Andhra: Suhas's recent films including Sriranga Neethulu \"have all failed at the box office\". Only one source; no figures."
+  },
+  "Prasanna Vadanam": {
+   "result": "disaster",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.sacnilk.com/entertainmenttopbar/Tollywood_Box_Office_2024",
+    "https://www.greatandhra.com/movies/news/young-hero-battles-a-string-of-flops-147663"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Sacnilk's 2024 Tollywood tracker lists Prasanna Vadanam at ~₹1.69 crore net with verdict \"Disaster\"; Great Andhra counts it among his failures."
+  },
+  "Gorre Puranam": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.greatandhra.com/movies/news/young-hero-battles-a-string-of-flops-147663"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Great Andhra lists Gorre Puranam among Suhas's films that \"failed at the box office\". Only one source; no figures."
+  },
+  "Janaka Aithe Ganaka": {
+   "result": "disaster",
+   "gross": {
+    "low": 2.22,
+    "high": 2.22,
+    "text": "₹2.22 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://www.sacnilk.com/movie/Janaka_Aithe_Ganaka_2024",
+    "https://www.greatandhra.com/movies/news/young-hero-battles-a-string-of-flops-147663"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Sacnilk: worldwide gross ~₹2.22 crore (₹2 crore net), result marked \"DISASTER\"; Great Andhra counts it among his failures."
+  },
+  "Oh Bhama Ayyo Rama": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.greatandhra.com/movies/news/young-hero-battles-a-string-of-flops-147663"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Great Andhra: Oh Bhama Ayyo Rama (2025) \"too failed to make an impact\". Only one source; no figures."
+  },
+  "Kapatadhaari": {
+   "result": "disaster",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.thehansindia.com/cinema/tollywood/kapatadhaari-becomes-a-biggest-disaster-for-sumanth-675176"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Hans India: \"Kapatadhaari becomes a biggest disaster for Sumanth\" - total collections below a typical flop film's first week. Only one source; no figures."
+  },
+  "Fashion Designer s/o Ladies Tailor": {
+   "result": "disaster",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.greatandhra.com/movies/box-office/fashion-designer-ends-up-a-big-disaster-82270"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Great Andhra: \"Fashion Designer ends up a big disaster\" - so little turnout over the first weekend that many centres switched to nett-free from Monday. Only one source; no figures."
+  },
+  "Krishnashtami": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.greatandhra.com/movies/news/can-trivikram-put-him-back-on-track-86644",
+    "https://www.ibtimes.co.in/krishnashtami-us-box-office-collection-sunil-film-fails-beat-kvpg-first-weekend-667968"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Great Andhra: Krishnashtami fell well short of ₹10 crore and was \"the biggest ever flop for Dil Raju\" per trade estimates; IBTimes: weak US opening. Could be disaster; took flop as stated."
+  },
+  "Eedu Gold Ehe": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.telugu360.com/overseas-boxoffice-premam-strong-others-fall-flat/"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Telugu360 reported a poor show for Eedu Gold Ehe in the Telugu states (no overseas release). Only one source; no figures - please check."
+  },
+  "Jakkanna": {
+   "result": "hit",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.deccanchronicle.com/entertainment/tollywood/120816/finally-comedian-turned-actor-sunil-gets-a-hit.html",
+    "https://www.ibtimes.co.in/jakkanna-box-office-collection-sunil-starrer-fares-well-ticket-counters-first-weekend-688692"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Deccan Chronicle: \"Finally, comedian-turned-actor Sunil gets a hit!\"; IBTimes: ~₹12.25 crore worldwide gross in the first weekend. Note: Great Andhra called it \"a miserable flop\" overseas (overseas only)."
+  },
+  "Ungarala Rambabu": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.deccanchronicle.com/entertainment/tollywood/200917/sunil-to-blame-for-flop-film.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Deccan Chronicle: Ungarala Rambabu \"has been added to the list of flops in the actor's portfolio\". Only one source; no figures."
+  },
+  "Two Countries (2017 film)": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.greatandhra.com/movies/news/can-trivikram-put-him-back-on-track-86644",
+    "https://www.telugu360.com/silly-fellows-worldwide-closing-collections-flop/"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Great Andhra: 2 Countries was a non-starter, likely the biggest flop of Sunil's career; Telugu360 lists it as a flop alongside Ungarala Rambabu. Could be disaster; took flop. No figures."
+  },
+  "Oh..! Sukumari": {
+   "result": "flop",
+   "gross": {
+    "low": 2.41,
+    "high": 2.41,
+    "text": "₹2.41 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://www.123telugu.com/mnews/oh-sukumari-ott-release-aishwarya-rajeshs-flop-film-locks-premiere-date-hk.html",
+    "https://www.sacnilk.com/movie/Oh_Sukumari_2026"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "2026 release. 123telugu calls Oh..! Sukumari a \"flop film\" (it sank further on day 2); Sacnilk: ~₹2.41 crore worldwide gross. Note: 123telugu frames it as Aishwarya Rajesh's film."
+  },
+  "Happy Happy Ga": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://www.greatandhra.com/movies/gossip/varun-sandesh-rs-80-lac-despite-flops-21244"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-18",
+   "notes": "Great Andhra: Happy Happy Ga \"failing to wow the crowds\", listed among Varun Sandesh's flops (Deccan Chronicle: his last success was Yemaindi Ee Vela, 2010). Only one source; no figures."
+  },
+  "Jaanu (2020 film)": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://newstap.in/cinema/sharwanand-scores-a-hit-after-6-consecutive-flop-1438173",
+    "https://www.123telugu.com/mnews/jaanu-disappoints-the-us-trade.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-23",
+   "notes": "One of six flops in a row before Oke Oka Jeevitham; theatrical rights sold for ₹21 crore."
+  },
+  "Sreekaram": {
+   "result": "flop",
+   "gross": null,
+   "budget": null,
+   "urls": [
+    "https://newstap.in/cinema/sharwanand-scores-a-hit-after-6-consecutive-flop-1438173",
+    "https://www.gulte.com/movienews/127737/whats-wrong-with-sharwa"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-23",
+   "notes": "One of six flops in a row before Oke Oka Jeevitham."
+  },
+  "Manamey": {
+   "result": "below_average",
+   "gross": {
+    "low": 21.43,
+    "high": 21.43,
+    "text": "₹21.43 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://sacnilk.com/movie/Manamey_2024",
+    "https://www.filmibeat.com/telugu/news/2024/manamey-box-office-collection-prediction-day-5-sharwanand-krithi-shettys-film-falls-flat-at-tick-401013.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-23",
+   "notes": "No official verdict; fell after the opening weekend."
+  },
+  "Biker (film)": {
+   "result": "flop",
+   "gross": {
+    "low": 18.02,
+    "high": 18.02,
+    "text": "₹18.02 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://www.sacnilk.com/quicknews/Biker_2026_Box_Office_Collection_Day_28",
+    "https://andhravilas.net/biker-movie-collections-break-even-target/"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-23",
+   "notes": "About ₹18 crore worldwide after 4 weeks; earlier ₹43 crore figure was wrong."
+  },
+  "Nari Nari Naduma Murari (2026 film)": {
+   "result": "hit",
+   "gross": {
+    "low": 36,
+    "high": 36,
+    "text": "₹36 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://www.pinkvilla.com/entertainment/box-office/nari-nari-naduma-murari-final-worldwide-box-office-collections-sharwanand-starrer-rom-com-closes-theatrical-run-at-impressive-rs-36-crore-globally-1400692",
+    "https://filmibeat.com/telugu/news/2026/nari-nari-naduma-murari-box-office-collection-day-18-sharwanands-film-is-a-superhit-500339.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-23",
+   "notes": "Pinkvilla: clean hit; Filmibeat: superhit. Lower result used."
+  },
+  "Express Raja": {
+   "result": "hit",
+   "gross": {
+    "low": 28.35,
+    "high": 28.35,
+    "text": "₹28.35 crore"
+   },
+   "budget": null,
+   "urls": [
+    "https://www.filmibeat.com/telugu/news/2017/sharwanand-s-successful-streak-continues-268484.html",
+    "https://en.wikipedia.org/wiki/Express_Raja"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-23",
+   "notes": "Filmibeat: super hit; Wikipedia: above average. Middle result used."
+  },
+  "Eega": {
+   "result": "super_hit",
+   "gross": {
+    "low": 125,
+    "high": 130,
+    "text": "₹125–130 crore"
+   },
+   "budget": {
+    "low": 30,
+    "high": 40,
+    "text": "₹30–40 crore"
+   },
+   "urls": [
+    "https://en.wikipedia.org/wiki/Eega",
+    "https://www.business-standard.com/article/companies/eega-flies-high-at-box-office-112071000084_1.html"
+   ],
+   "teluguRelease": null,
+   "checkedOn": "2026-11-25",
+   "notes": "About 3× its budget worldwide; the earlier \"average\" was read from a sentence about the Hindi dub Makkhi."
+  }
+ }
+}

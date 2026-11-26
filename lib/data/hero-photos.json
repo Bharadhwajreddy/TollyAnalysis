@@ -510,5 +510,173 @@
     "license": "GFDL",
     "wikiTitle": "Wikidata image (P18)",
     "description": ""
+  },
+  "rajinikanth": {
+    "file": "/heroes/rajinikanth.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Rajinikanth_at_Inauguration_of_MGR_Statue_(cropped).jpg",
+    "author": "Dani Charles, Silverscreen Media Inc. (https://silverscreen.in)",
+    "license": "CC-BY-SA-3.0",
+    "wikiTitle": "Rajinikanth",
+    "description": "Indian actor (born 1950)"
+  },
+  "suriya": {
+    "file": "/heroes/suriya.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Retro_audio_launch_-_Suriya.jpg",
+    "author": "Shiva CK",
+    "license": "CC-BY-SA-4.0",
+    "wikiTitle": "Suriya",
+    "description": "Indian actor and film producer (born 1975)"
+  },
+  "karthi": {
+    "file": "/heroes/karthi.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Karthi_Sivakumar_at_Nenjil_Thunivirunthal_Audio_Launch_(cropped).jpg",
+    "author": "Sriram Narasimhan Silverscreen Media Inc. (https://silverscreen.in)",
+    "license": "CC-BY-SA-3.0",
+    "wikiTitle": "Karthi",
+    "description": "Indian actor (born 1977)"
+  },
+  "dulquer-salmaan": {
+    "file": "/heroes/dulquer-salmaan.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Dulquer_promoting_Zoya_Factor_cropped.jpg",
+    "author": "Bollywood Hungama",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Dulquer Salmaan",
+    "description": "Indian actor, playback singer and producer (born 1983)"
+  },
+  "siddhu-jonnalagadda": {
+    "file": "/heroes/siddhu-jonnalagadda.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Siddhu_Jonnalagadda_in_2022.jpg",
+    "author": "Super Macha",
+    "license": "See file page",
+    "wikiTitle": "Siddhu Jonnalagadda",
+    "description": "Indian actor"
+  },
+  "anand-deverakonda": {
+    "file": "/heroes/anand-deverakonda.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Anand_Deverakonda_in_2023.jpg",
+    "author": "OHRA Filminfo",
+    "license": "See file page",
+    "wikiTitle": "Anand Deverakonda",
+    "description": "Indian actor (born 1989)"
+  },
+  "dhanush": {
+    "file": "/heroes/dhanush.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Dhanush_at_%E2%80%98Asuran%E2%80%99_Success_Meet_(cropped).jpg",
+    "author": "Dani Charles Silverscreen Media Inc. (https://silverscreen.in)",
+    "license": "CC-BY-SA-3.0",
+    "wikiTitle": "Dhanush",
+    "description": "Indian actor and filmmaker (born 1983)"
+  },
+  "vijay": {
+    "file": "/heroes/vijay.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:JosephVijay.jpg",
+    "author": "Prime Minister's Office (India)",
+    "license": "See file page",
+    "wikiTitle": "Vijay (actor)",
+    "description": "Chief Minister of Tamil Nadu since 2026"
+  },
+  "kamal-haasan": {
+    "file": "/heroes/kamal-haasan.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Kamal_Haasan_at_2023_San_Diego_Comic-Con_International_by_Gage_Skidmore%2C_005_(cropped).jpg",
+    "author": "Gage Skidmore",
+    "license": "CC-BY-SA-2.0",
+    "wikiTitle": "Kamal Haasan",
+    "description": "Indian actor, filmmaker, and politician (born 1954)"
+  },
+  "vikram": {
+    "file": "/heroes/vikram.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Vikram_at_the_%E2%80%98Kadaram_Kondan%E2%80%99_Press_Meet.jpg",
+    "author": "Sriram Narasimhan Silverscreen Media Inc. (https://silverscreen.in)",
+    "license": "CC-BY-SA-3.0",
+    "wikiTitle": "Vikram (actor)",
+    "description": "Indian actor and playback singer (born 1966)"
+  },
+  "ajith-kumar": {
+    "file": "/heroes/ajith-kumar.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Shri_Ajith_Kumar_at_Rashtrapati_Bhavan_Cropped.jpg",
+    "author": "President's Secretariat",
+    "license": "See file page",
+    "wikiTitle": "Ajith Kumar",
+    "description": "Indian actor and racing driver (born 1971)"
+  },
+  "vijay-sethupathi": {
+    "file": "/heroes/vijay-sethupathi.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Vijay_Sethupathi_at_the_premiere_of_Merry_Christmas_2_(cropped).jpg",
+    "author": "Bollywood Hungama",
+    "license": "See file page",
+    "wikiTitle": "Vijay Sethupathi",
+    "description": "Indian actor and film producer (born 1978)"
+  },
+  "sivakarthikeyan": {
+    "file": "/heroes/sivakarthikeyan.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Sivakarthikeyan_(cropped).jpg",
+    "author": "Dani Charles Silverscreen Media Inc. (https://silverscreen.in)",
+    "license": "CC-BY-SA-3.0",
+    "wikiTitle": "Sivakarthikeyan",
+    "description": "Indian actor and musician (born 1985)"
+  },
+  "vishal": {
+    "file": "/heroes/vishal.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Vishal_at_CCL_4_Launch_(cropped).jpg",
+    "author": "Bollywood Hungama",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Vishal (actor)",
+    "description": "Indian actor and film producer (born 1977)"
+  },
+  "siddharth": {
+    "file": "/heroes/siddharth.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:SiddharthNarayan.jpg",
+    "author": "Bollywood Hungama",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Siddharth (actor)",
+    "description": "Indian actor (born 1979)"
+  },
+  "mohanlal": {
+    "file": "/heroes/mohanlal.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Kerala_School_Kalolsavam_2026_day_5_Mohanlal_(277)_(cropped).jpg",
+    "author": "Rahul Sankar",
+    "license": "CC-BY-SA-4.0",
+    "wikiTitle": "Mohanlal",
+    "description": "Indian actor, producer, and playback singer (born 1960)"
+  },
+  "mammootty": {
+    "file": "/heroes/mammootty.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Mammootty%2C_2022.jpg",
+    "author": "Firoze Edassery",
+    "license": "CC-BY-SA-4.0",
+    "wikiTitle": "Mammootty",
+    "description": "Indian actor and film producer (born 1951)"
+  },
+  "fahadh-faasil": {
+    "file": "/heroes/fahadh-faasil.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Fahadh_Faasil_2019.jpg",
+    "author": "Asianet",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Fahadh Faasil",
+    "description": "Indian actor and producer (born 1982)"
+  },
+  "prithviraj-sukumaran": {
+    "file": "/heroes/prithviraj-sukumaran.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Prithviraj_at_Aiyyaa_event.jpg",
+    "author": "Bollywood Hungama",
+    "license": "CC-BY-3.0",
+    "wikiTitle": "Prithviraj Sukumaran",
+    "description": "Indian actor and filmmaker (born 1982)"
+  },
+  "yash": {
+    "file": "/heroes/yash.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Yash_during_toxic_trailer_launch_event.jpg",
+    "author": "Reaaaan",
+    "license": "CC0",
+    "wikiTitle": "Yash (actor)",
+    "description": "Indian actor and film producer (born 1986)"
+  },
+  "sudeep": {
+    "file": "/heroes/sudeep.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Sudeep_interview_TeachAIDS.jpg",
+    "author": "TeachAIDS",
+    "license": "CC-BY-SA-2.0",
+    "wikiTitle": "Sudeep",
+    "description": "Indian actor and director (born 1971)"
   }
 }

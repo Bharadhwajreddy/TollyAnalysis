@@ -92,6 +92,14 @@ const SOURCES: Source[] = [
     reliabilityTier: 3,
   },
   {
+    id: "src-editor",
+    name: "Editor check against trade reports",
+    type: "manual_editorial",
+    baseUrl: "/annexure/sources",
+    licensingNote: "Box-office results checked by an editor against at least one trade report or news article; the link is shown on every film.",
+    reliabilityTier: 2,
+  },
+  {
     id: "src-trade-blog",
     name: "MT Wiki Blog (Telugu hits and flops lists)",
     type: "manual_editorial",
@@ -123,7 +131,7 @@ export function buildRealDataset(): Dataset {
       id: `p-${h.slug}`,
       slug: h.slug,
       displayName: roster.get(h.slug)!.name,
-      industry: "telugu",
+      industry: roster.get(h.slug)!.industry,
       status: roster.get(h.slug)!.status,
       visibility: "public",
       tmdbPersonId: null,
@@ -147,7 +155,10 @@ export function buildRealDataset(): Dataset {
     const date = f.releaseDate ?? `${f.year}-07-01`;
     // Telugu films, and Hindi films where the hero is the lead (see lib/import/classify.ts).
     const isTelugu = !f.languages.length || f.languages.some((l) => /telugu/i.test(l));
-    const counted = isTelugu || f.languages.some((l) => isCountedLanguage(l));
+    // A Tamil or Malayalam film of a hero from another industry counts once its Telugu release is
+    // confirmed (scripts/fix-credits.mts sets teluguRelease: "dubbed").
+    const dubbed = !isTelugu && (f as { teluguRelease?: string }).teluguRelease === "dubbed";
+    const counted = isTelugu || dubbed || f.languages.some((l) => isCountedLanguage(l));
     const firstBilling = credits.find((c) => c.include)?.billing ?? credits[0]?.billing ?? null;
     films.push({
       id: filmId(f.key),
@@ -158,6 +169,8 @@ export function buildRealDataset(): Dataset {
       featureType: "feature",
       status: date <= snap.generatedAt.slice(0, 10) ? "released" : "upcoming",
       teluguRelease: {
+        // Counted as the hero's own original release: for heroes from other industries the box office
+        // is the film's overall result (Telugu-dub-only figures are almost never reported).
         releaseType: "original",
         releaseDate: date,
         route: f.route === "ott" ? "ott" : "theatrical",
@@ -203,7 +216,9 @@ export function buildRealDataset(): Dataset {
       ...over,
     });
     // Ranges are stored as low–high; the engine uses the conservative low end for money.
-    if (f.gross && !f.gross.isShare)
+    // A dubbed film's worldwide gross is mostly its home-language run: it keeps its verdict but adds
+    // nothing to the hero's box-office totals.
+    if (f.gross && !f.gross.isShare && !dubbed)
       commercial.push(ev({ metricType: "worldwide_gross", amountLowMinor: croreToMinor(f.gross.low), amountHighMinor: croreToMinor(f.gross.low), valueText: f.gross.text }));
     if (f.budget)
       commercial.push(ev({ metricType: "production_budget", amountLowMinor: croreToMinor(f.budget.high), amountHighMinor: croreToMinor(f.budget.high), valueText: f.budget.text }));
@@ -217,9 +232,9 @@ export function buildRealDataset(): Dataset {
         ev({
           metricType: "trade_verdict",
           valueText: f.verdict.verdict,
-          sourceId: f.verdict.source === "trade-blog" ? "src-trade-blog" : f.verdict.source === "telugu-wikipedia" ? "src-tewiki" : "src-wikipedia",
+          sourceId: f.verdict.source === "editor-check" ? "src-editor" : f.verdict.source === "trade-blog" ? "src-trade-blog" : f.verdict.source === "telugu-wikipedia" ? "src-tewiki" : "src-wikipedia",
           sourceUrl: f.verdict.url ?? url,
-          confidence: f.verdict.source === "wikipedia-film" ? "medium" : "low",
+          confidence: f.verdict.source === "wikipedia-film" || f.verdict.source === "editor-check" ? "medium" : "low",
         }),
       );
   }

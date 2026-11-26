@@ -2,10 +2,11 @@ import Link from "next/link";
 import { compactCount } from "@/lib/data/real/hero-facts";
 import { HERO_FACTORS } from "@/lib/tolly";
 import type { TollyHeroView, TollyMeta } from "@/lib/tolly/view";
-import { GROUPS, groupValue, IndexValue, kpiFact, PILLARS, PillarBar } from "./tolly-parts";
+import { GROUPS, groupValue, IndexValue, kpiFact, PILLARS, PillarBar, PROVISIONAL_TIP } from "./tolly-parts";
+import { missingLabel } from "@/lib/tolly/labels";
 
 /** The hero page's Tolly Index section: the score, its five groups, every number behind it, and the films holding him back. */
-export function TollyHeroCard({ hero, rankedCount, meta }: { hero: TollyHeroView; rankedCount: number; meta: TollyMeta }) {
+export function TollyHeroCard({ hero, rankedCount, meta, provisional = false }: { hero: TollyHeroView; rankedCount: number; meta: TollyMeta; provisional?: boolean }) {
   const share = hero.judged ? Math.round((hero.complete / hero.judged) * 100) : 0;
   return (
     <section id="tolly" className="card mt-5 scroll-mt-32 p-4 sm:p-6" aria-labelledby="tolly-title">
@@ -30,12 +31,17 @@ export function TollyHeroCard({ hero, rankedCount, meta }: { hero: TollyHeroView
                 #{hero.rank} of {rankedCount} heroes
               </p>
               <p className="mt-1 text-[12px] text-muted">± shows how sure we are.</p>
+              {provisional && <p className="mt-2 rounded-md bg-gold-soft px-2 py-1.5 text-[12px] text-warn">{PROVISIONAL_TIP}</p>}
             </>
           ) : (
             <>
               <p className="text-[28px] font-semibold leading-none text-muted">Not ranked yet</p>
               <p className="mt-2 text-[13px] text-ink-2">
-                {hero.complete >= 5 && hero.judged > 0 ? `Only ${share}% of his films have audience ratings so far; he needs 90%.` : `He needs at least 5 rated films; he has ${hero.complete}.`}
+                {hero.reason === "box-office record being checked"
+                  ? "His box-office results for Tamil, Malayalam and Kannada films are being checked against trade reports. He joins the ranking once that is done."
+                  : hero.complete >= 5 && hero.judged > 0
+                    ? `Only ${share}% of his films have audience ratings so far; he needs 90%.`
+                    : `He needs at least 5 rated films; he has ${hero.complete}.`}
               </p>
             </>
           )}
@@ -124,7 +130,7 @@ export function TollyHeroCard({ hero, rankedCount, meta }: { hero: TollyHeroView
               <li key={m.title + m.year} className="flex flex-wrap gap-x-3 py-1.5">
                 <span className="tabular w-10 text-muted">{m.year}</span>
                 <span className="font-medium text-ink">{m.title}</span>
-                <span className="text-muted">missing: {m.missing.join(", ")}</span>
+                <span className="text-muted">missing: {m.missing.map(missingLabel).join(", ")}</span>
               </li>
             ))}
           </ul>

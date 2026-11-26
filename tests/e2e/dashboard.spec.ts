@@ -123,7 +123,7 @@ test.describe("Other views", () => {
 });
 
 test.describe("Responsive layout", () => {
-  for (const path of ["/", "/star-score", "/tolly-index", "/heroes", "/hero/prabhas", "/hero/allari-naresh", "/hero/sivaji", "/rankings", "/compare", "/trends", "/methodology", "/annexure", "/annexure/registry", "/annexure/heroes/nani", "/annexure/corrections", "/annexure/sources", "/terms", "/privacy"]) {
+  for (const path of ["/", "/star-score", "/tolly-index", "/heroes", "/hero/prabhas", "/hero/allari-naresh", "/hero/sivaji", "/rankings", "/compare", "/trends", "/methodology", "/annexure", "/annexure/registry", "/annexure/heroes/nani", "/annexure/corrections", "/annexure/sources", "/terms", "/privacy", "/careers", "/contact"]) {
     test(`no horizontal page overflow on ${path}`, async ({ page }) => {
       await page.goto(path);
       const [scrollW, clientW] = await page.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]);
@@ -166,13 +166,32 @@ test.describe("Tolly Index", () => {
     expect(rings).toBeGreaterThan(2); // not one colour for everybody
   });
 
-  test("the how-it-works page holds the method for both scores", async ({ page }) => {
+  test("how it works explains the idea without naming data providers", async ({ page }) => {
     await page.goto("/methodology");
     await expect(page.getByRole("heading", { level: 1 })).toHaveText("How it works");
-    await expect(page.locator("#tolly-index")).toContainText("Three rules keep it fair");
-    await expect(page.locator("#tolly-index")).toContainText("Fifteen numbers make a hero's score");
-    await expect(page.locator("#how")).toContainText("Star Score and the other numbers");
-    await expect(page.getByRole("link", { name: /Sources and data licences/ }).first()).toBeVisible();
+    await expect(page.locator("#tolly-index")).toContainText("our own formula");
+    await expect(page.locator("body")).toContainText("secret masala");
+    await expect(page.locator("main")).not.toContainText(/IMDb|TMDB|Letterboxd/);
+    await expect(page.getByRole("link", { name: /Data credits/ }).first()).toBeVisible();
+  });
+
+  test("top films can be ranked by box office, and both lists keep to films made in Telugu", async ({ page }) => {
+    await page.goto("/");
+    await page.getByRole("tab", { name: "Biggest box office" }).click();
+    await expect(page.locator("section:has(#top-films) ol").first()).toContainText("Baahubali 2");
+    await page.getByRole("tab", { name: "Most loved" }).click();
+    await expect(page.locator("section:has(#top-films)")).not.toContainText("Jai Bhim");
+  });
+
+  test("careers and contact pages are linked from the footer", async ({ page }) => {
+    await page.goto("/");
+    const footer = page.locator("footer");
+    await expect(footer).not.toContainText(/IMDb|TMDB/);
+    await footer.getByRole("link", { name: "Careers" }).click();
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Careers");
+    await expect(page.getByRole("form", { name: "Post a job" })).toBeVisible();
+    await page.goto("/contact");
+    await expect(page.getByRole("link", { name: "info@tollyanalysis.com" }).first()).toHaveAttribute("href", "mailto:info@tollyanalysis.com");
   });
 
   test("hero page shows age and profile facts", async ({ page }) => {
@@ -183,10 +202,10 @@ test.describe("Tolly Index", () => {
 });
 
 test.describe("Legal", () => {
-  test("every page credits IMDb and links the terms and privacy policy", async ({ page }) => {
+  test("every page links the data credits, terms and privacy policy", async ({ page }) => {
     await page.goto("/");
     const footer = page.locator("footer");
-    await expect(footer).toContainText("Information courtesy of IMDb (https://www.imdb.com). Used with permission.");
+    await expect(footer.getByRole("link", { name: "Data credits" }).first()).toHaveAttribute("href", "/annexure/sources");
     await expect(footer.getByRole("link", { name: "Privacy policy" })).toHaveAttribute("href", "/privacy");
     await expect(footer.getByRole("link", { name: "Terms of use" })).toHaveAttribute("href", "/terms");
   });
@@ -227,6 +246,43 @@ test.describe("Home page", () => {
     await expect(page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: "Star Score" })).toHaveAttribute("href", "/star-score");
     await expect(page.locator("body")).not.toContainText("Panja Vaisshnav Tej");
     expect(errors).toEqual([]);
+  });
+
+  test("the career graph shows every film and names it on hover or tap", async ({ page }) => {
+    await page.goto("/hero/vishwak-sen");
+    const graph = page.getByRole("img", { name: /Vishwak Sen: box-office result of every lead film/ });
+    await graph.scrollIntoViewIfNeeded();
+    const dots = graph.getByRole("button");
+    expect(await dots.count()).toBeGreaterThanOrEqual(10);
+    await graph.getByRole("button", { name: /^Gaami, 2024: Hit$/ }).focus();
+    await expect(page.getByRole("tooltip")).toContainText("Gaami");
+    // The next announced film is drawn at the end.
+    await expect(graph).toContainText("ENE Repeat");
+  });
+
+  test("directors are ranked by hit rate and each has a career graph", async ({ page }) => {
+    await page.goto("/");
+    await page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: "Directors" }).click();
+    await expect(page).toHaveURL(/\/directors$/);
+    const rows = page.getByTestId("director-table").locator("tbody tr");
+    expect(await rows.count()).toBeGreaterThan(30);
+    await page.getByTestId("director-table").getByRole("link", { name: /S\. S\. Rajamouli/ }).click();
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("S. S. Rajamouli");
+    const graph = page.getByRole("img", { name: /S\. S\. Rajamouli: box-office result of every lead film/ });
+    await graph.scrollIntoViewIfNeeded();
+    expect(await graph.getByRole("button").count()).toBeGreaterThanOrEqual(10);
+    await expect(page.getByRole("link", { name: "Jr NTR" }).first()).toHaveAttribute("href", "/hero/jr-ntr");
+  });
+
+  test("releases: a line per year with each year's film list", async ({ page }) => {
+    await page.goto("/releases");
+    await expect(page.getByRole("img", { name: "Telugu releases per year since 2000" })).toBeVisible();
+    expect(await page.getByTestId("release-list").locator("li").count()).toBeGreaterThan(50);
+    await page.getByRole("img", { name: "Telugu releases per year since 2000" }).getByRole("link", { name: /^2020: / }).click();
+    await expect(page).toHaveURL(/year=2020/);
+    await expect(page.getByRole("heading", { name: /2020 releases/ })).toBeVisible();
+    await page.getByRole("link", { name: "Telugu, direct to OTT" }).click();
+    await expect(page.getByTestId("release-list")).toContainText("Middle Class Melodies");
   });
 
   test("find your hero opens his page", async ({ page }) => {

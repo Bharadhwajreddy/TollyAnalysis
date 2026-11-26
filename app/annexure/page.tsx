@@ -13,7 +13,6 @@ export const metadata: Metadata = pageMetadata({
 });
 
 const CARDS = [
-  { href: "/annexure/methodology", title: "Methodology", body: "Formulas, weights, thresholds, missing-data rules and the active methodology version." },
   { href: "/annexure/registry", title: "Hero Registry", body: "Every person in the master registry, their eligible lead-film count and excluded credits with reasons." },
   { href: "/annexure/heroes", title: "Hero detail & filmography", body: "Per-hero film titles, release type and route, audience and commercial evidence, scores and sources." },
   { href: "/annexure/sources", title: "Source Ledger", body: "Every data source, its type, licensing note and reliability tier." },

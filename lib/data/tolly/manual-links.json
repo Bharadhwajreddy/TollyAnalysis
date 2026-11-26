@@ -1,25 +1,185 @@
 {
  "source": "IMDb ids found by an editor",
  "films": {
-  "Snehamante Idera": {
-   "imdb": "tt1173953",
-   "checkedOn": "2026-11-07"
+  "Maa Annayya Bangaram": {
+   "imdb": "tt8751664",
+   "checkedOn": "2026-11-18"
   },
-  "Nuvve Nuvve": {
-   "imdb": "tt0463670",
-   "checkedOn": "2026-11-07"
+  "unlinked:Arjuna|2020": {
+   "imdb": "tt11905498",
+   "checkedOn": "2026-11-18"
   },
-  "unlinked:Aadivaram Adavallaku Selavu Kavali|2007": {
-   "imdb": "tt1579923",
-   "checkedOn": "2026-11-07"
+  "That Is Pandu": {
+   "imdb": "tt13181554",
+   "checkedOn": "2026-11-18"
   },
-  "Ghazi  (film)": {
-   "imdb": "tt6299040",
-   "checkedOn": "2026-11-07"
+  "Six (2012 Telugu film)": {
+   "imdb": "tt36961971",
+   "checkedOn": "2026-11-18"
   },
-  "unlinked:Narthanasala|2020": {
-   "imdb": "tt13306288",
-   "checkedOn": "2026-11-07"
+  "O Manishi Katha": {
+   "imdb": "tt15655254",
+   "checkedOn": "2026-11-18"
+  },
+  "Hitudu": {
+   "imdb": "tt8284936",
+   "checkedOn": "2026-11-18"
+  },
+  "Darling Darling (2001 film)": {
+   "imdb": "tt33498793",
+   "checkedOn": "2026-11-18"
+  },
+  "Dushasana (film)": {
+   "imdb": "tt6925234",
+   "checkedOn": "2026-11-18"
+  },
+  "Shatruvu (2013 film)": {
+   "imdb": "tt14311524",
+   "checkedOn": "2026-11-18"
+  },
+  "Veta (2014 film)": {
+   "imdb": "tt29251466",
+   "checkedOn": "2026-11-18"
+  },
+  "Nuvvekkadunte Nenakkadunta": {
+   "imdb": "tt5991618",
+   "checkedOn": "2026-11-18"
+  },
+  "Priya Nestama": {
+   "imdb": "tt3413858",
+   "checkedOn": "2026-11-18"
+  },
+  "Malli Malli Choodali": {
+   "imdb": "tt2679910",
+   "checkedOn": "2026-11-18"
+  },
+  "Friends (2002 film)": {
+   "imdb": "tt1575551",
+   "checkedOn": "2026-11-18"
+  },
+  "unlinked:Seetharamudu|2006": {
+   "imdb": "tt1612009",
+   "checkedOn": "2026-11-18"
+  },
+  "Bhajantrilu": {
+   "imdb": "tt1321343",
+   "checkedOn": "2026-11-18"
+  },
+  "unlinked:State Rowdy|2007": {
+   "imdb": "tt8851796",
+   "checkedOn": "2026-11-18"
+  },
+  "Naa Girlfriend Baga Rich": {
+   "imdb": "tt1579639",
+   "checkedOn": "2026-11-18"
+  },
+  "unlinked:Emaindi Nalo|2011": {
+   "imdb": "tt1582494",
+   "checkedOn": "2026-11-18"
+  },
+  "unlinked:Em Babu Laddu Kavala|2012": {
+   "imdb": "tt8885260",
+   "checkedOn": "2026-11-18"
+  },
+  "unlinked:Dasa Tirigindi|2013": {
+   "imdb": "tt5249188",
+   "checkedOn": "2026-11-18"
+  },
+  "unlinked:Chusinodiki Chusinantha|2014": {
+   "imdb": "tt14502722",
+   "checkedOn": "2026-11-18"
+  },
+  "unlinked:Dorakadu|2015": {
+   "imdb": "tt14312448",
+   "checkedOn": "2026-11-18"
+  },
+  "unlinked:Mister 420|2016": {
+   "imdb": "tt10622264",
+   "checkedOn": "2026-11-18"
+  },
+  "unlinked:Marla Puli|2018": {
+   "imdb": "tt8238256",
+   "checkedOn": "2026-11-18"
+  },
+  "unlinked:Donga Police|2013": {
+   "imdb": "tt37349715",
+   "checkedOn": "2026-11-18"
+  },
+  "Sambhavami Yuge Yuge (2006 film)": {
+   "imdb": "tt33821002",
+   "checkedOn": "2026-11-18"
+  },
+  "unlinked:Jagamemaaya|2013": {
+   "imdb": "tt3733828",
+   "checkedOn": "2026-11-18"
+  },
+  "Boy Meets Girl (Tholiprema Katha)": {
+   "imdb": "tt9890106",
+   "checkedOn": "2026-11-18"
+  },
+  "unlinked:Vara Prasad Potti Prasad|2011": {
+   "imdb": "tt8862690",
+   "checkedOn": "2026-11-18"
+  },
+  "unlinked:Bhadram Be Careful Brotheru|2016": {
+   "imdb": "tt7915112",
+   "checkedOn": "2026-11-18"
+  },
+  "unlinked:Bommala Ramaram|2016": {
+   "imdb": "tt7909868",
+   "checkedOn": "2026-11-18"
+  },
+  "Taarak": {
+   "imdb": "tt3425186",
+   "checkedOn": "2026-11-18"
+  },
+  "unlinked:Mukkanti|2010": {
+   "imdb": "tt1582557",
+   "checkedOn": "2026-11-18"
+  },
+  "Eduru Leni Alexander": {
+   "imdb": "tt34278085",
+   "checkedOn": "2026-11-18"
+  },
+  "Balaram (2000 film)": {
+   "imdb": "tt8694234",
+   "checkedOn": "2026-11-18"
+  },
+  "Vijayaramaraju": {
+   "imdb": "tt8870578",
+   "checkedOn": "2026-11-18"
+  },
+  "unlinked:Coolie|2003": {
+   "imdb": "tt8710120",
+   "checkedOn": "2026-11-18"
+  },
+  "Seshadri Naidu": {
+   "imdb": "tt3429342",
+   "checkedOn": "2026-11-18"
+  },
+  "Guri (2004 film)": {
+   "imdb": "tt3428462",
+   "checkedOn": "2026-11-18"
+  },
+  "unlinked:Bhairava|2010": {
+   "imdb": "tt10622122",
+   "checkedOn": "2026-11-18"
+  },
+  "unlinked:Police Game|2013": {
+   "imdb": "tt6925146",
+   "checkedOn": "2026-11-18"
+  },
+  "Jabilli Kosam Aakashamalle": {
+   "imdb": "tt14521354",
+   "checkedOn": "2026-11-18"
+  },
+  "unlinked:Hostel Days|2023": {
+   "imdb": "tt28306899",
+   "checkedOn": "2026-11-18"
+  },
+  "unlinked:90's – A Middle Class Biopic|2024": {
+   "imdb": "tt29764006",
+   "checkedOn": "2026-11-18"
   }
  }
 }

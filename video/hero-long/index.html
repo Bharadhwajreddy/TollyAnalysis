@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=960, initial-scale=1" />
+<title>Hero long</title>
+<!--
+  A 16:9 long-form career video for one hero (960×540 CSS, rendered at 1920×1080), in chapters.
+  Data: data.js (scripts/video-export.mts). Open index.html?hero=sharwanand to watch, or render:
+    node video/render.cjs video/hero-long out.mp4 30 --size 960x540 --query "hero=sharwanand&C=<chapter end times>"
+  Every frame is a pure function of time: render(t).
+-->
+<style>
+  :root { --bg:#12080c; --ink:#f6efe8; --ink2:#cbbcb0; --muted:#8e7f75; --line:rgba(246,239,232,.12); --wine:#c2335f; --gold:#e8b65a;
+    --r0:#8e2a2a; --r1:#d9534f; --r2:#e0855b; --r3:#e2ac45; --r4:#c1c24a; --r5:#7cc35a; --r6:#3fae62; --r7:#2a8f52; --c:#f2994a; }
+  * { box-sizing:border-box; margin:0; padding:0 }
+  html,body { width:960px; height:540px; overflow:hidden; background:var(--bg) }
+  body { font-family:"Inter","Inter Display",system-ui,sans-serif; color:var(--ink); font-variant-numeric:lining-nums tabular-nums }
+  #stage { position:relative; width:960px; height:540px; overflow:hidden; background:radial-gradient(90% 90% at 20% 0%, #4a1426 0%, #2a0f1a 40%, var(--bg) 85%) }
+  .ch { position:absolute; inset:0; opacity:0 }
+  .d { font-family:"Inter Display","Inter",sans-serif; letter-spacing:-.02em }
+  .k { font-size:11px; font-weight:800; letter-spacing:.24em; text-transform:uppercase; color:var(--gold) }
+  .tile { border-radius:16px; background:rgba(255,255,255,.05); border:1px solid var(--line) }
+  .photo { position:absolute; border-radius:50%; background-size:cover; background-position:center 18%; border:4px solid var(--c); box-shadow:0 12px 30px rgba(0,0,0,.55) }
+  .pill { display:inline-block; padding:5px 12px; border-radius:999px; font-weight:800; font-size:13px }
+  #brand { position:absolute; top:16px; right:22px; font-size:10px; font-weight:800; letter-spacing:.3em; color:var(--ink2); z-index:5 }
+  #brand b { color:var(--wine) }
+  #chap { position:absolute; top:14px; left:22px; z-index:5; font-size:11px; font-weight:700; color:var(--ink2); letter-spacing:.06em }
+  #chap b { color:var(--gold) }
+  #prog { position:absolute; left:0; bottom:0; height:3px; background:var(--wine); z-index:5 }
+  #foot { position:absolute; bottom:8px; left:22px; right:22px; font-size:8.5px; color:var(--muted); z-index:5; text-align:center }
+  svg text { font-family:"Inter",sans-serif }
+  /* clapperboard */
+  .stick { height:26px; border-radius:5px; border:2px solid #f6efe8; background:repeating-linear-gradient(-55deg,#f6efe8 0 18px,#17090e 18px 36px) }
+  .slate { margin-top:5px; border:2px solid #f6efe8; border-radius:7px; background:#1a0d12 }
+  .slate .row { border-bottom:1px solid rgba(246,239,232,.25); padding:6px 12px }
+  .slate small { display:block; font-size:8.5px; letter-spacing:.2em; color:var(--gold); font-weight:700 }
+  .slate span { font-size:15px; font-weight:700 }
+  .ball { position:absolute; width:46px; height:46px; margin:-23px 0 0 -23px; border-radius:50%; border:2px solid var(--gold); background-size:cover; background-position:center 18% }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="brand">TOLLY <b>ANALYSIS</b></div>
+  <div id="chap"></div>
+  <section class="ch" id="c1"></section>
+  <section class="ch" id="c2"></section>
+  <section class="ch" id="c3"></section>
+  <section class="ch" id="c4"></section>
+  <section class="ch" id="c5"></section>
+  <section class="ch" id="c6"></section>
+  <section class="ch" id="c7"></section>
+  <section class="ch" id="c8"></section>
+  <section class="ch" id="c9"></section>
+  <section class="ch" id="c10"></section>
+  <div id="foot"></div>
+  <div id="prog"></div>
+</div>
+<script src="data.js"></script>
+<script>
+const D = window.DATA;
+const slug = new URLSearchParams(location.search).get("hero") || "sharwanand";
+const H = D.heroes.find((h) => h.slug === slug);
+const IMG = (s) => `url(../../public/heroes/${s}.jpg)`;
+const $ = (id) => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const out = (x) => 1 - Math.pow(1 - clamp(x), 3);
+const back = (x) => { x = clamp(x); const c = 1.7; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const fmt = (n, d = 1) => n.toFixed(d);
+const LEVELS = [["disaster","Disaster","var(--r0)"],["flop","Flop","var(--r1)"],["below_average","Below avg","var(--r2)"],["average","Average","var(--r3)"],["above_average","Above avg","var(--r4)"],["hit","Hit","var(--r5)"],["super_hit","Super hit","var(--r6)"],["blockbuster","Blockbuster","var(--r7)"]];
+const LV = Object.fromEntries(LEVELS.map((l, i) => [l[0], i]));
+const HIT = (r) => r === "hit" || r === "super_hit" || r === "blockbuster";
+const FILMS = H.films.filter((f) => f.date);           // dated lead films, in order
+const JUDGED = FILMS.filter((f) => f.result in LV);
+const find = (t) => FILMS.find((f) => f.title.startsWith(t));
+
+/** Per-hero story: eras, streaks and the next film. */
+const STORY = {
+  sharwanand: {
+    color: "#f2994a", next: "Bhogi", nextDate: "27 Nov 2026", nextNote: "A period action drama",
+    hook: ["23 years.", `${FILMS.length} films as lead.`, "Can <b style='color:var(--gold)'>Bhogi</b> bring the magic back?"],
+    early: { support: [["2004", "Gowri"], ["2004", "Shankar Dada M.B.B.S."], ["2004", "Yuvasena"], ["2005", "Sankranti"], ["2005", "Vennela"], ["2006", "Lakshmi"], ["2007", "Classmates"]],
+      firstLead: "Amma Cheppindi", breakthrough: "Gamyam" },
+    eras: [
+      { from: 2006, to: 2013.9, name: "Finding his feet", tone: "mid" },
+      { from: 2014, to: 2017.99, name: "The golden run", tone: "good" },
+      { from: 2018.5, to: 2021.99, name: "The dark phase", tone: "bad" },
+      { from: 2022, to: 2026.6, name: "The comeback fight", tone: "mid" },
+    ],
+    labels: ["Gamyam", "Prasthanam", "Run Raja Run", "Mahanubhavudu", "Padi Padi", "Maha Samudram", "Oke Oka", "Nari Nari", "Biker"],
+    streakGood: { from: "Run Raja Run", to: "Mahanubhavudu", title: "The golden run", sub: "2014 – 2017 · Run Raja Run to Mahanubhavudu" },
+    streakBad: { from: "Padi Padi", to: "Maha Samudram", title: "5 flops in a row", sub: "2018 – 2021" },
+  },
+}[slug];
+const C = STORY.color;
+document.documentElement.style.setProperty("--c", C);
+
+// Chapter end times (seconds); ?C=... overrides to fit a voice-over.
+let ENDS = [10, 32, 72, 94, 116, 141, 163, 198, 212, 222];
+const q = new URLSearchParams(location.search).get("C");
+if (q) ENDS = q.split(",").map(Number);
+const CH = ENDS.map((e, i) => [i ? ENDS[i - 1] : 0, e]);
+const DURATION = ENDS[ENDS.length - 1];
+const TITLES = ["", "The beginning", "The career graph", "The golden run", "The dark phase", "Box office", "In numbers", "Bhogi: what history says", "Tolly Index", ""];
+
+// ── 1. Hook ──
+const when = (f) => { const d = new Date(f.date + "T00:00:00Z"); return d.getUTCFullYear() + (d - Date.UTC(d.getUTCFullYear(), 0, 1)) / 31557600000; };
+function miniGraph(w, h, pad) {
+  const x0 = when(JUDGED[0]), x1 = when(JUDGED[JUDGED.length - 1]);
+  const sx = (t) => pad + ((t - x0) / (x1 - x0)) * (w - 2 * pad), sy = (l) => h - pad - (l / 7) * (h - 2 * pad);
+  return JUDGED.map((f, i) => `${i ? "L" : "M"}${sx(when(f)).toFixed(1)},${sy(LV[f.result]).toFixed(1)}`).join(" ");
+}
+$("c1").innerHTML = `
+  <svg width="960" height="540" style="position:absolute;inset:0;opacity:.22"><path id="c1g" d="${miniGraph(960, 540, 60)}" fill="none" stroke="${C}" stroke-width="5" stroke-linejoin="round"/></svg>
+  <div class="photo" id="c1p" style="width:190px;height:190px;left:90px;top:170px;background-image:${IMG(H.slug)}"></div>
+  <div style="position:absolute;left:330px;top:150px;right:60px">
+    ${STORY.hook.map((l, i) => `<div class="d" data-l style="font-size:${i === 2 ? 34 : 46}px;font-weight:900;line-height:1.12;opacity:0">${l}</div>`).join("")}
+  </div>
+  <div id="c1n" class="d" style="position:absolute;left:330px;top:400px;font-size:22px;font-weight:800;color:${C};opacity:0">${H.name} · Career analysis</div>`;
+
+// ── 2. The beginning ──
+const e = STORY.early, fl = find(e.firstLead), bt = find(e.breakthrough);
+$("c2").innerHTML = `
+  <div class="k" style="position:absolute;left:60px;top:58px">Debut ${H.debutYear} · the long road to lead roles</div>
+  <div class="d" style="position:absolute;left:60px;top:80px;font-size:30px;font-weight:900">First, <span style="color:${C}">${e.support.length} films</span> in supporting roles</div>
+  <div id="c2s" style="position:absolute;left:60px;right:60px;top:140px;display:grid;grid-template-columns:repeat(${e.support.length},1fr);gap:8px">
+    ${e.support.map(([y, t]) => `<div class="tile" style="padding:10px 8px;text-align:center;height:84px;display:flex;flex-direction:column;justify-content:center"><div style="font-size:11px;color:var(--muted)">${y}</div><div style="font-size:12.5px;font-weight:800;margin-top:3px;line-height:1.15">${t}</div></div>`).join("")}
+  </div>
+  <div id="c2a" class="tile" style="position:absolute;left:60px;top:260px;width:400px;height:170px;padding:20px 22px">
+    <div class="k">First lead role</div><div class="d" style="font-size:30px;font-weight:900;margin-top:8px">${fl.title}</div>
+    <div style="font-size:15px;color:var(--ink2);margin-top:4px">${fl.year} · ${LEVELS[LV[fl.result]][1]}</div></div>
+  <div id="c2b" class="tile" style="position:absolute;left:500px;top:260px;width:400px;height:170px;padding:20px 22px;border-color:rgba(63,174,98,.5)">
+    <div class="k" style="color:#8fe0a8">The breakthrough</div><div class="d" style="font-size:30px;font-weight:900;margin-top:8px">${bt.title}</div>
+    <div style="font-size:15px;color:var(--ink2);margin-top:4px">${bt.year} · ${LEVELS[LV[bt.result]][1]} · the film that made people notice</div></div>`;
+
+// ── 3. Career graph with eras ──
+const G = (() => {
+  const W = 960, top = 70, Hh = 380, left = 110, right = 40;
+  const x0 = Math.floor(when(FILMS[0])), x1 = Math.ceil(when(FILMS[FILMS.length - 1]) + 0.9);
+  const sx = (t) => left + ((t - x0) / (x1 - x0)) * (W - left - right);
+  const rowH = Hh / 8.2, sy = (l) => top + Hh - 22 - l * rowH;
+  const y = (f) => (f.result in LV ? sy(LV[f.result]) : sy(-0.6));
+  let g = `<svg width="960" height="540" style="position:absolute;inset:0"><defs><filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="ar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${C}" stop-opacity=".3"/><stop offset="1" stop-color="${C}" stop-opacity="0"/></linearGradient></defs>`;
+  const zone = (a, b, fill) => { g += `<rect x="${left}" y="${sy(b) - rowH / 2}" width="${W - left - right}" height="${sy(a) - sy(b) + rowH}" rx="8" fill="${fill}"/>`; };
+  zone(5, 7, "rgba(63,174,98,.09)"); zone(2, 4, "rgba(226,172,69,.05)"); zone(0, 1, "rgba(217,83,79,.09)");
+  LEVELS.forEach(([k, l, c], i) => (g += `<text x="${left - 10}" y="${sy(i)}" dy=".34em" text-anchor="end" font-size="11" font-weight="700" fill="${c}">${l}</text>`));
+  for (let yr = x0; yr <= x1; yr += 2) g += `<text x="${sx(yr)}" y="${top + Hh + 16}" text-anchor="middle" font-size="11" fill="var(--muted)">${yr}</text>`;
+  // era bands along the top
+  STORY.eras.forEach((er, i) => {
+    const col = er.tone === "good" ? "#8fe0a8" : er.tone === "bad" ? "#ff9d8f" : "#e2c27a";
+    g += `<g id="era${i}" opacity="0"><rect x="${sx(er.from)}" y="${top - 30}" width="${sx(er.to) - sx(er.from)}" height="20" rx="6" fill="${col}" opacity=".16"/>
+      <text x="${(sx(er.from) + sx(er.to)) / 2}" y="${top - 16}" text-anchor="middle" font-size="11.5" font-weight="800" fill="${col}">${er.name}</text></g>`;
+  });
+  const d = JUDGED.map((f, i) => `${i ? "L" : "M"}${sx(when(f)).toFixed(1)},${y(f).toFixed(1)}`).join(" ");
+  const L0 = JUDGED[0], L1 = JUDGED[JUDGED.length - 1];
+  g += `<path id="gArea" d="${d} L${sx(when(L1))},${sy(0) + rowH / 2} L${sx(when(L0))},${sy(0) + rowH / 2} Z" fill="url(#ar)" opacity="0"/>`;
+  g += `<path id="gPath" d="${d}" fill="none" stroke="${C}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>`;
+  const nx = sx(when(L1) + 0.65), ny = sy(4);
+  g += `<g id="gNext" opacity="0"><line x1="${sx(when(L1))}" y1="${y(L1)}" x2="${nx}" y2="${ny}" stroke="var(--gold)" stroke-width="2" stroke-dasharray="5 4"/>
+    <circle cx="${nx}" cy="${ny}" r="15" fill="var(--bg)" stroke="var(--gold)" stroke-width="2.5" stroke-dasharray="4 3"/><text x="${nx}" y="${ny}" dy=".36em" text-anchor="middle" font-size="17" font-weight="900" fill="var(--gold)">?</text>
+    <text x="${nx}" y="${ny + 32}" text-anchor="middle" font-size="12" font-weight="800" fill="var(--gold)">${STORY.next}</text></g>`;
+  JUDGED.forEach((f, i) => {
+    const cx = sx(when(f)), cy = y(f), c = LEVELS[LV[f.result]][2];
+    g += `<g id="gd${i}" opacity="0" style="transform-origin:${cx}px ${cy}px"><circle cx="${cx}" cy="${cy}" r="7" fill="${c}" stroke="#fff" stroke-width="1.6"${HIT(f.result) ? ' filter="url(#glow)"' : ""}/></g>`;
+  });
+  g += `</svg>`;
+  // names under/over each dot, small
+  let names = "";
+  JUDGED.forEach((f, i) => {
+    const cx = sx(when(f)), cy = y(f), above = LV[f.result] <= 3;
+    const show = STORY.labels.some((l) => f.title.startsWith(l));
+    const lv = LEVELS[LV[f.result]];
+    names += `<div id="gn${i}" style="position:absolute;left:${cx - 60}px;top:${above ? cy - 40 : cy + 12}px;width:120px;display:${show ? "flex" : "none"};justify-content:center;opacity:0">
+      <div style="padding:2px 7px;border-radius:7px;background:rgba(18,8,12,.85);border:1px solid rgba(246,239,232,.14);border-left:3px solid ${lv[2]};font-size:10px;font-weight:800;line-height:1.15;white-space:nowrap">${f.title}<div style="font-size:9px;color:${lv[2]}">${lv[1]} · ${f.year}</div></div></div>`;
+  });
+  $("c3").innerHTML = g + names;
+  const pts = JUDGED.map((f) => ({ x: sx(when(f)), y: y(f) }));
+  return { pts, sx };
+})();
+
+// ── 4/5. Streaks ──
+function streak(id, s, good) {
+  const a = JUDGED.findIndex((f) => f.title.startsWith(s.from)), b = JUDGED.findIndex((f) => f.title.startsWith(s.to));
+  const list = JUDGED.slice(a, b + 1);
+  const col = good ? "#8fe0a8" : "#ff9d8f";
+  $(id).innerHTML = `
+    <div class="k" style="position:absolute;left:60px;top:58px;color:${col}">${s.sub}</div>
+    <div class="d" style="position:absolute;left:60px;top:78px;font-size:40px;font-weight:900">${s.title}</div>
+    <div data-row style="position:absolute;left:60px;right:60px;top:160px;display:grid;grid-template-columns:repeat(${list.length},1fr);gap:12px">
+      ${list.map((f) => { const lv = LEVELS[LV[f.result]]; return `<div class="tile" style="height:230px;padding:16px 14px;display:flex;flex-direction:column;justify-content:space-between;border-top:4px solid ${lv[2]}">
+        <div style="font-size:12px;color:var(--muted)">${f.year}</div>
+        <div class="d" style="font-size:19px;font-weight:900;line-height:1.12">${f.title}</div>
+        <div><div style="font-size:13px;font-weight:800;color:${lv[2]}">${lv[1]}</div>${f.gross ? `<div style="font-size:12px;color:var(--ink2);margin-top:3px">₹${Math.round(f.gross)} cr worldwide</div>` : ""}</div></div>`; }).join("")}
+    </div>
+    <div data-note style="position:absolute;left:60px;right:60px;top:418px;font-size:15px;color:var(--ink2);text-align:center">${good ? "Family entertainers and fresh comedies: the audience trusted the Sharwanand brand." : "Big ambitions, mixed stories: even good reviews (Padi Padi, Jaanu) didn't bring crowds."}</div>`;
+}
+streak("c4", STORY.streakGood, true);
+streak("c5", STORY.streakBad, false);
+
+// ── 6. Box office bars ──
+const GF = FILMS.filter((f) => f.gross);
+const gMax = Math.max(...GF.map((f) => f.gross));
+const hitAvg = GF.filter((f) => HIT(f.result)).reduce((a, f) => a + f.gross, 0) / Math.max(1, GF.filter((f) => HIT(f.result)).length);
+const missAvg = GF.filter((f) => !HIT(f.result)).reduce((a, f) => a + f.gross, 0) / Math.max(1, GF.filter((f) => !HIT(f.result)).length);
+$("c6").innerHTML = `
+  <div class="k" style="position:absolute;left:60px;top:52px">Worldwide gross, films with a reported figure</div>
+  <div class="d" style="position:absolute;left:60px;top:72px;font-size:30px;font-weight:900">Biggest: <span style="color:${C}">${GF.find((f) => f.gross === gMax).title} · ₹${Math.round(gMax)} cr</span></div>
+  <div id="c6bars" style="position:absolute;left:60px;right:60px;top:140px;height:270px;display:flex;align-items:flex-end;gap:12px">
+    ${GF.map((f) => { const lv = LEVELS[LV[f.result]]; return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%">
+      <div data-v style="font-size:12.5px;font-weight:800;margin-bottom:4px">₹${Math.round(f.gross)}</div>
+      <div data-b data-h="${(f.gross / gMax) * 210}" style="width:100%;height:0;border-radius:8px 8px 3px 3px;background:${lv[2]}"></div>
+      <div style="font-size:10px;font-weight:700;margin-top:6px;text-align:center;line-height:1.1;height:24px">${f.title}</div><div style="font-size:9.5px;color:var(--muted)">${f.year}</div></div>`; }).join("")}
+  </div>
+  <div id="c6sum" style="position:absolute;left:60px;right:60px;top:445px;display:flex;justify-content:center;gap:16px">
+    <span class="pill" style="background:rgba(63,174,98,.18);color:#8fe0a8;border:1px solid rgba(63,174,98,.5)">Hits average ₹${Math.round(hitAvg)} cr</span>
+    <span class="pill" style="background:rgba(217,83,79,.18);color:#ff9d8f;border:1px solid rgba(217,83,79,.5)">Misses average ₹${Math.round(missAvg)} cr</span>
+  </div>`;
+
+// ── 7. Numbers ──
+const hits = JUDGED.filter((f) => HIT(f.result)).length, rate = Math.round((hits / JUDGED.length) * 100);
+const L5 = JUDGED.slice(-5);
+const compact = (n) => (n >= 1e6 ? (n / 1e6).toFixed(2).replace(/\.?0+$/, "") + "M" : Math.round(n / 1e3) + "K");
+const R = 56, CIRC = 2 * Math.PI * R;
+$("c7").innerHTML = `
+  <div class="k" style="position:absolute;left:60px;top:56px">${H.name} in numbers</div>
+  <div id="c7a" class="tile" style="position:absolute;left:60px;top:84px;width:400px;height:200px;display:flex;align-items:center;gap:20px;padding:18px">
+    <svg width="140" height="140" viewBox="0 0 140 140"><circle cx="70" cy="70" r="${R}" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="13"/>
+      <circle id="c7ring" cx="70" cy="70" r="${R}" fill="none" stroke="${C}" stroke-width="13" stroke-linecap="round" transform="rotate(-90 70 70)" stroke-dasharray="${CIRC}" stroke-dashoffset="${CIRC}"/>
+      <text id="c7rate" x="70" y="70" dy=".35em" text-anchor="middle" font-size="32" font-weight="900" fill="#f6efe8">0%</text></svg>
+    <div><div class="d" style="font-size:22px;font-weight:900">Hit rate</div><div style="font-size:13.5px;color:var(--ink2);margin-top:4px">${hits} hits in ${JUDGED.length} films<br/>with a result</div></div></div>
+  <div id="c7b" class="tile" style="position:absolute;left:480px;top:84px;width:420px;height:200px;padding:18px">
+    <div style="display:flex;justify-content:space-between"><div style="font-size:15px;font-weight:800">Last 5 films</div><div class="d" style="font-size:20px;font-weight:900;color:${C}">${L5.filter((f) => HIT(f.result)).length} hits</div></div>
+    <div style="display:flex;gap:8px;margin-top:22px">${L5.map((f) => { const lv = LEVELS[LV[f.result]]; return `<div style="flex:1;min-width:0;text-align:center"><div data-dot style="height:12px;border-radius:6px;background:${lv[2]}"></div>
+      <div style="font-size:11px;font-weight:700;margin-top:8px;line-height:1.15;height:26px">${f.title}</div><div style="font-size:10px;color:${lv[2]};font-weight:700">${lv[1]} · ${f.year}</div></div>`; }).join("")}</div></div>
+  <div id="c7c" style="position:absolute;left:60px;right:60px;top:300px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+    ${[[`${H.career.yearsActive}`, "years in films"], [`${H.career.releaseGap} mo`, "average gap between films"], [`${STORY.early.support.length}`, "films before his first lead"], [H.instagram ? compact(H.instagram.followers) : "—", "Instagram followers"]]
+      .map(([big, l]) => `<div class="tile" style="height:150px;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:12px"><div class="d" style="font-size:38px;font-weight:900;color:${C}">${big}</div><div style="font-size:12.5px;color:var(--ink2);margin-top:6px">${l}</div></div>`).join("")}
+  </div>`;
+
+// ── 8. Prognosis ──
+const sinceComeback = JUDGED.filter((f) => f.year >= 2022);
+const ch = sinceComeback.filter((f) => HIT(f.result)).length;
+const hitMin = Math.floor(Math.min(...GF.filter((f) => HIT(f.result)).map((f) => f.gross)));
+const missMax = Math.ceil(Math.max(...GF.filter((f) => !HIT(f.result)).map((f) => f.gross)));
+const bands = [
+  { label: "Beat his best", range: `₹${Math.round(gMax)} cr+`, col: "#2a8f52", note: `bigger than ${GF.find((f) => f.gross === gMax).title}` },
+  { label: "Hit territory", range: `₹${hitMin}–${Math.round(gMax)} cr`, col: "#3fae62", note: `every hit of his grossed ₹${hitMin} cr or more` },
+  { label: "Grey zone", range: `₹${missMax}–${hitMin} cr`, col: "#e2ac45", note: "depends on budget and word of mouth" },
+  { label: "Danger zone", range: `under ₹${missMax} cr`, col: "#d9534f", note: `his misses average ₹${Math.round(missAvg)} cr` },
+];
+$("c8").innerHTML = `
+  <div class="k" style="position:absolute;left:60px;top:52px">${STORY.next} · in theatres ${STORY.nextDate}</div>
+  <div class="d" style="position:absolute;left:60px;top:72px;font-size:30px;font-weight:900">What his history says</div>
+  <div id="c8a" style="position:absolute;left:60px;top:126px;width:330px">
+    ${[[`${rate}%`, "career hit rate: about a coin toss"], [`${ch} of ${sinceComeback.length}`, "hits since his 2022 comeback"], [`${L5.filter((f) => HIT(f.result)).length} of 5`, "hits in his last 5 films"]]
+      .map(([b, l]) => `<div class="tile" style="padding:14px 16px;margin-bottom:12px;display:flex;align-items:center;gap:14px"><div class="d" style="font-size:30px;font-weight:900;color:${C};width:110px">${b}</div><div style="font-size:13.5px;color:var(--ink2)">${l}</div></div>`).join("")}
+  </div>
+  <div id="c8b" style="position:absolute;left:420px;right:60px;top:126px">
+    <div style="font-size:13px;font-weight:800;color:var(--ink2);margin-bottom:8px">Worldwide gross Bhogi needs, going by his past films</div>
+    ${bands.map((b) => `<div style="display:flex;align-items:center;gap:12px;margin-bottom:9px;padding:11px 14px;border-radius:12px;background:rgba(255,255,255,.04);border-left:5px solid ${b.col}">
+      <div style="width:150px;font-size:14px;font-weight:900">${b.range}</div><div><div style="font-size:14px;font-weight:800;color:${b.col}">${b.label}</div><div style="font-size:11.5px;color:var(--muted)">${b.note}</div></div></div>`).join("")}
+  </div>
+  <div id="c8n" style="position:absolute;left:60px;right:60px;top:452px;text-align:center;font-size:13px;color:var(--ink2)">${STORY.nextNote}. History is a guide, not a guarantee: the content decides.</div>`;
+
+// ── 9. Tolly Index ──
+$("c9").innerHTML = `
+  <div class="photo" id="c9p" style="width:170px;height:170px;left:120px;top:170px;background-image:${IMG(H.slug)}"></div>
+  <div class="k" style="position:absolute;left:340px;top:150px">Tolly Index · today</div>
+  <div id="c9s" class="d" style="position:absolute;left:336px;top:168px;font-size:110px;font-weight:900;line-height:1;color:${C}">0.0</div>
+  <div id="c9r" style="position:absolute;left:340px;top:290px;font-size:20px;font-weight:800">#${H.rank} of ${H.of} heroes</div>
+  <div style="position:absolute;left:340px;width:420px;top:330px;height:12px;border-radius:6px;background:rgba(255,255,255,.08)"><div id="c9b" style="height:100%;border-radius:6px;background:${C};width:0"></div></div>
+  <div id="c9n" style="position:absolute;left:340px;top:362px;font-size:16px;color:var(--ink2)">After <b style="color:var(--gold)">${STORY.next}</b> → <span class="d" id="c9q" style="display:inline-block;font-size:28px;font-weight:900;color:var(--gold)">?</span> · we update it after the collections</div>`;
+
+// ── 10. Clap outro ──
+const faces = [H.slug, ...D.faces.filter((s) => s !== H.slug)].slice(0, 28);
+$("c10").innerHTML = `<div id="balls">${faces.map((s, i) => `<div class="ball" id="ball${i}" style="background-image:${IMG(s)};${i === 0 ? `width:80px;height:80px;margin:-40px 0 0 -40px;border-color:${C};border-width:3px` : ""}"></div>`).join("")}</div>
+  <div id="board" style="position:absolute;left:350px;top:120px;width:260px"><div class="stick" id="stickTop" style="transform-origin:5px 26px"></div>
+    <div class="slate"><div class="row"><small>PROD.</small><span>Tolly Analysis</span></div><div class="row"><small>SCENE</small><span>${H.name}</span></div>
+    <div class="row" style="display:flex;padding:0"><div style="flex:1;padding:6px 12px;border-right:1px solid rgba(246,239,232,.25)"><small>TAKE</small><span>${STORY.next}</span></div><div style="flex:1;padding:6px 12px"><small>RELEASE</small><span>${STORY.nextDate.replace(" 2026", "")}</span></div></div></div></div>
+  <div id="c10t" style="position:absolute;left:0;right:0;top:380px;text-align:center"><div class="d" style="font-size:34px;font-weight:900">Tollywood Analysis<span style="color:var(--wine)">.</span></div>
+    <div style="margin-top:12px"><span class="pill" style="background:var(--wine);color:#fff;font-size:15px;padding:8px 20px">Subscribe · Which hero next? Comment 👇</span></div></div>`;
+const flights = faces.map((_, i) => { if (i === 0) return { x: 480, y: 70 }; const a = i * 2.39996 + 0.6, r = 0.55 + 0.45 * (((i * 7) % faces.length) / faces.length); return { x: 480 + Math.cos(a) * r * 470, y: 250 + Math.sin(a) * r * 250 }; });
+
+$("foot").innerHTML = `Tolly Index as of ${new Date(D.asOf + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })} · box office from Wikipedia and trade reports (Sacnilk, Koimoi, Pinkvilla) · lead roles only · scores are our own analysis`;
+
+// ── Timeline ──
+const ids = ["c1","c2","c3","c4","c5","c6","c7","c8","c9","c10"];
+function setCh(i, t) {
+  const [a, b] = CH[i]; const al = Math.min(prog(t, a, a + 0.4), i === 9 ? 1 : 1 - prog(t, b - 0.4, b));
+  $(ids[i]).style.opacity = al; $(ids[i]).style.visibility = al > 0 ? "visible" : "hidden"; return t - a;
+}
+function pop(el, p) { el.style.opacity = clamp(p * 1.4); el.style.transform = `scale(${0.6 + 0.4 * back(p)})`; }
+function rise(el, p, px = 14) { el.style.opacity = clamp(p); el.style.transform = `translateY(${(1 - out(p)) * px}px)`; }
+
+function render(t) {
+  const cur = CH.findIndex(([a, b]) => t >= a && t < b);
+  $("chap").innerHTML = cur > 0 && cur < 9 ? `<b>${String(cur).padStart(2, "0")}</b> · ${TITLES[cur]}` : "";
+  $("prog").style.width = (t / DURATION) * 100 + "%";
+
+  let tt = setCh(0, t);
+  pop($("c1p"), prog(tt, 0.1, 0.7));
+  document.querySelectorAll("#c1 [data-l]").forEach((el, k) => rise(el, prog(tt, 0.5 + k * 1.4, 1.0 + k * 1.4), 18));
+  rise($("c1n"), prog(tt, 5.0, 5.6));
+  const g1 = $("c1g"), l1 = g1.getTotalLength(); g1.style.strokeDasharray = l1; g1.style.strokeDashoffset = l1 * (1 - out(prog(tt, 0, 8)));
+
+  tt = setCh(1, t);
+  [...$("c2s").children].forEach((c, k) => pop(c, prog(tt, 0.5 + k * 0.5, 1.0 + k * 0.5)));
+  rise($("c2a"), prog(tt, 6, 6.6), 20); rise($("c2b"), prog(tt, 10, 10.6), 20);
+
+  tt = setCh(2, t);
+  const span = CH[2][1] - CH[2][0], per = (span - 6) / JUDGED.length;
+  const P = G.pts, cum = [0]; for (let k = 1; k < P.length; k++) cum.push(cum[k - 1] + Math.hypot(P[k].x - P[k - 1].x, P[k].y - P[k - 1].y));
+  const at = (k) => 1 + k * per; let drawn = 0;
+  for (let k = 1; k < P.length; k++) { if (tt >= at(k)) drawn = cum[k]; else { if (tt > at(k - 1)) drawn = cum[k - 1] + (cum[k] - cum[k - 1]) * (tt - at(k - 1)) / per; break; } }
+  const gp = $("gPath"), gl = gp.getTotalLength(); gp.style.strokeDasharray = gl; gp.style.strokeDashoffset = gl * (1 - clamp(drawn / cum[cum.length - 1]));
+  JUDGED.forEach((f, k) => { pop($(`gd${k}`), prog(tt, at(k) - 0.2, at(k) + 0.3)); $(`gn${k}`).style.opacity = prog(tt, at(k), at(k) + 0.5); });
+  STORY.eras.forEach((er, k) => { const first = JUDGED.findIndex((f) => when(f) >= er.from); $(`era${k}`).setAttribute("opacity", prog(tt, at(Math.max(0, first)) - 0.3, at(Math.max(0, first)) + 0.4)); });
+  $("gArea").setAttribute("opacity", out(prog(tt, at(JUDGED.length - 1) + 0.5, at(JUDGED.length - 1) + 1.5)));
+  $("gNext").setAttribute("opacity", prog(tt, at(JUDGED.length - 1) + 1.2, at(JUDGED.length - 1) + 1.8));
+
+  for (const i of [3, 4]) {
+    tt = setCh(i, t);
+    const row = document.querySelector(`#${ids[i]} [data-row]`); [...row.children].forEach((c, k) => rise(c, prog(tt, 1 + k * 1.3, 1.6 + k * 1.3), 24));
+    rise(document.querySelector(`#${ids[i]} [data-note]`), prog(tt, 1.5 + row.children.length * 1.3, 2.2 + row.children.length * 1.3));
+  }
+
+  tt = setCh(5, t);
+  [...$("c6bars").children].forEach((c, k) => { const b = c.querySelector("[data-b]"); b.style.height = b.dataset.h * out(prog(tt, 1 + k * 0.9, 1.9 + k * 0.9)) + "px"; c.querySelector("[data-v]").style.opacity = prog(tt, 1.6 + k * 0.9, 2.0 + k * 0.9); });
+  rise($("c6sum"), prog(tt, 1.5 + GF.length * 0.9, 2.2 + GF.length * 0.9));
+
+  tt = setCh(6, t);
+  rise($("c7a"), prog(tt, 0.3, 0.8)); const pr = out(prog(tt, 0.6, 2.2));
+  $("c7ring").setAttribute("stroke-dashoffset", CIRC * (1 - (rate / 100) * pr)); $("c7rate").textContent = Math.round(rate * pr) + "%";
+  rise($("c7b"), prog(tt, 4, 4.5)); $("c7b").querySelectorAll("[data-dot]").forEach((d, k) => (d.style.transform = `scaleX(${out(prog(tt, 4.3 + k * 0.25, 4.8 + k * 0.25))})`));
+  [...$("c7c").children].forEach((c, k) => pop(c, prog(tt, 9 + k * 2.3, 9.6 + k * 2.3)));
+
+  tt = setCh(7, t);
+  [...$("c8a").children].forEach((c, k) => rise(c, prog(tt, 1 + k * 3, 1.6 + k * 3), 18));
+  [...$("c8b").children].forEach((c, k) => rise(c, prog(tt, 11 + k * 3.5, 11.7 + k * 3.5), 18));
+  rise($("c8n"), prog(tt, 27, 28));
+
+  tt = setCh(8, t);
+  pop($("c9p"), prog(tt, 0.1, 0.6)); const p9 = out(prog(tt, 0.5, 2.5));
+  $("c9s").textContent = fmt(H.index * p9); $("c9b").style.width = H.index * p9 + "%";
+  rise($("c9r"), prog(tt, 2, 2.5)); rise($("c9n"), prog(tt, 3.5, 4.2)); $("c9q").style.transform = `scale(${1 + 0.12 * Math.sin(tt * 5)})`;
+
+  tt = setCh(9, t);
+  const bIn = out(prog(tt, 0, 0.45));
+  $("board").style.transform = `translateY(${(1 - bIn) * -50}px) scale(${0.85 + 0.15 * bIn})`; $("board").style.opacity = clamp(bIn * 1.5) * (1 - prog(tt, 2.4, 2.9));
+  $("stickTop").style.transform = `rotate(${-28 * (1 - prog(tt, 0.55, 0.75))}deg)`;
+  faces.forEach((_, i) => { const b = $(`ball${i}`), p = out(prog(tt, 0.78 + (i % 6) * 0.03, 1.7 + (i % 6) * 0.03));
+    b.style.left = 480 + (flights[i].x - 480) * p + "px"; b.style.top = 220 + (flights[i].y - 220) * p + "px";
+    b.style.opacity = tt < 0.78 ? 0 : i === 0 ? 1 : 1 - prog(tt, 2.2, 2.7); b.style.transform = `scale(${0.3 + 0.7 * p})`; });
+  rise($("c10t"), prog(tt, 2.4, 3));
+}
+window.render = render; window.DURATION = DURATION; window.ready = true;
+if (!/render=1/.test(location.search)) { let s0 = performance.now(); document.addEventListener("click", () => (s0 = performance.now())); const loop = (n) => { render(((n - s0) / 1000) % (DURATION + 1)); requestAnimationFrame(loop); }; requestAnimationFrame(loop); } else render(0);
+</script>
+</body>
+</html>

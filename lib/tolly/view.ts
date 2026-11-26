@@ -42,6 +42,7 @@ export interface TollyHeroView {
   /** The five factors of the final index: 0–100 value (null = no data) and share of the index in %. */
   factors: Record<HeroFactorKey, { value: number | null; share: number }> | null;
   career: Omit<HeroCareer, "slug"> | null;
+  followersPending: boolean;
 }
 
 export interface TollyMeta {
@@ -107,6 +108,7 @@ const heroes: TollyHeroView[] = (() => {
     followers: (h as { followers?: { total: number; asOf: string } | null }).followers ?? null,
     factors: (h as { factors?: TollyHeroView["factors"] }).factors ?? null,
     career: (h as { career?: TollyHeroView["career"] }).career ?? null,
+    followersPending: !!(h as { followersPending?: boolean }).followersPending,
   }));
   const ranked = all.filter((h) => h.index !== null).sort((a, b) => (b.index as number) - (a.index as number));
   // Ties share a rank, as in the workbook (1 + number of heroes strictly above).
@@ -139,3 +141,4 @@ export function getTopTollyFilms(n: number): (TollyFilmView & { heroes: string[]
     .slice(0, n)
     .map((f) => ({ ...(filmByKey.get(f.key) as TollyFilmView), heroes: f.heroes }));
 }
+

@@ -1,6 +1,6 @@
 {
  "source": "Wikidata (CC0)",
- "fetched": "2026-11-06",
+ "fetched": "2026-11-25",
  "heroes": {
   "aadi-saikumar": {
    "birthPlace": "Andhra Pradesh",
@@ -19,6 +19,21 @@
    "siblings": [
     "Sai Kiran Adivi"
    ]
+  },
+  "ajith-kumar": {
+   "birthPlace": "Secunderabad",
+   "spouse": [
+    "Shalini Kumar"
+   ],
+   "education": [
+    "Asan Memorial Senior Secondary School"
+   ],
+   "awards": [
+    "Filmfare Awards South",
+    "Padma Bhushan in Art"
+   ],
+   "birthDate": "1971-05-01",
+   "website": "http://www.ajiththeactor.com/"
   },
   "akhil-akkineni": {
    "birthPlace": "San Jose",
@@ -144,6 +159,67 @@
     "Pawan Kalyan"
    ]
   },
+  "dhanush": {
+   "birthPlace": "Chennai",
+   "father": "Kasthuri Raja",
+   "spouse": [
+    "Aishwarya R. Dhanush"
+   ],
+   "children": [
+    "Linga Dhanush",
+    "Yathra"
+   ],
+   "education": [
+    "St. John's Matriculation Higher Secondary School Alwarthirunagar"
+   ],
+   "awards": [
+    "Filmfare Award for Best Actor – Tamil",
+    "National Film Award for Best Actor"
+   ],
+   "birthDate": "1983-02-25",
+   "siblings": [
+    "K. Selvaraghavan"
+   ]
+  },
+  "dulquer-salmaan": {
+   "birthPlace": "Kochi",
+   "father": "Mammootty",
+   "mother": "Sulfath",
+   "education": [
+    "Mitchell E. Daniels, Jr. School of Business",
+    "Purdue University",
+    "Toc-H Public School"
+   ],
+   "awards": [
+    "Filmfare Award for Best Male Debut – South",
+    "Kerala State Film Award for Best Actor"
+   ],
+   "birthDate": "1983-07-28",
+   "relatives": [
+    "Ashkar Saudan",
+    "Ibrahim Kutty",
+    "Maqbool Salmaan"
+   ]
+  },
+  "fahadh-faasil": {
+   "birthPlace": "Alappuzha",
+   "father": "Fazil",
+   "spouse": [
+    "Nazriya Nazim"
+   ],
+   "education": [
+    "Lawrence School, Lovedale",
+    "University of Miami"
+   ],
+   "awards": [
+    "Kerala State Film Award for Best Actor",
+    "National Film Award for Best Supporting Actor"
+   ],
+   "birthDate": "1982-08-08",
+   "siblings": [
+    "Farhaan Faasil"
+   ]
+  },
   "gopichand": {
    "birthPlace": "Tangutur",
    "father": "T. Krishna",
@@ -191,6 +267,58 @@
     "N. T. Rama Rao Jr."
    ]
   },
+  "kamal-haasan": {
+   "birthPlace": "Paramakudi",
+   "father": "D Srinivasan",
+   "spouse": [
+    "Sarika",
+    "Vani Ganapathy"
+   ],
+   "offices": [
+    "member of Rajya Sabha"
+   ],
+   "children": [
+    "Akshara Haasan",
+    "Shruti Haasan"
+   ],
+   "education": [
+    "Hindu Higher Secondary School"
+   ],
+   "party": [
+    "Makkal Neethi Maiyam"
+   ],
+   "awards": [
+    "Chevalier des Arts et des Lettres",
+    "National Film Award for Best Actor",
+    "Padma Bhushan",
+    "Padma Shri in Art"
+   ],
+   "birthDate": "1954-11-07",
+   "relatives": [
+    "Anu Hasan"
+   ],
+   "siblings": [
+    "Chandrahasan",
+    "Charuhasan"
+   ]
+  },
+  "karthi": {
+   "birthPlace": "Chennai",
+   "father": "Sivakumar",
+   "education": [
+    "B.S. Abdur Rahman Crescent Institute of Science and Technology",
+    "Binghamton University",
+    "St. Bede's Anglo Indian Higher Secondary School"
+   ],
+   "awards": [
+    "Filmfare Awards South"
+   ],
+   "birthDate": "1977-05-25",
+   "siblings": [
+    "Jyothika",
+    "Suriya"
+   ]
+  },
   "karthikeya": {
    "birthPlace": "Hyderabad",
    "birthDate": "1992-09-21"
@@ -225,6 +353,37 @@
     "Ghattamaneni Ramesh Babu",
     "Manjula Ghattamaneni",
     "Sudheer Babu"
+   ]
+  },
+  "mammootty": {
+   "birthPlace": "Chandiroor",
+   "father": "Muhammad Kutty Ismail Panaparambil",
+   "spouse": [
+    "Sulfath"
+   ],
+   "children": [
+    "Dulquer Salmaan"
+   ],
+   "education": [
+    "Government Law College, Kozhikode",
+    "Sacred Heart College, Thevara"
+   ],
+   "awards": [
+    "Filmfare Award for Best Actor – Malayalam",
+    "Kerala State Film Award for Best Actor",
+    "National Film Award for Best Actor",
+    "Padma Bhushan",
+    "Padma Shri in Art",
+    "South Indian International Movie Awards"
+   ],
+   "birthDate": "1951-09-06",
+   "website": "http://www.mammootty.com/",
+   "relatives": [
+    "Ashkar Saudan",
+    "Maqbool Salmaan"
+   ],
+   "siblings": [
+    "Ibrahim Kutty"
    ]
   },
   "manchu-manoj": {
@@ -268,6 +427,31 @@
    ],
    "birthDate": "1952-03-19",
    "website": "http://www.mohanbabu.com/"
+  },
+  "mohanlal": {
+   "birthPlace": "Elanthoor",
+   "spouse": [
+    "Suchitra Mohanlal"
+   ],
+   "children": [
+    "Pranav Mohanlal"
+   ],
+   "education": [
+    "GVHS Chirakkara",
+    "Government Model Boys Higher Secondary School",
+    "Mahatma Gandhi College"
+   ],
+   "awards": [
+    "Kerala State Film Award for Best Actor",
+    "National Film Award for Best Actor",
+    "Padma Bhushan",
+    "Padma Shri in Art"
+   ],
+   "birthDate": "1960-05-21",
+   "website": "https://www.thecompleteactor.com/",
+   "siblings": [
+    "Suresh Balaje"
+   ]
   },
   "naga-chaitanya": {
    "birthPlace": "Hyderabad",
@@ -396,6 +580,26 @@
     "Krishnam Raju"
    ]
   },
+  "prithviraj-sukumaran": {
+   "birthPlace": "Thiruvananthapuram",
+   "father": "Sukumaran",
+   "mother": "Mallika Sukumaran",
+   "education": [
+    "Sainik Schools"
+   ],
+   "awards": [
+    "Kerala State Film Award for Best Actor",
+    "Kerala State Film Awards"
+   ],
+   "birthDate": "1981-10-16",
+   "relatives": [
+    "Poornima Indrajith",
+    "Prarthana Indrajith"
+   ],
+   "siblings": [
+    "Indrajith Sukumaran"
+   ]
+  },
   "priyadarshi": {
    "birthPlace": "Hyderabad",
    "birthDate": "1989-09-26"
@@ -428,6 +632,35 @@
     "Nandi Special Jury Award"
    ],
    "birthDate": "1956-07-19"
+  },
+  "rajinikanth": {
+   "birthPlace": "Bengaluru",
+   "father": "Ramoji Rao Gaekwad",
+   "mother": "Jijabai Shahaji Bhosale",
+   "spouse": [
+    "Latha Rajinikanth"
+   ],
+   "children": [
+    "Aishwarya R. Dhanush",
+    "Soundarya Rajinikanth"
+   ],
+   "education": [
+    "Acharya Pathasala Public School",
+    "Adyar Film Institute"
+   ],
+   "awards": [
+    "Dadasaheb Phalke Award",
+    "Filmfare Awards South",
+    "Padma Bhushan",
+    "Padma Vibhushan",
+    "Tamil Nadu State Film Awards"
+   ],
+   "birthDate": "1950-12-12",
+   "siblings": [
+    "Aswath Balubhai",
+    "Nageshwar Rao Gaikwad",
+    "Sathyanarayana Rao Gaikwad"
+   ]
   },
   "ram-charan": {
    "birthPlace": "Chennai",
@@ -504,11 +737,32 @@
    "birthPlace": "Hyderabad",
    "birthDate": "1984-03-06"
   },
+  "siddharth": {
+   "birthPlace": "Chennai",
+   "education": [
+    "D.A.V. Boys Senior Secondary School",
+    "Kirori Mal College",
+    "S. P. Jain Institute of Management and Research"
+   ],
+   "awards": [
+    "Filmfare Awards South"
+   ],
+   "birthDate": "1980-04-17",
+   "website": "http://www.siddharth-online.com/"
+  },
   "siddhu-jonnalagadda": {
    "birthPlace": "Hyderabad"
   },
   "sivaji": {
    "birthPlace": "Guntur district"
+  },
+  "sivakarthikeyan": {
+   "birthPlace": "Singampunari",
+   "education": [
+    "Campion Anglo-Indian Higher Secondary School",
+    "Indian Institute of Planning and Management"
+   ],
+   "birthDate": "1985-02-17"
   },
   "sree-vishnu": {
    "birthPlace": "Visakhapatnam",
@@ -562,6 +816,20 @@
    ],
    "birthDate": "1984-03-19"
   },
+  "sudeep": {
+   "birthPlace": "Shimoga",
+   "spouse": [
+    "Priya Radhakrishnan"
+   ],
+   "education": [
+    "Dayananda Sagar College of Engineering"
+   ],
+   "awards": [
+    "Filmfare Awards South"
+   ],
+   "birthDate": "1973-09-02",
+   "website": "http://www.kicchasudeepkksfa.com"
+  },
   "sudheer-babu": {
    "birthPlace": "Vijayawada",
    "education": [
@@ -603,6 +871,29 @@
   "sunil": {
    "birthPlace": "Bhimavaram",
    "birthDate": "1974-02-28"
+  },
+  "suriya": {
+   "birthPlace": "Chennai",
+   "father": "Sivakumar",
+   "spouse": [
+    "Jyothika"
+   ],
+   "education": [
+    "Loyola College",
+    "Padma Seshadri Bala Bhavan",
+    "St. Bede's Anglo Indian Higher Secondary School"
+   ],
+   "party": [
+    "Dravida Munnetra Kazhagam",
+    "Dravidar Kazhagam"
+   ],
+   "awards": [
+    "Filmfare Awards South"
+   ],
+   "birthDate": "1975-07-23",
+   "siblings": [
+    "Karthik Siva kumar"
+   ]
   },
   "sushanth": {
    "birthPlace": "India"
@@ -679,6 +970,44 @@
    "birthPlace": "Andhra Pradesh",
    "birthDate": "1976-06-04"
   },
+  "vijay": {
+   "birthPlace": "Chennai",
+   "father": "S. A. Chandrasekhar",
+   "mother": "Shoba Chandrasekhar",
+   "spouse": [
+    "Sangeetha Sornalingam"
+   ],
+   "offices": [
+    "Chief Minister of Tamil Nadu"
+   ],
+   "children": [
+    "Divya Saasha",
+    "Jason Sanjay"
+   ],
+   "education": [
+    "Loyola College"
+   ],
+   "party": [
+    "Tamilaga Vettri Kazhagam"
+   ],
+   "awards": [
+    "Ananda Vikatan Cinema Awards",
+    "Asianet Film Awards",
+    "Behindwoods Gold Medal",
+    "Cinema Express Awards",
+    "Edison Awards",
+    "International Achievement Recognitions Awards",
+    "Kalaimamani",
+    "Mathrubhumi Film Awards",
+    "National Film Awards UK",
+    "SIIMA Award for Best Actor",
+    "Tamil Nadu State Film Awards",
+    "Vijay Award for Best Actor",
+    "Zee Cine Awards",
+    "honorary doctorate"
+   ],
+   "birthDate": "1974-06-22"
+  },
   "vijay-deverakonda": {
    "birthPlace": "Hyderabad",
    "spouse": [
@@ -693,6 +1022,33 @@
     "Nandi Award"
    ],
    "birthDate": "1989-05-09"
+  },
+  "vijay-sethupathi": {
+   "birthPlace": "Rajapalayam",
+   "education": [
+    "University of Madras"
+   ],
+   "birthDate": "1978-01-16"
+  },
+  "vikram": {
+   "birthPlace": "Chennai",
+   "education": [
+    "Loyola College",
+    "Montfort School, Yercaud"
+   ],
+   "awards": [
+    "Filmfare Awards South",
+    "National Film Award for Best Actor",
+    "Tamil Nadu State Film Award for Best Actor"
+   ],
+   "birthDate": "1967-04-16"
+  },
+  "vishal": {
+   "birthPlace": "Chennai",
+   "education": [
+    "Loyola College"
+   ],
+   "birthDate": "1977-08-29"
   },
   "vishnu-manchu": {
    "birthPlace": "Chennai",
@@ -720,6 +1076,17 @@
   "vishwak-sen": {
    "birthPlace": "Dilsukhnagar",
    "birthDate": "1995-03-29"
+  },
+  "yash": {
+   "birthPlace": "Mysore",
+   "spouse": [
+    "Radhika Pandit"
+   ],
+   "awards": [
+    "Filmfare Awards South"
+   ],
+   "birthDate": "1986-01-08",
+   "website": "http://www.nimmayash.in/"
   }
  }
 }

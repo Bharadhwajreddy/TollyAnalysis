@@ -49,6 +49,7 @@ export default async function TollyIndexPage() {
     groups: GROUPS.map((g) => groupValue(h, g.key).value),
     best: h.best[0] ? `${h.best[0].title} (${h.best[0].year})` : null,
     followers: h.followers ? compactCount(h.followers.total) : null,
+    provisional: !!heroBy.get(h.slug) && heroBy.get(h.slug)!.industry !== "telugu",
   }));
   const updated = new Date(`${m.asOf}T00:00:00Z`).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
   const jsonLd = jsonLdGraph(
@@ -77,7 +78,7 @@ export default async function TollyIndexPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6">
       <JsonLd data={jsonLd} />
-      <PageHeader title="Tolly Index" subtitle="Every Telugu hero scored from 0 to 100 on his films, his box-office record, his fame and his form.">
+      <PageHeader title="Tolly Index" subtitle="Every hero in Telugu cinema scored from 0 to 100 on his films, his box-office record, his fame and his form.">
         <p className="mt-2 text-[13px] text-muted">
           Updated {updated} ·{" "}
           <Link href="/methodology#tolly-index" className="font-medium text-wine hover:underline">

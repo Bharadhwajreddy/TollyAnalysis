@@ -41,6 +41,7 @@
     "tolly:import": "tsx scripts/tolly/import-manual.mts",
     "photos:thumbs": "tsx scripts/hero-thumbs.mts",
     "tolly:update": "bash scripts/tolly/update.sh",
+    "releases:update": "tsx scripts/releases.mts",
     "cf:build": "opennextjs-cloudflare build",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { DATA_SOURCES, IMDB_ATTRIBUTION, TMDB_NOTICE } from "@/lib/legal/data-licences";
 import { getSources } from "@/lib/repositories";
 
-export const metadata: Metadata = { title: "Annexure · Source Ledger" };
+export const metadata: Metadata = { title: "Data credits" };
 
 const TYPE_LABEL: Record<string, string> = {
   official_api: "Official API",
@@ -19,7 +19,7 @@ export default async function SourcesPage() {
   const sources = await getSources();
   return (
     <div>
-      <h1 className="font-serif text-3xl font-bold text-ink">5. Source Ledger</h1>
+      <h1 className="font-serif text-3xl font-bold text-ink">5. Data credits</h1>
       <p className="mt-1.5 max-w-3xl text-[15px] text-ink-2">
         Every source feeding the benchmarks, how it may be used, and how many claims currently rely on it.
       </p>

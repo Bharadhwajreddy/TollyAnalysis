@@ -145,6 +145,10 @@ export interface TollyHeroResult {
   /** Each factor's 0–100 value (null = no data) and its share of the final index in %. */
   factors?: Record<HeroFactorKey, { value: number | null; share: number }>;
   career?: Omit<HeroCareer, "slug"> | null;
+  /** A hero from another industry held out of the ranking until his box-office record is checked. */
+  heldBack?: boolean;
+  /** His follower counts are still being checked (a newly added hero). */
+  followersPending?: boolean;
   /** Index from his films alone: the audience factor. */
   filmIndex?: number | null;
   /** Fame score 0–100 from his followers, when known and recent. */
@@ -159,6 +163,8 @@ export interface HeroFollowers {
   counts: { platform: "instagram" | "x" | "youtube" | "facebook"; followers: number; date: string }[];
   /** Checked: he has no official account on any platform, so he is scored on films alone. */
   noAccount?: boolean;
+  /** Newly added hero whose counts are still being checked: scored without fame, and does not hold fame back for others. */
+  pending?: boolean;
 }
 
 /**
@@ -385,7 +391,8 @@ export function applyHeroFactors(
     h.followers = counts.length ? { total, asOf: counts.map((c) => c.date).sort()[0] } : null;
     h.fame = counts.length ? fameOf(total) : null;
   }
-  const missing = heroes.filter((h) => h.qualified && h.fame === null && !bySlug.get(h.slug)?.noAccount).map((h) => h.name);
+  const missing = heroes.filter((h) => h.qualified && h.fame === null && !bySlug.get(h.slug)?.noAccount && !bySlug.get(h.slug)?.pending).map((h) => h.name);
+  for (const h of heroes) h.followersPending = h.fame === null && !!bySlug.get(h.slug)?.pending;
   const applied = missing.length === 0 && heroes.some((h) => h.qualified);
 
   // Percentile factors are ranked among the ranked heroes only.

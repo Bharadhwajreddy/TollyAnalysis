@@ -367,7 +367,12 @@ async function fillVerdicts(
 }
 
 async function main() {
-  const heroes = INITIAL_ROSTER.filter((h) => h.industry === "telugu");
+  // Telugu heroes, plus heroes from other industries whose films are released in Telugu.
+  // ONLY=slug,slug imports just those heroes and merges them into the existing snapshot (other heroes untouched).
+  const only = process.env.ONLY ? new Set(process.env.ONLY.split(",").map((x) => x.trim())) : null;
+  const heroes = INITIAL_ROSTER.filter((h) => (h.industry === "telugu" || h.homeLanguage) && (!only || only.has(h.slug)));
+  const homeLanguageOf = new Map(heroes.map((h) => [h.slug, h.homeLanguage]));
+  const languageOk = (slug: string, text: string) => isCountedLanguage(text) || (!!homeLanguageOf.get(slug) && new RegExp(`\\b${homeLanguageOf.get(slug)}\\b`, "i").test(text));
   console.log(`Heroes: ${heroes.length}`);
 
   // 1. Hero articles + filmography pages.
@@ -425,8 +430,8 @@ async function main() {
         else if (scope === "supporting") excludeReason = "supporting role";
         else if (looksUnreleased(row[ti] ?? "", notes)) excludeReason = "not yet released";
         else if (/re-?release|recut|re-edit|compilation/i.test(notes)) excludeReason = "re-release";
-        else if (language && !isCountedLanguage(language)) excludeReason = `${language} film`;
-        else if (/\b(tamil|kannada|malayalam|english|bengali|marathi) film\b/i.test(notes) && !isCountedLanguage(notes)) excludeReason = "not a Telugu film";
+        else if (language && !languageOk(h.slug, language)) excludeReason = `${language} film`;
+        else if (/\b(tamil|kannada|malayalam|english|bengali|marathi) film\b/i.test(notes) && !languageOk(h.slug, notes)) excludeReason = "not a Telugu film";
         credits.push({
           hero: h.slug,
           film: link ? norm(link.target) : `unlinked:${displayTitle}|${year}`,
@@ -568,7 +573,7 @@ async function main() {
     } else if (date < "2000-01-01") {
       c.include = false;
       c.excludeReason = "released before 2000";
-    } else if (f.languages.length && !f.languages.some((l) => isCountedLanguage(l))) {
+    } else if (f.languages.length && !f.languages.some((l) => languageOk(c.hero, l))) {
       c.include = false;
       c.excludeReason = `${f.languages.join("/")} film`;
     }
@@ -677,6 +682,16 @@ async function main() {
     films: [...films.values()].filter((f) => usedFilms.has(f.key)),
     credits,
   };
+  if (only) {
+    // Merge: replace these heroes and their credits; add films we did not have, keep existing film records as they are
+    // (they may carry editor-checked results).
+    const prev = JSON.parse(readFileSync(OUT, "utf8"));
+    const have = new Set(prev.films.map((f: { key: string }) => f.key));
+    snapshot.heroes = [...prev.heroes.filter((h: { slug: string }) => !only.has(h.slug)), ...heroOut];
+    snapshot.credits = [...prev.credits.filter((c: { hero: string }) => !only.has(c.hero)), ...credits];
+    snapshot.films = [...prev.films, ...snapshot.films.filter((f) => !have.has(f.key))];
+    snapshot.sources = prev.sources;
+  }
   writeFileSync(OUT, JSON.stringify(snapshot, null, 1) + "\n");
   const included = credits.filter((c) => c.include);
   console.log(

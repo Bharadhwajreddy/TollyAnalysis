@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { HeroStarBreakdown } from "@/components/dashboard/star-breakdown";
 import { HeroAvatar } from "@/components/hero/hero-avatar";
+import { CareerChart, type CareerPoint } from "@/components/hero/career-chart";
 import { HeroYearChart } from "@/components/hero/hero-year-chart";
 import { HeroFilmsTable, type FilmRowView } from "@/components/hero/hero-films-table";
 import { TollyHeroCard } from "@/components/tolly/tolly-hero-card";
@@ -21,6 +22,7 @@ import { rankable } from "@/lib/ranking";
 import { tollyIndexEnabled } from "@/lib/features";
 import { getHeroSeo, JsonLd } from "@/lib/seo";
 import { getTollyFilm, getTollyHero, getTollyRanking, tollyMeta } from "@/lib/tolly/view";
+import { directorSlug, getDirectors } from "@/lib/directors";
 
 export async function generateStaticParams() {
   const data = await getDashboardData();
@@ -58,13 +60,15 @@ const SOURCE_TEXT: Record<string, string> = {
   "wikipedia-hero": "Wikipedia hero article",
   "telugu-wikipedia": "Telugu Wikipedia",
   "trade-blog": "Trade blog (low confidence)",
+  "editor-check": "Checked against trade reports",
 };
 
 export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
   const { slug } = await props.params;
   const person = await getPerson(slug);
   if (!person) notFound();
-  const [data, films, excluded, seo] = await Promise.all([getDashboardData(), getHeroFilms(slug), getHeroExcluded(slug), getHeroSeo(slug)]);
+  const [data, films, excluded, directors, seo] = await Promise.all([getDashboardData(), getHeroFilms(slug), getHeroExcluded(slug), getDirectors(), getHeroSeo(slug)]);
+  const directorPages = new Set(directors.map((d) => d.slug));
   const hero = data.windows.all_time.find((h) => h.slug === slug);
   if (!hero) notFound();
   const cohort = data.windows.all_time.filter((h) => !h.isEmerging || h.slug === slug);
@@ -118,6 +122,7 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
       approximate: f.details?.dateApproximate ?? false,
       year: f.year,
       director: f.details?.director ?? null,
+      directorSlug: ((s) => (s && directorPages.has(s) ? s : null))(directorSlug(f.details?.director)),
       music: f.details?.music ?? null,
       runtimeMin: f.details?.runtimeMin ?? null,
       genres: f.details?.genres ?? [],
@@ -173,7 +178,26 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
   const latestYear = latest?.releaseDate ? Number(latest.releaseDate.slice(0, 4)) : 0;
   const otherLanguage = (r: string | null) => /(Hindi|Tamil|Kannada|Malayalam|English|Bengali|Marathi) film/i.exec(r ?? "")?.[1] ?? (/not a Telugu/i.test(r ?? "") ? "another language" : null);
   const newerOther = excluded.find((e) => e.year !== null && e.year >= latestYear && otherLanguage(e.reason) !== null && !/not yet released/i.test(e.reason ?? ""));
-  const nextFilm = [...excluded].filter((e) => /not yet released/i.test(e.reason ?? "")).sort((a, b) => (a.year ?? 9999) - (b.year ?? 9999))[0];
+  // Skip broken table rows that carry markup instead of a title (e.g. scope="row").
+  const nextFilm = [...excluded]
+    .filter((e) => /not yet released/i.test(e.reason ?? "") && !/[="]/.test(e.title))
+    .sort((a, b) => (a.year ?? 9999) - (b.year ?? 9999))[0];
+  const cleanTitle = (t: string) => t.replace(/^unlinked:/, "").replace(/\|\d{4}$/, "").replace(/ \((\d{4} )?(Indian |Telugu |Tamil |Malayalam )?film\)$/, "");
+  const careerPoints: CareerPoint[] = films
+    .filter((f) => f.year)
+    .map((f) => {
+      const r = rows.find((x) => x.id === f.filmId)!;
+      return {
+        id: f.filmId,
+        title: f.title,
+        date: f.releaseDate ?? null,
+        year: f.year as number,
+        result: f.commercial.verdict ?? f.commercial.label ?? null,
+        gross: r.grossText ?? (r.gross ? formatMetric("topGross", r.gross) : null),
+        score: r.tolly?.index ?? null,
+        note: r.verdict === "recent" ? "Recent release: the result may still change." : r.verdictSource ? `Result: ${r.verdictSource}` : null,
+      };
+    });
   const first = dated[dated.length - 1];
   const firstHit = [...dated].reverse().find((r) => r.verdict === "hit" || r.verdict === "blockbuster");
   const firstBlockbuster = [...dated].reverse().find((r) => r.verdict === "blockbuster");
@@ -234,7 +258,9 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
       <section className="cinema mt-4 overflow-hidden rounded-2xl">
         <div className="grid lg:grid-cols-[1fr_300px]">
           <div className="px-5 py-7 sm:px-9 sm:py-9">
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#e8c79c]">Telugu film hero</p>
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#e8c79c]">
+              {hero.industry === "telugu" ? "Telugu film hero" : `${{ tamil: "Tamil", malayalam: "Malayalam", kannada: "Kannada", hindi: "Hindi" }[hero.industry] ?? "Indian"} film hero · counts his films released in Telugu`}
+            </p>
             <div className="mt-2 flex flex-wrap items-center gap-3">
               <h1 className="font-serif text-[40px] font-bold leading-none tracking-tight text-white sm:text-[60px]">{hero.name}</h1>
               {data.mode === "demo" && <DemoBadge />}
@@ -356,7 +382,7 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
         </Link>
       </nav>
 
-      {tolly && <TollyHeroCard hero={tolly} rankedCount={tollyRanked} meta={tollyMeta} />}
+      {tolly && <TollyHeroCard hero={tolly} rankedCount={tollyRanked} meta={tollyMeta} provisional={hero.industry !== "telugu"} />}
 
       {/* Star Score breakdown */}
       <section id="star" className="card mt-5 scroll-mt-32 p-4 sm:p-6" aria-labelledby="star-title">
@@ -429,6 +455,15 @@ export default async function HeroPage(props: PageProps<"/hero/[slug]">) {
               </li>
             ))}
           </ul>
+        </section>
+
+        {/* Career graph */}
+        <section className="card p-4 sm:p-6 lg:col-span-2" aria-labelledby="career">
+          <h2 id="career" className="font-serif text-[22px] font-semibold text-ink">Career graph</h2>
+          <p className="mt-0.5 text-[13px] text-ink-2">Every film as a dot, from disaster at the bottom to blockbuster at the top. Point at a dot to see the film.</p>
+          <div className="mt-3">
+            <CareerChart points={careerPoints} name={hero.name} next={nextFilm ? { title: cleanTitle(nextFilm.title), year: nextFilm.year } : null} />
+          </div>
         </section>
 
         {/* Year by year */}

@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=540, initial-scale=1" />
+<title>Producer Thadi Gudda</title>
+<!--
+  "Producers ki thadi gudda kappina cinemalu": a 9:16 countdown of five films whose reported worldwide gross fell
+  furthest below their budget. Timed to the voice track (voice.wav starts at VOICE_AT). Render:
+    node video/render.cjs video/producer-loss out.mp4 30
+  Every frame is a pure function of time: render(t).
+-->
+<style>
+  @font-face { font-family: "Anton"; src: url(assets/anton.woff2) format("woff2"); }
+  :root { --bg:#100709; --ink:#f6efe8; --ink2:#cbbcb0; --muted:#8e7f75; --gold:#f5c04a; --red:#ff4d5e; --green:#3fae62; --wine:#c2335f; }
+  * { box-sizing:border-box; margin:0; padding:0 }
+  html,body { width:540px; height:960px; overflow:hidden; background:var(--bg) }
+  body { font-family:"Inter","Inter Display",sans-serif; color:var(--ink); font-variant-numeric:lining-nums tabular-nums }
+  #stage { position:relative; width:540px; height:960px; overflow:hidden; background:radial-gradient(120% 70% at 50% 0%, #4d1020 0%, #24090f 45%, var(--bg) 85%) }
+  .a { font-family:"Anton","Inter Display",sans-serif; text-transform:uppercase; letter-spacing:.01em }
+  .scene { position:absolute; inset:0; opacity:0 }
+  #brand { position:absolute; top:20px; left:0; right:0; text-align:center; font-size:11px; font-weight:800; letter-spacing:.32em; color:var(--ink2); z-index:8 }
+  #brand b { color:var(--wine) }
+  #ladder { position:absolute; top:46px; left:0; right:0; display:flex; justify-content:center; gap:8px; z-index:8 }
+  #ladder div { width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-family:"Anton"; font-size:18px; background:rgba(255,255,255,.06); color:var(--muted); border:1px solid rgba(255,255,255,.1) }
+  #sub { position:absolute; left:20px; right:20px; top:770px; text-align:center; z-index:9; font-family:"Anton"; font-size:40px; line-height:1.05; text-transform:uppercase;
+    color:#fff; -webkit-text-stroke:2px #000; paint-order:stroke fill; text-shadow:0 4px 0 #000, 0 6px 18px rgba(0,0,0,.8) }
+  #sub b { color:var(--gold); font-weight:400 }
+  #foot { position:absolute; bottom:14px; left:20px; right:20px; text-align:center; font-size:9px; color:var(--muted); z-index:8; line-height:1.4 }
+  .stamp { position:absolute; font-family:"Anton"; text-transform:uppercase; border:5px solid; border-radius:14px; padding:4px 16px; transform-origin:center }
+  .bar { height:30px; border-radius:9px; background:rgba(255,255,255,.07); overflow:hidden; position:relative }
+  .bar > i { position:absolute; left:0; top:0; bottom:0; border-radius:9px }
+  .flash { position:absolute; inset:0; background:#fff; opacity:0; z-index:7; pointer-events:none }
+  .bill { position:absolute; width:36px; height:18px; border-radius:3px; background:linear-gradient(135deg,#7ad38b,#2e8b57); border:1px solid #1f5e3b; opacity:0 }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="brand">TOLLY <b>ANALYSIS</b></div>
+  <div id="ladder"></div>
+
+  <!-- meme -->
+  <section class="scene" id="s0">
+    <div id="s0t" style="position:absolute;top:96px;left:0;right:0;text-align:center">
+      <div class="a" data-w style="font-size:44px;color:var(--ink2);text-shadow:0 5px 0 #000">PRODUCERS KI</div>
+      <div class="a" data-w style="font-size:92px;line-height:.95;color:var(--gold);text-shadow:0 8px 0 #5a1020">THADI GUDDA</div>
+      <div class="a" data-w style="font-size:44px;text-shadow:0 5px 0 #000">KAPPINA CINEMALU</div></div>
+    <div id="s0c" style="position:absolute;top:590px;left:0;right:0;text-align:center"><span style="display:inline-block;padding:9px 18px;border-radius:999px;background:rgba(255,77,94,.15);border:1.5px solid rgba(255,77,94,.6);color:#ffb3ba;font-weight:800;font-size:16px">TOP 5 · Budget vs worldwide gross 💸</span></div>
+    <div id="s0v" style="position:absolute;left:20px;top:330px;width:500px;height:232px;border-radius:18px;overflow:hidden;border:3px solid var(--gold);box-shadow:0 20px 60px rgba(0,0,0,.7)">
+      <div id="meme" style="position:relative;width:100%;height:100%"></div>
+    </div>
+  </section>
+
+  <!-- title -->
+  <section class="scene" id="s1">
+    <div style="position:absolute;top:150px;left:0;right:0;text-align:center">
+      <div class="a" data-w style="font-size:46px;color:var(--ink2)">PRODUCERS KI</div>
+      <div class="a" data-w style="font-size:96px;line-height:.95;color:var(--gold);text-shadow:0 8px 0 #5a1020">THADI GUDDA</div>
+      <div class="a" data-w style="font-size:46px">KAPPINA CINEMALU</div>
+    </div>
+    <div id="s1c" style="position:absolute;top:470px;left:0;right:0;text-align:center"><span style="display:inline-block;padding:9px 18px;border-radius:999px;background:rgba(255,77,94,.15);border:1.5px solid rgba(255,77,94,.6);color:#ffb3ba;font-weight:800;font-size:16px">TOP 5 · Budget vs worldwide gross 💸</span></div>
+    <div id="bills"></div>
+  </section>
+
+  <!-- film cards (built in script) -->
+  <section class="scene" id="f5"></section>
+  <section class="scene" id="f4"></section>
+  <section class="scene" id="f3"></section>
+  <section class="scene" id="f2"></section>
+  <section class="scene" id="f1"></section>
+
+  <!-- leaderboard -->
+  <section class="scene" id="s9"></section>
+
+  <div class="flash" id="flash"></div>
+  <div id="sub"></div>
+  <div id="foot">Budgets and worldwide grosses as reported (lower figure where reports differ). Budget − gross = gross shortfall, not the exact producer loss.</div>
+</div>
+<script>
+const FILMS = [
+  { rank: 5, id: "double-ismart", title: "Double Ismart", year: 2024, budget: 90, gross: 19.4, say: 4.88 },
+  { rank: 4, id: "adipurush", title: "Adipurush", year: 2023, budget: 500, gross: 393, say: 7.55 },
+  { rank: 3, id: "hhvm", title: "Hari Hara Veera Mallu", year: 2025, budget: 250, gross: 113.85, say: 11.30 },
+  { rank: 2, id: "game-changer", title: "Game Changer", year: 2025, budget: 350, gross: 195, say: 14.84 },
+  { rank: 1, id: "rajasaab", title: "The RajaSaab", year: 2026, budget: 400, gross: 208.38, say: 18.84 },
+];
+const VOICE_AT = 0.2;                     // the voice track starts here
+const v1 = (x) => VOICE_AT + (x - 0.30);   // take-1 time → video time
+const v2 = (x) => VOICE_AT + 19.49 + (x - 20.45); // take-2 time → video time
+// Scenes: [start, end] in video seconds, cut on the voice.
+const S = { s0: [0, v1(2.72)], s1: [-10, -9], f5: [v1(2.72), v1(6.18)], f4: [v1(6.18), v1(9.12)], f3: [v1(9.12), v1(13.08)], f2: [v1(13.08), v1(16.72)], f1: [v1(16.72), 22.6], s9: [22.6, 25] };
+const DURATION = 25;
+// Subtitles: [start, text]; <b> marks the highlighted words. Each line stays until the next one.
+const SUBS = [
+  [v1(2.80), "<b>DOUBLE ISMART</b>"], [v1(3.60), "VALLA <b>POORI CHARMI</b> 😄"], [v1(4.66), "KI <b>70 CRORES</b>"], [v1(5.62), "LOSS VASTHE"],
+  [v1(6.26), "<b>ANIMATED</b>"], [v1(7.05), "<b>RAMAYANAM</b>"], [v1(7.55), "<b>107 CRORES</b>"], [v1(8.56), "LOSS ICHINDI"],
+  [v1(9.24), "DHEENIKI GATTI"], [v1(9.96), "POTI ISTHU"], [v1(10.44), "<b>HARI HARA VEERA MALLU</b>"], [v1(11.30), "<b>136 CRORES</b>"], [v1(12.30), "LOSS ISTHE"], [v1(12.95), ""],
+  [v1(13.20), "<b>STORY</b> CHANGER"], [v1(14.08), "VALLA <b>GAME CHANGER</b>"], [v1(14.84), "<b>155 CRORES</b>"], [v1(15.76), "LOSS ICHINDI"], [v1(16.63), ""],
+  [v1(16.80), "ANNITILONU"], [v1(17.46), "NENE MUNDU ANTU"], [v1(18.18), "<b>RAJASAAB</b>"], [v1(18.84), "<b>191 CRORES</b>"],
+  [v2(20.50), "LOSS THO"], [v2(21.04), "<b>MODATI STHANAM</b>"], [v2(21.74), "<b>GELUCHUKUNDI</b> 🏆"], [v2(22.60), ""],
+];
+
+const $ = (id) => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const out = (x) => 1 - Math.pow(1 - clamp(x), 3);
+const back = (x) => { x = clamp(x); const c = 1.9; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const n1 = (v) => (Math.abs(v - Math.round(v)) < 0.05 ? Math.round(v).toString() : v.toFixed(v < 100 ? 1 : 2).replace(/0$/, ""));
+
+$("meme").innerHTML = Array.from({ length: 60 }, (_, i) => `<img data-f src="assets/meme/${String(i + 1).padStart(3, "0")}.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;visibility:${i ? "hidden" : "visible"}"/>`).join("");
+const MEME = [...document.querySelectorAll("#meme [data-f]")];
+$("ladder").innerHTML = [5, 4, 3, 2, 1].map((r) => `<div id="lad${r}">${r}</div>`).join("");
+$("bills").innerHTML = Array.from({ length: 16 }, (_, i) => `<div class="bill" id="bill${i}"></div>`).join("");
+
+// Film cards: rank slam, poster with tilt, budget bar, gross bar, loss stamp, ratio.
+for (const f of FILMS) {
+  const loss = f.budget - f.gross, ratio = f.gross / f.budget, top1 = f.rank === 1;
+  $(`f${f.rank}`).innerHTML = `
+    <div class="a" data-rank style="position:absolute;left:18px;top:92px;font-size:150px;line-height:1;color:${top1 ? "var(--gold)" : "rgba(255,255,255,.12)"};${top1 ? "text-shadow:0 0 40px rgba(245,192,74,.6)" : ""}">#${f.rank}</div>
+    <div data-title style="position:absolute;left:150px;right:18px;top:118px">
+      <div class="a" style="font-size:${f.title.length > 14 ? 34 : 44}px;line-height:1">${f.title}</div>
+      <div style="font-size:13px;color:var(--ink2);margin-top:6px;font-weight:700;letter-spacing:.08em">${f.year} · TELUGU</div></div>
+    <div data-poster style="position:absolute;left:30px;top:250px;width:210px;height:310px;border-radius:14px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.7);border:2px solid ${top1 ? "var(--gold)" : "rgba(255,255,255,.18)"}">
+      <img src="assets/${f.id}.jpg" style="width:100%;height:100%;object-fit:cover"/></div>
+    <div style="position:absolute;left:258px;right:24px;top:262px">
+      <div data-b1><div style="display:flex;justify-content:space-between;font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--ink2)"><span>BUDGET</span><span class="a" style="font-size:22px;color:var(--ink);letter-spacing:0" data-bn>₹0 CR</span></div>
+        <div class="bar" style="margin-top:6px"><i data-bf style="width:0;background:linear-gradient(90deg,#d9a441,#f5c04a)"></i></div></div>
+      <div data-b2 style="margin-top:18px"><div style="display:flex;justify-content:space-between;font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--ink2)"><span>WORLDWIDE GROSS</span><span class="a" style="font-size:22px;color:#ff8a95;letter-spacing:0" data-gn>₹0 CR</span></div>
+        <div class="bar" style="margin-top:6px"><i data-gf style="width:0;background:linear-gradient(90deg,#c22d3c,#ff4d5e)"></i></div></div>
+      <div data-ratio style="margin-top:14px;font-size:13px;color:var(--ink2)">Got back only <b class="a" style="font-size:22px;color:#ff8a95;font-weight:400">${Math.round(ratio * 100)}%</b> of the budget</div>
+    </div>
+    <div class="stamp" data-stamp style="left:${top1 ? 40 : 70}px;right:${top1 ? 40 : 70}px;top:600px;text-align:center;color:var(--red);border-color:var(--red);background:rgba(16,7,9,.85)">
+      <div style="font-size:14px;letter-spacing:.2em;font-family:Inter;font-weight:900">${top1 ? "🏆 NUMBER 1 · GROSS SHORTFALL" : "GROSS SHORTFALL"}</div>
+      <div style="font-size:64px;line-height:1" data-ln>₹0 CR</div></div>`;
+}
+
+// Leaderboard.
+const maxLoss = Math.max(...FILMS.map((f) => f.budget - f.gross));
+$("s9").innerHTML = `
+  <div class="a" style="position:absolute;top:96px;width:100%;text-align:center;font-size:44px;color:var(--gold)">THADI GUDDA TABLE</div>
+  <div style="position:absolute;top:150px;width:100%;text-align:center;font-size:13px;color:var(--ink2)">Gross shortfall = budget − worldwide gross</div>
+  <div id="board" style="position:absolute;left:24px;right:24px;top:190px">
+    ${[...FILMS].reverse().map((f) => `<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+      <div class="a" style="width:36px;font-size:30px;color:${f.rank === 1 ? "var(--gold)" : "var(--ink2)"}">#${f.rank}</div>
+      <img src="assets/${f.id}.jpg" style="width:52px;height:72px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,.2)"/>
+      <div style="flex:1"><div style="font-size:15px;font-weight:800">${f.title}</div>
+        <div class="bar" style="height:18px;margin-top:6px"><i data-w="${((f.budget - f.gross) / maxLoss) * 100}" style="width:0;background:linear-gradient(90deg,#c22d3c,#ff4d5e)"></i></div></div>
+      <div class="a" style="width:118px;text-align:right;font-size:22px;color:#ff8a95;white-space:nowrap">₹${n1(f.budget - f.gross)} CR</div></div>`).join("")}
+  </div>
+  <div id="cta" style="position:absolute;left:0;right:0;top:600px;text-align:center"><span style="display:inline-block;background:var(--wine);color:#fff;font-weight:900;font-size:20px;padding:12px 24px;border-radius:999px">Subscribe · Tolly Analysis</span>
+    <div style="margin-top:10px;font-size:15px;font-weight:800;color:var(--gold)">Inka evaru ee list lo undali? Comment 👇</div></div>`;
+
+const ids = ["s0", "s1", "f5", "f4", "f3", "f2", "f1", "s9"];
+function scene(id, t) { const [a, b] = S[id]; const al = Math.min(prog(t, a, a + 0.18), id === "s9" ? 1 : 1 - prog(t, b - 0.15, b)); $(id).style.opacity = al; $(id).style.visibility = al > 0 ? "visible" : "hidden"; return t - a; }
+function rise(el, p, px = 18) { el.style.opacity = clamp(p); el.style.transform = `translateY(${(1 - out(p)) * px}px)`; }
+function pop(el, p, from = 0.5) { el.style.opacity = clamp(p * 1.5); el.style.transform = `scale(${from + (1 - from) * back(p)})`; }
+let flashT = -9;
+
+function render(t) {
+  // shake for impacts
+  let shake = 0;
+  // 0. meme
+  let tt = scene("s0", t);
+  const fr = Math.min(60, Math.max(1, Math.floor(tt * 30) + 1));
+  MEME.forEach((im, k) => (im.style.visibility = k === fr - 1 ? "visible" : "hidden"));
+  document.querySelectorAll("#s0t [data-w]").forEach((el, k) => pop(el, prog(t, v1([0.30, 1.10, 1.56][k]) - 0.05, v1([0.30, 1.10, 1.56][k]) + 0.25), k === 1 ? 2 : 0.4));
+  rise($("s0c"), prog(t, v1(2.0), v1(2.3)));
+  $("s0v").style.transform = `scale(${1 + 0.04 * Math.sin(tt * 3)}) rotate(${Math.sin(tt * 2.2) * 1.2}deg)`;
+
+  // 1. title
+  tt = scene("s1", t);
+  document.querySelectorAll("#s1 [data-w]").forEach((el, k) => pop(el, prog(tt, [0, 0.8, 1.3][k], [0, 0.8, 1.3][k] + 0.35), k === 1 ? 2 : 0.4));
+  rise($("s1c"), prog(tt, 1.7, 2.1));
+  for (let i = 0; i < 16; i++) { const b = $(`bill${i}`), st = 0.9 + (i % 8) * 0.12, p = prog(tt, st, st + 1.6);
+    b.style.opacity = p > 0 && p < 1 ? 0.9 : 0; b.style.left = 30 + ((i * 67) % 480) + "px"; b.style.top = -20 + p * 980 + "px"; b.style.transform = `rotate(${(i * 47) % 360 + p * 540}deg)`; }
+
+  // film cards
+  for (const f of FILMS) {
+    const id = `f${f.rank}`; tt = scene(id, t); const root = $(id), len = S[id][1] - S[id][0];
+    const q = (s) => root.querySelector(s);
+    pop(q("[data-rank]"), prog(tt, 0, 0.3), 2.2);
+    rise(q("[data-title]"), prog(tt, 0.15, 0.45), 24);
+    const pp = out(prog(tt, 0.1, 0.55));
+    q("[data-poster]").style.opacity = pp; q("[data-poster]").style.transform = `perspective(700px) rotateY(${(1 - pp) * -35 + Math.sin(tt * 1.5) * 3}deg) translateX(${(1 - pp) * -60}px) scale(${1 + 0.02 * Math.sin(tt * 2)})`;
+    // budget then gross, each about a second apart
+    const sA = Math.max(1.3, Math.min(len - 0.6, v1(f.say) - S[id][0] - 0.05));
+    const bA = 0.4, gA = Math.max(0.85, Math.min(1.4, sA - 0.8));
+    rise(q("[data-b1]"), prog(tt, bA, bA + 0.25), 10);
+    const pb = out(prog(tt, bA + 0.1, bA + 0.7)); q("[data-bf]").style.width = 100 * pb + "%"; q("[data-bn]").textContent = `₹${n1(f.budget * pb)} CR`;
+    rise(q("[data-b2]"), prog(tt, gA, gA + 0.25), 10);
+    const pg = out(prog(tt, gA + 0.1, gA + 0.8)); q("[data-gf]").style.width = (100 * f.gross / f.budget) * pg + "%"; q("[data-gn]").textContent = `₹${n1(f.gross * pg)} CR`;
+    rise(q("[data-ratio]"), prog(tt, gA + 0.7, gA + 1.0), 8);
+    const ps = prog(tt, sA, sA + 0.3); const st = q("[data-stamp]");
+    st.style.opacity = clamp(ps * 2); st.style.transform = `scale(${2.2 - 1.2 * out(ps)}) rotate(${-6 * (1 - out(ps)) - 2}deg)`;
+    q("[data-ln]").textContent = `₹${n1((f.budget - f.gross) * out(prog(tt, sA, sA + 0.7)))} CR`;
+    if (tt >= sA && tt < sA + 0.25) shake = Math.max(shake, (1 - (tt - sA) / 0.25) * (f.rank === 1 ? 10 : 6));
+    if (f.rank === 1) q("[data-rank]").style.textShadow = `0 0 ${30 + 20 * Math.sin(tt * 6)}px rgba(245,192,74,.7)`;
+    // ladder highlight
+    const lad = $(`lad${f.rank}`), on = t >= S[id][0];
+    lad.style.background = on ? (t < S[id][1] ? (f.rank === 1 ? "var(--gold)" : "var(--red)") : "rgba(255,77,94,.25)") : "rgba(255,255,255,.06)";
+    lad.style.color = on ? (t < S[id][1] && f.rank === 1 ? "#1a0d12" : "#fff") : "var(--muted)";
+    lad.style.transform = t >= S[id][0] && t < S[id][0] + 0.3 ? `scale(${1.4 - 0.4 * out(prog(t, S[id][0], S[id][0] + 0.3))})` : "scale(1)";
+  }
+  $("ladder").style.opacity = t >= S.f5[0] - 0.2 && t < S.s9[0] ? 1 : 0;
+
+  // leaderboard
+  tt = scene("s9", t);
+  [...$("board").children].forEach((r, k) => { rise(r, prog(tt, 0.1, 0.35), 20); const i = r.querySelector("[data-w]"); i.style.width = i.dataset.w * out(prog(tt, 0.15, 0.8)) + "%"; });
+  pop($("cta"), prog(tt, 0.6, 1.0));
+
+  // flash on each scene cut
+  const cuts = [S.f5[0], S.f4[0], S.f3[0], S.f2[0], S.f1[0], S.s9[0]];
+  const lastCut = Math.max(...cuts.filter((c) => c <= t), -9);
+  $("flash").style.opacity = 0.35 * (1 - prog(t, lastCut, lastCut + 0.18));
+  $("stage").style.transform = shake ? `translate(${Math.sin(t * 90) * shake}px, ${Math.cos(t * 70) * shake * 0.6}px)` : "none";
+
+  // subtitles: pop in per line
+  let line = null; for (const s of SUBS) if (s[0] <= t) line = s;
+  const sub = $("sub");
+  if (line && line[1] && t < S.s9[0] - 0.3) { sub.innerHTML = line[1]; const p = prog(t, line[0], line[0] + 0.12); sub.style.opacity = 1; sub.style.transform = `scale(${0.82 + 0.18 * back(p)})`; }
+  else sub.style.opacity = 0;
+  $("foot").style.opacity = t > S.f5[0] ? 1 : 0;
+}
+window.render = render; window.DURATION = DURATION;
+// wait for the font and every image before the renderer starts
+Promise.all([document.fonts.load("40px Anton"), ...[...document.images].map((im) => (im.complete ? 1 : new Promise((r) => (im.onload = im.onerror = r))))]).then(() => {
+  // preload meme frames
+  return Promise.all(Array.from({ length: 60 }, (_, i) => new Promise((r) => { const im = new Image(); im.onload = im.onerror = r; im.src = `assets/meme/${String(i + 1).padStart(3, "0")}.jpg`; })));
+}).then(() => { window.ready = true; });
+if (!/render=1/.test(location.search)) { let s0 = performance.now(); document.addEventListener("click", () => (s0 = performance.now())); const loop = (n) => { render(((n - s0) / 1000) % (DURATION + 1)); requestAnimationFrame(loop); }; requestAnimationFrame(loop); } else render(0);
+</script>
+</body>
+</html>

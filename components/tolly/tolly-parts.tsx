@@ -37,7 +37,7 @@ const crore = (n: number) => `₹${Math.round(n).toLocaleString("en-IN")} cr`;
 const plural = (n: number, one: string, many = `${one}s`) => `${n} ${n === 1 ? one : many}`;
 
 /** The plain number behind a factor ("14 hits from 20 films"), or null when there is none. */
-export function kpiFact(hero: Pick<TollyHeroView, "career" | "followers" | "complete" | "spread">, key: HeroFactorKey, followers: (n: number) => string): string | null {
+export function kpiFact(hero: Pick<TollyHeroView, "career" | "followers" | "complete" | "spread" | "followersPending">, key: HeroFactorKey, followers: (n: number) => string): string | null {
   const c = hero.career;
   switch (key) {
     case "audience":
@@ -59,7 +59,7 @@ export function kpiFact(hero: Pick<TollyHeroView, "career" | "followers" | "comp
     case "recent":
       return c && c.recentJudged ? `${plural(c.recentHits, "hit")} in his latest ${c.recentJudged}` : null;
     case "fame":
-      return hero.followers ? `${followers(hero.followers.total)} followers` : "no official account";
+      return hero.followers ? `${followers(hero.followers.total)} followers` : hero.followersPending ? "follower count being checked" : "no official account";
     case "consistency":
       return hero.spread !== null ? `film scores vary by ${hero.spread.toFixed(1)}` : null;
     case "films":
@@ -74,7 +74,7 @@ export function kpiFact(hero: Pick<TollyHeroView, "career" | "followers" | "comp
 }
 
 /** One line for a whole group, used in the head-to-head. */
-export function groupFact(hero: Pick<TollyHeroView, "career" | "followers" | "complete" | "spread">, group: GroupKey, followers: (n: number) => string): string | null {
+export function groupFact(hero: Pick<TollyHeroView, "career" | "followers" | "complete" | "spread" | "followersPending">, group: GroupKey, followers: (n: number) => string): string | null {
   const c = hero.career;
   switch (group) {
     case "audience":
@@ -130,3 +130,15 @@ export function BandBar({ index, band, min = 40, max = 80, color = "var(--wine)"
     </span>
   );
 }
+
+export const PROVISIONAL_TIP = "Provisional: box-office results for Tamil, Malayalam and Kannada films are less complete, so this score may be too high.";
+
+/** Small marker for a provisional score. */
+export function ProvisionalMark() {
+  return (
+    <span title={PROVISIONAL_TIP} className="ml-1.5 inline-flex shrink-0 items-center rounded-full bg-gold-soft px-1.5 py-px align-middle text-[10px] font-semibold uppercase tracking-wide text-warn">
+      Provisional
+    </span>
+  );
+}
+

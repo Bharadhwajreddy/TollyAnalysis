@@ -50,13 +50,18 @@ const tconsts = new Set(Object.values(heroes).flatMap((rows) => rows.map((r) => 
 console.log(`principals: ${tconsts.size} titles for ${Object.keys(heroes).length} heroes`);
 
 const akas: Record<string, string[]> = {};
+/** Titles with a Telugu-language alternate title on IMDb: evidence of a Telugu (often dubbed) release. */
+const teluguTitles = new Set<string>();
 for await (const line of stream("title.akas.tsv.gz")) {
   const t1 = line.indexOf("\t");
   const tconst = line.slice(0, t1);
   if (!tconsts.has(tconst)) continue;
-  const title = line.split("\t")[2];
+  const cols = line.split("\t");
+  const title = cols[2];
+  if (cols[4] === "te") teluguTitles.add(tconst);
   const list = (akas[tconst] ??= []);
   if (!list.includes(title)) list.push(title);
 }
 console.log(`akas: ${Object.keys(akas).length} titles with alternate names`);
-writeFileSync(".cache/tolly/imdb-cast.json", JSON.stringify({ fetchedAt: new Date().toISOString(), heroes, akas }));
+console.log(`Telugu-language titles: ${teluguTitles.size}`);
+writeFileSync(".cache/tolly/imdb-cast.json", JSON.stringify({ fetchedAt: new Date().toISOString(), heroes, akas, teluguTitles: [...teluguTitles] }));

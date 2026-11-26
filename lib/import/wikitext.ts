@@ -41,7 +41,7 @@ function parseCell(raw: string, header: boolean): Cell {
   const parts = splitTop(raw, "|");
   let attrs = "";
   let text = raw;
-  if (parts.length > 1 && /^\s*(?:[a-z-]+\s*=\s*("[^"]*"|'[^']*'|[^\s|]+)\s*)+$/i.test(parts[0])) {
+  if (parts.length > 1 && /^\s*(?:[a-z-]+\s*=\s*("[^"]*"|'[^']*'|[^\s|]+)\s*)+;?\s*$/i.test(parts[0])) {
     attrs = parts[0];
     text = parts.slice(1).join("|");
   }

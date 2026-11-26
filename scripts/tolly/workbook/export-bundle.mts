@@ -132,8 +132,9 @@ const heroes = (snap.heroes as SnapHero[]).map((h) => {
     ig: (REPORTED_INSTAGRAM.followers as Record<string, number>)[h.slug] ?? null,
     fameFollowers: appHero.get(h.slug)?.followers?.total ?? null,
     fameDate: appHero.get(h.slug)?.followers?.asOf ?? null,
-    noAccount: !!editorFollowers[h.slug]?.noAccount,
+    noAccount: editorFollowers[h.slug]?.noAccount ? "Yes" : (appHero.get(h.slug) as { followersPending?: boolean } | undefined)?.followersPending ? "Pending" : null,
     career: appHero.get(h.slug)?.career ?? null,
+    heldBack: !!(appHero.get(h.slug) as { heldBack?: boolean } | undefined)?.heldBack,
     appIndex: appHero.get(h.slug)?.index ?? null,
   };
 });

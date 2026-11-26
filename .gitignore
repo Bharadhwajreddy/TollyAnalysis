@@ -60,3 +60,11 @@ tolly-snapshot-*.tar.gz
 
 # Filled data-entry files (may hold Letterboxd numbers): kept out of the public repo, included in tolly:snapshot
 data-private/
+video/**/*.mp4
+video/**/frames/
+video/**/still-*.png
+video/**/posters/*.jpg
+video/**/voice/*.wav
+video/producer-loss/assets/*
+!video/producer-loss/assets/anton.woff2
+__pycache__/

@@ -8,17 +8,20 @@ import { AllGraphs } from "@/components/home/all-graphs";
 import { HeadToHead, type DuelHero } from "@/components/home/head-to-head";
 import { HeroSearch } from "@/components/home/hero-search";
 import { TopFilms } from "@/components/home/top-films";
+import { topGrossingTeluguFilms, topLovedTeluguFilms } from "@/lib/tolly/top";
 import { TopTen, type TopRow } from "@/components/home/top-ten";
 import { CountUp } from "@/components/ui/count-up";
 import { HomeCharts, type ChartHero } from "@/components/home/home-charts";
+import { ReleasesChart } from "@/components/releases/releases-chart";
+import { releaseCounts } from "@/lib/releases";
 import { FanRanking } from "@/components/ranking/fan-ranking";
-import { GROUPS, groupFact, groupValue } from "@/components/tolly/tolly-parts";
+import { GROUPS, groupFact, groupValue, PROVISIONAL_TIP } from "@/components/tolly/tolly-parts";
 import { compactCount } from "@/lib/data/real/hero-facts";
 import { DATA_MODE } from "@/lib/env";
 import { tollyIndexEnabled, userRankingEnabled } from "@/lib/features";
 import { getDashboardData } from "@/lib/repositories";
 import { getHomeSeo, JsonLd } from "@/lib/seo";
-import { getTollyHero, getTollyRanking, getTopTollyFilms, tollyMeta } from "@/lib/tolly/view";
+import { getTollyHero, getTollyRanking, tollyMeta } from "@/lib/tolly/view";
 
 /** Canonical "/", a data-driven "who is No. 1" description, and complete OpenGraph/Twitter blocks. */
 export async function generateMetadata(): Promise<Metadata> {
@@ -94,10 +97,12 @@ export default async function HomePage() {
   const names = new Map(all.map((h) => [h.slug, h.name]));
   const top10 = ranked.slice(0, 10);
   const podium = [ranked[1], ranked[0], ranked[2]].filter(Boolean);
-  const films = getTopTollyFilms(25);
+  const films = topLovedTeluguFilms(25);
+  const grossing = topGrossingTeluguFilms(25);
   const followed = [...ranked].filter((h) => h.followers).sort((a, b) => (b.followers?.total ?? 0) - (a.followers?.total ?? 0));
   // Ratios need a few films behind them, as on the Star Score page.
   const MIN_JUDGED = 5;
+  const releases = releaseCounts();
   const chart: ChartHero[] = all.map((h) => {
     const t = getTollyHero(h.slug);
     const sr = h.m.overallSuccessRatio;
@@ -120,7 +125,7 @@ export default async function HomePage() {
   });
   const topRows: TopRow[] = top10.map((h) => {
     const v = all.find((x) => x.slug === h.slug);
-    return { slug: h.slug, name: h.name, thumb: thumbs.get(h.slug) ?? null, family: v?.family ?? null, debutYear: v?.debutYear ?? null, rank: h.rank as number, index: h.index as number, best: h.best[0]?.title ?? null };
+    return { slug: h.slug, name: h.name, thumb: thumbs.get(h.slug) ?? null, family: v?.family ?? null, debutYear: v?.debutYear ?? null, rank: h.rank as number, index: h.index as number, best: h.best[0]?.title ?? null, provisional: !!v && v.industry !== "telugu" };
   });
   const duel: DuelHero[] = ranked.map((h) => ({
     slug: h.slug,
@@ -184,6 +189,11 @@ export default async function HomePage() {
                         </span>
                       </span>
                       <span className="mt-2.5 block truncate text-[13.5px] font-semibold text-white sm:text-[16px]">{h.name}</span>
+                      {all.find((x) => x.slug === h.slug)?.industry !== "telugu" && (
+                        <span title={PROVISIONAL_TIP} className="block text-[10px] font-semibold uppercase tracking-wide text-[#f0c98a]">
+                          Provisional
+                        </span>
+                      )}
                       <span className="num block text-[22px] font-extrabold leading-tight sm:text-[30px]" style={{ color: MEDAL[place] }}>
                         {h.index?.toFixed(1)}
                       </span>
@@ -242,10 +252,10 @@ export default async function HomePage() {
           <section aria-labelledby="top-films" className="card reveal p-4 sm:p-6">
             <p className="section-kicker">Films</p>
             <h2 id="top-films" className="mt-1 font-serif text-[22px] font-semibold text-ink">
-              Top-scored films
+              Top films
             </h2>
             <p className="mt-0.5 text-[12.5px] text-ink-2">
-              Scored out of 100 on audience rating, reach and staying power. Tap a film to see why.{" "}
+              The most-loved films and the biggest box-office hits. Tap a loved film to see why.{" "}
               <Link href="/methodology#tolly-index" className="font-medium text-wine hover:underline">
                 How?
               </Link>
@@ -261,6 +271,7 @@ export default async function HomePage() {
                 stay: f.stay,
                 heroes: f.heroes.map((slug) => ({ slug, name: names.get(slug) ?? slug })),
               }))}
+              grossing={grossing.map((f) => ({ ...f, heroes: f.heroes.map((slug) => ({ slug, name: names.get(slug) ?? slug })) }))}
             />
           </section>
 
@@ -299,6 +310,27 @@ export default async function HomePage() {
         </h2>
         <div className="mt-4">
           <HomeCharts heroes={chart} />
+        </div>
+      </section>
+
+      {/* Releases per year, drawn as it scrolls into view */}
+      <section aria-labelledby="home-releases" className="card reveal mt-4 p-4 sm:p-6">
+        <div className="flex flex-wrap items-end justify-between gap-2">
+          <div>
+            <p className="section-kicker">Every Friday</p>
+            <h2 id="home-releases" className="mt-1 font-serif text-[26px] font-semibold leading-tight text-ink sm:text-[30px]">
+              How many Telugu films release each year?
+            </h2>
+            <p className="mt-1 text-[13.5px] text-ink-2">
+              {releases[releases.length - 1].total} so far in {releases[releases.length - 1].year}, including films straight to OTT and films dubbed into Telugu.
+            </p>
+          </div>
+          <Link href="/releases" className="text-[14px] font-semibold text-wine hover:underline">
+            See every film →
+          </Link>
+        </div>
+        <div className="mt-4">
+          <ReleasesChart data={releases} height={280} linkYears />
         </div>
       </section>
 

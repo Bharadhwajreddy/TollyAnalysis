@@ -12,6 +12,7 @@
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { getHeroSnapshots } from "@/lib/repositories";
+import { INITIAL_ROSTER } from "@/lib/constants/roster";
 import { REPORTED_INSTAGRAM } from "@/lib/data/real/reported-social";
 import { correlation, criticScores } from "@/lib/tolly/critics";
 import { applyHeroFactors, FAME_WEIGHT, HERO_FACTORS, HERO_WEIGHTS, MIN_GROSS_FILMS, MIN_GROSS_SHARE, MIN_VOTES, RECENT_PRIOR_FILMS, SUCCESS_PRIOR_FILMS, scoreFilms, scoreHeroes, TOLLY_VERSION, WEIGHTS, type HeroCareer, type HeroFollowers, type TollyFilmInput } from "@/lib/tolly";
@@ -112,6 +113,26 @@ const heroes = scoreHeroes(
   snap.heroes.map((h: { slug: string; name: string }) => ({ slug: h.slug, name: h.name, films: counted.filter((c: { hero: string }) => c.hero === h.slug).map((c: { film: string }) => alias.get(c.film) ?? c.film) })),
   films,
 );
+// Heroes from other industries are held out of the ranking until an editor has checked the box-office
+// result of at least HOLD_CHECKED_SHARE of their counted films (film-verdicts.csv, import-manual.mts).
+const HOLD_CHECKED_SHARE = 0.9;
+const filmByKeySnap = new Map(snap.films.map((f: { key: string; verdict?: { source?: string } | null }) => [f.key, f]));
+const heldBack = new Set<string>();
+for (const r of INITIAL_ROSTER.filter((x) => x.homeLanguage)) {
+  const own = counted.filter((c: { hero: string }) => c.hero === r.slug);
+  const checked = own.filter((c: { film: string }) => (filmByKeySnap.get(c.film) as { verdict?: { source?: string } | null } | undefined)?.verdict?.source === "editor-check").length;
+  if (own.length && checked / own.length < HOLD_CHECKED_SHARE) heldBack.add(r.slug);
+}
+for (const h of heroes) {
+  if (!heldBack.has(h.slug)) continue;
+  h.heldBack = true;
+  if (h.qualified) {
+    h.qualified = false;
+    h.reason = "box-office record being checked";
+    h.index = null;
+    h.band = null;
+  }
+}
 // Fame: official follower counts checked by an editor (import-manual.mts), else the dated press count.
 const editor: Record<string, { counts: HeroFollowers["counts"]; noAccount: boolean }> = existsSync("lib/data/real/hero-followers.json")
   ? read("lib/data/real/hero-followers.json").heroes
@@ -121,7 +142,9 @@ const followers: HeroFollowers[] = snap.heroes.map((h: { slug: string }) => {
   const counts = [...(e?.counts ?? [])];
   const press = (REPORTED_INSTAGRAM.followers as Record<string, number>)[h.slug];
   if (press && !counts.some((c) => c.platform === "instagram")) counts.push({ platform: "instagram", followers: press, date: REPORTED_INSTAGRAM.date });
-  return { slug: h.slug, counts, noAccount: !!e?.noAccount };
+  // Heroes added from other industries keep fame "pending" until an editor checks their profiles.
+  const pending = !e && !!INITIAL_ROSTER.find((r) => r.slug === h.slug)?.homeLanguage;
+  return { slug: h.slug, counts, noAccount: !!e?.noAccount, pending };
 });
 // Box-office record per hero, from the same career numbers the site shows (hit / flop verdicts, no money).
 const careerSnaps = await getHeroSnapshots("all_time", true);
@@ -196,7 +219,7 @@ const meta = {
   heroFactors: HERO_FACTORS,
   heroWeights: HERO_WEIGHTS,
   heroRules: { successPrior: fame.successPrior, successPriorFilms: SUCCESS_PRIOR_FILMS, recentPriorFilms: RECENT_PRIOR_FILMS, minGrossFilms: MIN_GROSS_FILMS, minGrossShare: MIN_GROSS_SHARE },
-  fame: { weight: FAME_WEIGHT, applied: fame.applied, missing: fame.missing.length, missingHeroes: fame.missing },
+  fame: { weight: FAME_WEIGHT, applied: fame.applied, missing: fame.missing.length, missingHeroes: fame.missing, pendingHeroes: heroes.filter((h) => h.followersPending).map((h) => h.name) },
   sources: {
     imdb: `IMDb non-commercial datasets (title.basics, title.ratings, title.principals, title.akas), ${asOf}`,
     wikidata: "Wikidata query service (CC0): films by cast, release dates, languages, IMDb ids, language editions",
