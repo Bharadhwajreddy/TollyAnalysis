@@ -7,7 +7,13 @@ import type { FilmDot } from "@/lib/ledger-types";
  * Page-level focus: hovering a director, hero, year or film anywhere lights its films in every strip on the
  * page and dims the rest. Click pins it (shown as a chip); hover alone is transient.
  */
-export type Focus = { kind: "director" | "hero" | "year" | "film"; key: string; label: string } | null;
+export type Focus = {
+  kind: "director" | "hero" | "year" | "film";
+  key: string;
+  label: string;
+  /** kind "film" only: light this set of films (e.g. one director × hero pairing) instead of the one `key`. */
+  set?: string[];
+} | null;
 
 interface Ctx {
   focus: Focus;
@@ -37,7 +43,7 @@ export function lit(f: FilmDot, focus: Focus): boolean {
     case "year":
       return String(f.y) === focus.key;
     case "film":
-      return f.s === focus.key;
+      return focus.set ? focus.set.includes(f.s) : f.s === focus.key;
   }
 }
 
