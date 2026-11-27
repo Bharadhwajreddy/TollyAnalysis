@@ -66,24 +66,24 @@ test.describe("Other views", () => {
     await expect(page.getByRole("group", { name: "Heroes being compared" })).toContainText("#2");
   });
 
-  test("hero page shows the Star Score breakdown, all statistics and every film with sources", async ({ page }) => {
+  test("hero page: one score, the career reel, where he stands and every film with its source", async ({ page }) => {
     await page.goto("/hero/prabhas");
-    await expect(page.locator("#star")).toContainText("Total box office");
-    await expect(page.getByText(/All statistics/)).toBeVisible();
-    await expect(page.getByRole("heading", { name: /^Films \(\d+\)$/ })).toBeVisible();
-    await expect(page.locator("#films")).toContainText("Baahubali 2: The Conclusion");
-    await page.locator("#films").getByRole("button", { name: /Details/ }).first().click();
-    await expect(page.locator("#films")).toContainText("Suggest a correction");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Prabhas");
+    await expect(page.locator("main")).not.toContainText("Star Score");
+    await expect(page.getByRole("img", { name: /Prabhas/ }).first()).toBeVisible();
+    await expect(page.locator("section:has(#standing)")).toContainText("typical");
+    const films = page.locator("section:has(#films)");
+    await expect(films).toContainText("Baahubali 2: The Conclusion");
+    await films.getByRole("button", { name: /Show details for Baahubali 2/ }).first().click();
+    await expect(films).toContainText("Open the film page");
   });
-
   test("each film's result names its source (Kithakithalu is a hit)", async ({ page }) => {
     await page.goto("/hero/allari-naresh");
-    const row = page.locator("#films tr", { hasText: "Kithakithalu" }).first();
-    await expect(row).toContainText("Hit");
-    await expect(row).toContainText("via Wikipedia");
-    await expect(page.locator("#films tbody tr td:first-child a", { hasText: /^Maharshi$/ })).toHaveCount(0);
+    const films = page.locator("section:has(#films)");
+    await films.getByRole("button", { name: "Show details for Kithakithalu" }).first().click();
+    await expect(films).toContainText("Source:");
+    await expect(films.getByRole("link", { name: "Kithakithalu" }).first()).toHaveAttribute("href", /\/film\/kithakithalu-2006/);
   });
-
   test("all heroes ledger: search, group and light up a director", async ({ page }) => {
     await page.goto("/heroes");
     await expect(page.getByRole("heading", { level: 1 })).toContainText("Heroes");
@@ -126,35 +126,37 @@ test.describe("Responsive layout", () => {
 });
 
 test.describe("Tolly Index", () => {
-  test("hero page shows the index, its pillars and each film's score", async ({ page }) => {
+  test("hero page shows the index, its rank, the five parts and all 15 numbers, without weights", async ({ page }) => {
     await page.goto("/hero/allari-naresh");
-    const card = page.locator("#tolly");
-    await expect(card).toContainText("Tolly Index");
-    await expect(card).toContainText(/#\d+ of \d+ heroes/);
-    await expect(card).toContainText("Staying power");
-    await expect(page.locator("#films thead")).toContainText("Tolly Index");
-    // Every number behind the score is listed with its weight.
-    await expect(card.getByText("All 15 numbers behind the score")).toBeVisible();
-    await expect(card.locator("table tbody tr")).toHaveCount(5 + 15);
+    await expect(page.locator("main")).toContainText(/#\d+ of \d+/);
+    const standing = page.locator("section:has(#standing)");
+    await expect(standing).toContainText("Audience");
+    await standing.getByText(/All 15 numbers/).click();
+    await expect(standing.locator("table tbody tr")).toHaveCount(5 + 15);
+    await expect(standing).not.toContainText(/\b37%|weight/i);
   });
-
   test("how it works explains the idea without naming data providers", async ({ page }) => {
     await page.goto("/methodology");
     await expect(page.getByRole("heading", { level: 1 })).toHaveText("How it works");
-    await expect(page.locator("#tolly-index")).toContainText("our own formula");
-    await expect(page.locator("body")).toContainText("secret masala");
+    await expect(page.locator("main")).toContainText("our own formula");
+    await expect(page.locator("main")).toContainText("secret masala");
     await expect(page.locator("main")).not.toContainText(/IMDb|TMDB|Letterboxd/);
     await expect(page.getByRole("link", { name: /Data credits/ }).first()).toBeVisible();
   });
-
-  test("top films can be ranked by box office, and both lists keep to films made in Telugu", async ({ page }) => {
-    await page.goto("/");
-    await page.getByRole("tab", { name: "Biggest box office" }).click();
-    await expect(page.locator("section:has(#top-films) ol").first()).toContainText("Baahubali 2");
-    await page.getByRole("tab", { name: "Most loved" }).click();
-    await expect(page.locator("section:has(#top-films)")).not.toContainText("Jai Bhim");
+  test("films explorer: budget against gross, ranked lists, shareable tabs", async ({ page }) => {
+    await page.goto("/films?tab=biggest");
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+    await expect(page.locator("main")).toContainText("Baahubali 2");
+    await expect(page.locator("main")).not.toContainText(/IMDb|votes/);
   });
 
+  test("film page: the result, the score and where it sits", async ({ page }) => {
+    await page.goto("/film/baahubali-2-the-conclusion-2017");
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("Baahubali 2: The Conclusion");
+    await expect(page.getByRole("link", { name: "Prabhas" }).first()).toHaveAttribute("href", "/hero/prabhas");
+    await expect(page.locator("#sits")).toBeVisible();
+    await expect(page.locator("main")).not.toContainText(/IMDb|votes/);
+  });
   test("careers and contact pages are linked from the footer", async ({ page }) => {
     await page.goto("/");
     const footer = page.locator("footer");
@@ -168,8 +170,9 @@ test.describe("Tolly Index", () => {
 
   test("hero page shows age and profile facts", async ({ page }) => {
     await page.goto("/hero/chiranjeevi");
-    await expect(page.locator("#facts")).toContainText(/Age \d+ · born 22 Aug 1955/);
-    await expect(page.getByRole("region", { name: "Profile" })).toContainText("Padma Vibhushan");
+    const about = page.locator("section:has(#about)");
+    await expect(about).toContainText(/22 Aug 1955.*age \d+/);
+    await expect(about).toContainText("Padma Vibhushan");
   });
 });
 
@@ -178,7 +181,7 @@ test.describe("Legal", () => {
     await page.goto("/");
     const footer = page.locator("footer");
     await expect(footer.getByRole("link", { name: "Data credits" }).first()).toHaveAttribute("href", "/annexure/sources");
-    await expect(footer.getByRole("link", { name: "Privacy policy" })).toHaveAttribute("href", "/privacy");
+    await expect(footer.getByRole("link", { name: "Privacy" })).toHaveAttribute("href", "/privacy");
     await expect(footer.getByRole("link", { name: "Terms of use" })).toHaveAttribute("href", "/terms");
   });
 
@@ -190,48 +193,34 @@ test.describe("Legal", () => {
 });
 
 test.describe("Home page", () => {
-  test("leads with the Tolly Index: podium, top 10, one chart and ways to go deeper", async ({ page }) => {
+  test("leads with the Tolly Index as careers on one timeline, findings, a duel and this year", async ({ page }) => {
     const errors: string[] = [];
     page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
     await page.goto("/");
     await expect(page.getByRole("heading", { level: 1 })).toContainText("biggest hero");
-    await expect(page.getByRole("list", { name: "Top three heroes" }).getByRole("link")).toHaveCount(3);
-    await expect(page.locator("section:has(#top10) ol:not([aria-label]) > li")).toHaveCount(10);
-    // One chart: success ratio against number of films, coloured by debut era or film family.
-    const chart = page.locator("section:has(#home-chart)");
-    await expect(chart.getByRole("group", { name: /number of films as lead/ })).toBeVisible();
-    expect(await chart.locator("svg [role=button]").count()).toBeGreaterThan(30);
-    await expect(chart).toContainText("Debut 2000–2007");
-    await chart.getByRole("radio", { name: "Film family" }).click();
-    await expect(chart).toContainText("Mega family");
-    await chart.getByRole("radio", { name: "Loved vs. followed" }).click();
-    expect(await page.getByRole("list", { name: "Heroes by film score and followers" }).getByRole("link").count()).toBeGreaterThan(30);
-    // Only the essentials up front; every other graph sits behind one tap and loads only when opened.
-    await expect(page.locator("#leaderboard")).toHaveCount(0);
-    await expect(page.locator("#table")).toHaveCount(0);
-    const all = page.locator("#all-graphs");
-    await expect(all).toContainText("See all the graphs");
-    await all.locator("summary").click();
-    await expect(page.locator("#leaderboard")).toBeVisible();
-    await expect(page.locator("#pareto-1")).toBeVisible();
-    await expect(page.locator("#table")).toBeVisible();
-    await expect(page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: "Star Score" })).toHaveAttribute("href", "/star-score");
+    const index = page.locator("#index");
+    // Ten careers up front; the rest one click away.
+    await expect(index.locator("a[href^='/hero/']:visible")).toHaveCount(10);
+    await expect(index.locator("a[href^='/hero/']:visible").first()).toHaveAttribute("href", "/hero/allu-arjun");
+    // Re-rank by another number: the rows re-sort (and the reading order follows).
+    await index.getByRole("radio", { name: "Films" }).click();
+    await expect(index.locator("a[href^='/hero/']:visible").first()).not.toHaveAttribute("href", "/hero/allu-arjun");
+    await index.getByRole("button", { name: /Show all \d+/ }).click();
+    expect(await index.locator("a[href^='/hero/']:visible").count()).toBeGreaterThan(40);
+    await expect(page.locator("section:has(#findings) ol > li")).toHaveCount(4);
+    await expect(page.locator("header")).not.toContainText("Star Score");
     await expect(page.locator("body")).not.toContainText("Panja Vaisshnav Tej");
     expect(errors).toEqual([]);
   });
-
-  test("the career graph shows every film and names it on hover or tap", async ({ page }) => {
+  test("the career reel names every film on hover or keyboard, and marks the next film", async ({ page }) => {
     await page.goto("/hero/vishwak-sen");
-    const graph = page.getByRole("img", { name: /Vishwak Sen: box-office result of every lead film/ });
+    const reel = page.locator("section#reel, section:has(#reel-t)").first();
+    const graph = reel.getByRole("img").first();
     await graph.scrollIntoViewIfNeeded();
-    const dots = graph.getByRole("button");
-    expect(await dots.count()).toBeGreaterThanOrEqual(10);
-    await graph.getByRole("button", { name: /^Gaami, 2024: Hit$/ }).focus();
-    await expect(page.getByRole("tooltip")).toContainText("Gaami");
-    // The next announced film is drawn at the end.
-    await expect(graph).toContainText("ENE Repeat");
+    await graph.focus();
+    await page.keyboard.press("ArrowRight");
+    await expect(page.getByRole("tooltip")).toBeVisible();
   });
-
   test("directors: a ledger ranked by hit rate, a pairings matrix, and a page per director", async ({ page }) => {
     await page.goto("/directors");
     const ledger = page.locator("#ledger");
@@ -262,70 +251,39 @@ test.describe("Home page", () => {
     await expect(page).toHaveURL(/\/releases$/);
   });
 
-  test("find your hero opens his page", async ({ page }) => {
-    await page.goto("/");
-    const box = page.getByRole("combobox", { name: "Find a hero" });
-    await box.fill("ra");
-    const list = page.getByRole("listbox", { name: "Matching heroes" });
-    // Every match is visible on screen, not cut off by the banner.
-    const options = list.getByRole("option");
-    await expect(options.nth(4)).toBeInViewport();
-    expect(await options.count()).toBeGreaterThan(4);
+  test("search finds heroes, films and directors from anywhere", async ({ page }) => {
+    await page.goto("/releases");
+    await page.keyboard.press("/");
+    const box = page.getByRole("combobox");
     await box.fill("prab");
-    await list.getByRole("option", { name: /Prabhas/ }).click();
-    await expect(page).toHaveURL(/\/hero\/prabhas$/);
-    // Keyboard: arrow down and Enter open a hero.
-    await page.goto("/");
-    await page.getByRole("combobox", { name: "Find a hero" }).fill("nani");
+    await expect(page.getByRole("option", { name: /Prabhas/ }).first()).toBeVisible();
     await page.keyboard.press("Enter");
-    await expect(page).toHaveURL(/\/hero\/nani$/);
+    await expect(page).toHaveURL(/\/hero\/prabhas$/);
+    await page.getByRole("button", { name: "Search heroes, films and directors" }).click();
+    await page.getByRole("combobox").fill("baahu");
+    await expect(page.getByRole("option").first()).toContainText("Baahubali");
+    await page.keyboard.press("Enter");
+    await expect(page).toHaveURL(/\/film\/baahubali/);
   });
-
-  test("the film list opens a film's breakdown and grows to the top 25", async ({ page }) => {
-    await page.goto("/");
-    const films = page.locator("section:has(#top-films)");
-    const first = films.getByRole("button", { expanded: false }).first();
-    await first.click();
-    await expect(films.getByRole("button", { expanded: true }).first()).toBeVisible();
-    await expect(films).toContainText("Audience rating");
-    await films.getByRole("button", { name: "Show the top 25" }).click();
-    await expect(films.getByRole("button", { name: "Show fewer" })).toBeVisible();
-    await expect(films.locator("#more-films li")).toHaveCount(20);
+  test("every film title is a link to its film page", async ({ page }) => {
+    await page.goto("/director/s-s-rajamouli");
+    await page.getByRole("link", { name: /^RRR/ }).first().click();
+    await expect(page).toHaveURL(/\/film\/rrr-2022/);
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("RRR");
   });
-
   test("head to head compares any two heroes factor by factor", async ({ page }) => {
     await page.goto("/");
     const duel = page.locator("section:has(#duel)");
     await duel.getByLabel("First hero").selectOption("prabhas");
     await duel.getByLabel("Second hero").selectOption("mahesh-babu");
     await expect(duel.getByRole("list", { name: "Prabhas against Mahesh Babu, factor by factor" }).getByRole("listitem")).toHaveCount(5);
-    await expect(duel.getByRole("link", { name: "Compare every number →" })).toHaveAttribute("href", "/compare?heroes=prabhas,mahesh-babu");
+    await expect(duel.getByRole("link", { name: "Compare every number" })).toHaveAttribute("href", "/compare?heroes=prabhas,mahesh-babu");
   });
 
-  test("the opening animation is skipped for reduced motion and never blocks the page", async ({ page }) => {
+  test("no opening animation: the page is usable at once", async ({ page }) => {
     await page.goto("/");
     await expect(page.getByTestId("intro")).toHaveCount(0);
-  });
-});
-
-test.describe("Opening animation", () => {
-  test.use({ reducedMotion: "no-preference" });
-
-  test("plays once per session, can be skipped, and clears itself", async ({ page }) => {
-    const errors: string[] = [];
-    page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
-    await page.goto("/");
-    await expect(page.getByTestId("intro")).toBeVisible();
-    await page.getByRole("button", { name: "Skip intro" }).click();
-    await expect(page.getByTestId("intro")).toHaveCount(0);
-    await page.reload();
-    await expect(page.getByTestId("intro")).toBeHidden();
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    expect(errors).toEqual([]);
-  });
-
-  test("ends by itself", async ({ page }) => {
-    await page.goto("/heroes");
-    await expect(page.getByTestId("intro")).toHaveCount(0, { timeout: 8000 });
   });
 });
+

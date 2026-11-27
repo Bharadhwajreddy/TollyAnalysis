@@ -558,3 +558,12 @@ details:not([open]) > summary .when-open {
 .dot:focus-visible .dot-tip {
   opacity: 1;
 }
+
+/* Charts render at a default width on the server; until they measure their box, never let them widen the page. */
+svg[role="img"] {
+  max-width: 100%;
+}
+/* Safety net: nothing inside the page may cause sideways page scroll (clip keeps sticky elements working). */
+main {
+  overflow-x: clip;
+}

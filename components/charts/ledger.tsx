@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element -- tiny local thumbnails */
 import Link from "next/link";
-import { ViewTransition, useEffect, useMemo, useRef, useState } from "react";
+import { ViewTransition, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { FilmStrip } from "@/components/charts/film-strip";
 import { useFocus } from "@/components/charts/focus";
 import { useElementWidth } from "@/components/charts/use-width";
@@ -179,6 +179,23 @@ export function Ledger({
 
   const focusHero = focus?.kind === "hero" ? focus.key : null;
 
+  // Rows are in ranked order in the DOM (screen readers and keyboard follow the ranking). On a re-sort each row
+  // glides from its old place to its new one (FLIP with the Web Animations API), so the move stays visible.
+  const rowEls = useRef(new Map<string, HTMLDivElement>());
+  const prevPos = useRef<Map<string, number> | null>(null);
+  const order = sorted.map((r) => r.key).join("|");
+  useLayoutEffect(() => {
+    const before = prevPos.current;
+    prevPos.current = new Map(pos);
+    if (!before || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    for (const [key, i] of pos) {
+      const was = before.get(key);
+      const el = rowEls.current.get(key);
+      if (was === undefined || was === i || !el) continue;
+      el.animate([{ transform: `translateY(${was * rowH}px)` }, { transform: `translateY(${i * rowH}px)` }], { duration: 380, easing: "cubic-bezier(0.65, 0, 0.35, 1)" });
+    }
+  }, [order, rowH]); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <div>
       {showTabs && metrics.length > 1 && (
@@ -213,7 +230,7 @@ export function Ledger({
         <div className="relative transition-[height] duration-[var(--dur-4)] ease-[var(--ease-in-out)]" style={{ height: shownN * rowH }} onMouseLeave={() => (setHover(null), (lastHover.current = null))}>
           {/* Sliding row highlight */}
           <span aria-hidden className="pointer-events-none absolute inset-x-0 top-0 rounded-[10px] bg-surface-2 transition-[transform,opacity] duration-[var(--dur-2)] ease-[var(--ease-out)]" style={{ height: rowH, transform: `translateY(${(hover ?? 0) * rowH}px)`, opacity: hover === null ? 0 : 1 }} />
-          {rows.map((r) => {
+          {sorted.map((r) => {
             const i = pos.get(r.key) as number;
             const v = r.values[metric.key];
             const on = visible.has(r.key);
@@ -222,8 +239,12 @@ export function Ledger({
             return (
               <div
                 key={r.key}
+                ref={(el) => {
+                  if (el) rowEls.current.set(r.key, el);
+                  else rowEls.current.delete(r.key);
+                }}
                 onMouseEnter={() => (setHover(i), (lastHover.current = r.key))}
-                className={`absolute inset-x-0 top-0 grid items-center gap-x-4 px-1 transition-[transform,opacity] duration-[var(--dur-4)] ease-[var(--ease-in-out)] ${narrow ? "grid-cols-1 content-center gap-y-1" : "grid-cols-[minmax(260px,330px)_1fr] lg:grid-cols-[minmax(360px,420px)_1fr]"}`}
+                className={`absolute inset-x-0 top-0 grid items-center gap-x-4 px-1 transition-opacity duration-[var(--dur-4)] ease-[var(--ease-in-out)] ${narrow ? "grid-cols-1 content-center gap-y-1" : "grid-cols-[minmax(260px,330px)_1fr] lg:grid-cols-[minmax(360px,420px)_1fr]"}`}
                 style={{ height: rowH, transform: `translateY(${i * rowH}px)`, opacity: on ? (dimmed ? 0.35 : 1) : 0, pointerEvents: on ? undefined : "none", visibility: on ? undefined : "hidden" }}
                 aria-hidden={!on}
               >

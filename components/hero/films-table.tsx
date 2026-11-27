@@ -181,7 +181,7 @@ export function FilmsTable({ rows }: { rows: HeroFilmRow[] }) {
                             e.stopPropagation();
                             setOpen(isOpen ? null : r.slug);
                           }}
-                          className="grid h-6 w-6 shrink-0 place-items-center rounded-md text-muted hover:bg-surface-2 hover:text-ink max-md:hidden"
+                          className="grid h-8 w-8 shrink-0 place-items-center rounded-md text-muted hover:bg-surface-2 hover:text-ink md:h-6 md:w-6"
                         >
                           <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden className={`transition-transform duration-[var(--dur-2)] ${isOpen ? "rotate-90" : ""}`}>
                             <path d="M3.5 1.5 7 5l-3.5 3.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
