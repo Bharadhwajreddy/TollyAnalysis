@@ -86,7 +86,8 @@ export function FilmStrip({ films, start, end, height = 44, axis = false, labels
   const base = labelH + height;
   const s = spine(start, end, 4, Math.max(10, width - 4), axis === "decades" ? 5 : width < 520 ? 5 : width < 900 ? 2 : 1);
   const perYear = (width - 8) / Math.max(1, end - start);
-  const w = Math.max(2, Math.min(labels ? 9 : 6, perYear / 4));
+  // Never wider than the films' share of the width, so a dense strip (a single year) does not overlap itself.
+  const w = Math.max(2, Math.min(labels ? 9 : 6, perYear / 4, ((width - 8) / Math.max(1, films.length)) * 0.9));
   const pts = useMemo(() => films.map((f) => ({ f, x: s.x(yearPos(f.dt, f.y)), h: Math.max(4, grossShare(f.g) * height) })), [films, s, height]);
 
   // Greedy labels: biggest films first, two levels, never overlapping.
