@@ -34,7 +34,7 @@ export const METRICS: Record<HeroMetricKey, MetricMeta> = {
     higherIsBetter: true,
     domainMax: 100,
     definition:
-      "One number out of 100 that combines every KPI: success ratio 20%, hit films 15%, total box office 15%, blockbusters 10%, recent success 10%, social media reach 10%, biggest film 5%, box office per film 5%, films as lead 10% (fans' votes join at 5% when that is switched on). Missing parts are left out, never counted as zero; box-office parts need at least 3 films with a reported gross.",
+      "One number out of 100 that combines his hits, success ratio, box office, recent results, social reach and film count. Missing parts are left out, never counted as zero; box-office parts need at least 3 films with a reported gross.",
   },
   overallSuccessRatio: {
     key: "overallSuccessRatio",
@@ -199,7 +199,7 @@ export const METRICS: Record<HeroMetricKey, MetricMeta> = {
     higherIsBetter: true,
     domainMax: 100,
     definition:
-      "One combined score out of 100: film results 35%, audience ratings 25%, consistency 15%, social media reach 15%, recent form 10%.",
+      "One combined score out of 100 from film results, audience ratings, consistency, social media reach and recent form.",
   },
   filmSuccess: {
     key: "filmSuccess",

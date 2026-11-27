@@ -11,6 +11,13 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // One headline score: the Star Score and Rankings pages live on as views of the Index explorer.
+  async redirects() {
+    return [
+      { source: "/star-score", destination: "/tolly-index?view=boxoffice", permanent: false },
+      { source: "/rankings", destination: "/tolly-index?view=table", permanent: false },
+    ];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

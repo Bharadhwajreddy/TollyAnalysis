@@ -1,73 +1,49 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("Heroes dashboard", () => {
-  test("opens on one clean page with the Star Score leaderboard first", async ({ page }) => {
+test.describe("Index explorer", () => {
+  test("the old Star Score and Rankings pages open as views of the explorer", async ({ page }) => {
     await page.goto("/star-score");
-    await expect(page.getByRole("heading", { level: 1 })).toContainText("Compare Telugu cinema careers");
-    await expect(page.getByRole("banner").getByRole("link", { name: "How it works" }).first()).toHaveAttribute("href", "/methodology");
-    const titles = await page.locator("section h2").allTextContents();
-    expect(titles.find((t) => !/Compare Telugu/.test(t))).toContain("Star Score");
-    expect(titles.some((t) => t.includes("More films vs. more success"))).toBe(true);
-    // The home page shows results only; how they are made lives on the "How it works" page.
-    await expect(page.locator("#leaderboard")).not.toContainText("What goes into the Star Score");
-    await expect(page.locator("body")).not.toContainText("How we calculate");
-    await expect(page.locator("polyline")).toHaveCount(0);
-    // Photos are shown on the leaderboard.
-    expect(await page.locator("#leaderboard image, #leaderboard img").count()).toBeGreaterThan(5);
-    // Editorially excluded: never ranked or listed (only named in the note that explains the exclusion).
-    await expect(page.locator("#leaderboard")).not.toContainText("Panja Vaisshnav Tej");
-    await expect(page.locator("#table")).not.toContainText("Panja Vaisshnav Tej");
+    await expect(page).toHaveURL(/\/tolly-index\?view=boxoffice/);
+    await expect(page.getByRole("radio", { name: "Box office", checked: true })).toBeVisible();
+    await expect(page.locator("#explorer thead")).toContainText("Box office score");
+    await page.goto("/rankings?metric=releaseGap");
+    await expect(page).toHaveURL(/view=table/);
+    await expect(page.locator("#explorer th[aria-sort=ascending]")).toContainText("Gap");
   });
 
-  test("newcomer toggle never hides anyone already shown", async ({ page }) => {
-    await page.goto("/star-score");
-    const before = await page.locator("#table tbody tr").count();
-    await page.getByRole("switch").click();
-    expect(await page.locator("#table tbody tr").count()).toBeGreaterThanOrEqual(before);
+  test("one frame, three views, synced to the address bar", async ({ page }) => {
+    await page.goto("/tolly-index");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("The Tolly Index");
+    await expect(page.getByRole("group", { name: "Tolly Index ledger" })).toBeVisible();
+    await page.getByRole("radio", { name: "Table" }).click();
+    await expect(page).toHaveURL(/view=table/);
+    const rows = page.locator("#explorer tbody tr");
+    expect(await rows.count()).toBeGreaterThan(40);
+    await expect(rows.first()).toContainText("±");
+    await expect(page.locator("#explorer th[aria-sort=descending]")).toContainText("Tolly Index");
+    // No weights or shares are published anywhere on the page.
+    await expect(page.locator("#explorer thead")).not.toContainText("%");
+    await page.locator("#explorer th", { hasText: "Fame" }).getByRole("button").click();
+    await expect(page).toHaveURL(/metric=fame/);
+    await expect(page.locator("#explorer th[aria-sort=descending]")).toContainText("Fame");
+    await page.getByRole("radio", { name: "Scatter" }).click();
+    await page.getByRole("button", { name: /^Up/ }).click();
+    await page.getByRole("option", { name: "Hit rate" }).click();
+    await expect(page).toHaveURL(/y=hitRate/);
+    await expect(page.locator("#explorer svg[role=img]")).toHaveAttribute("aria-label", /Hit rate against Reported gross/);
   });
 
-  test("colour can switch to film families", async ({ page }) => {
-    await page.goto("/star-score");
-    await page.getByRole("radio", { name: "Film family" }).click();
-    await expect(page.locator("#leaderboard")).toContainText("Mega family");
-  });
-
-  test("search filters every chart and the table", async ({ page }) => {
-    await page.goto("/star-score");
-    await page.getByPlaceholder("Search a hero").fill("Satyadev");
-    await expect(page.locator("#table tbody tr")).toHaveCount(1);
-    await expect(page.locator("#table")).toContainText("Satyadev");
-  });
-
-  test("Pareto axes can be changed", async ({ page }) => {
-    await page.goto("/star-score");
-    const card = page.locator("#pareto-1");
-    await card.getByRole("combobox").nth(1).selectOption("totalGross");
-    await expect(card).toContainText("Total box office (₹ crore)");
-  });
-
-  test("double-tapping a hero opens his page", async ({ page }) => {
-    await page.goto("/star-score");
-    const row = page.locator("#table tbody tr").first();
-    // The cell also holds the avatar's initials badge; the name is the longest line.
-    const name = (await row.locator("td").nth(1).innerText())
-      .split("\n")
-      .map((l) => l.replace("NEW", "").trim())
-      .sort((a, b) => b.length - a.length)[0];
-    await row.dblclick();
-    await expect(page).toHaveURL(/\/hero\//);
-    await expect(page.getByRole("heading", { level: 1 })).toContainText(name);
-    await expect(page.getByRole("heading", { name: /^Films \(\d+\)$/ })).toBeVisible();
-  });
-
-  test("more measures can be ranked", async ({ page }) => {
-    await page.goto("/star-score");
-    await page.locator("#leaderboard select").selectOption("releaseGap");
-    await expect(page.locator("#leaderboard h2")).toContainText("gap between films");
+  test("heroes outside the index give their real reason", async ({ page }) => {
+    await page.goto("/tolly-index");
+    const outside = page.locator("section:has(#outside)");
+    await expect(outside).toContainText("Vijay");
+    await expect(outside).toContainText("Box-office record being checked");
+    await expect(page.locator("body")).not.toContainText(/too few/i);
+    await expect(page.locator("body")).not.toContainText("Panja Vaisshnav Tej");
   });
 
   test("fan ranking stays hidden unless switched on", async ({ page, request }) => {
-    await page.goto("/star-score");
+    await page.goto("/tolly-index");
     await expect(page.locator("#fan-ranking")).toHaveCount(0);
     expect((await request.get("/api/user-ranking")).status()).toBe(404);
   });
@@ -76,8 +52,18 @@ test.describe("Heroes dashboard", () => {
 test.describe("Other views", () => {
   test("compare two heroes", async ({ page }) => {
     await page.goto("/compare?heroes=nani,prabhas");
-    await expect(page.getByRole("heading", { name: "Side-by-side detail" })).toBeVisible();
-    await expect(page.locator("table")).toContainText("Prabhas");
+    await expect(page.getByRole("heading", { name: "Careers, film by film" })).toBeVisible();
+    await expect(page.locator("#numbers table")).toContainText("Prabhas");
+    await page.getByRole("radio", { name: "Years since debut" }).click();
+    await expect(page.locator("#reels svg[role=img]")).toHaveAttribute("aria-label", /years since debut/);
+    await page.getByRole("button", { name: "Remove Nani" }).click();
+    await expect(page).toHaveURL(/heroes=prabhas$/);
+  });
+
+  test("compare defaults to the index No. 1 and No. 2", async ({ page }) => {
+    await page.goto("/compare");
+    await expect(page.getByRole("group", { name: "Heroes being compared" })).toContainText("#1");
+    await expect(page.getByRole("group", { name: "Heroes being compared" })).toContainText("#2");
   });
 
   test("hero page shows the Star Score breakdown, all statistics and every film with sources", async ({ page }) => {
@@ -98,12 +84,19 @@ test.describe("Other views", () => {
     await expect(page.locator("#films tbody tr td:first-child a", { hasText: /^Maharshi$/ })).toHaveCount(0);
   });
 
-  test("all heroes directory", async ({ page }) => {
+  test("all heroes ledger: search, group and light up a director", async ({ page }) => {
     await page.goto("/heroes");
-    await expect(page.getByRole("heading", { level: 1 })).toContainText("All heroes");
-    await page.getByRole("link", { name: "Name" }).click();
-    await expect(page).toHaveURL(/sort=name/);
-    expect(await page.locator("main ul li a").count()).toBeGreaterThan(50);
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("Heroes");
+    expect(await page.locator("#heroes a[href^='/hero/']").count()).toBeGreaterThan(80);
+    await page.getByRole("radio", { name: "Family" }).click();
+    await expect(page).toHaveURL(/group=family/);
+    await expect(page.getByRole("heading", { name: /Mega family/ })).toBeVisible();
+    await page.getByPlaceholder("Find a hero").fill("Satyadev");
+    await expect(page.locator("#heroes a[href^='/hero/']")).toHaveCount(1);
+    await page.getByPlaceholder("Find a hero").fill("");
+    await page.getByRole("combobox", { name: /director/ }).fill("Rajamouli");
+    await page.keyboard.press("Enter");
+    await expect(page.getByRole("button", { name: /Showing S\. S\. Rajamouli/ })).toBeVisible();
   });
 
   test("correction form validates and submits privately", async ({ page }) => {
@@ -123,7 +116,7 @@ test.describe("Other views", () => {
 });
 
 test.describe("Responsive layout", () => {
-  for (const path of ["/", "/star-score", "/tolly-index", "/heroes", "/hero/prabhas", "/hero/allari-naresh", "/hero/sivaji", "/rankings", "/compare", "/trends", "/methodology", "/annexure", "/annexure/registry", "/annexure/heroes/nani", "/annexure/corrections", "/annexure/sources", "/terms", "/privacy", "/careers", "/contact"]) {
+  for (const path of ["/", "/tolly-index", "/tolly-index?view=table", "/tolly-index?view=scatter", "/heroes", "/hero/prabhas", "/hero/allari-naresh", "/hero/sivaji", "/compare", "/compare?heroes=prabhas,jr-ntr,ram-charan,nani", "/trends", "/methodology", "/annexure", "/annexure/registry", "/annexure/heroes/nani", "/annexure/corrections", "/annexure/sources", "/terms", "/privacy", "/careers", "/contact"]) {
     test(`no horizontal page overflow on ${path}`, async ({ page }) => {
       await page.goto(path);
       const [scrollW, clientW] = await page.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]);
@@ -133,18 +126,6 @@ test.describe("Responsive layout", () => {
 });
 
 test.describe("Tolly Index", () => {
-  test("ranking page lists ranked heroes with bands, and the heroes still waiting for data", async ({ page }) => {
-    await page.goto("/tolly-index");
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Tolly Index");
-    await expect(page.getByRole("navigation", { name: "Main" })).toContainText("Tolly Index");
-    await expect(page.locator("#ranking")).toContainText("Hero ranking");
-    const rows = page.locator("table tbody tr");
-    expect(await rows.count()).toBeGreaterThan(40);
-    await expect(rows.first()).toContainText("±");
-    await expect(page.locator("#unranked")).toContainText("Not ranked yet");
-    await expect(page.locator("body")).not.toContainText("Panja Vaisshnav Tej");
-  });
-
   test("hero page shows the index, its pillars and each film's score", async ({ page }) => {
     await page.goto("/hero/allari-naresh");
     const card = page.locator("#tolly");
@@ -155,15 +136,6 @@ test.describe("Tolly Index", () => {
     // Every number behind the score is listed with its weight.
     await expect(card.getByText("All 15 numbers behind the score")).toBeVisible();
     await expect(card.locator("table tbody tr")).toHaveCount(5 + 15);
-  });
-
-  test("heroes are coloured by debut era or film family on the ranking page", async ({ page }) => {
-    await page.goto("/tolly-index");
-    await expect(page.getByRole("list", { name: "Colours" })).toContainText("Debut 2000–2007");
-    await page.getByRole("radio", { name: "Film family" }).click();
-    await expect(page.getByRole("list", { name: "Colours" })).toContainText("Mega family");
-    const rings = await page.locator("section:has(#ranking) tbody tr td:nth-child(2) a > span").evaluateAll((els) => new Set(els.map((e) => (e as HTMLElement).style.boxShadow)).size);
-    expect(rings).toBeGreaterThan(2); // not one colour for everybody
   });
 
   test("how it works explains the idea without naming data providers", async ({ page }) => {
