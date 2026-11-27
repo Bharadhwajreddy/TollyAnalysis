@@ -1,120 +1,36 @@
-/* eslint-disable @next/next/no-img-element -- small local portraits */
 import Link from "next/link";
-import type { CSSProperties } from "react";
+import { FocusProvider } from "@/components/charts/focus";
+import { Ledger } from "@/components/charts/ledger";
+import { OutcomeLegend } from "@/components/charts/outcome-legend";
+import { YearColumns, YearLegend } from "@/components/charts/year-columns";
 import { Dashboard } from "@/components/dashboard/dashboard";
-import { heroThumb, initialsOf } from "@/components/hero/hero-avatar";
-import { AllGraphs } from "@/components/home/all-graphs";
+import { FilmToken, HeroToken } from "@/components/entity/tokens";
+import { EvidenceBars, EvidenceMarks } from "@/components/home/evidence";
 import { HeadToHead, type DuelHero } from "@/components/home/head-to-head";
-import { HeroSearch } from "@/components/home/hero-search";
-import { TopFilms } from "@/components/home/top-films";
-import { topGrossingTeluguFilms, topLovedTeluguFilms } from "@/lib/tolly/top";
-import { TopTen, type TopRow } from "@/components/home/top-ten";
-import { CountUp } from "@/components/ui/count-up";
-import { HomeCharts, type ChartHero } from "@/components/home/home-charts";
-import { ReleasesChart } from "@/components/releases/releases-chart";
-import { releaseCounts } from "@/lib/releases";
-import { FanRanking } from "@/components/ranking/fan-ranking";
-import { GROUPS, groupFact, groupValue, PROVISIONAL_TIP } from "@/components/tolly/tolly-parts";
+import { SectionTitle } from "@/components/layout/page-header";
+import { SearchField } from "@/components/search/search-field";
+import { GROUPS, groupFact, groupValue } from "@/components/tolly/tolly-parts";
+import { ChartFrame, Source } from "@/components/ui/chart-frame";
 import { compactCount } from "@/lib/data/real/hero-facts";
 import { DATA_MODE } from "@/lib/env";
-import { tollyIndexEnabled, userRankingEnabled } from "@/lib/features";
+import { tollyIndexEnabled } from "@/lib/features";
+import { getFindings } from "@/lib/findings";
+import { date, int } from "@/lib/format";
+import { getLedger } from "@/lib/ledger";
+import { HERO_METRICS } from "@/lib/ledger-metrics";
+import { getHeroSummaries, heroLedgerRows, spineEnd } from "@/lib/ledger-rows";
+import { releaseCounts, releasesAsOf } from "@/lib/releases";
 import { getDashboardData } from "@/lib/repositories";
-import { getTollyHero, getTollyRanking, tollyMeta } from "@/lib/tolly/view";
-
-const MEDAL = ["#d8a86b", "#c9c2bb", "#c08a5e"];
-const delay = (s: number) => ({ "--d": `${s}s` }) as CSSProperties;
-
-const EXPLORE = [
-  {
-    href: "/tolly-index",
-    title: "Full Tolly Index",
-    text: "Every ranked hero, with what lifts and lowers his score.",
-    icon: "M4 19V9m6 10V5m6 14v-7",
-  },
-  {
-    href: "/star-score",
-    title: "Star Score",
-    text: "Hits, flops and box office, with every chart.",
-    icon: "m12 4 2.4 5 5.6.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.6-.8z",
-  },
-  {
-    href: "/compare",
-    title: "Compare heroes",
-    text: "Put two or more heroes side by side.",
-    icon: "M8 5v14M16 5v14M4 9h8M12 15h8",
-  },
-  {
-    href: "/trends",
-    title: "Trends",
-    text: "How careers rose and fell, year by year.",
-    icon: "m4 16 5-5 4 3 7-8M15 6h5v5",
-  },
-];
-
-function Face({ name, thumb, size, ring }: { name: string; thumb: string | null; size: number; ring?: string }) {
-  return (
-    <span
-      aria-hidden
-      className="relative inline-grid shrink-0 place-items-center overflow-hidden rounded-full bg-wine"
-      style={{ width: size, height: size, boxShadow: ring ? `0 0 0 3px ${ring}` : undefined }}
-    >
-      {thumb ? (
-        <img src={thumb} alt="" width={size} height={size} loading="lazy" decoding="async" className="h-full w-full object-cover" />
-      ) : (
-        <span className="font-semibold text-white" style={{ fontSize: size * 0.36 }}>
-          {initialsOf(name)}
-        </span>
-      )}
-    </span>
-  );
-}
+import { getTollyRanking, tollyMeta } from "@/lib/tolly/view";
 
 export default async function HomePage() {
-  const data = await getDashboardData();
-  const all = data.windows.all_time;
-
-  // Demo / live data, or the index switched off: the career dashboard is the home page, as before.
-  if (!tollyIndexEnabled() || DATA_MODE !== "real") {
-    const heroes = all.map((h) => ({ slug: h.slug, name: h.name, photo: h.photo, industry: h.industry }));
-    return <Dashboard data={data}>{userRankingEnabled() && <FanRanking heroes={heroes} />}</Dashboard>;
-  }
+  // Demo / live data, or the index switched off: the career dashboard stays the home page.
+  if (!tollyIndexEnabled() || DATA_MODE !== "real") return <Dashboard data={await getDashboardData()} />;
 
   const { ranked } = getTollyRanking();
-  const m = tollyMeta;
-  const thumbs = new Map(all.map((h) => [h.slug, heroThumb(h.photo)]));
-  const names = new Map(all.map((h) => [h.slug, h.name]));
-  const top10 = ranked.slice(0, 10);
-  const podium = [ranked[1], ranked[0], ranked[2]].filter(Boolean);
-  const films = topLovedTeluguFilms(25);
-  const grossing = topGrossingTeluguFilms(25);
-  const followed = [...ranked].filter((h) => h.followers).sort((a, b) => (b.followers?.total ?? 0) - (a.followers?.total ?? 0));
-  // Ratios need a few films behind them, as on the Star Score page.
-  const MIN_JUDGED = 5;
-  const releases = releaseCounts();
-  const chart: ChartHero[] = all.map((h) => {
-    const t = getTollyHero(h.slug);
-    const sr = h.m.overallSuccessRatio;
-    const enough = sr.v !== null && sr.n >= MIN_JUDGED && h.m.films.v !== null;
-    return {
-      slug: h.slug,
-      name: h.name,
-      thumb: thumbs.get(h.slug) ?? null,
-      family: h.family,
-      debutYear: h.debutYear,
-      rank: t?.rank ?? null,
-      films: enough ? h.m.films.v : null,
-      successRatio: enough ? sr.v : null,
-      hits: enough ? Math.round(((sr.v as number) / 100) * sr.n) : null,
-      judged: enough ? sr.n : null,
-      audience: t?.rank ? (t.filmIndex ?? null) : null,
-      fame: t?.rank ? (t.fame ?? null) : null,
-      followers: t?.followers ? compactCount(t.followers.total) : null,
-    };
-  });
-  const topRows: TopRow[] = top10.map((h) => {
-    const v = all.find((x) => x.slug === h.slug);
-    return { slug: h.slug, name: h.name, thumb: thumbs.get(h.slug) ?? null, family: v?.family ?? null, debutYear: v?.debutYear ?? null, rank: h.rank as number, index: h.index as number, best: h.best[0]?.title ?? null, provisional: !!v && v.industry !== "telugu" };
-  });
+  const [rows, findings, summaries, ledger] = await Promise.all([heroLedgerRows((h) => h.qualified), getFindings(), getHeroSummaries(), getLedger()]);
+  const { end, partialFrom } = spineEnd();
+  const thumbs = new Map(summaries.map((s) => [s.slug, s.img]));
   const duel: DuelHero[] = ranked.map((h) => ({
     slug: h.slug,
     name: h.name,
@@ -123,290 +39,132 @@ export default async function HomePage() {
     index: h.index as number,
     factors: GROUPS.map((g) => ({ key: g.key, label: g.label, value: groupValue(h, g.key).value, fact: groupFact(h, g.key, compactCount) })),
   }));
-  const search = all
-    .map((h) => ({ slug: h.slug, name: h.name, thumb: thumbs.get(h.slug) ?? null, rank: ranked.find((r) => r.slug === h.slug)?.rank ?? null }))
-    .sort((a, b) => (a.rank ?? 999) - (b.rank ?? 999) || a.name.localeCompare(b.name));
-  const wall = [...search];
-  const updated = new Date(`${m.asOf}T00:00:00Z`).toLocaleDateString("en-IN", { month: "long", year: "numeric", timeZone: "UTC" });
+  const counts = releaseCounts();
+  const now = counts[counts.length - 1];
+  const recent = ledger.films.filter((f) => f.date && f.date <= releasesAsOf && f.language === "te").slice(-6).reverse();
+  const top = ranked[0];
 
   return (
-    <div className="mx-auto max-w-7xl px-4 pb-4 sm:px-6">
-      {/* Banner: the question, a search box, and the answer */}
-      <section aria-labelledby="home-title" className="cinema relative z-10 mt-4 rounded-2xl px-5 pb-0 pt-8 shadow-xl sm:px-10 sm:pt-12">
-        <div className="grid items-end gap-8 lg:grid-cols-[1.05fr_1fr]">
-          <div className="pb-2 lg:pb-12">
-            <p className="rise font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#e8c79c]" style={delay(0)}>
-              Telugu cinema · 2000 to today
-            </p>
-            <h1 id="home-title" className="rise mt-3 font-serif text-[36px] font-bold leading-[1.04] tracking-tight text-white sm:text-[56px]" style={delay(0.08)}>
-              Who is Tollywood&apos;s <span className="text-[#f0c98a]">biggest hero?</span>
-            </h1>
-            <p className="rise mt-4 max-w-xl text-[15.5px] leading-relaxed text-white/80 sm:text-[17px]" style={delay(0.16)}>
-              {m.heroes.qualified} heroes, ranked on 15 numbers: how much audiences love their films, how often they hit at the box office, how many fans follow them and how they are doing
-              lately. One score out of 100: the Tolly Index.
-            </p>
-            <div className="rise mt-6" style={delay(0.24)}>
-              <HeroSearch heroes={search} />
-            </div>
-            <div className="rise mt-4 flex flex-wrap gap-2.5" style={delay(0.32)}>
-              <Link href="/tolly-index" className="rounded-full bg-[#f0c98a] px-5 py-2.5 text-[14px] font-semibold text-[#2b1c1a] transition-colors hover:bg-white">
-                See the full ranking →
-              </Link>
-              <Link href="/compare" className="rounded-full border border-white/30 px-5 py-2.5 text-[14px] font-semibold text-white transition-colors hover:border-white">
-                Compare heroes
-              </Link>
-            </div>
-          </div>
-
-          {/* Podium */}
-          <ol aria-label="Top three heroes" className="mx-auto grid w-full max-w-[520px] grid-cols-3 items-end gap-2 sm:gap-3">
-            {podium.map((h) => {
-              const place = (h.rank ?? 1) - 1;
-              const first = place === 0;
-              return (
-                <li key={h.slug} className="min-w-0">
-                  <Link href={`/hero/${h.slug}`} className="group block text-center">
-                    <span className="rise block" style={delay(0.35 + (first ? 0.3 : place === 1 ? 0.15 : 0))}>
-                      <span className="inline-block transition-transform duration-200 group-hover:-translate-y-1.5">
-                        <span className="hidden sm:inline-block">
-                          <Face name={h.name} thumb={thumbs.get(h.slug) ?? null} size={first ? 132 : 104} ring={MEDAL[place]} />
-                        </span>
-                        <span className="sm:hidden">
-                          <Face name={h.name} thumb={thumbs.get(h.slug) ?? null} size={first ? 92 : 74} ring={MEDAL[place]} />
-                        </span>
-                      </span>
-                      <span className="mt-2.5 block truncate text-[13.5px] font-semibold text-white sm:text-[16px]">{h.name}</span>
-                      {all.find((x) => x.slug === h.slug)?.industry !== "telugu" && (
-                        <span title={PROVISIONAL_TIP} className="block text-[10px] font-semibold uppercase tracking-wide text-[#f0c98a]">
-                          Provisional
-                        </span>
-                      )}
-                      <span className="num block text-[22px] font-extrabold leading-tight sm:text-[30px]" style={{ color: MEDAL[place] }}>
-                        {h.index?.toFixed(1)}
-                      </span>
-                    </span>
-                    <span
-                      className="grow-y mt-2 grid place-items-start justify-center rounded-t-lg pt-2 num text-[22px] font-extrabold text-[#2b1c1a] sm:text-[28px]"
-                      style={{
-                        ...delay(0.2 + (first ? 0.3 : place === 1 ? 0.15 : 0)),
-                        height: first ? 96 : place === 1 ? 68 : 48,
-                        background: `linear-gradient(180deg, ${MEDAL[place]} 0%, ${MEDAL[place]}cc 100%)`,
-                      }}
-                    >
-                      {h.rank}
-                    </span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ol>
-        </div>
-      </section>
-
-      {/* Four numbers */}
-      <ul aria-label="At a glance" className="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
-        {[
-          { v: String(m.heroes.qualified), l: "heroes ranked" },
-          { v: m.films.complete.toLocaleString("en-IN"), l: "films scored" },
-          { v: followed[0] ? compactCount(followed[0].followers?.total ?? 0) : "—", l: followed[0] ? `followers: ${followed[0].name}, the most followed` : "followers" },
-          { v: films[0]?.index?.toFixed(1) ?? "—", l: films[0] ? `top film: ${films[0].title}` : "top film" },
-        ].map((s) => (
-          <li key={s.l} className="card lift px-4 py-3.5 sm:px-5">
-            <CountUp value={s.v} className="num block text-[28px] font-extrabold leading-none text-wine sm:text-[34px]" />
-            <span className="mt-1.5 block text-[12.5px] leading-snug text-ink-2 sm:text-[13.5px]">{s.l}</span>
-          </li>
-        ))}
-      </ul>
-
-      {/* Top 10 + two short lists */}
-      <div className="mt-4 grid gap-4 lg:grid-cols-[1.55fr_1fr]">
-        <section aria-labelledby="top10" className="card reveal p-4 sm:p-6">
-          <div className="flex items-end justify-between gap-3">
-            <div>
-              <p className="section-kicker">Tolly Index</p>
-              <h2 id="top10" className="mt-1 font-serif text-[26px] font-semibold leading-tight text-ink sm:text-[30px]">
-                The top 10
-              </h2>
-            </div>
-            <Link href="/tolly-index" className="whitespace-nowrap text-[13.5px] font-semibold text-wine hover:underline">
-              All {ranked.length} heroes →
+    <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
+      {/* The question, answered with the evidence attached */}
+      <section aria-labelledby="home-title" className="grid gap-8 pb-10 pt-10 sm:pt-16 lg:grid-cols-[1fr_auto] lg:items-end">
+        <div className="max-w-3xl">
+          <h1 id="home-title" className="font-serif text-[40px] font-bold leading-[1.02] tracking-[-0.025em] text-ink sm:text-[64px]">
+            Who is Tollywood&rsquo;s biggest&nbsp;hero?
+          </h1>
+          <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-ink-2">
+            {ranked.length} heroes, {int(tollyMeta.films.complete)} scored films, one score out of 100. Every tick below is a film, placed on the day it released:
+            taller for a bigger box office, coloured by how it did.
+          </p>
+          <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
+            <SearchField />
+            <Link href="/methodology" className="link text-[14px] font-medium">
+              How the score works
             </Link>
           </div>
-          <TopTen rows={topRows} />
-        </section>
-
-        <div className="grid gap-4">
-          <section aria-labelledby="top-films" className="card reveal p-4 sm:p-6">
-            <p className="section-kicker">Films</p>
-            <h2 id="top-films" className="mt-1 font-serif text-[22px] font-semibold text-ink">
-              Top films
-            </h2>
-            <p className="mt-0.5 text-[12.5px] text-ink-2">
-              The most-loved films and the biggest box-office hits. Tap a loved film to see why.{" "}
-              <Link href="/methodology#tolly-index" className="font-medium text-wine hover:underline">
-                How?
-              </Link>
-            </p>
-            <TopFilms
-              films={films.map((f) => ({
-                key: f.key,
-                title: f.title,
-                year: f.year,
-                index: f.index as number,
-                rating: f.rating,
-                reach: f.reach,
-                stay: f.stay,
-                heroes: f.heroes.map((slug) => ({ slug, name: names.get(slug) ?? slug })),
-              }))}
-              grossing={grossing.map((f) => ({ ...f, heroes: f.heroes.map((slug) => ({ slug, name: names.get(slug) ?? slug })) }))}
-            />
-          </section>
-
-          {followed.length > 0 && (
-            <section aria-labelledby="most-followed" className="card reveal p-4 sm:p-6">
-              <p className="section-kicker">Fans</p>
-              <h2 id="most-followed" className="mt-1 font-serif text-[22px] font-semibold text-ink">
-                Most followed
-              </h2>
-              <ol className="mt-3 space-y-2.5">
-                {followed.slice(0, 5).map((h) => (
-                  <li key={h.slug}>
-                    <Link href={`/hero/${h.slug}`} className="group grid grid-cols-[32px_1fr_auto] items-center gap-3">
-                      <Face name={h.name} thumb={thumbs.get(h.slug) ?? null} size={32} />
-                      <span className="min-w-0">
-                        <span className="block truncate text-[14px] font-semibold text-ink group-hover:text-wine">{h.name}</span>
-                        <span className="mt-1 block h-1.5 overflow-hidden rounded-full bg-surface-2">
-                          <span className="fill-x block h-full rounded-full bg-[#b7791f]" style={{ width: `${((h.followers?.total ?? 0) / (followed[0].followers?.total ?? 1)) * 100}%` }} />
-                        </span>
-                      </span>
-                      <span className="tabular text-[14px] font-bold text-ink">{compactCount(h.followers?.total ?? 0)}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ol>
-            </section>
-          )}
         </div>
-      </div>
-
-      {/* The one chart, with a second view */}
-      <section aria-labelledby="home-chart" className="card reveal mt-4 p-4 sm:p-6">
-        <p className="section-kicker">The big picture</p>
-        <h2 id="home-chart" className="mt-1 font-serif text-[26px] font-semibold leading-tight text-ink sm:text-[30px]">
-          More films, or more hits?
-        </h2>
-        <div className="mt-4">
-          <HomeCharts heroes={chart} />
-        </div>
-      </section>
-
-      {/* Releases per year, drawn as it scrolls into view */}
-      <section aria-labelledby="home-releases" className="card reveal mt-4 p-4 sm:p-6">
-        <div className="flex flex-wrap items-end justify-between gap-2">
+        <dl className="grid grid-cols-3 gap-6 border-t border-rule pt-5 lg:min-w-[340px] lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
           <div>
-            <p className="section-kicker">Every Friday</p>
-            <h2 id="home-releases" className="mt-1 font-serif text-[26px] font-semibold leading-tight text-ink sm:text-[30px]">
-              How many Telugu films release each year?
-            </h2>
-            <p className="mt-1 text-[13.5px] text-ink-2">
-              {releases[releases.length - 1].total} so far in {releases[releases.length - 1].year}, including films straight to OTT and films dubbed into Telugu.
-            </p>
+            <dt className="label">No. 1</dt>
+            <dd className="mt-1.5">
+              <HeroToken slug={top.slug} name={top.name} face={false} className="text-[15px]" />
+              <span className="num mt-0.5 block text-[28px] font-semibold leading-none text-ink">{top.index?.toFixed(1)}</span>
+            </dd>
           </div>
-          <Link href="/releases" className="text-[14px] font-semibold text-wine hover:underline">
-            See every film →
-          </Link>
-        </div>
-        <div className="mt-4">
-          <ReleasesChart data={releases} height={280} linkYears />
-        </div>
+          <div>
+            <dt className="label">Films</dt>
+            <dd className="num mt-1.5 text-[28px] font-semibold leading-none text-ink">{int(ledger.films.length)}</dd>
+            <dd className="mt-1 text-[12px] text-muted">since 2000</dd>
+          </div>
+          <div>
+            <dt className="label">Updated</dt>
+            <dd className="mt-1.5 text-[15px] font-medium text-ink">{date(tollyMeta.asOf)}</dd>
+            <dd className="mt-1 text-[12px] text-muted">every week</dd>
+          </div>
+        </dl>
       </section>
 
-      {/* Head to head */}
+      <FocusProvider>
+        <ChartFrame
+          id="index"
+          title="The Tolly Index"
+          finding="Rank by any of the numbers behind the score; each row is one hero's career, film by film."
+          legend={<OutcomeLegend />}
+          source={<Source>Data as of {date(tollyMeta.asOf)}</Source>}
+        >
+          <Ledger rows={rows} metrics={HERO_METRICS} label="Hero" end={end} partialFrom={partialFrom} limit={10} moreHref="/tolly-index" moreLabel="Open the full index" />
+        </ChartFrame>
+      </FocusProvider>
+
+      {/* Findings: computed from the data, each with its evidence */}
+      <section aria-labelledby="findings" className="mt-24">
+        <SectionTitle id="findings" title="What the films say" finding="Four things the ledger shows, recomputed every week." />
+        <ol className="divide-y divide-rule border-y border-rule">
+          {findings.map((f, i) => (
+            <li key={f.id} className="grid gap-x-8 gap-y-3 py-6 sm:grid-cols-[48px_190px_1fr_auto] sm:items-center">
+              <span className="tabular text-[13px] text-muted">{String(i + 1).padStart(2, "0")}</span>
+              <span className="num text-[30px] font-semibold leading-none text-ink">{f.big}</span>
+              <div className="min-w-0">
+                <h3 className="text-[16px] font-semibold text-ink">
+                  <Link href={f.href} className="hover:text-accent">
+                    {f.title}
+                  </Link>
+                </h3>
+                <p className="mt-1 max-w-2xl text-[14.5px] leading-relaxed text-ink-2">{f.body}</p>
+              </div>
+              <div className="overflow-hidden sm:justify-self-end">{f.films ? <EvidenceMarks films={f.films} /> : f.bars ? <EvidenceBars bars={f.bars} /> : null}</div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
       {duel.length >= 2 && (
-        <section aria-labelledby="duel" className="card reveal mt-4 p-4 sm:p-6">
-          <div className="mx-auto max-w-3xl">
-            <p className="section-kicker">Head to head</p>
-            <h2 id="duel" className="mt-1 font-serif text-[26px] font-semibold leading-tight text-ink sm:text-[30px]">
-              Settle the debate
-            </h2>
-            <p className="mt-1 text-[14px] text-ink-2">Pick any two heroes and see who leads on each part of the Tolly Index.</p>
-            <div className="mt-4">
-              <HeadToHead heroes={duel} />
-            </div>
+        <section aria-labelledby="duel" className="mt-24 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
+          <div>
+            <SectionTitle id="duel" title="Head to head" finding="Pick any two ranked heroes and see who leads on each part of the score." />
+            <p className="max-w-sm text-[14px] leading-relaxed text-muted">The bars share one scale, 0 to 100. For every number side by side, open the full comparison.</p>
+          </div>
+          <div className="frame p-4 sm:p-6">
+            <HeadToHead heroes={duel} />
           </div>
         </section>
       )}
 
-      {/* Every graph, folded away */}
-      <div className="mt-4">
-        <AllGraphs title="See all the graphs" subtitle="Leaderboards, trade-off charts, box office, release pace and the table of every number. Tap to open.">
-          <Dashboard data={data} embedded />
-        </AllGraphs>
-      </div>
-
-      {/* Every hero */}
-      <section aria-labelledby="wall" className="card reveal mt-4 p-4 sm:p-6">
-        <div className="flex items-end justify-between gap-3">
-          <div>
-            <p className="section-kicker">The cast</p>
-            <h2 id="wall" className="mt-1 font-serif text-[26px] font-semibold leading-tight text-ink sm:text-[30px]">
-              Pick a hero
-            </h2>
+      <section aria-labelledby="year" className="mt-24 grid gap-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
+        <div className="min-w-0">
+          <SectionTitle
+            id="year"
+            title={`${now.year} so far: ${now.total} releases`}
+            finding={`Telugu films in theatres, straight to OTT, and films dubbed into Telugu, up to ${date(releasesAsOf)}.`}
+            aside={
+              <Link href="/releases" className="link text-[14px] font-medium">
+                All years
+              </Link>
+            }
+          />
+          <YearColumns data={counts} height={190} compact hrefFor="/releases?year={y}#list" selected={now.year} />
+          <div className="mt-3 text-[12px] text-muted">
+            <YearLegend />
           </div>
-          <Link href="/heroes" className="whitespace-nowrap text-[13.5px] font-semibold text-wine hover:underline">
-            All heroes →
-          </Link>
         </div>
-        <ul className="mt-4 grid grid-cols-4 gap-x-2 gap-y-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12">
-          {wall.slice(0, 24).map((h) => (
-            <li key={h.slug} className="min-w-0">
-              <Link href={`/hero/${h.slug}`} className="group block text-center">
-                <span className="inline-block transition-transform duration-200 group-hover:-translate-y-1 group-hover:scale-105">
-                  <Face name={h.name} thumb={h.thumb} size={60} />
+        <div>
+          <p className="label mb-3">Latest Telugu releases with a tracked hero</p>
+          <ul className="divide-y divide-rule border-y border-rule">
+            {recent.map((f) => (
+              <li key={f.slug} className="flex items-baseline justify-between gap-4 py-3">
+                <span className="min-w-0">
+                  <FilmToken slug={f.slug} title={f.title} o={f.outcome} showYear={false} className="text-[15px]" />
+                  <span className="mt-0.5 block truncate text-[12.5px] text-muted">
+                    {f.heroes.map((h) => h.name).join(", ")}
+                    {f.director ? ` · ${f.director.name}` : ""}
+                  </span>
                 </span>
-                <span className="mt-1.5 block truncate text-[11.5px] font-medium text-ink-2 group-hover:text-wine">{h.name}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Go deeper */}
-      <section aria-labelledby="deeper" className="mt-8">
-        <h2 id="deeper" className="font-serif text-[26px] font-semibold text-ink sm:text-[30px]">
-          Go deeper
-        </h2>
-        <ul className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {EXPLORE.map((e) => (
-            <li key={e.href}>
-              <Link href={e.href} className="card lift group flex h-full flex-col p-5 hover:border-wine/40">
-                <span className="grid h-10 w-10 place-items-center rounded-full bg-wine-soft text-wine">
-                  <svg aria-hidden viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d={e.icon} />
-                  </svg>
-                </span>
-                <span className="mt-3 block font-serif text-[19px] font-semibold text-ink group-hover:text-wine">{e.title}</span>
-                <span className="mt-1 block text-[13.5px] leading-snug text-ink-2">{e.text}</span>
-                <span aria-hidden className="mt-auto block pt-3 text-[13px] font-semibold text-wine">
-                  Open →
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-5 text-[12.5px] text-muted">
-          Film data from {updated}.{" "}
-          <Link href="/methodology" className="font-medium text-wine hover:underline">
-            How the scores work →
-          </Link>
-        </p>
-      </section>
-
-      {userRankingEnabled() && (
-        <div className="mt-6">
-          <FanRanking heroes={all.map((h) => ({ slug: h.slug, name: h.name, photo: h.photo, industry: h.industry }))} />
+                <span className="tabular shrink-0 text-[12.5px] text-muted">{f.date ? date(f.date, { year: false }) : f.year}</span>
+              </li>
+            ))}
+          </ul>
         </div>
-      )}
+      </section>
     </div>
   );
 }

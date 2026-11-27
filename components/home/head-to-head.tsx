@@ -17,14 +17,14 @@ export interface DuelHero {
 function Side({ hero, wins, align }: { hero: DuelHero; wins: number; align: "left" | "right" }) {
   return (
     <Link href={`/hero/${hero.slug}`} className={`group flex min-w-0 items-center gap-3 ${align === "right" ? "flex-row-reverse text-right" : ""}`}>
-      <span className="relative inline-grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-full bg-wine sm:h-[72px] sm:w-[72px]">
-        {hero.thumb ? <img src={hero.thumb} alt="" className="h-full w-full object-cover" /> : <span className="text-[18px] font-semibold text-white">{hero.name[0]}</span>}
+      <span className="relative inline-grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-full bg-surface-2 sm:h-16 sm:w-16" style={{ boxShadow: `0 0 0 2px var(--surface), 0 0 0 4px ${align === "left" ? "var(--slot-a)" : "var(--slot-b)"}` }}>
+        {hero.thumb ? <img src={hero.thumb} alt="" className="h-full w-full object-cover object-[50%_18%]" /> : <span className="text-[18px] font-semibold text-ink-2">{hero.name[0]}</span>}
       </span>
       <span className="min-w-0">
-        <span className="block truncate text-[14px] font-semibold text-ink group-hover:text-wine sm:text-[16px]">{hero.name}</span>
-        <span className="num block text-[26px] font-extrabold leading-tight text-wine sm:text-[32px]">{hero.index.toFixed(1)}</span>
+        <span className="block truncate text-[14px] font-semibold text-ink group-hover:underline sm:text-[15px]">{hero.name}</span>
+        <span className="num block text-[28px] font-semibold leading-tight text-ink sm:text-[32px]">{hero.index.toFixed(1)}</span>
         <span className="block text-[11.5px] text-muted">
-          #{hero.rank} · wins {wins}
+          #{hero.rank} · leads on {wins}
         </span>
       </span>
     </Link>
@@ -52,7 +52,7 @@ export function HeadToHead({ heroes }: { heroes: DuelHero[] }) {
   const select = (value: string, set: (v: string) => void, label: string, other: string) => (
     <label className="min-w-0 flex-1">
       <span className="sr-only">{label}</span>
-      <select value={value} onChange={(e) => set(e.target.value)} className="h-10 w-full rounded-lg border border-line bg-surface px-2.5 text-[14px] font-medium text-ink">
+      <select value={value} onChange={(e) => set(e.target.value)} className="h-10 w-full cursor-pointer rounded-[10px] border border-rule bg-surface-2 px-2.5 text-[14px] font-medium text-ink transition-colors hover:border-field-2">
         {heroes.map((h) => (
           <option key={h.slug} value={h.slug} disabled={h.slug === other}>
             {h.rank}. {h.name}
@@ -65,13 +65,12 @@ export function HeadToHead({ heroes }: { heroes: DuelHero[] }) {
     <div>
       <div className="flex items-center gap-2">
         {select(left.slug, setA, "First hero", right.slug)}
-        <span aria-hidden className="shrink-0 font-serif text-[15px] font-bold text-muted">
+        <span aria-hidden className="shrink-0 text-[13px] text-muted">
           vs
         </span>
         {select(right.slug, setB, "Second hero", left.slug)}
-        <button type="button" onClick={shuffle} className="h-10 shrink-0 rounded-lg border border-line bg-surface px-3 text-[13px] font-medium text-ink hover:border-ink-2" aria-label="Pick two heroes at random">
-          <span aria-hidden>🎲</span>
-          <span className="ml-1.5 hidden sm:inline">Surprise me</span>
+        <button type="button" onClick={shuffle} className="h-10 shrink-0 rounded-[10px] px-3 text-[13px] font-medium text-ink-2 transition-colors hover:bg-surface-2 hover:text-ink" aria-label="Pick two heroes at random">
+          Shuffle
         </button>
       </div>
 
@@ -86,16 +85,16 @@ export function HeadToHead({ heroes }: { heroes: DuelHero[] }) {
           return (
             <li key={`${id}-${r.key}`}>
               <div className="tabular flex items-baseline justify-between text-[13px]">
-                <span className={lead > 0 ? "font-bold text-wine" : "text-ink-2"}>{r.l?.toFixed(1) ?? "—"}</span>
-                <span className="text-[12px] font-semibold uppercase tracking-wide text-ink-2">{r.label}</span>
-                <span className={lead < 0 ? "font-bold text-wine" : "text-ink-2"}>{r.r?.toFixed(1) ?? "—"}</span>
+                <span className={lead > 0 ? "font-semibold text-ink" : "text-muted"}>{r.l?.toFixed(1) ?? "—"}</span>
+                <span className="text-[13px] font-medium text-ink">{r.label}</span>
+                <span className={lead < 0 ? "font-semibold text-ink" : "text-muted"}>{r.r?.toFixed(1) ?? "—"}</span>
               </div>
               <div className="mt-1 grid grid-cols-2 gap-1">
-                <span className="flex h-2.5 justify-end overflow-hidden rounded-l-full bg-surface-2 ring-1 ring-line">
-                  <span className="block h-full rounded-l-full transition-[width] duration-500" style={{ width: `${r.l ?? 0}%`, background: lead > 0 ? "var(--wine)" : "#c9b8ae" }} />
+                <span className="flex h-2 justify-end overflow-hidden rounded-l-full bg-surface-2">
+                  <span className="block h-full rounded-l-full transition-[width,opacity] duration-[var(--dur-4)] ease-[var(--ease-in-out)]" style={{ width: `${r.l ?? 0}%`, background: "var(--slot-a)", opacity: lead >= 0 ? 1 : 0.35 }} />
                 </span>
-                <span className="flex h-2.5 overflow-hidden rounded-r-full bg-surface-2 ring-1 ring-line">
-                  <span className="block h-full rounded-r-full transition-[width] duration-500" style={{ width: `${r.r ?? 0}%`, background: lead < 0 ? "var(--wine)" : "#c9b8ae" }} />
+                <span className="flex h-2 overflow-hidden rounded-r-full bg-surface-2">
+                  <span className="block h-full rounded-r-full transition-[width,opacity] duration-[var(--dur-4)] ease-[var(--ease-in-out)]" style={{ width: `${r.r ?? 0}%`, background: "var(--slot-b)", opacity: lead <= 0 ? 1 : 0.35 }} />
                 </span>
               </div>
               <div className="mt-0.5 flex justify-between gap-3 text-[11.5px] text-muted">
@@ -107,8 +106,8 @@ export function HeadToHead({ heroes }: { heroes: DuelHero[] }) {
         })}
       </ul>
       <p className="mt-4 text-right">
-        <Link href={`/compare?heroes=${left.slug},${right.slug}`} className="text-[13.5px] font-semibold text-wine hover:underline">
-          Compare every number →
+        <Link href={`/compare?heroes=${left.slug},${right.slug}`} className="link text-[13.5px] font-medium">
+          Compare every number
         </Link>
       </p>
     </div>

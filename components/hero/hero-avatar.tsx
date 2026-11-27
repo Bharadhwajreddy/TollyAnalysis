@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element -- small local portraits; plain img keeps SVG/HTML parity and avoids layout shifts */
-import { INDUSTRY_COLOR } from "@/lib/constants/colors";
 import type { Industry } from "@/lib/domain/types";
 
 export function initialsOf(name: string) {
@@ -17,36 +16,37 @@ export function heroThumb(photo: string | null): string | null {
   return photo ? photo.replace("/heroes/", "/heroes/thumb/").replace(/\.\w+$/, ".jpg") : null;
 }
 
-/** Round hero portrait with an industry-coloured ring; falls back to initials. */
+/**
+ * Round hero portrait. Identity is the face and the name, never a colour: a hairline ring at rest, an accent
+ * ring when `active`. Without a photo, neutral initials. (`industry` and `color` are accepted for older callers.)
+ */
 export function HeroAvatar({
   name,
   photo,
-  industry,
   size = 32,
   ring = true,
-  color: colorProp,
+  active = false,
   className = "",
 }: {
   name: string;
   photo: string | null;
-  industry: Industry;
+  industry?: Industry;
   size?: number;
   ring?: boolean;
-  /** Ring / placeholder colour; defaults to the industry colour. */
+  active?: boolean;
   color?: string;
   className?: string;
 }) {
-  const color = colorProp ?? INDUSTRY_COLOR[industry];
   return (
     <span
       className={`relative inline-grid shrink-0 place-items-center overflow-hidden rounded-full bg-surface-2 ${className}`}
-      style={{ width: size, height: size, boxShadow: ring ? `0 0 0 2px ${color}` : undefined }}
+      style={{ width: size, height: size, boxShadow: active ? "0 0 0 2px var(--surface), 0 0 0 4px var(--accent)" : ring ? "0 0 0 1px var(--rule)" : undefined }}
       aria-hidden
     >
       {photo ? (
         <img src={photo} alt="" width={size} height={size} loading="lazy" decoding="async" className="h-full w-full object-cover object-[50%_18%]" />
       ) : (
-        <span className="font-semibold text-white" style={{ background: color, width: "100%", height: "100%", display: "grid", placeItems: "center", fontSize: size * 0.38 }}>
+        <span className="grid h-full w-full place-items-center font-semibold text-ink-2" style={{ fontSize: size * 0.36 }}>
           {initialsOf(name)}
         </span>
       )}

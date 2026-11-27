@@ -1,52 +1,182 @@
 @import "tailwindcss";
 
 /*
- * Tollywood Analysis design tokens.
- * Warm ivory page, near-black brown ink, wine accent. Chart series colours were
- * validated for colour-vision deficiency separation and 3:1 contrast on --surface.
+ * Tollywood Analysis design system.
+ *
+ * Paper and ink: a warm monochrome base, one accent (wine) for "you are here", and one diverging ramp
+ * for a film's box-office outcome. Colour is semantic only: outcome, focus, and compare slots.
+ * Light and dark themes; `data-theme` on <html> overrides the system preference.
  */
 :root {
   color-scheme: light;
-  --bg: #f7f3ec;
+  --paper: #f7f4ee;
   --surface: #fffdf9;
-  --surface-2: #faf6ef;
-  --ink: #231815;
-  --ink-2: #5b4b45;
-  --muted: #7d6d65;
-  --line: #e6ddd0;
-  --grid: #efe8dd;
-  --axis: #cfc4b5;
-  --wine: #7a1f3d;
-  --wine-hover: #641832;
-  --wine-soft: #f6e9ed;
-  --gold-soft: #fbf1dc;
-  --teal-soft: #e3f3f5;
-  --series-telugu: #a3284f;
-  --series-tamil: #00879e;
-  --series-malayalam: #b98200;
-  --series-kannada: #4a3aa7;
-  --series-other: #7d6d65;
-  --good: #1f7a3d;
-  --warn: #9a5b00;
-  --bad: #b3261e;
-  --focus: #0b6b7a;
-  /* Dark cinema panels (hero banners, footer). */
-  --night: #241a18;
-  --night-2: #3a1d22;
+  --surface-2: #f1ece3;
+  --surface-3: #e9e2d6;
+  --ink: #1b1613;
+  --ink-2: #4a403a;
+  --muted: #6e625a;
+  --faint: #8f847c;
+  --rule: #e4ddd2;
+  --grid: #ece6dc;
+  --field: #d3cbc1;
+  --field-2: #b7aea5;
+  --accent: #7a1f3d;
+  --accent-2: #641832;
+  --accent-wash: #f4e6ea;
+  --focus-ring: #0b5f73;
+  /* Box-office outcome: blockbuster → disaster. Each ≥ 3:1 on --surface. */
+  --v-blockbuster: #145846;
+  --v-hit: #2f7d66;
+  --v-average: #9a8558;
+  --v-flop: #c0573a;
+  --v-disaster: #8a2a1a;
+  --v-unknown: #a99e95;
+  /* Release kinds (Years). */
+  --k-theatrical: #4a403a;
+  --k-dubbed: #b0832a;
+  --k-ott: #2b7a8c;
+  /* Compare slots. */
+  --slot-a: #7a1f3d;
+  --slot-b: #1f5f8b;
+  --slot-c: #9a6a00;
+  --slot-d: #4a4f57;
+  --shadow-pop: 0 1px 2px rgb(27 22 19 / 0.06), 0 12px 32px rgb(27 22 19 / 0.12);
+  --shadow-soft: 0 1px 2px rgb(27 22 19 / 0.04);
+
+  /* Motion. */
+  --dur-1: 120ms;
+  --dur-2: 200ms;
+  --dur-3: 260ms;
+  --dur-4: 380ms;
+  --dur-5: 440ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+
+  /* Legacy names still used by a few components. */
+  --bg: var(--paper);
+  --line: var(--rule);
+  --axis: var(--field-2);
+  --wine: var(--accent);
+  --wine-hover: var(--accent-2);
+  --wine-soft: var(--accent-wash);
+  --gold-soft: #f6eedc;
+  --teal-soft: #e3f0f2;
+  --good: var(--v-hit);
+  --warn: #8a5a00;
+  --bad: var(--v-flop);
+  --focus: var(--focus-ring);
+  --night: #1b1613;
+  --night-2: #2a211d;
+  --series-telugu: var(--accent);
+  --series-tamil: var(--slot-b);
+  --series-malayalam: var(--slot-c);
+  --series-kannada: var(--slot-d);
+  --series-other: var(--muted);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #131010;
+  --surface: #1b1716;
+  --surface-2: #24201e;
+  --surface-3: #2e2926;
+  --ink: #f3eee8;
+  --ink-2: #cfc5bc;
+  --muted: #a39890;
+  --faint: #7d736c;
+  --rule: #2f2926;
+  --grid: #27221f;
+  --field: #463e39;
+  --field-2: #5f5650;
+  --accent: #ec8fab;
+  --accent-2: #f5adc2;
+  --accent-wash: #3a1d27;
+  --focus-ring: #6cc7dc;
+  --v-blockbuster: #7fd1b5;
+  --v-hit: #45a98a;
+  --v-average: #bfa874;
+  --v-flop: #f0906c;
+  --v-disaster: #d9604a;
+  --v-unknown: #6b625c;
+  --k-theatrical: #cfc5bc;
+  --k-dubbed: #e0b85c;
+  --k-ott: #6cc0d0;
+  --slot-a: #ec8fab;
+  --slot-b: #7fb6e0;
+  --slot-c: #e0b85c;
+  --slot-d: #b9bec6;
+  --shadow-pop: 0 1px 2px rgb(0 0 0 / 0.3), 0 16px 40px rgb(0 0 0 / 0.55);
+  --shadow-soft: none;
+  --gold-soft: #2d2618;
+  --teal-soft: #17282b;
+  --warn: #e0b85c;
+  --night: #0d0b0a;
+  --night-2: #1b1716;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #131010;
+    --surface: #1b1716;
+    --surface-2: #24201e;
+    --surface-3: #2e2926;
+    --ink: #f3eee8;
+    --ink-2: #cfc5bc;
+    --muted: #a39890;
+    --faint: #7d736c;
+    --rule: #2f2926;
+    --grid: #27221f;
+    --field: #463e39;
+    --field-2: #5f5650;
+    --accent: #ec8fab;
+    --accent-2: #f5adc2;
+    --accent-wash: #3a1d27;
+    --focus-ring: #6cc7dc;
+    --v-blockbuster: #7fd1b5;
+    --v-hit: #45a98a;
+    --v-average: #bfa874;
+    --v-flop: #f0906c;
+    --v-disaster: #d9604a;
+    --v-unknown: #6b625c;
+    --k-theatrical: #cfc5bc;
+    --k-dubbed: #e0b85c;
+    --k-ott: #6cc0d0;
+    --slot-a: #ec8fab;
+    --slot-b: #7fb6e0;
+    --slot-c: #e0b85c;
+    --slot-d: #b9bec6;
+    --shadow-pop: 0 1px 2px rgb(0 0 0 / 0.3), 0 16px 40px rgb(0 0 0 / 0.55);
+    --shadow-soft: none;
+    --gold-soft: #2d2618;
+    --teal-soft: #17282b;
+    --warn: #e0b85c;
+    --night: #0d0b0a;
+    --night-2: #1b1716;
+  }
 }
 
 @theme inline {
-  --color-bg: var(--bg);
+  --color-paper: var(--paper);
+  --color-bg: var(--paper);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
   --color-ink: var(--ink);
   --color-ink-2: var(--ink-2);
   --color-muted: var(--muted);
-  --color-line: var(--line);
+  --color-faint: var(--faint);
+  --color-rule: var(--rule);
+  --color-line: var(--rule);
   --color-grid: var(--grid);
-  --color-wine: var(--wine);
-  --color-wine-hover: var(--wine-hover);
-  --color-wine-soft: var(--wine-soft);
+  --color-field: var(--field);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-wash: var(--accent-wash);
+  --color-wine: var(--accent);
+  --color-wine-hover: var(--accent-2);
+  --color-wine-soft: var(--accent-wash);
   --color-gold-soft: var(--gold-soft);
   --color-teal-soft: var(--teal-soft);
   --color-good: var(--good);
@@ -54,69 +184,111 @@
   --color-bad: var(--bad);
   --color-night: var(--night);
   --color-night-2: var(--night-2);
+  --color-hit: var(--v-hit);
+  --color-flop: var(--v-flop);
   --font-sans: var(--font-body), system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-serif: var(--font-playfair), Georgia, serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html {
-  background: var(--bg);
+  background: var(--paper);
   -webkit-text-size-adjust: 100%;
-  /* Keep focused / scrolled-to elements clear of the sticky header. */
-  scroll-padding-top: 72px;
+  scroll-padding-top: 88px;
   scroll-padding-bottom: 72px;
 }
 
 body {
-  background: var(--bg);
+  background: var(--paper);
   color: var(--ink);
   font-family: var(--font-sans);
-  /* Even-height figures everywhere, including numbers inside serif headings ("The top 10"). */
   font-variant-numeric: lining-nums;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: var(--accent-wash);
+  color: var(--ink);
 }
 
 :focus-visible {
-  outline: 2px solid var(--focus);
+  outline: 2px solid var(--focus-ring);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
-/* Numbers: even-height (lining), fixed-width digits so columns line up and nothing dips below the line. */
+/* Numbers: even-height, fixed-width digits so columns line up. */
 .tabular {
   font-variant-numeric: lining-nums tabular-nums;
-  font-feature-settings: "lnum" 1, "tnum" 1;
+  font-feature-settings:
+    "lnum" 1,
+    "tnum" 1;
 }
-/* Big numbers are always set in the sans font: the display serif's old-style figures are hard to read. */
 .num {
   font-family: var(--font-sans);
   font-variant-numeric: lining-nums tabular-nums;
-  font-feature-settings: "lnum" 1, "tnum" 1;
-  letter-spacing: -0.02em;
+  font-feature-settings:
+    "lnum" 1,
+    "tnum" 1;
+  letter-spacing: -0.025em;
 }
 
+/* Frames: the only boxed surface (charts, popovers). Sections are separated by space and rules. */
+.frame,
 .card {
   background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  box-shadow: 0 1px 2px rgba(35, 24, 21, 0.04);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  box-shadow: var(--shadow-soft);
 }
 
-/* Dark "cinema" panel: deep brown with a warm wine glow. */
-.cinema {
-  background:
-    radial-gradient(120% 90% at 85% 10%, rgba(163, 40, 79, 0.45), transparent 60%),
-    radial-gradient(80% 70% at 0% 100%, rgba(216, 168, 107, 0.16), transparent 60%),
-    linear-gradient(160deg, #2b1c1a 0%, #1b1211 100%);
-  color: #f3ebe4;
+/* Prose links. */
+.link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: color-mix(in oklab, var(--accent) 45%, transparent);
+  transition:
+    text-decoration-color var(--dur-1) var(--ease-out),
+    text-decoration-thickness var(--dur-1) var(--ease-out);
+}
+.link:hover {
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
 }
 
-.section-kicker {
-  font-family: var(--font-mono);
+/* Small uppercase label: table headers and frame captions only. */
+.label {
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--wine);
+  color: var(--muted);
+}
+/* Kept for legacy markup; renders as the plain label. */
+.eyebrow,
+.section-kicker {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.cinema {
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--rule);
 }
 
 details > summary {
@@ -133,17 +305,180 @@ details:not([open]) > summary .when-open {
   display: none;
 }
 
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
 .scroll-x {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--field) transparent;
+}
+/* Edge fades on horizontal scrollers (set by useScrollShadow). */
+.scroll-fade {
+  mask-image: linear-gradient(to right, transparent 0, #000 var(--fade-l, 0px), #000 calc(100% - var(--fade-r, 0px)), transparent 100%);
+}
+
+/* Sliding indicator: one element per group, positioned by useSlidingIndicator. */
+.slide-ind {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  transform: translate(var(--x, 0), var(--y, 0));
+  width: var(--w, 0);
+  height: var(--h, 0);
+  opacity: var(--o, 0);
+  transition:
+    transform var(--dur-2) var(--ease-out),
+    width var(--dur-2) var(--ease-out),
+    height var(--dur-2) var(--ease-out),
+    opacity var(--dur-1) linear;
+}
+.slide-ind[data-instant] {
+  transition: opacity var(--dur-1) linear;
+}
+
+/* Chart draw-in: only frames that hydrated below the fold start pending. SSR markup is the final state. */
+[data-enter="pending"] .grow-mark {
+  transform: scaleY(0);
+}
+[data-enter="pending"] .grow-mark-x {
+  transform: scaleX(0);
+}
+[data-enter="pending"] .fade-mark {
+  opacity: 0;
+}
+.grow-mark,
+.grow-mark-x {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  transition: transform var(--dur-4) var(--ease-out) var(--d, 0ms);
+}
+.grow-mark-x {
+  transform-origin: left;
+}
+.fade-mark {
+  transition: opacity var(--dur-3) var(--ease-out) var(--d, 0ms);
+}
+
+/* Film marks dim when something else is focused. */
+.mark {
+  transition:
+    opacity var(--dur-1) var(--ease-out),
+    fill var(--dur-1) var(--ease-out);
+}
+[data-dim] .mark:not([data-lit]) {
+  opacity: 0.14;
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.pop-in {
+  animation: pop-in var(--dur-3) var(--ease-out) both;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+.fade-in {
+  animation: fade-in var(--dur-3) var(--ease-out) both;
+}
+
+/* Hatched "to date" pattern for the running year. */
+.hatch {
+  background-image: repeating-linear-gradient(-45deg, currentColor 0 1.5px, transparent 1.5px 5px);
+}
+
+/* ── Page transitions (React <ViewTransition>) ───────────────────────────── */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+::view-transition-group(site-header) {
+  animation: none;
+}
+::view-transition-old(.page) {
+  animation: var(--dur-1) var(--ease-exit) both vt-fade-out;
+}
+::view-transition-new(.page) {
+  animation: var(--dur-3) var(--ease-out) 60ms both vt-rise-in;
+}
+::view-transition-group(.morph) {
+  animation-duration: var(--dur-5);
+  animation-timing-function: var(--ease-in-out);
+}
+::view-transition-image-pair(.morph) {
+  animation-name: vt-via-blur;
+}
+::view-transition-old(.swap) {
+  animation: var(--dur-1) var(--ease-exit) both vt-fade-out;
+}
+::view-transition-new(.swap) {
+  animation: var(--dur-3) var(--ease-out) both vt-fade-in;
+}
+@keyframes vt-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes vt-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+@keyframes vt-via-blur {
+  30% {
+    filter: blur(2px);
+  }
+}
+::view-transition-old(.nav-forward) {
+  animation: var(--dur-2) var(--ease-exit) both vt-slide-out-left;
+}
+::view-transition-new(.nav-forward) {
+  animation: var(--dur-4) var(--ease-out) both vt-slide-in-right;
+}
+::view-transition-old(.nav-back) {
+  animation: var(--dur-2) var(--ease-exit) both vt-slide-out-right;
+}
+::view-transition-new(.nav-back) {
+  animation: var(--dur-4) var(--ease-out) both vt-slide-in-left;
+}
+@keyframes vt-slide-out-left {
+  to {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+}
+@keyframes vt-slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+}
+@keyframes vt-slide-out-right {
+  to {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+}
+@keyframes vt-slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -154,8 +489,12 @@ details:not([open]) > summary .when-open {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
 }
-
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
@@ -163,375 +502,41 @@ details:not([open]) > summary .when-open {
 }
 
 @media (forced-colors: active) {
-  .chart-mark {
+  .chart-mark,
+  .mark {
     forced-color-adjust: none;
   }
 }
 
-/* ── Opening animation (components/home/intro.tsx) ─────────────────────────
- * 0.0s board drops in · 0.95s the arm claps · 1.0s photos burst out · 2.8s everything lifts away.
- * The last keyframe hides the overlay, so it clears itself even without JavaScript. */
-.intro {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  cursor: pointer;
-  color: #f3ebe4;
-  background:
-    radial-gradient(70% 55% at 50% 44%, rgba(163, 40, 79, 0.5), transparent 70%),
-    radial-gradient(60% 50% at 50% 100%, rgba(216, 168, 107, 0.14), transparent 70%),
-    linear-gradient(160deg, #2b1c1a 0%, #140d0c 100%);
-  animation: intro-out 3.3s cubic-bezier(0.7, 0, 0.3, 1) forwards;
-}
-html[data-intro="skip"] .intro {
-  display: none;
-}
-@media (prefers-reduced-motion: reduce) {
-  .intro {
-    display: none;
+@media print {
+  header,
+  footer,
+  nav,
+  [data-noprint] {
+    display: none !important;
   }
-}
-@keyframes intro-out {
-  0%,
-  86% {
-    opacity: 1;
-    transform: none;
-    visibility: visible;
+  body,
+  html {
+    background: #fff !important;
   }
-  100% {
-    opacity: 0;
-    transform: scale(1.06);
-    visibility: hidden;
-    pointer-events: none;
-  }
-}
-.intro-stage {
-  position: absolute;
-  left: 50%;
-  top: 44%;
-  width: 0;
-  height: 0;
-}
-.intro-board {
-  position: absolute;
-  z-index: 3;
-  left: 0;
-  top: 0;
-  width: clamp(168px, 30vmin, 250px);
-  transform: translate(-50%, -50%);
-  animation:
-    intro-board-in 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.3) both,
-    intro-shake 0.32s 0.97s linear;
-  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.5));
-}
-@keyframes intro-board-in {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -80%) scale(0.7) rotate(-8deg);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
-}
-@keyframes intro-shake {
-  0%,
-  100% {
-    translate: 0 0;
-  }
-  25% {
-    translate: 0 5px;
-  }
-  60% {
-    translate: 0 -2px;
-  }
-}
-.intro-arm,
-.intro-arm-base {
-  height: clamp(20px, 3.6vmin, 30px);
-  border-radius: 4px;
-  border: 2px solid #f3ebe4;
-  background: repeating-linear-gradient(-55deg, #f3ebe4 0 16px, #1b1211 16px 32px);
-}
-.intro-arm {
-  transform-origin: 6% 100%;
-  transform: rotate(-30deg);
-  animation: intro-clap 0.5s 0.55s cubic-bezier(0.6, 0, 0.9, 0.4) forwards;
-}
-@keyframes intro-clap {
-  0% {
-    transform: rotate(-30deg);
-  }
-  45% {
-    transform: rotate(-36deg);
-  }
-  84% {
-    transform: rotate(0deg);
-  }
-  92% {
-    transform: rotate(-4deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-.intro-arm-base {
-  margin-top: 2px;
-  background: repeating-linear-gradient(55deg, #f3ebe4 0 16px, #1b1211 16px 32px);
-}
-.intro-slate {
-  margin-top: 2px;
-  display: grid;
-  gap: 0;
-  border: 2px solid #f3ebe4;
-  border-radius: 4px 4px 8px 8px;
-  background: #1b1211;
-  font-family: var(--font-serif);
-  font-size: clamp(12px, 2.1vmin, 16px);
-  font-weight: 600;
-  line-height: 1.2;
-}
-.intro-slate > span {
-  padding: 0.5em 0.75em;
-  border-bottom: 1px solid rgba(243, 235, 228, 0.35);
-  white-space: nowrap;
-}
-.intro-slate > span:last-child {
-  border-bottom: 0;
-}
-.intro-slate i {
-  display: block;
-  font-family: var(--font-mono);
-  font-style: normal;
-  font-size: 0.62em;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #d8a86b;
-}
-.intro-slate-row {
-  display: grid !important;
-  grid-template-columns: 1fr 1.4fr;
-  padding: 0 !important;
-}
-.intro-slate-row > span {
-  padding: 0.5em 0.75em;
-}
-.intro-slate-row > span + span {
-  border-left: 1px solid rgba(243, 235, 228, 0.35);
-}
-.intro-flash {
-  position: absolute;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 40vmin;
-  height: 40vmin;
-  margin: -20vmin 0 0 -20vmin;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 232, 190, 0.85) 0%, rgba(216, 168, 107, 0.35) 40%, transparent 70%);
-  opacity: 0;
-  animation: intro-flash 0.7s 0.95s ease-out forwards;
-}
-@keyframes intro-flash {
-  0% {
-    opacity: 0.95;
-    transform: scale(0.2);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(3.4);
-  }
-}
-.intro-ball,
-.intro-spark {
-  position: absolute;
-  left: 0;
-  top: 0;
-  border-radius: 50%;
-  opacity: 0;
-  will-change: transform, opacity;
-}
-.intro-ball {
-  z-index: 2;
-  width: clamp(40px, var(--sz), 88px);
-  height: clamp(40px, var(--sz), 88px);
-  margin: calc(clamp(40px, var(--sz), 88px) / -2) 0 0 calc(clamp(40px, var(--sz), 88px) / -2);
-  overflow: hidden;
-  background: #3a1d22;
-  box-shadow:
-    0 0 0 2px #d8a86b,
-    0 8px 20px rgba(0, 0, 0, 0.45);
-  animation: intro-burst 2.2s calc(0.97s + var(--i) * 16ms) cubic-bezier(0.16, 0.9, 0.3, 1) forwards;
-}
-.intro-ball img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.intro-spark {
-  z-index: 1;
-  width: 7px;
-  height: 7px;
-  margin: -3.5px 0 0 -3.5px;
-  background: #f0c98a;
-  box-shadow: 0 0 10px 2px rgba(240, 201, 138, 0.7);
-  animation: intro-burst 1.5s calc(0.95s + var(--i) * 10ms) cubic-bezier(0.1, 0.9, 0.3, 1) forwards;
-}
-@keyframes intro-burst {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0) scale(0.1);
-  }
-  6% {
-    opacity: 1;
-  }
-  42% {
-    opacity: 1;
-    transform: translate(var(--dx), var(--dy)) scale(1);
-  }
-  72% {
-    opacity: 1;
-    transform: translate(calc(var(--dx) * 1.05), calc(var(--dy) * 1.05 + 8px)) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(calc(var(--dx) * 1.9), calc(var(--dy) * 1.9 + 30px)) scale(0.75);
-  }
-}
-.intro-title {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: calc(44% + clamp(96px, 19vmin, 150px));
-  z-index: 4;
-  margin: 0;
-  text-align: center;
-  text-shadow: 0 2px 18px rgba(20, 13, 12, 0.9);
-  animation: intro-title 0.6s 1.15s ease-out both;
-}
-@keyframes intro-title {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-.intro-title-name {
-  display: block;
-  font-family: var(--font-serif);
-  font-size: clamp(26px, 5.4vmin, 46px);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-.intro-title-name span {
-  color: #e0668c;
-}
-.intro-title-tag {
-  display: block;
-  margin-top: 6px;
-  font-family: var(--font-mono);
-  font-size: clamp(10px, 1.7vmin, 13px);
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: #d8a86b;
-}
-.intro-skip {
-  position: absolute;
-  z-index: 5;
-  right: 16px;
-  bottom: 16px;
-  padding: 8px 14px;
-  border: 1px solid rgba(243, 235, 228, 0.35);
-  border-radius: 999px;
-  background: rgba(27, 18, 17, 0.5);
-  color: #f3ebe4;
-  font-size: 13px;
-  cursor: pointer;
-}
-.intro-skip:hover {
-  border-color: #f3ebe4;
-}
-
-/* ── Home page motion ──────────────────────────────────────────────────── */
-@media (prefers-reduced-motion: no-preference) {
-  /* Staggered entrance for the banner: set --d (delay) on each piece. */
-  .rise {
-    animation: rise 0.7s var(--d, 0s) cubic-bezier(0.2, 0.8, 0.2, 1) both;
-  }
-  @keyframes rise {
-    from {
-      opacity: 0;
-      transform: translateY(18px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-  .grow-y {
-    transform-origin: bottom;
-    animation: grow-y 0.8s var(--d, 0s) cubic-bezier(0.2, 0.8, 0.2, 1) both;
-  }
-  @keyframes grow-y {
-    from {
-      transform: scaleY(0);
-    }
-    to {
-      transform: none;
-    }
-  }
-  /* Sections fade up, and bars fill, as they scroll into view (where the browser supports it). */
-  @supports (animation-timeline: view()) {
-    .reveal {
-      animation: rise linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 45%;
-    }
-    .fill-x {
-      transform-origin: left;
-      animation: fill-x linear both;
-      animation-timeline: view();
-      animation-range: entry 10% cover 28%;
-    }
-    @keyframes fill-x {
-      from {
-        transform: scaleX(0);
-      }
-      to {
-        transform: none;
-      }
-    }
-  }
-  .lift {
-    transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease,
-      border-color 0.2s ease;
-  }
-  .lift:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 24px rgba(35, 24, 21, 0.1);
+  .frame,
+  .card {
+    box-shadow: none;
+    break-inside: avoid;
   }
 }
 
-/* Photo dots in the home-page chart: the name appears on hover or keyboard focus. */
+/* Photo dots used by legacy charts. */
 .dot {
   position: absolute;
   transform: translate(-50%, 50%);
   border-radius: 50%;
-  transition: transform 0.15s ease;
+  transition: transform var(--dur-1) var(--ease-out);
 }
 .dot:hover,
 .dot:focus-visible {
   z-index: 5;
-  transform: translate(-50%, 50%) scale(1.45);
+  transform: translate(-50%, 50%) scale(1.35);
 }
 .dot-tip {
   position: absolute;
@@ -541,7 +546,7 @@ html[data-intro="skip"] .intro {
   padding: 3px 7px;
   border-radius: 6px;
   background: var(--ink);
-  color: #fff;
+  color: var(--paper);
   font-size: 10px;
   line-height: 1.25;
   white-space: nowrap;
