@@ -64,3 +64,4 @@ video/**/voice/*.wav
 video/producer-loss/assets/*
 !video/producer-loss/assets/anton.woff2
 __pycache__/
+.claude/worktrees/

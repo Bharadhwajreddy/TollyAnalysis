@@ -170,9 +170,18 @@ export function Ledger({
         <div className={`grid items-end gap-4 border-b border-rule pb-2 ${narrow ? "grid-cols-1" : "grid-cols-[minmax(260px,330px)_1fr] lg:grid-cols-[minmax(360px,420px)_1fr]"}`}>
           <div className="flex items-center justify-between pl-1 pr-2">
             <span className="label">{label}</span>
-            <span className="label">{metric.label}</span>
+            <span className="flex items-end gap-3">
+              <span className="label w-[52px] text-right">{metric.label}</span>
+              <span className="relative hidden h-4 w-[110px] lg:block" aria-hidden>
+                {[metric.domain[0], (metric.domain[0] + metric.domain[1]) / 2, metric.domain[1]].map((t, i) => (
+                  <span key={i} className="tabular absolute -translate-x-1/2 text-[10.5px] text-muted" style={{ left: `${i * 50}%` }}>
+                    {metric.fmt === "inr" ? (t >= 1000 ? `${t / 1000}k` : t) : metric.fmt === "pct" ? `${t}%` : t}
+                  </span>
+                ))}
+              </span>
+            </span>
           </div>
-          <div ref={axisRef} className={`relative h-4 ${narrow ? "hidden" : ""}`} aria-hidden>
+          <div ref={axisRef} className="relative h-4" aria-hidden>
             {s.ticks.map((t) => (
               <span key={t} className="tabular absolute -translate-x-1/2 text-[11px] text-muted" style={{ left: s.x(t) }}>
                 {t}

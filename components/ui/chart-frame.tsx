@@ -32,14 +32,14 @@ export function ChartFrame({
 }) {
   return (
     <section id={id} aria-labelledby={`${id}-t`} className={`frame scroll-mt-24 ${className}`}>
-      <div className={`flex flex-wrap items-start justify-between gap-x-6 gap-y-2 px-4 pt-4 sm:px-6 sm:pt-5`}>
+      <div className="flex items-start justify-between gap-x-4 px-4 pt-4 sm:gap-x-6 sm:px-6 sm:pt-5">
         <div className="min-w-0 max-w-3xl">
           <h2 id={`${id}-t`} className="font-serif text-[21px] font-semibold leading-tight tracking-[-0.005em] text-ink sm:text-[23px]">
             {title}
           </h2>
           {finding && <p className="mt-1 text-[13.5px] leading-snug text-ink-2">{finding}</p>}
         </div>
-        <div className="flex items-center gap-2" data-noprint>
+        <div className="flex shrink-0 items-center gap-2" data-noprint>
           {aside}
           <CopyLink id={id} />
         </div>

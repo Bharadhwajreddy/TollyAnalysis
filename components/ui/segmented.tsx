@@ -45,7 +45,7 @@ export function Segmented<T extends string>({
       aria-label={label}
       onKeyDown={onKey}
       {...bind}
-      className={`relative inline-flex max-w-full rounded-[10px] bg-surface-2 p-[3px] ${className}`}
+      className={`relative inline-flex max-w-full overflow-x-auto rounded-[10px] bg-surface-2 p-[3px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${className}`}
     >
       <span ref={ghost} aria-hidden className="slide-ind rounded-[8px] bg-surface/60" />
       <span ref={pill} aria-hidden className="slide-ind rounded-[8px] bg-surface shadow-[0_1px_2px_rgb(0_0_0/0.08),0_0_0_1px_var(--rule)]" />
@@ -61,7 +61,7 @@ export function Segmented<T extends string>({
             title={o.title}
             data-ind={o.value}
             onClick={() => onChange(o.value)}
-            className={`relative z-[1] whitespace-nowrap rounded-[8px] font-medium transition-colors duration-150 ${size === "sm" ? "px-2.5 py-1 text-[12.5px]" : "px-3 py-[7px] text-[13px] max-sm:py-[9px]"} ${
+            className={`relative z-[1] shrink-0 whitespace-nowrap rounded-[8px] font-medium transition-colors duration-150 ${size === "sm" ? "px-2.5 py-1 text-[12.5px]" : "px-3 py-[7px] text-[13px] max-sm:py-[9px]"} ${
               active ? "text-ink" : "text-muted hover:text-ink"
             }`}
           >
