@@ -1,156 +1,140 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { FocusChip, FocusProvider } from "@/components/charts/focus";
+import { Ledger } from "@/components/charts/ledger";
+import { OutcomeLegend } from "@/components/charts/outcome-legend";
+import { PairingsLegend, PairingsMatrix } from "@/components/charts/pairings-matrix";
+import { DirectorToken, HeroToken } from "@/components/entity/tokens";
 import { PageHeader } from "@/components/layout/page-header";
-import { getDirectors, MIN_JUDGED, type Director } from "@/lib/directors";
+import { ChartFrame, Source } from "@/components/ui/chart-frame";
+import { getDirectors, MIN_JUDGED } from "@/lib/directors";
+import { date, int, plural } from "@/lib/format";
+import { DIRECTOR_METRICS } from "@/lib/ledger-metrics";
+import { directorLedgerRows, spineEnd } from "@/lib/ledger-rows";
+import { getPairings } from "@/lib/pairings";
+import { releasesAsOf } from "@/lib/releases";
 
-export const metadata: Metadata = { title: "Directors" };
+export const metadata: Metadata = {
+  title: "Directors",
+  description: "Telugu film directors since 2000, ranked by hit rate, with every film on one timeline and who they made films with.",
+};
 
-const pct = (x: number | null) => (x === null ? "—" : `${Math.round(x * 100)}%`);
-const crore = (x: number) => (x >= 1000 ? `₹${(x / 1000).toFixed(2)}k cr` : `₹${Math.round(x).toLocaleString("en-IN")} cr`);
-
-const SORTS = {
-  rank: { label: "Hit rate", fn: null },
-  hits: { label: "Most hits", fn: (a: Director, b: Director) => b.hits - a.hits || b.judged - a.judged },
-  gross: { label: "Box office", fn: (a: Director, b: Director) => b.totalGross - a.totalGross },
-  films: { label: "Most films", fn: (a: Director, b: Director) => b.films.length - a.films.length || b.hits - a.hits },
-} as const;
-
-function Initials({ name }: { name: string }) {
-  const parts = name.replace(/[^A-Za-z &]/g, " ").split(/\s+/).filter((w) => w.length > 1 || /[A-Z]/.test(w));
-  const ini = (parts.length > 1 ? parts[0][0] + parts[parts.length - 1][0] : (parts[0] ?? "?").slice(0, 2)).toUpperCase();
-  return (
-    <span aria-hidden className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-wine/10 font-serif text-[15px] font-bold text-wine">
-      {ini}
-    </span>
-  );
-}
-
-export default async function DirectorsPage(props: PageProps<"/directors">) {
-  const sp = await props.searchParams;
-  const sort = (typeof sp.sort === "string" && sp.sort in SORTS ? sp.sort : "rank") as keyof typeof SORTS;
-  const all = await getDirectors();
+export default async function DirectorsPage() {
+  const [all, rows, pairs] = await Promise.all([getDirectors(), directorLedgerRows(), getPairings(14)]);
+  const { end, partialFrom } = spineEnd();
+  const order = new Map(all.map((d, i) => [d.slug, i]));
+  const ledgerRows = rows.map((r) => ({ ...r, seq: order.get(r.key) ?? 9999 }));
+  const inLedger = new Set(rows.map((r) => r.key));
+  const rest = all.filter((d) => !inLedger.has(d.slug)).sort((a, b) => b.films.length - a.films.length || a.name.localeCompare(b.name));
   const ranked = all.filter((d) => d.ranked);
-  const rest = all.filter((d) => !d.ranked);
-  const fn = SORTS[sort].fn;
-  const list = fn ? [...ranked].sort((a, b) => fn(a, b) || (a.rank ?? 0) - (b.rank ?? 0)) : ranked;
-  const top = ranked.slice(0, 3);
+  const top = ranked[0];
+  const films = all.reduce((s, d) => s + d.films.length, 0);
+
+  // The matrix's headline: the most frequent pairing, and the best perfect record among the rest.
+  const byN = [...pairs.cells].sort((a, b) => b.n - a.n || b.hits - a.hits);
+  const most = byN[0];
+  const perfect = byN.find((c) => c !== most && c.n >= 3 && c.hits === c.n);
+  const name = (c: (typeof byN)[number]) => ({ d: pairs.directors[c.d], h: pairs.heroes[c.h] });
 
   return (
-    <div className="mx-auto max-w-7xl px-4 pb-16 sm:px-6">
+    <div className="mx-auto max-w-[1280px] px-4 pb-24 sm:px-6 lg:px-8">
       <PageHeader
-        eyebrow="Directors"
-        title="Telugu directors, by hit rate"
+        title="Directors"
         subtitle={
           <>
-            Every Telugu film since 2000 with one of our heroes as lead, grouped by director. Ranked by hit rate; when two
-            directors tie, the one with more films with a known result goes first, then more hits, then the bigger total box
-            office. A director needs at least {MIN_JUDGED} films with a known result to be ranked.
+            {int(all.length)} directors made {int(films)} Telugu films with a hero we track since 2000. Here are the {rows.length} with three or more,
+            each film on one timeline, ranked by how often they deliver a hit.
           </>
+        }
+        aside={
+          top && (
+            <dl className="grid grid-cols-2 gap-x-8 gap-y-1 border-t border-rule pt-4 sm:border-l sm:border-t-0 sm:pl-8 sm:pt-0">
+              <div>
+                <dt className="label">No. 1</dt>
+                <dd className="mt-1.5">
+                  <DirectorToken slug={top.slug} name={top.name} className="text-[15px]" />
+                  <span className="num mt-1 block text-[28px] font-semibold leading-none text-ink">
+                    {top.hits} of {top.judged}
+                  </span>
+                  <span className="mt-1 block text-[12px] text-muted">hits</span>
+                </dd>
+              </div>
+              <div>
+                <dt className="label">Ranked</dt>
+                <dd className="num mt-1.5 text-[28px] font-semibold leading-none text-ink">{ranked.length}</dd>
+                <dd className="mt-1 text-[12px] text-muted">from {MIN_JUDGED} judged films</dd>
+              </div>
+            </dl>
+          )
         }
       />
 
-      {/* Podium */}
-      <ol className="mt-6 grid gap-3 sm:grid-cols-3">
-        {top.map((d) => (
-          <li key={d.slug}>
-            <Link href={`/director/${d.slug}`} className="cinema block h-full rounded-2xl p-5 transition-shadow hover:shadow-lg">
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#e8c79c]">#{d.rank}</p>
-              <p className="mt-1 font-serif text-[24px] font-bold leading-tight text-white">{d.name}</p>
-              <p className="tabular mt-3 text-[34px] font-semibold leading-none text-white">{pct(d.hitRate)}</p>
-              <p className="mt-1 text-[13px] text-[#e6d9cf]">
-                {d.hits} hits in {d.judged} films · {d.firstYear}–{d.lastYear}
-              </p>
-            </Link>
-          </li>
-        ))}
-      </ol>
+      <FocusProvider>
+        <ChartFrame
+          id="ledger"
+          className="mt-10"
+          title="The ledger of directors"
+          finding={
+            <>
+              Ranked by hit rate; a tie goes to more films with a known result, then more hits, then the bigger reported gross. A director is ranked
+              once {MIN_JUDGED} of their films have a known result.
+            </>
+          }
+          aside={<FocusChip />}
+          legend={<OutcomeLegend />}
+          source={<Source>Telugu films with a tracked hero as lead · data as of {date(releasesAsOf)}</Source>}
+        >
+          <Ledger rows={ledgerRows} metrics={DIRECTOR_METRICS} label="Director" end={end} partialFrom={partialFrom} limit={15} />
+        </ChartFrame>
 
-      <nav aria-label="Sort directors" className="mt-8 flex flex-wrap gap-1.5 text-[13px]">
-        {Object.entries(SORTS).map(([k, v]) => (
-          <Link
-            key={k}
-            href={k === "rank" ? "/directors" : `/directors?sort=${k}`}
-            aria-current={sort === k ? "true" : undefined}
-            className={`rounded-full border px-3.5 py-1.5 font-medium ${sort === k ? "border-wine bg-wine text-white" : "border-line bg-surface text-ink hover:border-ink-2"}`}
+          <ChartFrame
+            id="pairings"
+            className="mt-24"
+            title="Who works with whom"
+            finding={
+              most && (
+                <>
+                  <DirectorToken slug={name(most).d.slug} name={name(most).d.name} /> made {plural(most.n, "film")} with{" "}
+                  <HeroToken slug={name(most).h.slug} name={name(most).h.name} face={false} />, {most.hits} of them hits.
+                  {perfect && (
+                    <>
+                      {" "}
+                      <DirectorToken slug={name(perfect).d.slug} name={name(perfect).d.name} /> is {perfect.hits} for {perfect.n} with{" "}
+                      <HeroToken slug={name(perfect).h.slug} name={name(perfect).h.name} face={false} />.
+                    </>
+                  )}{" "}
+                  Point at a circle to light those films in the ledger above.
+                </>
+              )
+            }
+            aside={<FocusChip />}
+            legend={<PairingsLegend max={pairs.max} />}
+            source={<Source>The {pairs.directors.length} directors and {pairs.heroes.length} heroes with the most repeat films together</Source>}
           >
-            {v.label}
-          </Link>
-        ))}
-      </nav>
+            <PairingsMatrix data={pairs} />
+          </ChartFrame>
+      </FocusProvider>
 
-      <div className="card mt-3 overflow-x-auto">
-        <table className="w-full min-w-[760px] text-[13.5px]" data-testid="director-table">
-          <thead>
-            <tr className="border-b border-line text-left text-[11.5px] uppercase tracking-wide text-muted">
-              <th className="px-3 py-2.5 font-semibold">#</th>
-              <th className="px-3 py-2.5 font-semibold">Director</th>
-              <th className="px-3 py-2.5 font-semibold">Hit rate</th>
-              <th className="px-3 py-2.5 text-right font-semibold">Hits</th>
-              <th className="px-3 py-2.5 text-right font-semibold">Films</th>
-              <th className="px-3 py-2.5 text-right font-semibold">Blockbusters</th>
-              <th className="px-3 py-2.5 text-right font-semibold">Box office</th>
-              <th className="px-3 py-2.5 font-semibold">Biggest film</th>
-            </tr>
-          </thead>
-          <tbody>
-            {list.map((d) => (
-              <tr key={d.slug} className="border-b border-line/60 last:border-0 hover:bg-wine/[0.03]">
-                <td className="tabular px-3 py-2.5 text-muted">{d.rank}</td>
-                <td className="px-3 py-2.5">
-                  <Link href={`/director/${d.slug}`} className="flex items-center gap-2.5 font-semibold text-ink hover:text-wine">
-                    <Initials name={d.name} />
-                    <span>
-                      {d.name}
-                      <span className="block text-[11.5px] font-normal text-muted">
-                        {d.firstYear}–{d.lastYear} · {d.heroes.slice(0, 3).map((h) => h.name).join(", ")}
-                      </span>
-                    </span>
-                  </Link>
-                </td>
-                <td className="px-3 py-2.5">
-                  <span className="flex items-center gap-2">
-                    <span className="tabular w-10 font-semibold text-ink">{pct(d.hitRate)}</span>
-                    <span className="h-2 w-24 overflow-hidden rounded-full bg-line/70">
-                      <span className="block h-full rounded-full bg-[#2f8f4e]" style={{ width: `${(d.hitRate ?? 0) * 100}%` }} />
-                    </span>
-                  </span>
-                </td>
-                <td className="tabular px-3 py-2.5 text-right">{d.hits}</td>
-                <td className="tabular px-3 py-2.5 text-right">
-                  {d.judged}
-                  {d.films.length > d.judged && <span className="text-muted"> / {d.films.length}</span>}
-                </td>
-                <td className="tabular px-3 py-2.5 text-right">{d.blockbusters || "—"}</td>
-                <td className="tabular px-3 py-2.5 text-right">{d.grossFilms ? crore(d.totalGross) : "—"}</td>
-                <td className="px-3 py-2.5 text-ink-2">{d.biggest ? `${d.biggest.title} (${d.biggest.year})` : "—"}</td>
-              </tr>
+      {rest.length > 0 && (
+        <details className="group mt-16 border-t border-rule pt-5">
+          <summary className="cursor-pointer list-none text-[15px] font-semibold text-ink marker:hidden hover:text-accent">
+            <span aria-hidden className="mr-2 inline-block text-muted transition-transform duration-[var(--dur-2)] group-open:rotate-90">
+              ›
+            </span>
+            Every other director: {rest.length} with one or two films
+          </summary>
+          <ul className="mt-4 columns-1 gap-x-8 text-[13.5px] sm:columns-2 lg:columns-4">
+            {rest.map((d) => (
+              <li key={d.slug} className="break-inside-avoid py-1">
+                <DirectorToken slug={d.slug} name={d.name} />{" "}
+                <span className="tabular text-muted">
+                  · {plural(d.films.length, "film")}
+                  {d.judged ? `, ${d.hits} of ${d.judged} hits` : ""}
+                </span>
+              </li>
             ))}
-          </tbody>
-        </table>
-      </div>
-      <p className="mt-2 text-[12px] text-muted">
-        Films: with a known result / all films (too recent, direct to OTT or no reported result count only in the second number).
-        Box office is the sum of reported worldwide grosses (lower figure where reports differ).
-      </p>
-
-      <details className="card mt-6 p-4">
-        <summary className="cursor-pointer text-[14px] font-semibold text-ink">
-          Not ranked yet: {rest.length} directors with fewer than {MIN_JUDGED} films with a known result
-        </summary>
-        <ul className="mt-3 grid gap-x-6 gap-y-1 text-[13px] sm:grid-cols-2 lg:grid-cols-3">
-          {rest.map((d) => (
-            <li key={d.slug}>
-              <Link href={`/director/${d.slug}`} className="text-ink hover:text-wine">
-                {d.name}
-              </Link>{" "}
-              <span className="text-muted">
-                · {d.films.length} {d.films.length === 1 ? "film" : "films"}
-                {d.judged ? `, ${d.hits} of ${d.judged} hits` : ""}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </details>
+          </ul>
+        </details>
+      )}
     </div>
   );
 }

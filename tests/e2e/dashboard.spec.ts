@@ -123,7 +123,7 @@ test.describe("Other views", () => {
 });
 
 test.describe("Responsive layout", () => {
-  for (const path of ["/", "/star-score", "/tolly-index", "/heroes", "/hero/prabhas", "/hero/allari-naresh", "/hero/sivaji", "/rankings", "/compare", "/trends", "/methodology", "/annexure", "/annexure/registry", "/annexure/heroes/nani", "/annexure/corrections", "/annexure/sources", "/terms", "/privacy", "/careers", "/contact"]) {
+  for (const path of ["/", "/star-score", "/tolly-index", "/heroes", "/hero/prabhas", "/hero/allari-naresh", "/hero/sivaji", "/rankings", "/compare", "/methodology", "/annexure", "/annexure/registry", "/annexure/heroes/nani", "/annexure/corrections", "/annexure/sources", "/terms", "/privacy", "/careers", "/contact"]) {
     test(`no horizontal page overflow on ${path}`, async ({ page }) => {
       await page.goto(path);
       const [scrollW, clientW] = await page.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]);
@@ -260,29 +260,34 @@ test.describe("Home page", () => {
     await expect(graph).toContainText("ENE Repeat");
   });
 
-  test("directors are ranked by hit rate and each has a career graph", async ({ page }) => {
-    await page.goto("/");
-    await page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: "Directors" }).click();
-    await expect(page).toHaveURL(/\/directors$/);
-    const rows = page.getByTestId("director-table").locator("tbody tr");
-    expect(await rows.count()).toBeGreaterThan(30);
-    await page.getByTestId("director-table").getByRole("link", { name: /S\. S\. Rajamouli/ }).click();
+  test("directors: a ledger ranked by hit rate, a pairings matrix, and a page per director", async ({ page }) => {
+    await page.goto("/directors");
+    const ledger = page.locator("#ledger");
+    await expect(ledger.getByRole("link", { name: /S\. S\. Rajamouli/ }).first()).toBeVisible();
+    // Pairings: E. V. V. Satyanarayana × Allari Naresh reads "8 films, 6 hits".
+    const cell = page.getByRole("gridcell").getByRole("button", { name: /E\. V\. V\. Satyanarayana × Allari Naresh: 8 films, 6 hits/ });
+    await cell.hover();
+    await expect(page.getByRole("tooltip")).toContainText("8 films, 6 hits");
+    await ledger.getByRole("link", { name: /S\. S\. Rajamouli/ }).first().click();
     await expect(page.getByRole("heading", { level: 1 })).toHaveText("S. S. Rajamouli");
-    const graph = page.getByRole("img", { name: /S\. S\. Rajamouli: box-office result of every lead film/ });
-    await graph.scrollIntoViewIfNeeded();
-    expect(await graph.getByRole("button").count()).toBeGreaterThanOrEqual(10);
+    await expect(page).toHaveTitle(/S\. S\. Rajamouli — 12 of 12 hits/);
+    await expect(page.getByRole("img", { name: /S\. S\. Rajamouli: 12 films on a timeline/ })).toBeVisible();
     await expect(page.getByRole("link", { name: "Jr NTR" }).first()).toHaveAttribute("href", "/hero/jr-ntr");
   });
 
-  test("releases: a line per year with each year's film list", async ({ page }) => {
+  test("years: releases per year, a week strip and each year's film list", async ({ page }) => {
     await page.goto("/releases");
-    await expect(page.getByRole("img", { name: "Telugu releases per year since 2000" })).toBeVisible();
-    expect(await page.getByTestId("release-list").locator("li").count()).toBeGreaterThan(50);
-    await page.getByRole("img", { name: "Telugu releases per year since 2000" }).getByRole("link", { name: /^2020: / }).click();
-    await expect(page).toHaveURL(/year=2020/);
-    await expect(page.getByRole("heading", { name: /2020 releases/ })).toBeVisible();
-    await page.getByRole("link", { name: "Telugu, direct to OTT" }).click();
+    await expect(page.getByRole("img", { name: /Telugu releases per year, 2000 to/ })).toBeVisible();
+    expect(await page.getByTestId("release-list").locator("li").count()).toBeGreaterThan(30);
+    await page.goto("/releases?year=2020#list");
+    await expect(page.getByRole("heading", { name: "2020", exact: true })).toBeVisible();
+    await page.getByRole("navigation", { name: "Type of release" }).getByRole("link", { name: /OTT/ }).click();
+    await expect(page).toHaveURL(/type=ott/);
     await expect(page.getByTestId("release-list")).toContainText("Middle Class Melodies");
+    await page.getByRole("link", { name: "Previous year, 2019" }).click();
+    await expect(page.getByRole("heading", { name: "2019", exact: true })).toBeVisible();
+    await page.goto("/trends");
+    await expect(page).toHaveURL(/\/releases$/);
   });
 
   test("find your hero opens his page", async ({ page }) => {

@@ -25,6 +25,8 @@ export interface LedgerRow {
   bands?: Record<string, number | null>;
   note?: string | null;
   upcoming?: { title: string; year: number } | null;
+  /** Tie-break between equal values (lower first), e.g. the editorial ranking order; distinct values get distinct ranks. */
+  seq?: number;
 }
 
 export interface LedgerMetric {
@@ -135,7 +137,7 @@ export function Ledger({
       if (va === null && vb === null) return a.name.localeCompare(b.name);
       if (va === null) return 1;
       if (vb === null) return -1;
-      return (metric.asc ? va - vb : vb - va) || a.name.localeCompare(b.name);
+      return (metric.asc ? va - vb : vb - va) || (a.seq ?? 0) - (b.seq ?? 0) || a.name.localeCompare(b.name);
     });
     return s;
   }, [rows, metric]);
@@ -144,7 +146,7 @@ export function Ledger({
   sorted.forEach((r, i) => {
     const v = r.values[metric.key];
     const prev = i > 0 ? sorted[i - 1] : null;
-    ranks.set(r.key, v === null ? 0 : prev && prev.values[metric.key] === v ? (ranks.get(prev.key) as number) : i + 1);
+    ranks.set(r.key, v === null ? 0 : prev && prev.values[metric.key] === v && prev.seq === r.seq ? (ranks.get(prev.key) as number) : i + 1);
   });
   const shownN = limit && !expanded ? Math.min(limit, rows.length) : rows.length;
   const visible = new Set(sorted.slice(0, shownN).map((r) => r.key));

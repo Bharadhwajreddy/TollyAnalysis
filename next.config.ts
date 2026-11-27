@@ -11,6 +11,10 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  async redirects() {
+    // Trends folded into Years (/releases). Not permanent while the site is in beta.
+    return [{ source: "/trends", destination: "/releases", permanent: false }];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

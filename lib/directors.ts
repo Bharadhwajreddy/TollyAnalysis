@@ -42,6 +42,8 @@ const ALIASES: Record<string, string> = {
   "Muppalaneni Siva": "Muppalaneni Shiva",
   "G.Nageswara Reddy": "G. Nageswara Reddy",
   "Nandini Reddy": "B. V. Nandini Reddy",
+  "B.V. Nandini Reddy": "B. V. Nandini Reddy",
+  "Mahi V Raghav": "Mahi V. Raghav",
   "Sai Rajesh Neelam (credited as Steven Shankar)": "Sai Rajesh Neelam",
   "Kovelamudi Raghavendra Rao": "K. Raghavendra Rao",
   "S. S. Rajamouli K. Raghavendra Rao (supervision)": "S. S. Rajamouli",
