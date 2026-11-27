@@ -411,13 +411,14 @@ function SmallRanking({
   );
 }
 
+const MONEY = new Set<HeroMetricKey>(["totalGross", "topGross", "avgGross"]);
+
 function ParetoCard({
   id,
   title,
   heroes,
   selected,
   colorOf,
-  onActivate,
   initialX,
   initialY,
 }: {
@@ -503,14 +504,9 @@ function ParetoCard({
       }
     >
       <ParetoChart
-        data={points}
-        xLabel={`${axisLabel(x)} →`}
-        yLabel={`${axisLabel(y)} →`}
-        xMax={METRICS[x].domainMax}
-        yMax={METRICS[y].domainMax}
-        xHigherIsBetter={METRICS[x].higherIsBetter}
-        yHigherIsBetter={METRICS[y].higherIsBetter}
-        onActivate={onActivate}
+        points={points.map((p) => ({ id: p.id, label: p.label, img: p.photo, x: p.x, y: p.y, href: `/hero/${p.id}` }))}
+        xAxis={{ key: x, label: METRICS[x].label, unit: axisLabel(x).replace(/^.*\((.*)\)$/, "$1"), log: MONEY.has(x), asc: !METRICS[x].higherIsBetter, fmt: (v) => formatMetric(x, v) }}
+        yAxis={{ key: y, label: METRICS[y].label, unit: axisLabel(y).replace(/^.*\((.*)\)$/, "$1"), log: MONEY.has(y), asc: !METRICS[y].higherIsBetter, fmt: (v) => formatMetric(y, v) }}
         ariaLabel={`${METRICS[x].label} against ${METRICS[y].label}`}
       />
       <details className="mt-4 rounded-lg border border-line bg-surface-2 px-3 py-2">

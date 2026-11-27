@@ -45,7 +45,7 @@ export function ChartFrame({
         </div>
       </div>
       {controls && <div className="px-4 pt-4 sm:px-6">{controls}</div>}
-      <div className={flush ? "pt-3" : "px-4 pb-1 pt-4 sm:px-6"}>{children}</div>
+      <div className={`min-w-0 overflow-x-clip ${flush ? "pt-3" : "px-4 pb-1 pt-4 sm:px-6"}`}>{children}</div>
       {(legend || source) && (
         <div className="mt-2 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-t border-rule px-4 py-3 text-[12px] text-muted sm:px-6">
           <div>{legend}</div>

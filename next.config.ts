@@ -11,9 +11,14 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // One headline score: the Star Score and Rankings pages live on as views of the Index explorer; Trends is part of Years.
+  // Not permanent while the site is in beta.
   async redirects() {
-    // Trends folded into Years (/releases). Not permanent while the site is in beta.
-    return [{ source: "/trends", destination: "/releases", permanent: false }];
+    return [
+      { source: "/star-score", destination: "/tolly-index?view=boxoffice", permanent: false },
+      { source: "/rankings", destination: "/tolly-index?view=table", permanent: false },
+      { source: "/trends", destination: "/releases", permanent: false },
+    ];
   },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];

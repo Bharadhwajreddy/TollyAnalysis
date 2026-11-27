@@ -107,6 +107,11 @@ export function Ledger({
   moreHref,
   moreLabel,
   showTabs = true,
+  metric: controlled,
+  onMetricChange,
+  dense = false,
+  rankFor,
+  ariaLabel,
 }: {
   rows: LedgerRow[];
   metrics: LedgerMetric[];
@@ -119,8 +124,21 @@ export function Ledger({
   moreHref?: string;
   moreLabel?: string;
   showTabs?: boolean;
+  /** Controlled metric key (several Ledgers sharing one "Rank by" control). */
+  metric?: string;
+  onMetricChange?: (key: string) => void;
+  /** Tighter rows (long lists, e.g. every hero). */
+  dense?: boolean;
+  /** Override the rank shown in a row (e.g. the true index rank inside a filtered list). */
+  rankFor?: (key: string, metricKey: string, position: number) => number | null;
+  ariaLabel?: string;
 }) {
-  const [metricKey, setMetric] = useState(initialMetric ?? metrics[0].key);
+  const [ownMetric, setOwnMetric] = useState(initialMetric ?? metrics[0].key);
+  const metricKey = controlled ?? ownMetric;
+  const setMetric = (k: string) => {
+    setOwnMetric(k);
+    onMetricChange?.(k);
+  };
   const metric = metrics.find((m) => m.key === metricKey) ?? metrics[0];
   const [expanded, setExpanded] = useState(false);
   const [hover, setHover] = useState<number | null>(null);
@@ -128,7 +146,7 @@ export function Ledger({
   const [boxRef, boxW] = useElementWidth<HTMLDivElement>(1000);
   const { focus } = useFocus();
   const narrow = boxW < 760;
-  const rowH = narrow ? 82 : 56;
+  const rowH = dense ? (narrow ? 64 : 40) : narrow ? 82 : 56;
 
   const sorted = useMemo(() => {
     const s = [...rows].sort((a, b) => {
@@ -148,6 +166,7 @@ export function Ledger({
     const prev = i > 0 ? sorted[i - 1] : null;
     ranks.set(r.key, v === null ? 0 : prev && prev.values[metric.key] === v && prev.seq === r.seq ? (ranks.get(prev.key) as number) : i + 1);
   });
+  if (rankFor) for (const [k, r] of ranks) ranks.set(k, rankFor(k, metric.key, r) ?? 0);
   const shownN = limit && !expanded ? Math.min(limit, rows.length) : rows.length;
   const visible = new Set(sorted.slice(0, shownN).map((r) => r.key));
   const s = spine(start, end, 4, Math.max(10, axisW - 4), axisW < 420 ? 10 : axisW < 700 ? 5 : 2);
@@ -163,11 +182,11 @@ export function Ledger({
   return (
     <div>
       {showTabs && metrics.length > 1 && (
-        <div className="mb-4 flex flex-wrap items-center gap-3">
-          <Segmented label="Rank by" value={metricKey} onChange={setMetric} options={metrics.map((m) => ({ value: m.key, label: m.label, title: m.hint }))} />
+        <div className="scroll-x -mx-1 mb-4 px-1 pb-0.5">
+          <Segmented className="!max-w-none" label="Rank by" value={metricKey} onChange={setMetric} options={metrics.map((m) => ({ value: m.key, label: m.label, title: m.hint }))} />
         </div>
       )}
-      <div ref={boxRef}>
+      <div ref={boxRef} role={ariaLabel ? "group" : undefined} aria-label={ariaLabel}>
         {/* Column header with the shared time axis */}
         <div className={`grid items-end gap-4 border-b border-rule pb-2 ${narrow ? "grid-cols-1" : "grid-cols-[minmax(260px,330px)_1fr] lg:grid-cols-[minmax(360px,420px)_1fr]"}`}>
           <div className="flex items-center justify-between pl-1 pr-2">
@@ -211,15 +230,15 @@ export function Ledger({
                 <div className="flex min-w-0 items-center gap-3 pr-2">
                   <span className="tabular w-6 shrink-0 text-right text-[12.5px] text-muted">{rank || ""}</span>
                   <Link href={r.href} className="group/r flex min-w-0 flex-1 items-center gap-2.5 rounded-md" tabIndex={on ? 0 : -1}>
-                    <Face row={r} size={30} />
+                    <Face row={r} size={dense ? 24 : 30} />
                     <span className="min-w-0">
-                      <span className="block truncate text-[14.5px] font-semibold text-ink decoration-1 underline-offset-[3px] group-hover/r:underline">{r.name}</span>
-                      {r.note && <span className="block truncate text-[11.5px] text-muted">{r.note}</span>}
+                      <span className={`block truncate font-semibold text-ink decoration-1 underline-offset-[3px] group-hover/r:underline ${dense ? "text-[14px]" : "text-[14.5px]"}`}>{r.name}</span>
+                      {r.note && (!dense || narrow) && <span className="block truncate text-[11.5px] text-muted">{r.note}</span>}
                     </span>
                   </Link>
                   <Value v={v} band={r.bands?.[metric.key]} metric={metric} />
                 </div>
-                <FilmStrip films={r.films} start={start} end={end} height={narrow ? 26 : 32} partialFrom={partialFrom} upcoming={r.upcoming ?? null} ariaLabel={`${r.name}: ${r.films.length} films on a timeline`} />
+                <FilmStrip films={r.films} start={start} end={end} height={dense ? (narrow ? 20 : 26) : narrow ? 26 : 32} partialFrom={partialFrom} upcoming={r.upcoming ?? null} ariaLabel={`${r.name}: ${r.films.length} films on a timeline`} />
               </div>
             );
           })}
