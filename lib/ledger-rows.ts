@@ -10,7 +10,8 @@ import { releasesAsOf } from "@/lib/releases";
 /** Fractional-year end of the spine (today) and where the running year starts. */
 export function spineEnd(): { end: number; partialFrom: number } {
   const [y, m, d] = releasesAsOf.split("-").map(Number);
-  return { end: y + (m - 1) / 12 + d / 365 + 0.15, partialFrom: y };
+  // A little room after today for the running year, but never a tick for next year.
+  return { end: Math.min(y + 0.995, y + (m - 1) / 12 + d / 365 + 0.15), partialFrom: y };
 }
 
 export interface HeroSummary {
